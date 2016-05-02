@@ -1,0 +1,564 @@
+{
+    "id": "177de0fbee59",
+    "version": 0,
+    "type": "survey",
+    "form": {
+        "pages": [
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "mood",
+                             "caption": "Mood",
+                             "autoSubmit": false,
+                             "required": true,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "name": "mood",
+                             "title": "Starting mood",
+                             "points": 5,
+                             "mode":"mood",
+                             "options": [
+                                         {
+                                         "title": "Hate",
+                                         "value": "1"
+                                         },
+                                         {
+                                         "title": "Dislike",
+                                         "value": "2"
+                                         },
+                                         {
+                                         "title": "Neutral",
+                                         "value": "3"
+                                         },
+                                         {
+                                         "title": "Like",
+                                         "value": "4"
+                                         },
+                                         {
+                                         "title": "Love",
+                                         "value": "5"
+                                         }
+                                         ]
+                             },
+                             {
+                             "type": "header",
+                             "caption": "Header",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Click to edit"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "few,bflhjweabfhjweba;jfgnwrj;kgnjkwerabsgj;nwraj;gnakrs'ngkwn kwegewg o'ewjj weo gweon ;owe;jbew;gnew;og;oiew hgio'ew    ;j gbw  eogwe;ijb"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "Click to edit ",
+                             "name": "text"
+                             },
+                             {
+                             "type": "nps",
+                             "caption": "NPS",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "name": "nps",
+                             "title": "How likely are you to recommend our company/product/service to your friends and colleagues?",
+                             "low": "not at all",
+                             "high": "very likely",
+                             "mode": "slider"
+                             },
+                             {
+                             "autoSubmit":false,
+                             "caption": "Picker",
+                             "fixed": false,
+                             "forceRequired": false,
+                             "interactive": true,
+                             "name": "Pick_",
+                             "options":                     [
+                                                              {
+                                                              "title": "Option 1",
+                                                              "value": "Option_1",
+                                                              },
+                                                              {
+                                                              "title": "Option 2",
+                                                              "value": "Option_2",
+                                                              },
+                                                              {
+                                                              "title": "Option 3",
+                                                              "value": "Option_3",
+                                                              },
+                                                              {
+                                                              "title": "Option 5",
+                                                              "value": "Option_5",
+                                                              },
+                                                              {
+                                                              "title": "Option 4",
+                                                              "value": "Option_4",
+                                                              },
+                                                              {
+                                                              "title": "Option 6",
+                                                              "value": "Option_6",
+                                                              },
+                                                              {
+                                                              "title": "Option 7",
+                                                              "value": "Option_7",
+                                                              },
+                                                              {
+                                                              "title": "Option 8",
+                                                              "value": "Option_8",
+                                                              },
+                                                              {
+                                                              "title": "Option 9",
+                                                              "value": "Option_9",
+                                                              },
+                                                              {
+                                                              "title": "Option 10",
+                                                              "value": "Option_10",
+                                                              }
+
+                                                              ],
+                             "required": false,
+                             "showHideRule":[],
+                             "title": "Pick!",
+                             "type": "choice",
+                             "validationText": "This field is required"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "Pick_",
+                             "value": [
+                                       "Option_1"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "Should appear only on picker 1",
+                             "name": "text"
+                             },
+                             {
+                             "type": "nps",
+                             "caption": "NPS",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "name": "nps",
+                             "title": "How likely are you to recommend our company/product/service to your friends and colleagues?",
+                             "low": "not at all",
+                             "high": "very likely",
+                             "mode": "slider"
+                             }
+                             ],
+                  "jump": "page4",
+                  "jumpRules": [
+                                {
+                                "control": "mood",
+                                "value": [
+                                          "4",
+                                          "5"
+                                          ],
+                                "jump": "page2"
+                                },
+                                {
+                                "control": "mood",
+                                "value": [
+                                          "1",
+                                          "2"
+                                          ],
+                                "jump": "page3"
+                                }
+                                ],
+                  "autoSubmit": true,
+                  "name": "start"
+                  },
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "header",
+                             "caption": "Header",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Click to edit header"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "This is page 2. That means you like us a lot."
+                             },
+                             {
+                             "type": "text",
+                             "caption": "Text Input",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "nps",
+                             "value": [
+                                       "10"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "This should appear only if you put 10 in the NPS in page 1",
+                             "name": "This_should_appe"
+                             },
+                             {
+                             "type": "radio",
+                             "caption": "Radio Buttons",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "Where would you like to go next?",
+                             "options": [
+                                         {
+                                         "title": "Page 3",
+                                         "value": "Page_3"
+                                         },
+                                         {
+                                         "title": "page 4",
+                                         "value": "page_4"
+                                         }
+                                         ],
+                             "name": "Where_would_you_"
+                             },
+                             {
+                             "type": "checkbox",
+                             "caption": "Checkboxes",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "Where_would_you_",
+                             "value": [
+                                       "Page_3"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "asd",
+                             "options": [
+                                         {
+                                         "title": "Candies",
+                                         "value": "Candies"
+                                         },
+                                         {
+                                         "title": "Puppy",
+                                         "value": "Puppy"
+                                         },
+                                         {
+                                         "title": "Drugs",
+                                         "value": "Drugs"
+                                         }
+                                         ],
+                             "name": "How_tods"
+                             },
+                             {
+                             "type": "text",
+                             "caption": "Text Input",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "This should appear only if you put 10 in the NPS in page 1",
+                             "name": "This_should_appe"
+                             }
+                             ],
+                  "jump": null,
+                  "jumpRules": [
+                                {
+                                "control": "Where_would_you_",
+                                "value": [
+                                          "Page_3"
+                                          ],
+                                "jump": "page3"
+                                },
+                                {
+                                "control": "Where_would_you_",
+                                "value": [
+                                          "page_4"
+                                          ],
+                                "jump": "page4"
+                                }
+                                ],
+                  "autoSubmit": true,
+                  "name": "page2"
+                  },
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "header",
+                             "caption": "Header",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "You dont like us"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "You clearly had a very sad childhood. How can we fix that?"
+                             },
+                             {
+                             "type": "checkbox",
+                             "caption": "Checkboxes",
+                             "autoSubmit": false,
+                             "required":true,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "How to fix bad childhood?",
+                             "options": [
+                                         {
+                                         "title": "Candies",
+                                         "value": "Candies"
+                                         },
+                                         {
+                                         "title": "Puppy",
+                                         "value": "Puppy"
+                                         },
+                                         {
+                                         "title": "Drugs",
+                                         "value": "Drugs"
+                                         }
+                                         ],
+                             "name": "How_to_fix_bad_c"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "required":true,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "How_to_fix_bad_c",
+                             "value": [
+                                       "Candies"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "Here's diabeetus!",
+                             "name": "Here_s_diabeetus",
+                             "default": "And you're also going to need a dentist"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "required":true,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "How_to_fix_bad_c",
+                             "value": [
+                                       "Puppy"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "So you want a puppy",
+                             "name": "So_you_want_a_pu",
+                             "default": "Here's a King cobra puppy. Try and pet him"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "required":true,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "How_to_fix_bad_c",
+                             "value": [
+                                       "Drugs"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "Who can blame you",
+                             "name": "Who_can_blame_yo",
+                             "default": "Everybody does them."
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "How_to_fix_bad_c",
+                             "value": [
+                                       "Candies",
+                                       "Puppy",
+                                       "Drugs"
+                                       ],
+                             "action": "hide"
+                             },
+                             "validationText": "This field is required",
+                             "title": "Please choose something",
+                             "name": "Please_choose_so",
+                             "default": "There's a place in Dante's inferno for those who can not choose"
+                             }
+                             ],
+                  "jump": null,
+                  "jumpRules": [],
+                  "autoSubmit": true,
+                  "name": "page3"
+                  },
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "header",
+                             "caption": "Header",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Click to edit header"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "This is page 4. I ran out of idea at this point"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "Click to edit",
+                             "name": "text3"
+                             }
+                             ],
+                  "jump": null,
+                  "jumpRules": [],
+                  "autoSubmit": true,
+                  "name": "page4"
+                  },
+                  {
+                  "type": "end",
+                  "fields": [
+                             {
+                             "type": "header",
+                             "caption": "Header",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Thanks!"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Thank you for sharing your feedback with us."
+                             }
+                             ],
+                  "jump": null,
+                  "jumpRules": [],
+                  "autoSubmit": false,
+                  "autoclose": 5000,
+                  "name": "end"
+                  }
+                  ]
+    },
+    "data": {
+        "appSubmit": "Halloa",
+        "theme": "default",
+        "showReset": {
+            "value": 1,
+            "interval": {
+                "name": "Day",
+                "value": "1"
+            }
+        }
+    }
+}

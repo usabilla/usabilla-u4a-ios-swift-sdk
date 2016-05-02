@@ -1,0 +1,115 @@
+//
+//  MoodContentController.swift
+//  ubform_swift
+//
+//  Created by Giacomo Pinato on 10/03/16.
+//  Copyright © 2016 Usabilla. All rights reserved.
+//
+
+import UIKit
+
+@IBDesignable class MoodContentController: UIView {
+    
+    var delegate: IntFieldHandlerProtocol!
+    var view: UIView!
+
+    @IBOutlet weak var firstButton: UIButton!
+    @IBOutlet weak var secondButton: UIButton!
+    @IBOutlet weak var thirdButton: UIButton!
+    @IBOutlet weak var fourthButton: UIButton!
+    @IBOutlet weak var fifthBUtton: UIButton!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+            setUp()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+            setUp()
+    }
+    
+    func setUp() {
+        view = loadViewFromNib()
+        view.frame = bounds
+        view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        addSubview(view)
+        
+        var smilies: [UIImage] = []
+        
+        if UsabillaThemeConfigurator.sharedInstance.disabledEmoticons != nil {
+            smilies = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons!
+        } else {
+            smilies = UsabillaThemeConfigurator.sharedInstance.enabledEmoticons
+        }
+        
+        view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+        
+        firstButton.setImage(smilies[0], forState: .Normal)
+        secondButton.setImage(smilies[1], forState: .Normal)
+        thirdButton.setImage(smilies[2], forState: .Normal)
+        fourthButton.setImage(smilies[3], forState: .Normal)
+        fifthBUtton.setImage(smilies[4], forState: .Normal)
+        
+    }
+
+    func setNumberOfItems(number: Int) {
+        switch number {
+        case 3:
+            secondButton.hidden = true
+            fourthButton.hidden = true
+        case 2:
+            secondButton.hidden = true
+            fourthButton.hidden = true
+            thirdButton.hidden = true
+        default:
+            break
+        }
+    
+    }
+    
+    func loadViewFromNib() -> UIView {
+        let bundle = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")
+        let nib = UINib(nibName: "MoodContentController", bundle: bundle)
+        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+    
+        return view
+    }
+    
+    func resetSelected() {
+        if let disabled = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons {
+            firstButton.setImage(disabled[0], forState: .Normal)
+            secondButton.setImage(disabled[1], forState: .Normal)
+            thirdButton.setImage(disabled[2], forState: .Normal)
+            fourthButton.setImage(disabled[3], forState: .Normal)
+            fifthBUtton.setImage(disabled[4], forState: .Normal)
+        } else {
+            firstButton.alpha = 0.5
+            secondButton.alpha = 0.5
+            thirdButton.alpha = 0.5
+            fourthButton.alpha = 0.5
+            fifthBUtton.alpha = 0.5
+        }
+    }
+    
+    
+    @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
+        delegate.fieldValue = sender.tag
+        
+        if let disabled = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons {
+            firstButton.setImage(disabled[0], forState: .Normal)
+            secondButton.setImage(disabled[1], forState: .Normal)
+            thirdButton.setImage(disabled[2], forState: .Normal)
+            fourthButton.setImage(disabled[3], forState: .Normal)
+            fifthBUtton.setImage(disabled[4], forState: .Normal)
+            sender.setImage(UsabillaThemeConfigurator.sharedInstance.enabledEmoticons[sender.tag-1], forState: .Normal)
+        } else {
+            firstButton.alpha = 0.5
+            secondButton.alpha = 0.5
+            thirdButton.alpha = 0.5
+            fourthButton.alpha = 0.5
+            fifthBUtton.alpha = 0.5
+            sender.alpha = 1
+        }
+    }
+}
