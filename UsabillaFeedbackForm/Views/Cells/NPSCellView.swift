@@ -52,14 +52,10 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
         npsModel = item as! NPSFieldModel
 
         
-        if npsModel.fieldValue != nil {
-            buttonView?.buttons.forEach({ (button) -> () in
-                if button.tag == npsModel.fieldValue {
-                    button.selected = true
-                    button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.accentColor
-
-                }
-            })
+        if let value = npsModel.fieldValue {
+            buttonView?.selectButton(value)
+        } else {
+            buttonView?.resetButtons()
         }
      
     }
