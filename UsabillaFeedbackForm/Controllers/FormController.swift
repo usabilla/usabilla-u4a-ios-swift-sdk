@@ -258,11 +258,7 @@ class FormViewController: UIViewController {
         
         //And now to send the request
         //TODO: handle properly
-        NetworkManager.submitFormToUsabilla(payload).then { success in
-            print("Fuck yeah")
-            } .error { _ in
-                print("fuck no")
-        }
+        NetworkManager.submitFormToUsabilla(payload)
         
     }
     

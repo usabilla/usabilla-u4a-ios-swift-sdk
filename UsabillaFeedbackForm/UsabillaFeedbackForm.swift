@@ -41,25 +41,26 @@ public class UsabillaFeedbackForm {
             UsabillaFeedbackForm.delegate?.feedbackFromLoadedCorreclty(base, active: true)
             }.error { _ in
                 print("calling fail protocol")
-                UsabillaFeedbackForm.delegate?.feedbackFromLoadedIncorreclty(UsabillaFeedbackForm.loadDefaultForm()!)
+                UsabillaFeedbackForm.delegate?.feedbackFromLoadedIncorreclty(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
         }
         
     }
     
     
-    class func loadDefaultForm() -> UINavigationController? {
-        if let path = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.pathForResource("formJson", ofType: "json") {
+    class func loadDefaultForm(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) -> UINavigationController? {
+        if let path = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.pathForResource("defaultJson", ofType: "json") {
             do {
                 let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let jsonObj: JSON = JSON(data:data)
                 if jsonObj != JSON.null {
-                    var form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: "2", screenshot: nil)
+                    var form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot)
                     form.isDefault = true
                     let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
                     let base = storyboard.instantiateViewControllerWithIdentifier("base") as? UINavigationController
                     let formController = base?.childViewControllers[0] as? FormViewController
                     
                     formController!.initWithFormModel(form)
+                    formController!.customVars = customVariables
                     print("parsed")
                     return base!
                     

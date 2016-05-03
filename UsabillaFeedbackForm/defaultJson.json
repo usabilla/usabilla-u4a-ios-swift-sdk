@@ -9,6 +9,7 @@
                              "type": "mood",
                              "validationText": "This field is required",
                              "name": "mood",
+                             "required" : true,
                              "title": "How would you rate this app?",
                              "points": 5,
                              "options": [
