@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+import UIKit
+ 
 class ScreenshotCellView: RootCellView {
     
     var screenshotModel: ScreenshotModel!

@@ -1,8 +1,8 @@
 //
 //  UsabillaFeedbackForm.swift
-//  ubform_swift
+//  UsabillaFeedbackForm
 //
-//  Created by Giacomo Pinato on 01/03/16.
+//  Created by Giacomo Pinato on 02/05/16.
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 

@@ -10,7 +10,6 @@ import Foundation
 import SwiftyJSON
 
 
-
 class RatingFieldModel: IntFieldModel {
     
     let textPositioning, low, high: String?

@@ -165,7 +165,7 @@ extension UIDevice {
  UnableToScanHexValue:      "Scan hex error"
  MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
  */
-public enum UIColorInputError: ErrorType {
+enum UIColorInputError: ErrorType {
     case MissingHashMarkAsPrefix,
     UnableToScanHexValue,
     MismatchedHexStringLength
@@ -179,7 +179,7 @@ extension UIColor {
      - parameter hex3: Three-digit hexadecimal value.
      - parameter alpha: 0.0 - 1.0. The default is 1.0.
      */
-    public convenience init(hex3: UInt16, alpha: CGFloat = 1) {
+    convenience init(hex3: UInt16, alpha: CGFloat = 1) {
         let divisor = CGFloat(15)
         let red     = CGFloat((hex3 & 0xF00) >> 8) / divisor
         let green   = CGFloat((hex3 & 0x0F0) >> 4) / divisor
@@ -193,7 +193,7 @@ extension UIColor {
      
      - parameter hex4: Four-digit hexadecimal value.
      */
-    public convenience init(hex4: UInt16) {
+    convenience init(hex4: UInt16) {
         let divisor = CGFloat(15)
         let red     = CGFloat((hex4 & 0xF000) >> 12) / divisor
         let green   = CGFloat((hex4 & 0x0F00) >>  8) / divisor
@@ -207,7 +207,7 @@ extension UIColor {
      
      - parameter hex6: Six-digit hexadecimal value.
      */
-    public convenience init(hex6: UInt32, alpha: CGFloat = 1) {
+    convenience init(hex6: UInt32, alpha: CGFloat = 1) {
         let divisor = CGFloat(255)
         let red     = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
         let green   = CGFloat((hex6 & 0x00FF00) >>  8) / divisor
@@ -220,7 +220,7 @@ extension UIColor {
      
      - parameter hex8: Eight-digit hexadecimal value.
      */
-    public convenience init(hex8: UInt32) {
+    convenience init(hex8: UInt32) {
         let divisor = CGFloat(255)
         let red     = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
         let green   = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
@@ -234,7 +234,7 @@ extension UIColor {
      
      - parameter rgba: String value.
      */
-    public convenience init(rgba_throws rgba: String) throws {
+    convenience init(rgba_throws rgba: String) throws {
         guard rgba.hasPrefix("#") else {
             throw UIColorInputError.MissingHashMarkAsPrefix
         }
@@ -269,7 +269,7 @@ extension UIColor {
      
      - parameter rgba: String value.
      */
-    public convenience init(rgba: String, defaultColor: UIColor = UIColor.clearColor()) {
+    convenience init(rgba: String, defaultColor: UIColor = UIColor.clearColor()) {
         guard let color = try? UIColor(rgba_throws: rgba) else {
             self.init(CGColor: defaultColor.CGColor)
             return
@@ -282,7 +282,7 @@ extension UIColor {
      
      - parameter rgba: Whether the alpha should be included.
      */
-    public func hexString(includeAlpha: Bool) -> String {
+    func hexString(includeAlpha: Bool) -> String {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -296,11 +296,4 @@ extension UIColor {
         }
     }
     
-    public override var description: String {
-        return self.hexString(true)
-    }
-    
-    public override var debugDescription: String {
-        return self.hexString(true)
-    }
 }

@@ -1,0 +1,19 @@
+disabled_rules: # rule identifiers to exclude from running
+  - force_cast
+  - trailing_whitespace
+  - colon+
+  - variable_name
+  - type_body_length
+  - function_body_length
+  
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: warning # implicitly
+line_length: 310
+function_body_length: 50
