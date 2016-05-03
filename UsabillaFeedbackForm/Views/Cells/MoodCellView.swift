@@ -49,9 +49,11 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         moodModel = item as! MoodFieldModel
-        buttonView?.setNumberOfItems(moodModel.points)
+        //buttonView?.setNumberOfItems(moodModel.points)
         if moodModel.fieldValue == nil {
             buttonView?.resetSelected()
+        } else {
+            buttonView?.setSelected(moodModel.fieldValue!)
         }
     }
     

@@ -92,6 +92,30 @@ import UIKit
         }
     }
     
+    func setSelected(selected: Int) {
+        print("selected button: \(selected)")
+        resetSelected()
+        switch selected {
+        case 1:
+            enableButton(firstButton, position: 1)
+        case 2:
+            enableButton(secondButton, position: 2)
+        case 3:
+            enableButton(thirdButton, position: 3)
+        case 4:
+            enableButton(fourthButton, position: 4)
+        case 5:
+            enableButton(fifthBUtton, position: 5)
+        default:
+            break
+        }
+    }
+    
+    func enableButton(button: UIButton, position: Int) {
+        button.setImage(UsabillaThemeConfigurator.sharedInstance.enabledEmoticons[position-1], forState: .Normal)
+        button.alpha = 1
+    }
+    
     
     @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
         delegate.fieldValue = sender.tag
