@@ -29,11 +29,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         self.tableView.registerClass(NPSCellView.self, forCellReuseIdentifier: "nps")
         self.tableView.registerClass(ChoiceCellView.self, forCellReuseIdentifier: "choice")
         self.tableView.registerClass(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
-
+        
         self.tableView.tableFooterView = UIView()
-        self.tableView.tableHeaderView = getTableHeaderView()
-        
-        
         
         self.view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
@@ -71,18 +68,19 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    func getTableHeaderView() -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 20))
-        requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width - 8, height: 20))
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        requiredLabel = UILabel()
         requiredLabel.text = pageModel.errorMessage
         requiredLabel.textAlignment = .Right
         requiredLabel.textColor = UsabillaThemeConfigurator.sharedInstance.hintColor
-        view.addSubview(requiredLabel)
+        let constraint = NSLayoutConstraint.constraintsWithVisualFormat("H:[label]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: ["label": requiredLabel])
         
-        NSLayoutConstraint(item: requiredLabel, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 8).active = true
+        requiredLabel.addConstraints(constraint)
         
-        return view
+        return requiredLabel
     }
+    
     
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -98,7 +96,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if  !pageModel.fields[indexPath.row].shouldAppear() {
+        if !pageModel.fields[indexPath.row].shouldAppear() {
             if let cell = tableView.cellForRowAtIndexPath(indexPath) as? RootCellView {
                 cell.isCurrentlyDisplayed = false
             }
@@ -170,7 +168,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         tableView.layer.removeAllAnimations()
         tableView.setContentOffset(tableViewOffset, animated: false)
         UIView.setAnimationsEnabled(true)
-
+        
     }
     
     
@@ -192,7 +190,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         return correctlyFilled
     }
-
+    
     
     func whereShouldIJump() -> String? {
         if pageModel.jumpRuleList != nil && pageModel.jumpRuleList!.count > 0 {
@@ -221,7 +219,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
         })
         SwiftEventBus.post("imagePicked", sender: image)
     }

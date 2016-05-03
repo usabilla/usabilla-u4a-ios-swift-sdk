@@ -93,7 +93,6 @@ import UIKit
     }
     
     func setSelected(selected: Int) {
-        print("selected button: \(selected)")
         resetSelected()
         switch selected {
         case 1:
