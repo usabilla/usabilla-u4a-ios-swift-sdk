@@ -31,6 +31,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         self.tableView.registerClass(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
         
         self.tableView.tableFooterView = UIView()
+        self.tableView.tableHeaderView = headerView()
         
         self.view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
@@ -69,8 +70,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        requiredLabel = UILabel()
+    func headerView() -> UIView? {
+        requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
         requiredLabel.textAlignment = .Right
         requiredLabel.textColor = UsabillaThemeConfigurator.sharedInstance.hintColor
