@@ -236,7 +236,7 @@ class FormViewController: UIViewController {
         contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"]
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
             if let screenshot = screenshotModel.base64Value {
-                contentDictionary["media"] = [screenshotModel.fieldId: screenshot]
+                contentDictionary["media"] = ["screenshot" : screenshot]
             }
         }
         if customVars != nil {
@@ -246,6 +246,7 @@ class FormViewController: UIViewController {
         if formModel.isDefault {
             contentDictionary["defaultForm"] = true
         }
+        
         
         var payload: [String: AnyObject] = [:]
         
@@ -258,8 +259,11 @@ class FormViewController: UIViewController {
         
         //And now to send the request
         //TODO: handle properly
-        NetworkManager.submitFormToUsabilla(payload)
-        
+        NetworkManager.submitFormToUsabilla(payload).then { _ in
+            print("fuck yeah")
+            }.error({ _ in
+                print("fuck no")
+            })         
     }
     
     

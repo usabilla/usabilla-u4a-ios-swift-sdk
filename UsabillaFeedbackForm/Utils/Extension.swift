@@ -24,11 +24,11 @@ extension UIImage {
                     scaleFactor = 800 / currentWidht
                 }
                 
-                let newHeight = currentHeight * scaleFactor
-                let newWidth = currentWidht * scaleFactor
+                let newHeight = Int(currentHeight * scaleFactor)
+                let newWidth = Int(currentWidht * scaleFactor)
                 
-                UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-                drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+                UIGraphicsBeginImageContext(CGSizeMake(CGFloat(newWidth), CGFloat(newHeight)))
+                drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
                 let img = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
                 return img
