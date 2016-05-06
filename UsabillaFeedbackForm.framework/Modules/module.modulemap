@@ -1,0 +1,6 @@
+framework module UsabillaFeedbackForm {
+  umbrella header "UsabillaFeedbackForm.h"
+
+  export *
+  module * { export * }
+}
