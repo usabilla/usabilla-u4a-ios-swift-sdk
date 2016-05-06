@@ -32,7 +32,8 @@ class ScreenshotModel: BaseFieldModel {
     
     func toBase64String() -> String? {
         if let screen = screenshot {
-            let data: NSData? = UIImagePNGRepresentation(screen.fixSizeAndOrientation())
+            //let data: NSData? = UIImagePNGRepresentation(screen.fixSizeAndOrientation())
+            let data = UIImageJPEGRepresentation(screen.fixSizeAndOrientation(), 0.5)
             return data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         }
         return nil

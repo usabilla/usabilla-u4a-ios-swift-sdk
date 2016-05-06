@@ -12,7 +12,8 @@ import UIKit
     
     var delegate: IntFieldHandlerProtocol!
     var view: UIView!
-
+    var buttons: [UIButton]!
+    
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
@@ -50,6 +51,14 @@ import UIKit
         thirdButton.setImage(smilies[2], forState: .Normal)
         fourthButton.setImage(smilies[3], forState: .Normal)
         fifthBUtton.setImage(smilies[4], forState: .Normal)
+        
+        buttons = [firstButton, secondButton, thirdButton, fourthButton, fifthBUtton]
+        
+        for button in buttons {
+            //button.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 25, 25)
+            button.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        }
+
         
     }
 

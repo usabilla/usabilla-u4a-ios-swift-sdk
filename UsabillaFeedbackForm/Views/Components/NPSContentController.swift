@@ -41,6 +41,7 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = [.FlexibleHeight, . FlexibleWidth]
         buttons = [zeroButton, firstButton, secondButton, thirdButton, fourthButton, fifthBUtton, sixthButton, seventhButton, eightButton, ninthhButton, tenthBUtton]
+        view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         
         for button in buttons {
             button.setTitleColor(UsabillaThemeConfigurator.sharedInstance.textOnAccentColor, forState: .Selected)

@@ -9,19 +9,21 @@
 import Foundation
 import UIKit
 
-extension UIImage {
 
+extension UIImage {
+    
+   
     func fixSizeAndOrientation() -> UIImage {
         
             let currentWidht = self.size.width
             let currentHeight = self.size.height
             var scaleFactor: CGFloat = 1
             
-            if currentWidht > 800 || currentHeight > 1200 {
+            if currentWidht > 400 || currentHeight > 400 {
                 if currentHeight > currentWidht {
-                    scaleFactor = 1200 / currentHeight
+                    scaleFactor = 400 / currentHeight
                 } else {
-                    scaleFactor = 800 / currentWidht
+                    scaleFactor = 400 / currentWidht
                 }
                 
                 let newHeight = Int(currentHeight * scaleFactor)
