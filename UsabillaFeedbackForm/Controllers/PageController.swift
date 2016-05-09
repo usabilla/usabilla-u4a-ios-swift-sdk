@@ -208,7 +208,6 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     //Image handling stuff
     func pickImageFromGallery() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
-            print("Button capture")
             let imagePicker = UIImagePickerController()
             
             imagePicker.delegate = self

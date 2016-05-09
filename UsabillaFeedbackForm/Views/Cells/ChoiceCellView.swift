@@ -81,7 +81,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         choiceModel.fieldValue = [choiceModel.options[row].value]
-        print("picked \(choiceModel.fieldValue)")
+        Swift.debugPrint("picked \(choiceModel.fieldValue)")
         
     }
 }

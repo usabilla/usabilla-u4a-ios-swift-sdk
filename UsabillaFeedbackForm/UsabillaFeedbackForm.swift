@@ -37,10 +37,10 @@ public class UsabillaFeedbackForm {
             
             formController.initWithFormModel(form)
             formController.customVars = customVariables
-            print("calling success protocol")
+            Swift.debugPrint("calling success protocol")
             UsabillaFeedbackForm.delegate?.feedbackFromLoadedCorreclty(base, active: true)
             }.error { _ in
-                print("calling fail protocol")
+                Swift.debugPrint("calling fail protocol")
                 UsabillaFeedbackForm.delegate?.feedbackFromLoadedIncorreclty(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
         }
         
@@ -61,17 +61,17 @@ public class UsabillaFeedbackForm {
                     
                     formController!.initWithFormModel(form)
                     formController!.customVars = customVariables
-                    print("parsed")
+                    
                     return base!
                     
                 } else {
-                    print("could not get json from file, make sure that file contains valid json.")
+                    Swift.debugPrint("could not get json from file, make sure that file contains valid json.")
                 }
             } catch let error as NSError {
-                print(error.localizedDescription)
+                Swift.debugPrint(error.localizedDescription)
             }
         } else {
-            print("Invalid filename/path.")
+            Swift.debugPrint("Invalid filename/path.")
         }
         return nil
     }

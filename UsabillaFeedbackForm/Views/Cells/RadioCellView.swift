@@ -35,7 +35,6 @@ class RadioCellView: BaseCheckboxCellView {
                 values.append(option.value)
             }
         }
-        print("radio values: \(values)")
         super.model.fieldValue = values
     }
 }

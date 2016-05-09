@@ -31,10 +31,10 @@ class DeviceInfo {
         }
         
         if kerr == KERN_SUCCESS {
-            print("Memory in use (in bytes): \(info.resident_size)")
+            Swift.debugPrint("Memory in use (in bytes): \(info.resident_size)")
             return Int(info.resident_size)
         } else {
-            print("Error with task_info(): " +
+            Swift.debugPrint("Error with task_info(): " +
                 (String.fromCString(mach_error_string(kerr)) ?? "unknown error"))
         }
         

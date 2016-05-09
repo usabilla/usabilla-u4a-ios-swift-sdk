@@ -1,8 +1,8 @@
 //
-//  CheckboxWithText.swift
-//  ubform_swift
+//  CheckBoxWithText.swift
+//  UsabillaFeedbackForm
 //
-//  Created by Giacomo Pinato on 15/03/16.
+//  Created by Giacomo Pinato on 06/05/16.
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ class CheckboxWithText: UIView, BEMCheckBoxDelegate {
         checkBox = BEMCheckBox(frame: CGRect(x: 10, y: 0, width: 25, height: 25))
         label = UILabel(frame: CGRect(x: 45, y: 5, width: 208, height: 15))
         label.font = UsabillaThemeConfigurator.sharedInstance.customFont.fontWithSize(13)
-
+        
         self.userInteractionEnabled = true
         checkBox.userInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(CheckboxWithText.touchEvent))
@@ -37,7 +37,7 @@ class CheckboxWithText: UIView, BEMCheckBoxDelegate {
         self.addSubview(label)
         
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,3 +47,4 @@ class CheckboxWithText: UIView, BEMCheckBoxDelegate {
         delegate.didTapCheckBox!(checkBox)
     }
 }
+
