@@ -15,7 +15,7 @@ import SwiftyJSON
 class NetworkManager {
     
 
-    static let bundle = NSBundle(forClass: NetworkManager.self) //NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!
+    static let bundle = NSBundle(forClass: NetworkManager.self)
     static let api_url = bundle.infoDictionary!["USABILLA_API_URL"] as! String
     static let submit_url = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
 
