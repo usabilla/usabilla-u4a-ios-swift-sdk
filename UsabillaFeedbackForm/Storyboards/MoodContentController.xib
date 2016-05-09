@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -50,7 +50,7 @@
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="6ww-QR-cgu"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="2" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K8-m7-cc1">
+                <button opaque="NO" tag="2" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K8-m7-cc1">
                     <rect key="frame" x="197" y="87" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="7Rt-a3-ab5"/>
@@ -65,7 +65,7 @@
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="kZB-d4-ujh"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Us-Lv-ZaU">
+                <button opaque="NO" tag="1" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Us-Lv-ZaU">
                     <rect key="frame" x="159" y="87" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9Us-Lv-ZaU" secondAttribute="height" multiplier="1:1" id="hYf-td-hfP"/>
@@ -80,7 +80,7 @@
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="uPh-CK-bJp"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="3" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ens-ie-gAW">
+                <button opaque="NO" tag="3" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ens-ie-gAW">
                     <rect key="frame" x="235" y="87" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Ens-ie-gAW" secondAttribute="height" multiplier="1:1" id="6kz-ia-Y26"/>

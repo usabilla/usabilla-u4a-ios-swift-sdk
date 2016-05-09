@@ -34,6 +34,8 @@ import UIKit
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        //view.translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(view)
         
         var smilies: [UIImage] = []
@@ -54,12 +56,7 @@ import UIKit
         
         buttons = [firstButton, secondButton, thirdButton, fourthButton, fifthBUtton]
         
-        for button in buttons {
-            //button.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 25, 25)
-            button.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        }
-
-        
+     
     }
 
     func setNumberOfItems(number: Int) {
