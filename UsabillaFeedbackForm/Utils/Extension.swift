@@ -9,6 +9,33 @@
 import Foundation
 import UIKit
 
+extension String {
+    
+    func divideInChunksOfSize(chuckSize: Int) -> [String] {
+        var arrayToReturn: [String] = []
+        let screenshotCharacterCount = self.characters.count
+        let numberOfChunks = screenshotCharacterCount / chuckSize
+        let lastChunk = screenshotCharacterCount % chuckSize
+        
+        if numberOfChunks > 0 {
+            for chunk in 0...numberOfChunks - 1 {
+                let start = chunk * chuckSize
+                let range = NSRange(location: start, length:  chuckSize)
+                let section = (self as NSString).substringWithRange(range)
+                arrayToReturn.append(section)
+            }
+        }
+        if lastChunk > 0 {
+            let lastRange = NSRange(location: numberOfChunks*chuckSize, length:  lastChunk)
+            let section = (self as NSString).substringWithRange(lastRange)
+            arrayToReturn.append(section)
+        }
+        
+        return arrayToReturn
+    }
+    
+}
+
 
 extension UIImage {
     
