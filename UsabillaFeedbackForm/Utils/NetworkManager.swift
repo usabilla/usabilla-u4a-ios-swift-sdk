@@ -71,21 +71,24 @@ class NetworkManager {
     
     
     class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String){
-        let chuckSize = 250000
+        let chuckSize = 31250
         var promiseArray: [Promise<Bool>] = []
         //let screenshotArray = Array(screenshot.characters)
-        let numberOfChunks = screenshot.characters.count / chuckSize
-        let lastChunk = screenshot.characters.count % chuckSize
+        let screenshotCharacterCount = screenshot.characters.count
+        let numberOfChunks = screenshotCharacterCount / chuckSize
+        let lastChunk = screenshotCharacterCount % chuckSize
+        print("last fucking chunk \(lastChunk)")
         
-        for chunk in 0...numberOfChunks - 1 {
-            let start = chunk * chuckSize
-            //let end = (chunk+1) * chuckSize
-            let range = NSRange(location: start, length:  chuckSize)
-            let screenshotSection = (screenshot as NSString).substringWithRange(range)
-            promiseArray.append(createPromise(id, signature: signature, v: chunk + 1, screenshot: screenshotSection))
-            
+        if numberOfChunks > 0{
+            for chunk in 0...numberOfChunks - 1 {
+                let start = chunk * chuckSize
+                //let end = (chunk+1) * chuckSize
+                let range = NSRange(location: start, length:  chuckSize)
+                let screenshotSection = (screenshot as NSString).substringWithRange(range)
+                promiseArray.append(createPromise(id, signature: signature, v: chunk + 1, screenshot: screenshotSection))
+                
+            }
         }
-        
         if lastChunk > 0 {
             let lastRange = NSRange(location: numberOfChunks*chuckSize, length:  lastChunk)
             let screenshotSection = (screenshot as NSString).substringWithRange(lastRange)
@@ -94,7 +97,49 @@ class NetworkManager {
         }
         
         when(promiseArray).then { _ -> () in
-            print("success!")
+            print("closing deal")
+            closeTheDeal(id, signature: signature, v: numberOfChunks + 1).then
+                { _ in
+                    print("success!")
+                    
+            }
+            }.error { error in
+                print("when failder")
+        }
+        
+        
+    }
+    
+    class func closeTheDeal(id:String, signature:String, v: Int) -> Promise<Bool> {
+        let contentDictionary: [String: AnyObject] = [:]
+        
+        var payload: [String: AnyObject] = [:]
+        
+        payload["id"] = id
+        payload["sig"] = signature
+        payload["type"] = "app_feedback"
+        payload["subtype"] = "media.screenshot"
+        payload["v"] = NSNumber(int: Int32(v))
+        payload["done"] = true
+        payload["data"] = contentDictionary
+        
+        return Promise { fulfill, reject in
+            Alamofire.request(.POST, submit_url, parameters: payload, encoding: .JSON)
+                .response {request, response, data, error in
+                    let statusCode = response!.statusCode
+                    print(request)
+                    print(response)
+                    print(data)
+                    print(error)
+                    if error != nil {
+                        return reject(error!)
+                    }
+                    
+                    if statusCode < 200 || statusCode > 299 {
+                        return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
+                    }
+                    fulfill(true)
+            }
         }
         
         
@@ -111,14 +156,13 @@ class NetworkManager {
         payload["type"] = "app_feedback"
         payload["subtype"] = "media.screenshot"
         payload["v"] = NSNumber(int: Int32(v))
-        payload["done"] = NSNumber(bool: false)
+        payload["done"] = false
         payload["data"] = contentDictionary
         
         return Promise { fulfill, reject in
             Alamofire.request(.POST, submit_url, parameters: payload, encoding: .JSON)
                 .response {request, response, data, error in
                     let statusCode = response!.statusCode
-                    
                     if error != nil {
                         return reject(error!)
                     }
@@ -126,6 +170,8 @@ class NetworkManager {
                     if statusCode < 200 || statusCode > 299 {
                         return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
                     }
+                    print("promise number \(v) fulfilled")
+
                     fulfill(true)
             }
         }

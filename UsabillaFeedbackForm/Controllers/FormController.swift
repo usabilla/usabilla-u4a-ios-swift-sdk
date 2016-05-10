@@ -271,7 +271,7 @@ class FormViewController: UIViewController {
         payload["type"] = "app_feedback"
         payload["subtype"] = "form"
         payload["v"] = NSNumber(int: 1)
-        payload["done"] = NSNumber(bool: true)
+        payload["done"] = true
         payload["data"] = contentDictionary
         
         
