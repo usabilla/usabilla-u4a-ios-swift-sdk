@@ -25,7 +25,9 @@ class ScreenshotCellView: RootCellView {
         screenShotView.translatesAutoresizingMaskIntoConstraints = false
         screenShotView.userInteractionEnabled = true
         fullHeight = NSLayoutConstraint(item: self.screenShotView, attribute: .Height, relatedBy: .Equal, toItem: self.screenShotView, attribute: .Width, multiplier: 1, constant: 0)
+        fullHeight.priority = 750
         fullHeight.active = true
+        
         zeroHeight = NSLayoutConstraint(item: self.screenShotView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0, constant: 0)
         
         
