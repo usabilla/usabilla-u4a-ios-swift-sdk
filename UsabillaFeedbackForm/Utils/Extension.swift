@@ -12,36 +12,36 @@ import UIKit
 
 extension UIImage {
     
-   
+    
     func fixSizeAndOrientation() -> UIImage {
         
-            let currentWidht = self.size.width
-            let currentHeight = self.size.height
-            var scaleFactor: CGFloat = 1
-            
-            if currentWidht > 400 || currentHeight > 400 {
-                if currentHeight > currentWidht {
-                    scaleFactor = 400 / currentHeight
-                } else {
-                    scaleFactor = 400 / currentWidht
-                }
-                
-                let newHeight = Int(currentHeight * scaleFactor)
-                let newWidth = Int(currentWidht * scaleFactor)
-                
-                UIGraphicsBeginImageContext(CGSizeMake(CGFloat(newWidth), CGFloat(newHeight)))
-                drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
-                let img = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                return img
+        let currentWidht = self.size.width
+        let currentHeight = self.size.height
+        var scaleFactor: CGFloat = 1
+        
+        if currentWidht > 800 || currentHeight > 1200 {
+            if currentHeight > currentWidht {
+                scaleFactor = 1200 / currentHeight
+            } else {
+                scaleFactor = 800 / currentWidht
             }
             
-            return self
+            let newHeight = Int(currentHeight * scaleFactor)
+            let newWidth = Int(currentWidht * scaleFactor)
+            
+            UIGraphicsBeginImageContext(CGSizeMake(CGFloat(newWidth), CGFloat(newHeight)))
+            drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
+            let img = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return img
         }
+        
+        return self
+    }
     
     
     func renderInColor(color: UIColor) -> UIImage {
-
+        
         let rect = CGRectMake(0, 0, self.size.width, self.size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -52,7 +52,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return UIImage(CGImage: img.CGImage!, scale: 1, orientation: UIImageOrientation.DownMirrored)
     }
-
+    
 }
 
 extension UIView {
@@ -81,8 +81,8 @@ extension UIFont {
         return withTraits(.TraitItalic)
     }
     
-   
-     static func registerFontWithFilenameString(filenameString: String, bundleIdentifierString: String) {
+    
+    static func registerFontWithFilenameString(filenameString: String, bundleIdentifierString: String) {
         if let bundle = NSBundle(identifier: bundleIdentifierString) {
             if let pathForResourceString = bundle.pathForResource(filenameString, ofType: nil) {
                 if let fontData = NSData(contentsOfFile: pathForResourceString) {
