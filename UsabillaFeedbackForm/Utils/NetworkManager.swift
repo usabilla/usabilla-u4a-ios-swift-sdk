@@ -22,7 +22,6 @@ class NetworkManager {
     class func getFromFromID(formID: String) -> Promise<JSON> {
         
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [api_url, formID])
-        print("calling network form getter")
         return Promise { fulfill, reject in
             
             Alamofire.request(.GET, request_url)
@@ -48,7 +47,7 @@ class NetworkManager {
     class func submitFormToUsabilla ( payload: [String:AnyObject], screenshot: String?){
         
         submitFeedbackSmallData(payload).then{ (response : Response<AnyObject, NSError>?) -> () in
-            print(response)
+            
             if let response = response {
                 switch response.result {
                 case .Success(let data):
@@ -79,16 +78,8 @@ class NetworkManager {
         }
         
         when(promiseArray).then { _ -> () in
-            print("closing deal")
-            closeTheDeal(id, signature: signature, v: stringChunks.count + 1).then
-                { _ in
-                    print("success!")
-                    
-            }
-            }.error { error in
-                print("when failder")
+            closeTheDeal(id, signature: signature, v: stringChunks.count + 1)
         }
-        
         
     }
     
@@ -148,7 +139,6 @@ class NetworkManager {
                     if statusCode < 200 || statusCode > 299 {
                         return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
                     }
-                    print("promise number \(v) fulfilled")
                     
                     fulfill(true)
             }
