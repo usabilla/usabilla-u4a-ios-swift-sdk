@@ -1,15 +1,13 @@
 //
-//  CheckboxCellView.swift
-//  ubform_swift
+//  BaseCheckBoxCellView.swift
+//  UsabillaFeedbackForm
 //
-//  Created by Giacomo Pinato on 15/03/16.
+//  Created by Giacomo Pinato on 12/05/16.
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
 import UIKit
 import BEMCheckBox
-
-
 
 class BaseCheckboxCellView: RootCellView, BEMCheckBoxDelegate {
     
@@ -86,3 +84,4 @@ class BaseCheckboxCellView: RootCellView, BEMCheckBoxDelegate {
     }
     
 }
+

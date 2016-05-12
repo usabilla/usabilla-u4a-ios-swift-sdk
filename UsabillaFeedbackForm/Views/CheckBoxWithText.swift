@@ -47,4 +47,3 @@ class CheckboxWithText: UIView, BEMCheckBoxDelegate {
         delegate.didTapCheckBox!(checkBox)
     }
 }
-

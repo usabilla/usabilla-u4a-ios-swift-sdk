@@ -39,7 +39,7 @@ public enum ReachabilityError: ErrorType {
 
 public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
-func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>) {
+func callback(reachability: SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>) {
     let reachability = Unmanaged<Reachability>.fromOpaque(COpaquePointer(info)).takeUnretainedValue()
     
     dispatch_async(dispatch_get_main_queue()) {
@@ -315,7 +315,7 @@ public class Reachability: NSObject {
         return flags.contains(.IsDirect)
     }
     private func isConnectionRequiredOrTransient(flags: SCNetworkReachabilityFlags) -> Bool {
-        let testcase:SCNetworkReachabilityFlags = [.ConnectionRequired, .TransientConnection]
+        let testcase: SCNetworkReachabilityFlags = [.ConnectionRequired, .TransientConnection]
         return flags.intersect(testcase) == testcase
     }
     

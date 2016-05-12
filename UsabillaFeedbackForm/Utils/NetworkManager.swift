@@ -44,9 +44,9 @@ class NetworkManager {
         
     }
     
-    class func submitFormToUsabilla ( payload: [String:AnyObject], screenshot: String?){
+    class func submitFormToUsabilla (payload: [String:AnyObject], screenshot: String?) {
         
-        submitFeedbackSmallData(payload).then{ (response : Response<AnyObject, NSError>?) -> () in
+        submitFeedbackSmallData(payload).then { (response: Response<AnyObject, NSError>?) -> () in
             
             if let response = response {
                 switch response.result {
@@ -68,7 +68,7 @@ class NetworkManager {
     }
     
     
-    class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String){
+    class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) {
         let chuckSize = 31250
         var promiseArray: [Promise<Bool>] = []
         let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
@@ -83,7 +83,7 @@ class NetworkManager {
         
     }
     
-    class func closeTheDeal(id:String, signature:String, v: Int) -> Promise<Bool> {
+    class func closeTheDeal(id: String, signature: String, v: Int) -> Promise<Bool> {
         let contentDictionary: [String: AnyObject] = [:]
         
         var payload: [String: AnyObject] = [:]
@@ -114,7 +114,7 @@ class NetworkManager {
         
     }
     
-    class func createPromise(id:String, signature:String, v: Int, screenshot: String) -> Promise<Bool> {
+    class func createPromise(id: String, signature: String, v: Int, screenshot: String) -> Promise<Bool> {
         
         var contentDictionary: [String: AnyObject] = [:]
         contentDictionary["media"] = ["screenshot" : screenshot]
