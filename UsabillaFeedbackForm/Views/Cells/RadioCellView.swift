@@ -10,14 +10,14 @@ import Foundation
 import BEMCheckBox
 
 class RadioCellView: BaseCheckboxCellView {
-
-
+    
+    
     override func styleCheckBox(checkBox: CheckboxWithText) {
         checkBox.checkBox.boxType = BEMBoxType.Circle
         checkBox.checkBox.onAnimationType = .Bounce
         checkBox.checkBox.offAnimationType = .Bounce
     }
-
+    
     
     override func didTapCheckBox(checkBox: BEMCheckBox) {
         
