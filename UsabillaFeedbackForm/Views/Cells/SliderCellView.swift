@@ -49,7 +49,7 @@ class SliderCellView: RootCellView {
         let v = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0)
         
         NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -4).active = true
-             
+        
         trailingTitleLabelConstraint.active = false
         
         let views = ["titleLabel": super.titleLabel!,
@@ -93,7 +93,7 @@ class SliderCellView: RootCellView {
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         sliderModel = item as! RatingFieldModel
-
+        
         
         if sliderModel.fieldValue != nil {
             slider.value = Float(sliderModel.fieldValue!)
@@ -117,9 +117,17 @@ class SliderCellView: RootCellView {
             slider.minimumValue = 1
         }
         
+        if let fieldValue = sliderModel.fieldValue {
+            if let scale = sliderModel.scale {
+                valueLabel.text = "\(fieldValue)/\(scale)"
+            } else {
+                valueLabel.text = "\(fieldValue)/10"
+            }
+        }
+        
         leftLabel.text = sliderModel.low
         rightLabel.text = sliderModel.high
-
+        
     }
     
     

@@ -13,6 +13,8 @@ class FormViewController: UIViewController {
     
     var currentPage = 0
     var formModel: FormModel!
+    var reachability: Reachability!
+    
     
     @IBOutlet weak var progressBar: UIProgressView!
     
@@ -61,8 +63,19 @@ class FormViewController: UIViewController {
             leftNavItem.title = ""
             leftNavItem.enabled = false
         }
+        
+        setUpReachability()
     }
     
+    
+    func setUpReachability() {
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
     
     func openUsabilla() {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://www.usabilla.com")!)
@@ -112,7 +125,7 @@ class FormViewController: UIViewController {
         }
         
         let moodValue = formModel.pages.first?.fields[0] as? IntFieldModel
-
+        
         pageController.willMoveToParentViewController(nil)
         addChildViewController(thankYouController)
         thankYouController.view.frame = containerView.bounds
@@ -225,6 +238,8 @@ class FormViewController: UIViewController {
         //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice())
         //TODO put back
         
+        contentDictionary["reachability"] = reachability.currentReachabilityString
+        
         contentDictionary["free_space"] = Int(DeviceInfo.DiskStatus.freeDiskSpaceInBytes / 1024)
         contentDictionary["total_space"] = Int(DeviceInfo.DiskStatus.totalDiskSpaceInBytes / 1024)
         contentDictionary["rooted"] = DeviceInfo.isJailbroken()
@@ -234,11 +249,15 @@ class FormViewController: UIViewController {
         
         contentDictionary["app_version"] = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"]
         contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"]
+        
+        var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
             if let screenshot = screenshotModel.base64Value {
-                contentDictionary["media"] = [screenshotModel.fieldId: screenshot]
+                contentDictionary["media"] = ["screenshot" : screenshot]
+                screenshotString = screenshot
             }
         }
+        
         if customVars != nil {
             contentDictionary["custom_variables"] = customVars
         }
@@ -247,23 +266,24 @@ class FormViewController: UIViewController {
             contentDictionary["defaultForm"] = true
         }
         
+        
         var payload: [String: AnyObject] = [:]
         
         payload["type"] = "app_feedback"
         payload["subtype"] = "form"
         payload["v"] = NSNumber(int: 1)
-        payload["done"] = NSNumber(bool: true)
+        payload["done"] = true
         payload["data"] = contentDictionary
         
         
         //And now to send the request
         //TODO: handle properly
-        NetworkManager.submitFormToUsabilla(payload).then { success in
-            print("Fuck yeah")
-            } .error { _ in
-                print("fuck no")
-        }
-        
+        NetworkManager.submitFormToUsabilla(payload, screenshot:  screenshotString)
+        //            .then { _ in
+        //            print("fuck yeah")
+        //            }.error({ _ in
+        //                print("fuck no")
+        //            })
     }
     
     

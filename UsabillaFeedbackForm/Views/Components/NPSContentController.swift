@@ -41,6 +41,7 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = [.FlexibleHeight, . FlexibleWidth]
         buttons = [zeroButton, firstButton, secondButton, thirdButton, fourthButton, fifthBUtton, sixthButton, seventhButton, eightButton, ninthhButton, tenthBUtton]
+        view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         
         for button in buttons {
             button.setTitleColor(UsabillaThemeConfigurator.sharedInstance.textOnAccentColor, forState: .Selected)
@@ -64,7 +65,23 @@ import UIKit
         return view
     }
     
+    func resetButtons() {
+        for button in buttons {
+            button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+            button.selected = false
+        }
+    }
     
+    func selectButton(value: Int) {
+        resetButtons()
+        for button in buttons {
+            if button.tag == value {
+                button.selected = true
+                button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.accentColor
+                
+            }
+        }
+    }
     
     
     @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
@@ -74,7 +91,7 @@ import UIKit
         }
         sender.selected = true
         sender.backgroundColor = UsabillaThemeConfigurator.sharedInstance.accentColor
-
+        
         delegate.fieldValue = sender.tag
     }
 }

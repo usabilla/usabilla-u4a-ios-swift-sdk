@@ -9,37 +9,66 @@
 import Foundation
 import UIKit
 
-extension UIImage {
+extension String {
+    
+    func divideInChunksOfSize(chuckSize: Int) -> [String] {
+        var arrayToReturn: [String] = []
+        let screenshotCharacterCount = self.characters.count
+        let numberOfChunks = screenshotCharacterCount / chuckSize
+        let lastChunk = screenshotCharacterCount % chuckSize
+        
+        if numberOfChunks > 0 {
+            for chunk in 0...numberOfChunks - 1 {
+                let start = chunk * chuckSize
+                let range = NSRange(location: start, length:  chuckSize)
+                let section = (self as NSString).substringWithRange(range)
+                arrayToReturn.append(section)
+            }
+        }
+        if lastChunk > 0 {
+            let lastRange = NSRange(location: numberOfChunks*chuckSize, length:  lastChunk)
+            let section = (self as NSString).substringWithRange(lastRange)
+            arrayToReturn.append(section)
+        }
+        
+        return arrayToReturn
+    }
+    
+}
 
+
+extension UIImage {
+    
+    
     func fixSizeAndOrientation() -> UIImage {
         
-            let currentWidht = self.size.width
-            let currentHeight = self.size.height
-            var scaleFactor: CGFloat = 1
-            
-            if currentWidht > 800 || currentHeight > 1200 {
-                if currentHeight > currentWidht {
-                    scaleFactor = 1200 / currentHeight
-                } else {
-                    scaleFactor = 800 / currentWidht
-                }
-                
-                let newHeight = currentHeight * scaleFactor
-                let newWidth = currentWidht * scaleFactor
-                
-                UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-                drawInRect(CGRectMake(0, 0, newWidth, newHeight))
-                let img = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                return img
+        let currentWidht = self.size.width
+        let currentHeight = self.size.height
+        var scaleFactor: CGFloat = 1
+        
+        if currentWidht > 800 || currentHeight > 1200 {
+            if currentHeight > currentWidht {
+                scaleFactor = 1200 / currentHeight
+            } else {
+                scaleFactor = 800 / currentWidht
             }
             
-            return self
+            let newHeight = Int(currentHeight * scaleFactor)
+            let newWidth = Int(currentWidht * scaleFactor)
+            
+            UIGraphicsBeginImageContext(CGSizeMake(CGFloat(newWidth), CGFloat(newHeight)))
+            drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
+            let img = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return img
         }
+        
+        return self
+    }
     
     
     func renderInColor(color: UIColor) -> UIImage {
-
+        
         let rect = CGRectMake(0, 0, self.size.width, self.size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -50,7 +79,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return UIImage(CGImage: img.CGImage!, scale: 1, orientation: UIImageOrientation.DownMirrored)
     }
-
+    
 }
 
 extension UIView {
@@ -79,8 +108,8 @@ extension UIFont {
         return withTraits(.TraitItalic)
     }
     
-   
-     static func registerFontWithFilenameString(filenameString: String, bundleIdentifierString: String) {
+    
+    static func registerFontWithFilenameString(filenameString: String, bundleIdentifierString: String) {
         if let bundle = NSBundle(identifier: bundleIdentifierString) {
             if let pathForResourceString = bundle.pathForResource(filenameString, ofType: nil) {
                 if let fontData = NSData(contentsOfFile: pathForResourceString) {

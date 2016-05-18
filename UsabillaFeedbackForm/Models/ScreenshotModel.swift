@@ -30,42 +30,10 @@ class ScreenshotModel: BaseFieldModel {
     }
     
     
-    func fixSizeAndOrientation() -> UIImage? {
-        
-        if let screen = screenshot {
-            let currentWidht = screen.size.width
-            let currentHeight = screen.size.height
-            var scaleFactor: CGFloat = 1
-            
-            if currentWidht > 800 || currentHeight > 1200 {
-                if currentHeight > currentWidht {
-                    scaleFactor = 1200 / currentHeight
-                } else {
-                    scaleFactor = 800 / currentWidht
-                }
-                
-                let newHeight = currentHeight * scaleFactor
-                let newWidth = currentWidht * scaleFactor
-                
-                UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-                UIImage().drawInRect(CGRectMake(0, 0, newWidth, newHeight))
-                let img = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                return img
-            }
-            
-            return screen
-            
-        }
-        
-        return nil
-        
-    }
-    
-    
     func toBase64String() -> String? {
         if let screen = screenshot {
-            let data: NSData? = UIImagePNGRepresentation(screen.fixSizeAndOrientation())
+            //let data: NSData? = UIImagePNGRepresentation(screen.fixSizeAndOrientation())
+            let data = UIImageJPEGRepresentation(screen.fixSizeAndOrientation(), 0.5)
             return data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         }
         return nil

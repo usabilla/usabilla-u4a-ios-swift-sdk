@@ -29,7 +29,7 @@ class CheckboxCellView: BaseCheckboxCellView {
                 values.append(option.value)
             }         
         }
-        print("values: \(values)")
+        Swift.debugPrint("values: \(values)")
         super.model.fieldValue = values
     }
 }

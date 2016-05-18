@@ -12,7 +12,8 @@ import UIKit
     
     var delegate: IntFieldHandlerProtocol!
     var view: UIView!
-
+    var buttons: [UIButton]!
+    
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
@@ -33,6 +34,8 @@ import UIKit
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        //view.translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(view)
         
         var smilies: [UIImage] = []
@@ -51,6 +54,9 @@ import UIKit
         fourthButton.setImage(smilies[3], forState: .Normal)
         fifthBUtton.setImage(smilies[4], forState: .Normal)
         
+        buttons = [firstButton, secondButton, thirdButton, fourthButton, fifthBUtton]
+        
+     
     }
 
     func setNumberOfItems(number: Int) {
@@ -90,6 +96,29 @@ import UIKit
             fourthButton.alpha = 0.5
             fifthBUtton.alpha = 0.5
         }
+    }
+    
+    func setSelected(selected: Int) {
+        resetSelected()
+        switch selected {
+        case 1:
+            enableButton(firstButton, position: 1)
+        case 2:
+            enableButton(secondButton, position: 2)
+        case 3:
+            enableButton(thirdButton, position: 3)
+        case 4:
+            enableButton(fourthButton, position: 4)
+        case 5:
+            enableButton(fifthBUtton, position: 5)
+        default:
+            break
+        }
+    }
+    
+    func enableButton(button: UIButton, position: Int) {
+        button.setImage(UsabillaThemeConfigurator.sharedInstance.enabledEmoticons[position-1], forState: .Normal)
+        button.alpha = 1
     }
     
     

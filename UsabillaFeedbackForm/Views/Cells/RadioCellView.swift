@@ -10,14 +10,14 @@ import Foundation
 import BEMCheckBox
 
 class RadioCellView: BaseCheckboxCellView {
-
-
+    
+    
     override func styleCheckBox(checkBox: CheckboxWithText) {
         checkBox.checkBox.boxType = BEMBoxType.Circle
         checkBox.checkBox.onAnimationType = .Bounce
         checkBox.checkBox.offAnimationType = .Bounce
     }
-
+    
     
     override func didTapCheckBox(checkBox: BEMCheckBox) {
         
@@ -35,7 +35,6 @@ class RadioCellView: BaseCheckboxCellView {
                 values.append(option.value)
             }
         }
-        print("radio values: \(values)")
         super.model.fieldValue = values
     }
 }

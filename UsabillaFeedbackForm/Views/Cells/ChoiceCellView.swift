@@ -57,7 +57,9 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         }
         
         if choiceModel.options.count < 4 {
-            NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 100).active = true
+            let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 100)
+                a.priority = 750
+                a.active = true
         }
         setNeedsLayout()
         
@@ -81,7 +83,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         choiceModel.fieldValue = [choiceModel.options[row].value]
-        print("picked \(choiceModel.fieldValue)")
+        Swift.debugPrint("picked \(choiceModel.fieldValue)")
         
     }
 }

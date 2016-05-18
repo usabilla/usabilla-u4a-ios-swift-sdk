@@ -26,7 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.3.1)
-  - BEMCheckBox (~> 1.2.1)
+  - BEMCheckBox
   - HCSStarRatingView (~> 1.4.4)
   - PromiseKit (~> 3.1.1)
   - SwiftValidator (= 3.0.3)
