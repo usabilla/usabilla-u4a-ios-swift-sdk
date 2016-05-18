@@ -253,6 +253,7 @@ class FormViewController: UIViewController {
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
             if let screenshot = screenshotModel.base64Value {
+                contentDictionary["media"] = ["screenshot" : screenshot]
                 screenshotString = screenshot
             }
         }

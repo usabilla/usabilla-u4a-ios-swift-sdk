@@ -50,13 +50,14 @@ class NetworkManager {
             
             if let response = response {
                 switch response.result {
-                case .Success(let data):
-                    let json = JSON(data)
-                    let id = json["id"].stringValue
-                    let signature = json["sig"].stringValue
-                    if let screenshot = screenshot {
-                        submitFeedbackScreenshot(id, signature: signature, screenshot: screenshot)
-                    }
+                case .Success( _):
+//                    let json = JSON(data)
+//                    let id = json["id"].stringValue
+//                    let signature = json["sig"].stringValue
+//                    if let screenshot = screenshot {
+//                        submitFeedbackScreenshot(id, signature: signature, screenshot: screenshot)
+//                    }
+                    break
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
