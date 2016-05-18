@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double UsabillaFeedbackFormVersionNumber;
 FOUNDATION_EXPORT const unsigned char UsabillaFeedbackFormVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <UsabillaFeedbackForm/PublicHeader.h>
-
-
