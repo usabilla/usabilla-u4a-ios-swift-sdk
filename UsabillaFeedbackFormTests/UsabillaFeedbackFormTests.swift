@@ -6,10 +6,12 @@
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
-import XCTest
+import Quick
+import Nimble
+
 @testable import UsabillaFeedbackForm
 
-class UsabillaFeedbackFormTests: XCTestCase {
+class UsabillaFeedbackFormTests: QuickSpec {
     
     override func setUp() {
         super.setUp()
