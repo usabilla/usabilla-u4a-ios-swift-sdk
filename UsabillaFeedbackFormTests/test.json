@@ -1,0 +1,198 @@
+{
+    "version": 0,
+    "form": {
+        "pages": [
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "mood",
+                             "caption": "Mood",
+                             "autoSubmit": false,
+                             "forceRequired": true,
+                             "fixed": "mood",
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "Error",
+                             "name": "mood",
+                             "title": "Click to edit question",
+                             "required": true,
+                             "points": 5,
+                             "options": [
+                                         {
+                                         "title": "Hate",
+                                         "value": "1"
+                                         },
+                                         {
+                                         "title": "Dislike",
+                                         "value": "2"
+                                         },
+                                         {
+                                         "title": "Neutral",
+                                         "value": "3"
+                                         },
+                                         {
+                                         "title": "Like",
+                                         "value": "4"
+                                         },
+                                         {
+                                         "title": "Love",
+                                         "value": "5"
+                                         }
+                                         ]
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Click to edit"
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Comment",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "Click to edit",
+                             "placeholder": "your comment here",
+                             "name": "comment",
+                             "required": true
+                             },
+                             {
+                             "type": "nps",
+                             "caption": "NPS",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "name": "nps",
+                             "title": "How likely are you to recommend our company/product/service to your friends and colleagues?",
+                             "low": "not at all",
+                             "high": "very likely"
+                             }
+                             ],
+                  "jumpRules": [],
+                  "autoSubmit": false,
+                  "name": "start"
+                  },
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "checkbox",
+                             "caption": "Checkboxes",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "SISSM",
+                             "options": [
+                                         {
+                                         "title": "Yay",
+                                         "value": "option_1"
+                                         },
+                                         {
+                                         "title": "Nay",
+                                         "value": "option_2"
+                                         }
+                                         ],
+                             "name": "SISSM"
+                             }
+                             ],
+                  "jump": "end",
+                  "jumpRules": [
+                                {
+                                "control": "SISSM",
+                                "value": [
+                                          "option_1"
+                                          ],
+                                "jump": "secondMiddle"
+                                }
+                                ],
+                  "autoSubmit": false,
+                  "name": "middle"
+                  },
+                  {
+                  "type": "form",
+                  "fields": [
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Click to edit paragraph"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "I AM PLACEHOLDER"
+                             }
+                             ],
+                  "jumpRules": [],
+                  "autoSubmit": false,
+                  "name": "secondMiddle"
+                  },
+                  {
+                  "type": "end",
+                  "fields": [
+                             {
+                             "type": "header",
+                             "caption": "Header",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Thanks!"
+                             },
+                             {
+                             "type": "paragraph",
+                             "caption": "Paragraph",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "text": "Thank you for sharing your feedback with us."
+                             }
+                             ],
+                  "jumpRules": [],
+                  "autoSubmit": false,
+                  "autoclose": false,
+                  "name": "end"
+                  }
+                  ]
+    },
+    "data": {
+        "screenshot": true,
+        "progressBar": true,
+        "appTitle": "FeedbackTest",
+        "appSubmit": "TestSubmit",
+        "errorMessage": "Error",
+        "store_ip": true
+    }
+}
