@@ -209,7 +209,11 @@ class FormViewController: UIViewController {
         for index in 0...indexToStop - 1 {
             let page = formModel.pages[index]
             for field in page.fields {
-                formDictionary[field.fieldId] = field.convertToJSON()
+                if let converted = field.convertToJSON() {
+                    if field.fieldId.characters.count > 0 {
+                        formDictionary[field.fieldId] = converted
+                    }
+                }
             }
         }
         return formDictionary
@@ -277,13 +281,9 @@ class FormViewController: UIViewController {
         
         
         //And now to send the request
-        //TODO: handle properly
+        print(payload)
         NetworkManager.submitFormToUsabilla(payload, screenshot:  screenshotString)
-        //            .then { _ in
-        //            print("fuck yeah")
-        //            }.error({ _ in
-        //                print("fuck no")
-        //            })
+                    
     }
     
     

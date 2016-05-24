@@ -1,5 +1,5 @@
 {
-    "version": 0,
+    "version": 1,
     "form": {
         "pages": [
                   {
@@ -109,6 +109,59 @@
                                          }
                                          ],
                              "name": "SISSM"
+                             },
+                             {
+                             "type": "rating",
+                             "caption": "Slider",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "Ik ben een slider!",
+                             "low": "<< low",
+                             "high": "high >>",
+                             "mode": "slider",
+                             "scale": 5,
+                             "modeSelect": false,
+                             "textPositioning": "below",
+                             "name": "Ik_ben_een_slide"
+                             },
+                             {
+                             "type": "email",
+                             "caption": "Email",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": {
+                             "control": "Ik_ben_een_slide",
+                             "value": [
+                                       "4",
+                                       "5"
+                                       ],
+                             "action": "show"
+                             },
+                             "validationText": "This field is required",
+                             "title": "Email address",
+                             "name": "email",
+                             "placeholder": "Dit is een email",
+                             "required": true
+                             },
+                             {
+                             "type": "textArea",
+                             "caption": "Text Area",
+                             "autoSubmit": false,
+                             "forceRequired": false,
+                             "fixed": false,
+                             "interactive": true,
+                             "showHideRule": [],
+                             "validationText": "This field is required",
+                             "title": "And Ik ben een text area!",
+                             "name": "And_Ik_ben_een_t",
+                             "placeholder": "I'm only 5% sad today",
+                             "required": true
                              }
                              ],
                   "jump": "end",
