@@ -9,21 +9,12 @@
 Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  These will help people to find your library, and whilst it
-  #  can feel like a chore to fill in it's definitely to your advantage. The
-  #  summary should be tweet-length, and the description more in depth.
-  #
+
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "2.0.1"
+  s.version      = "2.0.2"
   s.summary      = "Collect feedback from your users."
 
-  # This description is used to generate tags and improve search results.
-  #   * Think: What does it do? Why did you write it? What is the focus?
-  #   * Try to keep it short, snappy and to the point.
-  #   * Write the description between the DESC delimiters below.
-  #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
                    With Usabilla FeedbackSDK you can collect feedback from your users.
 
@@ -57,6 +48,10 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "8.0"
 
+  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+
+  s.source       = { :git => "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git", :tag => "v#{s.version}" }
+
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
  
@@ -71,6 +66,6 @@ Pod::Spec.new do |s|
   s.dependency 'BEMCheckBox'
   s.dependency 'HCSStarRatingView'
   s.dependency 'SwiftValidator'
-  s.dependency 'PromiseKit'
-
+  s.dependency 'PromiseKit/CorePromise'
+  s.dependency 'PromiseKit/UIKit'
 end
