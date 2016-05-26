@@ -87,8 +87,9 @@ class FormControllerTest: QuickSpec {
                 viewController.showThankYouPage()
                 
                 
-                expect(viewController.currentPage).to(equal(newPageIndex))
-                expect(viewController.thankYouController.title).to(equal("Close"))
+                expect(viewController.currentPage).to(equal(2))
+                expect(viewController.rightNavItem.title).to(equal(""))
+                expect(viewController.rightNavItem.enabled).to(equal(false))
                 expect(viewController.progressBar.progress).to(equal(1))
                 
             }

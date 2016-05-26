@@ -95,7 +95,8 @@ class FormViewController: UIViewController {
             let newPageIndex = selectNewPage()
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
-                submitForm()
+                let (payload, screenshot) = createDictionaryForSubmission()
+                submitForm(payload, screenshotString: screenshot)
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
@@ -219,7 +220,7 @@ class FormViewController: UIViewController {
         return formDictionary
     }
     
-    func submitForm() {
+    func createDictionaryForSubmission() -> ([String: AnyObject], String? ) {
         let uiDevice = UIDevice()
         var contentDictionary: [String: AnyObject] = [:]
         contentDictionary["app_id"] = formModel.appId //String
@@ -282,8 +283,11 @@ class FormViewController: UIViewController {
         
         //And now to send the request
         print(payload)
+        return (payload, screenshotString)
+    }
+    
+    func submitForm(payload: [String: AnyObject], screenshotString: String? ) {
         NetworkManager.submitFormToUsabilla(payload, screenshot:  screenshotString)
-                    
     }
     
     
