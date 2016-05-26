@@ -83,7 +83,8 @@
                              ],
                   "jumpRules": [],
                   "autoSubmit": false,
-                  "name": "start"
+                  "name": "start",
+                  "jump": "secondMiddle"
                   },
                   {
                   "type": "form",

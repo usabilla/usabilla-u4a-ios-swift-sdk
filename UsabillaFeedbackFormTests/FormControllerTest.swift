@@ -33,16 +33,23 @@ class FormControllerTest: QuickSpec {
             viewController = base.childViewControllers[0] as! FormViewController
             viewController.initWithFormModel(formModel)
             //viewController.
+            
+            
+            // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
+            let _ =  viewController.view
+            
+            // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
+            viewController.beginAppearanceTransition(true, animated: false)
+            viewController.endAppearanceTransition()
+            
         }
         
         beforeEach {
-           
+            
         }
         
         describe(".viewDidLoad()") {
             beforeEach {
-                // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-                let _ =  viewController.view
             }
             
             it("sets the progress bar") {
@@ -58,11 +65,32 @@ class FormControllerTest: QuickSpec {
             }
         }
         
-        describe("the view") {
-            beforeEach {
-                // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
-                viewController.beginAppearanceTransition(true, animated: false)
-                viewController.endAppearanceTransition()
+        describe("turn the first page") {
+            it("turns the page, expext right updates"){
+                var newPageIndex = viewController.selectNewPage()
+                expect(newPageIndex).to(equal(2))
+                
+                viewController.swipeToPage(newPageIndex)
+                viewController.updateRightButton()
+                viewController.updateProgressBar()
+                
+                
+                expect(viewController.currentPage).to(equal(newPageIndex))
+                expect(viewController.pageController.pageModel.pageName).to(equal(formModel.pages[newPageIndex].pageName))
+                expect(viewController.rightNavItem.title).to(equal("TestSubmit"))
+                expect(viewController.progressBar.progress).to(equal(0.75))
+                
+                newPageIndex = viewController.selectNewPage()
+                expect(newPageIndex).to(equal(3))
+                
+                //viewController.swipeToPage(newPageIndex)
+                viewController.showThankYouPage()
+                
+                
+                expect(viewController.currentPage).to(equal(newPageIndex))
+                expect(viewController.thankYouController.title).to(equal("Close"))
+                expect(viewController.progressBar.progress).to(equal(1))
+                
             }
             
         }
