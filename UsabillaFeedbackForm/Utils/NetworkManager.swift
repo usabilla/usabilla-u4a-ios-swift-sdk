@@ -152,15 +152,13 @@ class NetworkManager {
         return Promise { fulfill, reject in
             Alamofire.request(.POST, submit_url, parameters: payload, encoding: .JSON)
                 .responseJSON { response in
-                    //                    let statusCode = response!.statusCode
-                    //
-                    //                    if error != nil {
-                    //                        return reject(error!)
-                    //                    }
-                    //
-                    //                    if statusCode < 200 || statusCode > 299 {
-                    //                        return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
-                    //                    }
+                    print(response.request)  // original URL request
+                    print(response.response) // URL response
+                    print(response.data)     // server data
+                    print(response.result)   // result of response serialization
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+                    }
                     fulfill(response)
             }
         }

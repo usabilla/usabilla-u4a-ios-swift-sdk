@@ -37,7 +37,9 @@ class JSONFormParser {
         screenshotJson["required"] = false
         
         let pageModel = pages.first
-        pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
+        if hasScreenshot {
+            pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
+        }
         return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage)
     }
     

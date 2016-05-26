@@ -19,4 +19,7 @@ class ParagraphFieldModel: StringFieldModel {
         fieldValue = json["text"].stringValue
     }
     
+    override func convertToJSON() -> AnyObject? {
+        return nil
+    }
 }
