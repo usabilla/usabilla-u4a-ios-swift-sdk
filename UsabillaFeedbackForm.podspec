@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "2.0.1"
+  s.version      = "2.0.2"
   s.summary      = "Collect feedback from your users."
 
   # This description is used to generate tags and improve search results.
@@ -71,6 +71,7 @@ Pod::Spec.new do |s|
   s.dependency 'BEMCheckBox'
   s.dependency 'HCSStarRatingView'
   s.dependency 'SwiftValidator'
-  s.dependency 'PromiseKit'
+  s.dependency 'PromiseKit/CorePromise'
+  s.dependency 'PromiseKit/UIKit'
 
 end
