@@ -74,8 +74,6 @@
         "store_ip": true,
         "appTitle": "Feedback",
         "appSubmit": "submit",
-        "primaryColor": "#00A9C5",
-        "secondaryColor": "#fafafa",
-        "textColor": "#333"
+        "errorMessage":"This field is required"
     }
 }

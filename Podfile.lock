@@ -2,33 +2,22 @@ PODS:
   - Alamofire (3.3.1)
   - BEMCheckBox (1.2.1)
   - HCSStarRatingView (1.4.5)
-  - OMGHTTPURLRQ (3.1.1):
-    - OMGHTTPURLRQ/RQ (= 3.1.1)
-  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
-  - OMGHTTPURLRQ/RQ (3.1.1):
-    - OMGHTTPURLRQ/FormURLEncode
-    - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (3.1.1)
-  - PromiseKit (3.1.1):
-    - PromiseKit/Foundation (= 3.1.1)
-    - PromiseKit/QuartzCore (= 3.1.1)
-    - PromiseKit/UIKit (= 3.1.1)
-  - PromiseKit/CorePromise (3.1.1)
-  - PromiseKit/Foundation (3.1.1):
-    - OMGHTTPURLRQ (~> 3.1.0)
+  - Nimble (4.0.1)
+  - PromiseKit/CorePromise (3.2.0)
+  - PromiseKit/UIKit (3.2.0):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (3.1.1):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (3.1.1):
-    - PromiseKit/CorePromise
+  - Quick (0.9.2)
   - SwiftValidator (3.0.3)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3.1)
-  - BEMCheckBox
+  - BEMCheckBox (~> 1.2.1)
   - HCSStarRatingView (~> 1.4.4)
-  - PromiseKit (~> 3.1.1)
+  - Nimble
+  - PromiseKit/CorePromise (= 3.2.0)
+  - PromiseKit/UIKit (= 3.2.0)
+  - Quick
   - SwiftValidator (= 3.0.3)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, tag `2.3.2`)
 
@@ -46,8 +35,9 @@ SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
-  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
-  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
+  Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
+  PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
+  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
   SwiftValidator: 0b6a48bf10364411b0d64c97f78665ff87ca9f8b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
