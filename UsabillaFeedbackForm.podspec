@@ -62,11 +62,11 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.dependency 'SwiftyJSON','~> 2.3.2'
-  s.dependency 'Alamofire','~> 3.3.1'
+  s.dependency 'Alamofire','~> 3.4'
   s.dependency 'BEMCheckBox','~> 1.2.1'
   s.dependency 'HCSStarRatingView', '~> 1.4.4'
-  s.dependency 'SwiftValidator', '3.0.3'
-  s.dependency 'PromiseKit/CorePromise', '3.2.0'
-  s.dependency 'PromiseKit/UIKit', '3.2.0'
+  s.dependency 'SwiftValidator', '~> 3.0.3'
+  s.dependency 'PromiseKit/CorePromise', '~> 3.2'
+  s.dependency 'PromiseKit/UIKit', '~> 3.2'
 
 end
