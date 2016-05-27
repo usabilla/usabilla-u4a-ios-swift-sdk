@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "2.0.2"
+  s.version      = "2.0.3"
   s.summary      = "Collect feedback from your users."
 
   s.description  = <<-DESC
@@ -61,11 +61,10 @@ Pod::Spec.new do |s|
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'SwiftyJSON'
-  s.dependency 'Alamofire'
+  s.dependency 'Alamofire', '~> 3.0'
   s.dependency 'BEMCheckBox'
   s.dependency 'HCSStarRatingView'
   s.dependency 'SwiftValidator'
-  s.dependency 'PromiseKit/CorePromise'
-  s.dependency 'PromiseKit/UIKit'
+  s.dependency 'PromiseKit/CorePromise','~> 3.0'
+  s.dependency 'PromiseKit/UIKit','~> 3.0'
 end
