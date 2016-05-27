@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 
 class JSONFormParser {
@@ -65,7 +64,7 @@ class JSONFormParser {
         }
         currentPage.fields = fields
         
-        if pageJson["jumpRules"].isExists() {
+        if pageJson["jumpRules"].exists() {
             var jumpRules: [JumpRule] = []
             
             for (_, subJson):(String, JSON) in pageJson["jumpRules"] {
@@ -96,7 +95,7 @@ class JSONFormParser {
         
         if let field: BaseFieldModel = FieldFactory.createField(json, pagemodel: pagemodel) {
             
-            if json["showHideRule"].isExists() && !json["showHideRule"].isEmpty {
+            if json["showHideRule"].exists() && !json["showHideRule"].isEmpty {
                 field.rule =  parseShowHideRule(json["showHideRule"], pageModel: pagemodel)
             }
             //print("return field \(field)")

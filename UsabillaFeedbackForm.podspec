@@ -66,7 +66,6 @@ Pod::Spec.new do |s|
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'SwiftyJSON'
   s.dependency 'Alamofire'
   s.dependency 'BEMCheckBox'
   s.dependency 'HCSStarRatingView'
