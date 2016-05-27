@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
-
 
 
 class EmailFieldModel: StringFieldModel {

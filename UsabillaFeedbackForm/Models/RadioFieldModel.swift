@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 
 class RadioFieldModel: FieldModelWithOptions {

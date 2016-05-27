@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class FieldFactory {
     
@@ -31,13 +30,13 @@ class FieldFactory {
         case"comment":
             return  CommentFieldModel(json: json, pageModel: pagemodel)
         case"nps":
-            if json["mode"].isExists() && json["mode"].stringValue == "slider"{
+            if json["mode"].exists() && json["mode"].stringValue == "slider"{
                 return  RatingFieldModel(json: json, pageModel: pagemodel, isNPS: true)
             } else {
                 return  NPSFieldModel(json: json, pageModel: pagemodel)
             }
         case"mood":
-            if json["mode"].isExists() && json["mode"].stringValue == "star"{
+            if json["mode"].exists() && json["mode"].stringValue == "star"{
                 return  StarFieldModel(json: json, pageModel: pagemodel)
             } else {
                 return  MoodFieldModel(json: json, pageModel: pagemodel)
