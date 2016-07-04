@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.0)
+  - Alamofire (3.4.1)
   - BEMCheckBox (1.2.1)
   - HCSStarRatingView (1.4.5)
   - Nimble (4.0.1)
@@ -20,7 +20,7 @@ DEPENDENCIES:
   - SwiftValidator (= 3.0.3)
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
   Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
@@ -28,4 +28,6 @@ SPEC CHECKSUMS:
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
   SwiftValidator: 0b6a48bf10364411b0d64c97f78665ff87ca9f8b
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: ab6839b9a7739a380fa22be9bdb92978984052db
+
+COCOAPODS: 1.0.1
