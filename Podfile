@@ -14,7 +14,7 @@ target 'UsabillaFeedbackForm' do
     pod 'SwiftValidator', '3.0.3'
     pod 'PromiseKit/CorePromise', '3.2.0'
     pod 'PromiseKit/UIKit', '3.2.0'
-    pod 'BEMCheckBox', '~> 1.2.1'
+    #pod 'BEMCheckBox', '~> 1.2.1'
     
 end
 

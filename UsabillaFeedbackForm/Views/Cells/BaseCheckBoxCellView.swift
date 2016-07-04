@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import BEMCheckBox
 
-class BaseCheckboxCellView: RootCellView, BEMCheckBoxDelegate {
+class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
     
     var checkBoxes: [CheckboxWithText] = []
     var model: FieldModelWithOptions!
@@ -74,7 +73,7 @@ class BaseCheckboxCellView: RootCellView, BEMCheckBoxDelegate {
         
     }
     
-    func didTapCheckBox(checkBox: BEMCheckBox) {
+    func didTapCheckBox(checkBox: SwiftCheckBox) {
         fatalError("didTapCheckBox has not been implemented")
         
     }

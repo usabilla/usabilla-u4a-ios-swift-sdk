@@ -10,23 +10,23 @@ import Foundation
 import UIKit
 
 class StyleKit {
-    
-    
+
+
     //MARK: - Canvas Drawings
-    
+
     /// Page 1
-    
+
     class func drawTrash(frame frame: CGRect = CGRect(x: 0, y: 0, width: 34, height: 44), resizing: ResizingBehavior = .AspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         /// Resize To Frame
         CGContextSaveGState(context)
         let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 34, height: 44), target: frame)
         CGContextTranslateCTM(context, resizedFrame.minX, resizedFrame.minY)
         let resizedScale = CGSize(width: resizedFrame.width / 34, height: resizedFrame.height / 44)
         CGContextScaleCTM(context, resizedScale.width, resizedScale.height)
-        
+
         /// trash
         let trash2 = UIBezierPath()
         trash2.moveToPoint(CGPoint(x: 9.27, y: 4.78))
@@ -89,37 +89,37 @@ class StyleKit {
         UsabillaThemeConfigurator.sharedInstance.primaryTextColor.setFill()
         trash2.fill()
         CGContextRestoreGState(context)
-        
+
         CGContextRestoreGState(context)
     }
-    
-    
+
+
     //MARK: - Canvas Images
-    
+
     /// Page 1
-    
+
     class func imageOfTrash(size size: CGSize = CGSize(width: 34, height: 44), resizing: ResizingBehavior = .AspectFit) -> UIImage {
         var image: UIImage
-        
+
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         StyleKit.drawTrash(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
         image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return image
     }
-    
+
     class func drawPlus(frame frame: CGRect = CGRect(x: 0, y: 0, width: 44, height: 44), resizing: ResizingBehavior = .AspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         /// Resize To Frame
         CGContextSaveGState(context)
         let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 44, height: 44), target: frame)
         CGContextTranslateCTM(context, resizedFrame.minX, resizedFrame.minY)
         let resizedScale = CGSize(width: resizedFrame.width / 44, height: resizedFrame.height / 44)
         CGContextScaleCTM(context, resizedScale.width, resizedScale.height)
-        
+
         /// Page 1
         let page2 = UIBezierPath()
         page2.moveToPoint(CGPoint(x: 22, y: 42))
@@ -154,44 +154,44 @@ class StyleKit {
         UsabillaThemeConfigurator.sharedInstance.primaryTextColor.setFill()
         page2.fill()
         CGContextRestoreGState(context)
-        
+
         CGContextRestoreGState(context)
     }
-    
-    
+
+
     //MARK: - Canvas Images
-    
+
     /// Page 1
-    
+
     class func imageOfPlus(size size: CGSize = CGSize(width: 44, height: 44), resizing: ResizingBehavior = .AspectFit) -> UIImage {
         var image: UIImage
-        
+
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         StyleKit.drawPlus(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
         image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return image
     }
-    
-    
+
+
     //MARK: - Resizing Behavior
-    
+
     enum ResizingBehavior {
         case AspectFit /// The content is proportionally resized to fit into the target rectangle.
         case AspectFill /// The content is proportionally resized to completely fill the target rectangle.
         case Stretch /// The content is stretched to match the entire target rectangle.
         case Center /// The content is centered in the target rectangle, but it is NOT resized.
-        
+
         func apply(rect rect: CGRect, target: CGRect) -> CGRect {
             if rect == target || target == CGRect.zero {
                 return rect
             }
-            
+
             var scales = CGSize.zero
             scales.width = abs(target.width / rect.width)
             scales.height = abs(target.height / rect.height)
-            
+
             switch self {
             case .AspectFit:
                 scales.width = min(scales.width, scales.height)
@@ -205,7 +205,7 @@ class StyleKit {
                 scales.width = 1
                 scales.height = 1
             }
-            
+
             var result = rect.standardized
             result.size.width *= scales.width
             result.size.height *= scales.height

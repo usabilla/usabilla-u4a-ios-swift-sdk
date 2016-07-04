@@ -12,41 +12,41 @@ import Alamofire
 
 
 class NetworkManager {
-    
-    
+
+
     static let bundle = NSBundle(forClass: NetworkManager.self)
     static let api_url = bundle.infoDictionary!["USABILLA_API_URL"] as! String
     static let submit_url = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
-    
+
     class func getFromFromID(formID: String) -> Promise<JSON> {
-        
+
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [api_url, formID])
         return Promise { fulfill, reject in
-            
+
             Alamofire.request(.GET, request_url)
                 .response { (request, response, json, error) in
                     let statusCode = response!.statusCode
-                    
+
                     if error != nil {
                         return reject(error!)
                     }
-                    
+
                     if statusCode < 200 || statusCode > 299 {
                         return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
                     }
-                    
+
                     let json = JSON(data: json!)
                     fulfill(json)
             }
-            
+
         }
-        
+
     }
-    
+
     class func submitFormToUsabilla (payload: [String:AnyObject], screenshot: String?) {
-        
+
         submitFeedbackSmallData(payload).then { (response: NSHTTPURLResponse?) -> () in
-            
+
             if let response = response {
                 switch response.statusCode {
                 case 200...299:
@@ -62,33 +62,33 @@ class NetworkManager {
                     break
                 }
             }
-            
+
         }
-        
-        
+
+
     }
-    
-    
+
+
     class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) {
         let chuckSize = 31250
         var promiseArray: [Promise<Bool>] = []
         let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
-        
+
         for (index, chunk) in stringChunks.enumerate() {
             promiseArray.append(createPromise(id, signature: signature, v: index + 1, screenshot: chunk))
         }
-        
+
         when(promiseArray).then { _ -> () in
             closeTheDeal(id, signature: signature, v: stringChunks.count + 1)
         }
-        
+
     }
-    
+
     class func closeTheDeal(id: String, signature: String, v: Int) -> Promise<Bool> {
         let contentDictionary: [String: AnyObject] = [:]
-        
+
         var payload: [String: AnyObject] = [:]
-        
+
         payload["id"] = id
         payload["sig"] = signature
         payload["type"] = "app_feedback"
@@ -96,7 +96,7 @@ class NetworkManager {
         payload["v"] = NSNumber(int: Int32(v))
         payload["done"] = true
         payload["data"] = contentDictionary
-        
+
         return Promise { fulfill, reject in
             Alamofire.request(.POST, submit_url, parameters: payload, encoding: .JSON)
                 .response {request, response, data, error in
@@ -104,23 +104,23 @@ class NetworkManager {
                     if error != nil {
                         return reject(error!)
                     }
-                    
+
                     if statusCode < 200 || statusCode > 299 {
                         return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
                     }
                     fulfill(true)
             }
         }
-        
-        
+
+
     }
-    
+
     class func createPromise(id: String, signature: String, v: Int, screenshot: String) -> Promise<Bool> {
-        
+
         var contentDictionary: [String: AnyObject] = [:]
         contentDictionary["media"] = ["screenshot" : screenshot]
         var payload: [String: AnyObject] = [:]
-        
+
         payload["id"] = id
         payload["sig"] = signature
         payload["type"] = "app_feedback"
@@ -128,7 +128,7 @@ class NetworkManager {
         payload["v"] = NSNumber(int: Int32(v))
         payload["done"] = false
         payload["data"] = contentDictionary
-        
+
         return Promise { fulfill, reject in
             Alamofire.request(.POST, submit_url, parameters: payload, encoding: .JSON)
                 .response {request, response, data, error in
@@ -136,18 +136,18 @@ class NetworkManager {
                     if error != nil {
                         return reject(error!)
                     }
-                    
+
                     if statusCode < 200 || statusCode > 299 {
                         return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
                     }
-                    
+
                     fulfill(true)
             }
         }
-        
+
     }
-    
-    
+
+
     class func submitFeedbackSmallData(payload: [String:AnyObject])  -> Promise<NSHTTPURLResponse?> {
         return Promise { fulfill, reject in
             Alamofire.request(.POST, submit_url, parameters: payload, encoding: .JSON)
@@ -156,11 +156,11 @@ class NetworkManager {
                     if error != nil {
                         return reject(error!)
                     }
-                    
+
                     if statusCode < 200 || statusCode > 299 {
                         return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
                     }
-                    
+
                     fulfill(response)
             }
         }

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 extension String {
-    
+
     func divideInChunksOfSize(chuckSize: Int) -> [String] {
         var arrayToReturn: [String] = []
         let screenshotCharacterCount = self.characters.count
         let numberOfChunks = screenshotCharacterCount / chuckSize
         let lastChunk = screenshotCharacterCount % chuckSize
-        
+
         if numberOfChunks > 0 {
             for chunk in 0...numberOfChunks - 1 {
                 let start = chunk * chuckSize
@@ -30,45 +30,45 @@ extension String {
             let section = (self as NSString).substringWithRange(lastRange)
             arrayToReturn.append(section)
         }
-        
+
         return arrayToReturn
     }
-    
+
 }
 
 
 extension UIImage {
-    
-    
+
+
     func fixSizeAndOrientation() -> UIImage {
-        
+
         let currentWidht = self.size.width
         let currentHeight = self.size.height
         var scaleFactor: CGFloat = 1
-        
+
         if currentWidht > 800 || currentHeight > 1200 {
             if currentHeight > currentWidht {
                 scaleFactor = 1200 / currentHeight
             } else {
                 scaleFactor = 800 / currentWidht
             }
-            
+
             let newHeight = Int(currentHeight * scaleFactor)
             let newWidth = Int(currentWidht * scaleFactor)
-            
+
             UIGraphicsBeginImageContext(CGSizeMake(CGFloat(newWidth), CGFloat(newHeight)))
             drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
             let img = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return img
         }
-        
+
         return self
     }
-    
-    
+
+
     func renderInColor(color: UIColor) -> UIImage {
-        
+
         let rect = CGRectMake(0, 0, self.size.width, self.size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -79,7 +79,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return UIImage(CGImage: img.CGImage!, scale: 1, orientation: UIImageOrientation.DownMirrored)
     }
-    
+
 }
 
 extension UIView {
@@ -93,22 +93,22 @@ extension UIView {
 
 
 extension UIFont {
-    
+
     func withTraits(traits: UIFontDescriptorSymbolicTraits...) -> UIFont {
         let descriptor = self.fontDescriptor()
             .fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits))
         return UIFont(descriptor: descriptor, size: 0)
     }
-    
+
     func boldItalic() -> UIFont {
         return withTraits(.TraitBold, .TraitItalic)
     }
-    
+
     func italic() -> UIFont {
         return withTraits(.TraitItalic)
     }
-    
-    
+
+
     static func registerFontWithFilenameString(filenameString: String, bundleIdentifierString: String) {
         if let bundle = NSBundle(identifier: bundleIdentifierString) {
             if let pathForResourceString = bundle.pathForResource(filenameString, ofType: nil) {
@@ -135,12 +135,12 @@ extension UIFont {
             NSLog("UIFont+:  Failed to register font - bundle identifier invalid.")
         }
     }
-    
-    
+
+
 }
 
 extension UIDevice {
-    
+
     var modelName: String {
         var systemInfo = utsname()
         uname(&systemInfo)
@@ -149,7 +149,7 @@ extension UIDevice {
             guard let value = element.value as? Int8 where value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
-        
+
         switch identifier {
         case "iPod5,1":                                 return "iPod Touch 5"
         case "iPod7,1":                                 return "iPod Touch 6"
@@ -177,7 +177,7 @@ extension UIDevice {
         default:                                        return identifier
         }
     }
-    
+
 }
 
 //
@@ -204,7 +204,7 @@ extension UIColor {
     /**
      The shorthand three-digit hexadecimal representation of color.
      #RGB defines to the color #RRGGBB.
-     
+
      - parameter hex3: Three-digit hexadecimal value.
      - parameter alpha: 0.0 - 1.0. The default is 1.0.
      */
@@ -215,11 +215,11 @@ extension UIColor {
         let blue    = CGFloat( hex3 & 0x00F      ) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
-    
+
     /**
      The shorthand four-digit hexadecimal representation of color with alpha.
      #RGBA defines to the color #RRGGBBAA.
-     
+
      - parameter hex4: Four-digit hexadecimal value.
      */
     convenience init(hex4: UInt16) {
@@ -230,10 +230,10 @@ extension UIColor {
         let alpha   = CGFloat( hex4 & 0x000F       ) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
-    
+
     /**
      The six-digit hexadecimal representation of color of the form #RRGGBB.
-     
+
      - parameter hex6: Six-digit hexadecimal value.
      */
     convenience init(hex6: UInt32, alpha: CGFloat = 1) {
@@ -243,10 +243,10 @@ extension UIColor {
         let blue    = CGFloat( hex6 & 0x0000FF       ) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
-    
+
     /**
      The six-digit hexadecimal representation of color with alpha of the form #RRGGBBAA.
-     
+
      - parameter hex8: Eight-digit hexadecimal value.
      */
     convenience init(hex8: UInt32) {
@@ -257,30 +257,30 @@ extension UIColor {
         let alpha   = CGFloat( hex8 & 0x000000FF       ) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
-    
+
     /**
      The rgba string representation of color with alpha of the form #RRGGBBAA/#RRGGBB, throws error.
-     
+
      - parameter rgba: String value.
      */
     convenience init(rgba_throws rgba: String) throws {
         guard rgba.hasPrefix("#") else {
             throw UIColorInputError.MissingHashMarkAsPrefix
         }
-        
+
         guard let hexString: String = rgba.substringFromIndex(rgba.startIndex.advancedBy(1)),
             var hexValue: UInt32 = 0
             where NSScanner(string: hexString).scanHexInt(&hexValue) else {
                 throw UIColorInputError.UnableToScanHexValue
         }
-        
+
         guard hexString.characters.count  == 3
             || hexString.characters.count == 4
             || hexString.characters.count == 6
             || hexString.characters.count == 8 else {
                 throw UIColorInputError.MismatchedHexStringLength
         }
-        
+
         switch hexString.characters.count {
         case 3:
             self.init(hex3: UInt16(hexValue))
@@ -292,10 +292,10 @@ extension UIColor {
             self.init(hex8: hexValue)
         }
     }
-    
+
     /**
      The rgba string representation of color with alpha of the form #RRGGBBAA/#RRGGBB, fails to default color.
-     
+
      - parameter rgba: String value.
      */
     convenience init(rgba: String, defaultColor: UIColor = UIColor.clearColor()) {
@@ -305,10 +305,10 @@ extension UIColor {
         }
         self.init(CGColor: color.CGColor)
     }
-    
+
     /**
      Hex string of a UIColor instance.
-     
+
      - parameter rgba: Whether the alpha should be included.
      */
     func hexString(includeAlpha: Bool) -> String {
@@ -317,12 +317,12 @@ extension UIColor {
         var b: CGFloat = 0
         var a: CGFloat = 0
         self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        
+
         if includeAlpha {
             return String(format: "#%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255))
         } else {
             return String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
         }
     }
-    
+
 }
