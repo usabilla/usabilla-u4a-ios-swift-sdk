@@ -106,15 +106,10 @@ class SwiftCheckBox: UIView {
         offBoxLayer.removeFromSuperlayer()
         onBoxLayer.removeFromSuperlayer()
         checkMarkLayer?.removeFromSuperlayer()
-
         //self.onBoxLayer? = nil;
-
-
         //self.checkMarkLayer? = nil;
         setNeedsDisplay()
         layoutIfNeeded()
-
-
     }
 
     func setOn(on: Bool, animated: Bool) {
@@ -132,8 +127,6 @@ class SwiftCheckBox: UIView {
             } else {
                 onBoxLayer.removeFromSuperlayer()
                 checkMarkLayer?.removeFromSuperlayer()
-
-
             }
         }
     }

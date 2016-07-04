@@ -128,8 +128,6 @@ class IntFieldModel: BaseFieldModel {
     required init(json: JSON, pageModel: PageModel) {
         fieldValue = nil
         super.init(json: json, pageModel: pageModel)
-        //self.isViewCurrentlyVisible = false
-        
     }
     
     
@@ -179,7 +177,7 @@ class FieldModelWithOptions: BaseFieldModel {
     }
     
     override func convertToJSON() -> AnyObject? {
-        return fieldValue
+        return fieldValue.count > 0 ? fieldValue : nil
     }
 }
 
@@ -190,7 +188,6 @@ struct Options {
     let value: String
     
     init(title: String, value: String) {
-        
         self.title = title
         self.value = value
     }
