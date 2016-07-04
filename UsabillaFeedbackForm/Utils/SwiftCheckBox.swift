@@ -19,8 +19,8 @@ class SwiftCheckBox: UIView {
     /** The layer where the box is drawn when the check box is set to On.
      */
     var delegate: SwiftCheckBoxDelegate?
-    var onBoxLayer: CAShapeLayer?
-    var offBoxLayer: CAShapeLayer?
+    var onBoxLayer: CAShapeLayer!
+    var offBoxLayer: CAShapeLayer!
     var checkMarkLayer: CAShapeLayer?
     let animationManager: AnimationManager
     let pathManager: PathManager
@@ -71,7 +71,11 @@ class SwiftCheckBox: UIView {
         pathManager.lineWidth = 2.0
         pathManager.boxType = BoxType.Square
         animationManager = AnimationManager(animationDuration: 0.5)
+
         super.init(frame: frame)
+        offBoxLayer = CAShapeLayer(layer: layer)
+        onBoxLayer = CAShapeLayer(layer: layer)
+
         backgroundColor = UIColor.clearColor()
         tintColor = UIColor.lightGrayColor()
     }
@@ -82,6 +86,9 @@ class SwiftCheckBox: UIView {
         pathManager.boxType = BoxType.Square
         animationManager = AnimationManager(animationDuration: 0.5)
         super.init(coder: coder)!
+        offBoxLayer = CAShapeLayer(layer: layer)
+        onBoxLayer = CAShapeLayer(layer: layer)
+
         backgroundColor = UIColor.clearColor()
         tintColor = UIColor.lightGrayColor()
 
@@ -90,13 +97,14 @@ class SwiftCheckBox: UIView {
 
 
     override func layoutSubviews() {
-        self.pathManager.size = self.frame.size.height
-        layoutSubviews()
+        let a = self.frame.size.height
+        self.pathManager.size = a
+        super.layoutSubviews()
     }
 
     func reload() {
-        offBoxLayer?.removeFromSuperlayer()
-        onBoxLayer?.removeFromSuperlayer()
+        offBoxLayer.removeFromSuperlayer()
+        onBoxLayer.removeFromSuperlayer()
         checkMarkLayer?.removeFromSuperlayer()
 
         //self.onBoxLayer? = nil;
@@ -122,7 +130,7 @@ class SwiftCheckBox: UIView {
             if animated {
                 addOffAnimation()
             } else {
-                onBoxLayer?.removeFromSuperlayer()
+                onBoxLayer.removeFromSuperlayer()
                 checkMarkLayer?.removeFromSuperlayer()
 
 
@@ -175,7 +183,7 @@ class SwiftCheckBox: UIView {
      */
     func drawEntireCheckBox() {
         if !self.hideBox {
-            if self.offBoxLayer ==  nil || CGPathGetBoundingBox(self.offBoxLayer?.path).size.height == 0.0 {
+            if  CGPathGetBoundingBox(self.offBoxLayer.path).size.height == 0.0 {
                 drawOffBox()
             }
             if self.on {
@@ -190,43 +198,43 @@ class SwiftCheckBox: UIView {
     /** Draws the box used when the checkbox is set to Off.
      */
     func drawOffBox() {
-        offBoxLayer?.removeFromSuperlayer()
+        offBoxLayer.removeFromSuperlayer()
         self.offBoxLayer = CAShapeLayer(layer: layer)
-        self.offBoxLayer?.frame = self.bounds
-        self.offBoxLayer?.path = pathManager.pathForBox().CGPath
-        self.offBoxLayer?.fillColor = UIColor.clearColor().CGColor
-        self.offBoxLayer?.strokeColor = self.tintColor.CGColor
-        self.offBoxLayer?.lineWidth = self.lineWidth
+        self.offBoxLayer.frame = self.bounds
+        self.offBoxLayer.path = pathManager.pathForBox().CGPath
+        self.offBoxLayer.fillColor = UIColor.clearColor().CGColor
+        self.offBoxLayer.strokeColor = self.tintColor.CGColor
+        self.offBoxLayer.lineWidth = self.lineWidth
 
-        self.offBoxLayer?.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
-        self.offBoxLayer?.shouldRasterize = true
+        self.offBoxLayer.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
+        self.offBoxLayer.shouldRasterize = true
 
 
-        self.layer.addSublayer(offBoxLayer!)
+        self.layer.addSublayer(offBoxLayer)
 
     }
 
     /** Draws the box when the checkbox is set to On.
      */
     func drawOnBox() {
-        onBoxLayer?.removeFromSuperlayer()
-        self.onBoxLayer? = CAShapeLayer(layer: layer)
-        self.onBoxLayer?.frame = self.bounds
-        self.onBoxLayer?.path = pathManager.pathForBox().CGPath
+        onBoxLayer.removeFromSuperlayer()
+        self.onBoxLayer = CAShapeLayer(layer: layer)
+        self.onBoxLayer.frame = self.bounds
+        self.onBoxLayer.path = pathManager.pathForBox().CGPath
 
-        self.onBoxLayer?.lineWidth = self.lineWidth
-        self.onBoxLayer?.fillColor = self.onFillColor.CGColor
-        self.onBoxLayer?.strokeColor = self.onTintColor.CGColor
-        self.onBoxLayer?.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
-        self.onBoxLayer?.shouldRasterize = true
-        self.layer.addSublayer(onBoxLayer!)
+        self.onBoxLayer.lineWidth = self.lineWidth
+        self.onBoxLayer.fillColor = self.onFillColor.CGColor
+        self.onBoxLayer.strokeColor = self.onTintColor.CGColor
+        self.onBoxLayer.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
+        self.onBoxLayer.shouldRasterize = true
+        self.layer.addSublayer(onBoxLayer)
     }
 
     /** Draws the check mark when the checkbox is set to On.
      */
     func drawCheckMark() {
         checkMarkLayer?.removeFromSuperlayer()
-        self.checkMarkLayer? = CAShapeLayer(layer: layer)
+        self.checkMarkLayer = CAShapeLayer(layer: layer)
         self.checkMarkLayer?.frame = self.bounds
         self.checkMarkLayer?.path = pathManager.pathForCheckMark().CGPath
         self.checkMarkLayer?.strokeColor = self.onCheckColor.CGColor
@@ -250,7 +258,7 @@ class SwiftCheckBox: UIView {
         switch self.onAnimationType {
         case AnimationType.Stroke:
             let animation = self.animationManager.strokeAnimationReverse(false)
-            self.onBoxLayer?.addAnimation(animation, forKey: "strokeEnd")
+            self.onBoxLayer.addAnimation(animation, forKey: "strokeEnd")
 
             animation.delegate = self
             self.checkMarkLayer?.addAnimation(animation, forKey: "strokeEnd")
@@ -261,7 +269,7 @@ class SwiftCheckBox: UIView {
             let wiggle = self.animationManager.fillAnimationWithBounces(1, amplitude: 0.18, reverse: false)
             let opacityAnimation = self.animationManager.opacityAnimationReverse(false)
             opacityAnimation.delegate = self
-            self.onBoxLayer?.addAnimation(wiggle, forKey: "transform")
+            self.onBoxLayer.addAnimation(wiggle, forKey: "transform")
             self.checkMarkLayer?.addAnimation(opacityAnimation, forKey: "opacity")
 
             break
@@ -274,7 +282,7 @@ class SwiftCheckBox: UIView {
             let opacity = self.animationManager.opacityAnimationReverse(false)
             opacity.duration = self.animationDuration / 1.4
 
-            self.onBoxLayer?.addAnimation(opacity, forKey: "opacity")
+            self.onBoxLayer.addAnimation(opacity, forKey: "opacity")
             checkMarkLayer?.addAnimation(wiggle, forKey: "transform")
 
             break
@@ -286,7 +294,7 @@ class SwiftCheckBox: UIView {
             let opacity =  self.animationManager.opacityAnimationReverse(false)
             opacity.duration = self.animationDuration / 5
 
-            onBoxLayer?.addAnimation(opacity, forKey: "opacity")
+            onBoxLayer.addAnimation(opacity, forKey: "opacity")
             checkMarkLayer?.addAnimation(morphAnimation, forKey: "path")
             checkMarkLayer?.addAnimation(opacity, forKey: "opacity")
 
@@ -299,7 +307,7 @@ class SwiftCheckBox: UIView {
 
             let boxStrokeAnimation = animationManager.strokeAnimationReverse(false)
             boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2
-            onBoxLayer?.addAnimation(boxStrokeAnimation, forKey: "strokeEnd")
+            onBoxLayer.addAnimation(boxStrokeAnimation, forKey: "strokeEnd")
 
 
             let checkStrokeAnimation = animationManager.strokeAnimationReverse(false)
@@ -323,7 +331,7 @@ class SwiftCheckBox: UIView {
 
         default:
             let animation = animationManager.opacityAnimationReverse(false)
-            onBoxLayer?.addAnimation(animation, forKey: "opacity")
+            onBoxLayer.addAnimation(animation, forKey: "opacity")
             animation.delegate = self
             checkMarkLayer?.addAnimation(animation, forKey: "opacity")
             break
@@ -332,14 +340,14 @@ class SwiftCheckBox: UIView {
 
     func addOffAnimation() {
         if self.animationDuration == 0.0 {
-            onBoxLayer?.removeFromSuperlayer()
+            onBoxLayer.removeFromSuperlayer()
             checkMarkLayer?.removeFromSuperlayer()
         }
 
         switch self.offAnimationType {
         case .Stroke:
             let animation = animationManager.strokeAnimationReverse(true)
-            onBoxLayer?.addAnimation(animation, forKey: "strokeEnd")
+            onBoxLayer.addAnimation(animation, forKey: "strokeEnd")
             animation.delegate = self
             checkMarkLayer?.addAnimation(animation, forKey: "strokeEnd")
             break
@@ -348,7 +356,7 @@ class SwiftCheckBox: UIView {
             let wiggle = animationManager.fillAnimationWithBounces(1, amplitude: 0.18, reverse: true)
             wiggle.duration = self.animationDuration
             wiggle.delegate = self
-            onBoxLayer?.addAnimation(wiggle, forKey: "transform")
+            onBoxLayer.addAnimation(wiggle, forKey: "transform")
             checkMarkLayer?.addAnimation(animationManager.opacityAnimationReverse(true), forKey: "opacity")
 
             break
@@ -359,7 +367,7 @@ class SwiftCheckBox: UIView {
             wiggle.duration = self.animationDuration / 1.1
             let opacity = animationManager.opacityAnimationReverse(true)
             opacity.delegate = self
-            onBoxLayer?.addAnimation(opacity, forKey: "opacity")
+            onBoxLayer.addAnimation(opacity, forKey: "opacity")
             checkMarkLayer?.addAnimation(wiggle, forKey: "transform")
 
             break
@@ -371,7 +379,7 @@ class SwiftCheckBox: UIView {
             let opacity = animationManager.opacityAnimationReverse(true)
             opacity.duration = self.animationDuration
 
-            onBoxLayer?.addAnimation(opacity, forKey: "opacity")
+            onBoxLayer.addAnimation(opacity, forKey: "opacity")
             checkMarkLayer?.addAnimation(animation, forKey: "path")
             checkMarkLayer?.addAnimation(opacity, forKey: "opacity")
 
@@ -401,13 +409,13 @@ class SwiftCheckBox: UIView {
             boxStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration
             boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2
             boxStrokeAnimation.delegate = self
-            onBoxLayer?.addAnimation(boxStrokeAnimation, forKey: "strokeEnd")
+            onBoxLayer.addAnimation(boxStrokeAnimation, forKey: "strokeEnd")
 
             break
 
         default:
             let animation = animationManager.opacityAnimationReverse(true)
-            onBoxLayer?.addAnimation(animation, forKey: "opacity")
+            onBoxLayer.addAnimation(animation, forKey: "opacity")
             animation.delegate = self
             checkMarkLayer?.addAnimation(animation, forKey: "opacity")
             break
@@ -417,7 +425,7 @@ class SwiftCheckBox: UIView {
     override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if flag == true {
             if self.on == false {
-                onBoxLayer?.removeFromSuperlayer()
+                onBoxLayer.removeFromSuperlayer()
                 checkMarkLayer?.removeFromSuperlayer()
 
 
