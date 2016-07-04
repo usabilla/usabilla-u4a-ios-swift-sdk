@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 public class UsabillaThemeConfigurator {
-    
+
     public static let sharedInstance = UsabillaThemeConfigurator()
-    
-    
+
+
     public var headerColor: UIColor
     public var headerTextColor: UIColor
     public var primaryTextColor: UIColor
@@ -23,15 +23,15 @@ public class UsabillaThemeConfigurator {
     public var errorColor: UIColor
     public var hintColor: UIColor
     public var statusBarColor: UIBarStyle
-    
+
     public var customFont: UIFont
     public var enabledEmoticons: [UIImage]
     public var disabledEmoticons: [UIImage]?
     public var fullStar: UIImage?
     public var emptyStar: UIImage?
-    
+
     private init() {
-        
+
         UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
         statusBarColor = UIBarStyle.Default
         headerColor = UIColor(rgba:"#00A5C9")
@@ -48,8 +48,8 @@ public class UsabillaThemeConfigurator {
         fullStar = nil
         emptyStar = nil
     }
-    
-    
+
+
     private class func createEmoticons() -> [UIImage] {
         var toReturn: [UIImage] = []
         let bundle = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")
@@ -60,6 +60,6 @@ public class UsabillaThemeConfigurator {
         toReturn.append(UIImage(named: "05", inBundle:  bundle, compatibleWithTraitCollection: nil)!)
         return toReturn
     }
-    
+
 
 }
