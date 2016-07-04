@@ -57,7 +57,7 @@ class FormViewController: UIViewController {
             self.restoreFeedbackFormController()
         }
         
-        leftNavItem.title = NSLocalizedString("usa_form_close_button", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: "")
+        leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         
         if !UsabillaFeedbackForm.showCancelButton {
             leftNavItem.title = ""
@@ -179,9 +179,9 @@ class FormViewController: UIViewController {
         if currentPage == formModel.pages.count - 2 {
             rightNavItem.title = formModel.appSubmitButton
         } else if currentPage == formModel.pages.count - 1 {
-            rightNavItem.title = NSLocalizedString("usa_form_close_button", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: "")
+            rightNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         } else {
-            rightNavItem.title = NSLocalizedString("usa_form_continue_button", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: "")
+            rightNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_continue_button")
         }
     }
     

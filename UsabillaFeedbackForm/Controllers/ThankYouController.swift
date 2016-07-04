@@ -27,10 +27,10 @@ class ThankYouController: UIViewController {
     
     func setUpController (thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
         if thresholdMet && UsabillaFeedbackForm.redirectToAppStore && UsabillaFeedbackForm.appStoreId != nil {
-            bottomButton.setTitle(NSLocalizedString("usa_invite_rate_app_store", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: ""), forState: .Normal)
+            bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_invite_rate_app_store"), forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), forControlEvents: .TouchUpInside)
         } else {
-            bottomButton.setTitle(NSLocalizedString("usa_more_feedback", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: ""), forState: .Normal)
+            bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_more_feedback"), forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.reloadForm), forControlEvents: .TouchUpInside)
         }
         
