@@ -67,7 +67,6 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.dependency 'Alamofire', '~> 3.0'
-  s.dependency 'BEMCheckBox'
   s.dependency 'HCSStarRatingView'
   s.dependency 'SwiftValidator'
   s.dependency 'PromiseKit/CorePromise','~> 3.0'

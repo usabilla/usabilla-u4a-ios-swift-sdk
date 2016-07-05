@@ -57,14 +57,18 @@ class FormViewController: UIViewController {
             self.restoreFeedbackFormController()
         }
         
-        leftNavItem.title = NSLocalizedString("usa_form_close_button", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: "")
+        setUpLeftButton()
+        setUpReachability()
+    }
+    
+    
+    func setUpLeftButton() {
+        leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         
         if !UsabillaFeedbackForm.showCancelButton {
             leftNavItem.title = ""
             leftNavItem.enabled = false
         }
-        
-        setUpReachability()
     }
     
     
@@ -96,7 +100,11 @@ class FormViewController: UIViewController {
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
                 let (payload, screenshot) = createDictionaryForSubmission()
-                submitForm(payload, screenshotString: screenshot)
+                if reachability.currentReachabilityStatus == .NotReachable {
+                    //Queue
+                } else {
+                    submitForm(payload, screenshotString: screenshot)
+                }
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
@@ -112,6 +120,8 @@ class FormViewController: UIViewController {
         progressBar.setProgress(1, animated: true)
         rightNavItem.title = ""
         rightNavItem.enabled = false
+        leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
+        leftNavItem.enabled = true
         
         let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
         thankYouController = storyboard.instantiateViewControllerWithIdentifier("thankYou") as? ThankYouController
@@ -146,6 +156,7 @@ class FormViewController: UIViewController {
         transitionFromViewController(thankYouController, toViewController: pageController, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
         updateRightButton()
         updateProgressBar()
+        setUpLeftButton()
     }
     
     func resetAndRestartForm() {
@@ -179,9 +190,9 @@ class FormViewController: UIViewController {
         if currentPage == formModel.pages.count - 2 {
             rightNavItem.title = formModel.appSubmitButton
         } else if currentPage == formModel.pages.count - 1 {
-            rightNavItem.title = NSLocalizedString("usa_form_close_button", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: "")
+            rightNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         } else {
-            rightNavItem.title = NSLocalizedString("usa_form_continue_button", tableName: UsabillaFeedbackForm.localizedStringFile, bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!, comment: "")
+            rightNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_continue_button")
         }
     }
     

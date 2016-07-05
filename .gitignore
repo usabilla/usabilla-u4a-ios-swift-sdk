@@ -1,1 +1,3 @@
 UsabillaFeedbackForm.framework
+*.lock
+*.xcbkptlist

@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import BEMCheckBox
 
 class CheckboxCellView: BaseCheckboxCellView {
  
     
     override func styleCheckBox(checkBox: CheckboxWithText) {
-        checkBox.checkBox.boxType = BEMBoxType.Square
+        checkBox.checkBox.boxType = .Square
         checkBox.checkBox.onAnimationType = .Bounce
         checkBox.checkBox.offAnimationType = .Bounce
     }
     
-    override func didTapCheckBox(checkBox: BEMCheckBox) {
+    override func didTapCheckBox(checkBox: SwiftCheckBox) {
         
         //checkBox.setOn(!checkBox.on, animated: true)
         var values: [String] = [ ]

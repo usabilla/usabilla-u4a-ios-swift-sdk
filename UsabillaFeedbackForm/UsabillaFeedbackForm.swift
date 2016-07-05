@@ -17,8 +17,13 @@ public class UsabillaFeedbackForm {
     public static var delegate: UsabillaFeedbackFormDelegate? = nil
     public static var appStoreId: String? = nil
     public static var redirectToAppStore = false
-    public static var localizedStringFile: String = "usa_localizable"
+    public static var localizedStringFile: String = "usa_localizable" {
+        didSet {
+            defaultLocalisationFile = false
+        }
+    }
     public static var showCancelButton: Bool = false
+    static var defaultLocalisationFile = true
     
     public class func initSDKWithScreenshot(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
         getFormJsonFromServer(appId, screenshot: screenshot, customVariables: customVariables)

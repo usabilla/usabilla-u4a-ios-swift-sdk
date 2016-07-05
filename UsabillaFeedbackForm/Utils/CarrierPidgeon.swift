@@ -9,16 +9,16 @@
 import Foundation
 
 class CarrierPidgeon {
-    
+
     let fieldID: String
     let fieldValue: [String]
-    
-    
+
+
     init(fieldID: String, fieldValue: String) {
         self.fieldID = fieldID
         self.fieldValue = [fieldValue]
     }
-    
+
     init(fieldID: String, fieldValue: [String]) {
         self.fieldID = fieldID
         self.fieldValue = fieldValue
