@@ -96,7 +96,11 @@ class FormViewController: UIViewController {
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
                 let (payload, screenshot) = createDictionaryForSubmission()
-                submitForm(payload, screenshotString: screenshot)
+                if reachability.currentReachabilityStatus == .NotReachable {
+                    //Queue
+                } else {
+                    submitForm(payload, screenshotString: screenshot)
+                }
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
