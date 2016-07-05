@@ -57,14 +57,18 @@ class FormViewController: UIViewController {
             self.restoreFeedbackFormController()
         }
         
+        setUpLeftButton()
+        setUpReachability()
+    }
+    
+    
+    func setUpLeftButton() {
         leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         
         if !UsabillaFeedbackForm.showCancelButton {
             leftNavItem.title = ""
             leftNavItem.enabled = false
         }
-        
-        setUpReachability()
     }
     
     
@@ -116,6 +120,8 @@ class FormViewController: UIViewController {
         progressBar.setProgress(1, animated: true)
         rightNavItem.title = ""
         rightNavItem.enabled = false
+        leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
+        leftNavItem.enabled = true
         
         let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
         thankYouController = storyboard.instantiateViewControllerWithIdentifier("thankYou") as? ThankYouController
@@ -150,6 +156,7 @@ class FormViewController: UIViewController {
         transitionFromViewController(thankYouController, toViewController: pageController, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
         updateRightButton()
         updateProgressBar()
+        setUpLeftButton()
     }
     
     func resetAndRestartForm() {
