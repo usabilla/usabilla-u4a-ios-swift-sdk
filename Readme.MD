@@ -12,8 +12,8 @@ Include `pod 'UsabillaFeedbackForm', :git => 'https://github.com/usabilla/usabil
 ## How to get started
 
 ### On the web
-- Create a new app on your [Usabilla](https://app.usabilla.com/member/) Live for Apps section.
-- Copy th AppId from the app you wish to use in your SDK.
+- Create a new form on your [Usabilla for Apps](https://app.usabilla.com/member/) section.
+- Copy th AppId from the form you wish to use in your SDK.
 
 
 ### On the SDK
