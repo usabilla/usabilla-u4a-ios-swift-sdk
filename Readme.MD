@@ -13,12 +13,12 @@ Include `pod 'UsabillaFeedbackForm', :git => 'https://github.com/usabilla/usabil
 
 ### On the web
 - Create a new form on your [Usabilla for Apps](https://app.usabilla.com/member/) section.
-- Copy th AppId from the form you wish to use in your SDK.
+- Copy the FormId from the form you wish to use in your SDK.
 
 
 ### On the SDK
 - Include `import UsabillaFeedbackForm` in your ViewController.
-- Save the AppId you created on the web on a local variable.
+- Save the FormId you created on the web on a local variable.
 - If you want, you can take an optional screenshot of the current view wherever you feel is appropriate with `let image = UsabillaFeedbackForm.takeScreenshot(self.view)`
 - Implement the `UsabillaFeedbackFormDelegate` protocol in your ViewController
 - Launch the form with: 
