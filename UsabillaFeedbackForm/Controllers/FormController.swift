@@ -269,7 +269,7 @@ class FormViewController: UIViewController {
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
             if let screenshot = screenshotModel.base64Value {
-                contentDictionary["media"] = ["screenshot" : screenshot]
+                //contentDictionary["media"] = ["screenshot" : screenshot]
                 screenshotString = screenshot
             }
         }
@@ -293,7 +293,7 @@ class FormViewController: UIViewController {
         
         
         //And now to send the request
-        print(payload)
+        print(screenshotString)
         return (payload, screenshotString)
     }
     

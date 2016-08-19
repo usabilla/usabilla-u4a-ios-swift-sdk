@@ -57,9 +57,9 @@ class NetworkManager {
                     let json = JSON(data)
                     let id = json["id"].stringValue
                     let signature = json["sig"].stringValue
-//                    if let screenshot = screenshot {
-//                        submitFeedbackScreenshot(id, signature: signature, screenshot: screenshot)
-//                    }
+                    if let screenshot = screenshot {
+                        submitFeedbackScreenshot(id, signature: signature, screenshot: screenshot)
+                    }
                     break
                 default :
                     print("Request failed with error: \(response.response?.statusCode)")
@@ -89,8 +89,9 @@ class NetworkManager {
     }
     
     class func closeTheDeal(id: String, signature: String, v: Int) -> Promise<Bool> {
-        let contentDictionary: [String: AnyObject] = [:]
-        
+        var contentDictionary: [String: AnyObject] = [:]
+        contentDictionary["media"] = ["screenshot" : ""]
+
         var payload: [String: AnyObject] = [:]
         
         payload["id"] = id
