@@ -14,7 +14,7 @@ protocol SwiftCheckBoxDelegate {
     //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
 
-class SwiftCheckBox: UIView {
+class SwiftCheckBox: UIView, CAAnimationDelegate {
 
     /** The layer where the box is drawn when the check box is set to On.
      */
@@ -176,7 +176,7 @@ class SwiftCheckBox: UIView {
      */
     func drawEntireCheckBox() {
         if !self.hideBox {
-            if  CGPathGetBoundingBox(self.offBoxLayer.path).size.height == 0.0 {
+            if  CGPathGetBoundingBox(self.offBoxLayer.path!).size.height == 0.0 {
                 drawOffBox()
             }
             if self.on {
@@ -415,7 +415,7 @@ class SwiftCheckBox: UIView {
         }
     }
 
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if flag == true {
             if self.on == false {
                 onBoxLayer.removeFromSuperlayer()

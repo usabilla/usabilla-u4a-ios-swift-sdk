@@ -60,7 +60,7 @@ extension UIImage {
             drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
             let img = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            return img
+            return img!
         }
 
         return self
@@ -72,12 +72,12 @@ extension UIImage {
         let rect = CGRectMake(0, 0, self.size.width, self.size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextClipToMask(context, rect, self.CGImage)
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        CGContextClipToMask(context!, rect, self.CGImage!)
+        CGContextSetFillColorWithColor(context!, color.CGColor)
+        CGContextFillRect(context!, rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return UIImage(CGImage: img.CGImage!, scale: 1, orientation: UIImageOrientation.DownMirrored)
+        return UIImage(CGImage: img!.CGImage!, scale: 1, orientation: UIImageOrientation.DownMirrored)
     }
 
 }
@@ -97,7 +97,7 @@ extension UIFont {
     func withTraits(traits: UIFontDescriptorSymbolicTraits...) -> UIFont {
         let descriptor = self.fontDescriptor()
             .fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits))
-        return UIFont(descriptor: descriptor, size: 0)
+        return UIFont(descriptor: descriptor!, size: 0)
     }
 
     func boldItalic() -> UIFont {
@@ -114,11 +114,11 @@ extension UIFont {
             if let pathForResourceString = bundle.pathForResource(filenameString, ofType: nil) {
                 if let fontData = NSData(contentsOfFile: pathForResourceString) {
                     if let dataProvider = CGDataProviderCreateWithCFData(fontData) {
-                        if let fontRef = CGFontCreateWithDataProvider(dataProvider) {
+                         let fontRef = CGFontCreateWithDataProvider(dataProvider)
                             var errorRef: Unmanaged<CFError>? = nil
                             if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
                                 NSLog("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
-                            }
+                            
                         } else {
                             NSLog("UIFont+:  Failed to register font - font could not be loaded.")
                         }

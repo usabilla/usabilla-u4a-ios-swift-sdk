@@ -103,7 +103,7 @@ class StyleKit {
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         StyleKit.drawTrash(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
-        image = UIGraphicsGetImageFromCurrentImageContext()
+        image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
         return image
@@ -168,7 +168,7 @@ class StyleKit {
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         StyleKit.drawPlus(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
-        image = UIGraphicsGetImageFromCurrentImageContext()
+        image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
         return image

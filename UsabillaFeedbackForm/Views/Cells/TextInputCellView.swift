@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import SwiftValidator
-
 
 class TextInputCellView: RootCellView, UITextFieldDelegate {
     
