@@ -13,6 +13,7 @@ target 'UsabillaFeedbackForm' do
     #pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.1'
     pod 'PromiseKit/CorePromise',"~> 3.5"
     pod 'PromiseKit/UIKit', "~> 3.5"
+
     
 end
 
