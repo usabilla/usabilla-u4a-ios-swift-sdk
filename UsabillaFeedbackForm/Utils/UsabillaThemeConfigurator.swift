@@ -22,7 +22,7 @@ public class UsabillaThemeConfigurator {
     public var backgroundColor: UIColor
     public var errorColor: UIColor
     public var hintColor: UIColor
-    public var statusBarColor: UIBarStyle
+    public var statusBarColor: UIStatusBarStyle
 
     public var customFont: UIFont?
     public var enabledEmoticons: [UIImage]
@@ -35,7 +35,7 @@ public class UsabillaThemeConfigurator {
         //UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
         // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
 
-        statusBarColor = UIBarStyle.Default
+        statusBarColor = .Default
         headerColor = UIColor(rgba:"#00A5C9")
         headerTextColor = UIColor.whiteColor()
         primaryTextColor = UIColor(rgba:"#59636B")
