@@ -169,18 +169,21 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
 
     override func drawRect(rect: CGRect) {
         setOn(self.on, animated: false)
-
     }
 
     /** Draws the entire checkbox, depending on the current state of the on property.
      */
     func drawEntireCheckBox() {
         if !self.hideBox {
-            if  CGPathGetBoundingBox(self.offBoxLayer.path!).size.height == 0.0 {
-                drawOffBox()
-            }
+//            if let path = self.offBoxLayer.path {
+//                if  CGPathGetBoundingBox(path).size.height == 0.0 {
+//                drawOffBox()
+//            }  DUNNO WHAT I'M DOING, PLEASE HELP
+//            }
             if self.on {
                 drawOnBox()
+            } else {
+                drawOffBox()
             }
         }
         if self.on {

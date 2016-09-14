@@ -14,7 +14,11 @@ class StarRatingiView: UIControl {
     var shouldBecomeFirstResponder: Bool
     var minimumValue: Int
     var maximumValue: Int
-    var currentValue: Int
+    var currentValue: Int {
+        didSet{
+            setNeedsDisplay()
+        }
+    }
     var spacing: CGFloat {
         
         //            willSet {
@@ -60,8 +64,7 @@ class StarRatingiView: UIControl {
     
     var shouldUseImages:Bool {
         get {
-            return self.emptyStarImage != nil && self.filledStarImage != nil
-            
+            return emptyStarImage != nil && filledStarImage != nil
         }
     }
     
@@ -73,7 +76,7 @@ class StarRatingiView: UIControl {
     }
     
     override init(frame: CGRect) {
-
+        
         minimumValue = 0
         maximumValue = 5
         currentValue = 0
@@ -85,8 +88,6 @@ class StarRatingiView: UIControl {
         super.init(frame: frame)
         exclusiveTouch = true
         updateAppearanceForState(enabled)
-
-
 
     }
     
@@ -102,24 +103,22 @@ class StarRatingiView: UIControl {
         super.init(coder: aDecoder)
         exclusiveTouch = true
         updateAppearanceForState(enabled)
-
-
-
+      
     }
     
-//    init() {
-//        exclusiveTouch = true
-//        minimumValue = 0
-//        maximumValue = 5
-//        currentValue = 0
-//        spacing = 5
-//        continuous = true
-//        updateAppearanceForState(enabled)
-//        shouldBecomeFirstResponder = false
-//        allowHalfStars = false
-//        accurateHalfStars = true
-//
-//    }
+    //    init() {
+    //        exclusiveTouch = true
+    //        minimumValue = 0
+    //        maximumValue = 5
+    //        currentValue = 0
+    //        spacing = 5
+    //        continuous = true
+    //        updateAppearanceForState(enabled)
+    //        shouldBecomeFirstResponder = false
+    //        allowHalfStars = false
+    //        accurateHalfStars = true
+    //
+    //    }
     
     override func setNeedsLayout() {
         super.setNeedsLayout()
@@ -137,25 +136,25 @@ class StarRatingiView: UIControl {
         }
         
         set {
-            self.backgroundColor = newValue
+            super.backgroundColor = newValue
         }
     }
     
     
     
-//    func setValue(newValue: Int, sendValueChangedAction: Bool) {
-//        //[self willChangeValueForKey:NSStringFromSelector(@selector(value))];
-//        willChangeValueForKey("currentValue")
-//        if (newValue >= minimumValue && newValue <= maximumValue) {
-//            currentValue = newValue
-//            if sendAction {
-//                sendActionsForControlEvents(UIControlEvents.ValueChanged)
-//            }
-//            setNeedsDisplay()
-//        }
-//        //[self didChangeValueForKey:NSStringFromSelector(@selector(value))];
-//        didChangeValueForKey("currentValue")
-//    }
+    //    func setValue(newValue: Int, sendValueChangedAction: Bool) {
+    //        //[self willChangeValueForKey:NSStringFromSelector(@selector(value))];
+    //        willChangeValueForKey("currentValue")
+    //        if (newValue >= minimumValue && newValue <= maximumValue) {
+    //            currentValue = newValue
+    //            if sendAction {
+    //                sendActionsForControlEvents(UIControlEvents.ValueChanged)
+    //            }
+    //            setNeedsDisplay()
+    //        }
+    //        //[self didChangeValueForKey:NSStringFromSelector(@selector(value))];
+    //        didChangeValueForKey("currentValue")
+    //    }
     
     
     
@@ -258,15 +257,15 @@ class StarRatingiView: UIControl {
             let frame = CGRectMake(center.x - starSide/2, center.y - starSide/2, starSide, starSide);
             let highlighted = (idx + 1 <= currentValue)
             
-            drawStarImageWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
+            drawStarWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
         }
     }
     
-    func drawStarWithFrame(Cframe: CGRect, tintColor:UIColor, highlighted:Bool) {
-        if self.shouldUseImages {
+    func drawStarWithFrame(frame: CGRect, tintColor:UIColor, highlighted:Bool) {
+        if shouldUseImages {
             drawStarImageWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
         } else {
-            drawStarWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
+            drawStarShapeWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
             
         }
     }
@@ -286,67 +285,73 @@ class StarRatingiView: UIControl {
     //    }
     //    }
     
-//    func beginTrackingWithTouch(touch: UITouch, withEvent:UIEvent ) -> Bool{
-//        if enabled {
-//            super.beginTrackingWithTouch(touch, withEvent: withEvent)
-//            if shouldBecomeFirstResponder && !isFirstResponder() {
-//                becomeFirstResponder()
-//            }
-//            handleTouch(touch)
-//            
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//    
-//    
-//    func continueTrackingWithTouch(touch :UITouch, withEvent:UIEvent) ->Bool {
-//        if enabled{
-//            super.continueTrackingWithTouch(touch, withEvent: withEvent)
-//            handleTouch(touch)
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
+    
+    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        if enabled {
+            super.beginTrackingWithTouch(touch, withEvent: event)
+            if shouldBecomeFirstResponder && !isFirstResponder() {
+                becomeFirstResponder()
+            }
+            handleTouch(touch)
+            
+            return true
+        } else {
+            return false
+        }
+    }
     
     
-//    func endTrackingWithTouch(touch :UITouch, withEvent :UIEvent ) {
-//        super.endTrackingWithTouch(touch, withEvent: withEvent)
-//        
-//        if (shouldBecomeFirstResponder && self.isFirstResponder()) {
-//            resignFirstResponder()
-//        }
-//        handleTouch(touch)
-//        if !continuous {
-//            sendActionsForControlEvents(.ValueChanged)
-//        }
-//    }
-//    
-//    func cancelTrackingWithEvent(event :UIEvent ) {
-//        super.cancelTrackingWithEvent(event)
-//        
-//        if (shouldBecomeFirstResponder && isFirstResponder()) {
-//            resignFirstResponder()
-//        }
-//    }
-//    
-//    override func gestureRecognizerShouldBegin(gestureRecognizer :UIGestureRecognizer)  -> Bool{
-//        if gestureRecognizer.view?.isEqual(self) {
-//            return !self.userInteractionEnabled
-//        }
-//        return self.shouldBeginGestureRecognizerBlock ? self.shouldBeginGestureRecognizerBlock(gestureRecognizer) : false
-//    }
+    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        if enabled{
+            super.continueTrackingWithTouch(touch, withEvent: event)
+            handleTouch(touch)
+            return true
+        } else {
+            return false
+        }
+    }
     
-    func handleTouch( touch:UITouch ) {
+    
+    override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
+        super.endTrackingWithTouch(touch, withEvent: event)
+        
+        if (shouldBecomeFirstResponder && self.isFirstResponder()) {
+            resignFirstResponder()
+        }
+        handleTouch(touch)
+        if !continuous {
+            sendActionsForControlEvents(.ValueChanged)
+        }
+    }
+    
+    override func cancelTrackingWithEvent(event: UIEvent?) {
+        super.cancelTrackingWithEvent(event)
+        
+        if (shouldBecomeFirstResponder && isFirstResponder()) {
+            resignFirstResponder()
+        }
+    }
+    
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let view = gestureRecognizer.view {
+        if view.isEqual(self) {
+            return !self.userInteractionEnabled
+        }
+        }
+        return false
+        
+    }
+    
+    
+    func handleTouch( touch:UITouch? ) {
+        if let touch = touch {
         let cellWidth = self.bounds.size.width / CGFloat(maximumValue)
         let location = touch.locationInView(self)
         let value = location.x / cellWidth
         
         currentValue = Int(value)
-        
-//        setValue(currentValue, sendValueChangedAction: continuous)
+        }
+        //setValue(currentValue, sendValueChangedAction: continuous)
         
     }
     
