@@ -42,10 +42,10 @@ public class UsabillaFeedbackForm {
             formController.initWithFormModel(form)
             formController.customVars = customVariables
             Swift.debugPrint("calling success protocol")
-            UsabillaFeedbackForm.delegate?.feedbackFromLoadedCorreclty(base, active: true)
+            UsabillaFeedbackForm.delegate?.feedbackFormLoadedCorrectly(base, active: true)
             }.error { _ in
                 Swift.debugPrint("calling fail protocol")
-                UsabillaFeedbackForm.delegate?.feedbackFromLoadedIncorreclty(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
+                UsabillaFeedbackForm.delegate?.feedbackFormLoadedIncorrectly(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
         }
         
     }
@@ -93,7 +93,7 @@ public class UsabillaFeedbackForm {
 
 public protocol UsabillaFeedbackFormDelegate {
     
-    func feedbackFromLoadedCorreclty(form: UINavigationController, active: Bool)
-    func feedbackFromLoadedIncorreclty(backupForm: UINavigationController)
+    func feedbackFormLoadedCorrectly(form: UINavigationController, active: Bool)
+    func feedbackFormLoadedIncorrectly(backupForm: UINavigationController)
     
 }

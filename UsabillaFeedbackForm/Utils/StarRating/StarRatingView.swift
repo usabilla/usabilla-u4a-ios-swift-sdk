@@ -22,7 +22,6 @@ class StarRatingiView: UIControl {
     var maximumValue: Int
     var currentValue: Int {
         didSet{
-            print("Current star value: \(currentValue))")
             delegate?.starValueChanged(currentValue)
             setNeedsDisplay()
         }
