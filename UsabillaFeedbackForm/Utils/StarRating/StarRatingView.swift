@@ -96,7 +96,7 @@ class StarRatingiView: UIControl {
         super.init(frame: frame)
         exclusiveTouch = true
         updateAppearanceForState(enabled)
-
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -111,7 +111,7 @@ class StarRatingiView: UIControl {
         super.init(coder: aDecoder)
         exclusiveTouch = true
         updateAppearanceForState(enabled)
-      
+        
     }
     
     //    init() {
@@ -294,31 +294,31 @@ class StarRatingiView: UIControl {
     //    }
     
     
-//    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-//        if enabled {
-//            super.beginTrackingWithTouch(touch, withEvent: event)
-//            if shouldBecomeFirstResponder && !isFirstResponder() {
-//                becomeFirstResponder()
-//            }
-//            handleTouch(touch)
-//            
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//    
-//    
-//    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-//        if enabled{
-//            super.continueTrackingWithTouch(touch, withEvent: event)
-//            handleTouch(touch)
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//    
+    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        if enabled {
+            super.beginTrackingWithTouch(touch, withEvent: event)
+            if shouldBecomeFirstResponder && !isFirstResponder() {
+                becomeFirstResponder()
+            }
+            handleTouch(touch)
+            
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        if enabled{
+            super.continueTrackingWithTouch(touch, withEvent: event)
+            handleTouch(touch)
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
     override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         super.endTrackingWithTouch(touch, withEvent: event)
@@ -342,9 +342,9 @@ class StarRatingiView: UIControl {
     
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let view = gestureRecognizer.view {
-        if view.isEqual(self) {
-            return !self.userInteractionEnabled
-        }
+            if view.isEqual(self) {
+                return !self.userInteractionEnabled
+            }
         }
         return false
         
@@ -353,10 +353,10 @@ class StarRatingiView: UIControl {
     
     func handleTouch( touch:UITouch? ) {
         if let touch = touch {
-        let cellWidth = self.bounds.size.width / CGFloat(maximumValue)
-        let location = touch.locationInView(self)
-        let value = location.x / cellWidth
-        let touchValue = Int(value + 1)
+            let cellWidth = self.bounds.size.width / CGFloat(maximumValue)
+            let location = touch.locationInView(self)
+            let value = location.x / cellWidth
+            let touchValue = Int(value + 1)
             if touchValue >= minimumValue && touchValue <= maximumValue {
                 currentValue = touchValue
             }

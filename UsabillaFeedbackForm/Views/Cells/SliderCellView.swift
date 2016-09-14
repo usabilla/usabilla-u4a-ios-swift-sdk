@@ -58,7 +58,7 @@ class SliderCellView: RootCellView {
         var allConstraints = [NSLayoutConstraint]()
         
         let iconVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-(8)-[titleLabel]-(6)-[valueLabel(>=50r)]-(8)-|",
+            "H:|-(8)-[titleLabel]-(6)-[valueLabel(>=50)]-(8)-|",
             options: [],
             metrics: nil,
             views: views)
