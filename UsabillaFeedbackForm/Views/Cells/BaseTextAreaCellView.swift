@@ -21,7 +21,7 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
         self.dividerLine?.hidden = true
-        textView.font = UsabillaThemeConfigurator.sharedInstance.customFont.fontWithSize(13)
+        textView.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(13)
         textView.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
         textView.tintColor = UsabillaThemeConfigurator.sharedInstance.hintColor
         textView.scrollEnabled = true

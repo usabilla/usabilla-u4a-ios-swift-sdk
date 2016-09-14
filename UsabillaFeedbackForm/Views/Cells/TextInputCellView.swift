@@ -18,7 +18,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         textField = UITextField()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        textField.font = UsabillaThemeConfigurator.sharedInstance.customFont.fontWithSize(13)
+        textField.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(13)
         textField.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false

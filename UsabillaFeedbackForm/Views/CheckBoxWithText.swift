@@ -18,7 +18,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         super.init(frame: frame)
         checkBox = SwiftCheckBox(frame: CGRect(x: 10, y: 0, width: 25, height: 25))
         label = UILabel(frame: CGRect(x: 45, y: 5, width: 208, height: 15))
-        label.font = UsabillaThemeConfigurator.sharedInstance.customFont.fontWithSize(13)
+        label.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(13)
         
         self.userInteractionEnabled = true
         checkBox.userInteractionEnabled = true

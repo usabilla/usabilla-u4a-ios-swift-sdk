@@ -97,7 +97,7 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
         //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        titleLabel.font = (UsabillaThemeConfigurator.sharedInstance.customFont).fontWithSize(17.0)
+        titleLabel.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(17.0)
         titleLabel.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
         return titleLabel
     }
@@ -107,7 +107,7 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = NSTextAlignment.Right
         titleLabel.numberOfLines = 0
-        titleLabel.font = (UsabillaThemeConfigurator.sharedInstance.customFont).fontWithSize(14.0)
+        titleLabel.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(14.0)
         titleLabel.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
         return titleLabel
     }
