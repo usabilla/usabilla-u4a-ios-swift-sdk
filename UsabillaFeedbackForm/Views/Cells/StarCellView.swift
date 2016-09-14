@@ -9,7 +9,7 @@
 import Foundation
 
 
-class StarCellView: RootCellView {
+class StarCellView: RootCellView, SwiftStarDelegate {
     
     var starRatingView: StarRatingiView
     var starModel: StarFieldModel!
@@ -23,13 +23,13 @@ class StarCellView: RootCellView {
         //starRatingView.allowsHalfStars = false
         starRatingView.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        starRatingView.delegate = self
 
         let theme = UsabillaThemeConfigurator.sharedInstance
         if theme.fullStar != nil && theme.emptyStar != nil {
             starRatingView.filledStarImage = theme.fullStar
             starRatingView.emptyStarImage = theme.emptyStar
         }
-        starRatingView.addTarget(self, action: #selector(StarCellView.barChangedValue), forControlEvents: UIControlEvents.ValueChanged)
 
         self.contentView.addSubview(starRatingView)
         
@@ -63,8 +63,8 @@ class StarCellView: RootCellView {
       
     }
     
-    
-    func barChangedValue() {
-        starModel.fieldValue = starRatingView.currentValue
+    func starValueChanged(value: Int) {
+        starModel.fieldValue = value
     }
+    
 }

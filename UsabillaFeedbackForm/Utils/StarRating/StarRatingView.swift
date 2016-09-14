@@ -9,13 +9,21 @@
 import Foundation
 import UIKit
 
+protocol SwiftStarDelegate {
+    func starValueChanged(value: Int)
+}
+
+
 class StarRatingiView: UIControl {
     
+    var delegate: SwiftStarDelegate?
     var shouldBecomeFirstResponder: Bool
     var minimumValue: Int
     var maximumValue: Int
     var currentValue: Int {
         didSet{
+            print("Current star value: \(currentValue))")
+            delegate?.starValueChanged(currentValue)
             setNeedsDisplay()
         }
     }
@@ -255,7 +263,7 @@ class StarRatingiView: UIControl {
             
             let center = CGPointMake(cellWidth * CGFloat(idx) + cellWidth/2 + spacing * CGFloat(idx) + 1, rect.size.height/2)
             let frame = CGRectMake(center.x - starSide/2, center.y - starSide/2, starSide, starSide);
-            let highlighted = (idx + 1 <= currentValue)
+            let highlighted = (idx < currentValue)
             
             drawStarWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
         }
@@ -286,31 +294,31 @@ class StarRatingiView: UIControl {
     //    }
     
     
-    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        if enabled {
-            super.beginTrackingWithTouch(touch, withEvent: event)
-            if shouldBecomeFirstResponder && !isFirstResponder() {
-                becomeFirstResponder()
-            }
-            handleTouch(touch)
-            
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    
-    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        if enabled{
-            super.continueTrackingWithTouch(touch, withEvent: event)
-            handleTouch(touch)
-            return true
-        } else {
-            return false
-        }
-    }
-    
+//    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+//        if enabled {
+//            super.beginTrackingWithTouch(touch, withEvent: event)
+//            if shouldBecomeFirstResponder && !isFirstResponder() {
+//                becomeFirstResponder()
+//            }
+//            handleTouch(touch)
+//            
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
+//    
+//    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+//        if enabled{
+//            super.continueTrackingWithTouch(touch, withEvent: event)
+//            handleTouch(touch)
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
     
     override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         super.endTrackingWithTouch(touch, withEvent: event)
@@ -348,8 +356,10 @@ class StarRatingiView: UIControl {
         let cellWidth = self.bounds.size.width / CGFloat(maximumValue)
         let location = touch.locationInView(self)
         let value = location.x / cellWidth
-        
-        currentValue = Int(value)
+        let touchValue = Int(value + 1)
+            if touchValue >= minimumValue && touchValue <= maximumValue {
+                currentValue = touchValue
+            }
         }
         //setValue(currentValue, sendValueChangedAction: continuous)
         
