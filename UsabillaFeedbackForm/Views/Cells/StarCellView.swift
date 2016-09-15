@@ -7,29 +7,29 @@
 //
 
 import Foundation
-import HCSStarRatingView
 
-class StarCellView: RootCellView {
+
+class StarCellView: RootCellView, SwiftStarDelegate {
     
-    var starRatingView: HCSStarRatingView
+    var starRatingView: StarRatingiView
     var starModel: StarFieldModel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        starRatingView = HCSStarRatingView()
+        starRatingView = StarRatingiView()
         starRatingView.maximumValue = 5
         starRatingView.minimumValue = 1
-        starRatingView.value = 0
+        starRatingView.currentValue = 0
         starRatingView.tintColor = UIColor(colorLiteralRed: 239.0/255.0, green: 197.0/255.0, blue: 54.0/255.0, alpha: 1.0)
-        starRatingView.allowsHalfStars = false
+        //starRatingView.allowsHalfStars = false
         starRatingView.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        starRatingView.delegate = self
 
         let theme = UsabillaThemeConfigurator.sharedInstance
         if theme.fullStar != nil && theme.emptyStar != nil {
             starRatingView.filledStarImage = theme.fullStar
             starRatingView.emptyStarImage = theme.emptyStar
         }
-        starRatingView.addTarget(self, action: #selector(StarCellView.barChangedValue), forControlEvents: UIControlEvents.ValueChanged)
 
         self.contentView.addSubview(starRatingView)
         
@@ -57,14 +57,17 @@ class StarCellView: RootCellView {
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         starModel = item as! StarFieldModel
-        if starModel.fieldValue != nil {
-            starRatingView.value = CGFloat(starModel.fieldValue!)
+        if let value = starModel.fieldValue {
+            starRatingView.currentValue = value
+        } else {
+            starRatingView.currentValue = 0
+            starModel.fieldValue = nil
         }
       
     }
     
-    
-    func barChangedValue() {
-        starModel.fieldValue = Int(starRatingView.value)
+    func starValueChanged(value: Int) {
+        starModel.fieldValue = value
     }
+    
 }

@@ -11,11 +11,7 @@ import UIKit
 
 class RootCellView: UITableViewCell {
     
-    var isCurrentlyDisplayed = false {
-        didSet {
-            item.isViewCurrentlyVisible = isCurrentlyDisplayed
-        }
-    }
+    var trailingTitleLabelConstraint: NSLayoutConstraint!
     var titleLabel: UILabel!
     var dividerLine: UIView?
     var item: BaseFieldModel!
@@ -24,8 +20,18 @@ class RootCellView: UITableViewCell {
             updateValidStatus()
         }
     }
+    var isCurrentlyDisplayed = false {
+        didSet {
+            //if oldValue != isCurrentlyDisplayed {
+                isCurrentlyDisplayedChanged()
+            //}
+        }
+    }
     
-    var trailingTitleLabelConstraint: NSLayoutConstraint!
+    
+    func isCurrentlyDisplayedChanged() {
+        item.isViewCurrentlyVisible = isCurrentlyDisplayed
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -97,7 +103,7 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
         //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        titleLabel.font = (UsabillaThemeConfigurator.sharedInstance.customFont).fontWithSize(17.0)
+        titleLabel.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(17.0)
         titleLabel.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
         return titleLabel
     }
@@ -107,7 +113,7 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = NSTextAlignment.Right
         titleLabel.numberOfLines = 0
-        titleLabel.font = (UsabillaThemeConfigurator.sharedInstance.customFont).fontWithSize(14.0)
+        titleLabel.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(14.0)
         titleLabel.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
         return titleLabel
     }

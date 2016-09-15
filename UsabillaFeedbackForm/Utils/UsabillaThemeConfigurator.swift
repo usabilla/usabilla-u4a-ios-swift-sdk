@@ -22,9 +22,9 @@ public class UsabillaThemeConfigurator {
     public var backgroundColor: UIColor
     public var errorColor: UIColor
     public var hintColor: UIColor
-    public var statusBarColor: UIBarStyle
+    public var statusBarColor: UIStatusBarStyle
 
-    public var customFont: UIFont
+    public var customFont: UIFont?
     public var enabledEmoticons: [UIImage]
     public var disabledEmoticons: [UIImage]?
     public var fullStar: UIImage?
@@ -32,8 +32,10 @@ public class UsabillaThemeConfigurator {
 
     private init() {
 
-        UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
-        statusBarColor = UIBarStyle.Default
+        //UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
+        // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
+
+        statusBarColor = .Default
         headerColor = UIColor(rgba:"#00A5C9")
         headerTextColor = UIColor.whiteColor()
         primaryTextColor = UIColor(rgba:"#59636B")
@@ -42,7 +44,6 @@ public class UsabillaThemeConfigurator {
         hintColor = UIColor(rgba:"#9CACBA")
         errorColor = UIColor(rgba:"#F4606E")
         backgroundColor = UIColor.whiteColor()
-        customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
         enabledEmoticons = UsabillaThemeConfigurator.createEmoticons()
         disabledEmoticons = nil
         fullStar = nil

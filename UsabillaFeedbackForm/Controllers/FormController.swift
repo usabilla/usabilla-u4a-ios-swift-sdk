@@ -47,8 +47,8 @@ class FormViewController: UIViewController {
         poweredLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormViewController.openUsabilla)))
         updateProgressBar()
         updateRightButton()
-        
-        self.navigationController?.navigationBar.barStyle = UsabillaThemeConfigurator.sharedInstance.statusBarColor
+        UIApplication.sharedApplication().statusBarStyle = UsabillaThemeConfigurator.sharedInstance.statusBarColor
+        //self.navigationController?.navigationBar.set = UsabillaThemeConfigurator.sharedInstance.statusBarColor
         self.navigationController?.navigationBar.barTintColor = UsabillaThemeConfigurator.sharedInstance.headerColor
         self.navigationController?.navigationBar.tintColor = UsabillaThemeConfigurator.sharedInstance.headerTextColor
         footerView.backgroundColor = UsabillaThemeConfigurator.sharedInstance.headerColor

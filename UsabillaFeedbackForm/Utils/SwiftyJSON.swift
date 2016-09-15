@@ -166,9 +166,9 @@ public struct JSON {
                 self.rawNumber = number
             case  let string as String:
                 _type = .String
-                self.rawString = string
+                 self.rawString = string
             case  _ as NSNull:
-                _type = .Null
+                 _type = .Null
             case let array as [AnyObject]:
                 _type = .Array
                 self.rawArray = array
