@@ -15,11 +15,23 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+
+    }
+    
+    func updateCheckBoxeslayout(){
+        for checkBox in checkBoxes {
+            checkBox.height.active =  isCurrentlyDisplayed ? true : false
+        }
+    }
+    
+    override func isCurrentlyDisplayedChanged() {
+        super.isCurrentlyDisplayedChanged()
+        updateCheckBoxeslayout()
     }
     
     
@@ -52,7 +64,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             self.contentView.addSubview(checkBox)
             checkBoxes.append(checkBox)
             
-            NSLayoutConstraint(item: checkBox, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 25).active = true
+            checkBox.height.active = true
             NSLayoutConstraint(item: checkBox, attribute: .Width, relatedBy: .Equal, toItem: self.contentView, attribute: .Width, multiplier: 1, constant: 0).active = true
             
             if index == 0 {

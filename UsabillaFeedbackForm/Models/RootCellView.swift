@@ -11,11 +11,7 @@ import UIKit
 
 class RootCellView: UITableViewCell {
     
-    var isCurrentlyDisplayed = false {
-        didSet {
-            item.isViewCurrentlyVisible = isCurrentlyDisplayed
-        }
-    }
+    var trailingTitleLabelConstraint: NSLayoutConstraint!
     var titleLabel: UILabel!
     var dividerLine: UIView?
     var item: BaseFieldModel!
@@ -24,8 +20,18 @@ class RootCellView: UITableViewCell {
             updateValidStatus()
         }
     }
+    var isCurrentlyDisplayed = false {
+        didSet {
+            if oldValue != isCurrentlyDisplayed {
+                isCurrentlyDisplayedChanged()
+            }
+        }
+    }
     
-    var trailingTitleLabelConstraint: NSLayoutConstraint!
+    
+    func isCurrentlyDisplayedChanged(){
+        item.isViewCurrentlyVisible = isCurrentlyDisplayed
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
