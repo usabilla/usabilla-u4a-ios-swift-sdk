@@ -22,14 +22,14 @@ class RootCellView: UITableViewCell {
     }
     var isCurrentlyDisplayed = false {
         didSet {
-            if oldValue != isCurrentlyDisplayed {
+            //if oldValue != isCurrentlyDisplayed {
                 isCurrentlyDisplayedChanged()
-            }
+            //}
         }
     }
     
     
-    func isCurrentlyDisplayedChanged(){
+    func isCurrentlyDisplayedChanged() {
         item.isViewCurrentlyVisible = isCurrentlyDisplayed
     }
     
