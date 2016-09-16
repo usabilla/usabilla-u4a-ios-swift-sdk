@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoodContentController" customModule="UsabillaFeedbackForm" customModuleProvider="target">
@@ -21,84 +22,54 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" tag="4" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1H-Z8-yKL">
-                    <rect key="frame" x="273" y="87" width="30" height="30"/>
+                    <frame key="frameInset" minX="273" minY="87" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="G1H-Z8-yKL" secondAttribute="height" multiplier="1:1" id="TNG-VA-AyS"/>
-                        <constraint firstAttribute="width" constant="30" id="eQQ-3s-tye"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="eQQ-3s-tye"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="Vsl-lJ-w64"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="5" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h44-VM-Y2f">
-                    <rect key="frame" x="316" y="87" width="30" height="30"/>
+                    <frame key="frameInset" minX="316" minY="87" width="30" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="EAv-cH-yH3"/>
                         <constraint firstAttribute="width" secondItem="h44-VM-Y2f" secondAttribute="height" multiplier="1:1" id="Wv3-mn-CQO"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="EAv-cH-yH3"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="6ww-QR-cgu"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K8-m7-cc1">
-                    <rect key="frame" x="197" y="87" width="30" height="30"/>
+                    <frame key="frameInset" minX="197" minY="87" width="30" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="30" id="7Rt-a3-ab5"/>
                         <constraint firstAttribute="width" secondItem="0K8-m7-cc1" secondAttribute="height" multiplier="1:1" id="LH4-F2-KNU"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="7Rt-a3-ab5"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="kZB-d4-ujh"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Us-Lv-ZaU">
-                    <rect key="frame" x="159" y="87" width="30" height="30"/>
+                    <frame key="frameInset" minX="159" minY="87" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9Us-Lv-ZaU" secondAttribute="height" multiplier="1:1" id="hYf-td-hfP"/>
-                        <constraint firstAttribute="width" constant="30" id="ws0-Dd-0aj"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="ws0-Dd-0aj"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="uPh-CK-bJp"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ens-ie-gAW">
-                    <rect key="frame" x="235" y="87" width="30" height="30"/>
+                    <frame key="frameInset" minX="235" minY="87" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Ens-ie-gAW" secondAttribute="height" multiplier="1:1" id="6kz-ia-Y26"/>
-                        <constraint firstAttribute="height" constant="60" id="9Pa-OM-a29"/>
-                        <constraint firstAttribute="width" constant="60" id="PAz-77-g09"/>
-                        <constraint firstAttribute="width" constant="30" id="rxn-eA-gHt"/>
+                        <constraint firstAttribute="height" priority="750" constant="60" id="9Pa-OM-a29"/>
+                        <constraint firstAttribute="width" priority="750" constant="60" id="PAz-77-g09"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="rxn-eA-gHt"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <action selector="buttonPressed:forEvent:" destination="-1" eventType="touchUpInside" id="q5y-T4-7DI"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="h44-VM-Y2f" firstAttribute="width" secondItem="h44-VM-Y2f" secondAttribute="height" multiplier="1:1" id="1sJ-OD-fhT"/>
                 <constraint firstItem="0K8-m7-cc1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2KP-Wj-Vw0"/>
