@@ -163,7 +163,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         let tableViewOffset = tableView.contentOffset
         tableView.beginUpdates()
-        self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        
+        self.tableView.reloadRowsAtIndexPaths(Array(Set(indexPaths)), withRowAnimation: .Automatic)
         tableView.endUpdates()
         UIView.setAnimationsEnabled(false)
         tableView.layer.removeAllAnimations()
