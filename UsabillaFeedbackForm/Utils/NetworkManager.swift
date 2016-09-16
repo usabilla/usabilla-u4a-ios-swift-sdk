@@ -18,12 +18,20 @@ class NetworkManager {
     static let api_url = bundle.infoDictionary!["USABILLA_API_URL"] as! String
     static let submit_url = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
     
-    class func getFromFromID(formID: String) -> Promise<JSON> {
+    class func getFormWithFormID(formID: String) -> Promise<JSON> {
+        
+        let headers: [String: String]? = [
+            "app_version": NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! String,
+            "app_name": String(NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"]),
+            "SDK_version": NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String,
+            "os": "iOS"
+        ]
+        
         
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [api_url, formID])
         return Promise { fulfill, reject in
             
-            Alamofire.request(.GET, request_url)
+            Alamofire.request(.GET, request_url, parameters: nil, encoding: .URL, headers: headers)
                 .response { (request, response, json, error) in
                     if let response = response {
                         let statusCode = response.statusCode

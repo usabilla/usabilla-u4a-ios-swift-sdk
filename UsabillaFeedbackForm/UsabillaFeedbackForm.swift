@@ -32,7 +32,7 @@ public class UsabillaFeedbackForm {
     
     class func getFormJsonFromServer (appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
         
-        NetworkManager.getFromFromID(appId).then { (jsonObj: JSON) -> () in
+        NetworkManager.getFormWithFormID(appId).then { (jsonObj: JSON) -> () in
             let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot)
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
