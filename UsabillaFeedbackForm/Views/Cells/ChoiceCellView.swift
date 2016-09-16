@@ -75,9 +75,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: UsabillaThemeConfigurator.sharedInstance.primaryTextColor, NSFontAttributeName:UIFont(
-            name: "MiloOT",
-            size: 15.0)!])
+        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: UsabillaThemeConfigurator.sharedInstance.primaryTextColor])
     }
     
     
