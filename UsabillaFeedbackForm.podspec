@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "2.0.2"
+  s.version      = "2.3"
   s.summary      = "Collect feedback from your users."
 
   # This description is used to generate tags and improve search results.
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  #s.license      = "MIT"
+  s.license      = "Apache License, Version 2.0"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -61,15 +61,14 @@ Pod::Spec.new do |s|
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
  
   s.ios.vendored_frameworks = 'UsabillaFeedbackForm.framework'
+  s.source       = { :git => "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git", :tag => "v#{s.version}" }
 
 
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'Alamofire', '~> 3.0'
-  s.dependency 'HCSStarRatingView'
-  s.dependency 'SwiftValidator'
-  s.dependency 'PromiseKit/CorePromise','~> 3.0'
-  s.dependency 'PromiseKit/UIKit','~> 3.0'
+  s.dependency 'Alamofire', '3.5.0'
+  s.dependency 'PromiseKit/CorePromise','3.5.1'
+  s.dependency 'PromiseKit/UIKit','3.5.1'
 
 end
