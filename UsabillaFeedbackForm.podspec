@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "2.0.5"
+  s.version      = "2.1"
   s.summary      = "Collect feedback from your users."
 
   s.description  = <<-DESC
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  #s.license      = "MIT"
+  s.license      = "Apache License, Version 2.0"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -61,9 +61,7 @@ Pod::Spec.new do |s|
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'Alamofire', '~> 3.0'
-  s.dependency 'HCSStarRatingView'
-  s.dependency 'SwiftValidator'
-  s.dependency 'PromiseKit/CorePromise','~> 3.0'
-  s.dependency 'PromiseKit/UIKit','~> 3.0'
+  s.dependency 'Alamofire', '3.5.0'
+  s.dependency 'PromiseKit/CorePromise','3.5.1'
+  s.dependency 'PromiseKit/UIKit','3.5.1'
 end
