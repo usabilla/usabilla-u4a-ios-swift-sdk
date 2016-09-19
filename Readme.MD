@@ -20,7 +20,7 @@ Include `pod 'UsabillaFeedbackForm', :git => 'https://github.com/usabilla/usabil
 - Include `import UsabillaFeedbackForm` in your ViewController.
 - Save the FormId you created on the web on a local variable.
 - If you want, you can take an optional screenshot of the current view wherever you feel is appropriate with `let image = UsabillaFeedbackForm.takeScreenshot(self.view)`
-- Implement the `UsabillaFeedbackFormDelegate` protocol in your ViewController
+- Implement the `UsabillaFeedbackFormDelegate` protocol in your ViewController and set your controller as delegate with `UsabillaFeedbackForm.delegate = self`
 - Launch the form with: 
 
 ```
