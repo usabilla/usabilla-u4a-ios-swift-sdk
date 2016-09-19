@@ -293,7 +293,7 @@ class FormViewController: UIViewController {
         
         
         //And now to send the request
-        print(screenshotString)
+        //print(screenshotString)
         return (payload, screenshotString)
     }
     
