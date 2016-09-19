@@ -1,3 +1,12 @@
+v 2.1
+* SDK updated to be compatible with Swift 2.3
+* Fixed some broken constraint 
+* Fixed typo on UsabillaFeedbackFormDelegate
+* Reduced number of dependencies 
+* In UsabillaThemeConfigurator, statusBarColor has been changed from UIBarStyle to UIStatusBarStyle
+* SDK no longer use custom font as default
+* Minor fixes and improvements
+
 v 2.0.5
 
 * Fixed a crash occurring when there was no internet connection
