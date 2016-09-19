@@ -163,7 +163,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         let tableViewOffset = tableView.contentOffset
         tableView.beginUpdates()
-        self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+        
+        self.tableView.reloadRowsAtIndexPaths(Array(Set(indexPaths)), withRowAnimation: .Automatic)
         tableView.endUpdates()
         UIView.setAnimationsEnabled(false)
         tableView.layer.removeAllAnimations()
@@ -221,7 +222,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
         })
-        SwiftEventBus.post("imagePicked", sender: image)
+        SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
     
 }

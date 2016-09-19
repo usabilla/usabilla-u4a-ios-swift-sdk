@@ -32,7 +32,7 @@ public class UsabillaFeedbackForm {
     
     class func getFormJsonFromServer (appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
         
-        NetworkManager.getFromFromID(appId).then { (jsonObj: JSON) -> () in
+        NetworkManager.getFormWithFormID(appId).then { (jsonObj: JSON) -> () in
             let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot)
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
@@ -42,10 +42,10 @@ public class UsabillaFeedbackForm {
             formController.initWithFormModel(form)
             formController.customVars = customVariables
             Swift.debugPrint("calling success protocol")
-            UsabillaFeedbackForm.delegate?.feedbackFromLoadedCorreclty(base, active: true)
+            UsabillaFeedbackForm.delegate?.feedbackFormLoadedCorrectly(base, active: true)
             }.error { _ in
                 Swift.debugPrint("calling fail protocol")
-                UsabillaFeedbackForm.delegate?.feedbackFromLoadedIncorreclty(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
+                UsabillaFeedbackForm.delegate?.feedbackFormLoadedIncorrectly(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
         }
         
     }
@@ -86,14 +86,14 @@ public class UsabillaFeedbackForm {
         view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
     
 }
 
 public protocol UsabillaFeedbackFormDelegate {
     
-    func feedbackFromLoadedCorreclty(form: UINavigationController, active: Bool)
-    func feedbackFromLoadedIncorreclty(backupForm: UINavigationController)
+    func feedbackFormLoadedCorrectly(form: UINavigationController, active: Bool)
+    func feedbackFormLoadedIncorrectly(backupForm: UINavigationController)
     
 }

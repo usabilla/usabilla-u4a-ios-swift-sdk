@@ -14,7 +14,7 @@ protocol SwiftCheckBoxDelegate {
     //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
 
-class SwiftCheckBox: UIView {
+class SwiftCheckBox: UIView, CAAnimationDelegate {
 
     /** The layer where the box is drawn when the check box is set to On.
      */
@@ -169,18 +169,21 @@ class SwiftCheckBox: UIView {
 
     override func drawRect(rect: CGRect) {
         setOn(self.on, animated: false)
-
     }
 
     /** Draws the entire checkbox, depending on the current state of the on property.
      */
     func drawEntireCheckBox() {
         if !self.hideBox {
-            if  CGPathGetBoundingBox(self.offBoxLayer.path).size.height == 0.0 {
-                drawOffBox()
-            }
+//            if let path = self.offBoxLayer.path {
+//                if  CGPathGetBoundingBox(path).size.height == 0.0 {
+//                drawOffBox()
+//            }  DUNNO WHAT I'M DOING, PLEASE HELP
+//            }
             if self.on {
                 drawOnBox()
+            } else {
+                drawOffBox()
             }
         }
         if self.on {
@@ -415,7 +418,7 @@ class SwiftCheckBox: UIView {
         }
     }
 
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         if flag == true {
             if self.on == false {
                 onBoxLayer.removeFromSuperlayer()

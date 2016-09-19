@@ -13,7 +13,7 @@ class PageModel {
     var fields: [BaseFieldModel]!
     var fieldValuesCollection: [String: [String]] = [:] {
         didSet {
-            SwiftEventBus.post("pageUpdatedValues", sender: self)
+            SwiftEventBus.postToMainThread("pageUpdatedValues", sender: self)
         }
     }
     

@@ -7,17 +7,15 @@
 //
 
 import Foundation
-import SwiftValidator
 
 class EmailCellView: TextInputCellView {
     
     var mailModel: EmailFieldModel!
-    let validator = Validator()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         textField.keyboardType = .EmailAddress
-        validator.registerField(textField, rules: [EmailRule()])
+        //validator.registerField(textField, rules: [EmailRule()])
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,16 +30,6 @@ class EmailCellView: TextInputCellView {
         
     }
     
-    override func textFieldDidEndEditing(textField: UITextField) {
-        validator.validateField(textField) { error in
-            if error == nil {
-                self.textField.tintColor = UsabillaThemeConfigurator.sharedInstance.hintColor
-                self.mailModel.fieldValue = textField.text
-            } else {
-                self.textField.tintColor = UsabillaThemeConfigurator.sharedInstance.errorColor
-            }
-        }
-        
-    }
+  
     
 }

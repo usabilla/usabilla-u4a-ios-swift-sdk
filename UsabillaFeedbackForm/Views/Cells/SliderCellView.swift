@@ -43,7 +43,8 @@ class SliderCellView: RootCellView {
         
         
         let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 15)
-        
+        f.identifier = "prova"
+        f.priority = 750
         let a = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
         
         let v = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0)
@@ -58,7 +59,7 @@ class SliderCellView: RootCellView {
         var allConstraints = [NSLayoutConstraint]()
         
         let iconVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[titleLabel]-(10)-[valueLabel(32)]-|",
+            "H:|-(8)-[titleLabel]-(6)-[valueLabel(>=50)]-(8)-|",
             options: [],
             metrics: nil,
             views: views)
