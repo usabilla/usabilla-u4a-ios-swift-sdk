@@ -37,4 +37,10 @@ class PageModel {
         jumpRuleList = nil
         defaultJumpTo = nil
     }
+    
+    deinit {
+        jumpRuleList = nil
+        fields = []
+        fieldValuesCollection = [:]
+    }
 }
