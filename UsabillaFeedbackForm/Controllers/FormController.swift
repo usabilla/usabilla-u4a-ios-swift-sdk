@@ -264,7 +264,7 @@ class FormViewController: UIViewController {
         contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
         
         contentDictionary["app_version"] = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"]
-        contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"]
+        contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String]
         
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
