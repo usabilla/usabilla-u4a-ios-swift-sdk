@@ -1,3 +1,9 @@
+v 2.1.1
+
+* Renamed initSDKWithScreenshot to loadFeedbackForm
+* Fixed a memory leak what could cause problems with multiple openings of a form
+* Fixed a crash that would occur when using a custom font that was not bundling the bold and italic version. It is still recommended to use the whole font family when setting a custom font.
+
 v 2.1
 * SDK updated to be compatible with Swift 2.3
 * Fixed some broken constraint 
