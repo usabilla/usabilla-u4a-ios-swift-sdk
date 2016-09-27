@@ -34,4 +34,8 @@ class ParagraphCellView: BaseTextAreaCellView {
             textView.text = text
         }    
     }
+    
+//    deinit {
+//        print("paragraph cell deinit")
+//    }
 }

@@ -14,5 +14,9 @@ class StarFieldModel: IntFieldModel {
         super.init(json: json, pageModel: pageModel)
         self.type = "stars"
     }
+//    deinit {
+//        print("star field model")
+//    }
+    
 
 }

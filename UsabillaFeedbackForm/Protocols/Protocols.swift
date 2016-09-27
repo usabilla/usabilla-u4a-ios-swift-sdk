@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol IntFieldHandlerProtocol {
+protocol IntFieldHandlerProtocol: class {
 
     var fieldValue: Int {set get}
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol SwiftCheckBoxDelegate {
+protocol SwiftCheckBoxDelegate: class {
     func didTapCheckBox(checkBox: SwiftCheckBox)
     //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
@@ -18,7 +18,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
 
     /** The layer where the box is drawn when the check box is set to On.
      */
-    var delegate: SwiftCheckBoxDelegate?
+    weak var delegate: SwiftCheckBoxDelegate?
     var onBoxLayer: CAShapeLayer!
     var offBoxLayer: CAShapeLayer!
     var checkMarkLayer: CAShapeLayer?

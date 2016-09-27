@@ -10,5 +10,8 @@ import Foundation
 
 class CheckboxFieldModel: FieldModelWithOptions {
     
-
+//    deinit {
+//        print("checkbox field model")
+//    }
+//    
 }

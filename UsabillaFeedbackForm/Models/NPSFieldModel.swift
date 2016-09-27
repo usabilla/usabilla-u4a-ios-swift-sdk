@@ -21,4 +21,9 @@ class NPSFieldModel: IntFieldModel {
         colorLegend = json["colorLegend"].bool
         super.init(json: json, pageModel: pageModel)
     }
+    
+//    deinit {
+//        print("nps field model")
+//    }
+    
 }

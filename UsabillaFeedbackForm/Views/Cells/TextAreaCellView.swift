@@ -63,4 +63,8 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.font = textView.font?.withTraits(.TraitItalic)
         }
     }
+    
+//    deinit {
+//        print("Text area cell deinit")
+//    }
 }

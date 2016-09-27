@@ -31,4 +31,8 @@ class CheckboxCellView: BaseCheckboxCellView {
         Swift.debugPrint("values: \(values)")
         super.model.fieldValue = values
     }
+    
+//    deinit {
+//        print("checkbox cell deinit")
+//    }
 }

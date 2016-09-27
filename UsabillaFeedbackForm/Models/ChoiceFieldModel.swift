@@ -21,4 +21,9 @@ class ChoiceFieldModel: FieldModelWithOptions {
         emptyValue = json["empty"].string
         super.init(json: json, pageModel: pageModel)
     }
+    
+//    deinit {
+//        print("choice field model")
+//    }
+//    
 }

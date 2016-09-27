@@ -202,9 +202,16 @@ class FormViewController: UIViewController {
     }
     
     @IBAction func leftBarButtonPressed(sender: UIBarButtonItem) {
+        deinitForm()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    func deinitForm(){
+        SwiftEventBus.postToMainThread("kill")
+        SwiftEventBus.unregister(self)
+        pageController.deinitPageController()
+    }
     
     func initWithFormModel(formModel: FormModel) {
         self.formModel = formModel
@@ -264,7 +271,7 @@ class FormViewController: UIViewController {
         contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
         
         contentDictionary["app_version"] = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"]
-        contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"]
+        contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String]
         
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
@@ -301,5 +308,9 @@ class FormViewController: UIViewController {
         NetworkManager.submitFormToUsabilla(payload, screenshot:  screenshotString)
     }
     
+    
+//    deinit {
+//        print("calling form controller deinit")
+//    }
     
 }

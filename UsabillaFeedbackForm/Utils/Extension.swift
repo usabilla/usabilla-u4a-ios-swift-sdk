@@ -94,17 +94,20 @@ extension UIView {
 
 extension UIFont {
 
-    func withTraits(traits: UIFontDescriptorSymbolicTraits...) -> UIFont {
+    func withTraits(traits: UIFontDescriptorSymbolicTraits...) -> UIFont? {
         let descriptor = self.fontDescriptor()
-            .fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits))
-        return UIFont(descriptor: descriptor!, size: 0)
+        if let derp = descriptor.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits)){
+            return UIFont(descriptor: derp, size: 0)
+        } else {
+            return nil
+        }
     }
 
-    func boldItalic() -> UIFont {
+    func boldItalic() -> UIFont? {
         return withTraits(.TraitBold, .TraitItalic)
     }
 
-    func italic() -> UIFont {
+    func italic() -> UIFont? {
         return withTraits(.TraitItalic)
     }
 

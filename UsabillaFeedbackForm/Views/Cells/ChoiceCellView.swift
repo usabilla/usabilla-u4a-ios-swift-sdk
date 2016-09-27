@@ -84,4 +84,8 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         Swift.debugPrint("picked \(choiceModel.fieldValue)")
         
     }
+    
+//    deinit {
+//        print("choice cell deinit")
+//    }
 }

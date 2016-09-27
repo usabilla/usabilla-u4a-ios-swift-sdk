@@ -9,13 +9,13 @@
 import Foundation
 
 
-struct FormModel {
+class FormModel {
 
     let appTitle: String
     let appSubmitButton: String
     let hasScreenshot: Bool
     let version: Int
-    let pages: [PageModel]
+    var pages: [PageModel]
     let appId: String
     var isDefault: Bool = false
     let formJsonString: JSON!
@@ -31,4 +31,10 @@ struct FormModel {
         self.appId = appId
         self.formJsonString = jsonString
     }
+    
+//    deinit {
+//        print("called form model deinit")
+//        print("containing \(pages.count) pages")
+//        
+//    }
 }

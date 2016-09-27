@@ -41,4 +41,7 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
+//    deinit {
+//        print("base text cell deinit")
+//    }
 }

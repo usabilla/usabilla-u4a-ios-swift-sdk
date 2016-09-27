@@ -37,4 +37,8 @@ class ThankYouController: UIViewController {
         titleLabel.text = thankTitle
         messageLabel.text = thankMessage
     }
+    
+//    deinit {
+//        print("bye and than you")
+//    }
 }

@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-protocol SwiftStarDelegate {
+protocol SwiftStarDelegate: class {
     func starValueChanged(value: Int)
 }
 
 
 class StarRatingiView: UIControl {
     
-    var delegate: SwiftStarDelegate?
+    weak var delegate: SwiftStarDelegate?
     var shouldBecomeFirstResponder: Bool
     var minimumValue: Int
     var maximumValue: Int

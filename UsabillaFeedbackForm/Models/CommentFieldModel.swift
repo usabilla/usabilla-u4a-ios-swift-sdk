@@ -17,5 +17,10 @@ class CommentFieldModel: StringFieldModel {
         text = json["text"].string
         super.init(json: json, pageModel: pageModel)
     }
+    
+//    deinit {
+//        print("comment field model")
+//    }
+    
 
 }

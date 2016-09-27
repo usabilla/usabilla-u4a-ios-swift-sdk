@@ -21,4 +21,9 @@ class ParagraphFieldModel: StringFieldModel {
     override func convertToJSON() -> AnyObject? {
         return nil
     }
+    
+//    deinit {
+//        print("paragraoh field model")
+//    }
+    
 }

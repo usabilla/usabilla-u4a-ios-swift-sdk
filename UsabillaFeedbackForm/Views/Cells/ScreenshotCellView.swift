@@ -59,6 +59,10 @@ class ScreenshotCellView: RootCellView {
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
             self.imagePicked(result.object as! UIImage)
         }
+        
+        SwiftEventBus.onMainThread(self, name: "kill") { _ in
+            SwiftEventBus.unregister(self)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -104,4 +108,8 @@ class ScreenshotCellView: RootCellView {
         screenshotModel.screenshot = image
         updateUI()
     }
+    
+//    deinit {
+//        print("deinit screnshot")
+//    }
 }

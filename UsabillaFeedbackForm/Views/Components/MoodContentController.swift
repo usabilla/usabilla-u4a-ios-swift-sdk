@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class MoodContentController: UIView {
     
-    var delegate: IntFieldHandlerProtocol!
+    weak var delegate: IntFieldHandlerProtocol? = nil
     var view: UIView!
     var buttons: [UIButton]!
     
@@ -123,7 +123,7 @@ import UIKit
     
     
     @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
-        delegate.fieldValue = sender.tag
+        delegate?.fieldValue = sender.tag
         
         if let disabled = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons {
             firstButton.setImage(disabled[0], forState: .Normal)
