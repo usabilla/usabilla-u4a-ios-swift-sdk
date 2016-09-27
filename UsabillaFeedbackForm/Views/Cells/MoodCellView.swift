@@ -57,5 +57,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         }
     }
     
-
+    deinit {
+        print("mood cell deinit")
+    }
 }

@@ -11,7 +11,7 @@ import Foundation
 class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     
     var checkBox: SwiftCheckBox!
-    var delegate: SwiftCheckBoxDelegate!
+    weak var delegate: SwiftCheckBoxDelegate?
     var label: UILabel!
     var height: NSLayoutConstraint!
     
@@ -46,12 +46,12 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     }
     
     func didTapCheckBox(checkBox: SwiftCheckBox) {
-        delegate.didTapCheckBox(checkBox)
+        delegate?.didTapCheckBox(checkBox)
     }
 
     
     func touchEvent() {
         self.checkBox.setOn(!self.checkBox.on, animated: true)
-        delegate.didTapCheckBox(checkBox)
+        delegate?.didTapCheckBox(checkBox)
     }
 }

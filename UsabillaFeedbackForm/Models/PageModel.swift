@@ -39,8 +39,7 @@ class PageModel {
     }
     
     deinit {
-        jumpRuleList = nil
-        fields = []
-        fieldValuesCollection = [:]
+        print("called page model \(pageName) , \(pageNumber) deinit")
+        print("containing \(fields.count) fields")
     }
 }

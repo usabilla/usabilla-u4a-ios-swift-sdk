@@ -2,10 +2,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-#def testing_pods
-#    pod 'Quick'
-#    pod 'Nimble'
-#end
+def testing_pods
+    pod 'Quick' , "0.9.3"
+    pod 'Nimble', "4.1.0"
+end
 
 target 'UsabillaFeedbackForm' do
     
@@ -14,9 +14,9 @@ target 'UsabillaFeedbackForm' do
     pod 'PromiseKit/CorePromise',"~> 3.5"
     pod 'PromiseKit/UIKit', "~> 3.5"
 
-    
-end
 
 #target 'UsabillaFeedbackFormTests' do
-#    testing_pods
+#   testing_pods
 #end
+    
+end

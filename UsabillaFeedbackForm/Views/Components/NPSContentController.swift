@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class NPSContentController: UIView {
     
-    var delegate: IntFieldHandlerProtocol!
+    weak var delegate: IntFieldHandlerProtocol?
     var view: UIView!
     var buttons: [UIButton] = []
     @IBOutlet weak var firstButton: UIButton!
@@ -92,6 +92,6 @@ import UIKit
         sender.selected = true
         sender.backgroundColor = UsabillaThemeConfigurator.sharedInstance.accentColor
         
-        delegate.fieldValue = sender.tag
+        delegate?.fieldValue = sender.tag
     }
 }

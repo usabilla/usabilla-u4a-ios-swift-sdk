@@ -34,4 +34,8 @@ class RatingFieldModel: IntFieldModel {
         super.init(json: json, pageModel: pageModel)
         self.type = "rating"
     }
+    deinit {
+        print("rating field model")
+    }
+    
 }

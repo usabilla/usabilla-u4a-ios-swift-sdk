@@ -178,9 +178,8 @@ class NetworkManager {
                         fulfill(response)
                         print("Validation Successful")
                     case .Failure(let error):
-                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
                         print(error)
-                        
+                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
                     }
                     
             }

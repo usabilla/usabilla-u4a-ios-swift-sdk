@@ -12,7 +12,7 @@ protocol FieldModelProtocol {
     
     var isViewCurrentlyVisible: Bool {set get}
     
-    var pageModel: PageModel {set get}
+    unowned var pageModel: PageModel {set get}
     var fieldId: String {set get}
     var fieldTitle: String {set get}
     var required: Bool {set get}
@@ -31,7 +31,7 @@ protocol FieldModelProtocol {
 class BaseFieldModel: FieldModelProtocol {
     
     var isViewCurrentlyVisible = false
-    var pageModel: PageModel
+    unowned var pageModel: PageModel
     var fieldId: String
     var fieldTitle: String
     var required: Bool
@@ -66,6 +66,10 @@ class BaseFieldModel: FieldModelProtocol {
             let satisfied = rule!.isSatisfied()
             return satisfied && rule!.showIfRuleIsSatisfied || !satisfied && !rule!.showIfRuleIsSatisfied
         }
+    }
+    
+    deinit {
+        print("called basefieldmodel deinit")
     }
     
 }
@@ -178,6 +182,10 @@ class FieldModelWithOptions: BaseFieldModel {
     
     override func convertToJSON() -> AnyObject? {
         return fieldValue.count > 0 ? fieldValue : nil
+    }
+    
+    deinit {
+        print("model with options deinit")
     }
 }
 

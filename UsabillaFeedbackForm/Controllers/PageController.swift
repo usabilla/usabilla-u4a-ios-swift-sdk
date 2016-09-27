@@ -10,7 +10,6 @@ import UIKit
 
 class PageController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let validationText: String? = nil
     var pageModel: PageModel!
     var dynamicFields: [NSIndexPath] = []
     var requiredLabel: UILabel!
@@ -40,18 +39,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     func registerEventsBus() {
-        SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { notification in
-            var listOfIndexes: [NSIndexPath] = []
-            for index in self.dynamicFields {
-                if let cell = self.tableView.cellForRowAtIndexPath(index) as? RootCellView {
-                    if cell.isCurrentlyDisplayed != cell.shoudlAppear() {
-                        listOfIndexes.append(index)
-                    }
-                }
-            }
-            if listOfIndexes.count > 0 {
-                self.reloadCellsWithAnimation(listOfIndexes)
-            }
+        SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
+            self.reloadCellInTableAfterEvent()
         }
         
         
@@ -60,15 +49,32 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
         
         SwiftEventBus.onMainThread(self, name: "updateScreenshotHeight") { _ in
-            for index in self.tableView.visibleCells {
-                if let cell = index as? ScreenshotCellView {
-                    self.reloadCellsWithAnimation([self.tableView.indexPathForCell(cell)!])
-                }
-            }
-            
+            self.updateScreenshotHeight()
         }
     }
     
+    
+    func updateScreenshotHeight(){
+        for index in self.tableView.visibleCells {
+            if let cell = index as? ScreenshotCellView {
+                self.reloadCellsWithAnimation([self.tableView.indexPathForCell(cell)!])
+            }
+        }
+    }
+    
+    func reloadCellInTableAfterEvent (){
+        var listOfIndexes: [NSIndexPath] = []
+        for index in dynamicFields {
+            if let cell = tableView.cellForRowAtIndexPath(index) as? RootCellView {
+                if cell.isCurrentlyDisplayed != cell.shoudlAppear() {
+                    listOfIndexes.append(index)
+                }
+            }
+        }
+        if listOfIndexes.count > 0 {
+            self.reloadCellsWithAnimation(listOfIndexes)
+        }
+    }
     
     func headerView() -> UIView? {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
@@ -82,6 +88,10 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         return requiredLabel
     }
     
+    
+    func deinitPageController (){
+        SwiftEventBus.unregister(self)
+    }
     
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -147,9 +157,14 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     
     
     func initWithPage(page: PageModel) {
+        print("init page with pagemodel")
         pageModel = page
         dynamicFields = []
+        print("realoading")
+
         reloadTableWithAnimation()
+        print("done")
+
     }
     
     
@@ -225,4 +240,9 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
     
+    
+    deinit {
+        print("calling pagecontroller deinit of page \(pageModel.pageName),\(pageModel.pageNumber)")
+        
+    }
 }

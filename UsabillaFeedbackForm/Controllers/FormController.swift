@@ -160,9 +160,18 @@ class FormViewController: UIViewController {
     }
     
     func resetAndRestartForm() {
+        print("uno")
         currentPage = 0
+        print("dos")
         formModel = JSONFormParser.parseFormJson(formModel.formJsonString, appId: formModel.appId, screenshot: nil)
-        pageController.initWithPage(formModel.pages[0])
+        print("tres")
+        print(formModel)
+        print("form model has \(formModel.pages.count) pages")
+        let page = formModel.pages[0]
+        print(page)
+        print(pageController)
+        pageController.initWithPage(page)
+        print("quatro")
     }
     
     
@@ -202,9 +211,21 @@ class FormViewController: UIViewController {
     }
     
     @IBAction func leftBarButtonPressed(sender: UIBarButtonItem) {
+        deinitForm()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    func deinitForm(){
+        SwiftEventBus.postToMainThread("kill")
+        SwiftEventBus.unregister(self)
+        reachability = nil
+        formModel = nil
+        //thankYouController = nil
+        pageController.deinitPageController()
+        //pageController = nil
+        
+    }
     
     func initWithFormModel(formModel: FormModel) {
         self.formModel = formModel
@@ -301,5 +322,9 @@ class FormViewController: UIViewController {
         NetworkManager.submitFormToUsabilla(payload, screenshot:  screenshotString)
     }
     
+    
+    deinit {
+        print("calling form controller deinit")
+    }
     
 }

@@ -42,5 +42,10 @@ class ScreenshotModel: BaseFieldModel {
         isModelValid = !isViewCurrentlyVisible || !required || screenshot != nil
         return isModelValid
     }
+    
+    deinit {
+        print("screenshot field model")
+    }
+    
   
 }

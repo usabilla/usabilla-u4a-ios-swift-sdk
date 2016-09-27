@@ -12,7 +12,7 @@ class Rule {
     
     let dependsOnID: String
     let targetValues: [String]
-    let pageModel: PageModel
+    unowned let pageModel: PageModel
     
     init(dependsOnID: String, targetValues: [String], pageModel: PageModel) {
         

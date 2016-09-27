@@ -95,13 +95,7 @@ class SliderCellView: RootCellView {
         super.setFeedbackItem(item)
         sliderModel = item as! RatingFieldModel
         
-        
-        if sliderModel.fieldValue != nil {
-            slider.value = Float(sliderModel.fieldValue!)
-        } else {
-            slider.value = 0
-        }
-        
+      
         if sliderModel.isNPS {
             valueLabel.text = "0/10"
             slider.minimumValue = 0
@@ -129,6 +123,12 @@ class SliderCellView: RootCellView {
         leftLabel.text = sliderModel.low
         rightLabel.text = sliderModel.high
         
+        if sliderModel.fieldValue != nil {
+            slider.setValue(Float(Int(sliderModel.fieldValue!)), animated: false)
+        } else {
+            slider.setValue(0, animated: false)
+        }
+        
     }
     
     
@@ -142,6 +142,10 @@ class SliderCellView: RootCellView {
         }
         
         sliderModel.fieldValue = fieldValue
+    }
+    
+    deinit {
+        print("Slider cell deinit")
     }
     
 }

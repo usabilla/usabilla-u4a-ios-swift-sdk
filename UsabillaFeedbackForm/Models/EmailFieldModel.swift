@@ -18,4 +18,9 @@ class EmailFieldModel: StringFieldModel {
         super.init(json: json, pageModel: pageModel)
     }
 
+    
+    deinit {
+        print("mail field model")
+    }
+    
 }
