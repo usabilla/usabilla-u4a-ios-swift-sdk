@@ -157,20 +157,16 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     
     
     func initWithPage(page: PageModel) {
-        print("init page with pagemodel")
         pageModel = page
         dynamicFields = []
-        print("realoading")
-
         reloadTableWithAnimation()
-        print("done")
-
     }
     
     
     func reloadTableWithAnimation() {
         let range = NSMakeRange(0, self.tableView.numberOfSections)
         let sections = NSIndexSet(indexesInRange: range)
+        self.tableView.reloadData()
         self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
     }
     

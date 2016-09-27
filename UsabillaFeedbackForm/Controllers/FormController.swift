@@ -160,18 +160,9 @@ class FormViewController: UIViewController {
     }
     
     func resetAndRestartForm() {
-        print("uno")
         currentPage = 0
-        print("dos")
         formModel = JSONFormParser.parseFormJson(formModel.formJsonString, appId: formModel.appId, screenshot: nil)
-        print("tres")
-        print(formModel)
-        print("form model has \(formModel.pages.count) pages")
-        let page = formModel.pages[0]
-        print(page)
-        print(pageController)
-        pageController.initWithPage(page)
-        print("quatro")
+        pageController.initWithPage(formModel.pages[0])
     }
     
     
