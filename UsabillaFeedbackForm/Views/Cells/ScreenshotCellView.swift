@@ -109,7 +109,7 @@ class ScreenshotCellView: RootCellView {
         updateUI()
     }
     
-    deinit {
-        print("deinit screnshot")
-    }
+//    deinit {
+//        print("deinit screnshot")
+//    }
 }

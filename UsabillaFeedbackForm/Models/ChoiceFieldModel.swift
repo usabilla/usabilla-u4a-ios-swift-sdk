@@ -22,8 +22,8 @@ class ChoiceFieldModel: FieldModelWithOptions {
         super.init(json: json, pageModel: pageModel)
     }
     
-    deinit {
-        print("choice field model")
-    }
-    
+//    deinit {
+//        print("choice field model")
+//    }
+//    
 }

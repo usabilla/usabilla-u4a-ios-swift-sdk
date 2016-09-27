@@ -38,8 +38,8 @@ class PageModel {
         defaultJumpTo = nil
     }
     
-    deinit {
-        print("called page model \(pageName) , \(pageNumber) deinit")
-        print("containing \(fields.count) fields")
-    }
+//    deinit {
+//        print("called page model \(pageName) , \(pageNumber) deinit")
+//        print("containing \(fields.count) fields")
+//    }
 }

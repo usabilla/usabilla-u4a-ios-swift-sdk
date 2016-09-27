@@ -32,7 +32,7 @@ class CheckboxCellView: BaseCheckboxCellView {
         super.model.fieldValue = values
     }
     
-    deinit {
-        print("checkbox cell deinit")
-    }
+//    deinit {
+//        print("checkbox cell deinit")
+//    }
 }

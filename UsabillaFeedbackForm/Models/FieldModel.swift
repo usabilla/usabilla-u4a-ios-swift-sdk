@@ -68,9 +68,9 @@ class BaseFieldModel: FieldModelProtocol {
         }
     }
     
-    deinit {
-        print("called basefieldmodel deinit")
-    }
+//    deinit {
+//        print("called basefieldmodel deinit")
+//    }
     
 }
 
@@ -184,9 +184,9 @@ class FieldModelWithOptions: BaseFieldModel {
         return fieldValue.count > 0 ? fieldValue : nil
     }
     
-    deinit {
-        print("model with options deinit")
-    }
+//    deinit {
+//        print("model with options deinit")
+//    }
 }
 
 

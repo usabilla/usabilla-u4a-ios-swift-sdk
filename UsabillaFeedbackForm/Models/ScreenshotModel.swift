@@ -43,9 +43,9 @@ class ScreenshotModel: BaseFieldModel {
         return isModelValid
     }
     
-    deinit {
-        print("screenshot field model")
-    }
+//    deinit {
+//        print("screenshot field model")
+//    }
     
   
 }

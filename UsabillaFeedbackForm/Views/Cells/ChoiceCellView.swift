@@ -85,7 +85,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         
     }
     
-    deinit {
-        print("choice cell deinit")
-    }
+//    deinit {
+//        print("choice cell deinit")
+//    }
 }

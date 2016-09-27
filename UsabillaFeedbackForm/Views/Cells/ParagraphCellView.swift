@@ -35,7 +35,7 @@ class ParagraphCellView: BaseTextAreaCellView {
         }    
     }
     
-    deinit {
-        print("paragraph cell deinit")
-    }
+//    deinit {
+//        print("paragraph cell deinit")
+//    }
 }

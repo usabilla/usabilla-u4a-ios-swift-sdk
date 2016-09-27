@@ -30,8 +30,8 @@ class EmailCellView: TextInputCellView {
         
     }
     
-    deinit {
-        print("mail cell deinit")
-    }
+//    deinit {
+//        print("mail cell deinit")
+//    }
     
 }

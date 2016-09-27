@@ -237,8 +237,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-    deinit {
-        print("calling pagecontroller deinit of page \(pageModel.pageName),\(pageModel.pageNumber)")
-        
-    }
+//    deinit {
+//        print("calling pagecontroller deinit of page \(pageModel.pageName),\(pageModel.pageNumber)")
+//        
+//    }
 }

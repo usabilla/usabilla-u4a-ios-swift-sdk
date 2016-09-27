@@ -19,8 +19,8 @@ class EmailFieldModel: StringFieldModel {
     }
 
     
-    deinit {
-        print("mail field model")
-    }
+//    deinit {
+//        print("mail field model")
+//    }
     
 }

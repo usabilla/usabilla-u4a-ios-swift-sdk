@@ -210,12 +210,7 @@ class FormViewController: UIViewController {
     func deinitForm(){
         SwiftEventBus.postToMainThread("kill")
         SwiftEventBus.unregister(self)
-        reachability = nil
-        formModel = nil
-        //thankYouController = nil
         pageController.deinitPageController()
-        //pageController = nil
-        
     }
     
     func initWithFormModel(formModel: FormModel) {
@@ -314,8 +309,8 @@ class FormViewController: UIViewController {
     }
     
     
-    deinit {
-        print("calling form controller deinit")
-    }
+//    deinit {
+//        print("calling form controller deinit")
+//    }
     
 }

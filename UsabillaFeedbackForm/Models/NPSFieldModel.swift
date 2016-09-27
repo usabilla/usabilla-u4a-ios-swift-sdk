@@ -22,8 +22,8 @@ class NPSFieldModel: IntFieldModel {
         super.init(json: json, pageModel: pageModel)
     }
     
-    deinit {
-        print("nps field model")
-    }
+//    deinit {
+//        print("nps field model")
+//    }
     
 }

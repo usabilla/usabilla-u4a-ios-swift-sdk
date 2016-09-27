@@ -70,8 +70,8 @@ class StarCellView: RootCellView, SwiftStarDelegate {
         starModel.fieldValue = value
     }
     
-    deinit {
-        print("Star  cell deinit")
-    }
+//    deinit {
+//        print("Star  cell deinit")
+//    }
     
 }

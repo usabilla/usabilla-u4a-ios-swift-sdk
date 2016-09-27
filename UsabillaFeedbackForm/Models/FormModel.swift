@@ -32,9 +32,9 @@ class FormModel {
         self.formJsonString = jsonString
     }
     
-    deinit {
-        print("called form model deinit")
-        print("containing \(pages.count) pages")
-        
-    }
+//    deinit {
+//        print("called form model deinit")
+//        print("containing \(pages.count) pages")
+//        
+//    }
 }

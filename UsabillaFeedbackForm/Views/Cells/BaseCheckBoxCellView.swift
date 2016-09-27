@@ -97,7 +97,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
     }
     
     
-    deinit {
-        print("base checkbox  cell deinit")
-    }
+//    deinit {
+//        print("base checkbox  cell deinit")
+//    }
 }

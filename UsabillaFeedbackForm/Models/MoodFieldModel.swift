@@ -15,8 +15,8 @@ class MoodFieldModel: IntFieldModel {
         super.init(json: json, pageModel: pageModel)
     }
     
-    deinit {
-        print("modd field model")
-    }
+//    deinit {
+//        print("modd field model")
+//    }
     
 }

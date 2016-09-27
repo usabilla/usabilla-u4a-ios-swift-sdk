@@ -59,7 +59,7 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
         }
      
     }
-    deinit {
-        print("NPS cell deinit")
-    }
+//    deinit {
+//        print("NPS cell deinit")
+//    }
 }

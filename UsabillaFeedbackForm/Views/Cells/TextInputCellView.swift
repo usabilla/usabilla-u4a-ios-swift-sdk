@@ -67,9 +67,9 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         model.fieldValue = textField.text
     }
     
-    deinit {
-        print("Text input cell deinit")
-    }
+//    deinit {
+//        print("Text input cell deinit")
+//    }
     
     
 }

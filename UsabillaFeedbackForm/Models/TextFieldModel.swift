@@ -19,9 +19,9 @@ class TextFieldModel: StringFieldModel {
         defaultValue = json["defaultValue"].string
         super.init(json: json, pageModel: pageModel)
     }
-    deinit {
-        print("text field model")
-    }
+//    deinit {
+//        print("text field model")
+//    }
     
     
 }

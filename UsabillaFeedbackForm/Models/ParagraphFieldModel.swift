@@ -22,8 +22,8 @@ class ParagraphFieldModel: StringFieldModel {
         return nil
     }
     
-    deinit {
-        print("paragraoh field model")
-    }
+//    deinit {
+//        print("paragraoh field model")
+//    }
     
 }

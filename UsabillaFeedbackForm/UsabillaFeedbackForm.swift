@@ -25,7 +25,7 @@ public class UsabillaFeedbackForm {
     public static var showCancelButton: Bool = false
     static var defaultLocalisationFile = true
     
-    public class func initSDKWithScreenshot(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
+    public class func loadFeedbackForm(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
         getFormJsonFromServer(appId, screenshot: screenshot, customVariables: customVariables)
     }
     

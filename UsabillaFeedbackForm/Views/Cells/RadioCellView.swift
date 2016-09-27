@@ -37,7 +37,7 @@ class RadioCellView: BaseCheckboxCellView {
         super.model.fieldValue = values
     }
     
-    deinit {
-        print("radio cell deinit")
-    }
+//    deinit {
+//        print("radio cell deinit")
+//    }
 }

@@ -64,7 +64,7 @@ class TextAreaCellView: BaseTextAreaCellView {
         }
     }
     
-    deinit {
-        print("Text area cell deinit")
-    }
+//    deinit {
+//        print("Text area cell deinit")
+//    }
 }
