@@ -24,9 +24,6 @@ class SliderCellView: RootCellView {
         valueLabel = createSecondaryLabel()
         slider = UISlider()
         
-        slider.tintColor = UsabillaThemeConfigurator.sharedInstance.accentColor
-        slider.thumbTintColor = UsabillaThemeConfigurator.sharedInstance.accentColor
-        
         slider.addTarget(self, action: #selector(SliderCellView.barChangedValue), forControlEvents: .ValueChanged)
         self.contentView.addSubview(slider)
         self.contentView.addSubview(valueLabel)
@@ -84,6 +81,12 @@ class SliderCellView: RootCellView {
         
         setNeedsLayout()
         
+    }
+    
+    override func applyCustomisations() {
+        super.applyCustomisations()
+        slider.tintColor = sliderModel.themeConfig.accentColor
+        slider.thumbTintColor = sliderModel.themeConfig.accentColor
     }
     
     required init?(coder aDecoder: NSCoder) {

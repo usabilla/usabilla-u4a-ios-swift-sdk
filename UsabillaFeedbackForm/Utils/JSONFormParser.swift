@@ -11,7 +11,7 @@ import Foundation
 
 class JSONFormParser {
 
-    class func parseFormJson(json: JSON, appId: String, screenshot: UIImage?) -> FormModel {
+    class func parseFormJson(json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
 
         let data = json["data"]
         let appTitle = data["appTitle"].stringValue
@@ -19,11 +19,13 @@ class JSONFormParser {
         let hasScreenshot = data["screenshot"].boolValue
         let version = json["version"].intValue
         let errorMessage = data["errorMessage"].stringValue
+        let colorJson = json["colors"]
+        parseColors(themeConfig, json: colorJson)
 
         var pages: [PageModel] = []
 
         for (index, subJson):(String, JSON) in json["form"]["pages"] {
-            let page = parsePage(subJson, pageNum: Int(index)!)
+            let page = parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
             page.errorMessage = errorMessage
             pages.append(page)
         }
@@ -39,17 +41,18 @@ class JSONFormParser {
         if hasScreenshot {
             pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
-        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage)
+        
+        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig)
     }
 
 
-    private class func parsePage(pageJson: JSON, pageNum: Int) -> PageModel {
+    private class func parsePage(pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
 
         let pageName = pageJson["name"].stringValue
         let type = pageJson["type"].stringValue
 
-        let currentPage = PageModel(pageNumber: pageNum, pageName: pageName)
+        let currentPage = PageModel(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
         currentPage.type = type
 
@@ -118,5 +121,32 @@ class JSONFormParser {
         let setShowIfRuleIsSatisfied: Bool = json["action"].stringValue == "show"
 
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)
+    }
+    
+    private class func parseColors(config: UsabillaThemeConfigurator, json: JSON){
+        if let primaryTextColorHex = json["group1"]["hash"].string {
+            config.primaryTextColor = UIColor(rgba: primaryTextColorHex)
+        }
+        if let headerColorHex = json["group2"]["hash"].string {
+            config.headerColor = UIColor(rgba: headerColorHex)
+        }
+        if let headerTextColorHex = json["group3"]["hash"].string {
+            config.headerTextColor = UIColor(rgba: headerTextColorHex)
+        }
+        if let accentColorHex = json["group4"]["hash"].string {
+            config.accentColor = UIColor(rgba: accentColorHex)
+        }
+        if let textOnAccentColorHex = json["group5"]["hash"].string {
+            config.textOnAccentColor = UIColor(rgba: textOnAccentColorHex)
+        }
+        if let hintColorHex = json["group6"]["hash"].string {
+            config.hintColor = UIColor(rgba: hintColorHex)
+        }
+        if let errorColorHex = json["group7"]["hash"].string {
+            config.errorColor = UIColor(rgba: errorColorHex)
+        }
+        if let backgroundColorHex = json["group8"]["hash"].string {
+            config.backgroundColor = UIColor(rgba: backgroundColorHex)
+        }
     }
 }

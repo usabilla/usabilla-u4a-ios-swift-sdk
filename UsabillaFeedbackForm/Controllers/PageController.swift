@@ -32,7 +32,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         self.tableView.tableFooterView = UIView()
         self.tableView.tableHeaderView = headerView()
         
-        self.view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+        self.view.backgroundColor = pageModel.themeConfig.backgroundColor
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         registerEventsBus()
@@ -80,7 +80,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
         requiredLabel.textAlignment = .Right
-        requiredLabel.textColor = UsabillaThemeConfigurator.sharedInstance.hintColor
+        requiredLabel.textColor = pageModel.themeConfig.hintColor
         let constraint = NSLayoutConstraint.constraintsWithVisualFormat("H:[label]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: ["label": requiredLabel])
         
         requiredLabel.addConstraints(constraint)
@@ -137,22 +137,23 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         let item = pageModel.fields[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(item.type, forIndexPath:indexPath) as? RootCellView
-        cell!.selectionStyle = UITableViewCellSelectionStyle.None
-        cell!.setFeedbackItem(item)
+        let cell = tableView.dequeueReusableCellWithIdentifier(item.type, forIndexPath:indexPath) as! RootCellView
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.setFeedbackItem(item)
+        cell.buildView()
         if !item.shouldAppear() {
-            cell?.hidden = true
-            cell?.userInteractionEnabled = false
-            cell?.isCurrentlyDisplayed = false
+            cell.hidden = true
+            cell.userInteractionEnabled = false
+            cell.isCurrentlyDisplayed = false
         } else {
-            cell?.hidden = false
-            cell?.userInteractionEnabled = true
-            cell?.isCurrentlyDisplayed = true
+            cell.hidden = false
+            cell.userInteractionEnabled = true
+            cell.isCurrentlyDisplayed = true
         }
         if item.rule != nil {
             dynamicFields.append(indexPath)
         }
-        return cell!
+        return cell
     }
     
     
@@ -196,9 +197,9 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         if !correctlyFilled {
             reloadTableWithAnimation()
-            requiredLabel.textColor = UsabillaThemeConfigurator.sharedInstance.errorColor
+            requiredLabel.textColor = pageModel.themeConfig.errorColor
         } else {
-            requiredLabel.textColor = UsabillaThemeConfigurator.sharedInstance.hintColor
+            requiredLabel.textColor = pageModel.themeConfig.hintColor
         }
         
         return correctlyFilled

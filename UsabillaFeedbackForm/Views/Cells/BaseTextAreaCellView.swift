@@ -21,11 +21,9 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
         self.dividerLine?.hidden = true
-        textView.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(13)
-        textView.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
-        textView.tintColor = UsabillaThemeConfigurator.sharedInstance.hintColor
+        
+
         textView.scrollEnabled = true
-        textView.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         self.contentView.addSubview(textView)
         
         NSLayoutConstraint(item: textView, attribute: .Bottom, relatedBy: .Equal, toItem: self.contentView, attribute: .Bottom, multiplier: 1, constant: -18).active = true
@@ -39,6 +37,14 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func applyCustomisations() {
+        super.applyCustomisations()
+        textView.font = item.themeConfig.customFont?.fontWithSize(13)
+        textView.textColor = item.themeConfig.primaryTextColor
+        textView.tintColor = item.themeConfig.hintColor
+        textView.backgroundColor = item.themeConfig.backgroundColor
     }
 
 //    deinit {

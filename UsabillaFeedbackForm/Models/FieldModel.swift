@@ -11,7 +11,7 @@ import Foundation
 protocol FieldModelProtocol {
     
     var isViewCurrentlyVisible: Bool {set get}
-    
+    unowned var themeConfig: UsabillaThemeConfigurator {get set}
     unowned var pageModel: PageModel {set get}
     var fieldId: String {set get}
     var fieldTitle: String {set get}
@@ -32,6 +32,7 @@ class BaseFieldModel: FieldModelProtocol {
     
     var isViewCurrentlyVisible = false
     unowned var pageModel: PageModel
+    unowned var themeConfig: UsabillaThemeConfigurator
     var fieldId: String
     var fieldTitle: String
     var required: Bool
@@ -46,7 +47,7 @@ class BaseFieldModel: FieldModelProtocol {
         self.fieldTitle = json["title"].stringValue
         self.required = json["required"].boolValue
         self.rule = nil
-        
+        self.themeConfig = pageModel.themeConfig
     }
     
     func convertToJSON() -> AnyObject? {

@@ -20,8 +20,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         picker.dataSource = self
         picker.delegate = self
         self.contentView.addSubview(picker)
-        picker.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
-        picker.tintColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
+      
         picker.translatesAutoresizingMaskIntoConstraints = false
         
         let f = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
@@ -35,6 +34,12 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         contentView.addConstraints([f, a, v, z])
         
         setNeedsLayout()
+    }
+    
+    override func applyCustomisations() {
+        super.applyCustomisations()
+        picker.backgroundColor = choiceModel.themeConfig.backgroundColor
+        picker.tintColor = choiceModel.themeConfig.primaryTextColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +80,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: UsabillaThemeConfigurator.sharedInstance.primaryTextColor])
+        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.primaryTextColor])
     }
     
     

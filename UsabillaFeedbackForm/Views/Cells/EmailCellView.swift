@@ -27,7 +27,7 @@ class EmailCellView: TextInputCellView {
         mailModel = item as! EmailFieldModel
         textField.placeholder = mailModel.placeHolder
         textField.text = mailModel.fieldValue
-        textField.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+        textField.backgroundColor = mailModel.themeConfig.backgroundColor
     }
     
 //    deinit {

@@ -35,14 +35,20 @@ class RootCellView: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func buildView(){
         self.titleLabel = createTitleLabel()
         self.dividerLine = createDividerLine()
         self.dividerLine?.hidden = true
-
+        
         //titleLabel?.sizeToFit()
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(dividerLine!)
-        self.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         
         let leadingC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 8)
         
@@ -62,11 +68,6 @@ class RootCellView: UITableViewCell {
         
         contentView.addConstraints([leadingC, topC, dividerTop, dividerHeight, dividerMarginLeft, dividerMarginRight])
         
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -85,7 +86,7 @@ class RootCellView: UITableViewCell {
             
             let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
             
-            text.addAttribute(NSForegroundColorAttributeName, value: UsabillaThemeConfigurator.sharedInstance.hintColor,
+            text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
                 range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
             
             titleLabel.attributedText = text
@@ -93,9 +94,18 @@ class RootCellView: UITableViewCell {
         } else {
             self.titleLabel.text = item.fieldTitle
         }
-        self.dividerLine!.backgroundColor = UsabillaThemeConfigurator.sharedInstance.hintColor
         
         isValid = item.isModelValid
+        
+        applyCustomisations()
+    }
+    
+    func applyCustomisations() {
+        titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
+        titleLabel.textColor = item.themeConfig.primaryTextColor
+        dividerLine?.backgroundColor = item.themeConfig.hintColor
+        self.backgroundColor = item.themeConfig.backgroundColor
+
     }
     
     func createTitleLabel() -> UILabel {
@@ -103,8 +113,8 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
         //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        titleLabel.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(17.0)
-        titleLabel.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
+//        titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
+//        titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
     
@@ -113,14 +123,13 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = NSTextAlignment.Right
         titleLabel.numberOfLines = 0
-        titleLabel.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(14.0)
-        titleLabel.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
+        //titleLabel.font = item.themeConfig.customFont?.fontWithSize(14.0)
+        //titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
     
     func createDividerLine() -> UIView {
         let dividerLine = UIView()
-        dividerLine.backgroundColor = UsabillaThemeConfigurator.sharedInstance.hintColor
         dividerLine.translatesAutoresizingMaskIntoConstraints = false
         return dividerLine
     }
@@ -133,23 +142,23 @@ class RootCellView: UITableViewCell {
                 
                 let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
                 
-                text.addAttribute(NSForegroundColorAttributeName, value: UsabillaThemeConfigurator.sharedInstance.errorColor,
+                text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.errorColor,
                     range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
                 
                 titleLabel?.attributedText = text
                 
-                self.dividerLine!.backgroundColor = UsabillaThemeConfigurator.sharedInstance.errorColor
+                self.dividerLine!.backgroundColor = item.themeConfig.errorColor
             } else {
                 titleLabel?.text = String(format: "%@ *", item!.fieldTitle) as String
                 
                 let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
                 
-                text.addAttribute(NSForegroundColorAttributeName, value: UsabillaThemeConfigurator.sharedInstance.hintColor,
+                text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
                     range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
                 
                 titleLabel?.attributedText = text
                 
-                self.dividerLine!.backgroundColor = UsabillaThemeConfigurator.sharedInstance.hintColor
+                self.dividerLine!.backgroundColor = item.themeConfig.hintColor
                 
             }
         }

@@ -11,8 +11,6 @@ import UIKit
 
 public class UsabillaThemeConfigurator {
 
-    public static let sharedInstance = UsabillaThemeConfigurator()
-
 
     public var headerColor: UIColor
     public var headerTextColor: UIColor
@@ -30,7 +28,7 @@ public class UsabillaThemeConfigurator {
     public var fullStar: UIImage?
     public var emptyStar: UIImage?
 
-    private init() {
+    public init() {
 
         //UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
         // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())

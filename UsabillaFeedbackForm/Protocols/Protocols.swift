@@ -12,5 +12,5 @@ import Foundation
 protocol IntFieldHandlerProtocol: class {
 
     var fieldValue: Int {set get}
-    
+    //var themeConfig: UsabillaThemeConfigurator {get set}
 }

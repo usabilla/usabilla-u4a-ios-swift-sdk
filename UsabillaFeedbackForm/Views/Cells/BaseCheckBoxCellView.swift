@@ -12,6 +12,14 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
     
     var checkBoxes: [CheckboxWithText] = []
     var model: FieldModelWithOptions!
+    var themeConfig: UsabillaThemeConfigurator {
+        get {
+            return model.themeConfig
+        }
+        set {
+            model.themeConfig = newValue
+        }
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,7 +61,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             
             styleCheckBox(checkBox)
             checkBox.label.text = option.title
-            checkBox.label.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
+            checkBox.label.textColor = model.themeConfig.primaryTextColor
             checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.userInteractionEnabled = true
             

@@ -10,7 +10,11 @@ import UIKit
 
 @IBDesignable class MoodContentController: UIView {
     
-    weak var delegate: IntFieldHandlerProtocol? = nil
+    weak var delegate: IntFieldHandlerProtocol? = nil {
+        didSet{
+            applyCustomisations()
+        }
+    }
     var view: UIView!
     var buttons: [UIButton]!
     
@@ -30,6 +34,14 @@ import UIKit
             setUp()
     }
     
+    
+    init(asd: IntFieldHandlerProtocol){
+        super.init(frame: CGRectZero)
+        delegate = asd
+        setUp()
+    }
+    
+    
     func setUp() {
         view = loadViewFromNib()
         view.frame = bounds
@@ -38,16 +50,21 @@ import UIKit
         
         addSubview(view)
         
-        var smilies: [UIImage] = []
         
-        if UsabillaThemeConfigurator.sharedInstance.disabledEmoticons != nil {
-            smilies = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons!
+        
+     
+    }
+    
+    func applyCustomisations(){
+        var smilies: [UIImage] = []
+
+        if delegate?.themeConfig.disabledEmoticons != nil {
+            smilies = (delegate?.themeConfig.disabledEmoticons!)!
         } else {
-            smilies = UsabillaThemeConfigurator.sharedInstance.enabledEmoticons
+            smilies = (delegate?.themeConfig.enabledEmoticons)!
         }
         
-        view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
-        
+        view.backgroundColor = delegate?.themeConfig.backgroundColor
         firstButton.setImage(smilies[0], forState: .Normal)
         secondButton.setImage(smilies[1], forState: .Normal)
         thirdButton.setImage(smilies[2], forState: .Normal)
@@ -55,8 +72,7 @@ import UIKit
         fifthBUtton.setImage(smilies[4], forState: .Normal)
         
         buttons = [firstButton, secondButton, thirdButton, fourthButton, fifthBUtton]
-        
-     
+
     }
 
     func setNumberOfItems(number: Int) {
@@ -83,7 +99,7 @@ import UIKit
     }
     
     func resetSelected() {
-        if let disabled = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons {
+        if let disabled = delegate?.themeConfig.disabledEmoticons {
             firstButton.setImage(disabled[0], forState: .Normal)
             secondButton.setImage(disabled[1], forState: .Normal)
             thirdButton.setImage(disabled[2], forState: .Normal)
@@ -117,7 +133,7 @@ import UIKit
     }
     
     func enableButton(button: UIButton, position: Int) {
-        button.setImage(UsabillaThemeConfigurator.sharedInstance.enabledEmoticons[position-1], forState: .Normal)
+        button.setImage(delegate?.themeConfig.enabledEmoticons[position-1], forState: .Normal)
         button.alpha = 1
     }
     
@@ -125,13 +141,13 @@ import UIKit
     @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
         delegate?.fieldValue = sender.tag
         
-        if let disabled = UsabillaThemeConfigurator.sharedInstance.disabledEmoticons {
+        if let disabled = delegate?.themeConfig.disabledEmoticons {
             firstButton.setImage(disabled[0], forState: .Normal)
             secondButton.setImage(disabled[1], forState: .Normal)
             thirdButton.setImage(disabled[2], forState: .Normal)
             fourthButton.setImage(disabled[3], forState: .Normal)
             fifthBUtton.setImage(disabled[4], forState: .Normal)
-            sender.setImage(UsabillaThemeConfigurator.sharedInstance.enabledEmoticons[sender.tag-1], forState: .Normal)
+            sender.setImage(delegate?.themeConfig.enabledEmoticons[sender.tag-1], forState: .Normal)
         } else {
             firstButton.alpha = 0.5
             secondButton.alpha = 0.5

@@ -20,8 +20,10 @@ class FormModel {
     var isDefault: Bool = false
     let formJsonString: JSON!
     let errorMessage: String
+    let themeConfig: UsabillaThemeConfigurator
     
-    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String) {
+    
+    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String, themeConfig: UsabillaThemeConfigurator) {
         self.errorMessage = errorMessage
         self.appTitle = appTitle
         self.appSubmitButton = appSubmitButton
@@ -30,6 +32,7 @@ class FormModel {
         self.pages = pages
         self.appId = appId
         self.formJsonString = jsonString
+        self.themeConfig = themeConfig
     }
     
 //    deinit {

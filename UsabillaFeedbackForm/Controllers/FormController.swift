@@ -40,18 +40,18 @@ class FormViewController: UIViewController {
         if formModel.pages.count == 2 {
             progressBar.hidden = true
         } else {
-            progressBar.progressTintColor = UsabillaThemeConfigurator.sharedInstance.accentColor
+            progressBar.progressTintColor =  formModel.themeConfig.accentColor
         }
-        poweredLabel.textColor = UsabillaThemeConfigurator.sharedInstance.headerTextColor
+        poweredLabel.textColor = formModel.themeConfig.headerTextColor
         
         poweredLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormViewController.openUsabilla)))
         updateProgressBar()
         updateRightButton()
-        UIApplication.sharedApplication().statusBarStyle = UsabillaThemeConfigurator.sharedInstance.statusBarColor
-        //self.navigationController?.navigationBar.set = UsabillaThemeConfigurator.sharedInstance.statusBarColor
-        self.navigationController?.navigationBar.barTintColor = UsabillaThemeConfigurator.sharedInstance.headerColor
-        self.navigationController?.navigationBar.tintColor = UsabillaThemeConfigurator.sharedInstance.headerTextColor
-        footerView.backgroundColor = UsabillaThemeConfigurator.sharedInstance.headerColor
+        UIApplication.sharedApplication().statusBarStyle = formModel.themeConfig.statusBarColor
+        //self.navigationController?.navigationBar.set = formModel.themeConfig.statusBarColor
+        self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.headerColor
+        self.navigationController?.navigationBar.tintColor = formModel.themeConfig.headerTextColor
+        footerView.backgroundColor = formModel.themeConfig.headerColor
         
         SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
             self.restoreFeedbackFormController()
@@ -161,7 +161,7 @@ class FormViewController: UIViewController {
     
     func resetAndRestartForm() {
         currentPage = 0
-        formModel = JSONFormParser.parseFormJson(formModel.formJsonString, appId: formModel.appId, screenshot: nil)
+        formModel = JSONFormParser.parseFormJson(formModel.formJsonString, appId: formModel.appId, screenshot: nil, themeConfig: formModel.themeConfig)
         pageController.initWithPage(formModel.pages[0])
     }
     

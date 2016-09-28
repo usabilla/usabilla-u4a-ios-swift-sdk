@@ -17,14 +17,11 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         
         textField = UITextField()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        textField.font = UsabillaThemeConfigurator.sharedInstance.customFont?.fontWithSize(13)
-        textField.textColor = UsabillaThemeConfigurator.sharedInstance.primaryTextColor
+        
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .RoundedRect
         
-        textField.tintColor = UsabillaThemeConfigurator.sharedInstance.hintColor
         contentView.addSubview(textField)
         
         textField.addTarget(self, action: #selector(TextInputCellView.textFieldDidChange), forControlEvents: .EditingChanged)
@@ -56,6 +53,10 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         if let model2 = model as? TextFieldModel {
             textField.placeholder = model2.placeHolder
         }
+        
+        textField.tintColor = model.themeConfig.hintColor
+        textField.font = model.themeConfig.customFont?.fontWithSize(13)
+        textField.textColor = model.themeConfig.primaryTextColor
     }
 
     

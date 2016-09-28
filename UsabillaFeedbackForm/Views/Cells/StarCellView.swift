@@ -21,15 +21,10 @@ class StarCellView: RootCellView, SwiftStarDelegate {
         starRatingView.currentValue = 0
         starRatingView.tintColor = UIColor(colorLiteralRed: 239.0/255.0, green: 197.0/255.0, blue: 54.0/255.0, alpha: 1.0)
         //starRatingView.allowsHalfStars = false
-        starRatingView.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         starRatingView.delegate = self
 
-        let theme = UsabillaThemeConfigurator.sharedInstance
-        if theme.fullStar != nil && theme.emptyStar != nil {
-            starRatingView.filledStarImage = theme.fullStar
-            starRatingView.emptyStarImage = theme.emptyStar
-        }
+        
 
         self.contentView.addSubview(starRatingView)
         
@@ -63,7 +58,12 @@ class StarCellView: RootCellView, SwiftStarDelegate {
             starRatingView.currentValue = 0
             starModel.fieldValue = nil
         }
-      
+        starRatingView.backgroundColor = starModel.themeConfig.backgroundColor
+        let theme = starModel.themeConfig
+        if theme.fullStar != nil && theme.emptyStar != nil {
+            starRatingView.filledStarImage = theme.fullStar
+            starRatingView.emptyStarImage = theme.emptyStar
+        }
     }
     
     func starValueChanged(value: Int) {

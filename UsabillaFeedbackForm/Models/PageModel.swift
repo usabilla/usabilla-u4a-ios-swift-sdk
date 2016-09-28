@@ -25,9 +25,9 @@ class PageModel {
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?
     var errorMessage: String?
+    var themeConfig: UsabillaThemeConfigurator
     
-    
-    init(pageNumber: Int, pageName: String) {
+    init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
         self.pageNumber = pageNumber
         self.pageName = pageName
         errorMessage = nil
@@ -36,6 +36,7 @@ class PageModel {
         isLastPage = nil
         jumpRuleList = nil
         defaultJumpTo = nil
+        self.themeConfig = themeConfig
     }
     
 //    deinit {

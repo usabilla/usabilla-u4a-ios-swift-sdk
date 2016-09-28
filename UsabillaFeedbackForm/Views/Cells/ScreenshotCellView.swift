@@ -80,11 +80,11 @@ class ScreenshotCellView: RootCellView {
         if screenshotModel.screenshot == nil {
             fullHeight.active = false
             zeroHeight.active = true
-            iconView.setImage(StyleKit.imageOfPlus(size: CGSize(width: 24, height: 24)), forState: .Normal)
+            iconView.setImage(StyleKit.imageOfPlus(size: CGSize(width: 24, height: 24), themeConfig: screenshotModel.themeConfig), forState: .Normal)
         } else {
             zeroHeight.active = false
             fullHeight.active = true
-            iconView.setImage(StyleKit.imageOfTrash(size: CGSize(width: 24, height: 24)), forState: .Normal)
+            iconView.setImage(StyleKit.imageOfTrash(size: CGSize(width: 24, height: 24), themeConfig: screenshotModel.themeConfig), forState: .Normal)
         }
         SwiftEventBus.post("updateScreenshotHeight", sender: nil)
     }

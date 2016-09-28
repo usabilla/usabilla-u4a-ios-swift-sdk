@@ -41,15 +41,15 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = [.FlexibleHeight, . FlexibleWidth]
         buttons = [zeroButton, firstButton, secondButton, thirdButton, fourthButton, fifthBUtton, sixthButton, seventhButton, eightButton, ninthhButton, tenthBUtton]
-        view.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+        view.backgroundColor = delegate?.themeConfig.backgroundColor
         
         for button in buttons {
-            button.setTitleColor(UsabillaThemeConfigurator.sharedInstance.textOnAccentColor, forState: .Selected)
-            button.setTitleColor(UsabillaThemeConfigurator.sharedInstance.primaryTextColor, forState: .Normal)
-            button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+            button.setTitleColor(delegate?.themeConfig.textOnAccentColor, forState: .Selected)
+            button.setTitleColor(delegate?.themeConfig.primaryTextColor, forState: .Normal)
+            button.backgroundColor = delegate?.themeConfig.backgroundColor
             button.layer.borderWidth = 1.0
             button.layer.cornerRadius = 6.0
-            button.layer.borderColor = UsabillaThemeConfigurator.sharedInstance.hintColor.CGColor
+            button.layer.borderColor = delegate?.themeConfig.hintColor.CGColor
         }
         
         addSubview(view)
@@ -67,7 +67,7 @@ import UIKit
     
     func resetButtons() {
         for button in buttons {
-            button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+            button.backgroundColor = delegate?.themeConfig.backgroundColor
             button.selected = false
         }
     }
@@ -77,7 +77,7 @@ import UIKit
         for button in buttons {
             if button.tag == value {
                 button.selected = true
-                button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.accentColor
+                button.backgroundColor = delegate?.themeConfig.accentColor
                 
             }
         }
@@ -86,11 +86,11 @@ import UIKit
     
     @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
         for button in buttons {
-            button.backgroundColor = UsabillaThemeConfigurator.sharedInstance.backgroundColor
+            button.backgroundColor = delegate?.themeConfig.backgroundColor
             button.selected = false
         }
         sender.selected = true
-        sender.backgroundColor = UsabillaThemeConfigurator.sharedInstance.accentColor
+        sender.backgroundColor = delegate?.themeConfig.accentColor
         
         delegate?.fieldValue = sender.tag
     }

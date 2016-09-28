@@ -25,15 +25,15 @@ public class UsabillaFeedbackForm {
     public static var showCancelButton: Bool = false
     static var defaultLocalisationFile = true
     
-    public class func loadFeedbackForm(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
-        getFormJsonFromServer(appId, screenshot: screenshot, customVariables: customVariables)
+    public class func loadFeedbackForm(appId: String, screenshot: UIImage? = nil, customVariables: [String: AnyObject]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
+        getFormJsonFromServer(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)
     }
     
     
-    class func getFormJsonFromServer (appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) {
+    class func getFormJsonFromServer (appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?, themeConfig: UsabillaThemeConfigurator) {
         
         NetworkManager.getFormWithFormID(appId).then { (jsonObj: JSON) -> () in
-            let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot)
+            let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
             let base = storyboard.instantiateViewControllerWithIdentifier("base") as! UINavigationController
@@ -45,19 +45,20 @@ public class UsabillaFeedbackForm {
             UsabillaFeedbackForm.delegate?.feedbackFormLoadedCorrectly(base, active: true)
             }.error { _ in
                 Swift.debugPrint("calling fail protocol")
-                UsabillaFeedbackForm.delegate?.feedbackFormLoadedIncorrectly(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables)!)
+                UsabillaFeedbackForm.delegate?.feedbackFormLoadedIncorrectly(UsabillaFeedbackForm.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
         }
         
     }
     
     
-    class func loadDefaultForm(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?) -> UINavigationController? {
+    class func loadDefaultForm(appId: String, screenshot: UIImage?, customVariables: [String: AnyObject]?, themeConfig: UsabillaThemeConfigurator) -> UINavigationController? {
         if let path = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.pathForResource("defaultJson", ofType: "json") {
             do {
                 let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
+      
                 let jsonObj: JSON = JSON(data:data)
                 if jsonObj != JSON.null {
-                    let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot)
+                    let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
                     form.isDefault = true
                     let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
                     let base = storyboard.instantiateViewControllerWithIdentifier("base") as? UINavigationController

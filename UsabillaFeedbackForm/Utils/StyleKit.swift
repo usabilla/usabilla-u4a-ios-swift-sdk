@@ -16,7 +16,7 @@ class StyleKit {
 
     /// Page 1
 
-    class func drawTrash(frame frame: CGRect = CGRect(x: 0, y: 0, width: 34, height: 44), resizing: ResizingBehavior = .AspectFit) {
+    class func drawTrash(frame frame: CGRect = CGRect(x: 0, y: 0, width: 34, height: 44), resizing: ResizingBehavior = .AspectFit, themeConfig: UsabillaThemeConfigurator) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -86,7 +86,7 @@ class StyleKit {
         trash2.moveToPoint(CGPoint(x: 22.67, y: 10.52))
         CGContextSaveGState(context)
         trash2.usesEvenOddFillRule = true
-        UsabillaThemeConfigurator.sharedInstance.primaryTextColor.setFill()
+        themeConfig.primaryTextColor.setFill()
         trash2.fill()
         CGContextRestoreGState(context)
 
@@ -98,18 +98,18 @@ class StyleKit {
 
     /// Page 1
 
-    class func imageOfTrash(size size: CGSize = CGSize(width: 34, height: 44), resizing: ResizingBehavior = .AspectFit) -> UIImage {
+    class func imageOfTrash(size size: CGSize = CGSize(width: 34, height: 44), resizing: ResizingBehavior = .AspectFit, themeConfig: UsabillaThemeConfigurator) -> UIImage {
         var image: UIImage
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        StyleKit.drawTrash(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
+        StyleKit.drawTrash(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing, themeConfig: themeConfig)
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
         return image
     }
 
-    class func drawPlus(frame frame: CGRect = CGRect(x: 0, y: 0, width: 44, height: 44), resizing: ResizingBehavior = .AspectFit) {
+    class func drawPlus(frame frame: CGRect = CGRect(x: 0, y: 0, width: 44, height: 44), resizing: ResizingBehavior = .AspectFit, themeConfig: UsabillaThemeConfigurator) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -151,7 +151,7 @@ class StyleKit {
         page2.addCurveToPoint(CGPoint(x: 33, y: 21), controlPoint1: CGPoint(x: 34, y: 21.45), controlPoint2: CGPoint(x: 33.55, y: 21))
         CGContextSaveGState(context)
         page2.usesEvenOddFillRule = true
-        UsabillaThemeConfigurator.sharedInstance.primaryTextColor.setFill()
+        themeConfig.primaryTextColor.setFill()
         page2.fill()
         CGContextRestoreGState(context)
 
@@ -163,11 +163,11 @@ class StyleKit {
 
     /// Page 1
 
-    class func imageOfPlus(size size: CGSize = CGSize(width: 44, height: 44), resizing: ResizingBehavior = .AspectFit) -> UIImage {
+    class func imageOfPlus(size size: CGSize = CGSize(width: 44, height: 44), resizing: ResizingBehavior = .AspectFit, themeConfig: UsabillaThemeConfigurator) -> UIImage {
         var image: UIImage
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        StyleKit.drawPlus(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
+        StyleKit.drawPlus(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing, themeConfig: themeConfig)
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 

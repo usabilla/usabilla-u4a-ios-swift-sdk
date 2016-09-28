@@ -18,7 +18,7 @@ class TextAreaCellView: BaseTextAreaCellView {
         let a = NSLayoutConstraint(item: textView, attribute: .Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 90)
         a.priority = 750
         a.active = true
-        textView.layer.borderColor = UsabillaThemeConfigurator.sharedInstance.hintColor.CGColor
+        //textView.layer.borderColor = model.themeConfig.hintColor.CGColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 5.0
         
@@ -35,12 +35,13 @@ class TextAreaCellView: BaseTextAreaCellView {
         if model.fieldValue != nil {
             textView.text = model.fieldValue
             isPlaceholder = false
-            textView.font = UsabillaThemeConfigurator.sharedInstance.customFont
+            textView.font = model.themeConfig.customFont
         } else {
             textView.text = model.placeHolder
             isPlaceholder = true
             textView.font = textView.font?.withTraits(.TraitItalic)
         }
+        textView.layer.borderColor = model.themeConfig.hintColor.CGColor
         
     }
     
@@ -49,7 +50,7 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.text = ""
         }
         isPlaceholder = false
-        textView.font = UsabillaThemeConfigurator.sharedInstance.customFont
+        textView.font = model.themeConfig.customFont
     }
     
     func textViewDidChange(textView: UITextView) {

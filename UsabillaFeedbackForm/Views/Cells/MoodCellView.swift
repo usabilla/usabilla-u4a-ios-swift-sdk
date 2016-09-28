@@ -18,11 +18,13 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     }
     var moodModel: MoodFieldModel!
     var buttonView: MoodContentController? = nil
+   
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        buttonView = MoodContentController()
+        buttonView = MoodContentController(asd: self)
         buttonView!.delegate = self
         self.contentView.addSubview(buttonView!)
         buttonView!.translatesAutoresizingMaskIntoConstraints = false
