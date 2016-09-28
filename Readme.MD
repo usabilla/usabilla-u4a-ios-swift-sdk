@@ -6,7 +6,7 @@ Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki)
 
 ## Using CocoaPods
 
-Include `pod 'UsabillaFeedbackForm', :git => 'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git'` in your Pod file and run `pod install` to install the SDK.
+Include `use_frameworks!` and `pod 'UsabillaFeedbackForm', '~> 2.1'` in your Pod file and run `pod install` to install the SDK.
 
 
 ## How to get started
@@ -24,7 +24,7 @@ Include `pod 'UsabillaFeedbackForm', :git => 'https://github.com/usabilla/usabil
 - Launch the form with: 
 
 ```
-UsabillaFeedbackForm.initSDKWithScreenshot("appId", screenshot: nil, customVariables: nil)
+UsabillaFeedbackForm.loadFeedbackForm("appId", screenshot: nil, customVariables: nil)
 
 ```
 
