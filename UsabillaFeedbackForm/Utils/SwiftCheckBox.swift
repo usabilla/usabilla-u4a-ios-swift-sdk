@@ -11,7 +11,6 @@ import UIKit
 
 protocol SwiftCheckBoxDelegate: class {
     func didTapCheckBox(checkBox: SwiftCheckBox)
-    var themeConfig: UsabillaThemeConfigurator {get set}
     //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
 

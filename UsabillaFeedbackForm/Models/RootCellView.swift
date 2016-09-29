@@ -22,9 +22,12 @@ class RootCellView: UITableViewCell {
     }
     var isCurrentlyDisplayed = false {
         didSet {
-            //if oldValue != isCurrentlyDisplayed {
-                isCurrentlyDisplayedChanged()
-            //}
+            isCurrentlyDisplayedChanged()
+        }
+    }
+    var themeConfig: UsabillaThemeConfigurator {
+        get {
+            return item.themeConfig
         }
     }
     
@@ -35,13 +38,6 @@ class RootCellView: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func buildView(){
         self.titleLabel = createTitleLabel()
         self.dividerLine = createDividerLine()
         self.dividerLine?.hidden = true
@@ -67,9 +63,11 @@ class RootCellView: UITableViewCell {
         let dividerMarginRight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.TrailingMargin, multiplier: 1, constant: 8)
         
         contentView.addConstraints([leadingC, topC, dividerTop, dividerHeight, dividerMarginLeft, dividerMarginRight])
-        
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func shoudlAppear() -> Bool? {
         return item.shouldAppear()
@@ -87,7 +85,7 @@ class RootCellView: UITableViewCell {
             let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
             
             text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
-                range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
+                              range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
             
             titleLabel.attributedText = text
             
@@ -97,7 +95,6 @@ class RootCellView: UITableViewCell {
         
         isValid = item.isModelValid
         
-        applyCustomisations()
     }
     
     func applyCustomisations() {
@@ -105,7 +102,7 @@ class RootCellView: UITableViewCell {
         titleLabel.textColor = item.themeConfig.primaryTextColor
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         self.backgroundColor = item.themeConfig.backgroundColor
-
+        
     }
     
     func createTitleLabel() -> UILabel {
@@ -113,8 +110,8 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
         //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-//        titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
-//        titleLabel.textColor = item.themeConfig.primaryTextColor
+        //titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
+        //titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
     
@@ -143,7 +140,7 @@ class RootCellView: UITableViewCell {
                 let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
                 
                 text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.errorColor,
-                    range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
+                                  range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
                 
                 titleLabel?.attributedText = text
                 
@@ -154,7 +151,7 @@ class RootCellView: UITableViewCell {
                 let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
                 
                 text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
-                    range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
+                                  range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
                 
                 titleLabel?.attributedText = text
                 

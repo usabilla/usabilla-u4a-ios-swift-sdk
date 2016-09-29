@@ -19,15 +19,7 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
     }
     var npsModel: NPSFieldModel!
     var buttonView: NPSContentController? = nil
-    var themeConfig: UsabillaThemeConfigurator{
-        get {
-            return npsModel.themeConfig
-        }
-        set {
-            npsModel.themeConfig = newValue
-        }
-    }
-    
+
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

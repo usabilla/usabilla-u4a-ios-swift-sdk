@@ -24,7 +24,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        buttonView = MoodContentController(asd: self)
+        buttonView = MoodContentController()
         buttonView!.delegate = self
         self.contentView.addSubview(buttonView!)
         buttonView!.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +51,8 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         moodModel = item as! MoodFieldModel
+        buttonView?.themeConfig = item.themeConfig
+
         //buttonView?.setNumberOfItems(moodModel.points)
         if moodModel.fieldValue == nil {
             buttonView?.resetSelected()

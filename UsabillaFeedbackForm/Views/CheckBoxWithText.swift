@@ -11,19 +11,12 @@ import Foundation
 class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     
     var checkBox: SwiftCheckBox!
-    weak var delegate: SwiftCheckBoxDelegate? {
-        didSet{
-            applyCustomisation()
-        }
-    }
+    weak var delegate: SwiftCheckBoxDelegate?
     var label: UILabel!
     var height: NSLayoutConstraint!
-    var themeConfig: UsabillaThemeConfigurator {
-        get {
-            return delegate!.themeConfig
-        }
-        set {
-            delegate?.themeConfig = newValue
+    var themeConfig: UsabillaThemeConfigurator? {
+        didSet{
+            applyCustomisation()
         }
     }
     
@@ -38,10 +31,10 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(CheckboxWithText.touchEvent))
         
         self.addGestureRecognizer(gesture)
-
+        
         height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 25)
         height.identifier = "CheckBox Height"
-
+        
         
         self.addSubview(checkBox)
         self.addSubview(label)
@@ -49,12 +42,12 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     }
     
     func applyCustomisation(){
-    
-    let color = delegate!.themeConfig.accentColor
-    checkBox.tintColor = color
-    checkBox.onTintColor = color
-    checkBox.onCheckColor = color
-    label.font = delegate?.themeConfig.customFont?.fontWithSize(13)
+        
+        let color = themeConfig!.accentColor
+        checkBox.tintColor = color
+        checkBox.onTintColor = color
+        checkBox.onCheckColor = color
+        label.font = themeConfig?.customFont?.fontWithSize(13)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +57,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     func didTapCheckBox(checkBox: SwiftCheckBox) {
         delegate?.didTapCheckBox(checkBox)
     }
-
+    
     
     func touchEvent() {
         self.checkBox.setOn(!self.checkBox.on, animated: true)

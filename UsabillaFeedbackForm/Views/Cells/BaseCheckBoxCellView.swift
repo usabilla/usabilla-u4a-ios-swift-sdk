@@ -12,15 +12,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
     
     var checkBoxes: [CheckboxWithText] = []
     var model: FieldModelWithOptions!
-    var themeConfig: UsabillaThemeConfigurator {
-        get {
-            return model.themeConfig
-        }
-        set {
-            model.themeConfig = newValue
-        }
-    }
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -55,6 +47,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
         for (index, option) in model.options.enumerate() {
             
             let checkBox = CheckboxWithText()
+            checkBox.themeConfig = model.themeConfig
             checkBox.delegate = self
             checkBox.checkBox.delegate = self
             //checkBox.checkBox.delegate = self
