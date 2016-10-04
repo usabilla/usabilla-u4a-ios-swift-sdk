@@ -22,7 +22,7 @@ class NetworkManager {
         
         let headers: [String: String]? = [
             "app_version": NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! String,
-            "app_name": String(NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"]),
+            "app_name": NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String] as! String,
             "SDK_version": NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String,
             "os": "iOS"
         ]

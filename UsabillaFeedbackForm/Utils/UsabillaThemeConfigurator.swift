@@ -11,22 +11,23 @@ import UIKit
 
 public class UsabillaThemeConfigurator {
 
-
-    public var headerColor: UIColor
-    public var headerTextColor: UIColor
-    public var primaryTextColor: UIColor
+    public var titleColor: UIColor
+    public var textColor: UIColor
     public var accentColor: UIColor
     public var textOnAccentColor: UIColor
     public var backgroundColor: UIColor
     public var errorColor: UIColor
-    public var hintColor: UIColor
     public var statusBarColor: UIStatusBarStyle
-
     public var customFont: UIFont?
     public var enabledEmoticons: [UIImage]
     public var disabledEmoticons: [UIImage]?
     public var fullStar: UIImage?
     public var emptyStar: UIImage?
+    public var hintColor: UIColor {
+        get{
+            return textColor.colorWithAlphaComponent(0.38)
+        }
+    }
 
     public init() {
 
@@ -34,12 +35,10 @@ public class UsabillaThemeConfigurator {
         // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
 
         statusBarColor = .Default
-        headerColor = UIColor(rgba:"#00A5C9")
-        headerTextColor = UIColor.whiteColor()
-        primaryTextColor = UIColor(rgba:"#59636B")
+        textColor = UIColor(rgba:"#59636B")
         textOnAccentColor = UIColor.whiteColor()
         accentColor = UIColor(rgba:"#00A5C9")
-        hintColor = UIColor(rgba:"#9CACBA")
+        titleColor = UIColor(rgba:"#41474C")
         errorColor = UIColor(rgba:"#F4606E")
         backgroundColor = UIColor.whiteColor()
         enabledEmoticons = UsabillaThemeConfigurator.createEmoticons()

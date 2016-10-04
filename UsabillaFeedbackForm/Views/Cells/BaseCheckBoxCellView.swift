@@ -54,7 +54,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             
             styleCheckBox(checkBox)
             checkBox.label.text = option.title
-            checkBox.label.textColor = model.themeConfig.primaryTextColor
+            checkBox.label.textColor = model.themeConfig.textColor
             checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.userInteractionEnabled = true
             

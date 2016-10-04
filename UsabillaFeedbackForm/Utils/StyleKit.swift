@@ -86,7 +86,7 @@ class StyleKit {
         trash2.moveToPoint(CGPoint(x: 22.67, y: 10.52))
         CGContextSaveGState(context)
         trash2.usesEvenOddFillRule = true
-        themeConfig.primaryTextColor.setFill()
+        themeConfig.textColor.setFill()
         trash2.fill()
         CGContextRestoreGState(context)
 
@@ -151,7 +151,7 @@ class StyleKit {
         page2.addCurveToPoint(CGPoint(x: 33, y: 21), controlPoint1: CGPoint(x: 34, y: 21.45), controlPoint2: CGPoint(x: 33.55, y: 21))
         CGContextSaveGState(context)
         page2.usesEvenOddFillRule = true
-        themeConfig.primaryTextColor.setFill()
+        themeConfig.textColor.setFill()
         page2.fill()
         CGContextRestoreGState(context)
 

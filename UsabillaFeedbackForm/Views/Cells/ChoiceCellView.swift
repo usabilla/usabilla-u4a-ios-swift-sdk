@@ -39,7 +39,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
     override func applyCustomisations() {
         super.applyCustomisations()
         picker.backgroundColor = choiceModel.themeConfig.backgroundColor
-        picker.tintColor = choiceModel.themeConfig.primaryTextColor
+        picker.tintColor = choiceModel.themeConfig.textColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,7 +80,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.primaryTextColor])
+        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.textColor])
     }
     
     

@@ -56,7 +56,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         
         textField.tintColor = model.themeConfig.hintColor
         textField.font = model.themeConfig.customFont?.fontWithSize(13)
-        textField.textColor = model.themeConfig.primaryTextColor
+        textField.textColor = model.themeConfig.textColor
     }
 
     

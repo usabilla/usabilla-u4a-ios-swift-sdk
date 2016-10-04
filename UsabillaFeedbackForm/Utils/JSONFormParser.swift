@@ -124,29 +124,23 @@ class JSONFormParser {
     }
     
     private class func parseColors(config: UsabillaThemeConfigurator, json: JSON){
-        if let primaryTextColorHex = json["group1"]["hash"].string {
-            config.primaryTextColor = UIColor(rgba: primaryTextColorHex)
+        if let titleColorHex = json["group1"]["hash"].string {
+            config.titleColor = UIColor(rgba: titleColorHex)
         }
-        if let headerColorHex = json["group2"]["hash"].string {
-            config.headerColor = UIColor(rgba: headerColorHex)
-        }
-        if let headerTextColorHex = json["group3"]["hash"].string {
-            config.headerTextColor = UIColor(rgba: headerTextColorHex)
-        }
-        if let accentColorHex = json["group4"]["hash"].string {
+        if let accentColorHex = json["group2"]["hash"].string {
             config.accentColor = UIColor(rgba: accentColorHex)
         }
-        if let textOnAccentColorHex = json["group5"]["hash"].string {
-            config.textOnAccentColor = UIColor(rgba: textOnAccentColorHex)
+        if let textColorHex = json["group3"]["hash"].string {
+            config.textColor = UIColor(rgba: textColorHex)
         }
-        if let hintColorHex = json["group6"]["hash"].string {
-            config.hintColor = UIColor(rgba: hintColorHex)
-        }
-        if let errorColorHex = json["group7"]["hash"].string {
+        if let errorColorHex = json["group4"]["hash"].string {
             config.errorColor = UIColor(rgba: errorColorHex)
         }
-        if let backgroundColorHex = json["group8"]["hash"].string {
+        if let backgroundColorHex = json["group5"]["hash"].string {
             config.backgroundColor = UIColor(rgba: backgroundColorHex)
+        }
+        if let textOnAccentHex = json["group6"]["hash"].string {
+            config.textOnAccentColor = UIColor(rgba: textOnAccentHex)
         }
     }
 }

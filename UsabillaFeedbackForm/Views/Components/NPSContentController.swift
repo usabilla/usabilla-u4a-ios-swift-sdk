@@ -54,7 +54,7 @@ import UIKit
         
         for button in buttons {
             button.setTitleColor(themeConfig?.textOnAccentColor, forState: .Selected)
-            button.setTitleColor(themeConfig?.primaryTextColor, forState: .Normal)
+            button.setTitleColor(themeConfig?.textColor, forState: .Normal)
             button.backgroundColor = themeConfig?.backgroundColor
             button.layer.borderWidth = 1.0
             button.layer.cornerRadius = 6.0

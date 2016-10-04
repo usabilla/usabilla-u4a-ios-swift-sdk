@@ -42,7 +42,7 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
     override func applyCustomisations() {
         super.applyCustomisations()
         textView.font = item.themeConfig.customFont?.fontWithSize(13)
-        textView.textColor = item.themeConfig.primaryTextColor
+        textView.textColor = item.themeConfig.textColor
         textView.tintColor = item.themeConfig.hintColor
         textView.backgroundColor = item.themeConfig.backgroundColor
     }
