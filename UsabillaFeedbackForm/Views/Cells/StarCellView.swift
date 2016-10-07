@@ -64,7 +64,9 @@ class StarCellView: RootCellView, SwiftStarDelegate {
             starRatingView.filledStarImage = theme.fullStar
             starRatingView.emptyStarImage = theme.emptyStar
         }
+        applyCustomisations()
     }
+    
     
     func starValueChanged(value: Int) {
         starModel.fieldValue = value

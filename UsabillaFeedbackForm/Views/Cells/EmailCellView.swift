@@ -28,6 +28,7 @@ class EmailCellView: TextInputCellView {
         textField.placeholder = mailModel.placeHolder
         textField.text = mailModel.fieldValue
         textField.backgroundColor = mailModel.themeConfig.backgroundColor
+        applyCustomisations()
     }
     
 //    deinit {

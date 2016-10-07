@@ -42,8 +42,7 @@ class FormViewController: UIViewController {
         } else {
             progressBar.progressTintColor =  formModel.themeConfig.accentColor
         }
-        poweredLabel.textColor = formModel.themeConfig.accentColor
-        
+        poweredLabel.textColor = formModel.themeConfig.textOnAccentColor
         poweredLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormViewController.openUsabilla)))
         updateProgressBar()
         updateRightButton()

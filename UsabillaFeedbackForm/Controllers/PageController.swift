@@ -140,7 +140,6 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         let cell = tableView.dequeueReusableCellWithIdentifier(item.type, forIndexPath:indexPath) as! RootCellView
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.setFeedbackItem(item)
-        cell.applyCustomisations()
         if !item.shouldAppear() {
             cell.hidden = true
             cell.userInteractionEnabled = false

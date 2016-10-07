@@ -58,7 +58,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         textField.textColor = model.themeConfig.textColor
         textField.backgroundColor = themeConfig.backgroundColor
         textField.layer.borderColor = model.themeConfig.hintColor.CGColor
-
+        applyCustomisations()
     }
 
     

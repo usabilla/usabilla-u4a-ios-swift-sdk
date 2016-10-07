@@ -132,6 +132,8 @@ class SliderCellView: RootCellView {
             slider.setValue(0, animated: false)
         }
         
+        applyCustomisations()
+        
     }
     
     

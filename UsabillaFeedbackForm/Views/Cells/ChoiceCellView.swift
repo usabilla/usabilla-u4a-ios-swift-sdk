@@ -33,7 +33,6 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         
         contentView.addConstraints([f, a, v, z])
         
-        setNeedsLayout()
     }
     
     override func applyCustomisations() {
@@ -66,8 +65,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
                 a.priority = 750
                 a.active = true
         }
-        setNeedsLayout()
-        
+        applyCustomisations()
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

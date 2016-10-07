@@ -42,7 +42,7 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.font = textView.font?.withTraits(.TraitItalic)
         }
         textView.layer.borderColor = model.themeConfig.hintColor.CGColor
-        
+        applyCustomisations()
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

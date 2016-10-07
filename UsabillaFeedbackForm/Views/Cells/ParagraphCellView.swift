@@ -32,7 +32,9 @@ class ParagraphCellView: BaseTextAreaCellView {
             textView.setValue(text, forKey: "contentToHTMLString")
         } else {
             textView.text = text
-        }    
+        }
+        
+        applyCustomisations()
     }
     
 //    deinit {

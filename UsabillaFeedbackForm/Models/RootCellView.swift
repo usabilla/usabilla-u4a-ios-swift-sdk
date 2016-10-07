@@ -102,7 +102,6 @@ class RootCellView: UITableViewCell {
         titleLabel.textColor = item.themeConfig.titleColor
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         self.backgroundColor = item.themeConfig.backgroundColor
-        
     }
     
     func createTitleLabel() -> UILabel {

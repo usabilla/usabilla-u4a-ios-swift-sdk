@@ -57,7 +57,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             checkBox.label.textColor = model.themeConfig.textColor
             checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.userInteractionEnabled = true
-            
+            checkBox.applyCustomisation()
             if model.fieldValue.contains(option.value ) {
                 checkBox.checkBox.on = true
             }
@@ -85,7 +85,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             
             previousCheckbox = checkBox
         }
-        
+        applyCustomisations()
     }
     
     func didTapCheckBox(checkBox: SwiftCheckBox) {

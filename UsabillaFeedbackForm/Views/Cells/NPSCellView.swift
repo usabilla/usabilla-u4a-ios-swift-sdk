@@ -58,6 +58,8 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
         } else {
             buttonView?.resetButtons()
         }
+        
+        applyCustomisations()
      
     }
 //    deinit {
