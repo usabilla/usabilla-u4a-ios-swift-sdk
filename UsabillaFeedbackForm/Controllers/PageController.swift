@@ -160,7 +160,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     func initWithPage(page: PageModel) {
         pageModel = page
         dynamicFields = []
-        reloadTableWithAnimation()
+        self.tableView.reloadData()
+        //Magic
     }
     
     
