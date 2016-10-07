@@ -99,7 +99,7 @@ class RootCellView: UITableViewCell {
     
     func applyCustomisations() {
         titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
-        titleLabel.textColor = item.themeConfig.textColor
+        titleLabel.textColor = item.themeConfig.titleColor
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         self.backgroundColor = item.themeConfig.backgroundColor
         

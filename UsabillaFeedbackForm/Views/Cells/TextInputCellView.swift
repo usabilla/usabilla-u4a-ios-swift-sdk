@@ -21,7 +21,6 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .RoundedRect
-        
         contentView.addSubview(textField)
         
         textField.addTarget(self, action: #selector(TextInputCellView.textFieldDidChange), forControlEvents: .EditingChanged)
@@ -57,6 +56,9 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         textField.tintColor = model.themeConfig.hintColor
         textField.font = model.themeConfig.customFont?.fontWithSize(13)
         textField.textColor = model.themeConfig.textColor
+        textField.backgroundColor = themeConfig.backgroundColor
+        textField.layer.borderColor = model.themeConfig.hintColor.CGColor
+
     }
 
     
