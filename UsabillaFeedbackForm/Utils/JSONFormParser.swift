@@ -20,6 +20,10 @@ class JSONFormParser {
         let version = json["version"].intValue
         let errorMessage = data["errorMessage"].stringValue
         let colorJson = json["colors"]
+        let appStoreRedirect = data["appStoreRedirect"].bool
+        let progressBar = data["progressBar"].bool
+
+        
         parseColors(themeConfig, json: colorJson)
 
         var pages: [PageModel] = []
@@ -42,7 +46,7 @@ class JSONFormParser {
             pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
         
-        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig)
+        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, hideProgressBar: progressBar)
     }
 
 

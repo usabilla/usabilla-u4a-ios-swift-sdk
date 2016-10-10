@@ -20,10 +20,12 @@ class FormModel {
     var isDefault: Bool = false
     let formJsonString: JSON!
     let errorMessage: String
+    let redirectToAppStore: Bool?
+    let hideProgressBar: Bool?
     let themeConfig: UsabillaThemeConfigurator
     
     
-    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String, themeConfig: UsabillaThemeConfigurator) {
+    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, hideProgressBar: Bool? ) {
         self.errorMessage = errorMessage
         self.appTitle = appTitle
         self.appSubmitButton = appSubmitButton
@@ -33,6 +35,8 @@ class FormModel {
         self.appId = appId
         self.formJsonString = jsonString
         self.themeConfig = themeConfig
+        self.redirectToAppStore = redirectToAppStore
+        self.hideProgressBar = hideProgressBar
     }
     
 //    deinit {
