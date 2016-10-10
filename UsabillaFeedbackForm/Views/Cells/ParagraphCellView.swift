@@ -33,8 +33,6 @@ class ParagraphCellView: BaseTextAreaCellView {
         } else {
             textView.text = text
         }
-        
-        applyCustomisations()
     }
     
 //    deinit {

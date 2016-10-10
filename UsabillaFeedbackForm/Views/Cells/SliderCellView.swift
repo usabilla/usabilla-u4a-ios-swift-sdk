@@ -87,6 +87,14 @@ class SliderCellView: RootCellView {
         super.applyCustomisations()
         slider.tintColor = sliderModel.themeConfig.accentColor
         slider.thumbTintColor = sliderModel.themeConfig.accentColor
+        //backgroundColor =  sliderModel.themeConfig.backgroundColor
+        
+        valueLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
+        valueLabel.textColor = item.themeConfig.hintColor
+        rightLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
+        rightLabel.textColor = item.themeConfig.hintColor
+        leftLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
+        leftLabel.textColor = item.themeConfig.hintColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -131,9 +139,7 @@ class SliderCellView: RootCellView {
         } else {
             slider.setValue(0, animated: false)
         }
-        
-        applyCustomisations()
-        
+                
     }
     
     

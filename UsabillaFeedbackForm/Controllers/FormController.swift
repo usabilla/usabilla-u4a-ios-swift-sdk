@@ -124,7 +124,7 @@ class FormViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
         thankYouController = storyboard.instantiateViewControllerWithIdentifier("thankYou") as? ThankYouController
-        
+        thankYouController.themeConfig = formModel.themeConfig
         var headerFieldValue: String?
         var thanksFieldValue: String?
         if let header: HeaderFieldModel = formModel.pages.last?.fields[0] as? HeaderFieldModel {

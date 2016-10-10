@@ -74,7 +74,6 @@ class ScreenshotCellView: RootCellView {
         screenshotModel = item as! ScreenshotModel
         screenShotView.image = screenshotModel.screenshot
         updateUI()
-        applyCustomisations()
     }
     
     func updateUI() {

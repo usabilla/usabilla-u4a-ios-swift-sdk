@@ -45,6 +45,8 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
         textView.textColor = item.themeConfig.textColor
         textView.tintColor = item.themeConfig.hintColor
         textView.backgroundColor = item.themeConfig.backgroundColor
+        textView.layer.borderColor = item.themeConfig.hintColor.CGColor
+
     }
 
 //    deinit {

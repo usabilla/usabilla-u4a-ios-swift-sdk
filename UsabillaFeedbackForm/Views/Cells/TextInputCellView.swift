@@ -45,6 +45,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     
     
     override func setFeedbackItem(item: FieldModelProtocol) {
+        print("set feedback Text Input")
         super.setFeedbackItem(item)
         model = item as! StringFieldModel
         textField.text = model.fieldValue
@@ -53,14 +54,20 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
             textField.placeholder = model2.placeHolder
         }
         
+    }
+    
+    override func applyCustomisations() {
+        print("customisation Text Input")
+        super.applyCustomisations()
         textField.tintColor = model.themeConfig.hintColor
         textField.font = model.themeConfig.customFont?.fontWithSize(13)
         textField.textColor = model.themeConfig.textColor
         textField.backgroundColor = themeConfig.backgroundColor
         textField.layer.borderColor = model.themeConfig.hintColor.CGColor
-        applyCustomisations()
+        textField.layer.borderWidth = 1.0
+        textField.layer.cornerRadius = 5
+        textField.layer.masksToBounds = true
     }
-
     
     func textFieldDidEndEditing(textField: UITextField) {
         model.fieldValue = textField.text

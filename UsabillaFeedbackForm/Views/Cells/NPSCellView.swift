@@ -58,10 +58,11 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
         } else {
             buttonView?.resetButtons()
         }
-        
-        applyCustomisations()
-     
+             
     }
+    
+
+    
 //    deinit {
 //        print("NPS cell deinit")
 //    }

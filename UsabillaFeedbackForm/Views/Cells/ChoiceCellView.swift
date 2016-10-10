@@ -65,7 +65,6 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
                 a.priority = 750
                 a.active = true
         }
-        applyCustomisations()
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

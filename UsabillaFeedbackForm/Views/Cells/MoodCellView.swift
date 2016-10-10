@@ -60,7 +60,6 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
             buttonView?.setSelected(moodModel.fieldValue!)
         }
         
-        applyCustomisations()
     }
     
 //    deinit {

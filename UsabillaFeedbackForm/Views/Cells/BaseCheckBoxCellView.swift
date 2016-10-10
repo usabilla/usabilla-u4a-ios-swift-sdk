@@ -85,7 +85,6 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             
             previousCheckbox = checkBox
         }
-        applyCustomisations()
     }
     
     func didTapCheckBox(checkBox: SwiftCheckBox) {
