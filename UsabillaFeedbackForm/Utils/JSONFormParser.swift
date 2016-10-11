@@ -46,7 +46,7 @@ class JSONFormParser {
             pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
         
-        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, hideProgressBar: progressBar)
+        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar)
     }
 
 
