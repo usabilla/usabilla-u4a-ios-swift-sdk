@@ -37,9 +37,11 @@ class ThankYouController: UIViewController {
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
             bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_invite_rate_app_store"), forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), forControlEvents: .TouchUpInside)
-        } else {
+        } else if !UsabillaFeedbackForm.hideGiveMoreFeedback {
             bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_more_feedback"), forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.reloadForm), forControlEvents: .TouchUpInside)
+        } else {
+            bottomButton.hidden = true
         }
 
         bottomButton.titleLabel?.font = themeConfig?.customFont?.fontWithSize(15)
