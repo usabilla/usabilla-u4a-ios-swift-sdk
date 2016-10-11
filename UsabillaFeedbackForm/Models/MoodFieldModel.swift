@@ -14,9 +14,9 @@ class MoodFieldModel: IntFieldModel {
         points = json["points"].intValue
         super.init(json: json, pageModel: pageModel)
     }
-    
+
 //    deinit {
 //        print("modd field model")
 //    }
-    
+
 }

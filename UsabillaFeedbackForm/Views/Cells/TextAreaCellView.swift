@@ -11,7 +11,7 @@ import UIKit
 
 class TextAreaCellView: BaseTextAreaCellView {
     var model: TextAreaFieldModel!
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         textView.dataDetectorTypes = .Link
@@ -22,16 +22,16 @@ class TextAreaCellView: BaseTextAreaCellView {
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 5.0
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         model = item as! TextAreaFieldModel
     }
-    
+
     override func applyCustomisations() {
         super.applyCustomisations()
         if model.fieldValue != nil {
@@ -50,7 +50,7 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.text = model.placeHolder
         }
     }
-    
+
     func textViewDidBeginEditing(textView: UITextView) {
         if isPlaceholder {
             textView.text = nil
@@ -59,11 +59,11 @@ class TextAreaCellView: BaseTextAreaCellView {
         textView.font = model.themeConfig.customFont
         textView.textColor = model.themeConfig.textColor
     }
-    
+
     func textViewDidChange(textView: UITextView) {
         model.fieldValue = textView.text
     }
-    
+
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = model.placeHolder
@@ -73,7 +73,7 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.textColor = model.themeConfig.hintColor
         }
     }
-    
+
 //    deinit {
 //        print("Text area cell deinit")
 //    }

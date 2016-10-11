@@ -9,7 +9,7 @@
 import Foundation
 
 class StarFieldModel: IntFieldModel {
-    
+
     required init(json: JSON, pageModel: PageModel) {
         super.init(json: json, pageModel: pageModel)
         self.type = "stars"
@@ -17,6 +17,6 @@ class StarFieldModel: IntFieldModel {
 //    deinit {
 //        print("star field model")
 //    }
-    
+
 
 }

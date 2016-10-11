@@ -9,19 +9,19 @@
 import Foundation
 
 class EmailCellView: TextInputCellView {
-    
+
     var mailModel: EmailFieldModel!
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         textField.keyboardType = .EmailAddress
         //validator.registerField(textField, rules: [EmailRule()])
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         mailModel = item as! EmailFieldModel
@@ -38,11 +38,11 @@ class EmailCellView: TextInputCellView {
         }
         textField.text = mailModel.fieldValue
     }
-    
-    
-    
+
+
+
     //    deinit {
     //        print("mail cell deinit")
     //    }
-    
+
 }

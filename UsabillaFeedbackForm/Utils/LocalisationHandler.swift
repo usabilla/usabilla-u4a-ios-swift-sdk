@@ -11,14 +11,14 @@ import Foundation
 
 class LocalisationHandler {
 
-    static func getLocalisedStringForKey(key: String) -> String{
+    static func getLocalisedStringForKey(key: String) -> String {
         if UsabillaFeedbackForm.defaultLocalisationFile {
             let bundle = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!
             return NSLocalizedString(key, tableName: UsabillaFeedbackForm.localizedStringFile, bundle: bundle, comment: "")
         } else {
             return NSLocalizedString(key, tableName: UsabillaFeedbackForm.localizedStringFile, comment: "")
         }
-    
+
     }
 
 }

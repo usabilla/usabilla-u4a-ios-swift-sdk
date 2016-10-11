@@ -9,33 +9,33 @@
 import UIKit
 
 @IBDesignable class MoodContentController: UIView {
-    
+
     weak var delegate: IntFieldHandlerProtocol? = nil
     var view: UIView!
     var buttons: [UIButton]!
     var themeConfig: UsabillaThemeConfigurator? {
-        didSet{
+        didSet {
             applyCustomisations()
         }
     }
-    
+
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
     @IBOutlet weak var fourthButton: UIButton!
     @IBOutlet weak var fifthBUtton: UIButton!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
             setUp()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
             setUp()
     }
 
-    
+
     func setUp() {
         view = loadViewFromNib()
         view.frame = bounds
@@ -45,8 +45,8 @@ import UIKit
 
         addSubview(view)
     }
-    
-    func applyCustomisations(){
+
+    func applyCustomisations() {
         var smilies: [UIImage] = []
 
         if themeConfig?.disabledEmoticons != nil {
@@ -54,14 +54,14 @@ import UIKit
         } else {
             smilies = (themeConfig?.enabledEmoticons)!
         }
-        
+
         view.backgroundColor = themeConfig?.backgroundColor
         firstButton.setImage(smilies[0], forState: .Normal)
         secondButton.setImage(smilies[1], forState: .Normal)
         thirdButton.setImage(smilies[2], forState: .Normal)
         fourthButton.setImage(smilies[3], forState: .Normal)
         fifthBUtton.setImage(smilies[4], forState: .Normal)
-        
+
 
     }
 
@@ -77,17 +77,17 @@ import UIKit
         default:
             break
         }
-    
+
     }
-    
+
     func loadViewFromNib() -> UIView {
         let bundle = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")
         let nib = UINib(nibName: "MoodContentController", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
-    
+
         return view
     }
-    
+
     func resetSelected() {
         if let disabled = themeConfig?.disabledEmoticons {
             firstButton.setImage(disabled[0], forState: .Normal)
@@ -103,7 +103,7 @@ import UIKit
             fifthBUtton.alpha = 0.5
         }
     }
-    
+
     func setSelected(selected: Int) {
         resetSelected()
         switch selected {
@@ -121,16 +121,16 @@ import UIKit
             break
         }
     }
-    
+
     func enableButton(button: UIButton, position: Int) {
         button.setImage(themeConfig?.enabledEmoticons[position-1], forState: .Normal)
         button.alpha = 1
     }
-    
-    
+
+
     @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
         delegate?.fieldValue = sender.tag
-        
+
         if let disabled = themeConfig?.disabledEmoticons {
             firstButton.setImage(disabled[0], forState: .Normal)
             secondButton.setImage(disabled[1], forState: .Normal)

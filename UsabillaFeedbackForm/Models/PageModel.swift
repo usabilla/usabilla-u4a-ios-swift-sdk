@@ -9,24 +9,24 @@
 import Foundation
 
 class PageModel {
-    
+
     var fields: [BaseFieldModel]!
     var fieldValuesCollection: [String: [String]] = [:] {
         didSet {
             SwiftEventBus.postToMainThread("pageUpdatedValues", sender: self)
         }
     }
-    
+
     let pageNumber: Int?
     let pageName: String?
     var type: String?
     var isLastPage: Bool?
-    
+
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?
     var errorMessage: String?
     var themeConfig: UsabillaThemeConfigurator
-    
+
     init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
         self.pageNumber = pageNumber
         self.pageName = pageName
@@ -38,7 +38,7 @@ class PageModel {
         defaultJumpTo = nil
         self.themeConfig = themeConfig
     }
-    
+
 //    deinit {
 //        print("called page model \(pageName) , \(pageNumber) deinit")
 //        print("containing \(fields.count) fields")

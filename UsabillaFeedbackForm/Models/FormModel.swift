@@ -23,8 +23,8 @@ class FormModel {
     let redirectToAppStore: Bool
     let showProgressBar: Bool
     let themeConfig: UsabillaThemeConfigurator
-    
-    
+
+
     init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool? ) {
         self.errorMessage = errorMessage
         self.appTitle = appTitle
@@ -38,10 +38,10 @@ class FormModel {
         self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
     }
-    
+
 //    deinit {
 //        print("called form model deinit")
 //        print("containing \(pages.count) pages")
-//        
+//
 //    }
 }

@@ -24,7 +24,7 @@ public class UsabillaThemeConfigurator {
     public var fullStar: UIImage?
     public var emptyStar: UIImage?
     public var hintColor: UIColor {
-        get{
+        get {
             return textColor.colorWithAlphaComponent(0.38)
         }
     }

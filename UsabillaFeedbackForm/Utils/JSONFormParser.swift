@@ -23,7 +23,7 @@ class JSONFormParser {
         let appStoreRedirect = data["appStoreRedirect"].bool
         let progressBar = data["progressBar"].bool
 
-        
+
         parseColors(themeConfig, json: colorJson)
 
         var pages: [PageModel] = []
@@ -45,7 +45,7 @@ class JSONFormParser {
         if hasScreenshot {
             pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
-        
+
         return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar)
     }
 
@@ -126,8 +126,8 @@ class JSONFormParser {
 
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)
     }
-    
-    private class func parseColors(config: UsabillaThemeConfigurator, json: JSON){
+
+    private class func parseColors(config: UsabillaThemeConfigurator, json: JSON) {
         if let titleColorHex = json["group1"]["hash"].string {
             config.titleColor = UIColor(rgba: titleColorHex)
         }

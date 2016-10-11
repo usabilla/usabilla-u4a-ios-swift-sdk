@@ -9,11 +9,11 @@
 import Foundation
 
 class FieldFactory {
-    
-    class func createField(json: JSON, pagemodel: PageModel)  -> BaseFieldModel? {
-        
+
+    class func createField(json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
+
         let type = json["type"].stringValue
-        
+
         switch type {
         case "header":
             return HeaderFieldModel(json: json, pageModel: pagemodel)
@@ -49,9 +49,9 @@ class FieldFactory {
             return  CheckboxFieldModel(json: json, pageModel: pagemodel)
         default:
             return nil
-            
+
         }
-        
+
     }
-    
+
 }

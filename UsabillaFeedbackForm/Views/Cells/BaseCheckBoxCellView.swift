@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
-    
+
     var checkBoxes: [CheckboxWithText] = []
     var model: FieldModelWithOptions!
 
@@ -17,24 +17,24 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
 
     }
-    
-    func updateCheckBoxeslayout(){
+
+    func updateCheckBoxeslayout() {
         for checkBox in checkBoxes {
             checkBox.height.active =  isCurrentlyDisplayed ? true : false
         }
     }
-    
+
     override func isCurrentlyDisplayedChanged() {
         super.isCurrentlyDisplayedChanged()
         updateCheckBoxeslayout()
     }
-    
-    
+
+
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         model = item as! FieldModelWithOptions
@@ -43,15 +43,15 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
         }
         checkBoxes = []
         var previousCheckbox: CheckboxWithText?
-        
+
         for (index, option) in model.options.enumerate() {
-            
+
             let checkBox = CheckboxWithText()
             checkBox.themeConfig = model.themeConfig
             checkBox.delegate = self
             checkBox.checkBox.delegate = self
             //checkBox.checkBox.delegate = self
-            
+
             styleCheckBox(checkBox)
             checkBox.label.text = option.title
             checkBox.label.textColor = model.themeConfig.textColor
@@ -61,13 +61,13 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             if model.fieldValue.contains(option.value ) {
                 checkBox.checkBox.on = true
             }
-            
+
             self.contentView.addSubview(checkBox)
             checkBoxes.append(checkBox)
-            
+
             checkBox.height.active = true
             NSLayoutConstraint(item: checkBox, attribute: .Width, relatedBy: .Equal, toItem: self.contentView, attribute: .Width, multiplier: 1, constant: 0).active = true
-            
+
             if index == 0 {
                 //First checkbox
                 NSLayoutConstraint(item: checkBox, attribute: .Top, relatedBy: .Equal, toItem: dividerLine, attribute: .Bottom, multiplier: 1, constant: 4).active = true
@@ -76,27 +76,27 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
                 a.priority = 750
                 a.active = true
             }
-            
+
             if index == model.options.count - 1 {
                 //Last element
                 NSLayoutConstraint(item: checkBox, attribute: .Bottom, relatedBy: .Equal, toItem: self.contentView, attribute: .Bottom, multiplier: 1, constant: -12).active = true
             }
-            
-            
+
+
             previousCheckbox = checkBox
         }
     }
-    
+
     func didTapCheckBox(checkBox: SwiftCheckBox) {
         fatalError("didTapCheckBox has not been implemented")
-        
+
     }
-    
+
     func styleCheckBox(checkBox: CheckboxWithText) {
         fatalError("styleCheckBox has not been implemented")
     }
-    
-    
+
+
 //    deinit {
 //        print("base checkbox  cell deinit")
 //    }
