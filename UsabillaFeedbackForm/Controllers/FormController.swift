@@ -14,7 +14,9 @@ class FormViewController: UIViewController {
     var currentPage = 0
     var formModel: FormModel!
     var reachability: Reachability!
-
+    var pageController: PageController!
+    var thankYouController: ThankYouController!
+    var customVars: [String: AnyObject]? = nil
 
     @IBOutlet weak var progressBar: UIProgressView!
 
@@ -26,13 +28,7 @@ class FormViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var footerView: UIView!
 
-
-    var pageController: PageController!
-    var thankYouController: ThankYouController!
-
-
-    var customVars: [String: AnyObject]? = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
