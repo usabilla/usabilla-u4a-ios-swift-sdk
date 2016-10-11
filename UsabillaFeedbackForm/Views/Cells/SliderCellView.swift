@@ -78,9 +78,7 @@ class SliderCellView: RootCellView {
         
         contentView.addConstraints([f, a, v])
         
-        
-        setNeedsLayout()
-        
+            
     }
     
     override func applyCustomisations() {
@@ -90,11 +88,11 @@ class SliderCellView: RootCellView {
         //backgroundColor =  sliderModel.themeConfig.backgroundColor
         
         valueLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
-        valueLabel.textColor = item.themeConfig.hintColor
+        valueLabel.textColor = item.themeConfig.textColor
         rightLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
-        rightLabel.textColor = item.themeConfig.hintColor
+        rightLabel.textColor = item.themeConfig.textColor
         leftLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
-        leftLabel.textColor = item.themeConfig.hintColor
+        leftLabel.textColor = item.themeConfig.textColor
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -45,19 +45,28 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     
     
     override func setFeedbackItem(item: FieldModelProtocol) {
-        print("set feedback Text Input")
         super.setFeedbackItem(item)
         model = item as! StringFieldModel
         textField.text = model.fieldValue
         
         if let model2 = model as? TextFieldModel {
             textField.placeholder = model2.placeHolder
+            if let placeHolder = model2.placeHolder {
+                if let font = themeConfig.customFont {
+                    if let italics = font.withTraits(.TraitItalic) {
+                        textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
+                    } else {
+                        textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: font])
+                    }
+                } else {
+                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFontOfSize(UIFont.systemFontSize())])
+                }
+            }
         }
         
     }
     
     override func applyCustomisations() {
-        print("customisation Text Input")
         super.applyCustomisations()
         textField.tintColor = model.themeConfig.hintColor
         textField.font = model.themeConfig.customFont?.fontWithSize(13)

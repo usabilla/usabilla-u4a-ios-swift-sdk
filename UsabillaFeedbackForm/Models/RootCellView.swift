@@ -74,8 +74,6 @@ class RootCellView: UITableViewCell {
     }
     
     func setFeedbackItem(item: FieldModelProtocol) {
-        print("set feedback root")
-
         self.item = item as! BaseFieldModel
         titleLabel.text = item.fieldTitle
         titleLabel.numberOfLines = 5
@@ -99,7 +97,6 @@ class RootCellView: UITableViewCell {
     }
     
     func applyCustomisations() {
-        print("customisation root")
         titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
         titleLabel.textColor = item.themeConfig.titleColor
         dividerLine?.backgroundColor = item.themeConfig.hintColor

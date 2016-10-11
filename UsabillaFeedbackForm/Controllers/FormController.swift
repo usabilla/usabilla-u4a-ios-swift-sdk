@@ -125,6 +125,7 @@ class FormViewController: UIViewController {
         let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
         thankYouController = storyboard.instantiateViewControllerWithIdentifier("thankYou") as? ThankYouController
         thankYouController.themeConfig = formModel.themeConfig
+        thankYouController.redirectEnabled = formModel.redirectToAppStore
         var headerFieldValue: String?
         var thanksFieldValue: String?
         if let header: HeaderFieldModel = formModel.pages.last?.fields[0] as? HeaderFieldModel {
@@ -308,8 +309,8 @@ class FormViewController: UIViewController {
     }
     
     
-//    deinit {
-//        print("calling form controller deinit")
-//    }
+    //    deinit {
+    //        print("calling form controller deinit")
+    //    }
     
 }

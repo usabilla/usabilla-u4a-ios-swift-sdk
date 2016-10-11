@@ -80,7 +80,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
         requiredLabel.textAlignment = .Right
-        requiredLabel.textColor = pageModel.themeConfig.hintColor
+        requiredLabel.textColor = pageModel.themeConfig.textColor
         let constraint = NSLayoutConstraint.constraintsWithVisualFormat("H:[label]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: ["label": requiredLabel])
         
         requiredLabel.addConstraints(constraint)

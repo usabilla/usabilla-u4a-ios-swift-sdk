@@ -21,7 +21,6 @@ class TextAreaCellView: BaseTextAreaCellView {
         //textView.layer.borderColor = model.themeConfig.hintColor.CGColor
         textView.layer.borderWidth = 1.0
         textView.layer.cornerRadius = 5.0
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,24 +30,34 @@ class TextAreaCellView: BaseTextAreaCellView {
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         model = item as! TextAreaFieldModel
-        
+    }
+    
+    override func applyCustomisations() {
+        super.applyCustomisations()
         if model.fieldValue != nil {
             textView.text = model.fieldValue
             isPlaceholder = false
             textView.font = model.themeConfig.customFont
+            textView.textColor = model.themeConfig.textColor
         } else {
-            textView.text = model.placeHolder
             isPlaceholder = true
-            textView.font = textView.font?.withTraits(.TraitItalic)
+            textView.textColor = model.themeConfig.hintColor
+            if let customFont = themeConfig.customFont {
+                textView.font = customFont.withTraits(.TraitItalic)
+            } else {
+                textView.font = UIFont.italicSystemFontOfSize(UIFont.systemFontSize())
+            }
+            textView.text = model.placeHolder
         }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
         if isPlaceholder {
-            textView.text = ""
+            textView.text = nil
         }
         isPlaceholder = false
         textView.font = model.themeConfig.customFont
+        textView.textColor = model.themeConfig.textColor
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -58,8 +67,10 @@ class TextAreaCellView: BaseTextAreaCellView {
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = model.placeHolder
+            model.fieldValue = nil
             isPlaceholder = true
             textView.font = textView.font?.withTraits(.TraitItalic)
+            textView.textColor = model.themeConfig.hintColor
         }
     }
     

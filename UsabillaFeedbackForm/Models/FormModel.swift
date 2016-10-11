@@ -20,8 +20,8 @@ class FormModel {
     var isDefault: Bool = false
     let formJsonString: JSON!
     let errorMessage: String
-    let redirectToAppStore: Bool?
-    let hideProgressBar: Bool?
+    let redirectToAppStore: Bool
+    let hideProgressBar: Bool
     let themeConfig: UsabillaThemeConfigurator
     
     
@@ -35,8 +35,8 @@ class FormModel {
         self.appId = appId
         self.formJsonString = jsonString
         self.themeConfig = themeConfig
-        self.redirectToAppStore = redirectToAppStore
-        self.hideProgressBar = hideProgressBar
+        self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
+        self.hideProgressBar = hideProgressBar != nil ? hideProgressBar! : false
     }
     
 //    deinit {

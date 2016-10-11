@@ -51,7 +51,7 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         npsModel = item as! NPSFieldModel
-
+        buttonView?.themeConfig = item.themeConfig
         
         if let value = npsModel.fieldValue {
             buttonView?.selectButton(value)

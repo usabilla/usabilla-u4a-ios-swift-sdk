@@ -16,7 +16,6 @@ public class UsabillaFeedbackForm {
     //Various init methods with many parameters\
     public static weak var delegate: UsabillaFeedbackFormDelegate? = nil
     public static var appStoreId: String? = nil
-    public static var redirectToAppStore = false
     public static var localizedStringFile: String = "usa_localizable" {
         didSet {
             defaultLocalisationFile = false
