@@ -168,7 +168,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     func reloadTableWithAnimation() {
         let range = NSMakeRange(0, self.tableView.numberOfSections)
         let sections = NSIndexSet(indexesInRange: range)
-        self.tableView.reloadData()
+        //self.tableView.reloadData()
         self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
     }
     
@@ -239,8 +239,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-//    deinit {
-//        print("calling pagecontroller deinit of page \(pageModel.pageName),\(pageModel.pageNumber)")
-//        
-//    }
+    //    deinit {
+    //        print("calling pagecontroller deinit of page \(pageModel.pageName),\(pageModel.pageNumber)")
+    //
+    //    }
 }

@@ -78,6 +78,8 @@ class RootCellView: UITableViewCell {
         titleLabel.text = item.fieldTitle
         titleLabel.numberOfLines = 5
         titleLabel.sizeToFit()
+        titleLabel.textColor = item.themeConfig.titleColor
+
         if item.required {
             
             titleLabel.text = String(format: "@ *", item.fieldTitle) as String
@@ -98,7 +100,6 @@ class RootCellView: UITableViewCell {
     
     func applyCustomisations() {
         titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
-        titleLabel.textColor = item.themeConfig.titleColor
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         backgroundColor = item.themeConfig.backgroundColor
     }
@@ -145,13 +146,13 @@ class RootCellView: UITableViewCell {
                 self.dividerLine!.backgroundColor = item.themeConfig.errorColor
             } else {
                 titleLabel?.text = String(format: "%@ *", item!.fieldTitle) as String
-                
-                let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
-                
-                text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
-                                  range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
-                
-                titleLabel?.attributedText = text
+                titleLabel.textColor = themeConfig.titleColor
+//                let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
+//                
+//                text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
+//                                  range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
+//                
+//                titleLabel?.attributedText = text
                 
                 self.dividerLine!.backgroundColor = item.themeConfig.hintColor
                 
