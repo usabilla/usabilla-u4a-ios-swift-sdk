@@ -37,7 +37,7 @@ class FormViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         swipeToPage(0)
-        if formModel.pages.count == 2 {
+        if formModel.pages.count == 2 || formModel.hideProgressBar {
             progressBar.hidden = true
         } else {
             progressBar.progressTintColor =  formModel.themeConfig.accentColor
