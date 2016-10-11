@@ -197,7 +197,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
 
         if !correctlyFilled {
-            reloadTableWithAnimation()
+            //reloadTableWithAnimation()
+            tableView.reloadData()
             requiredLabel.textColor = pageModel.themeConfig.errorColor
         } else {
             requiredLabel.textColor = pageModel.themeConfig.hintColor
@@ -233,8 +234,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
 
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-        })
+        self.dismissViewControllerAnimated(true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
 
