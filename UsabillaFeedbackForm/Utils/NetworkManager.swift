@@ -21,9 +21,9 @@ class NetworkManager {
     class func getFormWithFormID(formID: String) -> Promise<JSON> {
 
         let headers: [String: String]? = [
-            "app_version": NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! String,
-            "app_name": NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String] as! String,
-            "SDK_version": NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String,
+            "app-version": NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! String,
+            "app-name": NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String] as! String,
+            "sdk-version": NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String,
             "os": "iOS"
         ]
 
