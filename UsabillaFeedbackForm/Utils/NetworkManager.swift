@@ -58,7 +58,6 @@ class NetworkManager {
 
         submitFeedbackSmallData(payload).then { (response: Response<AnyObject, NSError>?) -> () in
 
-
             if let response = response {
                 switch response.result {
                 case .Success(let data):

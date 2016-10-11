@@ -33,7 +33,7 @@ class ThankYouController: UIViewController {
     }
 
     func setUpController (thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
-        print("\(thresholdMet) && \(redirectEnabled) && \(UsabillaFeedbackForm.appStoreId != nil)")
+        
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
             bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_invite_rate_app_store"), forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), forControlEvents: .TouchUpInside)
