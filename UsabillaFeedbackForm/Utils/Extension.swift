@@ -96,7 +96,7 @@ extension UIFont {
 
     func withTraits(traits: UIFontDescriptorSymbolicTraits...) -> UIFont? {
         let descriptor = self.fontDescriptor()
-        if let derp = descriptor.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits)){
+        if let derp = descriptor.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits)) {
             return UIFont(descriptor: derp, size: 0)
         } else {
             return nil
@@ -121,7 +121,7 @@ extension UIFont {
                             var errorRef: Unmanaged<CFError>? = nil
                             if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
                                 NSLog("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
-                            
+
                         } else {
                             NSLog("UIFont+:  Failed to register font - font could not be loaded.")
                         }

@@ -22,8 +22,8 @@ class ParagraphCellView: BaseTextAreaCellView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
+
     override func setFeedbackItem(item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         let model = item as! ParagraphFieldModel
@@ -32,9 +32,9 @@ class ParagraphCellView: BaseTextAreaCellView {
             textView.setValue(text, forKey: "contentToHTMLString")
         } else {
             textView.text = text
-        }    
+        }
     }
-    
+
 //    deinit {
 //        print("paragraph cell deinit")
 //    }
