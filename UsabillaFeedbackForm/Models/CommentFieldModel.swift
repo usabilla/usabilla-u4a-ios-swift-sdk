@@ -10,12 +10,17 @@ import Foundation
 
 
 class CommentFieldModel: StringFieldModel {
-    
+
     let text: String?
-    
+
     required init(json: JSON, pageModel: PageModel) {
         text = json["text"].string
         super.init(json: json, pageModel: pageModel)
     }
+
+//    deinit {
+//        print("comment field model")
+//    }
+
 
 }

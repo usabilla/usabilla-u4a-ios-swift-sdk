@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ScreenshotModel: BaseFieldModel {
-    
+
     var screenshot: UIImage?
     //var icon: UIImage
     var base64Value: String? {
@@ -18,17 +18,17 @@ class ScreenshotModel: BaseFieldModel {
             return toBase64String()
         }
     }
-    
+
     required init(json: JSON, pageModel: PageModel, screenShot: UIImage? = nil) {
         super.init(json: json, pageModel: pageModel)
         self.screenshot = screenShot
     }
-    
+
     required init(json: JSON, pageModel: PageModel) {
         fatalError("init(json:pageModel:) has not been implemented")
     }
-    
-    
+
+
     func toBase64String() -> String? {
         if let screen = screenshot {
             //let data: NSData? = UIImagePNGRepresentation(screen.fixSizeAndOrientation())
@@ -37,10 +37,15 @@ class ScreenshotModel: BaseFieldModel {
         }
         return nil
     }
-    
+
     override func isValid() -> Bool {
         isModelValid = !isViewCurrentlyVisible || !required || screenshot != nil
         return isModelValid
     }
-  
+
+//    deinit {
+//        print("screenshot field model")
+//    }
+
+
 }

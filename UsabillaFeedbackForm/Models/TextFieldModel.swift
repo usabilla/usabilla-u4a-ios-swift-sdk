@@ -9,16 +9,19 @@
 import Foundation
 
 class TextFieldModel: StringFieldModel {
-    
+
     let placeHolder: String?
     let defaultValue: String?
-    
-    
+
+
     required init(json: JSON, pageModel: PageModel) {
         placeHolder = json["placeholder"].string
         defaultValue = json["defaultValue"].string
         super.init(json: json, pageModel: pageModel)
     }
-    
-    
+//    deinit {
+//        print("text field model")
+//    }
+
+
 }

@@ -9,12 +9,17 @@
 import Foundation
 
 class TextAreaFieldModel: StringFieldModel {
-    
+
     let placeHolder: String?
-    
+
     required init(json: JSON, pageModel: PageModel) {
         placeHolder = json["placeholder"].string
         super.init(json: json, pageModel: pageModel)
     }
+
+//    deinit {
+//        print("text area field model")
+//    }
+
 
 }

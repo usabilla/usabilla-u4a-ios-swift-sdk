@@ -9,16 +9,21 @@
 import Foundation
 
 class ParagraphFieldModel: StringFieldModel {
-    
+
     let html: Bool?
-    
+
     required init(json: JSON, pageModel: PageModel) {
         html = json["html"].bool
         super.init(json: json, pageModel: pageModel)
         fieldValue = json["text"].stringValue
     }
-    
+
     override func convertToJSON() -> AnyObject? {
         return nil
     }
+
+//    deinit {
+//        print("paragraoh field model")
+//    }
+
 }

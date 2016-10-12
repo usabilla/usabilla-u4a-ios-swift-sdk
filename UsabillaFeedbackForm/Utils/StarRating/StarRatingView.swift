@@ -9,81 +9,81 @@
 import Foundation
 import UIKit
 
-protocol SwiftStarDelegate {
+protocol SwiftStarDelegate: class {
     func starValueChanged(value: Int)
 }
 
 
 class StarRatingiView: UIControl {
-    
-    var delegate: SwiftStarDelegate?
+
+    weak var delegate: SwiftStarDelegate?
     var shouldBecomeFirstResponder: Bool
     var minimumValue: Int
     var maximumValue: Int
     var currentValue: Int {
-        didSet{
+        didSet {
             delegate?.starValueChanged(currentValue)
             setNeedsDisplay()
         }
     }
     var spacing: CGFloat {
-        
+
         //            willSet {
         //                spacing = max(newValue, 0)
         //            }
         //
-        didSet{
+        didSet {
             setNeedsDisplay()
         }
-        
+
     }
     var continuous: Bool
-    
+
     var allowHalfStars: Bool {
-        didSet{
+        didSet {
             setNeedsDisplay()
         }
     }
     var accurateHalfStars: Bool {
-        didSet{
+        didSet {
             setNeedsDisplay()
         }
     }
-    
-    var emptyStarImage:UIImage? {
-        didSet{
+
+    var emptyStarImage: UIImage? {
+        didSet {
             setNeedsDisplay()
         }
     }
-    
-    
-    var halfStarImage:UIImage? {
-        didSet{
+
+
+    var halfStarImage: UIImage? {
+        didSet {
             setNeedsDisplay()
         }
     }
-    
-    var filledStarImage:UIImage? {
-        didSet{
+
+    var filledStarImage: UIImage? {
+        didSet {
             setNeedsDisplay()
         }
     }
-    
-    var shouldUseImages:Bool {
+
+    var shouldUseImages: Bool {
         get {
             return emptyStarImage != nil && filledStarImage != nil
         }
     }
-    
-    
-    override var enabled:Bool{
-        didSet{
+
+
+    override var enabled: Bool {
+        didSet {
             updateAppearanceForState(enabled)
         }
     }
-    
+
     override init(frame: CGRect) {
-        
+
         minimumValue = 0
         maximumValue = 5
         currentValue = 0
@@ -95,9 +95,9 @@ class StarRatingiView: UIControl {
         super.init(frame: frame)
         exclusiveTouch = true
         updateAppearanceForState(enabled)
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         minimumValue = 0
         maximumValue = 5
@@ -110,9 +110,9 @@ class StarRatingiView: UIControl {
         super.init(coder: aDecoder)
         exclusiveTouch = true
         updateAppearanceForState(enabled)
-        
+
     }
-    
+
     //    init() {
     //        exclusiveTouch = true
     //        minimumValue = 0
@@ -126,14 +126,14 @@ class StarRatingiView: UIControl {
     //        accurateHalfStars = true
     //
     //    }
-    
+
     override func setNeedsLayout() {
         super.setNeedsLayout()
         setNeedsDisplay()
     }
-    
-    
-    override var backgroundColor :UIColor? {
+
+
+    override var backgroundColor: UIColor? {
         get {
             if (super.backgroundColor != nil) {
                 return super.backgroundColor
@@ -141,14 +141,14 @@ class StarRatingiView: UIControl {
                 return self.opaque ? UIColor.whiteColor() : UIColor.clearColor()
             }
         }
-        
+
         set {
             super.backgroundColor = newValue
         }
     }
-    
-    
-    
+
+
+
     //    func setValue(newValue: Int, sendValueChangedAction: Bool) {
     //        //[self willChangeValueForKey:NSStringFromSelector(@selector(value))];
     //        willChangeValueForKey("currentValue")
@@ -162,21 +162,21 @@ class StarRatingiView: UIControl {
     //        //[self didChangeValueForKey:NSStringFromSelector(@selector(value))];
     //        didChangeValueForKey("currentValue")
     //    }
-    
-    
-    
-    func updateAppearanceForState(enabled: Bool){
+
+
+
+    func updateAppearanceForState(enabled: Bool) {
         alpha = enabled ? 1.0 : 0.5
     }
-    
-    
-    func drawStarImageWithFrame(frame :CGRect, tintColor :UIColor, highlighted:Bool) {
+
+
+    func drawStarImageWithFrame(frame: CGRect, tintColor: UIColor, highlighted: Bool) {
         let image = highlighted ? self.filledStarImage : self.emptyStarImage
         drawImage(image!, frame: frame, tintColor: tintColor)
     }
-    
-    
-    
+
+
+
     //    func drawHalfStarImageWithFrame(frame :CGRect, tintColor:UIColor ) {
     //        [self _drawAccurateHalfStarImageWithFrame:frame tintColor:tintColor progress:.5f];
     //    }
@@ -198,85 +198,85 @@ class StarRatingiView: UIControl {
     //        [self _drawImage:image frame:frame tintColor:tintColor];
     //    }
     //
-    func drawImage(image :UIImage, frame:CGRect, tintColor:UIColor) {
+    func drawImage(image: UIImage, frame: CGRect, tintColor: UIColor) {
         if image.renderingMode == .AlwaysTemplate {
             tintColor.setFill()
         }
         image.drawInRect(frame)
     }
-    
-    func drawStarShapeWithFrame(frame: CGRect,tintColor:UIColor, highlighted:Bool) {
+
+    func drawStarShapeWithFrame(frame: CGRect, tintColor: UIColor, highlighted: Bool) {
         drawAccurateHalfStarShapeWithFrame(frame, tintColor: tintColor, progress: highlighted ? 1: 0)
     }
-    
-    func drawHalfStarShapeWithFrame(frame: CGRect, tintColor:UIColor) {
+
+    func drawHalfStarShapeWithFrame(frame: CGRect, tintColor: UIColor) {
         drawAccurateHalfStarShapeWithFrame(frame, tintColor: tintColor, progress: 0.5)
     }
-    
-    func drawAccurateHalfStarShapeWithFrame(frame: CGRect, tintColor:UIColor, progress:CGFloat) {
+
+    func drawAccurateHalfStarShapeWithFrame(frame: CGRect, tintColor: UIColor, progress: CGFloat) {
         let starShapePath = UIBezierPath()
-        starShapePath.moveToPoint(CGPointMake(CGRectGetMinX(frame) + 0.62723 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.37309 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.50000 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.02500 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.37292 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.37309 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.02500 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.39112 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.30504 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.62908 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.20642 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.97500 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.50000 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.78265 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.79358 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.97500 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.69501 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.62908 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.97500 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.39112 * CGRectGetHeight(frame)))
-        starShapePath.addLineToPoint(CGPointMake(CGRectGetMinX(frame) + 0.62723 * CGRectGetWidth(frame), CGRectGetMinY(frame) + 0.37309 * CGRectGetHeight(frame)))
+        starShapePath.moveToPoint(CGPointMake(frame.minX + 0.62723 * frame.width, frame.minY + 0.37309 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.50000 * frame.width, frame.minY + 0.02500 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.37292 * frame.width, frame.minY + 0.37309 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.02500 * frame.width, frame.minY + 0.39112 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.30504 * frame.width, frame.minY + 0.62908 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.20642 * frame.width, frame.minY + 0.97500 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.50000 * frame.width, frame.minY + 0.78265 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.79358 * frame.width, frame.minY + 0.97500 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.69501 * frame.width, frame.minY + 0.62908 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.97500 * frame.width, frame.minY + 0.39112 * frame.height))
+        starShapePath.addLineToPoint(CGPointMake(frame.minX + 0.62723 * frame.width, frame.minY + 0.37309 * frame.height))
         starShapePath.closePath()
         starShapePath.miterLimit = 4
-        
-        let frameWidth = frame.size.width;
-        let rightRectOfStar = CGRectMake(frame.origin.x + progress * frameWidth, frame.origin.y, frameWidth - progress * frameWidth, frame.size.height);
-        let clipPath = UIBezierPath.init(rect: CGRectInfinite)// [UIBezierPath bezierPathWithRect:CGRectInfinite];
+
+        let frameWidth = frame.size.width
+        let rightRectOfStar = CGRectMake(frame.origin.x + progress * frameWidth, frame.origin.y, frameWidth - progress * frameWidth, frame.size.height)
+        let clipPath = UIBezierPath.init(rect: CGRect.infinite)// [UIBezierPath bezierPathWithRect:CGRectInfinite];
         clipPath.appendPath(UIBezierPath(rect: rightRectOfStar))
-        
+
         clipPath.usesEvenOddFillRule = true
-        
+
         CGContextSaveGState(UIGraphicsGetCurrentContext()!)
         clipPath.addClip()
         tintColor.setFill()
         starShapePath.fill()
-        
-        CGContextRestoreGState(UIGraphicsGetCurrentContext()!);
-        
+
+        CGContextRestoreGState(UIGraphicsGetCurrentContext()!)
+
         tintColor.setStroke()
         starShapePath.lineWidth = 1
         starShapePath.stroke()
     }
-    
-    
-    override func drawRect(rect :CGRect) {
+
+
+    override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         CGContextSetFillColorWithColor(context!, self.backgroundColor!.CGColor)
         CGContextFillRect(context!, rect)
-        
+
         let availableWidth = rect.size.width - (spacing * CGFloat(maximumValue - 1)) - 2
         let cellWidth = availableWidth / CGFloat(maximumValue)
-        let starSide = (cellWidth <= rect.size.height) ? cellWidth : rect.size.height;
-        
+        let starSide = (cellWidth <= rect.size.height) ? cellWidth : rect.size.height
+
         for idx in 0...Int(maximumValue) {
-            
+
             let center = CGPointMake(cellWidth * CGFloat(idx) + cellWidth/2 + spacing * CGFloat(idx) + 1, rect.size.height/2)
-            let frame = CGRectMake(center.x - starSide/2, center.y - starSide/2, starSide, starSide);
+            let frame = CGRectMake(center.x - starSide/2, center.y - starSide/2, starSide, starSide)
             let highlighted = (idx < currentValue)
-            
+
             drawStarWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
         }
     }
-    
-    func drawStarWithFrame(frame: CGRect, tintColor:UIColor, highlighted:Bool) {
+
+    func drawStarWithFrame(frame: CGRect, tintColor: UIColor, highlighted: Bool) {
         if shouldUseImages {
             drawStarImageWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
         } else {
             drawStarShapeWithFrame(frame, tintColor: tintColor, highlighted: highlighted)
-            
+
         }
     }
-    
+
     //    - (void)_drawHalfStarWithFrame:(CGRect)frame tintColor:(UIColor *)tintColor {
     //    if (self.shouldUseImages) {
     //    [self _drawHalfStarImageWithFrame:frame tintColor:tintColor];
@@ -291,8 +291,8 @@ class StarRatingiView: UIControl {
     //    [self _drawAccurateHalfStarShapeWithFrame:frame tintColor:tintColor progress:progress];
     //    }
     //    }
-    
-    
+
+
     override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         if enabled {
             super.beginTrackingWithTouch(touch, withEvent: event)
@@ -300,16 +300,16 @@ class StarRatingiView: UIControl {
                 becomeFirstResponder()
             }
             handleTouch(touch)
-            
+
             return true
         } else {
             return false
         }
     }
-    
-    
+
+
     override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        if enabled{
+        if enabled {
             super.continueTrackingWithTouch(touch, withEvent: event)
             handleTouch(touch)
             return true
@@ -317,11 +317,11 @@ class StarRatingiView: UIControl {
             return false
         }
     }
-    
-    
+
+
     override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         super.endTrackingWithTouch(touch, withEvent: event)
-        
+
         if (shouldBecomeFirstResponder && self.isFirstResponder()) {
             resignFirstResponder()
         }
@@ -330,15 +330,15 @@ class StarRatingiView: UIControl {
             sendActionsForControlEvents(.ValueChanged)
         }
     }
-    
+
     override func cancelTrackingWithEvent(event: UIEvent?) {
         super.cancelTrackingWithEvent(event)
-        
+
         if (shouldBecomeFirstResponder && isFirstResponder()) {
             resignFirstResponder()
         }
     }
-    
+
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let view = gestureRecognizer.view {
             if view.isEqual(self) {
@@ -346,11 +346,11 @@ class StarRatingiView: UIControl {
             }
         }
         return false
-        
+
     }
-    
-    
-    func handleTouch( touch:UITouch? ) {
+
+
+    func handleTouch( touch: UITouch? ) {
         if let touch = touch {
             let cellWidth = self.bounds.size.width / CGFloat(maximumValue)
             let location = touch.locationInView(self)
@@ -361,17 +361,17 @@ class StarRatingiView: UIControl {
             }
         }
         //setValue(currentValue, sendValueChangedAction: continuous)
-        
+
     }
-    
-    
+
+
     override func canBecomeFirstResponder() -> Bool {
         return shouldBecomeFirstResponder
     }
-    
+
     override func intrinsicContentSize() -> CGSize {
         let height = 44.0
         return CGSizeMake(CGFloat(maximumValue) * CGFloat(height) + CGFloat(maximumValue - 1) * spacing, CGFloat(height))
     }
-    
+
 }

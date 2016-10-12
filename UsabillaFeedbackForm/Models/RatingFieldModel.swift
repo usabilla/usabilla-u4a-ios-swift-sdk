@@ -10,12 +10,12 @@ import Foundation
 
 
 class RatingFieldModel: IntFieldModel {
-    
+
     let textPositioning, low, high: String?
     let scale: Int?
     let isNPS: Bool
-    
-    
+
+
     required init(json: JSON, pageModel: PageModel) {
         textPositioning = json["textPositioning"].string
         low = json["low"].string
@@ -24,7 +24,7 @@ class RatingFieldModel: IntFieldModel {
         self.isNPS = false
         super.init(json: json, pageModel: pageModel)
     }
-    
+
     init(json: JSON, pageModel: PageModel, isNPS: Bool = false) {
         textPositioning = json["textPositioning"].string
         low = json["low"].string
@@ -34,4 +34,8 @@ class RatingFieldModel: IntFieldModel {
         super.init(json: json, pageModel: pageModel)
         self.type = "rating"
     }
+//    deinit {
+//        print("rating field model")
+//    }
+
 }

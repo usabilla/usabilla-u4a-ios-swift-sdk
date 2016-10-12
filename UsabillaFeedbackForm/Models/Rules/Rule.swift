@@ -9,23 +9,23 @@
 import Foundation
 
 class Rule {
-    
+
     let dependsOnID: String
     let targetValues: [String]
-    let pageModel: PageModel
-    
+    unowned let pageModel: PageModel
+
     init(dependsOnID: String, targetValues: [String], pageModel: PageModel) {
-        
+
             self.pageModel = pageModel
             self.dependsOnID = dependsOnID
             self.targetValues = targetValues
     }
-    
-    
+
+
     func isSatisfied() -> Bool {
         for value in targetValues {
             if let isThere = pageModel.fieldValuesCollection[dependsOnID] {
-            
+
                 if isThere.contains(value) {
                     return true
                 }
@@ -33,5 +33,5 @@ class Rule {
         }
         return false
     }
-    
+
 }

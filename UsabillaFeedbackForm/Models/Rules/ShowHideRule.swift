@@ -9,12 +9,12 @@
 import Foundation
 
 class ShowHideRule: Rule {
-    
+
     let showIfRuleIsSatisfied: Bool
-    
+
     init(dependsOnID: String, targetValues: [String], pageModel: PageModel, show: Bool) {
         showIfRuleIsSatisfied = show
         super.init(dependsOnID: dependsOnID, targetValues: targetValues, pageModel: pageModel)
     }
-    
+
 }

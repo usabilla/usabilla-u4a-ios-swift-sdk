@@ -9,19 +9,23 @@
 import Foundation
 
 
-struct FormModel {
+class FormModel {
 
     let appTitle: String
     let appSubmitButton: String
     let hasScreenshot: Bool
     let version: Int
-    let pages: [PageModel]
+    var pages: [PageModel]
     let appId: String
     var isDefault: Bool = false
     let formJsonString: JSON!
     let errorMessage: String
-    
-    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String) {
+    let redirectToAppStore: Bool
+    let showProgressBar: Bool
+    let themeConfig: UsabillaThemeConfigurator
+
+
+    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool? ) {
         self.errorMessage = errorMessage
         self.appTitle = appTitle
         self.appSubmitButton = appSubmitButton
@@ -30,5 +34,14 @@ struct FormModel {
         self.pages = pages
         self.appId = appId
         self.formJsonString = jsonString
+        self.themeConfig = themeConfig
+        self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
+        self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
     }
+
+//    deinit {
+//        print("called form model deinit")
+//        print("containing \(pages.count) pages")
+//
+//    }
 }
