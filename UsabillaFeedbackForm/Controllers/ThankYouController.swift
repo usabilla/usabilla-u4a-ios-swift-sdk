@@ -54,6 +54,9 @@ class ThankYouController: UIViewController {
         messageLabel.text = thankMessage
         messageLabel.font = themeConfig?.customFont?.fontWithSize(13)
         messageLabel.textColor = themeConfig?.textColor
+        messageLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
+        messageLabel.numberOfLines = 0
+        //messageLabel.layoutIfNeeded()
     }
 
 //    deinit {
