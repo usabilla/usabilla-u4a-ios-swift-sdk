@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "2.2"
+  s.version      = "2.2.1"
   s.summary      = "Collect feedback from your users."
 
   s.description  = <<-DESC
