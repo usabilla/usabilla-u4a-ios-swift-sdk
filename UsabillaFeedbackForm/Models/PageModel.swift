@@ -10,7 +10,7 @@ import Foundation
 
 class PageModel {
 
-    var fields: [BaseFieldModel]!
+    var fields: [BaseFieldModel]
     var fieldValuesCollection: [String: [String]] = [:] {
         didSet {
             SwiftEventBus.postToMainThread("pageUpdatedValues", sender: self)
@@ -31,7 +31,7 @@ class PageModel {
         self.pageNumber = pageNumber
         self.pageName = pageName
         errorMessage = nil
-        fields = nil
+        fields = []
         type = nil
         isLastPage = nil
         jumpRuleList = nil
