@@ -35,6 +35,10 @@ lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJ
 # Step 5. Convenience step to copy the framework to the project's directory
 cp -R "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework" "${PROJECT_DIR}"
 
+# Step 5.5 Copy framework to public directory as well
+cp -R "${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework" "/Users/Jack/Usabilla/iOS/Swift Public Repo"
+
+
 # Step 6. Convenience step to open the project's directory in Finder
 open "${PROJECT_DIR}"
 

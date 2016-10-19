@@ -33,7 +33,7 @@ class ThankYouController: UIViewController {
     }
 
     func setUpController (thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
-        
+
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
             bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_invite_rate_app_store"), forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), forControlEvents: .TouchUpInside)
@@ -54,6 +54,9 @@ class ThankYouController: UIViewController {
         messageLabel.text = thankMessage
         messageLabel.font = themeConfig?.customFont?.fontWithSize(13)
         messageLabel.textColor = themeConfig?.textColor
+        messageLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
+        messageLabel.numberOfLines = 0
+        //messageLabel.layoutIfNeeded()
     }
 
 //    deinit {
