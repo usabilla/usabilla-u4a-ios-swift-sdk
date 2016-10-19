@@ -6,15 +6,27 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		YP9HcI+/nzPdMKGboSdiWwBsU2k=
+		/GGHzP90dEnFlWHPDwhY1HlB0m0=
+		</data>
+		<key>Headers/UsabillaFeedbackForm-Swift.h</key>
+		<data>
+		TPAz480Tnj2VMzwAQs8D+tIR8/c=
 		</data>
 		<key>Headers/UsabillaFeedbackForm.h</key>
 		<data>
 		s88WAL0yrAtpWYTlTjM61sk42AQ=
 		</data>
+		<key>Headers/UsabillaFeedbackForm.swift</key>
+		<data>
+		iPAH10F14l4rP0IDU7uWy4yF5Oo=
+		</data>
+		<key>Headers/UsabillaThemeConfigurator.swift</key>
+		<data>
+		vAkjOazWu1FBHDvhh3pA+bM3GbM=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		XPiFVUafEoGbTxyaVtgleu1ZDyY=
+		ZQjbdxh4tMVMQBP/wRgUfotHPGw=
 		</data>
 		<key>MiloOT.ttf</key>
 		<data>
@@ -26,7 +38,7 @@
 		</data>
 		<key>Modules/UsabillaFeedbackForm.swiftmodule/arm.swiftmodule</key>
 		<data>
-		bYsTGYhltEOQID5nZPNuPBIvcWs=
+		zJ5aN6zllm69VBW3k3CgLN/nutM=
 		</data>
 		<key>Modules/UsabillaFeedbackForm.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -34,23 +46,23 @@
 		</data>
 		<key>Modules/UsabillaFeedbackForm.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		NiRZ14bgK16eVnJJxS4kAlBtP3A=
+		YbR+rqWDpus/KYKJAS4pdLTkdDI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		Oob+acvwl9cKvVFFbCex7h67pxg=
+		ARlNqle3eyvxMfk5u8P7j0rFqAU=
 		</data>
 		<key>MoodContentController.nib</key>
 		<data>
-		HK0S8UlL4BNq2EDBlIPS69QS8zY=
+		SwF6huMpLrTuV2ZAzfwNrfeeWPk=
 		</data>
 		<key>NPSContentController.nib</key>
 		<data>
-		YbVwX+IweRzx9/p7rkjdf/5/EEQ=
+		5dszylzPQEh/6UIAGeA6yLrq6fk=
 		</data>
 		<key>USAStoryboard.storyboardc/Akp-ux-rLe-view-TWd-kL-YaS.nib</key>
 		<data>
-		NE6fD3wGOBy9y+TvFM+IG6ea8LQ=
+		Q93hscK1E18UWrK9B0tFfFuQxEg=
 		</data>
 		<key>USAStoryboard.storyboardc/Info.plist</key>
 		<data>
@@ -58,27 +70,27 @@
 		</data>
 		<key>USAStoryboard.storyboardc/JPb-dH-keS-view-s39-cz-oQd.nib</key>
 		<data>
-		080kUZeZMWWbCKM0KddWyC8zKhY=
+		AVw5mm16bORCVP3DJQNbx2LyZyE=
 		</data>
 		<key>USAStoryboard.storyboardc/UITableViewController-Akp-ux-rLe.nib</key>
 		<data>
-		ETYnl511kfU1mgRYQnnz4hrbGgI=
+		HN//9SrdlbknhY+K4k7KIHC9iyI=
 		</data>
 		<key>USAStoryboard.storyboardc/Wkv-42-66I-view-pNJ-qN-bEC.nib</key>
 		<data>
-		UR0Yk5cwstBtH0dUBpRhXYY5jkU=
+		Ta4opLJmU6gHeQeBo3aSWO+KL8I=
 		</data>
 		<key>USAStoryboard.storyboardc/asdasd.nib</key>
 		<data>
-		nQJmbC9CYDsXCUxwO3tdWniSz1g=
+		AjjqIOh74H+ihKc2VBmBw/Ynm0E=
 		</data>
 		<key>USAStoryboard.storyboardc/base.nib</key>
 		<data>
-		GPyw/eP8CFBlt/F/+y/TVnXRpGM=
+		yJOgboezpIp6e3o0qNoVZ9aQdhg=
 		</data>
 		<key>USAStoryboard.storyboardc/thankYou.nib</key>
 		<data>
-		Jdv1ZHI01xHBYCCOtrm1y1bICNk=
+		zlQUKHfVBr8ERMzcETrFvPCkjzg=
 		</data>
 		<key>defaultJson.json</key>
 		<data>
@@ -95,11 +107,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YP9HcI+/nzPdMKGboSdiWwBsU2k=
+			/GGHzP90dEnFlWHPDwhY1HlB0m0=
 			</data>
 			<key>hash2</key>
 			<data>
-			YFAQBNRIZSGyi2HojwMSmvYs3QLA7eN51wkEWW2xaXY=
+			X5hw2Z/94VZjQ8A72rJ7/gvEzdjvXghWTN0a4rpRujk=
+			</data>
+		</dict>
+		<key>Headers/UsabillaFeedbackForm-Swift.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TPAz480Tnj2VMzwAQs8D+tIR8/c=
+			</data>
+			<key>hash2</key>
+			<data>
+			wH+nD73AQgv8EnwhQkxNa3w5fgMvFk+0I5efSRmKHds=
 			</data>
 		</dict>
 		<key>Headers/UsabillaFeedbackForm.h</key>
@@ -111,6 +134,28 @@
 			<key>hash2</key>
 			<data>
 			IO0t6xXr3RgBSKTVFgu+1xvWCo0LzY8Mn4wRCh2GKZs=
+			</data>
+		</dict>
+		<key>Headers/UsabillaFeedbackForm.swift</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			iPAH10F14l4rP0IDU7uWy4yF5Oo=
+			</data>
+			<key>hash2</key>
+			<data>
+			NHKPOcrfokY3f3yrpLpV0mxCFhgJcdqDwgcVJOd8G2A=
+			</data>
+		</dict>
+		<key>Headers/UsabillaThemeConfigurator.swift</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vAkjOazWu1FBHDvhh3pA+bM3GbM=
+			</data>
+			<key>hash2</key>
+			<data>
+			oLE1KC0UH3fUo9D4+cDRVY+7RJyoIeqMxgAslu/DHOY=
 			</data>
 		</dict>
 		<key>MiloOT.ttf</key>
@@ -139,11 +184,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bYsTGYhltEOQID5nZPNuPBIvcWs=
+			zJ5aN6zllm69VBW3k3CgLN/nutM=
 			</data>
 			<key>hash2</key>
 			<data>
-			9TBzy/CP9CWnLnWiYJf/FgGrkCf6S8L0/HQK/ceFzE0=
+			LyUkmAPRlSxsJ7B4uCu9VbjxE0Tr6OP9NbesQUK/vd4=
 			</data>
 		</dict>
 		<key>Modules/UsabillaFeedbackForm.swiftmodule/arm64.swiftdoc</key>
@@ -161,55 +206,55 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NiRZ14bgK16eVnJJxS4kAlBtP3A=
+			YbR+rqWDpus/KYKJAS4pdLTkdDI=
 			</data>
 			<key>hash2</key>
 			<data>
-			M3fMXpPWCZw3Z6yemzjN3+caweZNpmNhOc0IAqjRZiI=
+			PMkURJWZC9BjWV6iqFctFJaC+E7q6XWxD67RKBnhZXk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Oob+acvwl9cKvVFFbCex7h67pxg=
+			ARlNqle3eyvxMfk5u8P7j0rFqAU=
 			</data>
 			<key>hash2</key>
 			<data>
-			GoI8/DqbZD4WY6eqBWsUPaqiP5Z/c/wg7oAhcs7JUio=
+			ECRr7jzIUU6cMvpDyaA6ZEVWGjaUZOwInqpvM5iKkaw=
 			</data>
 		</dict>
 		<key>MoodContentController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			HK0S8UlL4BNq2EDBlIPS69QS8zY=
+			SwF6huMpLrTuV2ZAzfwNrfeeWPk=
 			</data>
 			<key>hash2</key>
 			<data>
-			/jprmRmP/gmw/L6osKwyX0/mLNuHH7mM1gb7iDr30pM=
+			yhhfXV0reIv+zjEBp5xfix5bSh55Zx5+uV7JjYVAfjY=
 			</data>
 		</dict>
 		<key>NPSContentController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YbVwX+IweRzx9/p7rkjdf/5/EEQ=
+			5dszylzPQEh/6UIAGeA6yLrq6fk=
 			</data>
 			<key>hash2</key>
 			<data>
-			0UqRYpClVFDfnVt2toVMS3y+Ggfvuu4FWVpL+NXyHBA=
+			0NRMOUOxRJXEfzi1bf7gQNDnZY7wfzxBWSFDSVNuvCI=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/Akp-ux-rLe-view-TWd-kL-YaS.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			NE6fD3wGOBy9y+TvFM+IG6ea8LQ=
+			Q93hscK1E18UWrK9B0tFfFuQxEg=
 			</data>
 			<key>hash2</key>
 			<data>
-			MXp/k6E0sgsqX54M+xu+FRJzrHbWcNDE/KxD1cYwfnI=
+			l54dqotH96Egdt0lgpsB9oNlfVS1iEuf6WHpLnxLzDU=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/Info.plist</key>
@@ -227,66 +272,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			080kUZeZMWWbCKM0KddWyC8zKhY=
+			AVw5mm16bORCVP3DJQNbx2LyZyE=
 			</data>
 			<key>hash2</key>
 			<data>
-			IFQ1EZG81cIFOy7oUBgN4iI2/CD+XW2aAEiaj5oMthA=
+			kgEyIIq7mIZkKKXKCIk4EaHl8AvsIcl5+bGRgDQMRJ8=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/UITableViewController-Akp-ux-rLe.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ETYnl511kfU1mgRYQnnz4hrbGgI=
+			HN//9SrdlbknhY+K4k7KIHC9iyI=
 			</data>
 			<key>hash2</key>
 			<data>
-			WWk3qtaE8NR3x+AlxRDuvH0KIVbZbgGUbCsfKeokZQU=
+			IqdwzTmBI4Ub7dvhkXXfb+kNJiup8g88P5WZWR8V/EM=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/Wkv-42-66I-view-pNJ-qN-bEC.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UR0Yk5cwstBtH0dUBpRhXYY5jkU=
+			Ta4opLJmU6gHeQeBo3aSWO+KL8I=
 			</data>
 			<key>hash2</key>
 			<data>
-			LK8sd1gtgV9PMRTFUf0hVqzLm+th8sO7/3teRAR3lig=
+			ccWSWgeEcRufBbsHMuq7zRi0Vkfi5B301A731iPCJnk=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/asdasd.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nQJmbC9CYDsXCUxwO3tdWniSz1g=
+			AjjqIOh74H+ihKc2VBmBw/Ynm0E=
 			</data>
 			<key>hash2</key>
 			<data>
-			BYPHW/ZMcbI/oTqeB7Mf8qUhU/Xqh/cnnvV3WXdo6Y8=
+			5HL42LfYCMxT7tgObnsQK8dFOLWWsK3IZMURbEuoW3w=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/base.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			GPyw/eP8CFBlt/F/+y/TVnXRpGM=
+			yJOgboezpIp6e3o0qNoVZ9aQdhg=
 			</data>
 			<key>hash2</key>
 			<data>
-			RxR6n293bAvF9leNKXx6DwpjQ24aMGeH9czN8x+fzb8=
+			2sMkAgJsl2GFtEsbSwlSlndCoT0O2kw6vGAmzQQ4X/M=
 			</data>
 		</dict>
 		<key>USAStoryboard.storyboardc/thankYou.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Jdv1ZHI01xHBYCCOtrm1y1bICNk=
+			zlQUKHfVBr8ERMzcETrFvPCkjzg=
 			</data>
 			<key>hash2</key>
 			<data>
-			gIKg+OryggR6wkwQTk9kA1rI4gyKMJ/IyowxOjUB/K4=
+			XLotzAxAn3vNvOmHC1MMN7Rj3mTf5HUItMcn4wn5YYs=
 			</data>
 		</dict>
 		<key>defaultJson.json</key>

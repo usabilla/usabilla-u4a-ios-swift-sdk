@@ -4,3 +4,7 @@ framework module UsabillaFeedbackForm {
   export *
   module * { export * }
 }
+
+module UsabillaFeedbackForm.Swift {
+    header "UsabillaFeedbackForm-Swift.h"
+}
