@@ -15,7 +15,7 @@ class FormModel {
     let appSubmitButton: String
     let hasScreenshot: Bool
     let version: Int
-    var pages: [PageModel]
+    let pages: [PageModel]
     let appId: String
     var isDefault: Bool = false
     let formJsonString: JSON!

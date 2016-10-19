@@ -28,7 +28,7 @@ class FormViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var footerView: UIView!
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -124,11 +124,17 @@ class FormViewController: UIViewController {
         thankYouController.redirectEnabled = formModel.redirectToAppStore
         var headerFieldValue: String?
         var thanksFieldValue: String?
-        if let header: HeaderFieldModel = formModel.pages.last?.fields[0] as? HeaderFieldModel {
-            headerFieldValue = header.fieldValue
-        }
-        if let thank: StringFieldModel = formModel.pages.last?.fields[1] as? StringFieldModel {
-            thanksFieldValue = thank.fieldValue
+        if let lastPage = formModel.pages.last {
+            if lastPage.fields.count > 0 {
+                if let header: HeaderFieldModel = lastPage.fields[0] as? HeaderFieldModel {
+                    headerFieldValue = header.fieldValue
+                }
+            }
+            if lastPage.fields.count > 1 {
+                if let thank: StringFieldModel = lastPage.fields[1] as? StringFieldModel {
+                    thanksFieldValue = thank.fieldValue
+                }
+            }
         }
 
         let moodValue = formModel.pages.first?.fields[0] as? IntFieldModel
