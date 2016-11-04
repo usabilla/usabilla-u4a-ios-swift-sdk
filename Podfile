@@ -9,10 +9,10 @@ end
 
 target 'UsabillaFeedbackForm' do
     
-    pod 'Alamofire','~> 3.0'
+    pod 'Alamofire','~> 3.5.0'
     #pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.1'
-    pod 'PromiseKit/CorePromise',"~> 3.5"
-    pod 'PromiseKit/UIKit', "~> 3.5"
+    pod 'PromiseKit/CorePromise',"~> 3.5.1"
+    pod 'PromiseKit/UIKit', "~> 3.5.1"
 
 
 #target 'UsabillaFeedbackFormTests' do
