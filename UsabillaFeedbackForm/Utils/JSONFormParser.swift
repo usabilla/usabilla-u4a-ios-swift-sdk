@@ -18,12 +18,11 @@ class JSONFormParser {
         
         let hasScreenshot = data["screenshot"].boolValue
         let version = json["version"].intValue
-        let colorJson = json["colors"]
         let appStoreRedirect = data["appStoreRedirect"].bool
         let progressBar = data["progressBar"].bool
 
 
-        parseColors(themeConfig, json: colorJson)
+        parseColors(themeConfig, json: json["colors"])
 
         var pages: [PageModel] = []
 
