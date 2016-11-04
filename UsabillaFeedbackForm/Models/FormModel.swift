@@ -11,24 +11,20 @@ import Foundation
 
 class FormModel {
 
-    let appTitle: String
-    let appSubmitButton: String
+    
     let hasScreenshot: Bool
     let version: Int
     let pages: [PageModel]
     let appId: String
     var isDefault: Bool = false
     let formJsonString: JSON!
-    let errorMessage: String
     let redirectToAppStore: Bool
     let showProgressBar: Bool
     let themeConfig: UsabillaThemeConfigurator
+    let copyModel: CopyModel
 
-
-    init(appId: String, appTitle: String, appSubmitButton: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, errorMessage: String, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool? ) {
-        self.errorMessage = errorMessage
-        self.appTitle = appTitle
-        self.appSubmitButton = appSubmitButton
+    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel:CopyModel ) {
+        self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
         self.pages = pages

@@ -58,7 +58,7 @@ class FormViewController: UIViewController {
 
 
     func setUpLeftButton() {
-        leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
+        leftNavItem.title = formModel.copyModel.cancelButton
 
         if !UsabillaFeedbackForm.showCancelButton {
             leftNavItem.title = ""
@@ -115,13 +115,16 @@ class FormViewController: UIViewController {
         progressBar.setProgress(1, animated: true)
         rightNavItem.title = ""
         rightNavItem.enabled = false
-        leftNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
+        leftNavItem.title = formModel.copyModel.cancelButton
         leftNavItem.enabled = true
 
         let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
         thankYouController = storyboard.instantiateViewControllerWithIdentifier("thankYou") as? ThankYouController
         thankYouController.themeConfig = formModel.themeConfig
         thankYouController.redirectEnabled = formModel.redirectToAppStore
+        thankYouController.redirectToAppStore = formModel.copyModel.appStore
+        thankYouController.giveMoreFeedback = formModel.copyModel.moreFeedback
+        
         var headerFieldValue: String?
         var thanksFieldValue: String?
         if let lastPage = formModel.pages.last {
@@ -190,11 +193,11 @@ class FormViewController: UIViewController {
     func updateRightButton() {
         rightNavItem.enabled = true
         if currentPage == formModel.pages.count - 2 {
-            rightNavItem.title = formModel.appSubmitButton
+            rightNavItem.title = formModel.copyModel.navigationSubmit
         } else if currentPage == formModel.pages.count - 1 {
-            rightNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
+            rightNavItem.title = formModel.copyModel.cancelButton
         } else {
-            rightNavItem.title = LocalisationHandler.getLocalisedStringForKey("usa_form_continue_button")
+            rightNavItem.title = formModel.copyModel.navigationNext
         }
     }
 

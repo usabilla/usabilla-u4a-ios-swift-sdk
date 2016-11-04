@@ -16,6 +16,9 @@ class ThankYouController: UIViewController {
     @IBOutlet weak var bottomButton: UIButton!
     weak var themeConfig: UsabillaThemeConfigurator?
     var redirectEnabled: Bool = false
+    
+    var redirectToAppStore: String?
+    var giveMoreFeedback: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +38,10 @@ class ThankYouController: UIViewController {
     func setUpController (thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
-            bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_invite_rate_app_store"), forState: .Normal)
+            bottomButton.setTitle(redirectToAppStore, forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), forControlEvents: .TouchUpInside)
         } else if !UsabillaFeedbackForm.hideGiveMoreFeedback {
-            bottomButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_more_feedback"), forState: .Normal)
+            bottomButton.setTitle(giveMoreFeedback, forState: .Normal)
             bottomButton.addTarget(self, action: #selector(ThankYouController.reloadForm), forControlEvents: .TouchUpInside)
         } else {
             bottomButton.hidden = true

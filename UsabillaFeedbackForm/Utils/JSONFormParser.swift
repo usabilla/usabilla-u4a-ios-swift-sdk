@@ -14,11 +14,10 @@ class JSONFormParser {
     class func parseFormJson(json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
 
         let data = json["data"]
-        let appTitle = data["appTitle"].stringValue
-        let appSubmit = data["appSubmit"].stringValue
+        let copyModel = parseCopy(json)
+        
         let hasScreenshot = data["screenshot"].boolValue
         let version = json["version"].intValue
-        let errorMessage = data["errorMessage"].stringValue
         let colorJson = json["colors"]
         let appStoreRedirect = data["appStoreRedirect"].bool
         let progressBar = data["progressBar"].bool
@@ -30,7 +29,7 @@ class JSONFormParser {
 
         for (index, subJson):(String, JSON) in json["form"]["pages"] {
             let page = parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
-            page.errorMessage = errorMessage
+            page.errorMessage = copyModel.errorMessage
             pages.append(page)
         }
         pages.last?.isLastPage = true
@@ -46,9 +45,37 @@ class JSONFormParser {
             pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
 
-        return FormModel(appId: appId, appTitle: appTitle, appSubmitButton: appSubmit, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, errorMessage : errorMessage, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar)
+        return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
     }
 
+    private class func parseCopy(json: JSON) -> CopyModel{
+        let copyModel = CopyModel()
+        let data = json["data"]
+
+        copyModel.appTitle = data["appTitle"].string
+        copyModel.navigationSubmit = data["appSubmit"].string
+        copyModel.errorMessage = data["errorMessage"].string
+
+        let localization = json["localization"]
+
+        if let appStore = localization["appStore"].string{
+            copyModel.appStore = appStore
+        }
+        if let moreFeedback = localization["moreFeedback"].string{
+            copyModel.moreFeedback = moreFeedback
+        }
+        if let screenshotTitle = localization["screenshotTitle"].string{
+            copyModel.screenshotTitle = screenshotTitle
+        }
+        if let cancelButton = localization["cancelButton"].string{
+            copyModel.cancelButton = cancelButton
+        }
+        if let navigationNext = localization["navigationNext"].string{
+            copyModel.navigationNext = navigationNext
+        }
+        
+        return copyModel
+    }
 
     private class func parsePage(pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
