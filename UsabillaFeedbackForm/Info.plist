@@ -24,10 +24,6 @@
 	<string>Pick a screenshot to submit from your gallery</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>MiloOT.ttf</string>
-	</array>
 	<key>USABILLA_API_URL</key>
 	<string>$(USABILLA_API_URL)</string>
 	<key>USABILLA_SUBMIT_ENDPOINT</key>
