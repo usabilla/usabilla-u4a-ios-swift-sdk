@@ -1,3 +1,8 @@
+## 2.3.0
+#### Added
+- It is now possible to set most text fields (like submit, cancel, redirect to play store) from the web interface
+ 
+
 ## 2.2.1
 #### Fixed
 - Fixed a bug that could occur in the last page of the form if the thank you message was too long
