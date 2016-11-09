@@ -288,7 +288,7 @@ class FormViewController: UIViewController {
         //contentDictionary["free_memory"] = Int(DeviceInfo.deviceRemainingFreeSpaceInBytes()! / 1024)
         //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice() / 1024)
 
-        contentDictionary["reachability"] = reachability.currentReachabilityStatus
+        contentDictionary["reachability"] = reachability.currentReachabilityStatus.description
 
         contentDictionary["free_space"] = Int(DeviceInfo.DiskStatus.freeDiskSpaceInBytes / 1024)  
         contentDictionary["total_space"] = Int(DeviceInfo.DiskStatus.totalDiskSpaceInBytes / 1024)  
