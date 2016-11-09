@@ -79,6 +79,7 @@ import Foundation
     // Subscribe
     ////////////////////////////////////
 
+    @discardableResult
      class func on(_ target: AnyObject, name: String, sender: AnyObject?, queue: OperationQueue?, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
         let id = UInt(bitPattern: ObjectIdentifier(target))
         let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: name), object: sender, queue: queue, using: handler)
@@ -91,34 +92,38 @@ import Foundation
                 Static.instance.cache[id] = [namedObserver]
             }
         }
-
+        
         return observer
     }
-
+    
+    @discardableResult
      class func onMainThread(_ target: AnyObject, name: String, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
         return SwiftEventBus.on(target, name: name, sender: nil, queue: OperationQueue.main, handler: handler)
     }
-
+    
+    @discardableResult
      class func onMainThread(_ target: AnyObject, name: String, sender: AnyObject?, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
         return SwiftEventBus.on(target, name: name, sender: sender, queue: OperationQueue.main, handler: handler)
     }
-
+    
+    @discardableResult
      class func onBackgroundThread(_ target: AnyObject, name: String, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
         return SwiftEventBus.on(target, name: name, sender: nil, queue: OperationQueue(), handler: handler)
     }
-
+    
+    @discardableResult
      class func onBackgroundThread(_ target: AnyObject, name: String, sender: AnyObject?, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
         return SwiftEventBus.on(target, name: name, sender: sender, queue: OperationQueue(), handler: handler)
     }
-
+    
     ////////////////////////////////////
     // Unregister
     ////////////////////////////////////
-
+    
      class func unregister(_ target: AnyObject) {
         let id = UInt(bitPattern: ObjectIdentifier(target))
         let center = NotificationCenter.default
-
+        
         Static.queue.sync {
             if let namedObservers = Static.instance.cache.removeValue(forKey: id) {
                 for namedObserver in namedObservers {
@@ -127,11 +132,11 @@ import Foundation
             }
         }
     }
-
+    
      class func unregister(_ target: AnyObject, name: String) {
         let id = UInt(bitPattern: ObjectIdentifier(target))
         let center = NotificationCenter.default
-
+        
         Static.queue.sync {
             if let namedObservers = Static.instance.cache[id] {
                 Static.instance.cache[id] = namedObservers.filter({ (namedObserver: NamedObserver) -> Bool in
@@ -145,5 +150,5 @@ import Foundation
             }
         }
     }
-
+    
 }

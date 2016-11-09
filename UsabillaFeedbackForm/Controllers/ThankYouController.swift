@@ -63,6 +63,6 @@ class ThankYouController: UIViewController {
     }
 
 //    deinit {
-//        print("bye and than you")
+//        print("bye and thank you")
 //    }
 }
