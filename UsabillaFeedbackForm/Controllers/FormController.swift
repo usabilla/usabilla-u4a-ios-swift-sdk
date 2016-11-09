@@ -42,7 +42,7 @@ class FormViewController: UIViewController {
         updateProgressBar()
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
-        //self.navigationController?.navigationBar.set = formModel.themeConfig.statusBarColor
+        
         self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
         footerView.backgroundColor = formModel.themeConfig.accentColor
@@ -68,7 +68,7 @@ class FormViewController: UIViewController {
 
     func setUpReachability() {
         do {
-            reachability = try Reachability.init()
+            reachability = Reachability.init()
             try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
@@ -146,8 +146,11 @@ class FormViewController: UIViewController {
 
 
         transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-
-        thankYouController.setUpController((moodValue?.fieldValue)! > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
+        var rating: Int = 0
+        if let temp = moodValue?.fieldValue {
+            rating = temp
+        }
+        thankYouController.setUpController(rating > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
 
     }
 
