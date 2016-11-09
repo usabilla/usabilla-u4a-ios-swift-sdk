@@ -17,54 +17,26 @@ class DeviceInfo {
 
 
     class func deviceRemainingFreeSpaceInBytes() -> Int? {
-        //Wont fucking fix
-//        var info = mach_task_basic_info()
-//        var count = mach_msg_type_number_t(MemoryLayout.size(ofValue: info))/4
-//
-//        let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
-//
-//            task_info(mach_task_self_,
-//                      task_flavor_t(MACH_TASK_BASIC_INFO),
-//                      task_info_t($0),
-//                      &count)
-//
-//        }
-//
-//        if kerr == KERN_SUCCESS {
-//            Swift.debugPrint("Memory in use (in bytes): \(info.resident_size)")
-//            return Int(info.resident_size)
-//        } else {
-//            Swift.debugPrint("Error with task_info(): " +
-//                (String(cString: mach_error_string(kerr)) ?? "unknown error"))
-//        }
-
-//        let MACH_TASK_BASIC_INFO_COUNT = (sizeof(mach_task_basic_info_data_t) / sizeof(natural_t))
-//
-//        // prepare parameters
-//        let name   = mach_task_self_
-//        let flavor = task_flavor_t(MACH_TASK_BASIC_INFO)
-//        var size   = mach_msg_type_number_t(MACH_TASK_BASIC_INFO_COUNT)
-//
-//        // allocate pointer to mach_task_basic_info
-//        var infoPointer = UnsafeMutablePointer<mach_task_basic_info>.alloc(1)
-//
-//        // call task_info - note extra UnsafeMutablePointer(...) call
-//        let kerr = task_info(name, flavor, UnsafeMutablePointer(infoPointer), &size)
-//
-//        // get mach_task_basic_info struct out of pointer
-//        let info = infoPointer.move()
-//
-//        // deallocate pointer
-//        infoPointer.dealloc(1)
-//
-//        // check return value for success / failure
-//        if kerr == KERN_SUCCESS {
-//            print("Memory in use (in MB): \(info.resident_size/1000000)")
-//            return Int(info.resident_size)
-//        } else {
-//            //let errorString = String(CString: mach_error_string(kerr), encoding: NSASCIIStringEncoding)
-//           // println(errorString ?? "Error: couldn't parse error string")
-//        }
+        var info = mach_task_basic_info()
+        var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
+        
+        let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
+            $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
+                task_info(mach_task_self_,
+                          task_flavor_t(MACH_TASK_BASIC_INFO),
+                          $0,
+                          &count)
+            }
+        }
+        
+        if kerr == KERN_SUCCESS {
+            print("Memory in use (in bytes): \(info.resident_size)")
+            return Int(info.resident_size)
+        }
+        else {
+            print("Error with task_info(): " +
+                (String(cString: mach_error_string(kerr), encoding: String.Encoding.ascii) ?? "unknown error"))
+        }
         return nil
     }
 
