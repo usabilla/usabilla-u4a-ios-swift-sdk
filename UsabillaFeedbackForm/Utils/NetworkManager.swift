@@ -43,7 +43,7 @@ class NetworkManager {
                     debugPrint(response)
                     switch response.result {
                     case .success:
-                        fulfill(response.result.value as! JSON)
+                        fulfill(JSON(response.result.value))
                     case .failure:
                         return reject(NSError(domain: "Invalid Request", code: 0, userInfo: [:]))
                     }
