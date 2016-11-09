@@ -10,7 +10,7 @@ import Foundation
 
 class FieldFactory {
 
-    class func createField(json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
+    class func createField(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
 
         let type = json["type"].stringValue
 

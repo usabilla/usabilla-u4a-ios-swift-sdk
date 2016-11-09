@@ -11,7 +11,7 @@ import UIKit
 
 extension String {
 
-    func divideInChunksOfSize(chuckSize: Int) -> [String] {
+    func divideInChunksOfSize(_ chuckSize: Int) -> [String] {
         var arrayToReturn: [String] = []
         let screenshotCharacterCount = self.characters.count
         let numberOfChunks = screenshotCharacterCount / chuckSize
@@ -21,13 +21,13 @@ extension String {
             for chunk in 0...numberOfChunks - 1 {
                 let start = chunk * chuckSize
                 let range = NSRange(location: start, length:  chuckSize)
-                let section = (self as NSString).substringWithRange(range)
+                let section = (self as NSString).substring(with: range)
                 arrayToReturn.append(section)
             }
         }
         if lastChunk > 0 {
             let lastRange = NSRange(location: numberOfChunks*chuckSize, length:  lastChunk)
-            let section = (self as NSString).substringWithRange(lastRange)
+            let section = (self as NSString).substring(with: lastRange)
             arrayToReturn.append(section)
         }
 
@@ -56,8 +56,8 @@ extension UIImage {
             let newHeight = Int(currentHeight * scaleFactor)
             let newWidth = Int(currentWidht * scaleFactor)
 
-            UIGraphicsBeginImageContext(CGSizeMake(CGFloat(newWidth), CGFloat(newHeight)))
-            drawInRect(CGRectMake(0, 0, CGFloat(newWidth), CGFloat(newHeight)))
+            UIGraphicsBeginImageContext(CGSize(width: CGFloat(newWidth), height: CGFloat(newHeight)))
+            draw(in: CGRect(x: 0, y: 0, width: CGFloat(newWidth), height: CGFloat(newHeight)))
             let img = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return img!
@@ -67,36 +67,36 @@ extension UIImage {
     }
 
 
-    func renderInColor(color: UIColor) -> UIImage {
+    func renderInColor(_ color: UIColor) -> UIImage {
 
-        let rect = CGRectMake(0, 0, self.size.width, self.size.height)
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextClipToMask(context!, rect, self.CGImage!)
-        CGContextSetFillColorWithColor(context!, color.CGColor)
-        CGContextFillRect(context!, rect)
+        context!.clip(to: rect, mask: self.cgImage!)
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return UIImage(CGImage: img!.CGImage!, scale: 1, orientation: UIImageOrientation.DownMirrored)
+        return UIImage(cgImage: img!.cgImage!, scale: 1, orientation: UIImageOrientation.downMirrored)
     }
 
 }
 
 extension UIView {
-    class func loadFromNibNamed(nibNamed: String, bundle: NSBundle? = nil) -> UIView? {
+    class func loadFromNibNamed(_ nibNamed: String, bundle: Bundle? = nil) -> UIView? {
         return UINib(
             nibName: nibNamed,
             bundle: bundle
-            ).instantiateWithOwner(nil, options: nil)[0] as? UIView
+            ).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 }
 
 
 extension UIFont {
 
-    func withTraits(traits: UIFontDescriptorSymbolicTraits...) -> UIFont? {
-        let descriptor = self.fontDescriptor()
-        if let derp = descriptor.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits(traits)) {
+    func withTraits(_ traits: UIFontDescriptorSymbolicTraits...) -> UIFont? {
+        let descriptor = self.fontDescriptor
+        if let derp = descriptor.withSymbolicTraits(UIFontDescriptorSymbolicTraits(traits)) {
             return UIFont(descriptor: derp, size: 0)
         } else {
             return nil
@@ -104,20 +104,20 @@ extension UIFont {
     }
 
     func boldItalic() -> UIFont? {
-        return withTraits(.TraitBold, .TraitItalic)
+        return withTraits(.traitBold, .traitItalic)
     }
 
     func italic() -> UIFont? {
-        return withTraits(.TraitItalic)
+        return withTraits(.traitItalic)
     }
 
 
-    static func registerFontWithFilenameString(filenameString: String, bundleIdentifierString: String) {
-        if let bundle = NSBundle(identifier: bundleIdentifierString) {
-            if let pathForResourceString = bundle.pathForResource(filenameString, ofType: nil) {
-                if let fontData = NSData(contentsOfFile: pathForResourceString) {
-                    if let dataProvider = CGDataProviderCreateWithCFData(fontData) {
-                         let fontRef = CGFontCreateWithDataProvider(dataProvider)
+    static func registerFontWithFilenameString(_ filenameString: String, bundleIdentifierString: String) {
+        if let bundle = Bundle(identifier: bundleIdentifierString) {
+            if let pathForResourceString = bundle.path(forResource: filenameString, ofType: nil) {
+                if let fontData = try? Data(contentsOf: URL(fileURLWithPath: pathForResourceString)) {
+                    if let dataProvider = CGDataProvider(data: fontData as CFData) {
+                         let fontRef = CGFont(dataProvider)
                             var errorRef: Unmanaged<CFError>? = nil
                             if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
                                 NSLog("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
@@ -149,7 +149,7 @@ extension UIDevice {
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         let identifier = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8 where value != 0 else { return identifier }
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
 
@@ -197,10 +197,10 @@ extension UIDevice {
  UnableToScanHexValue:      "Scan hex error"
  MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
  */
-enum UIColorInputError: ErrorType {
-    case MissingHashMarkAsPrefix,
-    UnableToScanHexValue,
-    MismatchedHexStringLength
+enum UIColorInputError: Error {
+    case missingHashMarkAsPrefix,
+    unableToScanHexValue,
+    mismatchedHexStringLength
 }
 
 extension UIColor {
@@ -268,20 +268,19 @@ extension UIColor {
      */
     convenience init(rgba_throws rgba: String) throws {
         guard rgba.hasPrefix("#") else {
-            throw UIColorInputError.MissingHashMarkAsPrefix
+            throw UIColorInputError.missingHashMarkAsPrefix
         }
 
-        guard let hexString: String = rgba.substringFromIndex(rgba.startIndex.advancedBy(1)),
-            var hexValue: UInt32 = 0
-            where NSScanner(string: hexString).scanHexInt(&hexValue) else {
-                throw UIColorInputError.UnableToScanHexValue
+        guard let hexString: String = rgba.substring(from: rgba.characters.index(rgba.startIndex, offsetBy: 1)),
+            var hexValue: UInt32 = 0, Scanner(string: hexString).scanHexInt32(&hexValue) else {
+                throw UIColorInputError.unableToScanHexValue
         }
 
         guard hexString.characters.count  == 3
             || hexString.characters.count == 4
             || hexString.characters.count == 6
             || hexString.characters.count == 8 else {
-                throw UIColorInputError.MismatchedHexStringLength
+                throw UIColorInputError.mismatchedHexStringLength
         }
 
         switch hexString.characters.count {
@@ -301,12 +300,12 @@ extension UIColor {
 
      - parameter rgba: String value.
      */
-    convenience init(rgba: String, defaultColor: UIColor = UIColor.clearColor()) {
+    convenience init(rgba: String, defaultColor: UIColor = UIColor.clear) {
         guard let color = try? UIColor(rgba_throws: rgba) else {
-            self.init(CGColor: defaultColor.CGColor)
+            self.init(cgColor: defaultColor.cgColor)
             return
         }
-        self.init(CGColor: color.CGColor)
+        self.init(cgColor: color.cgColor)
     }
 
     /**
@@ -314,7 +313,7 @@ extension UIColor {
 
      - parameter rgba: Whether the alpha should be included.
      */
-    func hexString(includeAlpha: Bool) -> String {
+    func hexString(_ includeAlpha: Bool) -> String {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0

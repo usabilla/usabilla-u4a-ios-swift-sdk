@@ -8,7 +8,7 @@ import Foundation
 
     struct Static {
         static let instance = SwiftEventBus()
-        static let queue = dispatch_queue_create("com.cesarferreira.SwiftEventBus", DISPATCH_QUEUE_SERIAL)
+        static let queue = DispatchQueue(label: "com.cesarferreira.SwiftEventBus", attributes: [])
     }
 
     struct NamedObserver {
@@ -23,53 +23,53 @@ import Foundation
     // Publish
     ////////////////////////////////////
 
-     class func post(name: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil)
+     class func post(_ name: String) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil)
     }
 
-     class func post(name: String, sender: AnyObject?) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: sender)
+     class func post(_ name: String, sender: AnyObject?) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
     }
 
-     class func post(name: String, sender: NSObject?) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: sender)
+     class func post(_ name: String, sender: NSObject?) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
     }
 
-     class func post(name: String, userInfo: [NSObject : AnyObject]?) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil, userInfo: userInfo)
+     class func post(_ name: String, userInfo: [AnyHashable: Any]?) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil, userInfo: userInfo)
     }
 
-     class func post(name: String, sender: AnyObject?, userInfo: [NSObject : AnyObject]?) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: sender, userInfo: userInfo)
+     class func post(_ name: String, sender: AnyObject?, userInfo: [AnyHashable: Any]?) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender, userInfo: userInfo)
     }
 
-     class func postToMainThread(name: String) {
-        dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil)
+     class func postToMainThread(_ name: String) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil)
         }
     }
 
-     class func postToMainThread(name: String, sender: AnyObject?) {
-        dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(name, object: sender)
+     class func postToMainThread(_ name: String, sender: AnyObject?) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
         }
     }
 
-     class func postToMainThread(name: String, sender: NSObject?) {
-        dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(name, object: sender)
+     class func postToMainThread(_ name: String, sender: NSObject?) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender)
         }
     }
 
-     class func postToMainThread(name: String, userInfo: [NSObject : AnyObject]?) {
-        dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil, userInfo: userInfo)
+     class func postToMainThread(_ name: String, userInfo: [AnyHashable: Any]?) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: nil, userInfo: userInfo)
         }
     }
 
-     class func postToMainThread(name: String, sender: AnyObject?, userInfo: [NSObject : AnyObject]?) {
-        dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(name, object: sender, userInfo: userInfo)
+     class func postToMainThread(_ name: String, sender: AnyObject?, userInfo: [AnyHashable: Any]?) {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: sender, userInfo: userInfo)
         }
     }
 
@@ -79,12 +79,12 @@ import Foundation
     // Subscribe
     ////////////////////////////////////
 
-     class func on(target: AnyObject, name: String, sender: AnyObject?, queue: NSOperationQueue?, handler: ((NSNotification!) -> Void)) -> NSObjectProtocol {
-        let id = ObjectIdentifier(target).uintValue
-        let observer = NSNotificationCenter.defaultCenter().addObserverForName(name, object: sender, queue: queue, usingBlock: handler)
+     class func on(_ target: AnyObject, name: String, sender: AnyObject?, queue: OperationQueue?, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
+        let id = UInt(bitPattern: ObjectIdentifier(target))
+        let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: name), object: sender, queue: queue, using: handler)
         let namedObserver = NamedObserver(observer: observer, name: name)
 
-        dispatch_sync(Static.queue) {
+        Static.queue.sync {
             if let namedObservers = Static.instance.cache[id] {
                 Static.instance.cache[id] = namedObservers + [namedObserver]
             } else {
@@ -95,32 +95,32 @@ import Foundation
         return observer
     }
 
-     class func onMainThread(target: AnyObject, name: String, handler: ((NSNotification!) -> Void)) -> NSObjectProtocol {
-        return SwiftEventBus.on(target, name: name, sender: nil, queue: NSOperationQueue.mainQueue(), handler: handler)
+     class func onMainThread(_ target: AnyObject, name: String, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
+        return SwiftEventBus.on(target, name: name, sender: nil, queue: OperationQueue.main, handler: handler)
     }
 
-     class func onMainThread(target: AnyObject, name: String, sender: AnyObject?, handler: ((NSNotification!) -> Void)) -> NSObjectProtocol {
-        return SwiftEventBus.on(target, name: name, sender: sender, queue: NSOperationQueue.mainQueue(), handler: handler)
+     class func onMainThread(_ target: AnyObject, name: String, sender: AnyObject?, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
+        return SwiftEventBus.on(target, name: name, sender: sender, queue: OperationQueue.main, handler: handler)
     }
 
-     class func onBackgroundThread(target: AnyObject, name: String, handler: ((NSNotification!) -> Void)) -> NSObjectProtocol {
-        return SwiftEventBus.on(target, name: name, sender: nil, queue: NSOperationQueue(), handler: handler)
+     class func onBackgroundThread(_ target: AnyObject, name: String, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
+        return SwiftEventBus.on(target, name: name, sender: nil, queue: OperationQueue(), handler: handler)
     }
 
-     class func onBackgroundThread(target: AnyObject, name: String, sender: AnyObject?, handler: ((NSNotification!) -> Void)) -> NSObjectProtocol {
-        return SwiftEventBus.on(target, name: name, sender: sender, queue: NSOperationQueue(), handler: handler)
+     class func onBackgroundThread(_ target: AnyObject, name: String, sender: AnyObject?, handler: @escaping ((Notification!) -> Void)) -> NSObjectProtocol {
+        return SwiftEventBus.on(target, name: name, sender: sender, queue: OperationQueue(), handler: handler)
     }
 
     ////////////////////////////////////
     // Unregister
     ////////////////////////////////////
 
-     class func unregister(target: AnyObject) {
-        let id = ObjectIdentifier(target).uintValue
-        let center = NSNotificationCenter.defaultCenter()
+     class func unregister(_ target: AnyObject) {
+        let id = UInt(bitPattern: ObjectIdentifier(target))
+        let center = NotificationCenter.default
 
-        dispatch_sync(Static.queue) {
-            if let namedObservers = Static.instance.cache.removeValueForKey(id) {
+        Static.queue.sync {
+            if let namedObservers = Static.instance.cache.removeValue(forKey: id) {
                 for namedObserver in namedObservers {
                     center.removeObserver(namedObserver.observer)
                 }
@@ -128,11 +128,11 @@ import Foundation
         }
     }
 
-     class func unregister(target: AnyObject, name: String) {
-        let id = ObjectIdentifier(target).uintValue
-        let center = NSNotificationCenter.defaultCenter()
+     class func unregister(_ target: AnyObject, name: String) {
+        let id = UInt(bitPattern: ObjectIdentifier(target))
+        let center = NotificationCenter.default
 
-        dispatch_sync(Static.queue) {
+        Static.queue.sync {
             if let namedObservers = Static.instance.cache[id] {
                 Static.instance.cache[id] = namedObservers.filter({ (namedObserver: NamedObserver) -> Bool in
                     if namedObserver.name == name {

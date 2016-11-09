@@ -14,7 +14,7 @@ class EmailCellView: TextInputCellView {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        textField.keyboardType = .EmailAddress
+        textField.keyboardType = .emailAddress
         //validator.registerField(textField, rules: [EmailRule()])
     }
 
@@ -22,18 +22,18 @@ class EmailCellView: TextInputCellView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         mailModel = item as! EmailFieldModel
         if let placeHolder = mailModel.placeHolder {
             if let font = themeConfig.customFont {
-                if let italics = font.withTraits(.TraitItalic) {
+                if let italics = font.withTraits(.traitItalic) {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                 } else {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: font])
                 }
             } else {
-                textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFontOfSize(UIFont.systemFontSize())])
+                textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
             }
         }
         textField.text = mailModel.fieldValue

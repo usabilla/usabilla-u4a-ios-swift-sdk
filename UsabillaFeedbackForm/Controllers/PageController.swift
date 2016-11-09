@@ -11,23 +11,23 @@ import UIKit
 class PageController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var pageModel: PageModel!
-    var dynamicFields: [NSIndexPath] = []
+    var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.registerClass(StarCellView.self, forCellReuseIdentifier: "stars")
-        self.tableView.registerClass(MoodCellView.self, forCellReuseIdentifier: "mood")
-        self.tableView.registerClass(SliderCellView.self, forCellReuseIdentifier: "rating")
-        self.tableView.registerClass(CheckboxCellView.self, forCellReuseIdentifier: "checkbox")
-        self.tableView.registerClass(RadioCellView.self, forCellReuseIdentifier: "radio")
-        self.tableView.registerClass(EmailCellView.self, forCellReuseIdentifier: "email")
-        self.tableView.registerClass(TextInputCellView.self, forCellReuseIdentifier: "text")
-        self.tableView.registerClass(ParagraphCellView.self, forCellReuseIdentifier: "paragraph")
-        self.tableView.registerClass(TextAreaCellView.self, forCellReuseIdentifier: "textArea")
-        self.tableView.registerClass(NPSCellView.self, forCellReuseIdentifier: "nps")
-        self.tableView.registerClass(ChoiceCellView.self, forCellReuseIdentifier: "choice")
-        self.tableView.registerClass(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
+        self.tableView.register(StarCellView.self, forCellReuseIdentifier: "stars")
+        self.tableView.register(MoodCellView.self, forCellReuseIdentifier: "mood")
+        self.tableView.register(SliderCellView.self, forCellReuseIdentifier: "rating")
+        self.tableView.register(CheckboxCellView.self, forCellReuseIdentifier: "checkbox")
+        self.tableView.register(RadioCellView.self, forCellReuseIdentifier: "radio")
+        self.tableView.register(EmailCellView.self, forCellReuseIdentifier: "email")
+        self.tableView.register(TextInputCellView.self, forCellReuseIdentifier: "text")
+        self.tableView.register(ParagraphCellView.self, forCellReuseIdentifier: "paragraph")
+        self.tableView.register(TextAreaCellView.self, forCellReuseIdentifier: "textArea")
+        self.tableView.register(NPSCellView.self, forCellReuseIdentifier: "nps")
+        self.tableView.register(ChoiceCellView.self, forCellReuseIdentifier: "choice")
+        self.tableView.register(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
 
         self.tableView.tableFooterView = UIView()
         self.tableView.tableHeaderView = headerView()
@@ -57,15 +57,15 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     func updateScreenshotHeight() {
         for index in self.tableView.visibleCells {
             if let cell = index as? ScreenshotCellView {
-                self.reloadCellsWithAnimation([self.tableView.indexPathForCell(cell)!])
+                self.reloadCellsWithAnimation([self.tableView.indexPath(for: cell)!])
             }
         }
     }
 
     func reloadCellInTableAfterEvent () {
-        var listOfIndexes: [NSIndexPath] = []
+        var listOfIndexes: [IndexPath] = []
         for index in dynamicFields {
-            if let cell = tableView.cellForRowAtIndexPath(index) as? RootCellView {
+            if let cell = tableView.cellForRow(at: index) as? RootCellView {
                 if cell.isCurrentlyDisplayed != cell.shoudlAppear() {
                     listOfIndexes.append(index)
                 }
@@ -79,9 +79,9 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     func headerView() -> UIView? {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
-        requiredLabel.textAlignment = .Right
+        requiredLabel.textAlignment = .right
         requiredLabel.textColor = pageModel.themeConfig.textColor
-        let constraint = NSLayoutConstraint.constraintsWithVisualFormat("H:[label]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: ["label": requiredLabel])
+        let constraint = NSLayoutConstraint.constraints(withVisualFormat: "H:[label]", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["label": requiredLabel])
 
         requiredLabel.addConstraints(constraint)
 
@@ -94,26 +94,26 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
 
 
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
 
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if !pageModel.fields[indexPath.row].shouldAppear() {
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? RootCellView {
+            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
                 cell.isCurrentlyDisplayed = false
             }
             return 0
         } else {
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? RootCellView {
+            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
                 cell.isCurrentlyDisplayed = true
             }
             return UITableViewAutomaticDimension
@@ -121,7 +121,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
 
 
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if  !pageModel.fields[indexPath.row].shouldAppear() {
             return 0
         } else {
@@ -129,25 +129,25 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pageModel.fields.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let item = pageModel.fields[indexPath.row]
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(item.type, forIndexPath:indexPath) as! RootCellView
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for:indexPath) as! RootCellView
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.setFeedbackItem(item)
         cell.applyCustomisations()
         if !item.shouldAppear() {
-            cell.hidden = true
-            cell.userInteractionEnabled = false
+            cell.isHidden = true
+            cell.isUserInteractionEnabled = false
             cell.isCurrentlyDisplayed = false
         } else {
-            cell.hidden = false
-            cell.userInteractionEnabled = true
+            cell.isHidden = false
+            cell.isUserInteractionEnabled = true
             cell.isCurrentlyDisplayed = true
         }
         if item.rule != nil {
@@ -157,7 +157,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
 
 
-    func initWithPage(page: PageModel) {
+    func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
         self.tableView.reloadData()
@@ -167,17 +167,17 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
 
     func reloadTableWithAnimation() {
         let range = NSMakeRange(0, self.tableView.numberOfSections)
-        let sections = NSIndexSet(indexesInRange: range)
+        let sections = IndexSet(integersIn: range.toRange() ?? 0..<0)
         //self.tableView.reloadData()
-        self.tableView.reloadSections(sections, withRowAnimation: .Automatic)
+        self.tableView.reloadSections(sections, with: .automatic)
     }
 
-    func reloadCellsWithAnimation(indexPaths: [NSIndexPath]) {
+    func reloadCellsWithAnimation(_ indexPaths: [IndexPath]) {
 
         let tableViewOffset = tableView.contentOffset
         tableView.beginUpdates()
 
-        self.tableView.reloadRowsAtIndexPaths(Array(Set(indexPaths)), withRowAnimation: .Automatic)
+        self.tableView.reloadRows(at: Array(Set(indexPaths)), with: .automatic)
         tableView.endUpdates()
         UIView.setAnimationsEnabled(false)
         tableView.layer.removeAllAnimations()
@@ -222,19 +222,19 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
 
     //Image handling stuff
     func pickImageFromGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
             let imagePicker = UIImagePickerController()
 
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
             imagePicker.allowsEditing = false
 
-            presentViewController(imagePicker, animated: true, completion: nil)
+            present(imagePicker, animated: true, completion: nil)
         }
     }
 
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
+        self.dismiss(animated: true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
 

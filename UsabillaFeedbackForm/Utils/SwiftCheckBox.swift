@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SwiftCheckBoxDelegate: class {
-    func didTapCheckBox(checkBox: SwiftCheckBox)
+    func didTapCheckBox(_ checkBox: SwiftCheckBox)
     //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
 
@@ -26,7 +26,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
     let pathManager: PathManager
     var on: Bool = false
     var hideBox: Bool = false
-    var boxType: BoxType = BoxType.Square {
+    var boxType: BoxType = BoxType.square {
         didSet {
             pathManager.boxType = boxType
             reload()
@@ -38,7 +38,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             reload()
         }
     }
-    var onFillColor: UIColor = UIColor.clearColor() {
+    var onFillColor: UIColor = UIColor.clear {
         didSet {
             reload()
         }
@@ -61,36 +61,36 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         }
     }
     var minimumTouchSize = CGSize(width: 44, height: 44)
-    var onAnimationType = AnimationType.Stroke
-    var offAnimationType = AnimationType.Stroke
+    var onAnimationType = AnimationType.stroke
+    var offAnimationType = AnimationType.stroke
     //var _animationManager: AnimationManager
 
 
     override init(frame: CGRect) {
         pathManager = PathManager()
         pathManager.lineWidth = 2.0
-        pathManager.boxType = BoxType.Square
+        pathManager.boxType = BoxType.square
         animationManager = AnimationManager(animationDuration: 0.5)
 
         super.init(frame: frame)
         offBoxLayer = CAShapeLayer(layer: layer)
         onBoxLayer = CAShapeLayer(layer: layer)
 
-        backgroundColor = UIColor.clearColor()
-        tintColor = UIColor.lightGrayColor()
+        backgroundColor = UIColor.clear
+        tintColor = UIColor.lightGray
     }
 
     required init(coder: NSCoder) {
         pathManager = PathManager()
         pathManager.lineWidth = 2.0
-        pathManager.boxType = BoxType.Square
+        pathManager.boxType = BoxType.square
         animationManager = AnimationManager(animationDuration: 0.5)
         super.init(coder: coder)!
         offBoxLayer = CAShapeLayer(layer: layer)
         onBoxLayer = CAShapeLayer(layer: layer)
 
-        backgroundColor = UIColor.clearColor()
-        tintColor = UIColor.lightGrayColor()
+        backgroundColor = UIColor.clear
+        tintColor = UIColor.lightGray
 
 
     }
@@ -112,7 +112,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         layoutIfNeeded()
     }
 
-    func setOn(on: Bool, animated: Bool) {
+    func setOn(_ on: Bool, animated: Bool) {
         self.on = on
 
         drawEntireCheckBox()
@@ -133,7 +133,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
 
 
 
-    func setTintColora(tintColor: UIColor) {
+    func setTintColora(_ tintColor: UIColor) {
         self.tintColor = tintColor
         drawOffBox()
     }
@@ -146,9 +146,9 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
 
     }
 
-    func pointInsidea(point: CGPoint, withEvent: UIEvent ) -> Bool {
+    func pointInsidea(_ point: CGPoint, withEvent: UIEvent ) -> Bool {
 
-        var found = super.pointInside(point, withEvent: withEvent)
+        var found = super.point(inside: point, with: withEvent)
 
         let minimumSize = self.minimumTouchSize
         let width = self.bounds.size.width
@@ -158,7 +158,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             let increaseWidth = minimumSize.width - width
             let increaseHeight = minimumSize.height - height
 
-            let rect = CGRectInset(self.bounds, (-increaseWidth / 2), (-increaseHeight / 2))
+            let rect = self.bounds.insetBy(dx: (-increaseWidth / 2), dy: (-increaseHeight / 2))
 
             found = rect.contains(point)
         }
@@ -167,7 +167,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
     }
 
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         setOn(self.on, animated: false)
     }
 
@@ -197,12 +197,12 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         offBoxLayer.removeFromSuperlayer()
         self.offBoxLayer = CAShapeLayer(layer: layer)
         self.offBoxLayer.frame = self.bounds
-        self.offBoxLayer.path = pathManager.pathForBox().CGPath
-        self.offBoxLayer.fillColor = UIColor.clearColor().CGColor
-        self.offBoxLayer.strokeColor = self.tintColor.CGColor
+        self.offBoxLayer.path = pathManager.pathForBox().cgPath
+        self.offBoxLayer.fillColor = UIColor.clear.cgColor
+        self.offBoxLayer.strokeColor = self.tintColor.cgColor
         self.offBoxLayer.lineWidth = self.lineWidth
 
-        self.offBoxLayer.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
+        self.offBoxLayer.rasterizationScale = 2.0 * UIScreen.main.scale
         self.offBoxLayer.shouldRasterize = true
 
 
@@ -216,12 +216,12 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         onBoxLayer.removeFromSuperlayer()
         self.onBoxLayer = CAShapeLayer(layer: layer)
         self.onBoxLayer.frame = self.bounds
-        self.onBoxLayer.path = pathManager.pathForBox().CGPath
+        self.onBoxLayer.path = pathManager.pathForBox().cgPath
 
         self.onBoxLayer.lineWidth = self.lineWidth
-        self.onBoxLayer.fillColor = self.onFillColor.CGColor
-        self.onBoxLayer.strokeColor = self.onTintColor.CGColor
-        self.onBoxLayer.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
+        self.onBoxLayer.fillColor = self.onFillColor.cgColor
+        self.onBoxLayer.strokeColor = self.onTintColor.cgColor
+        self.onBoxLayer.rasterizationScale = 2.0 * UIScreen.main.scale
         self.onBoxLayer.shouldRasterize = true
         self.layer.addSublayer(onBoxLayer)
     }
@@ -232,14 +232,14 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         checkMarkLayer?.removeFromSuperlayer()
         self.checkMarkLayer = CAShapeLayer(layer: layer)
         self.checkMarkLayer?.frame = self.bounds
-        self.checkMarkLayer?.path = pathManager.pathForCheckMark().CGPath
-        self.checkMarkLayer?.strokeColor = self.onCheckColor.CGColor
+        self.checkMarkLayer?.path = pathManager.pathForCheckMark().cgPath
+        self.checkMarkLayer?.strokeColor = self.onCheckColor.cgColor
         self.checkMarkLayer?.lineWidth = self.lineWidth
-        self.checkMarkLayer?.fillColor =  UIColor.clearColor().CGColor
+        self.checkMarkLayer?.fillColor =  UIColor.clear.cgColor
         self.checkMarkLayer?.lineCap = kCALineCapRound
         self.checkMarkLayer?.lineJoin = kCALineJoinRound
 
-        self.checkMarkLayer?.rasterizationScale = 2.0 * UIScreen.mainScreen().scale
+        self.checkMarkLayer?.rasterizationScale = 2.0 * UIScreen.main.scale
         self.checkMarkLayer?.shouldRasterize = true
 
         self.layer.addSublayer(checkMarkLayer!)
@@ -252,58 +252,58 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         }
 
         switch self.onAnimationType {
-        case AnimationType.Stroke:
+        case AnimationType.stroke:
             let animation = self.animationManager.strokeAnimationReverse(false)
-            self.onBoxLayer.addAnimation(animation, forKey: "strokeEnd")
+            self.onBoxLayer.add(animation, forKey: "strokeEnd")
 
             animation.delegate = self
-            self.checkMarkLayer?.addAnimation(animation, forKey: "strokeEnd")
+            self.checkMarkLayer?.add(animation, forKey: "strokeEnd")
 
             break
 
-        case AnimationType.Fill:
+        case AnimationType.fill:
             let wiggle = self.animationManager.fillAnimationWithBounces(1, amplitude: 0.18, reverse: false)
             let opacityAnimation = self.animationManager.opacityAnimationReverse(false)
             opacityAnimation.delegate = self
-            self.onBoxLayer.addAnimation(wiggle, forKey: "transform")
-            self.checkMarkLayer?.addAnimation(opacityAnimation, forKey: "opacity")
+            self.onBoxLayer.add(wiggle, forKey: "transform")
+            self.checkMarkLayer?.add(opacityAnimation, forKey: "opacity")
 
             break
 
-        case .Bounce:
-            let amplitude = (self.boxType == BoxType.Square) ? CGFloat( 0.20) : CGFloat(0.35)
+        case .bounce:
+            let amplitude = (self.boxType == BoxType.square) ? CGFloat( 0.20) : CGFloat(0.35)
             let wiggle = self.animationManager.fillAnimationWithBounces(1, amplitude: amplitude, reverse: false)
             wiggle.delegate = self
 
             let opacity = self.animationManager.opacityAnimationReverse(false)
             opacity.duration = self.animationDuration / 1.4
 
-            self.onBoxLayer.addAnimation(opacity, forKey: "opacity")
-            checkMarkLayer?.addAnimation(wiggle, forKey: "transform")
+            self.onBoxLayer.add(opacity, forKey: "opacity")
+            checkMarkLayer?.add(wiggle, forKey: "transform")
 
             break
 
-        case .Flat:
+        case .flat:
             let morphAnimation = self.animationManager.morphAnimationFromPath(self.pathManager.pathForFlatCheckMark(), toPath: self.pathManager.pathForCheckMark())
             morphAnimation.delegate = self
 
             let opacity =  self.animationManager.opacityAnimationReverse(false)
             opacity.duration = self.animationDuration / 5
 
-            onBoxLayer.addAnimation(opacity, forKey: "opacity")
-            checkMarkLayer?.addAnimation(morphAnimation, forKey: "path")
-            checkMarkLayer?.addAnimation(opacity, forKey: "opacity")
+            onBoxLayer.add(opacity, forKey: "opacity")
+            checkMarkLayer?.add(morphAnimation, forKey: "path")
+            checkMarkLayer?.add(opacity, forKey: "opacity")
 
             break
 
-        case .Stroke:
+        case .stroke:
             // Temporary set the path of the checkmarl to the long checkmarl
-            checkMarkLayer?.path = pathManager.pathForLongCheckMark().bezierPathByReversingPath().CGPath
+            checkMarkLayer?.path = pathManager.pathForLongCheckMark().reversing().cgPath
 
 
             let boxStrokeAnimation = animationManager.strokeAnimationReverse(false)
             boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2
-            onBoxLayer.addAnimation(boxStrokeAnimation, forKey: "strokeEnd")
+            onBoxLayer.add(boxStrokeAnimation, forKey: "strokeEnd")
 
 
             let checkStrokeAnimation = animationManager.strokeAnimationReverse(false)
@@ -311,25 +311,25 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             checkStrokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
             checkStrokeAnimation.fillMode = kCAFillModeBackwards
             checkStrokeAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration
-            checkMarkLayer?.addAnimation(checkStrokeAnimation, forKey: "strokeEnd")
+            checkMarkLayer?.add(checkStrokeAnimation, forKey: "strokeEnd")
 
 
             let checkMorphAnimation = animationManager.morphAnimationFromPath(pathManager.pathForLongCheckMark(), toPath: pathManager.pathForCheckMark())
             checkMorphAnimation.duration = checkMorphAnimation.duration / 6
             checkMorphAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
             checkMorphAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration + checkStrokeAnimation.duration
-            checkMorphAnimation.removedOnCompletion = false
+            checkMorphAnimation.isRemovedOnCompletion = false
             checkMorphAnimation.fillMode = kCAFillModeForwards
             checkMorphAnimation.delegate = self
-            checkMarkLayer?.addAnimation(checkMorphAnimation, forKey: "path")
+            checkMarkLayer?.add(checkMorphAnimation, forKey: "path")
 
             break
 
         default:
             let animation = animationManager.opacityAnimationReverse(false)
-            onBoxLayer.addAnimation(animation, forKey: "opacity")
+            onBoxLayer.add(animation, forKey: "opacity")
             animation.delegate = self
-            checkMarkLayer?.addAnimation(animation, forKey: "opacity")
+            checkMarkLayer?.add(animation, forKey: "opacity")
             break
         }
     }
@@ -341,63 +341,63 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         }
 
         switch self.offAnimationType {
-        case .Stroke:
+        case .stroke:
             let animation = animationManager.strokeAnimationReverse(true)
-            onBoxLayer.addAnimation(animation, forKey: "strokeEnd")
+            onBoxLayer.add(animation, forKey: "strokeEnd")
             animation.delegate = self
-            checkMarkLayer?.addAnimation(animation, forKey: "strokeEnd")
+            checkMarkLayer?.add(animation, forKey: "strokeEnd")
             break
 
-        case .Fill:
+        case .fill:
             let wiggle = animationManager.fillAnimationWithBounces(1, amplitude: 0.18, reverse: true)
             wiggle.duration = self.animationDuration
             wiggle.delegate = self
-            onBoxLayer.addAnimation(wiggle, forKey: "transform")
-            checkMarkLayer?.addAnimation(animationManager.opacityAnimationReverse(true), forKey: "opacity")
+            onBoxLayer.add(wiggle, forKey: "transform")
+            checkMarkLayer?.add(animationManager.opacityAnimationReverse(true), forKey: "opacity")
 
             break
 
-        case .Bounce:
-            let amplitude = (self.boxType == BoxType.Square) ? CGFloat(0.20) : CGFloat(0.35)
+        case .bounce:
+            let amplitude = (self.boxType == BoxType.square) ? CGFloat(0.20) : CGFloat(0.35)
             let wiggle = animationManager.fillAnimationWithBounces(1, amplitude: amplitude, reverse: true)
             wiggle.duration = self.animationDuration / 1.1
             let opacity = animationManager.opacityAnimationReverse(true)
             opacity.delegate = self
-            onBoxLayer.addAnimation(opacity, forKey: "opacity")
-            checkMarkLayer?.addAnimation(wiggle, forKey: "transform")
+            onBoxLayer.add(opacity, forKey: "opacity")
+            checkMarkLayer?.add(wiggle, forKey: "transform")
 
             break
 
-        case .Flat:
+        case .flat:
             let animation = animationManager.morphAnimationFromPath(pathManager.pathForCheckMark(), toPath: pathManager.pathForFlatCheckMark())
             animation.delegate = self
 
             let opacity = animationManager.opacityAnimationReverse(true)
             opacity.duration = self.animationDuration
 
-            onBoxLayer.addAnimation(opacity, forKey: "opacity")
-            checkMarkLayer?.addAnimation(animation, forKey: "path")
-            checkMarkLayer?.addAnimation(opacity, forKey: "opacity")
+            onBoxLayer.add(opacity, forKey: "opacity")
+            checkMarkLayer?.add(animation, forKey: "path")
+            checkMarkLayer?.add(opacity, forKey: "opacity")
 
             break
 
-        case .Stroke:
-            self.checkMarkLayer?.path = pathManager.pathForLongCheckMark().bezierPathByReversingPath().CGPath
+        case .stroke:
+            self.checkMarkLayer?.path = pathManager.pathForLongCheckMark().reversing().cgPath
 
             let checkMorphAnimation = animationManager.morphAnimationFromPath(pathManager.pathForCheckMark(), toPath: pathManager.pathForLongCheckMark())
             checkMorphAnimation.delegate = nil
             checkMorphAnimation.duration = checkMorphAnimation.duration / 6
-            checkMarkLayer?.addAnimation(checkMorphAnimation, forKey: "path")
+            checkMarkLayer?.add(checkMorphAnimation, forKey: "path")
 
 
             let checkStrokeAnimation = self.animationManager.strokeAnimationReverse(true)
             checkStrokeAnimation.delegate = nil
             checkStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration
             checkStrokeAnimation.duration = checkStrokeAnimation.duration / 3
-            checkMarkLayer?.addAnimation(checkStrokeAnimation, forKey: "strokeEnd")
+            checkMarkLayer?.add(checkStrokeAnimation, forKey: "strokeEnd")
 
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
                 self.checkMarkLayer?.lineCap = kCALineCapButt
             })
 
@@ -405,20 +405,20 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             boxStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration
             boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2
             boxStrokeAnimation.delegate = self
-            onBoxLayer.addAnimation(boxStrokeAnimation, forKey: "strokeEnd")
+            onBoxLayer.add(boxStrokeAnimation, forKey: "strokeEnd")
 
             break
 
         default:
             let animation = animationManager.opacityAnimationReverse(true)
-            onBoxLayer.addAnimation(animation, forKey: "opacity")
+            onBoxLayer.add(animation, forKey: "opacity")
             animation.delegate = self
-            checkMarkLayer?.addAnimation(animation, forKey: "opacity")
+            checkMarkLayer?.add(animation, forKey: "opacity")
             break
         }
     }
 
-    func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag == true {
             if self.on == false {
                 onBoxLayer.removeFromSuperlayer()
@@ -443,23 +443,23 @@ class PathManager {
 
 
     init() {
-        boxType = BoxType.Square
+        boxType = BoxType.square
     }
 
     func pathForBox() -> UIBezierPath {
         let path: UIBezierPath
 
         switch self.boxType {
-        case .Square:
-            path = UIBezierPath(roundedRect: CGRectMake(0, 0, size, size), cornerRadius: 3.0)
-            path.applyTransform(CGAffineTransformRotate(CGAffineTransformIdentity, CGFloat( M_PI * 2.5)))
-            path.applyTransform(CGAffineTransformMakeTranslation(size, 0))
+        case .square:
+            path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: 3.0)
+            path.apply(CGAffineTransform.identity.rotated(by: CGFloat( M_PI * 2.5)))
+            path.apply(CGAffineTransform(translationX: size, y: 0))
 
             break
 
         default:
             let radius: CGFloat = self.size / 2
-            path = UIBezierPath.init(arcCenter: CGPointMake(size/2, size/2), radius: radius, startAngle: CGFloat(-M_PI / 4), endAngle: CGFloat(2 * M_PI - M_PI / 4), clockwise: true)
+            path = UIBezierPath.init(arcCenter: CGPoint(x: size/2, y: size/2), radius: radius, startAngle: CGFloat(-M_PI / 4), endAngle: CGFloat(2 * M_PI - M_PI / 4), clockwise: true)
 
 
             break
@@ -470,15 +470,15 @@ class PathManager {
     func pathForCheckMark() -> UIBezierPath {
         let checkMarkPath = UIBezierPath()
 
-        checkMarkPath.moveToPoint(CGPointMake(self.size/3.1578, self.size/2))
-        checkMarkPath.addLineToPoint(CGPointMake(self.size/2.0618, self.size/1.57894))
-        checkMarkPath.addLineToPoint(CGPointMake(self.size/1.3953, self.size/2.7272))
+        checkMarkPath.move(to: CGPoint(x: self.size/3.1578, y: self.size/2))
+        checkMarkPath.addLine(to: CGPoint(x: self.size/2.0618, y: self.size/1.57894))
+        checkMarkPath.addLine(to: CGPoint(x: self.size/1.3953, y: self.size/2.7272))
 
 
-        if self.boxType == .Square {
+        if self.boxType == .square {
             // If we use a square box, the check mark should be a little bit bigger
-            checkMarkPath.applyTransform(CGAffineTransformMakeScale(1.5, 1.5))
-            checkMarkPath.applyTransform(CGAffineTransformMakeTranslation(-self.size/4, -self.size/4))
+            checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
+            checkMarkPath.apply(CGAffineTransform(translationX: -self.size/4, y: -self.size/4))
 
         }
 
@@ -488,18 +488,18 @@ class PathManager {
     func pathForLongCheckMark() -> UIBezierPath {
         let checkMarkPath = UIBezierPath()
 
-        checkMarkPath.moveToPoint(CGPointMake(self.size/3.1578, self.size/2))
-        checkMarkPath.addLineToPoint(CGPointMake(self.size/2.0618, self.size/1.57894))
+        checkMarkPath.move(to: CGPoint(x: self.size/3.1578, y: self.size/2))
+        checkMarkPath.addLine(to: CGPoint(x: self.size/2.0618, y: self.size/1.57894))
 
-        if self.boxType == .Square {
+        if self.boxType == .square {
             // If we use a square box, the check mark should be a little bit bigger
-            checkMarkPath.addLineToPoint(CGPointMake(self.size/1.2053, self.size/4.5272))
-            checkMarkPath.applyTransform(CGAffineTransformMakeScale(1.5, 1.5))
-            checkMarkPath.applyTransform(CGAffineTransformMakeTranslation(-self.size/4, -self.size/4))
+            checkMarkPath.addLine(to: CGPoint(x: self.size/1.2053, y: self.size/4.5272))
+            checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
+            checkMarkPath.apply(CGAffineTransform(translationX: -self.size/4, y: -self.size/4))
 
 
         } else {
-            checkMarkPath.addLineToPoint(CGPointMake(self.size/1.1553, self.size/5.9272))
+            checkMarkPath.addLine(to: CGPoint(x: self.size/1.1553, y: self.size/5.9272))
         }
 
         return checkMarkPath
@@ -507,9 +507,9 @@ class PathManager {
 
     func pathForFlatCheckMark() -> UIBezierPath {
         let flatCheckMarkPath = UIBezierPath()
-        flatCheckMarkPath.moveToPoint(CGPointMake(self.size/4, self.size/2))
-        flatCheckMarkPath.addLineToPoint(CGPointMake(self.size/2, self.size/2))
-        flatCheckMarkPath.addLineToPoint(CGPointMake(self.size/1.2, self.size/2))
+        flatCheckMarkPath.move(to: CGPoint(x: self.size/4, y: self.size/2))
+        flatCheckMarkPath.addLine(to: CGPoint(x: self.size/2, y: self.size/2))
+        flatCheckMarkPath.addLine(to: CGPoint(x: self.size/1.2, y: self.size/2))
 
         return flatCheckMarkPath
     }
@@ -518,41 +518,41 @@ class PathManager {
 enum BoxType {
     /** Circled box.
      */
-    case Circle
+    case circle
 
     /** Squared box.
      */
-    case Square
+    case square
 }
 
 enum AnimationType {
     /** Animates the box and the check as if they were drawn.
      *  Should be used with a clear colored onFillColor property.
      */
-    case Stroke
+    case stroke
 
     /** When tapped, the checkbox is filled from its center.
      * Should be used with a colored onFillColor property.
      */
-    case Fill
+    case fill
 
     /** Animates the check mark with a bouncy effect.
      */
-    case Bounce
+    case bounce
 
     /** Morphs the checkmark from a line.
      * Should be used with a colored onFillColor property.
      */
-    case Flat
+    case flat
 
     /** Animates the box and check as if they were drawn in one continuous line.
      * Should be used with a clear colored onFillColor property.
      */
-    case OneStroke
+    case oneStroke
 
     /** When tapped, the checkbox is fading in or out (opacity).
      */
-    case Fade
+    case fade
 }
 
 
@@ -564,7 +564,7 @@ class AnimationManager {
         self.animationDuration = animationDuration
     }
 
-    func strokeAnimationReverse(reverse: Bool) -> CABasicAnimation {
+    func strokeAnimationReverse(_ reverse: Bool) -> CABasicAnimation {
         let animation = CABasicAnimation.init(keyPath: "strokeEnd")
         if reverse {
             animation.fromValue = 1
@@ -574,14 +574,14 @@ class AnimationManager {
             animation.toValue = 1
         }
         animation.duration = self.animationDuration
-        animation.removedOnCompletion = false
+        animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
         return animation
     }
 
-    func opacityAnimationReverse(reverse: Bool) -> CABasicAnimation {
+    func opacityAnimationReverse(_ reverse: Bool) -> CABasicAnimation {
         let animation = CABasicAnimation.init(keyPath: "opacity")
 
         if reverse {
@@ -592,53 +592,54 @@ class AnimationManager {
             animation.toValue = 1
         }
         animation.duration = self.animationDuration
-        animation.removedOnCompletion = false
+        animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
         return animation
     }
 
-    func morphAnimationFromPath(fromPath: UIBezierPath, toPath: UIBezierPath ) -> CABasicAnimation {
+    func morphAnimationFromPath(_ fromPath: UIBezierPath, toPath: UIBezierPath ) -> CABasicAnimation {
         let animation = CABasicAnimation.init(keyPath: "path")
         animation.duration = self.animationDuration
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
 
-        animation.fromValue = fromPath.CGPath
-        animation.toValue = toPath.CGPath
+        animation.fromValue = fromPath.cgPath
+        animation.toValue = toPath.cgPath
 
         return animation
     }
 
-    func fillAnimationWithBounces(bounces: Int, amplitude: CGFloat, reverse: Bool) -> CAKeyframeAnimation {
+    func fillAnimationWithBounces(_ bounces: Int, amplitude: CGFloat, reverse: Bool) -> CAKeyframeAnimation {
         var values: [NSValue] = []
         var keyTimes: [NSNumber] = []
 
         if reverse {
-            values.append(NSValue(CATransform3D: CATransform3DMakeScale(1, 1, 1)))
+            values.append(NSValue(caTransform3D: CATransform3DMakeScale(1, 1, 1)))
         } else {
-            values.append(NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)))
+            values.append(NSValue(caTransform3D: CATransform3DMakeScale(0, 0, 0)))
         }
 
         keyTimes.append(0.0)
 
         for index in 1...bounces {
             let i = CGFloat(index)
-            let scale = (i % 2 != 0) ? (1 + amplitude/i) : (1 - amplitude/i)
+            let scale = (i.truncatingRemainder(dividingBy: 2) != 0) ? (1 + amplitude/i) : (1 - amplitude/i)
             let time = i * 1.0/CGFloat(bounces + 1)
 
-            values.append(NSValue(CATransform3D: CATransform3DMakeScale(scale, scale, scale)))
-            keyTimes.append(time)
+            values.append(NSValue(caTransform3D: CATransform3DMakeScale(scale, scale, scale)))
+            keyTimes.append(NSNumber(value: Float(time)))
+            
 
         }
 
 
         if reverse {
-            values.append(NSValue(CATransform3D: CATransform3DMakeScale(0.0001, 0.0001, 0.0001)))
+            values.append(NSValue(caTransform3D: CATransform3DMakeScale(0.0001, 0.0001, 0.0001)))
 
         } else {
-            values.append(NSValue(CATransform3D: CATransform3DMakeScale(1, 1, 1)))
+            values.append(NSValue(caTransform3D: CATransform3DMakeScale(1, 1, 1)))
 
         }
 
@@ -647,7 +648,7 @@ class AnimationManager {
         let animation = CAKeyframeAnimation.init(keyPath: "transform")
         animation.values = values
         animation.keyTimes = keyTimes
-        animation.removedOnCompletion = false
+        animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         animation.duration = self.animationDuration
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)

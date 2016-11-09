@@ -12,31 +12,31 @@ class DeviceInfo {
 
 
     class func totalRamOfDevice () -> UInt64 {
-        return NSProcessInfo.processInfo().physicalMemory
+        return ProcessInfo.processInfo.physicalMemory
     }
 
 
     class func deviceRemainingFreeSpaceInBytes() -> Int? {
         //Wont fucking fix
-        var info = mach_task_basic_info()
-        var count = mach_msg_type_number_t(sizeofValue(info))/4
-
-        let kerr: kern_return_t = withUnsafeMutablePointer(&info) {
-
-            task_info(mach_task_self_,
-                      task_flavor_t(MACH_TASK_BASIC_INFO),
-                      task_info_t($0),
-                      &count)
-
-        }
-
-        if kerr == KERN_SUCCESS {
-            Swift.debugPrint("Memory in use (in bytes): \(info.resident_size)")
-            return Int(info.resident_size)
-        } else {
-            Swift.debugPrint("Error with task_info(): " +
-                (String.fromCString(mach_error_string(kerr)) ?? "unknown error"))
-        }
+//        var info = mach_task_basic_info()
+//        var count = mach_msg_type_number_t(MemoryLayout.size(ofValue: info))/4
+//
+//        let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
+//
+//            task_info(mach_task_self_,
+//                      task_flavor_t(MACH_TASK_BASIC_INFO),
+//                      task_info_t($0),
+//                      &count)
+//
+//        }
+//
+//        if kerr == KERN_SUCCESS {
+//            Swift.debugPrint("Memory in use (in bytes): \(info.resident_size)")
+//            return Int(info.resident_size)
+//        } else {
+//            Swift.debugPrint("Error with task_info(): " +
+//                (String(cString: mach_error_string(kerr)) ?? "unknown error"))
+//        }
 
 //        let MACH_TASK_BASIC_INFO_COUNT = (sizeof(mach_task_basic_info_data_t) / sizeof(natural_t))
 //
@@ -75,8 +75,8 @@ class DeviceInfo {
 
             let str = "Jailbreak test string"
             do {
-                try str.writeToFile("/private/test_jail.txt", atomically: true, encoding: NSUTF8StringEncoding )
-                try NSFileManager().removeItemAtPath("/private/test_jail.txt")
+                try str.write(toFile: "/private/test_jail.txt", atomically: true, encoding: String.Encoding.utf8 )
+                try FileManager().removeItem(atPath: "/private/test_jail.txt")
                 return true
             } catch _ {
                 return false
@@ -90,31 +90,31 @@ class DeviceInfo {
     class DiskStatus {
 
         //MARK: Formatter MB only
-        class func MBFormatter(bytes: Int64) -> String {
-            let formatter = NSByteCountFormatter()
-            formatter.allowedUnits = NSByteCountFormatterUnits.UseMB
-            formatter.countStyle = NSByteCountFormatterCountStyle.Decimal
+        class func MBFormatter(_ bytes: Int64) -> String {
+            let formatter = ByteCountFormatter()
+            formatter.allowedUnits = ByteCountFormatter.Units.useMB
+            formatter.countStyle = ByteCountFormatter.CountStyle.decimal
             formatter.includesUnit = false
-            return formatter.stringFromByteCount(bytes) as String
+            return formatter.string(fromByteCount: bytes) as String
         }
 
 
         //MARK: Get String Value
         class var totalDiskSpace: String {
             get {
-                return NSByteCountFormatter.stringFromByteCount(totalDiskSpaceInBytes, countStyle: NSByteCountFormatterCountStyle.Binary)
+                return ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
         }
 
         class var freeDiskSpace: String {
             get {
-                return NSByteCountFormatter.stringFromByteCount(freeDiskSpaceInBytes, countStyle: NSByteCountFormatterCountStyle.Binary)
+                return ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
         }
 
         class var usedDiskSpace: String {
             get {
-                return NSByteCountFormatter.stringFromByteCount(usedDiskSpaceInBytes, countStyle: NSByteCountFormatterCountStyle.Binary)
+                return ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
         }
 
@@ -123,8 +123,8 @@ class DeviceInfo {
         class var totalDiskSpaceInBytes: Int64 {
             get {
                 do {
-                    let systemAttributes = try NSFileManager.defaultManager().attributesOfFileSystemForPath(NSHomeDirectory() as String)
-                    let space = (systemAttributes[NSFileSystemSize] as? NSNumber)?.longLongValue
+                    let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
+                    let space = (systemAttributes[FileAttributeKey.systemSize] as? NSNumber)?.int64Value
                     return space!
                 } catch {
                     return 0
@@ -135,8 +135,8 @@ class DeviceInfo {
         class var freeDiskSpaceInBytes: Int64 {
             get {
                 do {
-                    let systemAttributes = try NSFileManager.defaultManager().attributesOfFileSystemForPath(NSHomeDirectory() as String)
-                    let freeSpace = (systemAttributes[NSFileSystemFreeSize] as? NSNumber)?.longLongValue
+                    let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
+                    let freeSpace = (systemAttributes[FileAttributeKey.systemFreeSize] as? NSNumber)?.int64Value
                     return freeSpace!
                 } catch {
                     return 0

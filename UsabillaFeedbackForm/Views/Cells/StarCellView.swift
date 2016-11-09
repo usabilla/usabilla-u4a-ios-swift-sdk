@@ -33,13 +33,13 @@ class StarCellView: RootCellView, SwiftStarDelegate {
 
 
 
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0).active = true
+        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0).isActive = true
 
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0).active = true
+        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
 
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.LessThanOrEqual, toItem: self.contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0).active = true
+        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0).isActive = true
 
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0).active = true
+        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0).isActive = true
 
         setNeedsLayout()
     }
@@ -49,7 +49,7 @@ class StarCellView: RootCellView, SwiftStarDelegate {
     }
 
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         starModel = item as! StarFieldModel
         if let value = starModel.fieldValue {
@@ -67,7 +67,7 @@ class StarCellView: RootCellView, SwiftStarDelegate {
     }
 
 
-    func starValueChanged(value: Int) {
+    func starValueChanged(_ value: Int) {
         starModel.fieldValue = value
     }
 
