@@ -24,7 +24,7 @@ class SliderCellView: RootCellView {
         valueLabel = createSecondaryLabel()
         slider = UISlider()
 
-        slider.addTarget(self, action: #selector(SliderCellView.barChangedValue), forControlEvents: .ValueChanged)
+        slider.addTarget(self, action: #selector(SliderCellView.barChangedValue), for: .valueChanged)
         self.contentView.addSubview(slider)
         self.contentView.addSubview(valueLabel)
 
@@ -39,42 +39,42 @@ class SliderCellView: RootCellView {
         self.contentView.addSubview(rightLabel)
 
 
-        let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 15)
+        let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 15)
         f.identifier = "prova"
         f.priority = 750
-        let a = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let a = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
 
-        let v = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0)
+        let v = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
 
-        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -4).active = true
+        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -4).isActive = true
 
-        trailingTitleLabelConstraint.active = false
+        trailingTitleLabelConstraint.isActive = false
 
         let views = ["titleLabel": super.titleLabel!,
                      "valueLabel": self.valueLabel]
 
         var allConstraints = [NSLayoutConstraint]()
 
-        let iconVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-(8)-[titleLabel]-(6)-[valueLabel(>=50)]-(8)-|",
+        let iconVerticalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-(8)-[titleLabel]-(6)-[valueLabel(>=50)]-(8)-|",
             options: [],
             metrics: nil,
             views: views)
         allConstraints += iconVerticalConstraints
 
-        NSLayoutConstraint.activateConstraints(allConstraints)
+        NSLayoutConstraint.activate(allConstraints)
 
-        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.slider, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 6).active = true
+        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 6).isActive = true
 
-        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 8).active = true
+        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8).isActive = true
 
-        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.BottomMargin, multiplier: 1, constant: -5).active = true
+        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
 
-        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.slider, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 6).active = true
+        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 6).isActive = true
 
-        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.TrailingMargin, multiplier: 1, constant: 8).active = true
+        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
 
-        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.BottomMargin, multiplier: 1, constant: -5).active = true
+        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
 
         contentView.addConstraints([f, a, v])
 
@@ -87,11 +87,11 @@ class SliderCellView: RootCellView {
         slider.thumbTintColor = sliderModel.themeConfig.accentColor
         //backgroundColor =  sliderModel.themeConfig.backgroundColor
 
-        valueLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
+        valueLabel.font = item.themeConfig.customFont?.withSize(13.0)
         valueLabel.textColor = item.themeConfig.textColor
-        rightLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
+        rightLabel.font = item.themeConfig.customFont?.withSize(13.0)
         rightLabel.textColor = item.themeConfig.textColor
-        leftLabel.font = item.themeConfig.customFont?.fontWithSize(13.0)
+        leftLabel.font = item.themeConfig.customFont?.withSize(13.0)
         leftLabel.textColor = item.themeConfig.textColor
     }
 
@@ -100,7 +100,7 @@ class SliderCellView: RootCellView {
     }
 
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         sliderModel = item as! RatingFieldModel
 

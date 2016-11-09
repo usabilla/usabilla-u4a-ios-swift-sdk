@@ -24,7 +24,7 @@ protocol FieldModelProtocol {
     init(json: JSON, pageModel: PageModel)
 
     func isValid() -> Bool
-    func convertToJSON() -> AnyObject?
+    func convertToJSON() -> Any?
 }
 
 
@@ -50,7 +50,7 @@ class BaseFieldModel: FieldModelProtocol {
         self.themeConfig = pageModel.themeConfig
     }
 
-    func convertToJSON() -> AnyObject? {
+    func convertToJSON() -> Any? {
         return nil
     }
 
@@ -106,7 +106,7 @@ class StringFieldModel: BaseFieldModel {
         return isModelValid
     }
 
-    override func convertToJSON() -> AnyObject? {
+    override func convertToJSON() -> Any? {
         return fieldValue
     }
 }
@@ -141,8 +141,8 @@ class IntFieldModel: BaseFieldModel {
         return isModelValid
     }
 
-    override func convertToJSON() -> AnyObject? {
-        return fieldValue
+    override func convertToJSON() -> Any? {
+        return fieldValue 
     }
 
 }
@@ -181,7 +181,7 @@ class FieldModelWithOptions: BaseFieldModel {
         return isModelValid
     }
 
-    override func convertToJSON() -> AnyObject? {
+    override func convertToJSON() -> Any? {
         return fieldValue.count > 0 ? fieldValue : nil
     }
 

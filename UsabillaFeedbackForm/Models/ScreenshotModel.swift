@@ -33,7 +33,7 @@ class ScreenshotModel: BaseFieldModel {
         if let screen = screenshot {
             //let data: NSData? = UIImagePNGRepresentation(screen.fixSizeAndOrientation())
             let data = UIImageJPEGRepresentation(screen.fixSizeAndOrientation(), 0.5)
-            return data?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+            return data?.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
         }
         return nil
     }

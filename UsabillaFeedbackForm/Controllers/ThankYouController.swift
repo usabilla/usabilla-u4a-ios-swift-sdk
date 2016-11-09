@@ -28,36 +28,36 @@ class ThankYouController: UIViewController {
 
     func openAppStore() {
         let url = String(format: "itms-apps://itunes.apple.com/us/app/apple-store/id%@", UsabillaFeedbackForm.appStoreId!)
-        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+        UIApplication.shared.openURL(URL(string: url)!)
     }
 
     func reloadForm() {
         SwiftEventBus.post("restoreForm")
     }
 
-    func setUpController (thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
+    func setUpController (_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
-            bottomButton.setTitle(redirectToAppStore, forState: .Normal)
-            bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), forControlEvents: .TouchUpInside)
+            bottomButton.setTitle(redirectToAppStore, for: UIControlState())
+            bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else if !UsabillaFeedbackForm.hideGiveMoreFeedback {
-            bottomButton.setTitle(giveMoreFeedback, forState: .Normal)
-            bottomButton.addTarget(self, action: #selector(ThankYouController.reloadForm), forControlEvents: .TouchUpInside)
+            bottomButton.setTitle(giveMoreFeedback, for: UIControlState())
+            bottomButton.addTarget(self, action: #selector(ThankYouController.reloadForm), for: .touchUpInside)
         } else {
-            bottomButton.hidden = true
+            bottomButton.isHidden = true
         }
 
-        bottomButton.titleLabel?.font = themeConfig?.customFont?.fontWithSize(15)
-        bottomButton.setTitleColor(themeConfig?.accentColor, forState: .Normal)
+        bottomButton.titleLabel?.font = themeConfig?.customFont?.withSize(15)
+        bottomButton.setTitleColor(themeConfig?.accentColor, for: UIControlState())
 
         titleLabel.text = thankTitle
-        titleLabel.font = themeConfig?.customFont?.fontWithSize(17.0)
+        titleLabel.font = themeConfig?.customFont?.withSize(17.0)
         titleLabel.textColor = themeConfig?.titleColor
 
         messageLabel.text = thankMessage
-        messageLabel.font = themeConfig?.customFont?.fontWithSize(13)
+        messageLabel.font = themeConfig?.customFont?.withSize(13)
         messageLabel.textColor = themeConfig?.textColor
-        messageLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
+        messageLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
         messageLabel.numberOfLines = 0
         //messageLabel.layoutIfNeeded()
     }

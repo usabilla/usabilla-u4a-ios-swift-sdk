@@ -20,20 +20,20 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
 
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .RoundedRect
+        textField.borderStyle = .roundedRect
         contentView.addSubview(textField)
 
-        textField.addTarget(self, action: #selector(TextInputCellView.textFieldDidChange), forControlEvents: .EditingChanged)
+        textField.addTarget(self, action: #selector(TextInputCellView.textFieldDidChange), for: .editingChanged)
 
-        let a  = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 8)
+        let a  = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
         a.priority = 750
-        a.active = true
+        a.isActive = true
 
-        NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0).active = true
+        NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
 
-        NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0).active = true
+        NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0).isActive = true
 
-        NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -8).active = true
+        NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -8).isActive = true
 
     }
 
@@ -44,7 +44,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     }
 
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         model = item as! StringFieldModel
         textField.text = model.fieldValue
@@ -53,13 +53,13 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
             textField.placeholder = model2.placeHolder
             if let placeHolder = model2.placeHolder {
                 if let font = themeConfig.customFont {
-                    if let italics = font.withTraits(.TraitItalic) {
+                    if let italics = font.withTraits(.traitItalic) {
                         textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                     } else {
                         textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: font])
                     }
                 } else {
-                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFontOfSize(UIFont.systemFontSize())])
+                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
                 }
             }
         }
@@ -69,16 +69,16 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     override func applyCustomisations() {
         super.applyCustomisations()
         textField.tintColor = model.themeConfig.hintColor
-        textField.font = model.themeConfig.customFont?.fontWithSize(13)
+        textField.font = model.themeConfig.customFont?.withSize(13)
         textField.textColor = model.themeConfig.textColor
         textField.backgroundColor = themeConfig.backgroundColor
-        textField.layer.borderColor = model.themeConfig.hintColor.CGColor
+        textField.layer.borderColor = model.themeConfig.hintColor.cgColor
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = 5
         textField.layer.masksToBounds = true
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         model.fieldValue = textField.text
     }
 
