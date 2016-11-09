@@ -68,7 +68,7 @@ class FormViewController: UIViewController {
 
     func setUpReachability() {
         do {
-            reachability = try Reachability.init()
+            reachability = Reachability.init()
             try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")

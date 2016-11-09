@@ -20,11 +20,11 @@ class JSONParserTest: QuickSpec {
         var formModel: FormModel!
         
         beforeSuite {
-            let path = NSBundle(forClass: JSONParserTest.self).pathForResource("test", ofType: "json")!
+            let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             do {
-                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let jsonObj: JSON = JSON(data:data)
-                formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil)
+                let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                let jsonObj: JSON = JSON(data:data as Data)
+                formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
                 
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
@@ -39,13 +39,13 @@ class JSONParserTest: QuickSpec {
                 }
                 
                 it("should correctly extract the form settings"){
-                    expect(formModel.appTitle).to(equal("FeedbackTest"))
-                    expect(formModel.appSubmitButton).to(equal("TestSubmit"))
+                    expect(formModel.copyModel.appTitle).to(equal("FeedbackTest"))
+                    expect(formModel.copyModel.navigationSubmit).to(equal("TestSubmit"))
                     expect(formModel.hasScreenshot).to(equal(true))
                     expect(formModel.version).to(equal(1))
                     expect(formModel.appId).to(equal("a"))
                     expect(formModel.isDefault).to(equal(false))
-                    expect(formModel.errorMessage).to(equal("Error"))
+                    expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
                 
                 describe("the pages array"){
@@ -82,7 +82,7 @@ class JSONParserTest: QuickSpec {
                             }
                             
                             it("should containt a valid first field"){
-                                let field: CheckboxFieldModel = (formModel.pages[1].fields![0]) as! CheckboxFieldModel
+                                let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as! CheckboxFieldModel
                                 expect(field.fieldId).to(equal("SISSM"))
                                 expect(field.fieldTitle).to(equal("SISSM"))
                                 expect(field.type).to(equal("checkbox"))
@@ -94,7 +94,7 @@ class JSONParserTest: QuickSpec {
                             }
                             
                             it("should containt a valid second field"){
-                                let field: RatingFieldModel = formModel.pages[1].fields![1] as! RatingFieldModel
+                                let field: RatingFieldModel = formModel.pages[1].fields[1] as! RatingFieldModel
                                 expect(field.fieldTitle).to(equal("Ik ben een slider!"))
                                 expect(field.fieldId).to(equal("Ik_ben_een_slide"))
                                 expect(field.type).to(equal("rating"))
@@ -107,7 +107,7 @@ class JSONParserTest: QuickSpec {
                             }
                             
                             it("should containt a valid email field"){
-                                let field: EmailFieldModel = formModel.pages[1].fields![2] as! EmailFieldModel
+                                let field: EmailFieldModel = formModel.pages[1].fields[2] as! EmailFieldModel
                                 expect(field.fieldTitle).to(equal("Email address"))
                                 expect(field.fieldId).to(equal("email"))
                                 expect(field.placeHolder).to(equal("Dit is een email"))
@@ -125,7 +125,7 @@ class JSONParserTest: QuickSpec {
             
             func testPerformanceExample() {
                 // This is an example of a performance test case.
-                self.measureBlock {
+                self.measure {
                     //JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil)
                 }
             }
