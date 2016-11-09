@@ -42,7 +42,7 @@ class FormViewController: UIViewController {
         updateProgressBar()
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
-        //self.navigationController?.navigationBar.set = formModel.themeConfig.statusBarColor
+        
         self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
         footerView.backgroundColor = formModel.themeConfig.accentColor

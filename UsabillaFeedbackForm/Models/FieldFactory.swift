@@ -30,11 +30,7 @@ class FieldFactory {
         case"comment":
             return  CommentFieldModel(json: json, pageModel: pagemodel)
         case"nps":
-            if json["mode"].exists() && json["mode"].stringValue == "slider"{
-                return  RatingFieldModel(json: json, pageModel: pagemodel, isNPS: true)
-            } else {
-                return  NPSFieldModel(json: json, pageModel: pagemodel)
-            }
+            return  RatingFieldModel(json: json, pageModel: pagemodel, isNPS: true)
         case"mood":
             if json["mode"].exists() && json["mode"].stringValue == "star"{
                 return  StarFieldModel(json: json, pageModel: pagemodel)
