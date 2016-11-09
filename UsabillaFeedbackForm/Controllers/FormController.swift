@@ -37,7 +37,7 @@ class FormViewController: UIViewController {
 
     var currentPage = 0
     var formModel: FormModel!
-    //var reachability: Reachability!
+    var reachability: Reachability!
     var pageController: PageController!
     var thankYouController: ThankYouController!
     var customVars: [String: Any]? = nil
@@ -77,7 +77,7 @@ class FormViewController: UIViewController {
         }
 
         setUpLeftButton()
-        //setUpReachability()
+        setUpReachability()
     }
 
 
@@ -91,14 +91,14 @@ class FormViewController: UIViewController {
     }
 
 
-//    func setUpReachability() {
-//        do {
-//            reachability = try Reachability.reachabilityForInternetConnection()
-//            try reachability.startNotifier()
-//        } catch {
-//            print("Unable to start notifier")
-//        }
-//    }
+    func setUpReachability() {
+        do {
+            reachability = try Reachability.init()
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
 
     func openUsabilla() {
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
@@ -118,11 +118,11 @@ class FormViewController: UIViewController {
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
                 let (payload, screenshot) = createDictionaryForSubmission()
-                //if reachability.currentReachabilityStatus == .notReachable {
+                if reachability.currentReachabilityStatus == .notReachable {
                     //Queue
-               // } else {
+                } else {
                     submitForm(payload, screenshotString: screenshot)
-                //}
+                }
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
@@ -285,11 +285,10 @@ class FormViewController: UIViewController {
         contentDictionary["battery"] = UIDevice.current.batteryLevel
         contentDictionary["lang"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)
         contentDictionary["orientation"] = UIDeviceOrientationIsLandscape(uiDevice.orientation) ? "Landscape": "Portrait"
-        //contentDictionary["free_memory"] = Int(DeviceInfo.deviceRemainingFreeSpaceInBytes()!) Broken
-        //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice())
-        //TODO put back
+        //contentDictionary["free_memory"] = Int(DeviceInfo.deviceRemainingFreeSpaceInBytes()! / 1024)
+        //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice() / 1024)
 
-        //contentDictionary["reachability"] = reachability.currentReachabilityString
+        contentDictionary["reachability"] = reachability.currentReachabilityStatus
 
         contentDictionary["free_space"] = Int(DeviceInfo.DiskStatus.freeDiskSpaceInBytes / 1024)  
         contentDictionary["total_space"] = Int(DeviceInfo.DiskStatus.totalDiskSpaceInBytes / 1024)  
