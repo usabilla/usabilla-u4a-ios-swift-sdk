@@ -146,8 +146,11 @@ class FormViewController: UIViewController {
 
 
         transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-
-        thankYouController.setUpController((moodValue?.fieldValue)! > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
+        var rating: Int = 0
+        if let temp = moodValue?.fieldValue {
+            rating = temp
+        }
+        thankYouController.setUpController(rating > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
 
     }
 

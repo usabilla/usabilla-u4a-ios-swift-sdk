@@ -18,12 +18,13 @@ class JSONParserTest: QuickSpec {
     override func spec() {
         
         var formModel: FormModel!
+        var jsonObj: JSON!
         
         beforeSuite {
             let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                let jsonObj: JSON = JSON(data:data as Data)
+                jsonObj = JSON(data:data as Data)
                 formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
                 
             } catch let error as NSError {
@@ -123,12 +124,7 @@ class JSONParserTest: QuickSpec {
                 
             }
             
-            func testPerformanceExample() {
-                // This is an example of a performance test case.
-                self.measure {
-                    //JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil)
-                }
-            }
+            
         }
     }
 }
