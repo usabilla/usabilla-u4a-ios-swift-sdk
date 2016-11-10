@@ -43,31 +43,11 @@ class NetworkManager {
                     debugPrint(response)
                     switch response.result {
                     case .success:
-                        fulfill(JSON(response.result.value))
+                        fulfill(JSON(response.result.value!))
                     case .failure:
                         return reject(NSError(domain: "Invalid Request", code: 0, userInfo: [:]))
                     }
             }
-            
-            
-            
-            //                .response { (request, response, json, error) in
-            //                    if let response = response {
-            //                        let statusCode = response.statusCode
-            //                        if error != nil {
-            //                            return reject(error!)
-            //                        }
-            //
-            //                        if statusCode < 200 || statusCode > 299 {
-            //                            return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
-            //                        }
-            //
-            //                        let json = JSON(data: json!)
-            //                        fulfill(json)
-            //                    } else {
-            //                        return reject(NSError(domain: "Invalid Request", code: 0, userInfo: [:]))
-            //                    }
-            //            }
             
         }
         
@@ -101,21 +81,7 @@ class NetworkManager {
             }.catch { error in
                 print(error)
         }
-        //            if let response = response {
-        //                switch response.result {
-        //                case .Success(let data):
-        //                    let json = JSON(data)
-        //                    let id = json["id"].stringValue
-        //                    let signature = json["sig"].stringValue
-        //                    if let screenshot = screenshot {
-        //                        submitFeedbackScreenshot(id, signature: signature, screenshot: screenshot)
-        //                    }
-        //                    break
-        //                default :
-        //                    print("Request failed with error: \(response.response?.statusCode)")
-        //                    break
-        //                }
-        //            }
+
         
     }
     
@@ -168,20 +134,6 @@ class NetworkManager {
                     case .failure:
                         return reject(NSError(domain: "Invalid response", code: 0, userInfo: [:]))
                     }
-                    
-                    //                    if let response = response {
-                    //                        let statusCode = response.statusCode
-                    //                        if error != nil {
-                    //                            return reject(error!)
-                    //                        }
-                    //
-                    //                        if statusCode < 200 || statusCode > 299 {
-                    //                            return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
-                    //                        }
-                    //                        fulfill(true)
-                    //                    } else {
-                    //                        return reject(NSError(domain: "Invalid response", code: 0, userInfo: [:]))
-                    //                    }
             }
         }
         
@@ -217,24 +169,6 @@ class NetworkManager {
                         return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
                     }
             }
-            
-            
-            //                .response {request, response, data, error in
-            //                    if let response = response {
-            //                        let statusCode = response.statusCode
-            //                        if error != nil {
-            //                            return reject(error!)
-            //                        }
-            //
-            //                        if statusCode < 200 || statusCode > 299 {
-            //                            return reject(NSError(domain: "Invalid FormID", code: statusCode, userInfo: [:]))
-            //                        }
-            //
-            //                        fulfill(true)
-            //                    } else {
-            //                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
-            //                    }
-            //            }
         }
         
     }
