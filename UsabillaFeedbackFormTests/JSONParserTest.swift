@@ -117,14 +117,9 @@ class JSONParserTest: QuickSpec {
                                 
                             }
                         }
-                        
                     }
-                    
                 }
-                
             }
-            
-            
         }
     }
 }
