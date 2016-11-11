@@ -58,6 +58,7 @@ $ pod install
 
 ### In the SDK
 The SDK uses the Form ID you previously got from [Usabilla](https://app.usabilla.com/member/) to fetch and display your form inside your app.
+
 A basic implementation of the SDK would be the following.
 
 ```
@@ -70,11 +71,11 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
         UsabillaFeedbackForm.loadFeedbackForm("Form ID")
     }
 
-
+    //Called when your form succesfully load
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
         present(form, animated: true, completion: nil)
     }
-
+    //Called when your forms can not be loaded. Returns a default form
     func formFailedLoading(_ backupForm: UINavigationController) {
         present(backupForm, animated: true, completion: nil)
     }
@@ -89,11 +90,12 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
 It is possible to attach a screenshot to a feedback form.
 
 You can take a screenshot at any moment calling `let image = UsabillaFeedbackForm.takeScreenshot(self.view)`.
+
 To attach the screenshot to the form, pass it as a parameter when calling `UsabillaFeedbackForm.loadFeedbackForm("Form Id", screenshot: image)`
 
 Pass `nil` as the `screenshot` parameter if you don't want to have a screenshot of the current view.
 
-*Custom Screenshot & Sensitive Informations*
+**Custom Screenshot & Sensitive Informations**
 
 Instead of taking the screenshot using the `UsabillaFeedbackForm.takeScreenshot()` method, you can provide any image you wish by passing it as the `image` parameter when calling `UsabillaFeedbackForm.loadFeedbackForm()`
 
