@@ -1,3 +1,14 @@
+## 3.0.0
+#### Updated
+- Updated to compile against Swift 3.0
+- Improved email validation
+- Renamed 'feedbackFormLoadedCorrectly' to 'formLoadedCorrectly'
+- Renamed 'feedbackFormLoadedIncorrectly' to 'formFailedLoading'
+- Updated all dependencies to version '~> 4.0.0'
+
+#### Removed
+- Removed support to 10 button NPS, now defaults to slider
+
 ## 2.3.0
 #### Added
 - It is now possible to set most text fields (like submit, cancel, redirect to play store) from the web interface
