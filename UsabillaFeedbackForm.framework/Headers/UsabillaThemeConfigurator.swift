@@ -9,23 +9,23 @@
 import Foundation
 import UIKit
 
-public class UsabillaThemeConfigurator {
+open class UsabillaThemeConfigurator {
 
-    public var titleColor: UIColor
-    public var textColor: UIColor
-    public var accentColor: UIColor
-    public var textOnAccentColor: UIColor
-    public var backgroundColor: UIColor
-    public var errorColor: UIColor
-    public var statusBarColor: UIStatusBarStyle
-    public var customFont: UIFont?
-    public var enabledEmoticons: [UIImage]
-    public var disabledEmoticons: [UIImage]?
-    public var fullStar: UIImage?
-    public var emptyStar: UIImage?
-    public var hintColor: UIColor {
+    open var titleColor: UIColor
+    open var textColor: UIColor
+    open var accentColor: UIColor
+    open var textOnAccentColor: UIColor
+    open var backgroundColor: UIColor
+    open var errorColor: UIColor
+    open var statusBarColor: UIStatusBarStyle
+    open var customFont: UIFont?
+    open var enabledEmoticons: [UIImage]
+    open var disabledEmoticons: [UIImage]?
+    open var fullStar: UIImage?
+    open var emptyStar: UIImage?
+    open var hintColor: UIColor {
         get {
-            return textColor.colorWithAlphaComponent(0.38)
+            return textColor.withAlphaComponent(0.38)
         }
     }
 
@@ -34,13 +34,13 @@ public class UsabillaThemeConfigurator {
         //UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
         // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
 
-        statusBarColor = .Default
+        statusBarColor = .default
         textColor = UIColor(rgba:"#59636B")
-        textOnAccentColor = UIColor.whiteColor()
+        textOnAccentColor = UIColor.white
         accentColor = UIColor(rgba:"#00A5C9")
         titleColor = UIColor(rgba:"#41474C")
         errorColor = UIColor(rgba:"#F4606E")
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         enabledEmoticons = UsabillaThemeConfigurator.createEmoticons()
         disabledEmoticons = nil
         fullStar = nil
@@ -48,14 +48,14 @@ public class UsabillaThemeConfigurator {
     }
 
 
-    private class func createEmoticons() -> [UIImage] {
+    fileprivate class func createEmoticons() -> [UIImage] {
         var toReturn: [UIImage] = []
-        let bundle = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")
-        toReturn.append(UIImage(named: "01", inBundle:  bundle, compatibleWithTraitCollection: nil)!)
-        toReturn.append(UIImage(named: "02", inBundle:  bundle, compatibleWithTraitCollection: nil)!)
-        toReturn.append(UIImage(named: "03", inBundle:  bundle, compatibleWithTraitCollection: nil)!)
-        toReturn.append(UIImage(named: "04", inBundle:  bundle, compatibleWithTraitCollection: nil)!)
-        toReturn.append(UIImage(named: "05", inBundle:  bundle, compatibleWithTraitCollection: nil)!)
+        let bundle = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")
+        toReturn.append(UIImage(named: "01", in:  bundle, compatibleWith: nil)!)
+        toReturn.append(UIImage(named: "02", in:  bundle, compatibleWith: nil)!)
+        toReturn.append(UIImage(named: "03", in:  bundle, compatibleWith: nil)!)
+        toReturn.append(UIImage(named: "04", in:  bundle, compatibleWith: nil)!)
+        toReturn.append(UIImage(named: "05", in:  bundle, compatibleWith: nil)!)
         return toReturn
     }
 
