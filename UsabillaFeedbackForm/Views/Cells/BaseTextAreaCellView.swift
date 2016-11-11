@@ -20,18 +20,18 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
-        self.dividerLine?.hidden = true
+        self.dividerLine?.isHidden = true
 
 
-        textView.scrollEnabled = true
+        textView.isScrollEnabled = true
         self.contentView.addSubview(textView)
 
-        NSLayoutConstraint(item: textView, attribute: .Bottom, relatedBy: .Equal, toItem: self.contentView, attribute: .Bottom, multiplier: 1, constant: -18).active = true
-        let a = NSLayoutConstraint(item: textView, attribute: .Top, relatedBy: .Equal, toItem: self.dividerLine, attribute: .Bottom, multiplier: 1, constant: 12)
+        NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -18).isActive = true
+        let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.dividerLine, attribute: .bottom, multiplier: 1, constant: 12)
         a.priority = 750
-        a.active = true
-        NSLayoutConstraint(item: textView, attribute: .Leading, relatedBy: .Equal, toItem: self.contentView, attribute: .Leading, multiplier: 1, constant: 8).active = true
-        NSLayoutConstraint(item: textView, attribute: .Trailing, relatedBy: .Equal, toItem: self.contentView, attribute: .Trailing, multiplier: 1, constant: -8).active = true
+        a.isActive = true
+        NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailing, multiplier: 1, constant: -8).isActive = true
 
     }
 
@@ -41,11 +41,11 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
     override func applyCustomisations() {
         super.applyCustomisations()
-        textView.font = item.themeConfig.customFont?.fontWithSize(13)
+        textView.font = item.themeConfig.customFont?.withSize(13)
         textView.textColor = item.themeConfig.textColor
         textView.tintColor = item.themeConfig.hintColor
         textView.backgroundColor = item.themeConfig.backgroundColor
-        textView.layer.borderColor = item.themeConfig.hintColor.CGColor
+        textView.layer.borderColor = item.themeConfig.hintColor.cgColor
 
     }
 

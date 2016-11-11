@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class FormViewController: UIViewController {
 
     var currentPage = 0
@@ -16,7 +15,7 @@ class FormViewController: UIViewController {
     var reachability: Reachability!
     var pageController: PageController!
     var thankYouController: ThankYouController!
-    var customVars: [String: AnyObject]? = nil
+    var customVars: [String: Any]? = nil
 
     @IBOutlet weak var progressBar: UIProgressView!
 
@@ -34,7 +33,7 @@ class FormViewController: UIViewController {
         // Do any additional setup after loading the view.
         swipeToPage(0)
         if formModel.pages.count == 2 || !formModel.showProgressBar {
-            progressBar.hidden = true
+            progressBar.isHidden = true
         } else {
             progressBar.progressTintColor =  formModel.themeConfig.accentColor
         }
@@ -42,8 +41,8 @@ class FormViewController: UIViewController {
         poweredLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormViewController.openUsabilla)))
         updateProgressBar()
         updateRightButton()
-        UIApplication.sharedApplication().statusBarStyle = formModel.themeConfig.statusBarColor
-        //self.navigationController?.navigationBar.set = formModel.themeConfig.statusBarColor
+        UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
+        
         self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
         footerView.backgroundColor = formModel.themeConfig.accentColor
@@ -62,14 +61,14 @@ class FormViewController: UIViewController {
 
         if !UsabillaFeedbackForm.showCancelButton {
             leftNavItem.title = ""
-            leftNavItem.enabled = false
+            leftNavItem.isEnabled = false
         }
     }
 
 
     func setUpReachability() {
         do {
-            reachability = try Reachability.reachabilityForInternetConnection()
+            reachability = Reachability.init()
             try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
@@ -77,25 +76,24 @@ class FormViewController: UIViewController {
     }
 
     func openUsabilla() {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.usabilla.com")!)
+        UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? PageController
-            where segue.identifier == "embedSegue" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
             self.pageController = vc
             pageController.initWithPage(formModel.pages[0])
         }
     }
 
-    @IBAction func rightBarButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func rightBarButtonPressed(_ sender: UIBarButtonItem) {
 
         if pageController.isCorrectlyFilled() {
             let newPageIndex = selectNewPage()
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
                 let (payload, screenshot) = createDictionaryForSubmission()
-                if reachability.currentReachabilityStatus == .NotReachable {
+                if reachability.currentReachabilityStatus == .notReachable {
                     //Queue
                 } else {
                     submitForm(payload, screenshotString: screenshot)
@@ -114,12 +112,12 @@ class FormViewController: UIViewController {
     func showThankYouPage() {
         progressBar.setProgress(1, animated: true)
         rightNavItem.title = ""
-        rightNavItem.enabled = false
+        rightNavItem.isEnabled = false
         leftNavItem.title = formModel.copyModel.cancelButton
-        leftNavItem.enabled = true
+        leftNavItem.isEnabled = true
 
-        let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-        thankYouController = storyboard.instantiateViewControllerWithIdentifier("thankYou") as? ThankYouController
+        let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
+        thankYouController = storyboard.instantiateViewController(withIdentifier: "thankYou") as? ThankYouController
         thankYouController.themeConfig = formModel.themeConfig
         thankYouController.redirectEnabled = formModel.redirectToAppStore
         thankYouController.redirectToAppStore = formModel.copyModel.appStore
@@ -142,23 +140,26 @@ class FormViewController: UIViewController {
 
         let moodValue = formModel.pages.first?.fields[0] as? IntFieldModel
 
-        pageController.willMoveToParentViewController(nil)
+        pageController.willMove(toParentViewController: nil)
         addChildViewController(thankYouController)
         thankYouController.view.frame = containerView.bounds
 
 
-        transitionFromViewController(pageController, toViewController: thankYouController, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
-
-        thankYouController.setUpController(moodValue?.fieldValue > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
+        transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        var rating: Int = 0
+        if let temp = moodValue?.fieldValue {
+            rating = temp
+        }
+        thankYouController.setUpController(rating > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
 
     }
 
     func restoreFeedbackFormController() {
         resetAndRestartForm()
-        thankYouController.willMoveToParentViewController(nil)
+        thankYouController.willMove(toParentViewController: nil)
         addChildViewController(pageController)
         pageController.view.frame = containerView.bounds
-        transitionFromViewController(thankYouController, toViewController: pageController, duration: 0.5, options: .TransitionCrossDissolve, animations: nil, completion: nil)
+        transition(from: thankYouController, to: pageController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         updateRightButton()
         updateProgressBar()
         setUpLeftButton()
@@ -174,7 +175,7 @@ class FormViewController: UIViewController {
     func selectNewPage () -> Int {
         var newPageIndex = -1
         if let pageToJump = pageController.whereShouldIJump() {
-            for (index, page) in formModel.pages.enumerate() {
+            for (index, page) in formModel.pages.enumerated() {
                 if page.pageName == pageToJump {
                     newPageIndex = index
                 }
@@ -191,7 +192,7 @@ class FormViewController: UIViewController {
 
 
     func updateRightButton() {
-        rightNavItem.enabled = true
+        rightNavItem.isEnabled = true
         if currentPage == formModel.pages.count - 2 {
             rightNavItem.title = formModel.copyModel.navigationSubmit
         } else if currentPage == formModel.pages.count - 1 {
@@ -206,9 +207,9 @@ class FormViewController: UIViewController {
         progressBar.setProgress(progress, animated: true)
     }
 
-    @IBAction func leftBarButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func leftBarButtonPressed(_ sender: UIBarButtonItem) {
         deinitForm()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
 
@@ -218,17 +219,17 @@ class FormViewController: UIViewController {
         pageController.deinitPageController()
     }
 
-    func initWithFormModel(formModel: FormModel) {
+    func initWithFormModel(_ formModel: FormModel) {
         self.formModel = formModel
     }
 
-    func swipeToPage(page: Int) {
+    func swipeToPage(_ page: Int) {
         pageController.initWithPage((formModel.pages[page]))
         currentPage = page
     }
 
-    func convertFormToDictionary () -> [String: AnyObject] {
-        var formDictionary = [String: AnyObject]()
+    func convertFormToDictionary () -> [String: Any] {
+        var formDictionary = [String: Any]()
         let indexToStop = formModel.pages.count - 1
         for index in 0...indexToStop - 1 {
             let page = formModel.pages[index]
@@ -243,40 +244,39 @@ class FormViewController: UIViewController {
         return formDictionary
     }
 
-    func createDictionaryForSubmission() -> ([String: AnyObject], String? ) {
+    func createDictionaryForSubmission() -> ([String: Any], String? ) {
         let uiDevice = UIDevice()
-        var contentDictionary: [String: AnyObject] = [:]
-        contentDictionary["app_id"] = formModel.appId //String
-        contentDictionary["version"] = formModel.version //String
-        contentDictionary["SDK_version"] = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.objectForInfoDictionaryKey("CFBundleShortVersionString")
+        var contentDictionary: [String: Any] = [:]
+        contentDictionary["app_id"] = formModel.appId   //String
+        contentDictionary["version"] = formModel.version   //String
+        contentDictionary["SDK_version"] = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")  
 
-        contentDictionary["data"] = convertFormToDictionary()
+        contentDictionary["data"] = convertFormToDictionary()  
 
-        contentDictionary["timestamp"] = String(format: "%.0f", arguments: [NSDate().timeIntervalSince1970])
+        contentDictionary["timestamp"] = String(format: "%.0f", arguments: [Date().timeIntervalSince1970])  
 
-        contentDictionary["device"] = uiDevice.modelName
+        contentDictionary["device"] = uiDevice.modelName  
 
-        contentDictionary["system"] = "ios"
+        contentDictionary["system"] = "ios"  
         contentDictionary["os_version"] = uiDevice.systemVersion
-        UIDevice.currentDevice().batteryMonitoringEnabled = true
-        contentDictionary["battery"] = UIDevice.currentDevice().batteryLevel
-        contentDictionary["lang"] = NSLocale.currentLocale().objectForKey(NSLocaleLanguageCode)
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        contentDictionary["battery"] = UIDevice.current.batteryLevel
+        contentDictionary["lang"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)
         contentDictionary["orientation"] = UIDeviceOrientationIsLandscape(uiDevice.orientation) ? "Landscape": "Portrait"
-        //contentDictionary["free_memory"] = Int(DeviceInfo.deviceRemainingFreeSpaceInBytes()!) Broken
-        //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice())
-        //TODO put back
+        //contentDictionary["free_memory"] = Int(DeviceInfo.deviceRemainingFreeSpaceInBytes()! / 1024)
+        //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice() / 1024)
 
-        contentDictionary["reachability"] = reachability.currentReachabilityString
+        contentDictionary["reachability"] = reachability.currentReachabilityStatus.description
 
-        contentDictionary["free_space"] = Int(DeviceInfo.DiskStatus.freeDiskSpaceInBytes / 1024)
-        contentDictionary["total_space"] = Int(DeviceInfo.DiskStatus.totalDiskSpaceInBytes / 1024)
-        contentDictionary["rooted"] = DeviceInfo.isJailbroken()
+        contentDictionary["free_space"] = Int(DeviceInfo.DiskStatus.freeDiskSpaceInBytes / 1024)  
+        contentDictionary["total_space"] = Int(DeviceInfo.DiskStatus.totalDiskSpaceInBytes / 1024)  
+        contentDictionary["rooted"] = DeviceInfo.isJailbroken()  
 
-        let screenBounds = UIScreen.mainScreen().bounds
-        contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
+        let screenBounds = UIScreen.main.bounds
+        contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"  
 
-        contentDictionary["app_version"] = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"]
-        contentDictionary["app_name"] = NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String]
+        contentDictionary["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]  
+        contentDictionary["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]  
 
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
@@ -287,21 +287,21 @@ class FormViewController: UIViewController {
         }
 
         if customVars != nil {
-            contentDictionary["custom_variables"] = customVars
+            contentDictionary["custom_variables"] = customVars  
         }
 
         if formModel.isDefault {
-            contentDictionary["defaultForm"] = true
+            contentDictionary["defaultForm"] = true  
         }
 
 
-        var payload: [String: AnyObject] = [:]
+        var payload: [String: Any] = [:]
 
-        payload["type"] = "app_feedback"
-        payload["subtype"] = "form"
-        payload["v"] = NSNumber(int: 1)
-        payload["done"] = true
-        payload["data"] = contentDictionary
+        payload["type"] = "app_feedback" 
+        payload["subtype"] = "form"  
+        payload["v"] = NSNumber(value: 1 as Int32)
+        payload["done"] = true  
+        payload["data"] = contentDictionary  
 
 
         //And now to send the request
@@ -309,8 +309,8 @@ class FormViewController: UIViewController {
         return (payload, screenshotString)
     }
 
-    func submitForm(payload: [String: AnyObject], screenshotString: String? ) {
-        NetworkManager.submitFormToUsabilla(payload, screenshot:  screenshotString)
+    func submitForm(_ payload: [String: Any], screenshotString: String? ) {
+        NetworkManager.submitFormToUsabilla(payload: payload, screenshot:  screenshotString)
     }
 
 

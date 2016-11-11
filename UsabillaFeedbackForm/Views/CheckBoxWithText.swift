@@ -26,13 +26,13 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         checkBox = SwiftCheckBox(frame: CGRect(x: 10, y: 0, width: 25, height: 25))
         label = UILabel(frame: CGRect(x: 45, y: 5, width: 208, height: 20))
 
-        self.userInteractionEnabled = true
-        checkBox.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
+        checkBox.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(CheckboxWithText.touchEvent))
 
         self.addGestureRecognizer(gesture)
 
-        height = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 25)
+        height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 25)
         height.identifier = "CheckBox Height"
 
 
@@ -47,14 +47,14 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         checkBox.tintColor = color
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
-        label.font = themeConfig?.customFont?.fontWithSize(13)
+        label.font = themeConfig?.customFont?.withSize(13)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func didTapCheckBox(checkBox: SwiftCheckBox) {
+    func didTapCheckBox(_ checkBox: SwiftCheckBox) {
         delegate?.didTapCheckBox(checkBox)
     }
 

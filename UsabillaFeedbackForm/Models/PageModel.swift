@@ -25,7 +25,7 @@ class PageModel {
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?
     var errorMessage: String?
-    var themeConfig: UsabillaThemeConfigurator
+    let themeConfig: UsabillaThemeConfigurator
 
     init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
         self.pageNumber = pageNumber

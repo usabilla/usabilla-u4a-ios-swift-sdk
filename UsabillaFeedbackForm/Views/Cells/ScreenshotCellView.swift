@@ -20,40 +20,40 @@ class ScreenshotCellView: RootCellView {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         screenShotView = UIImageView()
-        iconView = UIButton(type: UIButtonType.Custom)
+        iconView = UIButton(type: UIButtonType.custom)
         iconView.translatesAutoresizingMaskIntoConstraints = false
         screenShotView.translatesAutoresizingMaskIntoConstraints = false
-        screenShotView.userInteractionEnabled = true
-        fullHeight = NSLayoutConstraint(item: self.screenShotView, attribute: .Height, relatedBy: .Equal, toItem: self.screenShotView, attribute: .Width, multiplier: 1, constant: 0)
+        screenShotView.isUserInteractionEnabled = true
+        fullHeight = NSLayoutConstraint(item: self.screenShotView, attribute: .height, relatedBy: .equal, toItem: self.screenShotView, attribute: .width, multiplier: 1, constant: 0)
         fullHeight.priority = 750
-        fullHeight.active = true
+        fullHeight.isActive = true
 
-        zeroHeight = NSLayoutConstraint(item: self.screenShotView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0, constant: 0)
+        zeroHeight = NSLayoutConstraint(item: self.screenShotView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 0)
 
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(screenShotView)
         self.contentView.addSubview(iconView)
-        self.dividerLine?.hidden = false
+        self.dividerLine?.isHidden = false
 
-        iconView.addTarget(self, action: #selector(ScreenshotCellView.buttonPressed), forControlEvents: .TouchUpInside)
+        iconView.addTarget(self, action: #selector(ScreenshotCellView.buttonPressed), for: .touchUpInside)
 
         let tapRecogniser = UITapGestureRecognizer(target: self, action: #selector(ScreenshotCellView.pickImage))
         screenShotView.addGestureRecognizer(tapRecogniser)
 
 
         //NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -1).active = true
-        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: -6).active = true
-        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 24).active = true
-        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.iconView, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0).active = true
-        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0).active = true
+        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -6).isActive = true
+        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24).isActive = true
+        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.iconView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         //NSLayoutConstraint(item: iconView, attribute: NSLayoutAttribute.TopMargin, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.TopMargin, multiplier: 1, constant: 0).active = true
 
 
-        NSLayoutConstraint(item: screenShotView, attribute: .Bottom, relatedBy: .Equal, toItem: self.contentView, attribute: .Bottom, multiplier: 1, constant: -3).active = true
-        NSLayoutConstraint(item: screenShotView, attribute: .Top, relatedBy: .Equal, toItem: self.dividerLine, attribute: .Bottom, multiplier: 1, constant: 10).active = true
-        NSLayoutConstraint(item: screenShotView, attribute: .Leading, relatedBy: .Equal, toItem: self.contentView, attribute: .Leading, multiplier: 1, constant: 8).active = true
-        NSLayoutConstraint(item: screenShotView, attribute: .Trailing, relatedBy: .Equal, toItem: self.contentView, attribute: .TrailingMargin, multiplier: 1, constant: 8).active = true
+        NSLayoutConstraint(item: screenShotView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -3).isActive = true
+        NSLayoutConstraint(item: screenShotView, attribute: .top, relatedBy: .equal, toItem: self.dividerLine, attribute: .bottom, multiplier: 1, constant: 10).isActive = true
+        NSLayoutConstraint(item: screenShotView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: screenShotView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8).isActive = true
 
 
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
@@ -69,7 +69,7 @@ class ScreenshotCellView: RootCellView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         screenshotModel = item as! ScreenshotModel
         screenShotView.image = screenshotModel.screenshot
@@ -78,13 +78,13 @@ class ScreenshotCellView: RootCellView {
 
     func updateUI() {
         if screenshotModel.screenshot == nil {
-            fullHeight.active = false
-            zeroHeight.active = true
-            iconView.setImage(StyleKit.imageOfPlus(size: CGSize(width: 24, height: 24), themeConfig: screenshotModel.themeConfig), forState: .Normal)
+            fullHeight.isActive = false
+            zeroHeight.isActive = true
+            iconView.setImage(StyleKit.imageOfPlus(size: CGSize(width: 24, height: 24), themeConfig: screenshotModel.themeConfig), for: UIControlState())
         } else {
-            zeroHeight.active = false
-            fullHeight.active = true
-            iconView.setImage(StyleKit.imageOfTrash(size: CGSize(width: 24, height: 24), themeConfig: screenshotModel.themeConfig), forState: .Normal)
+            zeroHeight.isActive = false
+            fullHeight.isActive = true
+            iconView.setImage(StyleKit.imageOfTrash(size: CGSize(width: 24, height: 24), themeConfig: screenshotModel.themeConfig), for: UIControlState())
         }
         SwiftEventBus.post("updateScreenshotHeight", sender: nil)
     }
@@ -103,7 +103,7 @@ class ScreenshotCellView: RootCellView {
         SwiftEventBus.post("pick", sender: nil)
     }
 
-    func imagePicked(image: UIImage) {
+    func imagePicked(_ image: UIImage) {
         screenShotView.image = image
         screenshotModel.screenshot = image
         updateUI()

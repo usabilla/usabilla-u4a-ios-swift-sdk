@@ -14,9 +14,9 @@ class ParagraphCellView: BaseTextAreaCellView {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        textView.editable = false
-        textView.dataDetectorTypes = [.Link, .PhoneNumber]
-        textView.scrollEnabled = false
+        textView.isEditable = false
+        textView.dataDetectorTypes = [.link, .phoneNumber]
+        textView.isScrollEnabled = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,7 +24,7 @@ class ParagraphCellView: BaseTextAreaCellView {
     }
 
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         let model = item as! ParagraphFieldModel
         let text = model.fieldValue

@@ -29,13 +29,13 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         self.contentView.addSubview(buttonView!)
         buttonView!.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 24)
+        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 24)
 
-        let a = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let a = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
 
-        let v = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0)
+        let v = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
 
-        let z = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.BottomMargin, multiplier: 1, constant: 2)
+        let z = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 2)
 
         contentView.addConstraints([f, a, v, z])
 
@@ -48,7 +48,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     }
 
 
-    override func setFeedbackItem(item: FieldModelProtocol) {
+    override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         moodModel = item as! MoodFieldModel
         buttonView?.themeConfig = item.themeConfig

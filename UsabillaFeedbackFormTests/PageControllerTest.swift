@@ -18,18 +18,18 @@ class PageControllerTest: QuickSpec {
         var formModel: FormModel!
         
         beforeSuite {
-            let path = NSBundle(forClass: JSONParserTest.self).pathForResource("test", ofType: "json")!
+            let path = Bundle(for: JSONParserTest.self).path(forResource:"test", ofType: "json")!
             do {
-                let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let jsonObj: JSON = JSON(data:data)
-                formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil)
+                let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                let jsonObj: JSON = JSON(data:data as Data)
+                formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
                 
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
             }
             
-            let storyboard = UIStoryboard(name: "USAStoryboard", bundle: NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-            let base = storyboard.instantiateViewControllerWithIdentifier("base") as! UINavigationController
+            let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
+            let base = storyboard.instantiateViewController(withIdentifier:"base") as! UINavigationController
             let viewController = base.childViewControllers[0] as! FormViewController
             viewController.initWithFormModel(formModel)
             pageController = viewController.pageController

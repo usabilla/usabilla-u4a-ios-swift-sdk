@@ -11,7 +11,7 @@ import Foundation
 
 class JSONFormParser {
 
-    class func parseFormJson(json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
+    class func parseFormJson(_ json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
 
         let data = json["data"]
         let copyModel = parseCopy(json)
@@ -34,10 +34,10 @@ class JSONFormParser {
         pages.last?.isLastPage = true
 
         var screenshotJson: [String: AnyObject] = [:]
-        screenshotJson["type"] = "screenshot"
-        screenshotJson["name"] = "screenshot"
-        screenshotJson["title"] = "Screenshot"
-        screenshotJson["required"] = false
+        screenshotJson["type"] = "screenshot" as AnyObject?
+        screenshotJson["name"] = "screenshot" as AnyObject?
+        screenshotJson["title"] = "Screenshot" as AnyObject?
+        screenshotJson["required"] = false as AnyObject?
 
         let pageModel = pages.first
         if hasScreenshot {
@@ -47,7 +47,7 @@ class JSONFormParser {
         return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
     }
 
-    private class func parseCopy(json: JSON) -> CopyModel{
+    fileprivate class func parseCopy(_ json: JSON) -> CopyModel{
         let copyModel = CopyModel()
         let data = json["data"]
 
@@ -76,7 +76,7 @@ class JSONFormParser {
         return copyModel
     }
 
-    private class func parsePage(pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
+    fileprivate class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
 
         let pageName = pageJson["name"].stringValue
@@ -110,7 +110,7 @@ class JSONFormParser {
     }
 
 
-    private class func parseJumpRule(jumpJson: JSON, pageModel: PageModel) -> JumpRule {
+    fileprivate class func parseJumpRule(_ jumpJson: JSON, pageModel: PageModel) -> JumpRule {
 
         let setDependsOnID = jumpJson["control"].stringValue
         let setJumpTo = jumpJson["jump"].stringValue
@@ -124,7 +124,7 @@ class JSONFormParser {
     }
 
 
-    private class func parseFieldModel(json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
+    fileprivate class func parseFieldModel(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
 
         if let field: BaseFieldModel = FieldFactory.createField(json, pagemodel: pagemodel) {
 
@@ -138,7 +138,7 @@ class JSONFormParser {
         }
     }
 
-    private class func parseShowHideRule(json: JSON, pageModel: PageModel) -> ShowHideRule {
+    fileprivate class func parseShowHideRule(_ json: JSON, pageModel: PageModel) -> ShowHideRule {
 
         let setDependsOnID = json["control"].stringValue
 
@@ -153,7 +153,7 @@ class JSONFormParser {
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)
     }
 
-    private class func parseColors(config: UsabillaThemeConfigurator, json: JSON) {
+    fileprivate class func parseColors(_ config: UsabillaThemeConfigurator, json: JSON) {
         if let titleColorHex = json["group1"]["hash"].string {
             config.titleColor = UIColor(rgba: titleColorHex)
         }

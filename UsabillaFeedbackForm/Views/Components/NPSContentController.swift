@@ -42,7 +42,7 @@ import UIKit
     func setUp() {
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleHeight, . FlexibleWidth]
+        view.autoresizingMask = [.flexibleHeight, . flexibleWidth]
         buttons = [zeroButton, firstButton, secondButton, thirdButton, fourthButton, fifthBUtton, sixthButton, seventhButton, eightButton, ninthhButton, tenthBUtton]
 
 
@@ -53,19 +53,19 @@ import UIKit
         view.backgroundColor = themeConfig?.backgroundColor
 
         for button in buttons {
-            button.setTitleColor(themeConfig?.textOnAccentColor, forState: .Selected)
-            button.setTitleColor(themeConfig?.textColor, forState: .Normal)
+            button.setTitleColor(themeConfig?.textOnAccentColor, for: .selected)
+            button.setTitleColor(themeConfig?.textColor, for: UIControlState())
             button.backgroundColor = themeConfig?.backgroundColor
             button.layer.borderWidth = 1.0
             button.layer.cornerRadius = 6.0
-            button.layer.borderColor = themeConfig?.hintColor.CGColor
+            button.layer.borderColor = themeConfig?.hintColor.cgColor
         }
     }
 
     func loadViewFromNib() -> UIView {
-        let bundle = NSBundle(identifier: "com.usabilla.UsabillaFeedbackForm")
+        let bundle = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")
         let nib = UINib(nibName: "NPSContentController", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
 
 
         return view
@@ -74,15 +74,15 @@ import UIKit
     func resetButtons() {
         for button in buttons {
             button.backgroundColor = themeConfig?.backgroundColor
-            button.selected = false
+            button.isSelected = false
         }
     }
 
-    func selectButton(value: Int) {
+    func selectButton(_ value: Int) {
         resetButtons()
         for button in buttons {
             if button.tag == value {
-                button.selected = true
+                button.isSelected = true
                 button.backgroundColor = themeConfig?.accentColor
 
             }
@@ -90,12 +90,12 @@ import UIKit
     }
 
 
-    @IBAction func buttonPressed(sender: UIButton, forEvent event: UIEvent) {
+    @IBAction func buttonPressed(_ sender: UIButton, forEvent event: UIEvent) {
         for button in buttons {
             button.backgroundColor = themeConfig?.backgroundColor
-            button.selected = false
+            button.isSelected = false
         }
-        sender.selected = true
+        sender.isSelected = true
         sender.backgroundColor = themeConfig?.accentColor
 
         delegate?.fieldValue = sender.tag

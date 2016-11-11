@@ -40,27 +40,27 @@ class RootCellView: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.titleLabel = createTitleLabel()
         self.dividerLine = createDividerLine()
-        self.dividerLine?.hidden = true
+        self.dividerLine?.isHidden = true
 
         //titleLabel?.sizeToFit()
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(dividerLine!)
 
-        let leadingC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 8)
+        let leadingC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8)
 
-        trailingTitleLabelConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.TrailingMargin, multiplier: 1, constant: 8)
+        trailingTitleLabelConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8)
 
-        trailingTitleLabelConstraint.active = true
+        trailingTitleLabelConstraint.isActive = true
 
-        let topC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.TopMargin, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.TopMargin, multiplier: 1, constant: 10)
+        let topC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.topMargin, multiplier: 1, constant: 10)
 
-        let dividerTop = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 8)
+        let dividerTop = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
 
-        let dividerHeight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 1)
+        let dividerHeight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 1)
 
-        let dividerMarginLeft = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 8)
+        let dividerMarginLeft = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8)
 
-        let dividerMarginRight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.contentView, attribute: NSLayoutAttribute.TrailingMargin, multiplier: 1, constant: 8)
+        let dividerMarginRight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8)
 
         contentView.addConstraints([leadingC, topC, dividerTop, dividerHeight, dividerMarginLeft, dividerMarginRight])
     }
@@ -73,7 +73,7 @@ class RootCellView: UITableViewCell {
         return item.shouldAppear()
     }
 
-    func setFeedbackItem(item: FieldModelProtocol) {
+    func setFeedbackItem(_ item: FieldModelProtocol) {
         self.item = item as! BaseFieldModel
         titleLabel.text = item.fieldTitle
         titleLabel.numberOfLines = 5
@@ -99,7 +99,7 @@ class RootCellView: UITableViewCell {
     }
 
     func applyCustomisations() {
-        titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
+        titleLabel.font = item.themeConfig.customFont?.withSize(17.0)
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         backgroundColor = item.themeConfig.backgroundColor
     }
@@ -117,7 +117,7 @@ class RootCellView: UITableViewCell {
     func createSecondaryLabel() -> UILabel {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = NSTextAlignment.Right
+        titleLabel.textAlignment = NSTextAlignment.right
         titleLabel.numberOfLines = 0
         //titleLabel.font = item.themeConfig.customFont?.fontWithSize(14.0)
         //titleLabel.textColor = item.themeConfig.primaryTextColor

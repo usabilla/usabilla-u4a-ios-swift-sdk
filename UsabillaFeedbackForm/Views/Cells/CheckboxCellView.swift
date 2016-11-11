@@ -11,18 +11,18 @@ import Foundation
 class CheckboxCellView: BaseCheckboxCellView {
 
 
-    override func styleCheckBox(checkBox: CheckboxWithText) {
-        checkBox.checkBox.boxType = .Square
-        checkBox.checkBox.onAnimationType = .Bounce
-        checkBox.checkBox.offAnimationType = .Bounce
+    override func styleCheckBox(_ checkBox: CheckboxWithText) {
+        checkBox.checkBox.boxType = .square
+        checkBox.checkBox.onAnimationType = .bounce
+        checkBox.checkBox.offAnimationType = .bounce
     }
 
-    override func didTapCheckBox(checkBox: SwiftCheckBox) {
+    override func didTapCheckBox(_ checkBox: SwiftCheckBox) {
 
         //checkBox.setOn(!checkBox.on, animated: true)
         var values: [String] = [ ]
 
-        for (index, checkBox) in checkBoxes.enumerate() {
+        for (index, checkBox) in checkBoxes.enumerated() {
             let option = super.model.options[index]
             if checkBox.checkBox.on {
                 values.append(option.value)

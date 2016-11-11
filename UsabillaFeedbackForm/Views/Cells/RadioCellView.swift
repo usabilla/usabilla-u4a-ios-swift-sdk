@@ -11,14 +11,14 @@ import Foundation
 class RadioCellView: BaseCheckboxCellView {
 
 
-    override func styleCheckBox(checkBox: CheckboxWithText) {
-        checkBox.checkBox.boxType = .Circle
-        checkBox.checkBox.onAnimationType = .Bounce
-        checkBox.checkBox.offAnimationType = .Bounce
+    override func styleCheckBox(_ checkBox: CheckboxWithText) {
+        checkBox.checkBox.boxType = .circle
+        checkBox.checkBox.onAnimationType = .bounce
+        checkBox.checkBox.offAnimationType = .bounce
     }
 
 
-    override func didTapCheckBox(checkBox: SwiftCheckBox) {
+    override func didTapCheckBox(_ checkBox: SwiftCheckBox) {
 
         for checkBox in checkBoxes {
             checkBox.checkBox.setOn(false, animated: true)
@@ -28,7 +28,7 @@ class RadioCellView: BaseCheckboxCellView {
 
         var values: [String] = [ ]
 
-        for (index, checkBox) in checkBoxes.enumerate() {
+        for (index, checkBox) in checkBoxes.enumerated() {
             let option = super.model.options[index]
             if checkBox.checkBox.on {
                 values.append(option.value)
