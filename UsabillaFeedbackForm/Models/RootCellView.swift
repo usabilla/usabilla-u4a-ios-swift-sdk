@@ -99,7 +99,11 @@ class RootCellView: UITableViewCell {
     }
 
     func applyCustomisations() {
-        titleLabel.font = item.themeConfig.customFont?.withSize(17.0)
+        if let customFont = themeConfig.customFont?.withSize(17).withTraits(.traitBold) {
+            titleLabel.font = customFont
+        } else {
+            titleLabel.font = UIFont.systemFont(ofSize: 17).withTraits(.traitBold)
+        }
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         backgroundColor = item.themeConfig.backgroundColor
     }
@@ -108,6 +112,7 @@ class RootCellView: UITableViewCell {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
+        
         //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         //titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
         //titleLabel.textColor = item.themeConfig.primaryTextColor
