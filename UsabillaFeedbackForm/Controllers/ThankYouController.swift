@@ -47,15 +47,15 @@ class ThankYouController: UIViewController {
             bottomButton.isHidden = true
         }
 
-        bottomButton.titleLabel?.font = themeConfig?.customFont?.withSize(15)
+        bottomButton.titleLabel?.font = themeConfig?.font.withSize(15)
         bottomButton.setTitleColor(themeConfig?.accentColor, for: UIControlState())
 
         titleLabel.text = thankTitle
-        titleLabel.font = themeConfig?.customFont?.withSize(17.0)
+        titleLabel.font = themeConfig?.font.withSize(17.0)
         titleLabel.textColor = themeConfig?.titleColor
 
         messageLabel.text = thankMessage
-        messageLabel.font = themeConfig?.customFont?.withSize(13)
+        messageLabel.font = themeConfig?.font.withSize(13)
         messageLabel.textColor = themeConfig?.textColor
         messageLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
         messageLabel.numberOfLines = 0

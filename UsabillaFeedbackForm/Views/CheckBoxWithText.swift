@@ -47,7 +47,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         checkBox.tintColor = color
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
-        label.font = themeConfig?.customFont?.withSize(13)
+        label.font = themeConfig?.font.withSize(13)
     }
 
     required init?(coder aDecoder: NSCoder) {

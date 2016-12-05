@@ -28,6 +28,15 @@ open class UsabillaThemeConfigurator {
             return textColor.withAlphaComponent(0.38)
         }
     }
+    var font: UIFont {
+        get {
+            if let font = customFont {
+                return font
+            } else {
+                return UIFont.systemFont(ofSize: UIFont.systemFontSize)
+            }
+        }
+    }
 
     public init() {
 

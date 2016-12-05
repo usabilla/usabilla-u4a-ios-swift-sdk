@@ -25,15 +25,14 @@ class EmailCellView: TextInputCellView {
         super.setFeedbackItem(item)
         mailModel = item as! EmailFieldModel
         if let placeHolder = mailModel.placeHolder {
-            if let font = themeConfig.customFont {
-                if let italics = font.withTraits(.traitItalic) {
+            
+            
+                if let italics = themeConfig.font.withTraits(.traitItalic) {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                 } else {
-                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: font])
+                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font])
                 }
-            } else {
-                textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
-            }
+            
         }
         textField.text = mailModel.fieldValue
     }

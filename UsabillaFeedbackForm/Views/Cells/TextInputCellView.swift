@@ -53,16 +53,12 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         if let model2 = model as? TextFieldModel {
             textField.placeholder = model2.placeHolder
             if let placeHolder = model2.placeHolder {
-                if let font = themeConfig.customFont {
-                    if let italics = font.withTraits(.traitItalic) {
+                    if let italics = themeConfig.font.withTraits(.traitItalic) {
                         textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                     } else {
-                        textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: font])
+                        textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font])
                     }
-                } else {
-                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
                 }
-            }
         }
 
     }
@@ -70,7 +66,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     override func applyCustomisations() {
         super.applyCustomisations()
         textField.tintColor = model.themeConfig.hintColor
-        textField.font = model.themeConfig.customFont?.withSize(13)
+        textField.font = model.themeConfig.font.withSize(13)
         textField.textColor = model.themeConfig.textColor
         textField.backgroundColor = themeConfig.backgroundColor
         textField.layer.borderColor = model.themeConfig.hintColor.cgColor

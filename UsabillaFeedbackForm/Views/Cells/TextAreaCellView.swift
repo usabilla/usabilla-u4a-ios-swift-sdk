@@ -37,18 +37,12 @@ class TextAreaCellView: BaseTextAreaCellView {
         if model.fieldValue != nil {
             textView.text = model.fieldValue
             isPlaceholder = false
-            textView.font = model.themeConfig.customFont
-            textView.textColor = model.themeConfig.textColor
         } else {
             isPlaceholder = true
-            textView.textColor = model.themeConfig.hintColor
-            if let customFont = themeConfig.customFont {
-                textView.font = customFont.withTraits(.traitItalic)
-            } else {
-                textView.font = UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)
-            }
             textView.text = model.placeHolder
         }
+        
+        setCorrectFont()
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -56,8 +50,7 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.text = nil
         }
         isPlaceholder = false
-        textView.font = model.themeConfig.customFont
-        textView.textColor = model.themeConfig.textColor
+        setCorrectFont()
     }
 
     func textViewDidChange(_ textView: UITextView) {
@@ -69,9 +62,23 @@ class TextAreaCellView: BaseTextAreaCellView {
             textView.text = model.placeHolder
             model.fieldValue = nil
             isPlaceholder = true
-            textView.font = textView.font?.withTraits(.traitItalic)
-            textView.textColor = model.themeConfig.hintColor
+            setCorrectFont()
         }
+    }
+    
+    func setCorrectFont() {
+        if !isPlaceholder {
+            textView.font = model.themeConfig.font.withSize(16)
+            textView.textColor = model.themeConfig.textColor
+        } else {
+            textView.textColor = model.themeConfig.hintColor
+            if let customFont = themeConfig.font.withSize(16).withTraits(.traitItalic) {
+                textView.font = customFont
+            } else {
+                textView.font = UIFont.italicSystemFont(ofSize: 16)
+            }
+        }
+    
     }
 
 //    deinit {

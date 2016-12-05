@@ -99,7 +99,7 @@ class RootCellView: UITableViewCell {
     }
 
     func applyCustomisations() {
-        if let customFont = themeConfig.customFont?.withSize(17).withTraits(.traitBold) {
+        if let customFont = themeConfig.font.withSize(17).withTraits(.traitBold) {
             titleLabel.font = customFont
         } else {
             titleLabel.font = UIFont.systemFont(ofSize: 17).withTraits(.traitBold)
@@ -114,7 +114,6 @@ class RootCellView: UITableViewCell {
         titleLabel.numberOfLines = 3
         
         //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        //titleLabel.font = item.themeConfig.customFont?.fontWithSize(17.0)
         //titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
@@ -124,7 +123,6 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = NSTextAlignment.right
         titleLabel.numberOfLines = 0
-        //titleLabel.font = item.themeConfig.customFont?.fontWithSize(14.0)
         //titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
