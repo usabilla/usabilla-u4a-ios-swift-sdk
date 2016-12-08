@@ -60,7 +60,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
             }
         }
 
-        if choiceModel.options.count < 4 {
+        if choiceModel.options.count < 5 {
             let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
                 a.priority = 750
                 a.isActive = true

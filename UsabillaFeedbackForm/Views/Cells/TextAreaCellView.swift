@@ -19,8 +19,9 @@ class TextAreaCellView: BaseTextAreaCellView {
         a.priority = 750
         a.isActive = true
         //textView.layer.borderColor = model.themeConfig.hintColor.CGColor
-        textView.layer.borderWidth = 1.0
-        textView.layer.cornerRadius = 5.0
+        //textView.layer.borderWidth = 1.0
+        //textView.layer.cornerRadius = 5.0
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

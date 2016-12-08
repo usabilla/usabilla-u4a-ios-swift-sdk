@@ -20,7 +20,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
 
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .roundedRect
+        
         contentView.addSubview(textField)
 
         textField.addTarget(self, action: #selector(TextInputCellView.textFieldDidChange), for: .editingChanged)
@@ -51,12 +51,11 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         textField.text = model.fieldValue
 
         if let model2 = model as? TextFieldModel {
-            textField.placeholder = model2.placeHolder
             if let placeHolder = model2.placeHolder {
-                    if let italics = themeConfig.font.withTraits(.traitItalic) {
+                    if let italics = themeConfig.font.withSize(16).withTraits(.traitItalic) {
                         textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                     } else {
-                        textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font])
+                        textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font.withSize(16)])
                     }
                 }
         }
@@ -66,12 +65,19 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     override func applyCustomisations() {
         super.applyCustomisations()
         textField.tintColor = model.themeConfig.hintColor
-        textField.font = model.themeConfig.font.withSize(13)
+        textField.font = model.themeConfig.font.withSize(16)
         textField.textColor = model.themeConfig.textColor
         textField.backgroundColor = themeConfig.backgroundColor
-        textField.layer.borderColor = model.themeConfig.hintColor.cgColor
-        textField.layer.borderWidth = 1.0
-        textField.layer.cornerRadius = 5
+//        textField.layer.borderColor = model.themeConfig.hintColor.cgColor
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.cornerRadius = 5
+//        textField.layer.masksToBounds = true
+        
+        let border = CALayer()
+        border.borderColor = themeConfig.hintColor.cgColor
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - 1  , width:  textField.frame.size.width, height: textField.frame.size.height)
+        border.borderWidth = CGFloat(1.0)
+        textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
     }
 
