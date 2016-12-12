@@ -51,6 +51,12 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         SwiftEventBus.onMainThread(self, name: "updateScreenshotHeight") { _ in
             self.updateScreenshotHeight()
         }
+        
+        SwiftEventBus.onMainThread(self, name: "updateMySize" ) { _ in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
+
     }
 
 

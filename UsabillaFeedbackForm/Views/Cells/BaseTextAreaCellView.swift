@@ -22,14 +22,15 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
         textView.translatesAutoresizingMaskIntoConstraints = false
         self.dividerLine?.isHidden = true
 
-
-        textView.isScrollEnabled = true
+        
+        textView.isScrollEnabled = false
         self.contentView.addSubview(textView)
 
         NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -18).isActive = true
         let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.dividerLine, attribute: .bottom, multiplier: 1, constant: 12)
         a.priority = 750
         a.isActive = true
+        
         NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailing, multiplier: 1, constant: -8).isActive = true
 
@@ -45,7 +46,7 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
         textView.textColor = item.themeConfig.textColor
         textView.tintColor = item.themeConfig.hintColor
         textView.backgroundColor = item.themeConfig.backgroundColor
-        textView.layer.borderColor = item.themeConfig.hintColor.cgColor
+        
 
     }
 

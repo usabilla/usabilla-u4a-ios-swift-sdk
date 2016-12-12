@@ -11,16 +11,25 @@ import UIKit
 
 class TextAreaCellView: BaseTextAreaCellView {
     var model: TextAreaFieldModel!
-
+    var line: UIView
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        line = UIView()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         textView.dataDetectorTypes = .link
+        line.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(line)
+        
         let a = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 90)
         a.priority = 750
-        a.isActive = true
-        //textView.layer.borderColor = model.themeConfig.hintColor.CGColor
-        //textView.layer.borderWidth = 1.0
-        //textView.layer.cornerRadius = 5.0
+        //a.isActive = true
+        
+  
+        NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1).isActive = true
+        //NSLayoutConstraint(item: line, attribute: .top, relatedBy: .equal, toItem: textField, attribute: .bottom, multiplier: 1, constant: 2).isActive = true
+        NSLayoutConstraint(item: line, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -8).isActive = true
         
     }
 
@@ -42,7 +51,7 @@ class TextAreaCellView: BaseTextAreaCellView {
             isPlaceholder = true
             textView.text = model.placeHolder
         }
-        
+        line.backgroundColor = themeConfig.hintColor
         setCorrectFont()
     }
 
@@ -56,6 +65,10 @@ class TextAreaCellView: BaseTextAreaCellView {
 
     func textViewDidChange(_ textView: UITextView) {
         model.fieldValue = textView.text
+        self.textView.sizeToFit()
+        
+        SwiftEventBus.postToMainThread("updateMySize")
+        
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
