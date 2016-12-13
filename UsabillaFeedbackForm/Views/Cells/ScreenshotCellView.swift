@@ -34,7 +34,6 @@ class ScreenshotCellView: RootCellView {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(screenShotView)
         self.contentView.addSubview(iconView)
-        self.dividerLine?.isHidden = false
 
         iconView.addTarget(self, action: #selector(ScreenshotCellView.buttonPressed), for: .touchUpInside)
 
@@ -51,7 +50,7 @@ class ScreenshotCellView: RootCellView {
 
 
         NSLayoutConstraint(item: screenShotView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -3).isActive = true
-        NSLayoutConstraint(item: screenShotView, attribute: .top, relatedBy: .equal, toItem: self.dividerLine, attribute: .bottom, multiplier: 1, constant: 10).isActive = true
+        NSLayoutConstraint(item: screenShotView, attribute: .top, relatedBy: .equal, toItem: self.titleLabel, attribute: .bottom, multiplier: 1, constant: 10).isActive = true
         NSLayoutConstraint(item: screenShotView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: screenShotView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailingMargin, multiplier: 1, constant: 8).isActive = true
 

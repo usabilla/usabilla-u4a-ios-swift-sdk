@@ -29,7 +29,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         self.contentView.addSubview(buttonView!)
         buttonView!.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 24)
+        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 24)
 
         let a = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
 

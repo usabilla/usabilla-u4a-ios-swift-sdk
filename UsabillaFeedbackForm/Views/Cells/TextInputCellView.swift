@@ -27,7 +27,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         contentView.addSubview(textField)
         contentView.addSubview(line)
         
-        let a  = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
+        let a  = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
         a.priority = 750
         a.isActive = true
         

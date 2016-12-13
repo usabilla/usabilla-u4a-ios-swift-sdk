@@ -33,7 +33,7 @@ class StarCellView: RootCellView, SwiftStarDelegate {
 
 
 
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0).isActive = true
 
         NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
 

@@ -12,7 +12,6 @@ import UIKit
 class RootCellView: UITableViewCell {
 
     var titleLabel: UILabel!
-    var dividerLine: UIView?
     var item: BaseFieldModel!
     var isValid: Bool = true {
         didSet {
@@ -38,28 +37,16 @@ class RootCellView: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.titleLabel = createTitleLabel()
-        self.dividerLine = createDividerLine()
-        self.dividerLine?.isHidden = true
 
         //titleLabel?.sizeToFit()
         self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(dividerLine!)
 
-        let leadingC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8)
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8).isActive = true
 
         NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
 
-        let topC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.topMargin, multiplier: 1, constant: 10)
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.topMargin, multiplier: 1, constant: 10).isActive = true
 
-        let dividerTop = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
-
-        let dividerHeight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 1)
-
-        let dividerMarginLeft = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8)
-
-        let dividerMarginRight = NSLayoutConstraint(item: dividerLine!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8)
-
-        contentView.addConstraints([leadingC, topC, dividerTop, dividerHeight, dividerMarginLeft, dividerMarginRight])
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -101,7 +88,6 @@ class RootCellView: UITableViewCell {
         } else {
             titleLabel.font = UIFont.systemFont(ofSize: themeConfig.titleFontSize).withTraits(.traitBold)
         }
-        dividerLine?.backgroundColor = item.themeConfig.hintColor
         backgroundColor = item.themeConfig.backgroundColor
     }
 
@@ -142,20 +128,9 @@ class RootCellView: UITableViewCell {
                                   range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
 
                 titleLabel?.attributedText = text
-
-                self.dividerLine!.backgroundColor = item.themeConfig.errorColor
             } else {
                 titleLabel?.text = String(format: "%@ *", item!.fieldTitle) as String
                 titleLabel.textColor = themeConfig.titleColor
-//                let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
-//
-//                text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
-//                                  range: NSRange.init(location: (self.titleLabel?.text?.characters.count)!-1, length: 1))
-//
-//                titleLabel?.attributedText = text
-
-                self.dividerLine!.backgroundColor = item.themeConfig.hintColor
-
             }
         }
     }

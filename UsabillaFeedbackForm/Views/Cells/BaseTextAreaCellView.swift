@@ -20,14 +20,13 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
-        self.dividerLine?.isHidden = true
 
         
         textView.isScrollEnabled = false
         self.contentView.addSubview(textView)
 
         NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -18).isActive = true
-        let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.dividerLine, attribute: .bottom, multiplier: 1, constant: 12)
+        let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.titleLabel, attribute: .bottom, multiplier: 1, constant: 12)
         a.priority = 750
         a.isActive = true
         

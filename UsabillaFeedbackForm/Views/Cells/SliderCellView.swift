@@ -34,7 +34,7 @@ class SliderCellView: RootCellView {
         self.contentView.addSubview(rightLabel)
 
 
-        let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 15)
+        let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 15)
         f.priority = 750
         f.isActive = true
         

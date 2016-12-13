@@ -23,7 +23,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
 
         picker.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        let f = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
 
         let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
 

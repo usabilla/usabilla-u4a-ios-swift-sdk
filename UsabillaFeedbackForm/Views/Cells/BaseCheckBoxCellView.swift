@@ -68,7 +68,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
             if index == 0 {
                 //First checkbox
-                NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: dividerLine, attribute: .bottom, multiplier: 1, constant: 4).isActive = true
+                NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4).isActive = true
             } else {
                 let a = NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: previousCheckbox!, attribute: .bottom, multiplier: 1, constant: 8)
                 a.priority = 750
