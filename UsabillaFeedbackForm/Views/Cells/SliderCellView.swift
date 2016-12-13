@@ -19,44 +19,40 @@ class SliderCellView: RootCellView {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //removeOldViews()
-        //sliderModel = item as! RatingFieldModel
+
         valueLabel = createSecondaryLabel()
-        slider = UISlider()
-
-        slider.addTarget(self, action: #selector(SliderCellView.barChangedValue), for: .valueChanged)
-        self.contentView.addSubview(slider)
-        self.contentView.addSubview(valueLabel)
-
-        self.slider.translatesAutoresizingMaskIntoConstraints = false
-
         leftLabel = createSecondaryLabel()
         rightLabel = createSecondaryLabel()
+        
+        slider = UISlider()
+        slider.addTarget(self, action: #selector(SliderCellView.barChangedValue), for: .valueChanged)
+        self.slider.translatesAutoresizingMaskIntoConstraints = false
 
-
-
+        self.contentView.addSubview(slider)
+        self.contentView.addSubview(valueLabel)
         self.contentView.addSubview(leftLabel)
         self.contentView.addSubview(rightLabel)
 
 
         let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 15)
-        f.identifier = "prova"
         f.priority = 750
-        let a = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        f.isActive = true
+        
+        NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = false
 
-        let v = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
+        NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0).isActive = false
 
-        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -4).isActive = true
-
-        trailingTitleLabelConstraint.isActive = false
-
-        let views = ["titleLabel": super.titleLabel!,
+        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 8).isActive = true
+        
+        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
+        
+        let views = ["slider": self.slider,
                      "valueLabel": self.valueLabel]
 
         var allConstraints = [NSLayoutConstraint]()
 
         let iconVerticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-(8)-[titleLabel]-(6)-[valueLabel(>=50)]-(8)-|",
+            withVisualFormat: "H:|-(8)-[slider]-(6)-[valueLabel(==50)]-(8)-|",
             options: [],
             metrics: nil,
             views: views)
@@ -76,7 +72,6 @@ class SliderCellView: RootCellView {
 
         NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
 
-        contentView.addConstraints([f, a, v])
 
 
     }

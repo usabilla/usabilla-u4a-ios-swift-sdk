@@ -11,7 +11,6 @@ import UIKit
 
 class RootCellView: UITableViewCell {
 
-    var trailingTitleLabelConstraint: NSLayoutConstraint!
     var titleLabel: UILabel!
     var dividerLine: UIView?
     var item: BaseFieldModel!
@@ -48,9 +47,7 @@ class RootCellView: UITableViewCell {
 
         let leadingC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8)
 
-        trailingTitleLabelConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8)
-
-        trailingTitleLabelConstraint.isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
 
         let topC = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.topMargin, multiplier: 1, constant: 10)
 
