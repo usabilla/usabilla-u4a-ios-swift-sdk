@@ -57,10 +57,10 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
         
         if let model2 = model as? TextFieldModel {
             if let placeHolder = model2.placeHolder {
-                if let italics = themeConfig.font.withSize(16).withTraits(.traitItalic) {
+                if let italics = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                 } else {
-                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font.withSize(16)])
+                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font.withSize(themeConfig.textFontSize)])
                 }
             }
         }
@@ -70,7 +70,7 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     override func applyCustomisations() {
         super.applyCustomisations()
         textField.tintColor = model.themeConfig.hintColor
-        textField.font = model.themeConfig.font.withSize(16)
+        textField.font = model.themeConfig.font.withSize(themeConfig.textFontSize)
         textField.textColor = model.themeConfig.textColor
         textField.backgroundColor = themeConfig.backgroundColor
         line.backgroundColor = themeConfig.hintColor

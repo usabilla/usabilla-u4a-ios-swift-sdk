@@ -76,9 +76,29 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         return choiceModel.options.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.textColor])
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        let asd = NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.textColor, NSFontAttributeName: themeConfig.font.withSize(30)])
+//        return asd
+//    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var pickerLabel = view as? UILabel
+        
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.textAlignment = NSTextAlignment.center
+            pickerLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize)
+            pickerLabel?.textColor = themeConfig.textColor
+        }
+        
+        pickerLabel?.text = choiceModel.options[row].title
+        //pickerLabel?.sizeToFit()
+        
+        return pickerLabel!
     }
+
 
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

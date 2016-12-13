@@ -37,12 +37,12 @@ open class UsabillaThemeConfigurator {
             }
         }
     }
+    
+    open var titleFontSize: CGFloat
+    open var textFontSize: CGFloat
+    open var miniFontSize: CGFloat
 
     public init() {
-
-        //UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
-        // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
-
         statusBarColor = .default
         textColor = UIColor(rgba:"#59636B")
         textOnAccentColor = UIColor.white
@@ -54,6 +54,9 @@ open class UsabillaThemeConfigurator {
         disabledEmoticons = nil
         fullStar = nil
         emptyStar = nil
+        titleFontSize = 21
+        textFontSize = 18
+        miniFontSize = 15
     }
 
 

@@ -87,11 +87,11 @@ class SliderCellView: RootCellView {
         slider.thumbTintColor = sliderModel.themeConfig.accentColor
         //backgroundColor =  sliderModel.themeConfig.backgroundColor
 
-        valueLabel.font = item.themeConfig.font.withSize(13.0)
+        valueLabel.font = item.themeConfig.font.withSize(themeConfig.miniFontSize)
         valueLabel.textColor = item.themeConfig.textColor
-        rightLabel.font = item.themeConfig.font.withSize(13.0)
+        rightLabel.font = item.themeConfig.font.withSize(themeConfig.miniFontSize)
         rightLabel.textColor = item.themeConfig.textColor
-        leftLabel.font = item.themeConfig.font.withSize(13.0)
+        leftLabel.font = item.themeConfig.font.withSize(themeConfig.miniFontSize)
         leftLabel.textColor = item.themeConfig.textColor
     }
 

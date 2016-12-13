@@ -99,10 +99,10 @@ class RootCellView: UITableViewCell {
     }
 
     func applyCustomisations() {
-        if let customFont = themeConfig.font.withSize(17).withTraits(.traitBold) {
+        if let customFont = themeConfig.font.withSize(themeConfig.titleFontSize).withTraits(.traitBold) {
             titleLabel.font = customFont
         } else {
-            titleLabel.font = UIFont.systemFont(ofSize: 17).withTraits(.traitBold)
+            titleLabel.font = UIFont.systemFont(ofSize: themeConfig.titleFontSize).withTraits(.traitBold)
         }
         dividerLine?.backgroundColor = item.themeConfig.hintColor
         backgroundColor = item.themeConfig.backgroundColor

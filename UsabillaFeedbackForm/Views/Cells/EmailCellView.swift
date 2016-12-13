@@ -27,10 +27,10 @@ class EmailCellView: TextInputCellView {
         if let placeHolder = mailModel.placeHolder {
             
             
-                if let italics = themeConfig.font.withTraits(.traitItalic) {
+                if let italics = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                 } else {
-                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font])
+                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font.withSize(themeConfig.textFontSize)])
                 }
             
         }

@@ -82,14 +82,14 @@ class TextAreaCellView: BaseTextAreaCellView {
     
     func setCorrectFont() {
         if !isPlaceholder {
-            textView.font = model.themeConfig.font.withSize(16)
+            textView.font = model.themeConfig.font.withSize(themeConfig.textFontSize)
             textView.textColor = model.themeConfig.textColor
         } else {
             textView.textColor = model.themeConfig.hintColor
-            if let customFont = themeConfig.font.withSize(16).withTraits(.traitItalic) {
+            if let customFont = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {
                 textView.font = customFont
             } else {
-                textView.font = UIFont.italicSystemFont(ofSize: 16)
+                textView.font = UIFont.italicSystemFont(ofSize: themeConfig.textFontSize)
             }
         }
     
