@@ -20,19 +20,17 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
-
-        
         textView.isScrollEnabled = false
-        self.contentView.addSubview(textView)
-
-        NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -18).isActive = true
-        let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.titleLabel, attribute: .bottom, multiplier: 1, constant: 12)
-        a.priority = 750
-        a.isActive = true
         
-        NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
-        NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailing, multiplier: 1, constant: -8).isActive = true
-
+        self.rootCellContainerView.addSubview(textView)
+//
+//        NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: -18).isActive = true
+//        let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: 12)
+//        a.priority = 750
+//        a.isActive = true
+//        
+//        NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
+//        NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: -8).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
