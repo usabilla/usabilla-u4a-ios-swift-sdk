@@ -11,6 +11,7 @@ import UIKit
 
 class RootCellView: UITableViewCell {
 
+    var rootCellContainerView: UIView
     var titleLabel: UILabel!
     var item: BaseFieldModel!
     var isValid: Bool = true {
@@ -33,19 +34,42 @@ class RootCellView: UITableViewCell {
     func isCurrentlyDisplayedChanged() {
         item.isViewCurrentlyVisible = isCurrentlyDisplayed
     }
+    
+    
+    //Layout config
+    let sideMargin: CGFloat = 8
+    let verticalMargin: CGFloat = 12
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        self.rootCellContainerView = UIView()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.titleLabel = createTitleLabel()
-
         //titleLabel?.sizeToFit()
         self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(rootCellContainerView)
+        rootCellContainerView.backgroundColor = UIColor.red
+        rootCellContainerView.translatesAutoresizingMaskIntoConstraints = false
 
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8).isActive = true
+        
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: sideMargin).isActive = true
 
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: sideMargin).isActive = true
 
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.topMargin, multiplier: 1, constant: 10).isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 10).isActive = true
+        
+        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant:  8).isActive = true
+        
+//        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
+//        
+//        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0).isActive = false
+        
+        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -12).isActive = true
+        
+        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: sideMargin).isActive = true
+        
+        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: sideMargin).isActive = true
+        
+        //NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 50).isActive = true
 
     }
 

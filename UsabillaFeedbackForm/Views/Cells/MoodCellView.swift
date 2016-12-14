@@ -26,18 +26,19 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
 
         buttonView = MoodContentController()
         buttonView!.delegate = self
-        self.contentView.addSubview(buttonView!)
         buttonView!.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 24)
+        rootCellContainerView.addSubview(buttonView!)
 
-        let a = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
 
-        let v = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
+        NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0).isActive = true
+        
+        NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0).isActive = true
+        
+        let z = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
 
-        let z = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 2)
-
-        contentView.addConstraints([f, a, v, z])
+        contentView.addConstraints([f, z])
 
 
         setNeedsLayout()
