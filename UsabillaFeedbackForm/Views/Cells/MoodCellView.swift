@@ -30,18 +30,8 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
 
         rootCellContainerView.addSubview(buttonView!)
 
-        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
-
-        NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0).isActive = true
+        setBoundsToFillContainerView(view: buttonView!)
         
-        NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0).isActive = true
-        
-        let z = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-
-        contentView.addConstraints([f, z])
-
-
-        setNeedsLayout()
     }
 
     required init?(coder aDecoder: NSCoder) {

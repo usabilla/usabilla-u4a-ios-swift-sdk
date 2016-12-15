@@ -23,15 +23,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
 
         picker.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-
-        let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-
-        let v = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
-
-        let z = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 8)
-
-        contentView.addConstraints([f, a, v, z])
+        setBoundsToFillContainerView(view: picker)
 
     }
 
@@ -89,7 +81,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         if pickerLabel == nil {
             pickerLabel = UILabel()
             pickerLabel?.textAlignment = NSTextAlignment.center
-            pickerLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize)
+            pickerLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize + 2)
             pickerLabel?.textColor = themeConfig.textColor
         }
         

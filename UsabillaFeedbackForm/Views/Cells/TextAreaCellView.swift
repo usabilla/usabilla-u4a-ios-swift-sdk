@@ -19,13 +19,7 @@ class TextAreaCellView: BaseTextAreaCellView {
         textView.dataDetectorTypes = .link
         line.translatesAutoresizingMaskIntoConstraints = false
         rootCellContainerView.addSubview(line)
-  
-        
-        NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .top, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-        
-        NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: -4).isActive = true
+
         
         NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true

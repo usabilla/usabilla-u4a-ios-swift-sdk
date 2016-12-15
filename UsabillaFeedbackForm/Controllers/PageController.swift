@@ -25,7 +25,6 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         self.tableView.register(TextInputCellView.self, forCellReuseIdentifier: "text")
         self.tableView.register(ParagraphCellView.self, forCellReuseIdentifier: "paragraph")
         self.tableView.register(TextAreaCellView.self, forCellReuseIdentifier: "textArea")
-        self.tableView.register(NPSCellView.self, forCellReuseIdentifier: "nps")
         self.tableView.register(ChoiceCellView.self, forCellReuseIdentifier: "choice")
         self.tableView.register(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
 

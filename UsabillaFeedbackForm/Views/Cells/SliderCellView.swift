@@ -28,21 +28,17 @@ class SliderCellView: RootCellView {
         slider.addTarget(self, action: #selector(SliderCellView.barChangedValue), for: .valueChanged)
         self.slider.translatesAutoresizingMaskIntoConstraints = false
 
-        self.contentView.addSubview(slider)
-        self.contentView.addSubview(valueLabel)
-        self.contentView.addSubview(leftLabel)
-        self.contentView.addSubview(rightLabel)
+        self.rootCellContainerView.addSubview(slider)
+        self.rootCellContainerView.addSubview(valueLabel)
+        self.rootCellContainerView.addSubview(leftLabel)
+        self.rootCellContainerView.addSubview(rightLabel)
 
 
         let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 15)
         f.priority = 750
         f.isActive = true
         
-        NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = false
-
-        NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0).isActive = false
-
-        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 8).isActive = true
         
         NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         
@@ -62,15 +58,15 @@ class SliderCellView: RootCellView {
 
         NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 6).isActive = true
 
-        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 8).isActive = true
 
-        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
+        NSLayoutConstraint(item: leftLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
 
         NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 6).isActive = true
 
-        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
 
-        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
+        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
 
 
 

@@ -54,7 +54,7 @@ open class UsabillaThemeConfigurator {
         disabledEmoticons = nil
         fullStar = nil
         emptyStar = nil
-        titleFontSize = 21
+        titleFontSize = 18
         textFontSize = 18
         miniFontSize = 15
     }

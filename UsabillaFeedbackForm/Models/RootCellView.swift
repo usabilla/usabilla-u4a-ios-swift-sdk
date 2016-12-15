@@ -47,7 +47,6 @@ class RootCellView: UITableViewCell {
         //titleLabel?.sizeToFit()
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(rootCellContainerView)
-        rootCellContainerView.backgroundColor = UIColor.red
         rootCellContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         
