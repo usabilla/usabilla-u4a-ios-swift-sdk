@@ -60,7 +60,7 @@ class NetworkManager {
     /// - Parameters:
     ///   - payload: Payload containing the user data
     ///   - screenshot: self explanatory screenshot
-    class func submitFormToUsabilla (payload: [String:Any], screenshot: String?) {
+    class func submitFormToUsabilla(payload: [String:Any], screenshot: String?) {
         
         
         submitFeedbackSmallData(payload: payload).then { (response: DataResponse<Any>) -> () in
@@ -200,7 +200,7 @@ class NetworkManager {
     
     ///Stuff moved to be private
     
-    class func getFormJsonFromServer (_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
+    class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
         
         getFormWithFormID(formID: appId).then(on: DispatchQueue.global(qos: .background), execute: { (jsonObj: JSON) -> () in
             let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)

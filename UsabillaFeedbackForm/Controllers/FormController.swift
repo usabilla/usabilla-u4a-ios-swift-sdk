@@ -172,7 +172,7 @@ class FormViewController: UIViewController {
     }
 
 
-    func selectNewPage () -> Int {
+    func selectNewPage() -> Int {
         var newPageIndex = -1
         if let pageToJump = pageController.whereShouldIJump() {
             for (index, page) in formModel.pages.enumerated() {
@@ -228,7 +228,7 @@ class FormViewController: UIViewController {
         currentPage = page
     }
 
-    func convertFormToDictionary () -> [String: Any] {
+    func convertFormToDictionary() -> [String: Any] {
         var formDictionary = [String: Any]()
         let indexToStop = formModel.pages.count - 1
         for index in 0...indexToStop - 1 {

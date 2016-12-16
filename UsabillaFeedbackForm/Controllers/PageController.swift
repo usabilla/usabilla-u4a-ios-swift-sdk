@@ -67,7 +67,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    func reloadCellInTableAfterEvent () {
+    func reloadCellInTableAfterEvent() {
         var listOfIndexes: [IndexPath] = []
         for index in dynamicFields {
             if let cell = tableView.cellForRow(at: index) as? RootCellView {
@@ -96,7 +96,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     }
 
 
-    func deinitPageController () {
+    func deinitPageController() {
         SwiftEventBus.unregister(self)
     }
 

@@ -35,7 +35,7 @@ class ThankYouController: UIViewController {
         SwiftEventBus.post("restoreForm")
     }
 
-    func setUpController (_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
+    func setUpController(_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
             bottomButton.setTitle(redirectToAppStore, for: UIControlState())
