@@ -25,8 +25,7 @@ class EmailCellView: TextInputCellView {
         super.setFeedbackItem(item)
         mailModel = item as! EmailFieldModel
         if let placeHolder = mailModel.placeHolder {
-            
-            
+        
                 if let italics = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                 } else {
