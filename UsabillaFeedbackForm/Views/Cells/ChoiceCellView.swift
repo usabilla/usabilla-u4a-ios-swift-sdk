@@ -20,7 +20,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         picker.dataSource = self
         picker.delegate = self
         self.contentView.addSubview(picker)
-
+        picker.showsSelectionIndicator = true
         picker.translatesAutoresizingMaskIntoConstraints = false
 
         setBoundsToFillContainerView(view: picker)
@@ -57,6 +57,8 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
                 a.priority = 750
                 a.isActive = true
         }
+        
+        picker.selectRow(0, inComponent: 0, animated: true)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

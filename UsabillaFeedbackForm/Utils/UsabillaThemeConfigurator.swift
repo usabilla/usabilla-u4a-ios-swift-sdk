@@ -41,7 +41,8 @@ open class UsabillaThemeConfigurator {
     open var titleFontSize: CGFloat
     open var textFontSize: CGFloat
     open var miniFontSize: CGFloat
-
+    open var setTitlesInBold: Bool
+    
     public init() {
         statusBarColor = .default
         textColor = UIColor(rgba:"#59636B")
@@ -57,6 +58,7 @@ open class UsabillaThemeConfigurator {
         titleFontSize = 18
         textFontSize = 18
         miniFontSize = 15
+        setTitlesInBold = true
     }
 
 

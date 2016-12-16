@@ -43,7 +43,7 @@ class SliderCellView: RootCellView {
         NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         
         let views = ["slider": self.slider,
-                     "valueLabel": self.valueLabel]
+                     "valueLabel": self.valueLabel] as [String : Any]
 
         var allConstraints = [NSLayoutConstraint]()
 
