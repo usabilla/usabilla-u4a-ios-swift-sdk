@@ -21,11 +21,9 @@ class FormViewController: UIViewController {
 
     //Views
 
-    @IBOutlet weak var poweredLabel: UILabel!
     @IBOutlet weak var leftNavItem: UIBarButtonItem!
     @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var footerView: UIView!
 
 
     override func viewDidLoad() {
@@ -37,15 +35,13 @@ class FormViewController: UIViewController {
         } else {
             progressBar.progressTintColor =  formModel.themeConfig.accentColor
         }
-        poweredLabel.textColor = formModel.themeConfig.textOnAccentColor
-        poweredLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormViewController.openUsabilla)))
+       
         updateProgressBar()
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
         
         self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
-        footerView.backgroundColor = formModel.themeConfig.accentColor
 
         SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
             self.restoreFeedbackFormController()

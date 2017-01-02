@@ -1534,7 +1534,7 @@ class Icons: NSObject {
             return LocalCache.image
         }
         var image: UIImage
-        let size = CGSize(width: 30, height: 42)
+        let size = CGSize(width: 26, height: 38)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         Icons.drawArtboard(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
         image = UIGraphicsGetImageFromCurrentImageContext()!
