@@ -33,11 +33,11 @@ class JSONFormParser {
         }
         pages.last?.isLastPage = true
 
-        var screenshotJson: [String: AnyObject] = [:]
-        screenshotJson["type"] = "screenshot" as AnyObject?
-        screenshotJson["name"] = "screenshot" as AnyObject?
-        screenshotJson["title"] = "Screenshot" as AnyObject?
-        screenshotJson["required"] = false as AnyObject?
+        var screenshotJson: [String: Any] = [:]
+        screenshotJson["type"] = "screenshot"
+        screenshotJson["name"] = "screenshot"
+        screenshotJson["title"] = "Screenshot"
+        screenshotJson["required"] = false
 
         let pageModel = pages.first
         if hasScreenshot {

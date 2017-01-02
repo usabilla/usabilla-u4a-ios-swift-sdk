@@ -23,7 +23,7 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         picker.showsSelectionIndicator = true
         picker.translatesAutoresizingMaskIntoConstraints = false
 
-        setBoundsToFillContainerView(view: picker)
+        addConstraintToFillContainerView(view: picker)
 
     }
 

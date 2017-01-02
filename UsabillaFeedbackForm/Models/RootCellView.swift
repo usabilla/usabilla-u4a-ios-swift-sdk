@@ -66,11 +66,11 @@ class RootCellView: UITableViewCell {
         
     }
     
-    func setBoundsToFillContainerView(view: UIView) {
-        NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .top, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+    func addConstraintToFillContainerView(view: UIView, withMargin: CGFloat = 0) {
+        NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: -withMargin).isActive = true
+        NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .top, multiplier: 1, constant: withMargin).isActive = true
+        NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: withMargin).isActive = true
+        NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: -withMargin).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

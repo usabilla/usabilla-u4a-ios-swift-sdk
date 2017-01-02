@@ -30,7 +30,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
 
         rootCellContainerView.addSubview(buttonView!)
 
-        setBoundsToFillContainerView(view: buttonView!)
+        addConstraintToFillContainerView(view: buttonView!)
         
     }
 

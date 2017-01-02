@@ -31,7 +31,7 @@ class StarCellView: RootCellView, SwiftStarDelegate {
 
         self.starRatingView.translatesAutoresizingMaskIntoConstraints = false
         
-        setBoundsToFillContainerView(view: starRatingView)
+        addConstraintToFillContainerView(view: starRatingView)
     }
 
     required init?(coder aDecoder: NSCoder) {
