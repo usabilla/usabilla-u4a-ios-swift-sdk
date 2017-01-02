@@ -1455,7 +1455,7 @@ class Icons: NSObject {
     }
     
     
-    class func drawArtboard(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 20, height: 28), resizing: ResizingBehavior = .aspectFit) {
+    class func drawArtboard(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 21, height: 30), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -1514,7 +1514,7 @@ class Icons: NSObject {
         icon.move(to: CGPoint(x: 5, y: 7))
         context.saveGState()
         icon.usesEvenOddFillRule = true
-        UIColor.black.setFill()
+        color.setFill()
         icon.fill()
         context.restoreGState()
         
@@ -1526,7 +1526,7 @@ class Icons: NSObject {
     
     /// Page 1
     
-    class func imageOfArtboard() -> UIImage {
+    class func imageOfArtboard(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
         }
@@ -1534,9 +1534,9 @@ class Icons: NSObject {
             return LocalCache.image
         }
         var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 20, height: 28), false, 0)
-        Icons.drawArtboard()
+        let size = CGSize(width: 30, height: 42)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        Icons.drawArtboard(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
