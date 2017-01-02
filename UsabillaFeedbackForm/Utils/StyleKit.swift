@@ -44,7 +44,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 150.81, y: 28.79)
             fill1.usesEvenOddFillRule = true
-            UIColor.black.setFill()
+            color.setFill()
             fill1.fill()
             context.restoreGState()
             
@@ -58,7 +58,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 170.14, y: 54.09)
             fill2.usesEvenOddFillRule = true
-            UIColor.black.setFill()
+            color.setFill()
             fill2.fill()
             context.restoreGState()
             
@@ -678,7 +678,7 @@ class Icons: NSObject {
     
     /// Symbols
     
-    class func drawPoweredBy(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 33), resizing: ResizingBehavior = .aspectFit) {
+    class func drawPoweredBy(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 33), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -711,7 +711,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 32.68, y: 6.23)
             fill1.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill1.fill()
             context.restoreGState()
             
@@ -725,7 +725,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 36.86, y: 11.71)
             fill2.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill2.fill()
             context.restoreGState()
             
@@ -739,7 +739,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 34.97, y: 0)
             fill3.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill3.fill()
             context.restoreGState()
             
@@ -753,7 +753,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 38.99, y: 5)
             fill4.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill4.fill()
             context.restoreGState()
             
@@ -781,7 +781,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 0, y: 17.46)
             fill5.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill5.fill()
             context.restoreGState()
             
@@ -815,7 +815,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 9.95, y: 17.4)
             fill6.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill6.fill()
             context.restoreGState()
             
@@ -851,7 +851,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 18.24, y: 17.4)
             fill7.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill7.fill()
             context.restoreGState()
             
@@ -887,7 +887,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 30.39, y: 13.9)
             fill8.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill8.fill()
             context.restoreGState()
             
@@ -903,7 +903,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 46.32, y: 13.9)
             fill9.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill9.fill()
             context.restoreGState()
             
@@ -919,7 +919,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 49.84, y: 13.9)
             fill10.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill10.fill()
             context.restoreGState()
             
@@ -955,7 +955,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 53.38, y: 17.4)
             fill11.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill11.fill()
             context.restoreGState()
             
@@ -970,7 +970,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 42.58, y: 19.39)
             fill12.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill12.fill()
             context.restoreGState()
             
@@ -988,7 +988,7 @@ class Icons: NSObject {
             context.saveGState()
             context.translateBy(x: 40.43, y: 13.48)
             fill13.usesEvenOddFillRule = true
-            UIColor(white: 0.541, alpha: 1).setFill()
+            color.setFill()
             fill13.fill()
             context.restoreGState()
             
@@ -1709,8 +1709,8 @@ class Icons: NSObject {
     
     /// Symbols
     
-    class func imageOfPoweredBy() -> UIImage {
-        struct LocalCache {
+    class func imageOfPoweredBy(color: UIColor) -> UIImage {
+        struct LocalCache { 
             static var image: UIImage!
         }
         if LocalCache.image != nil {
@@ -1719,7 +1719,7 @@ class Icons: NSObject {
         var image: UIImage
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 149, height: 33), false, 0)
-        Icons.drawPoweredBy()
+        Icons.drawPoweredBy(color: color)
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         

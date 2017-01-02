@@ -71,7 +71,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         let logo = UIButton(type: UIButtonType.custom)
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.addTarget(self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
-        logo.setImage(Icons.imageOfPoweredBy(), for: UIControlState())
+        logo.setImage(Icons.imageOfPoweredBy(color: pageModel.themeConfig.hintColor), for: UIControlState())
         view.addSubview(logo)
         
         NSLayoutConstraint(item: logo, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
