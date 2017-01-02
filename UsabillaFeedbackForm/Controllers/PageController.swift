@@ -58,6 +58,29 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
 
     }
 
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 80
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return 80
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
+        let logo = UIButton(type: UIButtonType.custom)
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.addTarget(self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
+        logo.setImage(Icons.imageOfPoweredBy(), for: UIControlState())
+        view.addSubview(logo)
+        
+        NSLayoutConstraint(item: logo, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: logo, attribute: .height, multiplier: 1, constant: 0).isActive = true
+
+        return view
+
+    }
+
 
     func updateScreenshotHeight() {
         for index in self.tableView.visibleCells {
@@ -100,14 +123,6 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         SwiftEventBus.unregister(self)
     }
 
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -243,6 +258,10 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         self.dismiss(animated: true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
+    }
+    
+    func openUsabilla() {
+        UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
     }
 
 

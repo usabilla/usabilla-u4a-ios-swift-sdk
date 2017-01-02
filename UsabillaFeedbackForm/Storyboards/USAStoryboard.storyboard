@@ -70,13 +70,13 @@
         <scene sceneID="9OH-sm-8gU">
             <objects>
                 <tableViewController id="Akp-ux-rLe" customClass="PageController" customModule="UsabillaFeedbackForm" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TWd-kL-YaS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="TWd-kL-YaS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZOj-sO-nVP">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZOj-sO-nVP" id="40h-uP-hFT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -84,7 +84,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="192" id="TGC-2S-N5X">
-                                <rect key="frame" x="0.0" y="72" width="375" height="192"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="192"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TGC-2S-N5X" id="it3-6J-3uZ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
@@ -175,7 +175,7 @@
             <objects>
                 <navigationController restorationIdentifier="base" storyboardIdentifier="base" automaticallyAdjustsScrollViewInsets="NO" id="IRd-Rl-9zB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sdg-ud-ge7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sdg-ud-ge7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

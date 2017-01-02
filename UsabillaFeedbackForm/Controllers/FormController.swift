@@ -71,9 +71,6 @@ class FormViewController: UIViewController {
         }
     }
 
-    func openUsabilla() {
-        UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {

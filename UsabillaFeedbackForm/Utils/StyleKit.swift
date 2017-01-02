@@ -690,7 +690,7 @@ class Icons: NSObject {
         
         /// Powered by
         let poweredBy2 = NSMutableAttributedString(string: "Powered by")
-        poweredBy2.addAttribute(NSFontAttributeName, value: UIFont(name: "SanFranciscoText-Regular", size: 15)!, range: NSRange(location: 0, length: poweredBy2.length))
+       
         poweredBy2.addAttribute(NSForegroundColorAttributeName, value: UIColor(white: 0.541, alpha: 1), range: NSRange(location: 0, length: poweredBy2.length))
         poweredBy2.addAttribute(NSKernAttributeName, value: -0.24, range: NSRange(location: 0, length: poweredBy2.length))
         context.saveGState()
@@ -1621,9 +1621,9 @@ class Icons: NSObject {
             return LocalCache.image
         }
         var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawAddImage(color: color)
+        let size = CGSize(width: 38, height: 38)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        Icons.drawAddImage(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
@@ -1736,7 +1736,7 @@ class Icons: NSObject {
         }
         var image: UIImage
         
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 372, height: 169), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 186, height: 98), false, 0)
         Icons.drawLogo2()
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
