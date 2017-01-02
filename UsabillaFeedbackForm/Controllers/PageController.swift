@@ -157,7 +157,7 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
             cell.isUserInteractionEnabled = true
             cell.isCurrentlyDisplayed = true
         }
-        if item.rule != nil {
+        if item.rule != nil && !dynamicFields.contains(indexPath) {
             dynamicFields.append(indexPath)
         }
         return cell
