@@ -25,7 +25,7 @@ class FormModel {
     
     
     // swiftlint:disable:next function_parameter_count
-    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel:CopyModel ) {
+    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel ) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version

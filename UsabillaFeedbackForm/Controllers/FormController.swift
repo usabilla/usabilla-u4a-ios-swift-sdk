@@ -18,9 +18,6 @@ class FormViewController: UIViewController {
     var customVars: [String: Any]? = nil
 
     @IBOutlet weak var progressBar: UIProgressView!
-
-    //Views
-
     @IBOutlet weak var leftNavItem: UIBarButtonItem!
     @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
@@ -140,8 +137,8 @@ class FormViewController: UIViewController {
 
         transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         var rating: Int = 0
-        if let temp = moodValue?.fieldValue {
-            rating = temp
+        if let moodRating = moodValue?.fieldValue {
+            rating = moodRating
         }
         thankYouController.setUpController(rating > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
 

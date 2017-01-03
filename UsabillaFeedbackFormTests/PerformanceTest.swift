@@ -50,7 +50,7 @@ class Performance: XCTestCase {
     func testLoadingTime() {
         // This is an example of a performance test case.
         self.measure {
-            var formModel:FormModel? = nil
+            var formModel: FormModel? = nil
             let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)

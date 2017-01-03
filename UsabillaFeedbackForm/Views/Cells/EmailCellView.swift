@@ -36,7 +36,7 @@ class EmailCellView: TextInputCellView {
         textField.text = mailModel.fieldValue
     }
     
-    func isValidEmail(testStr:String) -> Bool {
+    func isValidEmail(testStr: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -50,8 +50,8 @@ class EmailCellView: TextInputCellView {
         }
     }
     
-    func updateBorderColor(email: String?){
-        if let toTest = email{
+    func updateBorderColor(email: String?) {
+        if let toTest = email {
             if isValidEmail(testStr: toTest) {
                 textField.layer.borderColor = mailModel.themeConfig.hintColor.cgColor
             } else {

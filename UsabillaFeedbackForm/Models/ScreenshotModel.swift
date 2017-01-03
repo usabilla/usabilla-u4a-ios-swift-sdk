@@ -14,9 +14,7 @@ class ScreenshotModel: BaseFieldModel {
     var screenshot: UIImage?
     //var icon: UIImage
     var base64Value: String? {
-        get {
             return toBase64String()
-        }
     }
 
     required init(json: JSON, pageModel: PageModel, screenShot: UIImage? = nil) {

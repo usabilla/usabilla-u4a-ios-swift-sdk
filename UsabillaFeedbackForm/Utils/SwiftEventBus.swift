@@ -16,7 +16,7 @@ import Foundation
         let name: String
     }
 
-    var cache = [UInt:[NamedObserver]]()
+    var cache = [UInt: [NamedObserver]]()
 
 
     ////////////////////////////////////

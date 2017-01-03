@@ -658,4 +658,4 @@ class AnimationManager {
     }
 
 
-}
+} // swiftlint:disable:next file_lenght

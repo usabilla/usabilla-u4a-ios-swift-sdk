@@ -25,9 +25,7 @@ class RootCellView: UITableViewCell {
         }
     }
     var themeConfig: UsabillaThemeConfigurator {
-        get {
             return item.themeConfig
-        }
     }
     
     
@@ -110,7 +108,7 @@ class RootCellView: UITableViewCell {
         titleLabel.font = themeConfig.font.withSize(themeConfig.titleFontSize)
         
         if themeConfig.setTitlesInBold {
-            if let boldVersion = titleLabel.font.withTraits(.traitBold){
+            if let boldVersion = titleLabel.font.withTraits(.traitBold) {
                 titleLabel.font = boldVersion
             }
         }

@@ -63,7 +63,7 @@ class NetworkManager {
     class func submitFormToUsabilla(payload: [String:Any], screenshot: String?) {
         
         
-        submitFeedbackSmallData(payload: payload).then { (response: DataResponse<Any>) -> () in
+        submitFeedbackSmallData(payload: payload).then { (response: DataResponse<Any>) -> Void in
             
             switch response.result {
             case .success(let data):
@@ -112,7 +112,7 @@ class NetworkManager {
     
     class func closeTheDeal(id: String, signature: String, v: Int) -> Promise<Bool> {
         var contentDictionary: [String: Any] = [:]
-        contentDictionary["media"] = ["screenshot" : ""]
+        contentDictionary["media"] = ["screenshot": ""]
         
         var payload: [String: Any] = [:]
         
@@ -143,7 +143,7 @@ class NetworkManager {
     class func createPromise(id: String, signature: String, v: Int, screenshot: String) -> Promise<Bool> {
         
         var contentDictionary: [String: Any] = [:]
-        contentDictionary["media"] = ["screenshot" : screenshot]
+        contentDictionary["media"] = ["screenshot": screenshot]
         var payload: [String: Any] = [:]
         
         payload["id"] = id
@@ -202,7 +202,7 @@ class NetworkManager {
     
     class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
         
-        getFormWithFormID(formID: appId).then(on: DispatchQueue.global(qos: .background), execute: { (jsonObj: JSON) -> () in
+        getFormWithFormID(formID: appId).then(on: DispatchQueue.global(qos: .background), execute: { (jsonObj: JSON) -> Void in
             let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))

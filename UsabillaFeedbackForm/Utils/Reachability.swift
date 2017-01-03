@@ -37,7 +37,7 @@ public enum ReachabilityError: Error {
 
 public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
+func callback(reachability: SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
     
     guard let info = info else { return }
     
@@ -50,8 +50,8 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
 
 public class Reachability {
     
-    public typealias NetworkReachable = (Reachability) -> ()
-    public typealias NetworkUnreachable = (Reachability) -> ()
+    public typealias NetworkReachable = (Reachability) -> Void
+    public typealias NetworkUnreachable = (Reachability) -> Void
     
     public enum NetworkStatus: CustomStringConvertible {
         

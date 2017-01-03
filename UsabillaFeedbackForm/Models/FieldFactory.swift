@@ -9,7 +9,7 @@
 import Foundation
 
 class FieldFactory {
-
+    // swiftlint:disable:next cyclomatic_complexity
     class func createField(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
 
         let type = json["type"].stringValue

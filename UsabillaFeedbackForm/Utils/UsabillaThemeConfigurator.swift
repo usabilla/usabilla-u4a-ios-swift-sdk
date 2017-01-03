@@ -24,18 +24,14 @@ open class UsabillaThemeConfigurator {
     open var fullStar: UIImage?
     open var emptyStar: UIImage?
     open var hintColor: UIColor {
-        get {
             return textColor.withAlphaComponent(0.38)
-        }
     }
     var font: UIFont {
-        get {
             if let font = customFont {
                 return font
             } else {
                 return UIFont.systemFont(ofSize: UIFont.systemFontSize)
             }
-        }
     }
     
     open var titleFontSize: CGFloat
