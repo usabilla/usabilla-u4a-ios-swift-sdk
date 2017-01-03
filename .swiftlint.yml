@@ -2,10 +2,8 @@ disabled_rules: # rule identifiers to exclude from running
   - force_cast
   - trailing_whitespace
   - colon+
-  - variable_name
   - type_body_length
   - function_body_length
-  - variable_name_min_length
   - vertical_whitespace  
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
@@ -34,6 +32,12 @@ variable_name:
   max_length: # warning and error
     warning: 40
     error: 50
+  excluded: # excluded via string array
+    - id
+    - URL
+    - _
+    - on
+    - v
 
 
 # No temp or asd

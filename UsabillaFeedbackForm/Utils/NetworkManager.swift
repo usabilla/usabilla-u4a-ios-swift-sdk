@@ -16,8 +16,8 @@ class NetworkManager {
     
     
     static let bundle =  Bundle(for: NetworkManager.self)
-    static let api_url = bundle.infoDictionary!["USABILLA_API_URL"] as! String
-    static let submit_url = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
+    static let apiUrl = bundle.infoDictionary!["USABILLA_API_URL"] as! String
+    static let submitUrl = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
     
     
     
@@ -35,7 +35,7 @@ class NetworkManager {
         ]
         
         
-        let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [api_url, formID])
+        let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
         return Promise { fulfill, reject in
             
             Alamofire.request(request_url, headers: headers)
@@ -126,7 +126,7 @@ class NetworkManager {
         
         return Promise { fulfill, reject in
             
-            Alamofire.request(submit_url, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
+            Alamofire.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
                 .responseJSON {response in
                     switch response.result {
                     case .success:
@@ -158,7 +158,7 @@ class NetworkManager {
         
         return Promise { fulfill, reject in
             
-            Alamofire.request(submit_url, method: HTTPMethod.post, parameters: payload, encoding:  JSONEncoding.default, headers: nil)
+            Alamofire.request(submitUrl, method: HTTPMethod.post, parameters: payload, encoding:  JSONEncoding.default, headers: nil)
                 .responseJSON { response in
                     debugPrint(response)
                     switch response.result {
@@ -181,7 +181,7 @@ class NetworkManager {
     class func submitFeedbackSmallData(payload: [String:Any])  -> Promise<DataResponse<Any>> {
         return Promise { fulfill, reject in
             
-            Alamofire.request(submit_url, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
+            Alamofire.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
                 .responseJSON { response in
                     switch response.result {
                     case .success:
