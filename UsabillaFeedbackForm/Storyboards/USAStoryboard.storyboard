@@ -25,21 +25,31 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="2"/>
                             </progressView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQa-Ed-WL9">
-                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="521"/>
                                 <connections>
                                     <segue destination="Akp-ux-rLe" kind="embed" identifier="embedSegue" id="V71-92-56N"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhK-0B-7EA">
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <accessibility key="accessibilityConfiguration" identifier="tableFooter"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Ayc-U8-E3f"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="RhK-0B-7EA" firstAttribute="top" secondItem="iQa-Ed-WL9" secondAttribute="bottom" id="Agc-yr-XRo"/>
                             <constraint firstAttribute="trailing" secondItem="iQa-Ed-WL9" secondAttribute="trailing" id="E2W-cu-lho"/>
                             <constraint firstItem="vlS-5i-RUy" firstAttribute="leading" secondItem="s39-cz-oQd" secondAttribute="leadingMargin" constant="-20" id="F38-D8-w7R"/>
                             <constraint firstItem="iQa-Ed-WL9" firstAttribute="top" secondItem="vlS-5i-RUy" secondAttribute="bottom" id="HBA-mU-zhe"/>
+                            <constraint firstItem="RhK-0B-7EA" firstAttribute="leading" secondItem="s39-cz-oQd" secondAttribute="leadingMargin" constant="-16" id="LxG-Uz-WrX"/>
                             <constraint firstAttribute="trailing" secondItem="iQa-Ed-WL9" secondAttribute="trailing" id="Ssx-Ti-nYG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RhK-0B-7EA" secondAttribute="trailing" constant="-16" id="U2n-Oa-aj8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vlS-5i-RUy" secondAttribute="trailing" constant="-20" id="cHT-CU-5d4"/>
                             <constraint firstItem="iQa-Ed-WL9" firstAttribute="leading" secondItem="s39-cz-oQd" secondAttribute="leading" id="eXO-bX-1PC"/>
-                            <constraint firstItem="aGe-j8-8hS" firstAttribute="top" secondItem="iQa-Ed-WL9" secondAttribute="bottom" id="ubb-MK-gpT"/>
+                            <constraint firstItem="aGe-j8-8hS" firstAttribute="top" secondItem="RhK-0B-7EA" secondAttribute="bottom" id="rf7-6Y-BSP"/>
                             <constraint firstItem="vlS-5i-RUy" firstAttribute="top" secondItem="xS0-4Q-tDd" secondAttribute="bottom" id="xyA-bG-r76"/>
                         </constraints>
                     </view>
@@ -57,6 +67,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="iQa-Ed-WL9" id="Lm3-uF-Qyj"/>
+                        <outlet property="footerHeight" destination="Ayc-U8-E3f" id="vcN-r8-Af2"/>
+                        <outlet property="footerView" destination="RhK-0B-7EA" id="Pyx-UT-xgx"/>
                         <outlet property="leftNavItem" destination="uPA-5l-BME" id="5WG-wo-kdg"/>
                         <outlet property="progressBar" destination="vlS-5i-RUy" id="WfP-N7-EWY"/>
                         <outlet property="rightNavItem" destination="4mV-aS-O6N" id="S6B-d2-OMR"/>
@@ -70,34 +82,10 @@
         <scene sceneID="9OH-sm-8gU">
             <objects>
                 <tableViewController id="Akp-ux-rLe" customClass="PageController" customModule="UsabillaFeedbackForm" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="TWd-kL-YaS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TWd-kL-YaS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZOj-sO-nVP">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZOj-sO-nVP" id="40h-uP-hFT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="192" id="TGC-2S-N5X">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="192"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TGC-2S-N5X" id="it3-6J-3uZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIm-Ee-TIM">
-                                            <rect key="frame" x="245" y="85" width="22" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </button>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="Akp-ux-rLe" id="fig-ac-TiO"/>
                             <outlet property="delegate" destination="Akp-ux-rLe" id="Azy-FU-8x9"/>

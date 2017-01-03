@@ -21,7 +21,25 @@ class FormViewController: UIViewController {
     @IBOutlet weak var leftNavItem: UIBarButtonItem!
     @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerHeight: NSLayoutConstraint!
 
+    
+    override func loadView() {
+        super.loadView()
+        footerView.addSubview(ViewUtils.generateFooter(themeConfig: formModel.themeConfig))
+
+        SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
+            self.restoreFeedbackFormController()
+        }
+        
+        SwiftEventBus.onMainThread(self, name:"asd") { result in
+            let bool: Bool = result.object as! Bool
+            print("showing table footer \(!bool)")
+            self.footerHeight.constant = bool ? 0 : 80
+        }
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +58,12 @@ class FormViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
 
-        SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
-            self.restoreFeedbackFormController()
-        }
 
         setUpLeftButton()
         setUpReachability()
     }
-
+    
+    
 
     func setUpLeftButton() {
         leftNavItem.title = formModel.copyModel.cancelButton
