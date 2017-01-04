@@ -212,8 +212,8 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
     
     
     func reloadTableWithAnimation() {
-        let range = NSMakeRange(0, self.tableView.numberOfSections)
-        let sections = IndexSet(integersIn: range.toRange() ?? 0..<0)
+        let range = 0..<tableView.numberOfSections
+        let sections = IndexSet(integersIn: range)
         //self.tableView.reloadData()
         self.tableView.reloadSections(sections, with: .automatic)
         updateFooterStatus()

@@ -27,7 +27,7 @@ type_name:
     error: 50
 variable_name:
   min_length: 
-    warning: 4
+    warning: 3
     error: 3
   max_length: # warning and error
     warning: 40

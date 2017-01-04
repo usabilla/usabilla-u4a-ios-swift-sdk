@@ -88,6 +88,8 @@
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F54E611CD76A21002F501E /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
 		25CD276821D9317C1A977818 /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5FC34D93DD0CE1FB1C6C5B /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework */; };
+		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
+		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
 		D662F2DD6CE421FB1929AA41 /* Pods_UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +186,8 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F54E5C1CD76A21002F501E /* defaultJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultJson.json; sourceTree = "<group>"; };
 		126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
+		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		471DCA52DB6AD43E382683E6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5765CAF16710869F6BFCFF3C /* Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests/Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C5FC34D93DD0CE1FB1C6C5B /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */,
+				43AC10B01E1D095C0064D758 /* PathManager.swift */,
+				43AC10B21E1D09880064D758 /* AnimationManager.swift */,
 			);
 			name = CheckBox;
 			sourceTree = "<group>";
@@ -670,6 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */,
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54DF71CD766F5002F501E /* MoodContentController.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
@@ -718,6 +725,7 @@
 				041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */,
 				0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
+				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				0483E9D71CDCDF86004EC234 /* FieldModel.swift in Sources */,
 				0483E9FF1CDCDFB1004EC234 /* TextInputCellView.swift in Sources */,

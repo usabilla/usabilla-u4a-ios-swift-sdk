@@ -25,7 +25,7 @@ class ViewUtils {
     
     
     
-    public static func addConstraintToFillContainerView(innerview: UIView, outerview: UIView,  withMargin: CGFloat = 0) {
+    public static func addConstraintToFillContainerView(innerview: UIView, outerview: UIView, withMargin: CGFloat = 0) {
         NSLayoutConstraint(item: innerview, attribute: .bottom, relatedBy: .equal, toItem: outerview, attribute: .bottom, multiplier: 1, constant: -withMargin).isActive = true
         NSLayoutConstraint(item: innerview, attribute: .top, relatedBy: .equal, toItem: outerview, attribute: .top, multiplier: 1, constant: withMargin).isActive = true
         NSLayoutConstraint(item: innerview, attribute: .leading, relatedBy: .equal, toItem: outerview, attribute: .leading, multiplier: 1, constant: withMargin).isActive = true
