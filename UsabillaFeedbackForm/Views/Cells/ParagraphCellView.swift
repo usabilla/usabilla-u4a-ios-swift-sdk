@@ -27,9 +27,9 @@ class ParagraphCellView: BaseTextAreaCellView {
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         let model = item as! ParagraphFieldModel
-        let text = model.fieldValue
+        let text = model.immutableParagraphValue
         if model.html != nil && model.html! {
-            textView.setValue(text, forKey: "contentToHTMLString")
+            textView.text = text?.htmlToString
         } else {
             textView.text = text
         }
