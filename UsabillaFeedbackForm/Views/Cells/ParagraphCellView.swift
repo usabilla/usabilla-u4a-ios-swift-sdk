@@ -29,8 +29,6 @@ class ParagraphCellView: BaseTextAreaCellView {
         let model = item as! ParagraphFieldModel
         let text = model.immutableParagraphValue
         if model.html != nil && model.html! {
-            print(text)
-            print(text?.htmlToString)
             textView.text = text?.htmlToString
         } else {
             textView.text = text
