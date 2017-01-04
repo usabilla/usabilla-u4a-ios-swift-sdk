@@ -15,6 +15,9 @@
 		04E95FF91D1998DA0041E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FF71D1998DA0041E4CA /* Main.storyboard */; };
 		04E95FFB1D1998DA0041E4CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFA1D1998DA0041E4CA /* Assets.xcassets */; };
 		04E95FFE1D1998DA0041E4CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFC1D1998DA0041E4CA /* LaunchScreen.storyboard */; };
+		43D50D8E1E1D20670080BCB8 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D871E1D204D0080BCB8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43D50D901E1D20670080BCB8 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D881E1D204D0080BCB8 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43D50D921E1D20670080BCB8 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				43D50D921E1D20670080BCB8 /* UsabillaFeedbackForm.framework in Embed Frameworks */,
+				43D50D8E1E1D20670080BCB8 /* Alamofire.framework in Embed Frameworks */,
+				43D50D901E1D20670080BCB8 /* PromiseKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +60,9 @@
 		04E95FFF1D1998DA0041E4CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04E960041D1998DA0041E4CA /* SwiftDevAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDevAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E9600A1D1998DA0041E4CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43D50D871E1D204D0080BCB8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		43D50D881E1D204D0080BCB8 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/PromiseKit/PromiseKit.framework"; sourceTree = "<group>"; };
+		43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UsabillaFeedbackForm.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/UsabillaFeedbackForm.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +86,9 @@
 		040F854C1D893C0500E4A360 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43D50D871E1D204D0080BCB8 /* Alamofire.framework */,
+				43D50D881E1D204D0080BCB8 /* PromiseKit.framework */,
+				43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */,
 				040F854D1D893C0600E4A360 /* Pods_UsabillaFeedbackForm.framework */,
 			);
 			name = Frameworks;
