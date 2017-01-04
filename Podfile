@@ -8,15 +8,12 @@ def testing_pods
 end
 
 target 'UsabillaFeedbackForm' do
-    
     pod 'Alamofire','~> 4.0.0'
-    #pod 'SwiftValidator', :git => 'https://github.com/jpotts18/SwiftValidator.git', :tag => '4.0.1'
     pod 'PromiseKit/CorePromise',"~> 4.0.0"
     pod 'PromiseKit/UIKit', "~> 4.0.0"
 
-
-target 'UsabillaFeedbackFormTests' do
-   testing_pods
-end
+    target 'UsabillaFeedbackFormTests' do
+        testing_pods
+    end
     
 end
