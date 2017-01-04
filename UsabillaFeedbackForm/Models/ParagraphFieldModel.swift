@@ -11,11 +11,13 @@ import Foundation
 class ParagraphFieldModel: StringFieldModel {
 
     let html: Bool?
-
+    let immutableParagraphValue: String?
+    
     required init(json: JSON, pageModel: PageModel) {
         html = json["html"].bool
+        immutableParagraphValue = json["text"].string
         super.init(json: json, pageModel: pageModel)
-        fieldValue = json["text"].stringValue
+        fieldValue = json["text"].string
     }
 
     override func convertToJSON() -> Any? {

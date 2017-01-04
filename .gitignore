@@ -4,6 +4,9 @@ UsabillaFeedbackForm.framework
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+#Developing app
+UsabillaFeedbackFormExample/
+
 ## Build generated
 build/
 DerivedData/
