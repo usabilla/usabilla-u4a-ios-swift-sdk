@@ -618,7 +618,7 @@ class Icons: NSObject {
         context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
         
         /// Rectangle
-        let rectangle = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
+        _ = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
         /// trash
         let trash = UIBezierPath()
         trash.miterLimit = -10
@@ -1302,7 +1302,7 @@ class Icons: NSObject {
         context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
         
         /// Rectangle
-        let rectangle = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
+        _ = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
         /// trash
         let trash = UIBezierPath()
         trash.move(to: CGPoint(x: 197.75, y: 201.79))
@@ -1371,7 +1371,7 @@ class Icons: NSObject {
         context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
         
         /// Rectangle
-        let rectangle = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
+        _ = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
         /// noun_451948_cc
         do {
             context.saveGState()
