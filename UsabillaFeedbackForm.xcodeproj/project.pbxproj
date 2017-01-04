@@ -944,7 +944,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8CC246C4A5094492CE1872F /* Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
@@ -962,7 +961,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5765CAF16710869F6BFCFF3C /* Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
