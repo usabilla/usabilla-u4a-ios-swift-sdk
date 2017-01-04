@@ -14,7 +14,7 @@ import Nimble
 class PageControllerTest: QuickSpec {
     
     override func spec() {
-        var pageController: PageController!
+//        var pageController: PageController!
         var formModel: FormModel!
         
         beforeSuite {
@@ -32,8 +32,8 @@ class PageControllerTest: QuickSpec {
             let base = storyboard.instantiateViewController(withIdentifier:"base") as! UINavigationController
             let viewController = base.childViewControllers[0] as! FormViewController
             viewController.initWithFormModel(formModel)
-            pageController = viewController.pageController
-            //viewController.
+//            pageController = viewController.pageController
+//            //viewController.
         }
         
         beforeEach {

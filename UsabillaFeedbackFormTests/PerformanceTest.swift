@@ -35,20 +35,19 @@ class Performance: XCTestCase {
     func testChunkingPerformance() {
         // This is an example of a performance test case.
         self.measure {
-            self.base64image.divideInChunksOfSize(15000)
+            _ = self.base64image.divideInChunksOfSize(15000)
         }
     }
     
     func testJSONParserPerformance() {
         // This is an example of a performance test case.
         self.measure {
-            JSONFormParser.parseFormJson(self.jsonObj, appId: "a", screenshot: nil, themeConfig:  UsabillaThemeConfigurator())
+            _ = JSONFormParser.parseFormJson(self.jsonObj, appId: "a", screenshot: nil, themeConfig:  UsabillaThemeConfigurator())
         }
     }
     
     
     func testLoadingTime() {
-        // This is an example of a performance test case.
         self.measure {
             var formModel: FormModel? = nil
             let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
@@ -65,11 +64,11 @@ class Performance: XCTestCase {
             let base = storyboard.instantiateViewController(withIdentifier: "base") as! UINavigationController
             let viewController = base.childViewControllers[0] as! FormViewController
             viewController.initWithFormModel(formModel!)
-            //viewController.
+            viewController.loadView()
             
             // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
-            viewController.beginAppearanceTransition(true, animated: false)
-            viewController.endAppearanceTransition()
+//            viewController.beginAppearanceTransition(true, animated: false)
+//            viewController.endAppearanceTransition()
         }
     }
     
