@@ -70,9 +70,7 @@ class StarRatingiView: UIControl {
     }
 
     var shouldUseImages: Bool {
-        get {
             return emptyStarImage != nil && filledStarImage != nil
-        }
     }
 
 
@@ -135,7 +133,7 @@ class StarRatingiView: UIControl {
 
     override var backgroundColor: UIColor? {
         get {
-            if (super.backgroundColor != nil) {
+            if super.backgroundColor != nil {
                 return super.backgroundColor
             } else {
                 return self.isOpaque ? UIColor.white : UIColor.clear
@@ -322,7 +320,7 @@ class StarRatingiView: UIControl {
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
 
-        if (shouldBecomeFirstResponder && self.isFirstResponder) {
+        if shouldBecomeFirstResponder && self.isFirstResponder {
             resignFirstResponder()
         }
         handleTouch(touch)
@@ -334,7 +332,7 @@ class StarRatingiView: UIControl {
     override func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
 
-        if (shouldBecomeFirstResponder && isFirstResponder) {
+        if shouldBecomeFirstResponder && isFirstResponder {
             resignFirstResponder()
         }
     }
@@ -365,11 +363,11 @@ class StarRatingiView: UIControl {
     }
 
 
-    override var canBecomeFirstResponder : Bool {
+    override var canBecomeFirstResponder: Bool {
         return shouldBecomeFirstResponder
     }
 
-    override var intrinsicContentSize : CGSize {
+    override var intrinsicContentSize: CGSize {
         let height = 44.0
         return CGSize(width: CGFloat(maximumValue) * CGFloat(height) + CGFloat(maximumValue - 1) * spacing, height: CGFloat(height))
     }

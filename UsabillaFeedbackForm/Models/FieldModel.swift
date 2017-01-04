@@ -166,11 +166,11 @@ class FieldModelWithOptions: BaseFieldModel {
     }
 
     required init(json: JSON, pageModel: PageModel) {
-        var temp: [Options] = []
+        var options: [Options] = []
         for (_, subJson):(String, JSON) in json["options"] {
-            temp.append(Options(title: subJson["title"].stringValue, value: subJson["value"].stringValue))
+            options.append(Options(title: subJson["title"].stringValue, value: subJson["value"].stringValue))
         }
-        self.options = temp
+        self.options = options
         super.init(json: json, pageModel: pageModel)
         //self.isViewCurrentlyVisible = false
 

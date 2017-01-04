@@ -60,24 +60,25 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
                 checkBox.checkBox.on = true
             }
 
-            self.contentView.addSubview(checkBox)
+            self.rootCellContainerView.addSubview(checkBox)
             checkBoxes.append(checkBox)
 
             checkBox.height.isActive = true
-            NSLayoutConstraint(item: checkBox, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+            NSLayoutConstraint(item: checkBox, attribute: .width, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .width, multiplier: 1, constant: 0).isActive = true
 
             if index == 0 {
                 //First checkbox
-                NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: dividerLine, attribute: .bottom, multiplier: 1, constant: 4).isActive = true
+                NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: rootCellContainerView, attribute: .top, multiplier: 1, constant: 0).isActive = true
             } else {
+                //Middle checkboxes
                 let a = NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: previousCheckbox!, attribute: .bottom, multiplier: 1, constant: 8)
                 a.priority = 750
                 a.isActive = true
             }
 
             if index == model.options.count - 1 {
-                //Last element
-                NSLayoutConstraint(item: checkBox, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -12).isActive = true
+                //Last checkbox
+                NSLayoutConstraint(item: checkBox, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
             }
 
 

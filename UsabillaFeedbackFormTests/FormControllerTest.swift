@@ -65,7 +65,7 @@ class FormControllerTest: QuickSpec {
         }
         
         describe("turn the first page") {
-            it("turns the page, expext right updates"){
+            it("turns the page, expext right updates") {
                 var newPageIndex = viewController.selectNewPage()
                 expect(newPageIndex).to(equal(2))
                 

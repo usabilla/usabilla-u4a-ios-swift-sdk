@@ -20,19 +20,16 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
-        self.dividerLine?.isHidden = true
+        textView.isScrollEnabled = false
+        
+        self.rootCellContainerView.addSubview(textView)
 
-
-        textView.isScrollEnabled = true
-        self.contentView.addSubview(textView)
-
-        NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -18).isActive = true
-        let a = NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.dividerLine, attribute: .bottom, multiplier: 1, constant: 12)
-        a.priority = 750
-        a.isActive = true
-        NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.contentView, attribute: .leading, multiplier: 1, constant: 8).isActive = true
-        NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.contentView, attribute: .trailing, multiplier: 1, constant: -8).isActive = true
-
+        
+        NSLayoutConstraint(item: textView, attribute: .top, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .top, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: textView, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: textView, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: textView, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: -4).isActive = true
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -41,12 +38,10 @@ class BaseTextAreaCellView: RootCellView, UITextViewDelegate {
 
     override func applyCustomisations() {
         super.applyCustomisations()
-        textView.font = item.themeConfig.customFont?.withSize(13)
+        textView.font = item.themeConfig.font.withSize(themeConfig.textFontSize)
         textView.textColor = item.themeConfig.textColor
         textView.tintColor = item.themeConfig.hintColor
         textView.backgroundColor = item.themeConfig.backgroundColor
-        textView.layer.borderColor = item.themeConfig.hintColor.cgColor
-
     }
 
 //    deinit {

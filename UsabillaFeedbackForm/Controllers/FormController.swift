@@ -18,15 +18,28 @@ class FormViewController: UIViewController {
     var customVars: [String: Any]? = nil
 
     @IBOutlet weak var progressBar: UIProgressView!
-
-    //Views
-
-    @IBOutlet weak var poweredLabel: UILabel!
     @IBOutlet weak var leftNavItem: UIBarButtonItem!
     @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerHeight: NSLayoutConstraint!
 
+    
+    override func loadView() {
+        super.loadView()
+        footerView.addSubview(ViewUtils.generateFooter(themeConfig: formModel.themeConfig))
+
+        SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
+            self.restoreFeedbackFormController()
+        }
+        
+        SwiftEventBus.onMainThread(self, name:"asd") { result in
+            let bool: Bool = result.object as! Bool
+            print("showing table footer \(!bool)")
+            self.footerHeight.constant = bool ? 0 : 80
+        }
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,24 +50,20 @@ class FormViewController: UIViewController {
         } else {
             progressBar.progressTintColor =  formModel.themeConfig.accentColor
         }
-        poweredLabel.textColor = formModel.themeConfig.textOnAccentColor
-        poweredLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FormViewController.openUsabilla)))
+       
         updateProgressBar()
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
         
         self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
-        footerView.backgroundColor = formModel.themeConfig.accentColor
 
-        SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
-            self.restoreFeedbackFormController()
-        }
 
         setUpLeftButton()
         setUpReachability()
     }
-
+    
+    
 
     func setUpLeftButton() {
         leftNavItem.title = formModel.copyModel.cancelButton
@@ -75,9 +84,6 @@ class FormViewController: UIViewController {
         }
     }
 
-    func openUsabilla() {
-        UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
@@ -147,8 +153,8 @@ class FormViewController: UIViewController {
 
         transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         var rating: Int = 0
-        if let temp = moodValue?.fieldValue {
-            rating = temp
+        if let moodRating = moodValue?.fieldValue {
+            rating = moodRating
         }
         thankYouController.setUpController(rating > 3, thankTitle: headerFieldValue, thankMessage: thanksFieldValue)
 
@@ -172,7 +178,7 @@ class FormViewController: UIViewController {
     }
 
 
-    func selectNewPage () -> Int {
+    func selectNewPage() -> Int {
         var newPageIndex = -1
         if let pageToJump = pageController.whereShouldIJump() {
             for (index, page) in formModel.pages.enumerated() {
@@ -228,7 +234,7 @@ class FormViewController: UIViewController {
         currentPage = page
     }
 
-    func convertFormToDictionary () -> [String: Any] {
+    func convertFormToDictionary() -> [String: Any] {
         var formDictionary = [String: Any]()
         let indexToStop = formModel.pages.count - 1
         for index in 0...indexToStop - 1 {

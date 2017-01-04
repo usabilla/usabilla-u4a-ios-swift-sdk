@@ -24,16 +24,22 @@ open class UsabillaThemeConfigurator {
     open var fullStar: UIImage?
     open var emptyStar: UIImage?
     open var hintColor: UIColor {
-        get {
             return textColor.withAlphaComponent(0.38)
-        }
     }
-
+    var font: UIFont {
+            if let font = customFont {
+                return font
+            } else {
+                return UIFont.systemFont(ofSize: UIFont.systemFontSize)
+            }
+    }
+    
+    open var titleFontSize: CGFloat
+    open var textFontSize: CGFloat
+    open var miniFontSize: CGFloat
+    open var setTitlesInBold: Bool
+    
     public init() {
-
-        //UIFont.registerFontWithFilenameString("MiloOT.ttf", bundleIdentifierString: "com.usabilla.UsabillaFeedbackForm")
-        // customFont = UIFont(name: "MiloOT", size: UIFont.systemFontSize())! //UIFont.systemFontOfSize(UIFont.systemFontSize())
-
         statusBarColor = .default
         textColor = UIColor(rgba:"#59636B")
         textOnAccentColor = UIColor.white
@@ -45,6 +51,10 @@ open class UsabillaThemeConfigurator {
         disabledEmoticons = nil
         fullStar = nil
         emptyStar = nil
+        titleFontSize = 18
+        textFontSize = 18
+        miniFontSize = 15
+        setTitlesInBold = true
     }
 
 

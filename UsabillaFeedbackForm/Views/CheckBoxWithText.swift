@@ -24,7 +24,8 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
 
         super.init(frame: frame)
         checkBox = SwiftCheckBox(frame: CGRect(x: 10, y: 0, width: 25, height: 25))
-        label = UILabel(frame: CGRect(x: 45, y: 5, width: 208, height: 20))
+        label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
 
         self.isUserInteractionEnabled = true
         checkBox.isUserInteractionEnabled = true
@@ -38,6 +39,12 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
 
         self.addSubview(checkBox)
         self.addSubview(label)
+        
+        NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: checkBox, attribute: .height, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: checkBox, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: checkBox, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+
 
     }
 
@@ -47,7 +54,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         checkBox.tintColor = color
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
-        label.font = themeConfig?.customFont?.withSize(13)
+        label.font = themeConfig?.font.withSize(themeConfig!.textFontSize)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -20,18 +20,10 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         picker.dataSource = self
         picker.delegate = self
         self.contentView.addSubview(picker)
-
+        picker.showsSelectionIndicator = true
         picker.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-
-        let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-
-        let v = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
-
-        let z = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 8)
-
-        contentView.addConstraints([f, a, v, z])
+        addConstraintToFillContainerView(view: picker)
 
     }
 
@@ -60,11 +52,13 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
             }
         }
 
-        if choiceModel.options.count < 4 {
+        if choiceModel.options.count < 5 {
             let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
                 a.priority = 750
                 a.isActive = true
         }
+        
+        picker.selectRow(0, inComponent: 0, animated: true)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -76,9 +70,29 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
         return choiceModel.options.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.textColor])
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        let asd = NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.textColor, NSFontAttributeName: themeConfig.font.withSize(30)])
+//        return asd
+//    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var pickerLabel = view as? UILabel
+        
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.textAlignment = NSTextAlignment.center
+            pickerLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize + 2)
+            pickerLabel?.textColor = themeConfig.textColor
+        }
+        
+        pickerLabel?.text = choiceModel.options[row].title
+        //pickerLabel?.sizeToFit()
+        
+        return pickerLabel!
     }
+
 
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

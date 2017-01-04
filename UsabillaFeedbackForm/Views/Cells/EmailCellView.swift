@@ -25,20 +25,18 @@ class EmailCellView: TextInputCellView {
         super.setFeedbackItem(item)
         mailModel = item as! EmailFieldModel
         if let placeHolder = mailModel.placeHolder {
-            if let font = themeConfig.customFont {
-                if let italics = font.withTraits(.traitItalic) {
+        
+                if let italics = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {
                     textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: italics])
                 } else {
-                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: font])
+                    textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: themeConfig.font.withSize(themeConfig.textFontSize)])
                 }
-            } else {
-                textField.attributedPlaceholder = NSAttributedString(string:placeHolder, attributes: [NSForegroundColorAttributeName: themeConfig.hintColor, NSFontAttributeName: UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)])
-            }
+            
         }
         textField.text = mailModel.fieldValue
     }
     
-    func isValidEmail(testStr:String) -> Bool {
+    func isValidEmail(testStr: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -52,8 +50,8 @@ class EmailCellView: TextInputCellView {
         }
     }
     
-    func updateBorderColor(email: String?){
-        if let toTest = email{
+    func updateBorderColor(email: String?) {
+        if let toTest = email {
             if isValidEmail(testStr: toTest) {
                 textField.layer.borderColor = mailModel.themeConfig.hintColor.cgColor
             } else {

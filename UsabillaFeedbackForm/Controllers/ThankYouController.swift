@@ -35,7 +35,7 @@ class ThankYouController: UIViewController {
         SwiftEventBus.post("restoreForm")
     }
 
-    func setUpController (_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
+    func setUpController(_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
             bottomButton.setTitle(redirectToAppStore, for: UIControlState())
@@ -47,15 +47,15 @@ class ThankYouController: UIViewController {
             bottomButton.isHidden = true
         }
 
-        bottomButton.titleLabel?.font = themeConfig?.customFont?.withSize(15)
+        bottomButton.titleLabel?.font = themeConfig?.font.withSize((themeConfig?.textFontSize)!)
         bottomButton.setTitleColor(themeConfig?.accentColor, for: UIControlState())
 
         titleLabel.text = thankTitle
-        titleLabel.font = themeConfig?.customFont?.withSize(17.0)
+        titleLabel.font = themeConfig?.font.withSize((themeConfig?.titleFontSize)!)
         titleLabel.textColor = themeConfig?.titleColor
 
         messageLabel.text = thankMessage
-        messageLabel.font = themeConfig?.customFont?.withSize(13)
+        messageLabel.font = themeConfig?.font.withSize((themeConfig?.textFontSize)!)
         messageLabel.textColor = themeConfig?.textColor
         messageLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
         messageLabel.numberOfLines = 0

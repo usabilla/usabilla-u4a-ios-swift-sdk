@@ -34,12 +34,12 @@ class JSONParserTest: QuickSpec {
         }
         
         describe("the JSON parser") {
-            context("with a valid form"){
+            context("with a valid form") {
                 beforeEach {
                     //Only for this describe
                 }
                 
-                it("should correctly extract the form settings"){
+                it("should correctly extract the form settings") {
                     expect(formModel.copyModel.appTitle).to(equal("FeedbackTest"))
                     expect(formModel.copyModel.navigationSubmit).to(equal("TestSubmit"))
                     expect(formModel.hasScreenshot).to(equal(true))
@@ -49,21 +49,21 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
                 
-                describe("the pages array"){
+                describe("the pages array") {
                     
-                    it("should have been correctly parsed"){
+                    it("should have been correctly parsed") {
                         let pages = formModel.pages
                         expect(pages.count).to(equal(4))
                     }
                     
-                    describe("the second page"){
+                    describe("the second page") {
                         
-                        it("should contain valid data"){
+                        it("should contain valid data") {
                             let page = formModel.pages[1]
                             expect(page.pageName).to(equal("middle"))
                         }
                         
-                        it("should have the correct jump rule"){
+                        it("should have the correct jump rule") {
                             let page = formModel.pages[1]
                             expect(page.defaultJumpTo).to(equal("end"))
                             expect(page.jumpRuleList?.count).to(equal(1))
@@ -74,15 +74,15 @@ class JSONParserTest: QuickSpec {
                             
                         }
                         
-                        describe("the field array"){
+                        describe("the field array") {
                             
-                            it("should have the correct properties"){
+                            it("should have the correct properties") {
                                 let fields = formModel.pages[1].fields
                                 expect(fields.count).to(equal(4))
                                 
                             }
                             
-                            it("should containt a valid first field"){
+                            it("should containt a valid first field") {
                                 let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as! CheckboxFieldModel
                                 expect(field.fieldId).to(equal("SISSM"))
                                 expect(field.fieldTitle).to(equal("SISSM"))
@@ -94,7 +94,7 @@ class JSONParserTest: QuickSpec {
                                 
                             }
                             
-                            it("should containt a valid second field"){
+                            it("should containt a valid second field") {
                                 let field: RatingFieldModel = formModel.pages[1].fields[1] as! RatingFieldModel
                                 expect(field.fieldTitle).to(equal("Ik ben een slider!"))
                                 expect(field.fieldId).to(equal("Ik_ben_een_slide"))
@@ -107,7 +107,7 @@ class JSONParserTest: QuickSpec {
                                 
                             }
                             
-                            it("should containt a valid email field"){
+                            it("should containt a valid email field") {
                                 let field: EmailFieldModel = formModel.pages[1].fields[2] as! EmailFieldModel
                                 expect(field.fieldTitle).to(equal("Email address"))
                                 expect(field.fieldId).to(equal("email"))

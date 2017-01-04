@@ -33,11 +33,11 @@ class JSONFormParser {
         }
         pages.last?.isLastPage = true
 
-        var screenshotJson: [String: AnyObject] = [:]
-        screenshotJson["type"] = "screenshot" as AnyObject?
-        screenshotJson["name"] = "screenshot" as AnyObject?
-        screenshotJson["title"] = "Screenshot" as AnyObject?
-        screenshotJson["required"] = false as AnyObject?
+        var screenshotJson: [String: Any] = [:]
+        screenshotJson["type"] = "screenshot"
+        screenshotJson["name"] = "screenshot"
+        screenshotJson["title"] = "Screenshot"
+        screenshotJson["required"] = false
 
         let pageModel = pages.first
         if hasScreenshot {
@@ -47,7 +47,7 @@ class JSONFormParser {
         return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
     }
 
-    fileprivate class func parseCopy(_ json: JSON) -> CopyModel{
+    fileprivate class func parseCopy(_ json: JSON) -> CopyModel {
         let copyModel = CopyModel()
         let data = json["data"]
 
@@ -57,19 +57,19 @@ class JSONFormParser {
 
         let localization = json["localization"]
 
-        if let appStore = localization["appStore"].string{
+        if let appStore = localization["appStore"].string {
             copyModel.appStore = appStore
         }
-        if let moreFeedback = localization["moreFeedback"].string{
+        if let moreFeedback = localization["moreFeedback"].string {
             copyModel.moreFeedback = moreFeedback
         }
-        if let screenshotTitle = localization["screenshotTitle"].string{
+        if let screenshotTitle = localization["screenshotTitle"].string {
             copyModel.screenshotTitle = screenshotTitle
         }
-        if let cancelButton = localization["cancelButton"].string{
+        if let cancelButton = localization["cancelButton"].string {
             copyModel.cancelButton = cancelButton
         }
-        if let navigationNext = localization["navigationNext"].string{
+        if let navigationNext = localization["navigationNext"].string {
             copyModel.navigationNext = navigationNext
         }
         

@@ -30,18 +30,8 @@ class StarCellView: RootCellView, SwiftStarDelegate {
 
 
         self.starRatingView.translatesAutoresizingMaskIntoConstraints = false
-
-
-
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0).isActive = true
-
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
-
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0).isActive = true
-
-        NSLayoutConstraint(item: starRatingView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0).isActive = true
-
-        setNeedsLayout()
+        
+        addConstraintToFillContainerView(view: starRatingView)
     }
 
     required init?(coder aDecoder: NSCoder) {
