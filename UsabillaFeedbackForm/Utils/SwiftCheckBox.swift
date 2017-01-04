@@ -252,7 +252,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         }
 
         switch self.onAnimationType {
-        case AnimationType.stroke:
+        case .stroke:
             let animation = self.animationManager.strokeAnimationReverse(false)
             self.onBoxLayer.add(animation, forKey: "strokeEnd")
 
@@ -293,35 +293,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             onBoxLayer.add(opacity, forKey: "opacity")
             checkMarkLayer?.add(morphAnimation, forKey: "path")
             checkMarkLayer?.add(opacity, forKey: "opacity")
-
-            break
-
-        case .stroke:
-            // Temporary set the path of the checkmarl to the long checkmarl
-            checkMarkLayer?.path = pathManager.pathForLongCheckMark().reversing().cgPath
-
-
-            let boxStrokeAnimation = animationManager.strokeAnimationReverse(false)
-            boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2
-            onBoxLayer.add(boxStrokeAnimation, forKey: "strokeEnd")
-
-
-            let checkStrokeAnimation = animationManager.strokeAnimationReverse(false)
-            checkStrokeAnimation.duration = checkStrokeAnimation.duration / 3
-            checkStrokeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            checkStrokeAnimation.fillMode = kCAFillModeBackwards
-            checkStrokeAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration
-            checkMarkLayer?.add(checkStrokeAnimation, forKey: "strokeEnd")
-
-
-            let checkMorphAnimation = animationManager.morphAnimationFromPath(pathManager.pathForLongCheckMark(), toPath: pathManager.pathForCheckMark())
-            checkMorphAnimation.duration = checkMorphAnimation.duration / 6
-            checkMorphAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            checkMorphAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration + checkStrokeAnimation.duration
-            checkMorphAnimation.isRemovedOnCompletion = false
-            checkMorphAnimation.fillMode = kCAFillModeForwards
-            checkMorphAnimation.delegate = self
-            checkMarkLayer?.add(checkMorphAnimation, forKey: "path")
 
             break
 
@@ -378,34 +349,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             onBoxLayer.add(opacity, forKey: "opacity")
             checkMarkLayer?.add(animation, forKey: "path")
             checkMarkLayer?.add(opacity, forKey: "opacity")
-
-            break
-
-        case .stroke:
-            self.checkMarkLayer?.path = pathManager.pathForLongCheckMark().reversing().cgPath
-
-            let checkMorphAnimation = animationManager.morphAnimationFromPath(pathManager.pathForCheckMark(), toPath: pathManager.pathForLongCheckMark())
-            checkMorphAnimation.delegate = nil
-            checkMorphAnimation.duration = checkMorphAnimation.duration / 6
-            checkMarkLayer?.add(checkMorphAnimation, forKey: "path")
-
-
-            let checkStrokeAnimation = self.animationManager.strokeAnimationReverse(true)
-            checkStrokeAnimation.delegate = nil
-            checkStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration
-            checkStrokeAnimation.duration = checkStrokeAnimation.duration / 3
-            checkMarkLayer?.add(checkStrokeAnimation, forKey: "strokeEnd")
-
-
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-                self.checkMarkLayer?.lineCap = kCALineCapButt
-            })
-
-            let boxStrokeAnimation = animationManager.strokeAnimationReverse(true)
-            boxStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration
-            boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2
-            boxStrokeAnimation.delegate = self
-            onBoxLayer.add(boxStrokeAnimation, forKey: "strokeEnd")
 
             break
 
