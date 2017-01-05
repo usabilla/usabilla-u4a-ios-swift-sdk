@@ -15,11 +15,14 @@ class ViewUtils {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
         let logo = UIButton(type: UIButtonType.custom)
         logo.translatesAutoresizingMaskIntoConstraints = false
-        logo.addTarget(self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
-        logo.setImage(Icons.imageOfPoweredBy(color: themeConfig.accentColor), for: UIControlState())
+        logo.addTarget(PageController.self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
+        logo.setImage(Icons.imageOfPoweredBy(color: themeConfig.accentColor.withAlphaComponent(0.5)), for: UIControlState())
+        view.backgroundColor = themeConfig.backgroundColor
         view.addSubview(logo)
-        NSLayoutConstraint(item: logo, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: logo, attribute: .height, multiplier: 1, constant: 0).isActive = true
+        
+        logo.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        logo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logo.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         return view
     }
     

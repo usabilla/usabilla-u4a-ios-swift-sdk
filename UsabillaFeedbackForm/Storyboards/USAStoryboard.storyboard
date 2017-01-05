@@ -21,35 +21,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vlS-5i-RUy">
-                                <rect key="frame" x="0.0" y="64" width="600" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vlS-5i-RUy">
+                                <rect key="frame" x="-4" y="64" width="383" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="B9r-fa-qzF"/>
+                                </constraints>
                             </progressView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQa-Ed-WL9">
-                                <rect key="frame" x="0.0" y="66" width="375" height="521"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                                 <connections>
-                                    <segue destination="Akp-ux-rLe" kind="embed" identifier="embedSegue" id="V71-92-56N"/>
+                                    <segue destination="lXN-7Y-gbD" kind="embed" identifier="embedSegue" id="3pw-gi-Eix"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhK-0B-7EA">
-                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
-                                <accessibility key="accessibilityConfiguration" identifier="tableFooter"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Ayc-U8-E3f"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="RhK-0B-7EA" firstAttribute="top" secondItem="iQa-Ed-WL9" secondAttribute="bottom" id="Agc-yr-XRo"/>
-                            <constraint firstAttribute="trailing" secondItem="iQa-Ed-WL9" secondAttribute="trailing" id="E2W-cu-lho"/>
                             <constraint firstItem="vlS-5i-RUy" firstAttribute="leading" secondItem="s39-cz-oQd" secondAttribute="leadingMargin" constant="-20" id="F38-D8-w7R"/>
                             <constraint firstItem="iQa-Ed-WL9" firstAttribute="top" secondItem="vlS-5i-RUy" secondAttribute="bottom" id="HBA-mU-zhe"/>
-                            <constraint firstItem="RhK-0B-7EA" firstAttribute="leading" secondItem="s39-cz-oQd" secondAttribute="leadingMargin" constant="-16" id="LxG-Uz-WrX"/>
                             <constraint firstAttribute="trailing" secondItem="iQa-Ed-WL9" secondAttribute="trailing" id="Ssx-Ti-nYG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RhK-0B-7EA" secondAttribute="trailing" constant="-16" id="U2n-Oa-aj8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vlS-5i-RUy" secondAttribute="trailing" constant="-20" id="cHT-CU-5d4"/>
                             <constraint firstItem="iQa-Ed-WL9" firstAttribute="leading" secondItem="s39-cz-oQd" secondAttribute="leading" id="eXO-bX-1PC"/>
-                            <constraint firstItem="aGe-j8-8hS" firstAttribute="top" secondItem="RhK-0B-7EA" secondAttribute="bottom" id="rf7-6Y-BSP"/>
+                            <constraint firstItem="aGe-j8-8hS" firstAttribute="top" secondItem="iQa-Ed-WL9" secondAttribute="bottom" id="l07-RC-KTd"/>
                             <constraint firstItem="vlS-5i-RUy" firstAttribute="top" secondItem="xS0-4Q-tDd" secondAttribute="bottom" id="xyA-bG-r76"/>
                         </constraints>
                     </view>
@@ -67,10 +59,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="iQa-Ed-WL9" id="Lm3-uF-Qyj"/>
-                        <outlet property="footerHeight" destination="Ayc-U8-E3f" id="vcN-r8-Af2"/>
-                        <outlet property="footerView" destination="RhK-0B-7EA" id="Pyx-UT-xgx"/>
                         <outlet property="leftNavItem" destination="uPA-5l-BME" id="5WG-wo-kdg"/>
                         <outlet property="progressBar" destination="vlS-5i-RUy" id="WfP-N7-EWY"/>
+                        <outlet property="progressBarHeight" destination="B9r-fa-qzF" id="01V-Ng-Xpr"/>
                         <outlet property="rightNavItem" destination="4mV-aS-O6N" id="S6B-d2-OMR"/>
                     </connections>
                 </viewController>
@@ -79,22 +70,41 @@
             <point key="canvasLocation" x="4400.8000000000002" y="759.67016491754134"/>
         </scene>
         <!--Page Controller-->
-        <scene sceneID="9OH-sm-8gU">
+        <scene sceneID="KCG-fz-mhC">
             <objects>
-                <tableViewController id="Akp-ux-rLe" customClass="PageController" customModule="UsabillaFeedbackForm" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TWd-kL-YaS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
+                <viewController id="lXN-7Y-gbD" customClass="PageController" customModule="UsabillaFeedbackForm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="809-5G-gJ4"/>
+                        <viewControllerLayoutGuide type="bottom" id="wF2-Lj-Gsl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xfl-ca-kbX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5es-z2-ZDd" customClass="CustomTableView" customModule="UsabillaFeedbackForm" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lXN-7Y-gbD" id="bUv-v4-YXm"/>
+                                    <outlet property="delegate" destination="lXN-7Y-gbD" id="fJy-8g-9fh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Akp-ux-rLe" id="fig-ac-TiO"/>
-                            <outlet property="delegate" destination="Akp-ux-rLe" id="Azy-FU-8x9"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RT3-by-4cY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5es-z2-ZDd" secondAttribute="trailing" id="14L-lD-9tF"/>
+                            <constraint firstItem="5es-z2-ZDd" firstAttribute="top" secondItem="809-5G-gJ4" secondAttribute="bottom" id="DEB-il-LXO"/>
+                            <constraint firstItem="5es-z2-ZDd" firstAttribute="leading" secondItem="Xfl-ca-kbX" secondAttribute="leading" id="XeH-RH-HAt"/>
+                            <constraint firstItem="wF2-Lj-Gsl" firstAttribute="top" secondItem="5es-z2-ZDd" secondAttribute="bottom" id="ZaN-ni-ntV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="5es-z2-ZDd" id="l4a-MV-bCe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CGc-tj-1I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4400" y="1548"/>
+            <point key="canvasLocation" x="4401" y="1476"/>
         </scene>
         <!--Thank You Controller-->
         <scene sceneID="NQA-iZ-PPH">
@@ -109,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pru-GS-JSd">
-                                <rect key="frame" x="16" y="180.5" width="343" height="19.5"/>
+                                <rect key="frame" x="16" y="181" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="ojw-t7-TVC"/>
                                 </constraints>
@@ -122,7 +132,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eva-8s-CXs">
-                                <rect key="frame" x="16" y="100" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="100" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

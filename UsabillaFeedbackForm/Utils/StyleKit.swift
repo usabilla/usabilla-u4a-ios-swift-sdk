@@ -678,7 +678,7 @@ class Icons: NSObject {
     
     /// Symbols
     
-    class func drawPoweredBy(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 33), resizing: ResizingBehavior = .aspectFit) {
+    class func drawPoweredBy(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 40), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -691,7 +691,7 @@ class Icons: NSObject {
         /// Powered by
         let poweredBy2 = NSMutableAttributedString(string: "Powered by")
        
-        poweredBy2.addAttribute(NSForegroundColorAttributeName, value: UIColor(white: 0.541, alpha: 1), range: NSRange(location: 0, length: poweredBy2.length))
+        poweredBy2.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: poweredBy2.length))
         poweredBy2.addAttribute(NSKernAttributeName, value: -0.24, range: NSRange(location: 0, length: poweredBy2.length))
         context.saveGState()
         poweredBy2.draw(at: CGPoint(x: 1, y: 15))
@@ -699,7 +699,7 @@ class Icons: NSObject {
         /// Logo
         do {
             context.saveGState()
-            context.translateBy(x: 83, y: 1)
+            context.translateBy(x: 67, y: -2)
             
             /// Fill 1
             let fill1 = UIBezierPath()
