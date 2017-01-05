@@ -68,14 +68,16 @@ class ThankYouController: UIViewController {
             titleLabel.textColor = configuration.titleColor
             titleLabel.font = configuration.font.withSize(configuration.titleFontSize).bold()
 
+            let font = configuration.font.withSize(configuration.textFontSize)
+            
             rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
-            rateButton.titleLabel?.font = configuration.font.withSize(configuration.textFontSize)
+            rateButton.titleLabel?.font = font
             
             moreFeedbackButton.setTitleColor(configuration.accentColor, for: UIControlState())
-            moreFeedbackButton.titleLabel?.font = configuration.font.withSize(configuration.textFontSize)
+            moreFeedbackButton.titleLabel?.font = font
             
             messageLabel.textColor = configuration.textColor
-            messageLabel.font = configuration.font.withSize(configuration.textFontSize)
+            messageLabel.font = font
         }
     }
 
