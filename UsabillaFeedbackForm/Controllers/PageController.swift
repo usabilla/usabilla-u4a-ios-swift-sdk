@@ -54,8 +54,9 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         self.tableView.tableHeaderView = headerView()
 
         self.view.backgroundColor = pageModel.themeConfig.backgroundColor
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        self.tableView.backgroundColor = pageModel.themeConfig.backgroundColor
 
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         let footer = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
         tableView.tableFooterView = footer
         registerEventsBus()
@@ -117,7 +118,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         requiredLabel.textAlignment = .right
         requiredLabel.textColor = pageModel.themeConfig.textColor
         requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
-
+        requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
+        
         let constraint = NSLayoutConstraint.constraints(withVisualFormat: "H:[label]", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["label": requiredLabel])
 
         requiredLabel.addConstraints(constraint)
@@ -197,7 +199,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         }
     }
 
-    func openUsabilla() {
+    static func openUsabilla() {
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
     }
 }
