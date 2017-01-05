@@ -18,8 +18,10 @@ class ViewUtils {
         logo.addTarget(self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
         logo.setImage(Icons.imageOfPoweredBy(color: themeConfig.accentColor), for: UIControlState())
         view.addSubview(logo)
-        NSLayoutConstraint(item: logo, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: logo, attribute: .height, multiplier: 1, constant: 0).isActive = true
+        
+        logo.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        logo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logo.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         return view
     }
     
