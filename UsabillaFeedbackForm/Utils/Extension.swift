@@ -126,6 +126,9 @@ extension UIFont {
         return withTraits(.traitItalic)
     }
 
+    func bold() -> UIFont? {
+        return withTraits(.traitBold)
+    }
 
     static func registerFontWithFilenameString(_ filenameString: String, bundleIdentifierString: String) {
         if let bundle = Bundle(identifier: bundleIdentifierString) {

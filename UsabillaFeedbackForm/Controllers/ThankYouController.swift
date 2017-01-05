@@ -13,7 +13,10 @@ class ThankYouController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var bottomButton: UIButton!
+    @IBOutlet weak var rateButton: UIButton!
+    @IBOutlet weak var moreFeedbackButton: UIButton!
+    @IBOutlet weak var distanceBetweenButtons: NSLayoutConstraint!
+    
     weak var themeConfig: UsabillaThemeConfigurator?
     var redirectEnabled: Bool = false
     
@@ -38,28 +41,40 @@ class ThankYouController: UIViewController {
     func setUpController(_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
         if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
-            bottomButton.setTitle(redirectToAppStore, for: UIControlState())
-            bottomButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
-        } else if !UsabillaFeedbackForm.hideGiveMoreFeedback {
-            bottomButton.setTitle(giveMoreFeedback, for: UIControlState())
-            bottomButton.addTarget(self, action: #selector(ThankYouController.reloadForm), for: .touchUpInside)
+            rateButton.setTitle(redirectToAppStore, for: UIControlState())
+            rateButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else {
-            bottomButton.isHidden = true
+            rateButton.isHidden = true
+            distanceBetweenButtons.isActive = false
+        }
+            
+        
+        if !UsabillaFeedbackForm.hideGiveMoreFeedback {
+            moreFeedbackButton.setTitle(giveMoreFeedback, for: UIControlState())
+            moreFeedbackButton.addTarget(self, action: #selector(ThankYouController.reloadForm), for: .touchUpInside)
+        } else {
+            moreFeedbackButton.isHidden = true
         }
 
-        bottomButton.titleLabel?.font = themeConfig?.font.withSize((themeConfig?.textFontSize)!)
-        bottomButton.setTitleColor(themeConfig?.accentColor, for: UIControlState())
-
         titleLabel.text = thankTitle
-        titleLabel.font = themeConfig?.font.withSize((themeConfig?.titleFontSize)!)
-        titleLabel.textColor = themeConfig?.titleColor
-
         messageLabel.text = thankMessage
-        messageLabel.font = themeConfig?.font.withSize((themeConfig?.textFontSize)!)
-        messageLabel.textColor = themeConfig?.textColor
-        messageLabel.lineBreakMode = .byWordWrapping // or NSLineBreakMode.ByWordWrapping
+        messageLabel.lineBreakMode = .byWordWrapping
         messageLabel.numberOfLines = 0
-        //messageLabel.layoutIfNeeded()
+        
+        if let configuration = themeConfig {
+            titleLabel.font = configuration.font.withSize(configuration.titleFontSize).bold()
+            messageLabel.font = configuration.font.withSize(configuration.textFontSize)
+
+            rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
+            rateButton.titleLabel?.font = configuration.font.withSize(configuration.textFontSize)
+            
+            moreFeedbackButton.setTitleColor(configuration.accentColor, for: UIControlState())
+            moreFeedbackButton.titleLabel?.font = configuration.font.withSize(configuration.textFontSize)
+            
+            titleLabel.textColor = configuration.titleColor
+            messageLabel.textColor = configuration.textColor
+
+        }
     }
 
 //    deinit {

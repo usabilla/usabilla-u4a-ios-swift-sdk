@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		043298EE1D92B542003E8304 /* derpottero.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 043298E21D9273D3003E8304 /* derpottero.ttf */; };
+		0487610E1E1E4B090084FADD /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0487610C1E1E4B090084FADD /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		048761111E1E4B090084FADD /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0487610F1E1E4B090084FADD /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		048761141E1E4B090084FADD /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 048761121E1E4B090084FADD /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04A5168E1D92DD2100B9E4E2 /* batang.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 04A5168D1D92DCDD00B9E4E2 /* batang.ttc */; };
 		04E228E21D2A95D8009BEA65 /* asd.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04E228E11D2A95D8009BEA65 /* asd.strings */; };
 		04E95FF41D1998D90041E4CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E95FF31D1998D90041E4CA /* AppDelegate.swift */; };
@@ -15,9 +18,6 @@
 		04E95FF91D1998DA0041E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FF71D1998DA0041E4CA /* Main.storyboard */; };
 		04E95FFB1D1998DA0041E4CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFA1D1998DA0041E4CA /* Assets.xcassets */; };
 		04E95FFE1D1998DA0041E4CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFC1D1998DA0041E4CA /* LaunchScreen.storyboard */; };
-		43D50D8E1E1D20670080BCB8 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D871E1D204D0080BCB8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43D50D901E1D20670080BCB8 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D881E1D204D0080BCB8 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		43D50D921E1D20670080BCB8 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,15 +31,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		043298ED1D927981003E8304 /* Embed Frameworks */ = {
+		048761151E1E4B0A0084FADD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				43D50D921E1D20670080BCB8 /* UsabillaFeedbackForm.framework in Embed Frameworks */,
-				43D50D8E1E1D20670080BCB8 /* Alamofire.framework in Embed Frameworks */,
-				43D50D901E1D20670080BCB8 /* PromiseKit.framework in Embed Frameworks */,
+				048761141E1E4B090084FADD /* PromiseKit.framework in Embed Frameworks */,
+				0487610E1E1E4B090084FADD /* UsabillaFeedbackForm.framework in Embed Frameworks */,
+				048761111E1E4B090084FADD /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +49,9 @@
 /* Begin PBXFileReference section */
 		040F854D1D893C0600E4A360 /* Pods_UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_UsabillaFeedbackForm.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ailubwgsomsrxycxkrrovpcpajet/Build/Products/Release-iphonesimulator/Pods_UsabillaFeedbackForm.framework"; sourceTree = "<group>"; };
 		043298E21D9273D3003E8304 /* derpottero.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = derpottero.ttf; sourceTree = "<group>"; };
+		0487610C1E1E4B090084FADD /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0487610F1E1E4B090084FADD /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		048761121E1E4B090084FADD /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A5168D1D92DCDD00B9E4E2 /* batang.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = batang.ttc; sourceTree = "<group>"; };
 		04E228E11D2A95D8009BEA65 /* asd.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = asd.strings; sourceTree = "<group>"; };
 		04E95FF01D1998D90041E4CA /* SwiftDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,9 @@
 		04E95FE71D1998D90041E4CA = {
 			isa = PBXGroup;
 			children = (
+				048761121E1E4B090084FADD /* PromiseKit.framework */,
+				0487610F1E1E4B090084FADD /* Alamofire.framework */,
+				0487610C1E1E4B090084FADD /* UsabillaFeedbackForm.framework */,
 				04E95FF21D1998D90041E4CA /* SwiftDevApp */,
 				04E960071D1998DA0041E4CA /* SwiftDevAppTests */,
 				04E95FF11D1998D90041E4CA /* Products */,
@@ -148,7 +154,7 @@
 				04E95FEC1D1998D90041E4CA /* Sources */,
 				04E95FED1D1998D90041E4CA /* Frameworks */,
 				04E95FEE1D1998D90041E4CA /* Resources */,
-				043298ED1D927981003E8304 /* Embed Frameworks */,
+				048761151E1E4B0A0084FADD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
