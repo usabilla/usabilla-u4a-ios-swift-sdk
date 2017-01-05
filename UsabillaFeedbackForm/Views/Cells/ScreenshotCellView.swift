@@ -30,7 +30,6 @@ class ScreenshotCellView: RootCellView {
         screenShotView.contentMode = .scaleAspectFit
         screenShotView.layer.cornerRadius = 5
         screenShotView.layer.masksToBounds = true
-        screenShotView.layer.borderColor = UIColor(colorLiteralRed: 229 / 255, green: 229 / 255, blue: 229 / 255, alpha: 1).cgColor
         screenShotView.layer.borderWidth = 2
 
         addScreenshotLine = UIView()
@@ -134,6 +133,8 @@ class ScreenshotCellView: RootCellView {
         addScreenshotLabel.setTitleColor(themeConfig.titleColor, for: .normal)
         addScreenshotLabel.titleLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize)
         addScreenshotLine.backgroundColor = themeConfig.hintColor
+        screenShotView.layer.borderColor = themeConfig.hintColor.cgColor
+
     }
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
