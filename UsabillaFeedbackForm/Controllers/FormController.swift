@@ -21,24 +21,14 @@ class FormViewController: UIViewController {
     @IBOutlet weak var leftNavItem: UIBarButtonItem!
     @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var footerHeight: NSLayoutConstraint!
-
+    @IBOutlet weak var progressBarHeight: NSLayoutConstraint!
     
     override func loadView() {
         super.loadView()
-        footerView.addSubview(ViewUtils.generateFooter(themeConfig: formModel.themeConfig))
 
         SwiftEventBus.onMainThread(self, name: "restoreForm") { _ in
             self.restoreFeedbackFormController()
         }
-        
-        SwiftEventBus.onMainThread(self, name:"asd") { result in
-            let bool: Bool = result.object as! Bool
-            print("showing table footer \(!bool)")
-            self.footerHeight.constant = bool ? 0 : 80
-        }
-
     }
 
     override func viewDidLoad() {
@@ -47,10 +37,11 @@ class FormViewController: UIViewController {
         swipeToPage(0)
         if formModel.pages.count == 2 || !formModel.showProgressBar {
             progressBar.isHidden = true
+            progressBarHeight.constant = 0
         } else {
             progressBar.progressTintColor =  formModel.themeConfig.accentColor
+            progressBar.trackTintColor = formModel.themeConfig.backgroundColor
         }
-       
         updateProgressBar()
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
