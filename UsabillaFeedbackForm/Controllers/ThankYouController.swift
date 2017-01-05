@@ -40,7 +40,7 @@ class ThankYouController: UIViewController {
 
     func setUpController(_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
-        if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
+        if false {
             rateButton.setTitle(redirectToAppStore, for: UIControlState())
             rateButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else {
@@ -62,8 +62,9 @@ class ThankYouController: UIViewController {
         messageLabel.numberOfLines = 0
         
         if let configuration = themeConfig {
+            
+            titleLabel.textColor = configuration.titleColor
             titleLabel.font = configuration.font.withSize(configuration.titleFontSize).bold()
-            messageLabel.font = configuration.font.withSize(configuration.textFontSize)
 
             rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
             rateButton.titleLabel?.font = configuration.font.withSize(configuration.textFontSize)
@@ -71,9 +72,8 @@ class ThankYouController: UIViewController {
             moreFeedbackButton.setTitleColor(configuration.accentColor, for: UIControlState())
             moreFeedbackButton.titleLabel?.font = configuration.font.withSize(configuration.textFontSize)
             
-            titleLabel.textColor = configuration.titleColor
             messageLabel.textColor = configuration.textColor
-
+            messageLabel.font = configuration.font.withSize(configuration.textFontSize)
         }
     }
 
