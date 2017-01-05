@@ -35,7 +35,7 @@ class RootCellView: UITableViewCell {
     
     
     //Layout config
-    let sideMargin: CGFloat = 16
+    let sideMargin: CGFloat = 8
     let verticalMargin: CGFloat = 12
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -58,7 +58,7 @@ class RootCellView: UITableViewCell {
         
         NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -verticalMargin).isActive = true
         
-        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: sideMargin + 18).isActive = true
+        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: sideMargin).isActive = true
         
         NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -sideMargin).isActive = true
         

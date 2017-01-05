@@ -30,8 +30,10 @@ class ThankYouController: UIViewController {
 
 
     func openAppStore() {
-        let url = String(format: "itms-apps://itunes.apple.com/us/app/apple-store/id%@", UsabillaFeedbackForm.appStoreId!)
-        UIApplication.shared.openURL(URL(string: url)!)
+        if let appStore = UsabillaFeedbackForm.appStoreId {
+            let url = String(format: "itms-apps://itunes.apple.com/us/app/apple-store/id%@", appStore)
+            UIApplication.shared.openURL(URL(string: url)!)
+        }
     }
 
     func reloadForm() {
@@ -40,7 +42,7 @@ class ThankYouController: UIViewController {
 
     func setUpController(_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
 
-        if false {
+        if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
             rateButton.setTitle(redirectToAppStore, for: UIControlState())
             rateButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else {
