@@ -118,49 +118,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pru-GS-JSd">
-                                <rect key="frame" x="16" y="181" width="343" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="ojw-t7-TVC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juw-Jx-VYM">
-                                <rect key="frame" x="164.5" y="517" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eva-8s-CXs">
-                                <rect key="frame" x="16" y="100" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eva-8s-CXs">
+                                <rect key="frame" x="16" y="50" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pru-GS-JSd">
+                                <rect key="frame" x="16" y="91" width="343" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZx-0E-Van">
+                                <rect key="frame" x="164" y="141" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-WL-LbX">
+                                <rect key="frame" x="164" y="201" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="pru-GS-JSd" firstAttribute="top" secondItem="eva-8s-CXs" secondAttribute="bottom" constant="60" id="3EX-cj-fby"/>
-                            <constraint firstItem="pru-GS-JSd" firstAttribute="top" secondItem="pNJ-qN-bEC" secondAttribute="top" constant="158" id="9Wo-DJ-mf5"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="pru-GS-JSd" secondAttribute="leading" id="BMI-hW-Yow"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="eva-8s-CXs" secondAttribute="trailing" id="E3c-mc-f56"/>
-                            <constraint firstItem="juw-Jx-VYM" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="HMY-JD-rOH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pru-GS-JSd" secondAttribute="trailing" id="JHa-MK-yMn"/>
-                            <constraint firstItem="pru-GS-JSd" firstAttribute="centerX" secondItem="eva-8s-CXs" secondAttribute="centerX" id="Kzd-5I-C77"/>
-                            <constraint firstItem="sv8-1B-nFV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="juw-Jx-VYM" secondAttribute="bottom" constant="30" id="MdP-wS-jxg"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="eva-8s-CXs" secondAttribute="leading" id="Nnq-Ng-Vpa"/>
-                            <constraint firstItem="eva-8s-CXs" firstAttribute="top" secondItem="Z5g-H8-y9T" secondAttribute="bottom" constant="80" id="W5K-ZC-vD9"/>
-                            <constraint firstItem="sv8-1B-nFV" firstAttribute="top" secondItem="juw-Jx-VYM" secondAttribute="bottom" priority="500" constant="120" id="atp-uT-r91"/>
-                            <constraint firstItem="juw-Jx-VYM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pru-GS-JSd" secondAttribute="bottom" constant="20" id="p4u-vA-U7i"/>
+                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="top" secondItem="pru-GS-JSd" secondAttribute="bottom" priority="750" constant="30" id="0hd-uL-E3e"/>
+                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="BTD-Ex-S2x"/>
+                            <constraint firstItem="QZx-0E-Van" firstAttribute="top" secondItem="pru-GS-JSd" secondAttribute="bottom" constant="30" id="EmQ-sf-VSq"/>
+                            <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pNJ-qN-bEC" secondAttribute="leadingMargin" id="HoF-rF-ULw"/>
+                            <constraint firstItem="eva-8s-CXs" firstAttribute="top" secondItem="Z5g-H8-y9T" secondAttribute="bottom" constant="30" id="HzT-1z-6Kr"/>
+                            <constraint firstItem="eva-8s-CXs" firstAttribute="trailing" secondItem="pNJ-qN-bEC" secondAttribute="trailingMargin" id="I6u-bI-eEs"/>
+                            <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pru-GS-JSd" secondAttribute="leading" id="VGF-yC-DHh"/>
+                            <constraint firstItem="pru-GS-JSd" firstAttribute="top" secondItem="eva-8s-CXs" secondAttribute="bottom" constant="20" id="YMa-X6-Oe3"/>
+                            <constraint firstItem="QZx-0E-Van" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="ZTS-qT-PEC"/>
+                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="top" secondItem="QZx-0E-Van" secondAttribute="bottom" constant="30" id="gLo-li-XCm"/>
+                            <constraint firstItem="eva-8s-CXs" firstAttribute="trailing" secondItem="pru-GS-JSd" secondAttribute="trailing" id="ycU-Lk-w9D"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="9Wo-DJ-mf5"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="bottomButton" destination="juw-Jx-VYM" id="iV1-CU-Czt"/>
+                        <outlet property="distanceBetweenButtons" destination="gLo-li-XCm" id="LOn-wb-2i1"/>
                         <outlet property="messageLabel" destination="pru-GS-JSd" id="bsy-ii-duw"/>
+                        <outlet property="moreFeedbackButton" destination="3Ot-WL-LbX" id="L84-FA-HSg"/>
+                        <outlet property="rateButton" destination="QZx-0E-Van" id="tOa-fL-UMF"/>
                         <outlet property="titleLabel" destination="eva-8s-CXs" id="YzX-nY-V8t"/>
                     </connections>
                 </viewController>
