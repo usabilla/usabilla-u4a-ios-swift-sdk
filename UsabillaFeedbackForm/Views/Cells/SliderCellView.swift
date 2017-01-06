@@ -64,7 +64,7 @@ class SliderCellView: RootCellView {
 
         NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 6).isActive = true
 
-        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 8).isActive = true
 
         NSLayoutConstraint(item: rightLabel, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: -5).isActive = true
 
