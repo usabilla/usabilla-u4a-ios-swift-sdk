@@ -76,14 +76,14 @@ class ScreenshotCellView: RootCellView {
         //Constraints
 
         addConstraintToFillContainerView(view: screenShotView, withMargin: 12)
-        
+
         let editIconSize: CGFloat = 48
         let iconSpacing: CGFloat = 12
 
         heightConstraint = screenShotView.heightAnchor.constraint(equalToConstant: 0)
         heightConstraint.isActive = true
-        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -8).isActive = true
-        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 8).isActive = true
+        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -16).isActive = true
+        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 16).isActive = true
         NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: (iconSpacing * 2 + editIconSize)).isActive = true
         NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: (iconSpacing * 5 + editIconSize * 2)).isActive = true
 
@@ -175,7 +175,7 @@ class ScreenshotCellView: RootCellView {
         screenshotModel.screenshot = image
 
         if let image = image {
-            let fixedWidth = self.frame.width + 16
+            let fixedWidth = self.frame.width
             var ratio: CGFloat = 1
             if fixedWidth < image.size.width {
                 ratio = fixedWidth / image.size.width

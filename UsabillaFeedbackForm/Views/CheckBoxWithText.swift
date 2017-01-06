@@ -23,7 +23,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     override init(frame: CGRect) {
 
         super.init(frame: frame)
-        checkBox = SwiftCheckBox(frame: CGRect(x: 10, y: 0, width: 25, height: 25))
+        checkBox = SwiftCheckBox(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -39,7 +39,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
 
         self.addSubview(checkBox)
         self.addSubview(label)
-        
+
         NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: checkBox, attribute: .height, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: checkBox, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 8).isActive = true

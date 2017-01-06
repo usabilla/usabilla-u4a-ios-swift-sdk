@@ -23,7 +23,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     func updateCheckBoxeslayout() {
         for checkBox in checkBoxes {
-            checkBox.height.isActive =  isCurrentlyDisplayed ? true : false
+            checkBox.height.isActive = isCurrentlyDisplayed ? true : false
         }
     }
 
@@ -56,7 +56,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.isUserInteractionEnabled = true
             checkBox.applyCustomisation()
-            if model.fieldValue.contains(option.value ) {
+            if model.fieldValue.contains(option.value) {
                 checkBox.checkBox.on = true
             }
 
@@ -65,13 +65,14 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
             checkBox.height.isActive = true
             NSLayoutConstraint(item: checkBox, attribute: .width, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+            NSLayoutConstraint(item: checkBox, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
 
             if index == 0 {
                 //First checkbox
                 NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: rootCellContainerView, attribute: .top, multiplier: 1, constant: 0).isActive = true
             } else {
                 //Middle checkboxes
-                let a = NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: previousCheckbox!, attribute: .bottom, multiplier: 1, constant: 8)
+                let a = NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: previousCheckbox!, attribute: .bottom, multiplier: 1, constant: 12)
                 a.priority = 750
                 a.isActive = true
             }
