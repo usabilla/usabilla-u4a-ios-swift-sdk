@@ -17,3 +17,9 @@ target 'UsabillaFeedbackForm' do
     end
     
 end
+
+post_install do |installer|
+   installer.pods_project.build_configurations.each do |config|
+      config.build_settings['BITCODE_GENERATION_MODE'] = 'bitcode'
+   end
+end
