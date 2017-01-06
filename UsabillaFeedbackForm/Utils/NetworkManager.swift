@@ -212,7 +212,10 @@ class NetworkManager {
             formController.initWithFormModel(form)
             formController.customVars = customVariables
             Swift.debugPrint("calling success protocol")
-            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
+            
+            DispatchQueue.main.async {
+                UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
+            }
         })
             .catch { _ in
                 Swift.debugPrint("calling fail protocol")
