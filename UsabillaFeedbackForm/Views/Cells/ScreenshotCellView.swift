@@ -129,7 +129,7 @@ class ScreenshotCellView: RootCellView {
         super.applyCustomisations()
         deleteIcon.setImage(Icons.imageOfArtboard(color: UIColor.white), for: UIControlState())
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
-        addIcon.setImage(Icons.imageOfAddImage(color: UIColor.black), for: UIControlState())
+        addIcon.setImage(Icons.imageOfAddImage(color: themeConfig.textColor), for: UIControlState())
         addScreenshotLabel.setTitleColor(themeConfig.titleColor, for: .normal)
         addScreenshotLabel.titleLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize)
         addScreenshotLine.backgroundColor = themeConfig.hintColor
