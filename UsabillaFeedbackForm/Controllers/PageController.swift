@@ -10,7 +10,7 @@ import UIKit
 let footerHeight: CGFloat = 80.0
 
 class CustomTableView: UITableView {
-    
+
     func tableViewContentHeight() -> CGFloat {
         var h: CGFloat = 0
         for i in 0..<(dataSource?.tableView(self, numberOfRowsInSection: 0))! {
@@ -18,13 +18,13 @@ class CustomTableView: UITableView {
         }
         return h
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         var frame = self.tableFooterView?.frame
         let contentHeight = self.contentSize.height
         let whiteSpace = self.frame.height - contentHeight
-        var footerTop = (whiteSpace - footerHeight) < 0 ? contentHeight - footerHeight : contentHeight + whiteSpace - footerHeight
+        var footerTop = (whiteSpace - footerHeight) < 0 ? contentHeight - footerHeight: contentHeight + whiteSpace - footerHeight
         frame?.origin.y = footerTop
         self.tableFooterView?.frame = frame!
     }
@@ -79,6 +79,15 @@ class PageController: UIViewController, UINavigationControllerDelegate {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
         }
+
+        SwiftEventBus.onMainThread(self, name: "reloadCellForModel") { info in
+            guard let model = info.userInfo?["model"] as? BaseFieldModel,
+                let row = self.pageModel.fields.index( where: { $0 === model })else {
+                    return
+            }
+            let indexPath = IndexPath(row: row, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 
     func updateScreenshotHeight() {
@@ -119,7 +128,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         requiredLabel.textColor = pageModel.themeConfig.textColor
         requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
         requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
-        
+
         let constraint = NSLayoutConstraint.constraints(withVisualFormat: "H:[label]", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["label": requiredLabel])
 
         requiredLabel.addConstraints(constraint)
