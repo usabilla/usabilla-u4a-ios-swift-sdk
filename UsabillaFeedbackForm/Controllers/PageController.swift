@@ -9,27 +9,6 @@
 import UIKit
 let footerHeight: CGFloat = 80.0
 
-class CustomTableView: UITableView {
-
-    func tableViewContentHeight() -> CGFloat {
-        var h: CGFloat = 0
-        for i in 0..<(dataSource?.tableView(self, numberOfRowsInSection: 0))! {
-            h += (delegate?.tableView!(self, heightForRowAt: IndexPath(row: i, section: 0)))!
-        }
-        return h
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        var frame = self.tableFooterView?.frame
-        let contentHeight = self.contentSize.height
-        let whiteSpace = self.frame.height - contentHeight
-        var footerTop = (whiteSpace - footerHeight) < 0 ? contentHeight - footerHeight: contentHeight + whiteSpace - footerHeight
-        frame?.origin.y = footerTop
-        self.tableFooterView?.frame = frame!
-    }
-}
-
 class PageController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
