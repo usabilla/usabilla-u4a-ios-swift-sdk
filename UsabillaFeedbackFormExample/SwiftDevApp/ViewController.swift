@@ -61,7 +61,7 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
     }
 
     @IBAction func show(_ sender: Any) {
-        UsabillaFeedbackForm.loadFeedbackForm("57ea3cacaaba75e6addebf7b", screenshot: nil, customVariables: customVariables, themeConfig: configurator)
+        UsabillaFeedbackForm.loadFeedbackForm("586f5c24de75a44beacf7f6a", screenshot: nil, customVariables: customVariables, themeConfig: configurator)
     }
 
 
