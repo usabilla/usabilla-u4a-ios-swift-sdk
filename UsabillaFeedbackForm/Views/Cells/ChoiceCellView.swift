@@ -73,6 +73,7 @@ class ChoiceCellView: RootCellView {
             return
         }
         pickerButton.setTitleColor(theme.textColor, for: .normal)
+        pickerButton.setTitle(choiceModel?.options.first?.title, for: .normal)
         pickerButton.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
 
         picker.backgroundColor = theme.backgroundColor
@@ -91,7 +92,7 @@ class ChoiceCellView: RootCellView {
         if let choiceModel = choiceModel {
             choiceModel.expanded = !choiceModel.expanded
         }
-        SwiftEventBus.postToMainThread("reloadCellForModel", userInfo: ["model": choiceModel as Any])
+        SwiftEventBus.postToMainThread("reloadCellForModel", userInfo: ["model": choiceModel])
     }
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
@@ -104,12 +105,9 @@ class ChoiceCellView: RootCellView {
         pickerHeightConstraint.isActive = !model.expanded
         if model.fieldValue.isEmpty {
             model.fieldValue = [model.options[0].value]
-            pickerButton.setTitle(model.options[0].title, for: .normal)
-            picker.selectRow(0, inComponent: 0, animated: true)
         } else {
             for (index, option) in model.options.enumerated() {
                 if option.value == model.fieldValue[0] {
-                    pickerButton.setTitle(option.title, for: .normal)
                     picker.selectRow(index, inComponent: 0, animated: false)
                 }
             }
@@ -121,6 +119,7 @@ class ChoiceCellView: RootCellView {
             a.isActive = true
         }
 
+        picker.selectRow(0, inComponent: 0, animated: true)
     }
 
 }
