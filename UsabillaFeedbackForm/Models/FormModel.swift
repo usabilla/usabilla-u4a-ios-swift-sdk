@@ -35,6 +35,8 @@ class FormModel {
         self.themeConfig = themeConfig
         self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
+        
+        pages.map{ $0.copy = copyModel }
     }
 
 //    deinit {

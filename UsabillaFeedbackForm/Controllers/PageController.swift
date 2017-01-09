@@ -15,7 +15,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     var pageModel: PageModel!
     var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
-
+    var showErrorMessages = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(StarCellView.self, forCellReuseIdentifier: "stars")
@@ -90,7 +91,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func headerView() -> UIView? {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
-        requiredLabel.textAlignment = .right
+        requiredLabel.textAlignment = .left
         requiredLabel.textColor = pageModel.themeConfig.textColor
         requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
         requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
@@ -109,6 +110,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
+        showErrorMessages = false
         tableView?.reloadData()
     }
 
@@ -134,18 +136,16 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func isCorrectlyFilled() -> Bool {
         var correctlyFilled = true
 
-        for field in pageModel.fields {
+        for (index, field) in pageModel.fields.enumerated() {
             if !field.isValid() {
+                let indexPath = IndexPath(row: index, section: 0)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 correctlyFilled = false
             }
         }
 
         if !correctlyFilled {
-            //reloadTableWithAnimation()
             tableView.reloadData()
-            requiredLabel.textColor = pageModel.themeConfig.errorColor
-        } else {
-            requiredLabel.textColor = pageModel.themeConfig.hintColor
         }
 
         return correctlyFilled
@@ -205,6 +205,7 @@ extension PageController: UITableViewDataSource {
 
         let item: BaseFieldModel = pageModel.fields[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath) as! RootCellView
+        cell.showErrorMessage = showErrorMessages
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.setFeedbackItem(item)
         cell.applyCustomisations()
