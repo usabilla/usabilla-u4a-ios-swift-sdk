@@ -192,6 +192,7 @@ extension PageController: UITableViewDataSource {
         if indexPath.section == 1 {
             let footer = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
             let cell = UITableViewCell()
+            cell.selectionStyle = .none
             cell.contentView.addSubview(footer)
             footer.translatesAutoresizingMaskIntoConstraints = false
             footer.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor).isActive = true
