@@ -134,6 +134,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
+        tableView?.reloadData()
     }
 
     func reloadTableWithAnimation() {
