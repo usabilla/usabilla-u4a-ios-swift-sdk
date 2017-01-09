@@ -165,11 +165,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         }
 
         if !correctlyFilled {
-            //reloadTableWithAnimation()
             tableView.reloadData()
-            requiredLabel.textColor = pageModel.themeConfig.errorColor
-        } else {
-            requiredLabel.textColor = pageModel.themeConfig.hintColor
         }
 
         return correctlyFilled
