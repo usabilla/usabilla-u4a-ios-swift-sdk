@@ -6,7 +6,6 @@
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class MoodCellView: RootCellView, IntFieldHandlerProtocol {
@@ -17,43 +16,32 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         }
     }
     var moodModel: MoodFieldModel!
-    var buttonView: MoodContentController? = nil
-
-
+    var moodControl = MoodControl()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        buttonView = MoodContentController()
-        buttonView!.delegate = self
-        buttonView!.translatesAutoresizingMaskIntoConstraints = false
+        moodControl.translatesAutoresizingMaskIntoConstraints = false
+        rootCellContainerView.addSubview(moodControl)
 
-        rootCellContainerView.addSubview(buttonView!)
-
-        addConstraintToFillContainerView(view: buttonView!)
-        
+        moodControl.addTarget(self, action: #selector(MoodCellView.pickMood(sender:)), for: [.valueChanged])
+        addConstraintToFillContainerView(view: moodControl)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
         moodModel = item as! MoodFieldModel
-        buttonView?.themeConfig = item.themeConfig
-
-        //buttonView?.setNumberOfItems(moodModel.points)
-        if moodModel.fieldValue == nil {
-            buttonView?.resetSelected()
-        } else {
-            buttonView?.setSelected(moodModel.fieldValue!)
-        }
-
+        moodControl.theme = item.themeConfig
+        moodControl.selectedMood = moodModel.fieldValue
     }
 
-//    deinit {
-//        print("mood cell deinit")
-//    }
+    func pickMood(sender: MoodControl) {
+        moodModel.fieldValue = moodControl.selectedMood
+        print("You pick state \(moodControl.selectedMood)")
+    }
+
 }
