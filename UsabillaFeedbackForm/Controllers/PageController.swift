@@ -135,6 +135,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
+        showErrorMessages = false
     }
 
     func reloadTableWithAnimation() {
@@ -159,8 +160,10 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func isCorrectlyFilled() -> Bool {
         var correctlyFilled = true
 
-        for field in pageModel.fields {
+        for (index, field) in pageModel.fields.enumerated() {
             if !field.isValid() {
+                let indexPath = IndexPath(row: index, section: 0)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 correctlyFilled = false
             }
         }
