@@ -11,3 +11,4 @@
 "usa_invite_rate_app_store" = "Rate on the App Store";
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
+"usa_form_required_field_error" = "This is a required field";

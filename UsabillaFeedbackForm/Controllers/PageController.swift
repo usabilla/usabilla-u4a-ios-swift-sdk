@@ -36,7 +36,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     var pageModel: PageModel!
     var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
-
+    var showErrorMessages = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(StarCellView.self, forCellReuseIdentifier: "stars")
@@ -57,8 +58,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         self.tableView.backgroundColor = pageModel.themeConfig.backgroundColor
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        let footer = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
-        tableView.tableFooterView = footer
         registerEventsBus()
     }
 
@@ -99,12 +98,10 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func tableViewContentHeight() -> CGFloat {
-
-        var h: CGFloat = 0
-        for (index, f) in pageModel.fields.enumerated() {
-            h += self.tableView(tableView, heightForRowAt: IndexPath(row: index, section: 0))
-        }
-        return h
+        let indexPath = IndexPath(row: pageModel.fields.count - 1, section: 0)
+        let lastRowFrame = tableView.rectForRow(at: indexPath)
+        let emptySpaceHeight = tableView.frame.size.height - (lastRowFrame.origin.y + lastRowFrame.size.height)
+        return emptySpaceHeight
     }
 
     func reloadCellInTableAfterEvent() {
@@ -124,7 +121,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func headerView() -> UIView? {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
-        requiredLabel.textAlignment = .right
+        requiredLabel.textAlignment = .left
         requiredLabel.textColor = pageModel.themeConfig.textColor
         requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
         requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
@@ -143,6 +140,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
+        showErrorMessages = false
+        tableView?.reloadData()
     }
 
     func reloadTableWithAnimation() {
@@ -167,18 +166,16 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func isCorrectlyFilled() -> Bool {
         var correctlyFilled = true
 
-        for field in pageModel.fields {
+        for (index, field) in pageModel.fields.enumerated() {
             if !field.isValid() {
+                let indexPath = IndexPath(row: index, section: 0)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 correctlyFilled = false
             }
         }
 
         if !correctlyFilled {
-            //reloadTableWithAnimation()
             tableView.reloadData()
-            requiredLabel.textColor = pageModel.themeConfig.errorColor
-        } else {
-            requiredLabel.textColor = pageModel.themeConfig.hintColor
         }
 
         return correctlyFilled
@@ -215,7 +212,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
 extension PageController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -223,8 +220,22 @@ extension PageController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let footer = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
+            let cell = UITableViewCell()
+            cell.selectionStyle = .none
+            cell.contentView.addSubview(footer)
+            footer.translatesAutoresizingMaskIntoConstraints = false
+            footer.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor).isActive = true
+            footer.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor).isActive = true
+            footer.heightAnchor.constraint(equalToConstant: footerHeight)
+            footer.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -20).isActive = true
+            return cell
+        }
+
         let item: BaseFieldModel = pageModel.fields[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath) as! RootCellView
+        cell.showErrorMessage = showErrorMessages
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.setFeedbackItem(item)
         cell.applyCustomisations()
@@ -253,8 +264,8 @@ extension PageController: UITableViewDelegate {
             }
             return 0
         } else if indexPath.section == 1 {
-            let whiteSpace = tableView.bounds.size.height - tableViewContentHeight()
-            return whiteSpace < footerHeight ? footerHeight : whiteSpace
+            let emptySpace = tableViewContentHeight()
+            return emptySpace < footerHeight ? footerHeight : emptySpace
         } else {
             if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
                 cell.isCurrentlyDisplayed = true

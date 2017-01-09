@@ -65,11 +65,9 @@
 		04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
 		04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F149DE1CE0B8D000D56B29 /* Reachability.swift */; };
 		04F54DD31CD75A3F002F501E /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F54DC81CD75A3F002F501E /* UsabillaFeedbackForm.framework */; };
-		04F54DF01CD766E3002F501E /* MoodContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F54DED1CD766E3002F501E /* MoodContentController.xib */; };
 		04F54DF11CD766E3002F501E /* NPSContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F54DEE1CD766E3002F501E /* NPSContentController.xib */; };
 		04F54DF21CD766E3002F501E /* USAStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F54DEF1CD766E3002F501E /* USAStoryboard.storyboard */; };
 		04F54DF41CD766EC002F501E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
-		04F54DF71CD766F5002F501E /* MoodContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF51CD766F5002F501E /* MoodContentController.swift */; };
 		04F54DF81CD766F5002F501E /* NPSContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF61CD766F5002F501E /* NPSContentController.swift */; };
 		04F54E1F1CD76708002F501E /* CarrierPidgeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E171CD76708002F501E /* CarrierPidgeon.swift */; };
 		04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E181CD76708002F501E /* DeviceInfo.swift */; };
@@ -88,6 +86,7 @@
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F54E611CD76A21002F501E /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
 		25CD276821D9317C1A977818 /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5FC34D93DD0CE1FB1C6C5B /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework */; };
+		43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307FBD1E1FE62E0071298B /* MoodControl.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
 		D662F2DD6CE421FB1929AA41 /* Pods_UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */; };
@@ -162,11 +161,9 @@
 		04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsabillaFeedbackForm.h; sourceTree = "<group>"; };
 		04F54DCD1CD75A3F002F501E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F54DD21CD75A3F002F501E /* UsabillaFeedbackFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaFeedbackFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04F54DED1CD766E3002F501E /* MoodContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoodContentController.xib; sourceTree = "<group>"; };
 		04F54DEE1CD766E3002F501E /* NPSContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPSContentController.xib; sourceTree = "<group>"; };
 		04F54DEF1CD766E3002F501E /* USAStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = USAStoryboard.storyboard; sourceTree = "<group>"; };
 		04F54DF31CD766EC002F501E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		04F54DF51CD766F5002F501E /* MoodContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodContentController.swift; sourceTree = "<group>"; };
 		04F54DF61CD766F5002F501E /* NPSContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSContentController.swift; sourceTree = "<group>"; };
 		04F54E171CD76708002F501E /* CarrierPidgeon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarrierPidgeon.swift; sourceTree = "<group>"; };
 		04F54E181CD76708002F501E /* DeviceInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
@@ -186,6 +183,7 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F54E5C1CD76A21002F501E /* defaultJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultJson.json; sourceTree = "<group>"; };
 		126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43307FBD1E1FE62E0071298B /* MoodControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		471DCA52DB6AD43E382683E6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -396,8 +394,8 @@
 		04F54DE71CD75BA8002F501E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				04F54DF51CD766F5002F501E /* MoodContentController.swift */,
 				04F54DF61CD766F5002F501E /* NPSContentController.swift */,
+				43307FBD1E1FE62E0071298B /* MoodControl.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -423,7 +421,6 @@
 		04F54DEC1CD766B4002F501E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				04F54DED1CD766E3002F501E /* MoodContentController.xib */,
 				04F54DEE1CD766E3002F501E /* NPSContentController.xib */,
 				04F54DEF1CD766E3002F501E /* USAStoryboard.storyboard */,
 			);
@@ -559,7 +556,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F54DF01CD766E3002F501E /* MoodContentController.xib in Resources */,
 				04F54DF11CD766E3002F501E /* NPSContentController.xib in Resources */,
 				04F54DF21CD766E3002F501E /* USAStoryboard.storyboard in Resources */,
 				04F54E611CD76A21002F501E /* defaultJson.json in Resources */,
@@ -678,7 +674,6 @@
 			files = (
 				43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */,
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
-				04F54DF71CD766F5002F501E /* MoodContentController.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				048641AF1CF7217D00006A80 /* BaseCheckBoxCellView.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
@@ -688,6 +683,7 @@
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
+				43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */,
 				04F54DF81CD766F5002F501E /* NPSContentController.swift in Sources */,
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
