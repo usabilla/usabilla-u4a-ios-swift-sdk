@@ -124,8 +124,8 @@ class IntFieldModel: BaseFieldModel {
 
     var fieldValue: Int? {
         didSet {
-            if fieldValue != nil {
-                pageModel.fieldValuesCollection[fieldId] = [String(fieldValue!)]
+            if let value = fieldValue {
+                pageModel.fieldValuesCollection[fieldId] = [String(value)]
             }
         }
     }
