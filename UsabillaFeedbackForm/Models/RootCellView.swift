@@ -13,7 +13,10 @@ class RootCellView: UITableViewCell {
 
     var rootCellContainerView: UIView
     var titleLabel: UILabel!
+    var errorLabel: UILabel!
     var item: BaseFieldModel!
+    var showErrorMessage = false
+
     var isValid: Bool = true {
         didSet {
             updateValidStatus()
@@ -33,35 +36,42 @@ class RootCellView: UITableViewCell {
         item.isViewCurrentlyVisible = isCurrentlyDisplayed
     }
 
+    let errorLabelHeightConstraint: NSLayoutConstraint
 
     //Layout config
     let sideMargin: CGFloat = 16
     let verticalMargin: CGFloat = 20
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        self.rootCellContainerView = UIView()
+        rootCellContainerView = UIView()
+        errorLabel = UILabel()
+        
+        errorLabelHeightConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
+        errorLabelHeightConstraint.isActive = true
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.titleLabel = createTitleLabel()
-        //titleLabel?.sizeToFit()
-        self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(rootCellContainerView)
+        
+        titleLabel = createTitleLabel()
+
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(errorLabel)
+        contentView.addSubview(rootCellContainerView)
+
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
         rootCellContainerView.translatesAutoresizingMaskIntoConstraints = false
 
 
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: sideMargin).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).isActive = true
 
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -sideMargin).isActive = true
+        errorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
+        errorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
+        errorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
 
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: verticalMargin).isActive = true
-
-        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: verticalMargin * 2 / 3).isActive = true
-
-        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -verticalMargin).isActive = true
-
-        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: sideMargin).isActive = true
-
-        NSLayoutConstraint(item: rootCellContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -sideMargin).isActive = true
-
+        rootCellContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
+        rootCellContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
+        rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: verticalMargin * 2 / 3).isActive = true
+        rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).isActive = true
     }
 
     func addConstraintToFillContainerView(view: UIView, withMargin: CGFloat = 0) {
@@ -87,8 +97,7 @@ class RootCellView: UITableViewCell {
         titleLabel.textColor = item.themeConfig.titleColor
 
         if item.required {
-
-            titleLabel.text = String(format: "@ *", item.fieldTitle) as String
+            titleLabel.text = String(format: "%@ *", item.fieldTitle) as String
 
             let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
 
@@ -106,7 +115,9 @@ class RootCellView: UITableViewCell {
 
     func applyCustomisations() {
         titleLabel.font = themeConfig.font.withSize(themeConfig.titleFontSize)
-
+        errorLabel.font = themeConfig.font.withSize(themeConfig.titleFontSize)
+        errorLabel.textColor = themeConfig.errorColor
+        errorLabel.text = item.pageModel.copy?.requiredFieldError
         if themeConfig.setTitlesInBold {
             if let boldVersion = titleLabel.font.withTraits(.traitBold) {
                 titleLabel.font = boldVersion
@@ -120,9 +131,6 @@ class RootCellView: UITableViewCell {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
-
-        //titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        //titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
 
@@ -131,9 +139,9 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = NSTextAlignment.right
         titleLabel.numberOfLines = 0
-        //titleLabel.textColor = item.themeConfig.primaryTextColor
         return titleLabel
     }
+
 
     func createDividerLine() -> UIView {
         let dividerLine = UIView()
@@ -141,22 +149,10 @@ class RootCellView: UITableViewCell {
         return dividerLine
     }
 
-
     func updateValidStatus() {
-        if item!.required {
-            if !isValid {
-                titleLabel?.text = String(format: "%@ *", item!.fieldTitle) as String
-
-                let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
-
-                text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.errorColor,
-                                  range: NSRange.init(location: (self.titleLabel?.text?.characters.count)! - 1, length: 1))
-
-                titleLabel?.attributedText = text
-            } else {
-                titleLabel?.text = String(format: "%@ *", item!.fieldTitle) as String
-                titleLabel.textColor = themeConfig.titleColor
-            }
+        guard let required = item?.required else {
+            return
         }
+        errorLabelHeightConstraint.isActive = !(required && !isValid)
     }
 }

@@ -36,7 +36,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     var pageModel: PageModel!
     var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
-
+    var showErrorMessages = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(StarCellView.self, forCellReuseIdentifier: "stars")
@@ -212,6 +213,7 @@ extension PageController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item: BaseFieldModel = pageModel.fields[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath) as! RootCellView
+        cell.showErrorMessage = showErrorMessages
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.setFeedbackItem(item)
         cell.applyCustomisations()

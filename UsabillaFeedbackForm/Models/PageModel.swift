@@ -21,11 +21,11 @@ class PageModel {
     let pageName: String?
     var type: String?
     var isLastPage: Bool?
-
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?
     var errorMessage: String?
     let themeConfig: UsabillaThemeConfigurator
+    weak var copy: CopyModel?
 
     init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
         self.pageNumber = pageNumber
