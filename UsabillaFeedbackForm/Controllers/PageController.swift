@@ -115,7 +115,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func headerView() -> UIView? {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
-        requiredLabel.textAlignment = .right
+        requiredLabel.textAlignment = .left
         requiredLabel.textColor = pageModel.themeConfig.textColor
         requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
         requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
