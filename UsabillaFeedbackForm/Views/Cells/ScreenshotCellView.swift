@@ -19,9 +19,10 @@ class ScreenshotCellView: RootCellView {
     var addScreenshotLabel: UIButton!
     let iconContainerView: UIView
     let addScreenshotLine: UIView
-    var heightConstraint: NSLayoutConstraint!
+    var ratioConstraint: NSLayoutConstraint!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+
 
         //View init
         screenShotView = UIImageView()
@@ -55,9 +56,6 @@ class ScreenshotCellView: RootCellView {
         addIcon = UIButton(type: UIButtonType.custom)
         addIcon.translatesAutoresizingMaskIntoConstraints = false
         addIcon.addTarget(self, action: #selector(ScreenshotCellView.pickImage), for: .touchUpInside)
-
-
-
         addScreenshotLabel = UIButton(type: UIButtonType.system)
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
         addScreenshotLabel.setTitle("placeholder", for: .normal)
@@ -74,44 +72,38 @@ class ScreenshotCellView: RootCellView {
         iconContainerView.addSubview(editIcon)
 
         //Constraints
-
-        addConstraintToFillContainerView(view: screenShotView, withMargin: 12)
-
         let editIconSize: CGFloat = 48
         let iconSpacing: CGFloat = 12
 
-        heightConstraint = screenShotView.heightAnchor.constraint(equalToConstant: 0)
-        heightConstraint.priority = 999
-        heightConstraint.isActive = true
-        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -16).isActive = true
-        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 16).isActive = true
-        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: (iconSpacing * 2 + editIconSize)).isActive = true
-        NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: (iconSpacing * 5 + editIconSize * 2)).isActive = true
+        addConstraintToFillContainerView(view: screenShotView, withMargin: 12)
 
+        iconContainerView.trailingAnchor.constraint(equalTo: screenShotView.trailingAnchor, constant: -16).isActive = true
+        iconContainerView.topAnchor.constraint(equalTo: screenShotView.topAnchor, constant: 16).isActive = true
+        iconContainerView.heightAnchor.constraint(equalToConstant: iconSpacing * 2 + editIconSize).isActive = true
+        iconContainerView.widthAnchor.constraint(equalToConstant: iconSpacing * 5 + editIconSize * 2).isActive = true
 
-        NSLayoutConstraint(item: deleteIcon, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.iconContainerView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -iconSpacing).isActive = true
-        NSLayoutConstraint(item: deleteIcon, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.iconContainerView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: iconSpacing).isActive = true
-        NSLayoutConstraint(item: deleteIcon, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.iconContainerView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -iconSpacing).isActive = true
-        NSLayoutConstraint(item: deleteIcon, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: editIconSize).isActive = true
-        NSLayoutConstraint(item: deleteIcon, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: editIconSize).isActive = true
+        deleteIcon.trailingAnchor.constraint(equalTo: iconContainerView.trailingAnchor, constant: -iconSpacing).isActive = true
+        deleteIcon.heightAnchor.constraint(equalToConstant: editIconSize).isActive = true
+        deleteIcon.widthAnchor.constraint(equalToConstant: editIconSize).isActive = true
+        deleteIcon.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
 
-        NSLayoutConstraint(item: editIcon, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.deleteIcon, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: -iconSpacing * 3).isActive = true
-        NSLayoutConstraint(item: editIcon, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.iconContainerView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: iconSpacing).isActive = true
-        NSLayoutConstraint(item: editIcon, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: editIconSize).isActive = true
-        NSLayoutConstraint(item: editIcon, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: editIconSize).isActive = true
+        editIcon.leadingAnchor.constraint(equalTo: iconContainerView.leadingAnchor, constant: iconSpacing).isActive = true
+        editIcon.widthAnchor.constraint(equalToConstant: editIconSize).isActive = true
+        editIcon.heightAnchor.constraint(equalToConstant: editIconSize).isActive = true
+        editIcon.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
 
-        NSLayoutConstraint(item: addIcon, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: addIcon, attribute: .centerY, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: addIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 25).isActive = true
-        NSLayoutConstraint(item: addIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 25).isActive = true
+        addIcon.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
+        addIcon.centerYAnchor.constraint(equalTo: rootCellContainerView.centerYAnchor).isActive = true
+        addIcon.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        addIcon.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
-        NSLayoutConstraint(item: addScreenshotLabel, attribute: .centerY, relatedBy: .equal, toItem: self.addIcon, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: addScreenshotLabel, attribute: .leading, relatedBy: .equal, toItem: self.addIcon, attribute: .trailing, multiplier: 1, constant: 4).isActive = true
+        addScreenshotLabel.centerYAnchor.constraint(equalTo: addIcon.centerYAnchor).isActive = true
+        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 4).isActive = true
 
-        NSLayoutConstraint(item: addScreenshotLine, attribute: .top, relatedBy: .equal, toItem: self.addScreenshotLabel, attribute: .bottom, multiplier: 1, constant: 3).isActive = true
-        NSLayoutConstraint(item: addScreenshotLine, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: addScreenshotLine, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: addScreenshotLine, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1).isActive = true
+        addScreenshotLine.topAnchor.constraint(equalTo: addScreenshotLabel.bottomAnchor, constant: 3).isActive = true
+        addScreenshotLine.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
+        addScreenshotLine.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).isActive = true
+        addScreenshotLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
             self.imagePicked(result.object as! UIImage)
@@ -119,6 +111,18 @@ class ScreenshotCellView: RootCellView {
 
         SwiftEventBus.onMainThread(self, name: "kill") { _ in
             SwiftEventBus.unregister(self)
+        }
+
+
+    }
+
+    func setupRatioConstraint(imageSize: CGSize?) {
+        ratioConstraint?.isActive = false
+        if let s = imageSize {
+            let ratio = s.width / s.height;
+            ratioConstraint = screenShotView.widthAnchor.constraint(equalTo: screenShotView.heightAnchor, multiplier: ratio)
+            ratioConstraint.priority = 999
+            ratioConstraint.isActive = true
         }
     }
 
@@ -174,20 +178,7 @@ class ScreenshotCellView: RootCellView {
     func setImage(image: UIImage?) {
         screenShotView.image = image
         screenshotModel.screenshot = image
-
-        if let image = image {
-            let fixedWidth = self.frame.width
-            var ratio: CGFloat = 1
-            if fixedWidth < image.size.width {
-                ratio = fixedWidth / image.size.width
-            } else {
-                ratio = image.size.width / fixedWidth
-            }
-
-            heightConstraint.constant = image.size.height * ratio
-        } else {
-            heightConstraint.constant = 0
-        }
+        setupRatioConstraint(imageSize: image?.size)
     }
 
     func imagePicked(_ image: UIImage) {
