@@ -23,7 +23,10 @@ class EmailCellView: TextInputCellView {
     
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        mailModel = item as! EmailFieldModel
+        guard let item = item as? EmailFieldModel else {
+            return
+        }
+        mailModel = item
         if let placeHolder = mailModel.placeHolder {
         
                 if let italics = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {

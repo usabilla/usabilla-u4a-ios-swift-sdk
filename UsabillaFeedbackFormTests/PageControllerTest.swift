@@ -29,9 +29,9 @@ class PageControllerTest: QuickSpec {
             }
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-            let base = storyboard.instantiateViewController(withIdentifier:"base") as! UINavigationController
-            let viewController = base.childViewControllers[0] as! FormViewController
-            viewController.initWithFormModel(formModel)
+//            let base = storyboard.instantiateViewController(withIdentifier:"base") as? UINavigationController
+//            let viewController = base.childViewControllers[0] as! FormViewController
+//            viewController.initWithFormModel(formModel)
 //            pageController = viewController.pageController
 //            //viewController.
         }

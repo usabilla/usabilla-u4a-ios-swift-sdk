@@ -47,7 +47,10 @@ class TextInputCellView: RootCellView, UITextFieldDelegate {
     
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        model = item as! StringFieldModel
+        guard let item = item as? StringFieldModel else {
+            return
+        }
+        model = item
         textField.text = model.fieldValue
         
         if let model2 = model as? TextFieldModel {

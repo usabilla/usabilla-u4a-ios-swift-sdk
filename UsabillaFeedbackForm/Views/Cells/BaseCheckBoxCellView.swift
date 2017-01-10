@@ -35,7 +35,10 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        model = item as! FieldModelWithOptions
+        guard let item = item as? FieldModelWithOptions else {
+            return
+        }
+        model = item
         for checkbox in checkBoxes {
             checkbox.removeFromSuperview()
         }

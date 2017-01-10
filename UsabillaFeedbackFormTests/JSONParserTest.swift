@@ -83,7 +83,9 @@ class JSONParserTest: QuickSpec {
                             }
                             
                             it("should containt a valid first field") {
-                                let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as! CheckboxFieldModel
+                                guard let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as? CheckboxFieldModel else {
+                                    expect(true).to(equal(true))
+                                }
                                 expect(field.fieldId).to(equal("SISSM"))
                                 expect(field.fieldTitle).to(equal("SISSM"))
                                 expect(field.type).to(equal("checkbox"))
@@ -95,7 +97,9 @@ class JSONParserTest: QuickSpec {
                             }
                             
                             it("should containt a valid second field") {
-                                let field: RatingFieldModel = formModel.pages[1].fields[1] as! RatingFieldModel
+                                guard let field: RatingFieldModel = formModel.pages[1].fields[1] as? RatingFieldModel else {
+                                    expect(true).to(equal(true))
+                                }
                                 expect(field.fieldTitle).to(equal("Ik ben een slider!"))
                                 expect(field.fieldId).to(equal("Ik_ben_een_slide"))
                                 expect(field.type).to(equal("rating"))
@@ -108,7 +112,9 @@ class JSONParserTest: QuickSpec {
                             }
                             
                             it("should containt a valid email field") {
-                                let field: EmailFieldModel = formModel.pages[1].fields[2] as! EmailFieldModel
+                                guard let field: EmailFieldModel = formModel.pages[1].fields[2] as? EmailFieldModel else {
+                                    return
+                                }
                                 expect(field.fieldTitle).to(equal("Email address"))
                                 expect(field.fieldId).to(equal("email"))
                                 expect(field.placeHolder).to(equal("Dit is een email"))

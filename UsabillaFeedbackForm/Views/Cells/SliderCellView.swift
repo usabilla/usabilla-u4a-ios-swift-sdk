@@ -91,8 +91,10 @@ class SliderCellView: RootCellView {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        sliderModel = item as! RatingFieldModel
-
+        guard let item = item as? RatingFieldModel else {
+            return
+        }
+        sliderModel = item
 
         if sliderModel.isNPS {
             valueLabel.text = "0/10"

@@ -16,7 +16,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
     var showErrorMessages = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(StarCellView.self, forCellReuseIdentifier: "stars")
@@ -213,22 +213,24 @@ extension PageController: UITableViewDataSource {
         }
 
         let item: BaseFieldModel = pageModel.fields[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath) as! RootCellView
-        cell.showErrorMessage = showErrorMessages
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.setFeedbackItem(item)
-        cell.applyCustomisations()
-        if !item.shouldAppear() {
-            cell.isHidden = true
-            cell.isUserInteractionEnabled = false
-            cell.isCurrentlyDisplayed = false
-        } else {
-            cell.isHidden = false
-            cell.isUserInteractionEnabled = true
-            cell.isCurrentlyDisplayed = true
-        }
-        if item.rule != nil && !dynamicFields.contains(indexPath) {
-            dynamicFields.append(indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath)
+        if let cell = cell as? RootCellView {
+            cell.showErrorMessage = showErrorMessages
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.setFeedbackItem(item)
+            cell.applyCustomisations()
+            if !item.shouldAppear() {
+                cell.isHidden = true
+                cell.isUserInteractionEnabled = false
+                cell.isCurrentlyDisplayed = false
+            } else {
+                cell.isHidden = false
+                cell.isUserInteractionEnabled = true
+                cell.isCurrentlyDisplayed = true
+            }
+            if item.rule != nil && !dynamicFields.contains(indexPath) {
+                dynamicFields.append(indexPath)
+            }
         }
         return cell
     }

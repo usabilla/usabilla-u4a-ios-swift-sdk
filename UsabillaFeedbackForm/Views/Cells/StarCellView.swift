@@ -41,7 +41,10 @@ class StarCellView: RootCellView, SwiftStarDelegate {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        starModel = item as! StarFieldModel
+        guard let item = item as? StarFieldModel else {
+            return
+        }
+        starModel = item
         if let value = starModel.fieldValue {
             starRatingView.currentValue = value
         } else {

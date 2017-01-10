@@ -90,7 +90,10 @@ class RootCellView: UITableViewCell {
     }
 
     func setFeedbackItem(_ item: FieldModelProtocol) {
-        self.item = item as! BaseFieldModel
+        guard let item = item as? BaseFieldModel else {
+            return
+        }
+        self.item = item
         titleLabel.text = item.fieldTitle
         titleLabel.numberOfLines = 5
         titleLabel.sizeToFit()

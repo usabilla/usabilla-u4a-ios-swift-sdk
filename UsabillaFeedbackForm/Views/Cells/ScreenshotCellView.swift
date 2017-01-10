@@ -106,7 +106,9 @@ class ScreenshotCellView: RootCellView {
         addScreenshotLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
-            self.imagePicked(result.object as! UIImage)
+            if let image = result.object as? UIImage {
+                self.imagePicked(image)
+            }
         }
 
         SwiftEventBus.onMainThread(self, name: "kill") { _ in
@@ -144,7 +146,10 @@ class ScreenshotCellView: RootCellView {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        screenshotModel = item as! ScreenshotModel
+        guard let item = item as? ScreenshotModel else {
+            return
+        }
+        screenshotModel = item
         setImage(image: screenshotModel.screenshot)
         updateUI()
     }

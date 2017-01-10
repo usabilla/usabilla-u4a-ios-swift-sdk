@@ -20,7 +20,6 @@ class TextAreaCellView: BaseTextAreaCellView {
         line.translatesAutoresizingMaskIntoConstraints = false
         rootCellContainerView.addSubview(line)
 
-        
         NSLayoutConstraint(item: line, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 2).isActive = true
         NSLayoutConstraint(item: line, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: -2).isActive = true
         NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1).isActive = true
@@ -34,10 +33,14 @@ class TextAreaCellView: BaseTextAreaCellView {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        model = item as! TextAreaFieldModel
+        guard let item = item as? TextAreaFieldModel else {
+            return
+        }
+        model = item
     }
 
     override func applyCustomisations() {
+        
         super.applyCustomisations()
         if model.fieldValue != nil {
             textView.text = model.fieldValue
@@ -86,8 +89,4 @@ class TextAreaCellView: BaseTextAreaCellView {
         }
     
     }
-
-//    deinit {
-//        print("Text area cell deinit")
-//    }
 }

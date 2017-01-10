@@ -65,10 +65,10 @@ import UIKit
     func loadViewFromNib() -> UIView {
         let bundle = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")
         let nib = UINib(nibName: "NPSContentController", bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-
-
-        return view
+        if let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView {
+            return view
+        }
+        return UIView()
     }
 
     func resetButtons() {

@@ -34,7 +34,10 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        moodModel = item as! MoodFieldModel
+        guard let item = item as? MoodFieldModel else {
+            return
+        }
+        moodModel = item
         moodControl.theme = item.themeConfig
         moodControl.selectedMood = moodModel.fieldValue
     }
