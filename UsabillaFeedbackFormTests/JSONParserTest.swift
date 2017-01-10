@@ -85,6 +85,7 @@ class JSONParserTest: QuickSpec {
                             it("should containt a valid first field") {
                                 guard let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as? CheckboxFieldModel else {
                                     expect(true).to(equal(true))
+                                    return
                                 }
                                 expect(field.fieldId).to(equal("SISSM"))
                                 expect(field.fieldTitle).to(equal("SISSM"))
@@ -99,6 +100,7 @@ class JSONParserTest: QuickSpec {
                             it("should containt a valid second field") {
                                 guard let field: RatingFieldModel = formModel.pages[1].fields[1] as? RatingFieldModel else {
                                     expect(true).to(equal(true))
+                                    return
                                 }
                                 expect(field.fieldTitle).to(equal("Ik ben een slider!"))
                                 expect(field.fieldId).to(equal("Ik_ben_een_slide"))

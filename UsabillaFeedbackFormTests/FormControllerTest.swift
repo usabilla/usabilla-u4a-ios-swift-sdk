@@ -29,7 +29,8 @@ class FormControllerTest: QuickSpec {
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
             if let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
-                let viewController = base.childViewControllers[0] as FormViewController {
+                let vc = base.childViewControllers[0] as? FormViewController {
+                viewController = vc
                 viewController.initWithFormModel(formModel)
                 //viewController.
                 
