@@ -37,9 +37,7 @@ class SliderCellView: RootCellView {
         let f = NSLayoutConstraint(item: slider, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 15)
         f.priority = 750
         f.isActive = true
-        
-        NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.rootCellContainerView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 8).isActive = true
-        
+                
         NSLayoutConstraint(item: valueLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self.slider, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         
         let views = ["slider": self.slider,

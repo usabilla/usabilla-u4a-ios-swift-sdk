@@ -81,6 +81,7 @@ class ScreenshotCellView: RootCellView {
         let iconSpacing: CGFloat = 12
 
         heightConstraint = screenShotView.heightAnchor.constraint(equalToConstant: 0)
+        heightConstraint.priority = 999
         heightConstraint.isActive = true
         NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -16).isActive = true
         NSLayoutConstraint(item: iconContainerView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.screenShotView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 16).isActive = true
