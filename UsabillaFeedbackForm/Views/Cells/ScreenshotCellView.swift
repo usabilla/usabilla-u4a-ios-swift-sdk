@@ -119,7 +119,7 @@ class ScreenshotCellView: RootCellView {
     func setupRatioConstraint(imageSize: CGSize?) {
         ratioConstraint?.isActive = false
         if let s = imageSize {
-            let ratio = s.width / s.height;
+            let ratio = s.width / s.height
             ratioConstraint = screenShotView.widthAnchor.constraint(equalTo: screenShotView.heightAnchor, multiplier: ratio)
             ratioConstraint.priority = 999
             ratioConstraint.isActive = true

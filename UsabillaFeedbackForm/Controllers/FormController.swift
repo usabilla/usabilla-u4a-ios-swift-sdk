@@ -221,7 +221,7 @@ class FormViewController: UIViewController {
     }
 
     func swipeToPage(_ page: Int) {
-        pageController.initWithPage((formModel.pages[page]))
+        pageController.initWithPage(formModel.pages[page])
         currentPage = page
     }
 

@@ -20,13 +20,13 @@ extension String {
         if numberOfChunks > 0 {
             for chunk in 0...numberOfChunks - 1 {
                 let start = chunk * chuckSize
-                let range = NSRange(location: start, length:  chuckSize)
+                let range = NSRange(location: start, length: chuckSize)
                 let section = (self as NSString).substring(with: range)
                 arrayToReturn.append(section)
             }
         }
         if lastChunk > 0 {
-            let lastRange = NSRange(location: numberOfChunks*chuckSize, length:  lastChunk)
+            let lastRange = NSRange(location: numberOfChunks * chuckSize, length: lastChunk)
             let section = (self as NSString).substring(with: lastRange)
             arrayToReturn.append(section)
         }
@@ -34,38 +34,34 @@ extension String {
         return arrayToReturn
     }
 
-    
-        var htmlToAttributedString: NSAttributedString? {
-            guard let data = data(using: .utf8) else { return nil }
-            do {
-                return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-                return  nil
-            }
+
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return nil }
+        do {
+            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return nil
         }
-        var htmlToString: String {
-            return htmlToAttributedString?.string ?? ""
-        }
-    
-    
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
+
+
 }
 
 
 extension UIImage {
 
-    
-    func alpha(value:CGFloat)->UIImage
-    {
+    func alpha(value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
-            
+
     }
-    
-    
 
     func fixSizeAndOrientation() -> UIImage {
 
@@ -112,9 +108,9 @@ extension UIImage {
 extension UIView {
     class func loadFromNibNamed(_ nibNamed: String, bundle: Bundle? = nil) -> UIView? {
         return UINib(
-            nibName: nibNamed,
-            bundle: bundle
-            ).instantiate(withOwner: nil, options: nil)[0] as? UIView
+                     nibName: nibNamed,
+                     bundle: bundle
+        ).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 }
 
@@ -147,10 +143,10 @@ extension UIFont {
             if let pathForResourceString = bundle.path(forResource: filenameString, ofType: nil) {
                 if let fontData = try? Data(contentsOf: URL(fileURLWithPath: pathForResourceString)) {
                     if let dataProvider = CGDataProvider(data: fontData as CFData) {
-                         let fontRef = CGFont(dataProvider)
-                            var errorRef: Unmanaged<CFError>? = nil
-                            if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
-                                NSLog("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
+                        let fontRef = CGFont(dataProvider)
+                        var errorRef: Unmanaged<CFError>? = nil
+                        if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
+                            NSLog("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
 
                         } else {
                             NSLog("UIFont+:  Failed to register font - font could not be loaded.")
@@ -184,33 +180,33 @@ extension UIDevice {
         }
 
         switch identifier {
-        case "iPod5,1":                                 return "iPod Touch 5"
-        case "iPod7,1":                                 return "iPod Touch 6"
-        case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return "iPhone 4"
-        case "iPhone4,1":                               return "iPhone 4s"
-        case "iPhone5,1", "iPhone5,2":                  return "iPhone 5"
-        case "iPhone5,3", "iPhone5,4":                  return "iPhone 5c"
-        case "iPhone6,1", "iPhone6,2":                  return "iPhone 5s"
-        case "iPhone7,2":                               return "iPhone 6"
-        case "iPhone7,1":                               return "iPhone 6 Plus"
-        case "iPhone8,1":                               return "iPhone 6s"
-        case "iPhone8,2":                               return "iPhone 6s Plus"
-        case "iPhone9,1", "iPhone9,3":                  return "iPhone 7"
-        case "iPhone9,2", "iPhone9,4":                  return "iPhone 7 Plus"
-        case "iPhone8,4":                               return "iPhone SE"
-        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
-        case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
-        case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"
-        case "iPad4,1", "iPad4,2", "iPad4,3":           return "iPad Air"
-        case "iPad5,3", "iPad5,4":                      return "iPad Air 2"
-        case "iPad2,5", "iPad2,6", "iPad2,7":           return "iPad Mini"
-        case "iPad4,4", "iPad4,5", "iPad4,6":           return "iPad Mini 2"
-        case "iPad4,7", "iPad4,8", "iPad4,9":           return "iPad Mini 3"
-        case "iPad5,1", "iPad5,2":                      return "iPad Mini 4"
-        case "iPad6,7", "iPad6,8":                      return "iPad Pro"
-        case "AppleTV5,3":                              return "Apple TV"
-        case "i386", "x86_64":                          return "Simulator"
-        default:                                        return identifier
+        case "iPod5,1": return "iPod Touch 5"
+        case "iPod7,1": return "iPod Touch 6"
+        case "iPhone3,1", "iPhone3,2", "iPhone3,3": return "iPhone 4"
+        case "iPhone4,1": return "iPhone 4s"
+        case "iPhone5,1", "iPhone5,2": return "iPhone 5"
+        case "iPhone5,3", "iPhone5,4": return "iPhone 5c"
+        case "iPhone6,1", "iPhone6,2": return "iPhone 5s"
+        case "iPhone7,2": return "iPhone 6"
+        case "iPhone7,1": return "iPhone 6 Plus"
+        case "iPhone8,1": return "iPhone 6s"
+        case "iPhone8,2": return "iPhone 6s Plus"
+        case "iPhone9,1", "iPhone9,3": return "iPhone 7"
+        case "iPhone9,2", "iPhone9,4": return "iPhone 7 Plus"
+        case "iPhone8,4": return "iPhone SE"
+        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4": return "iPad 2"
+        case "iPad3,1", "iPad3,2", "iPad3,3": return "iPad 3"
+        case "iPad3,4", "iPad3,5", "iPad3,6": return "iPad 4"
+        case "iPad4,1", "iPad4,2", "iPad4,3": return "iPad Air"
+        case "iPad5,3", "iPad5,4": return "iPad Air 2"
+        case "iPad2,5", "iPad2,6", "iPad2,7": return "iPad Mini"
+        case "iPad4,4", "iPad4,5", "iPad4,6": return "iPad Mini 2"
+        case "iPad4,7", "iPad4,8", "iPad4,9": return "iPad Mini 3"
+        case "iPad5,1", "iPad5,2": return "iPad Mini 4"
+        case "iPad6,7", "iPad6,8": return "iPad Pro"
+        case "AppleTV5,3": return "Apple TV"
+        case "i386", "x86_64": return "Simulator"
+        default: return identifier
         }
     }
 
@@ -232,8 +228,8 @@ extension UIDevice {
  */
 enum UIColorInputError: Error {
     case missingHashMarkAsPrefix,
-    unableToScanHexValue,
-    mismatchedHexStringLength
+        unableToScanHexValue,
+        mismatchedHexStringLength
 }
 
 extension UIColor {
@@ -246,9 +242,9 @@ extension UIColor {
      */
     convenience init(hex3: UInt16, alpha: CGFloat = 1) {
         let divisor = CGFloat(15)
-        let red     = CGFloat((hex3 & 0xF00) >> 8) / divisor
-        let green   = CGFloat((hex3 & 0x0F0) >> 4) / divisor
-        let blue    = CGFloat( hex3 & 0x00F      ) / divisor
+        let red = CGFloat((hex3 & 0xF00) >> 8) / divisor
+        let green = CGFloat((hex3 & 0x0F0) >> 4) / divisor
+        let blue = CGFloat( hex3 & 0x00F) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -260,10 +256,10 @@ extension UIColor {
      */
     convenience init(hex4: UInt16) {
         let divisor = CGFloat(15)
-        let red     = CGFloat((hex4 & 0xF000) >> 12) / divisor
-        let green   = CGFloat((hex4 & 0x0F00) >>  8) / divisor
-        let blue    = CGFloat((hex4 & 0x00F0) >>  4) / divisor
-        let alpha   = CGFloat( hex4 & 0x000F       ) / divisor
+        let red = CGFloat((hex4 & 0xF000) >> 12) / divisor
+        let green = CGFloat((hex4 & 0x0F00) >> 8) / divisor
+        let blue = CGFloat((hex4 & 0x00F0) >> 4) / divisor
+        let alpha = CGFloat( hex4 & 0x000F) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -274,9 +270,9 @@ extension UIColor {
      */
     convenience init(hex6: UInt32, alpha: CGFloat = 1) {
         let divisor = CGFloat(255)
-        let red     = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
-        let green   = CGFloat((hex6 & 0x00FF00) >>  8) / divisor
-        let blue    = CGFloat( hex6 & 0x0000FF       ) / divisor
+        let red = CGFloat((hex6 & 0xFF0000) >> 16) / divisor
+        let green = CGFloat((hex6 & 0x00FF00) >> 8) / divisor
+        let blue = CGFloat( hex6 & 0x0000FF) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -287,10 +283,10 @@ extension UIColor {
      */
     convenience init(hex8: UInt32) {
         let divisor = CGFloat(255)
-        let red     = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
-        let green   = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
-        let blue    = CGFloat((hex8 & 0x0000FF00) >>  8) / divisor
-        let alpha   = CGFloat( hex8 & 0x000000FF       ) / divisor
+        let red = CGFloat((hex8 & 0xFF000000) >> 24) / divisor
+        let green = CGFloat((hex8 & 0x00FF0000) >> 16) / divisor
+        let blue = CGFloat((hex8 & 0x0000FF00) >> 8) / divisor
+        let alpha = CGFloat( hex8 & 0x000000FF) / divisor
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 
@@ -306,16 +302,16 @@ extension UIColor {
 
         let hexString: String = rgba.substring(from: rgba.characters.index(rgba.startIndex, offsetBy: 1))
         var hexValue: UInt32 = 0
-            
+
         if !Scanner(string: hexString).scanHexInt32(&hexValue) {
-                throw UIColorInputError.unableToScanHexValue
+            throw UIColorInputError.unableToScanHexValue
         }
 
-        guard hexString.characters.count  == 3
-            || hexString.characters.count == 4
-            || hexString.characters.count == 6
-            || hexString.characters.count == 8 else {
-                throw UIColorInputError.mismatchedHexStringLength
+        guard hexString.characters.count == 3
+        || hexString.characters.count == 4
+        || hexString.characters.count == 6
+        || hexString.characters.count == 8 else {
+            throw UIColorInputError.mismatchedHexStringLength
         }
 
         switch hexString.characters.count {

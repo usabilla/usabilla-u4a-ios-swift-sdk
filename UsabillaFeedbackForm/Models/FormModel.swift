@@ -36,12 +36,7 @@ class FormModel {
         self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
         
-        pages.map{ $0.copy = copyModel }
+        _ = pages.map { $0.copy = copyModel }
     }
 
-//    deinit {
-//        print("called form model deinit")
-//        print("containing \(pages.count) pages")
-//
-//    }
 }
