@@ -13,6 +13,8 @@
 		437B96D81E266A8F00AA0A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D71E266A8F00AA0A25 /* Assets.xcassets */; };
 		437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D91E266A8F00AA0A25 /* LaunchScreen.storyboard */; };
 		437B96E61E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96E51E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift */; };
+		437C60DA1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; };
+		437C60DB1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2E1AAB54BD2274B57C4654E /* Pods_UsabillaFeedbackFormUITestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADFB85CD18FD7D77B70FCC3 /* Pods_UsabillaFeedbackFormUITestApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		437C60DC1E269FC5003E6F70 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				437C60DB1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0BC66AE5C0ED329A61C701D0 /* Pods-UsabillaFeedbackFormUITestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UsabillaFeedbackFormUITestApp.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-UsabillaFeedbackFormUITestApp/Pods-UsabillaFeedbackFormUITestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		437B96CD1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaFeedbackFormUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +54,7 @@
 		437B96E11E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaFeedbackFormUITestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96E51E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaFeedbackFormUITestAppUITests.swift; sourceTree = "<group>"; };
 		437B96E71E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		560E9225528A1F945C94B2EE /* Pods-UsabillaFeedbackFormUITestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UsabillaFeedbackFormUITestApp.release.xcconfig"; path = "../Pods/Target Support Files/Pods-UsabillaFeedbackFormUITestApp/Pods-UsabillaFeedbackFormUITestApp.release.xcconfig"; sourceTree = "<group>"; };
 		EADFB85CD18FD7D77B70FCC3 /* Pods_UsabillaFeedbackFormUITestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormUITestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -47,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437C60DA1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Frameworks */,
 				E2E1AAB54BD2274B57C4654E /* Pods_UsabillaFeedbackFormUITestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +82,7 @@
 		437B96C41E266A8F00AA0A25 = {
 			isa = PBXGroup;
 			children = (
+				437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */,
 				437B96CF1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */,
 				437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */,
 				437B96CE1E266A8F00AA0A25 /* Products */,
@@ -133,6 +152,7 @@
 				437B96CB1E266A8F00AA0A25 /* Resources */,
 				9C32C6BDAB6FBBB781C667AF /* [CP] Embed Pods Frameworks */,
 				B2C453EE84DD50495041D00A /* [CP] Copy Pods Resources */,
+				437C60DC1E269FC5003E6F70 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

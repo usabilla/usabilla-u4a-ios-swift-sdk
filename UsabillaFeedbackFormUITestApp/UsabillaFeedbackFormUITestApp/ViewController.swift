@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import UsabillaFeedbackForm
+import PromiseKit
 
 class ViewController: UIViewController {
 
@@ -19,7 +21,16 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-
+extension ViewController: UsabillaFeedbackFormDelegate {
+    
+    func formFailedLoading(_ backupForm: UINavigationController) {
+        
+    }
+    
+    func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
+        present(form, animated: true, completion: nil)
+    }
 }
 
