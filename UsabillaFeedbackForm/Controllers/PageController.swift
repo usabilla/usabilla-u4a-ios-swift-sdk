@@ -30,6 +30,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         self.tableView.register(TextAreaCellView.self, forCellReuseIdentifier: "textArea")
         self.tableView.register(ChoiceCellView.self, forCellReuseIdentifier: "choice")
         self.tableView.register(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
+        self.tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
         self.tableView.tableHeaderView = headerView()
 
@@ -200,15 +201,11 @@ extension PageController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
-            let footer = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
-            let cell = UITableViewCell()
-            cell.selectionStyle = .none
-            cell.contentView.addSubview(footer)
-            footer.translatesAutoresizingMaskIntoConstraints = false
-            footer.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor).isActive = true
-            footer.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor).isActive = true
-            footer.heightAnchor.constraint(equalToConstant: footerHeight)
-            footer.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -20).isActive = true
+            let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
+            if let cell = cell as? FooterTableViewCell {
+                cell.footerView = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
+            }
+            cell.backgroundColor = pageModel.themeConfig.backgroundColor
             return cell
         }
 
