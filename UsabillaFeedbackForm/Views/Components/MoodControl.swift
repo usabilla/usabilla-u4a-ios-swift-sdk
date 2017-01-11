@@ -31,6 +31,8 @@ class MoodControl: UIControl {
         }
     }
 
+    var centered = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         internalInit()
@@ -39,11 +41,6 @@ class MoodControl: UIControl {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         internalInit()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        reload()
     }
 
     private func internalInit() {
@@ -55,7 +52,14 @@ class MoodControl: UIControl {
         contentView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         contentView.distribution = .fillEqually
+        if !centered {
+            contentView.distribution = .fill
+//            contentView.spacing = 23
+        }
         contentView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+
+        reload()
+
     }
 
     private func reload() {
@@ -72,8 +76,20 @@ class MoodControl: UIControl {
             button.setImage(disabledImage, for: .normal)
             button.setImage(enabled[i], for: .selected)
             button.addTarget(self, action: #selector(MoodControl.didTouchUpInsideSmiley(_:)), for: .touchUpInside)
+            if !centered {
+                button.setContentHuggingPriority(1000, for: .horizontal)
+            }
             contentView.addArrangedSubview(button)
         }
+        
+        if !centered {
+            let stretchingView = UIView()
+            stretchingView.setContentHuggingPriority(1, for: .horizontal)
+            stretchingView.backgroundColor = .clear
+            stretchingView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addArrangedSubview(stretchingView)
+        }
+        
         refreshSelected()
     }
 
