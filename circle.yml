@@ -2,3 +2,14 @@ machine:
   xcode:
     version: 8.2
 
+dependencies:
+  cache_directories:
+    # Cache the CocoaPods repos to improve build times.
+    - ~/.cocoapods
+  override:
+    # Install gem dependencies.
+    - bundle install
+    # Update the cached CocoaPods master repo.
+    - bundle exec pod repo update
+    # Install iOS library dependencies.
+    - bundle exec pod install
