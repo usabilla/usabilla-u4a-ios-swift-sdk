@@ -4,10 +4,6 @@ machine:
 
 dependencies:
   cache_directories:
-    # Cache the CocoaPods repos to improve build times.
     - ~/.cocoapods
   override:
-    # Update the cached CocoaPods master repo.
-    - bundle exec pod repo update
-    # Install iOS library dependencies.
-    - bundle exec pod install
+    - pod install
