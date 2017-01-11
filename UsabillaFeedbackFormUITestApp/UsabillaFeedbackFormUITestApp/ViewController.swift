@@ -14,12 +14,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        UsabillaFeedbackForm.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func scenario1ButtonTap(_ sender: Any) {
+        UsabillaFeedbackForm.loadFeedbackForm("583c0d8ea935028022c145f4")
     }
 }
 

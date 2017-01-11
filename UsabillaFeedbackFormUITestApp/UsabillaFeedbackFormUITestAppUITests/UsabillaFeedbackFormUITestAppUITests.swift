@@ -29,8 +29,24 @@ class UsabillaFeedbackFormUITestAppUITests: XCTestCase {
     }
     
     func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app.buttons["scenario-1-button"].tap()
+        
+        let cells = app.tables.cells
+        cells.containing(.staticText, identifier:"Click to edit question *").children(matching: .button).element(boundBy: 0).tap()
+        cells.containing(.staticText, identifier:"Click to edit *").children(matching: .textView).element.tap()
+        
+        app.typeText("test")
+        
+        let nav = app.navigationBars["UsabillaFeedbackForm.FormView"]
+        let next = nav.buttons["Next"]
+        next.tap()
+        next.tap()
+        
+        nav.buttons["Submit"].tap()
+        nav.buttons["Cancel"].tap()
+        
     }
     
 }

@@ -31,6 +31,9 @@
                                 <state key="normal" title="Scenario 1">
                                     <color key="titleColor" red="0.0" green="0.6470588235294118" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="scenario1ButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yvE-Ck-wBs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
