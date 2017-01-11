@@ -6,7 +6,3 @@ dependencies:
   cache_directories:
     - ~/.cocoapods
     - Pods
-  override:
-    - sudo gem install cocoapods --version 1.1.1
-    - pod setup
-    - pod install
