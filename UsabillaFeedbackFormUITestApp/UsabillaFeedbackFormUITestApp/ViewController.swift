@@ -32,4 +32,3 @@ extension ViewController: UsabillaFeedbackFormDelegate {
         present(form, animated: true, completion: nil)
     }
 }
-
