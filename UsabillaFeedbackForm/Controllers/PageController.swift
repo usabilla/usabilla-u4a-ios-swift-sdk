@@ -32,7 +32,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         self.tableView.register(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
         self.tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
-        self.tableView.tableHeaderView = headerView()
+        addHeaderView()
 
         self.view.backgroundColor = pageModel.themeConfig.backgroundColor
         self.tableView.backgroundColor = pageModel.themeConfig.backgroundColor
@@ -98,19 +98,18 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         }
     }
 
-    func headerView() -> UIView? {
+    func addHeaderView() {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
         requiredLabel.textAlignment = .left
         requiredLabel.textColor = pageModel.themeConfig.textColor
         requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
         requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
+        requiredLabel.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = requiredLabel
 
-        let constraint = NSLayoutConstraint.constraints(withVisualFormat: "H:[label]", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["label": requiredLabel])
-
-        requiredLabel.addConstraints(constraint)
-
-        return requiredLabel
+        requiredLabel.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10).isActive = true
+        requiredLabel.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 16).isActive = true
     }
 
     func deinitPageController() {
