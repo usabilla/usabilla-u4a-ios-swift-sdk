@@ -16,11 +16,14 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         }
     }
     var moodModel: MoodFieldModel!
-    var moodControl = MoodControl()
+    var moodControl: RatingControl
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        moodControl = RatingControl()
+        moodControl.mode = .selection
 
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         moodControl.translatesAutoresizingMaskIntoConstraints = false
         rootCellContainerView.addSubview(moodControl)
 
@@ -38,13 +41,15 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
             return
         }
         moodModel = item
-        moodControl.theme = item.themeConfig
-        moodControl.selectedMood = moodModel.fieldValue
+        moodControl.backgroundColor = themeConfig.backgroundColor
+        moodControl.selectedImages = item.themeConfig.enabledEmoticons
+        moodControl.unselectedImages = item.themeConfig.disabledEmoticons
+        moodControl.rating = moodModel.fieldValue
     }
 
-    func pickMood(sender: MoodControl) {
-        moodModel.fieldValue = moodControl.selectedMood
-        print("You pick state \(moodControl.selectedMood)")
+    func pickMood(sender: RatingControl) {
+        moodModel.fieldValue = moodControl.rating
+        print("You pick state \(moodControl.rating)")
     }
 
 }
