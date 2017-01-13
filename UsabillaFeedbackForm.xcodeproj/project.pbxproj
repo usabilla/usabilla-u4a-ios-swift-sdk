@@ -16,7 +16,6 @@
 		044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044E68191DD37FA200CE75E1 /* testAssets.xcassets */; };
 		04575B711D99799C001E0EC3 /* ChunkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B5D1D99787F001E0EC3 /* ChunkTest.swift */; };
 		04575B721D99799C001E0EC3 /* ExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B5E1D99787F001E0EC3 /* ExtensionTest.swift */; };
-		04575B731D99799C001E0EC3 /* FieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B5F1D99787F001E0EC3 /* FieldModelTest.swift */; };
 		04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B601D99787F001E0EC3 /* FormControllerTest.swift */; };
 		04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B621D99787F001E0EC3 /* JSONParserTest.swift */; };
 		04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B631D99787F001E0EC3 /* PageControllerTest.swift */; };
@@ -83,6 +82,7 @@
 		25CD276821D9317C1A977818 /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5FC34D93DD0CE1FB1C6C5B /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework */; };
 		432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
 		43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307FBD1E1FE62E0071298B /* MoodControl.swift */; };
+		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
 		D662F2DD6CE421FB1929AA41 /* Pods_UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */; };
@@ -105,7 +105,6 @@
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
 		04575B5D1D99787F001E0EC3 /* ChunkTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkTest.swift; sourceTree = "<group>"; };
 		04575B5E1D99787F001E0EC3 /* ExtensionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTest.swift; sourceTree = "<group>"; };
-		04575B5F1D99787F001E0EC3 /* FieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldModelTest.swift; sourceTree = "<group>"; };
 		04575B601D99787F001E0EC3 /* FormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormControllerTest.swift; sourceTree = "<group>"; };
 		04575B611D99787F001E0EC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04575B621D99787F001E0EC3 /* JSONParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParserTest.swift; sourceTree = "<group>"; };
@@ -177,6 +176,7 @@
 		126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		43307FBD1E1FE62E0071298B /* MoodControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
+		4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactoryTest.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		471DCA52DB6AD43E382683E6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,9 +243,9 @@
 		04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */ = {
 			isa = PBXGroup;
 			children = (
+				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
 				04575B5D1D99787F001E0EC3 /* ChunkTest.swift */,
 				04575B5E1D99787F001E0EC3 /* ExtensionTest.swift */,
-				04575B5F1D99787F001E0EC3 /* FieldModelTest.swift */,
 				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
 				04575B621D99787F001E0EC3 /* JSONParserTest.swift */,
 				04575B631D99787F001E0EC3 /* PageControllerTest.swift */,
@@ -726,10 +726,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04575B731D99799C001E0EC3 /* FieldModelTest.swift in Sources */,
 				04575B721D99799C001E0EC3 /* ExtensionTest.swift in Sources */,
 				04D6EC6C1CEDDDDE00E12C89 /* Extension.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
+				4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
