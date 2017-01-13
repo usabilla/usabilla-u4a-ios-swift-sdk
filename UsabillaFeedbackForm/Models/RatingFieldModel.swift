@@ -15,7 +15,6 @@ class RatingFieldModel: IntFieldModel {
     let scale: Int?
     let isNPS: Bool
 
-
     required init(json: JSON, pageModel: PageModel) {
         textPositioning = json["textPositioning"].string
         low = json["low"].string
@@ -34,8 +33,5 @@ class RatingFieldModel: IntFieldModel {
         super.init(json: json, pageModel: pageModel)
         self.type = "rating"
     }
-//    deinit {
-//        print("rating field model")
-//    }
 
 }

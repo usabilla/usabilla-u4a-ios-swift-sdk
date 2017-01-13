@@ -18,9 +18,4 @@ class CommentFieldModel: StringFieldModel {
         super.init(json: json, pageModel: pageModel)
     }
 
-//    deinit {
-//        print("comment field model")
-//    }
-
-
 }

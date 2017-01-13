@@ -17,9 +17,4 @@ class TextAreaFieldModel: StringFieldModel {
         super.init(json: json, pageModel: pageModel)
     }
 
-//    deinit {
-//        print("text area field model")
-//    }
-
-
 }

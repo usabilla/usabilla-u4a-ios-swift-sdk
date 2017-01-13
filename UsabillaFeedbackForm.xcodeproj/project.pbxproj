@@ -27,7 +27,6 @@
 		0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C01CDCDF86004EC234 /* ChoiceFieldModel.swift */; };
 		0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C11CDCDF86004EC234 /* CommentFieldModel.swift */; };
 		0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C31CDCDF86004EC234 /* FieldFactory.swift */; };
-		0483E9D71CDCDF86004EC234 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C41CDCDF86004EC234 /* FieldModel.swift */; };
 		0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C51CDCDF86004EC234 /* FormModel.swift */; };
 		0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */; };
 		0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C71CDCDF86004EC234 /* MoodFieldModel.swift */; };
@@ -83,6 +82,11 @@
 		432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
 		43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307FBD1E1FE62E0071298B /* MoodControl.swift */; };
 		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
+		4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
+		4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
+		4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85E1E2900B300AC895C /* IntFieldModel.swift */; };
+		4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8601E29011E00AC895C /* OptionsFieldModel.swift */; };
+		4334E8631E2901A700AC895C /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8621E2901A700AC895C /* FieldModel.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
 		D662F2DD6CE421FB1929AA41 /* Pods_UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */; };
@@ -118,7 +122,6 @@
 		0483E9C01CDCDF86004EC234 /* ChoiceFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceFieldModel.swift; sourceTree = "<group>"; };
 		0483E9C11CDCDF86004EC234 /* CommentFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFieldModel.swift; sourceTree = "<group>"; };
 		0483E9C31CDCDF86004EC234 /* FieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactory.swift; sourceTree = "<group>"; };
-		0483E9C41CDCDF86004EC234 /* FieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
 		0483E9C51CDCDF86004EC234 /* FormModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderFieldModel.swift; sourceTree = "<group>"; };
 		0483E9C71CDCDF86004EC234 /* MoodFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModel.swift; sourceTree = "<group>"; };
@@ -177,6 +180,11 @@
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		43307FBD1E1FE62E0071298B /* MoodControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
 		4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactoryTest.swift; sourceTree = "<group>"; };
+		4334E85A1E29008200AC895C /* BaseFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFieldModel.swift; sourceTree = "<group>"; };
+		4334E85C1E29009B00AC895C /* StringFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFieldModel.swift; sourceTree = "<group>"; };
+		4334E85E1E2900B300AC895C /* IntFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntFieldModel.swift; sourceTree = "<group>"; };
+		4334E8601E29011E00AC895C /* OptionsFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsFieldModel.swift; sourceTree = "<group>"; };
+		4334E8621E2901A700AC895C /* FieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		471DCA52DB6AD43E382683E6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,20 +230,23 @@
 		044204DE1DCC89ED004FA09F /* FieldModels */ = {
 			isa = PBXGroup;
 			children = (
-				0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */,
-				0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */,
-				0483EA021CDCE003004EC234 /* ScreenshotModel.swift */,
+				4334E85A1E29008200AC895C /* BaseFieldModel.swift */,
 				0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */,
 				0483E9C01CDCDF86004EC234 /* ChoiceFieldModel.swift */,
 				0483E9C11CDCDF86004EC234 /* CommentFieldModel.swift */,
-				0483E9C41CDCDF86004EC234 /* FieldModel.swift */,
+				0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */,
 				0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */,
+				4334E85E1E2900B300AC895C /* IntFieldModel.swift */,
 				0483E9C71CDCDF86004EC234 /* MoodFieldModel.swift */,
+				4334E8601E29011E00AC895C /* OptionsFieldModel.swift */,
 				0483E9CA1CDCDF86004EC234 /* ParagraphFieldModel.swift */,
 				0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */,
-				0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */,
-				0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */,
 				0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */,
+				0483EA021CDCE003004EC234 /* ScreenshotModel.swift */,
+				0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */,
+				4334E85C1E29009B00AC895C /* StringFieldModel.swift */,
+				0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */,
+				0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */,
 			);
 			name = FieldModels;
 			sourceTree = "<group>";
@@ -404,6 +415,7 @@
 		04F54DE91CD75BE6002F501E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4334E8621E2901A700AC895C /* FieldModel.swift */,
 				04F54DF31CD766EC002F501E /* Protocols.swift */,
 			);
 			path = Protocols;
@@ -670,6 +682,7 @@
 				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
+				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
 				43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */,
@@ -695,8 +708,10 @@
 				04F54E231CD76708002F501E /* NetworkManager.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				0483E9FB1CDCDFB1004EC234 /* ScreenshotCellView.swift in Sources */,
+				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,
 				0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */,
 				0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */,
+				4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */,
 				0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */,
 				0483E9F91CDCDFB1004EC234 /* ParagraphCellView.swift in Sources */,
 				0483E9F51CDCDFB1004EC234 /* ChoiceCellView.swift in Sources */,
@@ -708,15 +723,16 @@
 				0483E9FE1CDCDFB1004EC234 /* TextAreaCellView.swift in Sources */,
 				041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */,
 				0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */,
+				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
-				0483E9D71CDCDF86004EC234 /* FieldModel.swift in Sources */,
 				0483E9FF1CDCDFB1004EC234 /* TextInputCellView.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
 				04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */,
 				04F54E511CD76717002F501E /* Rule.swift in Sources */,
+				4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */,
 				0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */,
 				04F54DF41CD766EC002F501E /* Protocols.swift in Sources */,
 			);

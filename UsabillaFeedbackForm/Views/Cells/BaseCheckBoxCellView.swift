@@ -11,7 +11,7 @@ import UIKit
 class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     var checkBoxes: [CheckboxWithText] = []
-    var model: FieldModelWithOptions!
+    var model: OptionsFieldModel!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,7 +35,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        guard let item = item as? FieldModelWithOptions else {
+        guard let item = item as? OptionsFieldModel else {
             return
         }
         model = item

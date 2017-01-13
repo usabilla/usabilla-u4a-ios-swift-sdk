@@ -8,10 +8,6 @@
 
 import Foundation
 
-class CheckboxFieldModel: FieldModelWithOptions {
+class CheckboxFieldModel: OptionsFieldModel {
 
-//    deinit {
-//        print("checkbox field model")
-//    }
-//
 }
