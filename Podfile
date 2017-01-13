@@ -6,7 +6,7 @@ use_frameworks!
 workspace 'UsabillaFeedbackForm.xcworkspace'
 
 def testing_pods
-    pod 'Quick' , "0.10.0"
+    pod 'Quick' , "1.0.0"
     pod 'Nimble', "5.1.1"
 end
 

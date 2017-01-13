@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class ChoiceFieldModel: FieldModelWithOptions {
+class ChoiceFieldModel: OptionsFieldModel {
     let defaultValue: String?
     let emptyValue: String?
     var expanded: Bool = false

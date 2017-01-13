@@ -12,7 +12,7 @@ class ParagraphFieldModel: StringFieldModel {
 
     let html: Bool?
     let immutableParagraphValue: String?
-    
+
     required init(json: JSON, pageModel: PageModel) {
         html = json["html"].bool
         immutableParagraphValue = json["text"].string
@@ -23,9 +23,4 @@ class ParagraphFieldModel: StringFieldModel {
     override func convertToJSON() -> Any? {
         return nil
     }
-
-//    deinit {
-//        print("paragraoh field model")
-//    }
-
 }

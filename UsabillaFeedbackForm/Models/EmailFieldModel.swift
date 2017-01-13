@@ -30,8 +30,4 @@ class EmailFieldModel: StringFieldModel {
         return emailTest.evaluate(with: testStr)
     }
 
-//    deinit {
-//        print("mail field model")
-//    }
-
 }

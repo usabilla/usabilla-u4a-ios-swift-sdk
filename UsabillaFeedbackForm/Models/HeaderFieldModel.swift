@@ -17,8 +17,4 @@ class HeaderFieldModel: StringFieldModel {
 
     }
 
-//    deinit {
-//        print("header field model")
-//    }
-
 }

@@ -8,10 +8,6 @@
 
 import Foundation
 
+class RadioFieldModel: OptionsFieldModel {
 
-class RadioFieldModel: FieldModelWithOptions {
-//    deinit {
-//        print("radio field model")
-//    }
-//
 }
