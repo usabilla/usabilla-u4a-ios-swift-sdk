@@ -118,7 +118,7 @@ class RootCellView: UITableViewCell {
 
     func applyCustomisations() {
         titleLabel.font = themeConfig.font.withSize(themeConfig.titleFontSize)
-        errorLabel.font = themeConfig.font.withSize(themeConfig.titleFontSize)
+        errorLabel.font = themeConfig.font.withSize(themeConfig.miniFontSize)
         errorLabel.textColor = themeConfig.errorColor
         errorLabel.text = item.pageModel.copy?.requiredFieldError
         if themeConfig.setTitlesInBold {

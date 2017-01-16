@@ -106,7 +106,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         requiredLabel.text = pageModel.errorMessage
         requiredLabel.textAlignment = .left
         requiredLabel.textColor = pageModel.themeConfig.textColor
-        requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.textFontSize)
+        requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.miniFontSize)
         requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
         requiredLabel.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableHeaderView = requiredLabel
