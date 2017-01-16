@@ -14,31 +14,31 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class JSONParserTest: QuickSpec {
-    
+
     override func spec() {
-        
+
         var formModel: FormModel!
         var jsonObj: JSON!
-        
+
         beforeSuite {
             let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                jsonObj = JSON(data:data as Data)
+                jsonObj = JSON(data: data as Data)
                 formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
-                
+
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
             }
-            
+
         }
-        
+
         describe("the JSON parser") {
             context("with a valid form") {
                 beforeEach {
                     //Only for this describe
                 }
-                
+
                 it("should correctly extract the form settings") {
                     expect(formModel.copyModel.appTitle).to(equal("FeedbackTest"))
                     expect(formModel.copyModel.navigationSubmit).to(equal("TestSubmit"))
@@ -48,21 +48,31 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.isDefault).to(equal(false))
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
-                
+
+                describe("the colors group") {
+                    it("should have been correctly parsed") {
+                        expect(formModel.themeConfig.titleColor.hexString(false)).to(equal("#AAAAAA"))
+                        expect(formModel.themeConfig.accentColor.hexString(false)).to(equal("#BBBBBB"))
+                        expect(formModel.themeConfig.textColor.hexString(false)).to(equal("#CCCCCC"))
+                        expect(formModel.themeConfig.errorColor.hexString(false)).to(equal("#DDDDDD"))
+                        expect(formModel.themeConfig.backgroundColor.hexString(false)).to(equal("#EEEEEE"))
+                        expect(formModel.themeConfig.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
+                    }
+                }
                 describe("the pages array") {
-                    
+
                     it("should have been correctly parsed") {
                         let pages = formModel.pages
                         expect(pages.count).to(equal(4))
                     }
-                    
+
                     describe("the second page") {
-                        
+
                         it("should contain valid data") {
                             let page = formModel.pages[1]
                             expect(page.pageName).to(equal("middle"))
                         }
-                        
+
                         it("should have the correct jump rule") {
                             let page = formModel.pages[1]
                             expect(page.defaultJumpTo).to(equal("end"))
@@ -71,17 +81,17 @@ class JSONParserTest: QuickSpec {
                             expect(page.jumpRuleList![0].dependsOnID).to(equal("SISSM"))
                             expect(page.jumpRuleList![0].targetValues.count).to(equal(1))
                             expect(page.jumpRuleList![0].targetValues[0]).to(equal("option_1"))
-                            
+
                         }
-                        
+
                         describe("the field array") {
-                            
+
                             it("should have the correct properties") {
                                 let fields = formModel.pages[1].fields
                                 expect(fields.count).to(equal(4))
-                                
+
                             }
-                            
+
                             it("should containt a valid first field") {
                                 guard let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as? CheckboxFieldModel else {
                                     expect(true).to(equal(true))
@@ -94,9 +104,9 @@ class JSONParserTest: QuickSpec {
                                 expect(field.options.count).to(equal(2))
                                 expect(field.fieldId).to(equal("SISSM"))
                                 expect(field.fieldId).to(equal("SISSM"))
-                                
+
                             }
-                            
+
                             it("should containt a valid second field") {
                                 guard let field: RatingFieldModel = formModel.pages[1].fields[1] as? RatingFieldModel else {
                                     expect(true).to(equal(true))
@@ -110,9 +120,9 @@ class JSONParserTest: QuickSpec {
                                 expect(field.high).to(equal("high >>"))
                                 expect(field.low).to(equal("<< low"))
                                 expect(field.shouldAppear()).to(equal(true))
-                                
+
                             }
-                            
+
                             it("should containt a valid email field") {
                                 guard let field: EmailFieldModel = formModel.pages[1].fields[2] as? EmailFieldModel else {
                                     return
@@ -122,7 +132,7 @@ class JSONParserTest: QuickSpec {
                                 expect(field.placeHolder).to(equal("Dit is een email"))
                                 expect(field.required).to(equal(true))
                                 expect(field.rule).toNot(beNil())
-                                
+
                             }
                         }
                     }

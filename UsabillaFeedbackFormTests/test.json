@@ -1,6 +1,27 @@
 {
     "version": 1,
+    "colors":{
+        "group1": {
+            "hash": "#aaaaaa"
+        },
+        "group2": {
+            "hash": "#bbbbbb"
+        },
+        "group3": {
+            "hash": "#cccccc"
+        },
+        "group4": {
+            "hash": "#dddddd"
+        },
+        "group5": {
+            "hash": "#eeeeee"
+        },
+        "group6": {
+            "hash": "#ffffff"
+        }
+    },
     "form": {
+      
         "pages": [
                   {
                   "type": "form",
@@ -79,6 +100,9 @@
                              "title": "How likely are you to recommend our company/product/service to your friends and colleagues?",
                              "low": "not at all",
                              "high": "very likely"
+                             },
+                             {
+                             "type": "fakefield"
                              }
                              ],
                   "jumpRules": [],
@@ -248,5 +272,12 @@
         "appSubmit": "TestSubmit",
         "errorMessage": "Error",
         "store_ip": true
+    },
+    "localization": {
+        "appStore": "test",
+        "moreFeedback": "Give me more",
+        "screenshotTitle": "Screenshot..",
+        "cancelButton": "Cancel",
+        "navigationNext": "Next"
     }
 }
