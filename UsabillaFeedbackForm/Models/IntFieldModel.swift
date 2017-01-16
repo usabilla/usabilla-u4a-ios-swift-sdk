@@ -27,7 +27,7 @@ class IntFieldModel: BaseFieldModel {
         }
     }
 
-    required init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON, pageModel: PageModel) {
         fieldValue = nil
         super.init(json: json, pageModel: pageModel)
     }

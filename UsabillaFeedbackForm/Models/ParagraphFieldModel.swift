@@ -13,7 +13,7 @@ class ParagraphFieldModel: StringFieldModel {
     let html: Bool?
     let immutableParagraphValue: String?
 
-    required init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON, pageModel: PageModel) {
         html = json["html"].bool
         immutableParagraphValue = json["text"].string
         super.init(json: json, pageModel: pageModel)

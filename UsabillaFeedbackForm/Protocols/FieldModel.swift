@@ -21,12 +21,9 @@ protocol FieldModelProtocol {
     var rule: ShowHideRule? {set get}
     var isModelValid: Bool {set get}
 
-    init(json: JSON, pageModel: PageModel)
-
     func isValid() -> Bool
     func convertToJSON() -> Any?
 }
-
 
 struct Options {
 

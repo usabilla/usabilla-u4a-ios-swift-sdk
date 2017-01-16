@@ -25,7 +25,7 @@ class OptionsFieldModel: BaseFieldModel {
         }
     }
 
-    required init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON, pageModel: PageModel) {
         var options: [Options] = []
         for (_, subJson): (String, JSON) in json["options"] {
             options.append(Options(title: subJson["title"].stringValue, value: subJson["value"].stringValue))

@@ -20,7 +20,7 @@ class BaseFieldModel: FieldModelProtocol {
     var type: String
     var rule: ShowHideRule?
     
-    required init(json: JSON, pageModel: PageModel) {
+    init(json: JSON, pageModel: PageModel) {
         self.pageModel = pageModel
         self.type = json["type"].stringValue
         self.fieldId = json["name"].stringValue

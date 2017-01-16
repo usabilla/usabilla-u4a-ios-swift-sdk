@@ -21,11 +21,6 @@ class ScreenshotModel: BaseFieldModel {
         self.screenshot = screenShot
     }
 
-    required init(json: JSON, pageModel: PageModel) {
-        fatalError("init(json:pageModel:) has not been implemented")
-    }
-
-
     func toBase64String() -> String? {
         if let screen = screenshot {
             let data = UIImageJPEGRepresentation(screen.fixSizeAndOrientation(), 0.5)

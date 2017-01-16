@@ -15,7 +15,7 @@ class RatingFieldModel: IntFieldModel {
     let scale: Int?
     let isNPS: Bool
 
-    required init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON, pageModel: PageModel) {
         textPositioning = json["textPositioning"].string
         low = json["low"].string
         high = json["high"].string
