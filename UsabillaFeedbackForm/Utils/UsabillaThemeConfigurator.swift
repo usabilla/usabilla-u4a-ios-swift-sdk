@@ -14,6 +14,7 @@ open class UsabillaThemeConfigurator {
     open var titleColor: UIColor
     open var textColor: UIColor
     open var accentColor: UIColor
+    open var headerColor: UIColor?
     open var textOnAccentColor: UIColor
     open var backgroundColor: UIColor
     open var errorColor: UIColor
@@ -55,6 +56,7 @@ open class UsabillaThemeConfigurator {
         textFontSize = 17
         miniFontSize = 15
         setTitlesInBold = true
+        headerColor = nil
     }
 
 
