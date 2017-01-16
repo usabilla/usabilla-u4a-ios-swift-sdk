@@ -46,7 +46,11 @@ class FormViewController: UIViewController {
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
         
-        self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
+        if let headerColor = formModel.themeConfig.headerColor {
+            self.navigationController?.navigationBar.barTintColor = headerColor
+        } else {
+            self.navigationController?.navigationBar.barTintColor = formModel.themeConfig.accentColor
+        }
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
 
 
