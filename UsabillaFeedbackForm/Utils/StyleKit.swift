@@ -14,416 +14,30 @@ import UIKit
 
 
 class Icons: NSObject {
-    
-    
+
+
     //MARK: - Canvas Drawings
-    
+
     /// Icons
-    
-    class func drawLogo(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 132), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 132), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 132)
-        
-        /// Logo
-        do {
-            context.saveGState()
-            
-            /// Fill 1
-            let fill1 = UIBezierPath()
-            fill1.move(to: CGPoint(x: 22.34, y: 10.98))
-            fill1.addCurve(to: CGPoint(x: 11.17, y: 21.96), controlPoint1: CGPoint(x: 22.34, y: 17.05), controlPoint2: CGPoint(x: 17.34, y: 21.96))
-            fill1.addCurve(to: CGPoint(x: 0, y: 10.98), controlPoint1: CGPoint(x: 5, y: 21.96), controlPoint2: CGPoint(x: 0, y: 17.05))
-            fill1.addCurve(to: CGPoint(x: 11.17, y: 0), controlPoint1: CGPoint(x: 0, y: 4.92), controlPoint2: CGPoint(x: 5, y: 0))
-            fill1.addCurve(to: CGPoint(x: 22.34, y: 10.98), controlPoint1: CGPoint(x: 17.34, y: 0), controlPoint2: CGPoint(x: 22.34, y: 4.92))
-            context.saveGState()
-            context.translateBy(x: 150.81, y: 28.79)
-            fill1.usesEvenOddFillRule = true
-            color.setFill()
-            fill1.fill()
-            context.restoreGState()
-            
-            /// Fill 2
-            let fill2 = UIBezierPath()
-            fill2.move(to: CGPoint(x: 11.55, y: 5.68))
-            fill2.addCurve(to: CGPoint(x: 5.77, y: 11.36), controlPoint1: CGPoint(x: 11.55, y: 8.81), controlPoint2: CGPoint(x: 8.96, y: 11.36))
-            fill2.addCurve(to: CGPoint(x: 0, y: 5.68), controlPoint1: CGPoint(x: 2.58, y: 11.36), controlPoint2: CGPoint(x: 0, y: 8.81))
-            fill2.addCurve(to: CGPoint(x: 5.77, y: 0), controlPoint1: CGPoint(x: 0, y: 2.54), controlPoint2: CGPoint(x: 2.58, y: 0))
-            fill2.addCurve(to: CGPoint(x: 11.55, y: 5.68), controlPoint1: CGPoint(x: 8.96, y: 0), controlPoint2: CGPoint(x: 11.55, y: 2.54))
-            context.saveGState()
-            context.translateBy(x: 170.14, y: 54.09)
-            fill2.usesEvenOddFillRule = true
-            color.setFill()
-            fill2.fill()
-            context.restoreGState()
-            
-            /// Fill 3
-            let fill3 = UIBezierPath()
-            fill3.move(to: CGPoint(x: 23.49, y: 11.55))
-            fill3.addCurve(to: CGPoint(x: 11.74, y: 23.09), controlPoint1: CGPoint(x: 23.49, y: 17.92), controlPoint2: CGPoint(x: 18.23, y: 23.09))
-            fill3.addCurve(to: CGPoint(x: 0, y: 11.55), controlPoint1: CGPoint(x: 5.26, y: 23.09), controlPoint2: CGPoint(x: 0, y: 17.92))
-            fill3.addCurve(to: CGPoint(x: 11.74, y: 0), controlPoint1: CGPoint(x: 0, y: 5.17), controlPoint2: CGPoint(x: 5.26, y: 0))
-            fill3.addCurve(to: CGPoint(x: 23.49, y: 11.55), controlPoint1: CGPoint(x: 18.23, y: 0), controlPoint2: CGPoint(x: 23.49, y: 5.17))
-            context.saveGState()
-            context.translateBy(x: 161.41, y: 0.02)
-            fill3.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill3.fill()
-            context.restoreGState()
-            
-            /// Fill 4
-            let fill4 = UIBezierPath()
-            fill4.move(to: CGPoint(x: 31.13, y: 15.3))
-            fill4.addCurve(to: CGPoint(x: 15.57, y: 30.61), controlPoint1: CGPoint(x: 31.13, y: 23.76), controlPoint2: CGPoint(x: 24.16, y: 30.61))
-            fill4.addCurve(to: CGPoint(x: 0, y: 15.3), controlPoint1: CGPoint(x: 6.97, y: 30.61), controlPoint2: CGPoint(x: 0, y: 23.76))
-            fill4.addCurve(to: CGPoint(x: 15.57, y: 0), controlPoint1: CGPoint(x: 0, y: 6.85), controlPoint2: CGPoint(x: 6.97, y: 0))
-            fill4.addCurve(to: CGPoint(x: 31.13, y: 15.3), controlPoint1: CGPoint(x: 24.16, y: 0), controlPoint2: CGPoint(x: 31.13, y: 6.85))
-            context.saveGState()
-            context.translateBy(x: 179.97, y: 23.11)
-            fill4.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill4.fill()
-            context.restoreGState()
-            
-            /// Fill 5
-            let fill5 = UIBezierPath()
-            fill5.move(to: CGPoint.zero)
-            fill5.addLine(to: CGPoint(x: 12.97, y: 0))
-            fill5.addLine(to: CGPoint(x: 12.97, y: 25.19))
-            fill5.addCurve(to: CGPoint(x: 13.96, y: 35.01), controlPoint1: CGPoint(x: 12.97, y: 29.91), controlPoint2: CGPoint(x: 13.3, y: 33.18))
-            fill5.addCurve(to: CGPoint(x: 17.14, y: 39.28), controlPoint1: CGPoint(x: 14.62, y: 36.84), controlPoint2: CGPoint(x: 15.68, y: 38.27))
-            fill5.addCurve(to: CGPoint(x: 22.53, y: 40.81), controlPoint1: CGPoint(x: 18.6, y: 40.3), controlPoint2: CGPoint(x: 20.39, y: 40.81))
-            fill5.addCurve(to: CGPoint(x: 27.97, y: 39.3), controlPoint1: CGPoint(x: 24.66, y: 40.81), controlPoint2: CGPoint(x: 26.48, y: 40.31))
-            fill5.addCurve(to: CGPoint(x: 31.29, y: 34.89), controlPoint1: CGPoint(x: 29.46, y: 38.3), controlPoint2: CGPoint(x: 30.57, y: 36.83))
-            fill5.addCurve(to: CGPoint(x: 32.09, y: 25.61), controlPoint1: CGPoint(x: 31.82, y: 33.45), controlPoint2: CGPoint(x: 32.09, y: 30.35))
-            fill5.addLine(to: CGPoint(x: 32.09, y: 0))
-            fill5.addLine(to: CGPoint(x: 44.92, y: 0))
-            fill5.addLine(to: CGPoint(x: 44.92, y: 22.28))
-            fill5.addCurve(to: CGPoint(x: 42.8, y: 40.3), controlPoint1: CGPoint(x: 44.92, y: 31.06), controlPoint2: CGPoint(x: 44.21, y: 37.06))
-            fill5.addCurve(to: CGPoint(x: 35.19, y: 49.38), controlPoint1: CGPoint(x: 41.08, y: 44.24), controlPoint2: CGPoint(x: 38.54, y: 47.27))
-            fill5.addCurve(to: CGPoint(x: 22.41, y: 52.54), controlPoint1: CGPoint(x: 31.84, y: 51.48), controlPoint2: CGPoint(x: 27.58, y: 52.54))
-            fill5.addCurve(to: CGPoint(x: 8.81, y: 48.84), controlPoint1: CGPoint(x: 16.8, y: 52.54), controlPoint2: CGPoint(x: 12.27, y: 51.31))
-            fill5.addCurve(to: CGPoint(x: 1.5, y: 38.54), controlPoint1: CGPoint(x: 5.35, y: 46.38), controlPoint2: CGPoint(x: 2.91, y: 42.95))
-            fill5.addCurve(to: CGPoint(x: 0, y: 21.91), controlPoint1: CGPoint(x: 0.5, y: 35.49), controlPoint2: CGPoint(x: 0, y: 29.95))
-            fill5.addLine(to: CGPoint.zero)
-            context.saveGState()
-            context.translateBy(x: -0, y: 80.69)
-            fill5.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill5.fill()
-            context.restoreGState()
-            
-            /// Fill 6
-            let fill6 = UIBezierPath()
-            fill6.move(to: CGPoint(x: 35.33, y: 8.32))
-            fill6.addLine(to: CGPoint(x: 27.39, y: 16.12))
-            fill6.addCurve(to: CGPoint(x: 18.6, y: 11.41), controlPoint1: CGPoint(x: 24.16, y: 12.98), controlPoint2: CGPoint(x: 21.23, y: 11.41))
-            fill6.addCurve(to: CGPoint(x: 15.22, y: 12.31), controlPoint1: CGPoint(x: 17.16, y: 11.41), controlPoint2: CGPoint(x: 16.04, y: 11.71))
-            fill6.addCurve(to: CGPoint(x: 14, y: 14.55), controlPoint1: CGPoint(x: 14.41, y: 12.91), controlPoint2: CGPoint(x: 14, y: 13.66))
-            fill6.addCurve(to: CGPoint(x: 14.78, y: 16.42), controlPoint1: CGPoint(x: 14, y: 15.23), controlPoint2: CGPoint(x: 14.26, y: 15.85))
-            fill6.addCurve(to: CGPoint(x: 18.6, y: 18.76), controlPoint1: CGPoint(x: 15.29, y: 16.99), controlPoint2: CGPoint(x: 16.57, y: 17.77))
-            fill6.addLine(to: CGPoint(x: 23.3, y: 21.06))
-            fill6.addCurve(to: CGPoint(x: 33.5, y: 28.41), controlPoint1: CGPoint(x: 28.25, y: 23.46), controlPoint2: CGPoint(x: 31.65, y: 25.91))
-            fill6.addCurve(to: CGPoint(x: 36.27, y: 37.19), controlPoint1: CGPoint(x: 35.35, y: 30.9), controlPoint2: CGPoint(x: 36.27, y: 33.83))
-            fill6.addCurve(to: CGPoint(x: 31.27, y: 48.37), controlPoint1: CGPoint(x: 36.27, y: 41.65), controlPoint2: CGPoint(x: 34.6, y: 45.38))
-            fill6.addCurve(to: CGPoint(x: 17.85, y: 52.85), controlPoint1: CGPoint(x: 27.93, y: 51.35), controlPoint2: CGPoint(x: 23.46, y: 52.85))
-            fill6.addCurve(to: CGPoint(x: 0, y: 44.25), controlPoint1: CGPoint(x: 10.4, y: 52.85), controlPoint2: CGPoint(x: 4.45, y: 49.98))
-            fill6.addLine(to: CGPoint(x: 7.89, y: 35.8))
-            fill6.addCurve(to: CGPoint(x: 13.18, y: 39.98), controlPoint1: CGPoint(x: 9.4, y: 37.53), controlPoint2: CGPoint(x: 11.16, y: 38.92))
-            fill6.addCurve(to: CGPoint(x: 18.56, y: 41.57), controlPoint1: CGPoint(x: 15.2, y: 41.04), controlPoint2: CGPoint(x: 16.99, y: 41.57))
-            fill6.addCurve(to: CGPoint(x: 22.64, y: 40.37), controlPoint1: CGPoint(x: 20.25, y: 41.57), controlPoint2: CGPoint(x: 21.61, y: 41.18))
-            fill6.addCurve(to: CGPoint(x: 24.2, y: 37.6), controlPoint1: CGPoint(x: 23.68, y: 39.57), controlPoint2: CGPoint(x: 24.2, y: 38.65))
-            fill6.addCurve(to: CGPoint(x: 18.6, y: 31.92), controlPoint1: CGPoint(x: 24.2, y: 35.66), controlPoint2: CGPoint(x: 22.33, y: 33.77))
-            fill6.addLine(to: CGPoint(x: 14.28, y: 29.79))
-            fill6.addCurve(to: CGPoint(x: 1.88, y: 14.41), controlPoint1: CGPoint(x: 6.01, y: 25.7), controlPoint2: CGPoint(x: 1.88, y: 20.57))
-            fill6.addCurve(to: CGPoint(x: 6.55, y: 4.23), controlPoint1: CGPoint(x: 1.88, y: 10.44), controlPoint2: CGPoint(x: 3.44, y: 7.04))
-            fill6.addCurve(to: CGPoint(x: 18.51, y: 0), controlPoint1: CGPoint(x: 9.67, y: 1.41), controlPoint2: CGPoint(x: 13.66, y: 0))
-            fill6.addCurve(to: CGPoint(x: 27.88, y: 2.15), controlPoint1: CGPoint(x: 21.83, y: 0), controlPoint2: CGPoint(x: 24.95, y: 0.72))
-            fill6.addCurve(to: CGPoint(x: 35.33, y: 8.32), controlPoint1: CGPoint(x: 30.81, y: 3.58), controlPoint2: CGPoint(x: 33.29, y: 5.64))
-            context.saveGState()
-            context.translateBy(x: 45.92, y: 80.38)
-            fill6.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill6.fill()
-            context.restoreGState()
-            
-            /// Fill 7
-            let fill7 = UIBezierPath()
-            fill7.move(to: CGPoint(x: 26.59, y: 11.64))
-            fill7.addCurve(to: CGPoint(x: 16.71, y: 15.78), controlPoint1: CGPoint(x: 22.63, y: 11.64), controlPoint2: CGPoint(x: 19.33, y: 13.02))
-            fill7.addCurve(to: CGPoint(x: 12.78, y: 26.37), controlPoint1: CGPoint(x: 14.09, y: 18.53), controlPoint2: CGPoint(x: 12.78, y: 22.07))
-            fill7.addCurve(to: CGPoint(x: 16.78, y: 37.1), controlPoint1: CGPoint(x: 12.78, y: 30.72), controlPoint2: CGPoint(x: 14.11, y: 34.29))
-            fill7.addCurve(to: CGPoint(x: 26.64, y: 41.3), controlPoint1: CGPoint(x: 19.45, y: 39.9), controlPoint2: CGPoint(x: 22.74, y: 41.3))
-            fill7.addCurve(to: CGPoint(x: 36.66, y: 37.16), controlPoint1: CGPoint(x: 30.67, y: 41.3), controlPoint2: CGPoint(x: 34.01, y: 39.92))
-            fill7.addCurve(to: CGPoint(x: 40.64, y: 26.33), controlPoint1: CGPoint(x: 39.31, y: 34.41), controlPoint2: CGPoint(x: 40.64, y: 30.8))
-            fill7.addCurve(to: CGPoint(x: 36.66, y: 15.71), controlPoint1: CGPoint(x: 40.64, y: 21.96), controlPoint2: CGPoint(x: 39.31, y: 18.42))
-            fill7.addCurve(to: CGPoint(x: 26.59, y: 11.64), controlPoint1: CGPoint(x: 34.01, y: 13), controlPoint2: CGPoint(x: 30.65, y: 11.64))
-            fill7.close()
-            fill7.move(to: CGPoint(x: 40.08, y: 4.26))
-            fill7.addLine(to: CGPoint(x: 52.9, y: 4.26))
-            fill7.addLine(to: CGPoint(x: 52.9, y: 51.55))
-            fill7.addLine(to: CGPoint(x: 40.08, y: 51.55))
-            fill7.addLine(to: CGPoint(x: 40.08, y: 46.24))
-            fill7.addCurve(to: CGPoint(x: 32.55, y: 51.3), controlPoint1: CGPoint(x: 37.57, y: 48.58), controlPoint2: CGPoint(x: 35.06, y: 50.27))
-            fill7.addCurve(to: CGPoint(x: 24.36, y: 52.85), controlPoint1: CGPoint(x: 30.03, y: 52.33), controlPoint2: CGPoint(x: 27.3, y: 52.85))
-            fill7.addCurve(to: CGPoint(x: 7.23, y: 45.29), controlPoint1: CGPoint(x: 17.76, y: 52.85), controlPoint2: CGPoint(x: 12.05, y: 50.33))
-            fill7.addCurve(to: CGPoint(x: 0, y: 26.51), controlPoint1: CGPoint(x: 2.41, y: 40.26), controlPoint2: CGPoint(x: 0, y: 34))
-            fill7.addCurve(to: CGPoint(x: 6.99, y: 7.44), controlPoint1: CGPoint(x: 0, y: 18.76), controlPoint2: CGPoint(x: 2.33, y: 12.4))
-            fill7.addCurve(to: CGPoint(x: 23.98, y: 0), controlPoint1: CGPoint(x: 11.65, y: 2.48), controlPoint2: CGPoint(x: 17.32, y: 0))
-            fill7.addCurve(to: CGPoint(x: 32.62, y: 1.71), controlPoint1: CGPoint(x: 27.05, y: 0), controlPoint2: CGPoint(x: 29.93, y: 0.57))
-            fill7.addCurve(to: CGPoint(x: 40.08, y: 6.84), controlPoint1: CGPoint(x: 35.31, y: 2.85), controlPoint2: CGPoint(x: 37.79, y: 4.56))
-            fill7.addLine(to: CGPoint(x: 40.08, y: 4.26))
-            fill7.addLine(to: CGPoint(x: 40.08, y: 4.26))
-            fill7.close()
-            fill7.move(to: CGPoint(x: 40.08, y: 4.26))
-            context.saveGState()
-            context.translateBy(x: 84.2, y: 80.38)
-            fill7.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill7.fill()
-            context.restoreGState()
-            
-            /// Fill 8
-            let fill8 = UIBezierPath()
-            fill8.move(to: CGPoint(x: 26.22, y: 27.77))
-            fill8.addCurve(to: CGPoint(x: 16.16, y: 31.84), controlPoint1: CGPoint(x: 22.18, y: 27.77), controlPoint2: CGPoint(x: 18.82, y: 29.13))
-            fill8.addCurve(to: CGPoint(x: 12.17, y: 42.47), controlPoint1: CGPoint(x: 13.5, y: 34.55), controlPoint2: CGPoint(x: 12.17, y: 38.09))
-            fill8.addCurve(to: CGPoint(x: 16.16, y: 53.3), controlPoint1: CGPoint(x: 12.17, y: 46.93), controlPoint2: CGPoint(x: 13.5, y: 50.54))
-            fill8.addCurve(to: CGPoint(x: 26.22, y: 57.43), controlPoint1: CGPoint(x: 18.82, y: 56.05), controlPoint2: CGPoint(x: 22.18, y: 57.43))
-            fill8.addCurve(to: CGPoint(x: 36.11, y: 53.23), controlPoint1: CGPoint(x: 30.13, y: 57.43), controlPoint2: CGPoint(x: 33.43, y: 56.03))
-            fill8.addCurve(to: CGPoint(x: 40.12, y: 42.51), controlPoint1: CGPoint(x: 38.79, y: 50.43), controlPoint2: CGPoint(x: 40.12, y: 46.85))
-            fill8.addCurve(to: CGPoint(x: 36.18, y: 31.91), controlPoint1: CGPoint(x: 40.12, y: 38.2), controlPoint2: CGPoint(x: 38.81, y: 34.66))
-            fill8.addCurve(to: CGPoint(x: 26.22, y: 27.77), controlPoint1: CGPoint(x: 33.55, y: 29.15), controlPoint2: CGPoint(x: 30.23, y: 27.77))
-            fill8.close()
-            fill8.move(to: CGPoint(x: 12.73, y: 0))
-            fill8.addLine(to: CGPoint(x: 12.73, y: 22.97))
-            fill8.addCurve(to: CGPoint(x: 20.25, y: 17.84), controlPoint1: CGPoint(x: 15.05, y: 20.69), controlPoint2: CGPoint(x: 17.56, y: 18.98))
-            fill8.addCurve(to: CGPoint(x: 28.9, y: 16.13), controlPoint1: CGPoint(x: 22.94, y: 16.7), controlPoint2: CGPoint(x: 25.82, y: 16.13))
-            fill8.addCurve(to: CGPoint(x: 45.9, y: 23.57), controlPoint1: CGPoint(x: 35.57, y: 16.13), controlPoint2: CGPoint(x: 41.24, y: 18.61))
-            fill8.addCurve(to: CGPoint(x: 52.9, y: 42.65), controlPoint1: CGPoint(x: 50.57, y: 28.53), controlPoint2: CGPoint(x: 52.9, y: 34.89))
-            fill8.addCurve(to: CGPoint(x: 45.67, y: 61.43), controlPoint1: CGPoint(x: 52.9, y: 50.13), controlPoint2: CGPoint(x: 50.49, y: 56.39))
-            fill8.addCurve(to: CGPoint(x: 28.52, y: 68.98), controlPoint1: CGPoint(x: 40.84, y: 66.46), controlPoint2: CGPoint(x: 35.13, y: 68.98))
-            fill8.addCurve(to: CGPoint(x: 20.3, y: 67.43), controlPoint1: CGPoint(x: 25.58, y: 68.98), controlPoint2: CGPoint(x: 22.84, y: 68.46))
-            fill8.addCurve(to: CGPoint(x: 12.73, y: 62.37), controlPoint1: CGPoint(x: 17.76, y: 66.4), controlPoint2: CGPoint(x: 15.24, y: 64.71))
-            fill8.addLine(to: CGPoint(x: 12.73, y: 67.69))
-            fill8.addLine(to: CGPoint(x: 0, y: 67.69))
-            fill8.addLine(to: CGPoint.zero)
-            fill8.addLine(to: CGPoint(x: 12.73, y: 0))
-            fill8.addLine(to: CGPoint(x: 12.73, y: 0))
-            fill8.close()
-            fill8.move(to: CGPoint(x: 12.73, y: 0))
-            context.saveGState()
-            context.translateBy(x: 140.24, y: 64.25)
-            fill8.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill8.fill()
-            context.restoreGState()
-            
-            /// Fill 9
-            let fill9 = UIBezierPath()
-            fill9.move(to: CGPoint(x: 0, y: 67.69))
-            fill9.addLine(to: CGPoint(x: 12.83, y: 67.69))
-            fill9.addLine(to: CGPoint(x: 12.83, y: 0))
-            fill9.addLine(to: CGPoint.zero)
-            fill9.addLine(to: CGPoint(x: 0, y: 67.69))
-            fill9.close()
-            fill9.move(to: CGPoint(x: 0, y: 67.69))
-            context.saveGState()
-            context.translateBy(x: 213.79, y: 64.25)
-            fill9.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill9.fill()
-            context.restoreGState()
-            
-            /// Fill 10
-            let fill10 = UIBezierPath()
-            fill10.move(to: CGPoint(x: 0, y: 67.69))
-            fill10.addLine(to: CGPoint(x: 12.83, y: 67.69))
-            fill10.addLine(to: CGPoint(x: 12.83, y: 0))
-            fill10.addLine(to: CGPoint.zero)
-            fill10.addLine(to: CGPoint(x: 0, y: 67.69))
-            fill10.close()
-            fill10.move(to: CGPoint(x: 0, y: 67.69))
-            context.saveGState()
-            context.translateBy(x: 230.04, y: 64.25)
-            fill10.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill10.fill()
-            context.restoreGState()
-            
-            /// Fill 11
-            let fill11 = UIBezierPath()
-            fill11.move(to: CGPoint(x: 26.59, y: 11.64))
-            fill11.addCurve(to: CGPoint(x: 16.71, y: 15.78), controlPoint1: CGPoint(x: 22.63, y: 11.64), controlPoint2: CGPoint(x: 19.33, y: 13.02))
-            fill11.addCurve(to: CGPoint(x: 12.78, y: 26.37), controlPoint1: CGPoint(x: 14.09, y: 18.53), controlPoint2: CGPoint(x: 12.78, y: 22.07))
-            fill11.addCurve(to: CGPoint(x: 16.78, y: 37.1), controlPoint1: CGPoint(x: 12.78, y: 30.72), controlPoint2: CGPoint(x: 14.11, y: 34.29))
-            fill11.addCurve(to: CGPoint(x: 26.64, y: 41.3), controlPoint1: CGPoint(x: 19.45, y: 39.9), controlPoint2: CGPoint(x: 22.74, y: 41.3))
-            fill11.addCurve(to: CGPoint(x: 36.66, y: 37.16), controlPoint1: CGPoint(x: 30.67, y: 41.3), controlPoint2: CGPoint(x: 34.01, y: 39.92))
-            fill11.addCurve(to: CGPoint(x: 40.64, y: 26.33), controlPoint1: CGPoint(x: 39.31, y: 34.41), controlPoint2: CGPoint(x: 40.64, y: 30.8))
-            fill11.addCurve(to: CGPoint(x: 36.66, y: 15.71), controlPoint1: CGPoint(x: 40.64, y: 21.96), controlPoint2: CGPoint(x: 39.31, y: 18.42))
-            fill11.addCurve(to: CGPoint(x: 26.59, y: 11.64), controlPoint1: CGPoint(x: 34.01, y: 13), controlPoint2: CGPoint(x: 30.65, y: 11.64))
-            fill11.close()
-            fill11.move(to: CGPoint(x: 40.08, y: 4.26))
-            fill11.addLine(to: CGPoint(x: 52.9, y: 4.26))
-            fill11.addLine(to: CGPoint(x: 52.9, y: 51.55))
-            fill11.addLine(to: CGPoint(x: 40.08, y: 51.55))
-            fill11.addLine(to: CGPoint(x: 40.08, y: 46.24))
-            fill11.addCurve(to: CGPoint(x: 32.55, y: 51.3), controlPoint1: CGPoint(x: 37.57, y: 48.58), controlPoint2: CGPoint(x: 35.06, y: 50.27))
-            fill11.addCurve(to: CGPoint(x: 24.36, y: 52.85), controlPoint1: CGPoint(x: 30.03, y: 52.33), controlPoint2: CGPoint(x: 27.3, y: 52.85))
-            fill11.addCurve(to: CGPoint(x: 7.23, y: 45.29), controlPoint1: CGPoint(x: 17.75, y: 52.85), controlPoint2: CGPoint(x: 12.04, y: 50.33))
-            fill11.addCurve(to: CGPoint(x: 0, y: 26.51), controlPoint1: CGPoint(x: 2.41, y: 40.26), controlPoint2: CGPoint(x: 0, y: 34))
-            fill11.addCurve(to: CGPoint(x: 6.99, y: 7.44), controlPoint1: CGPoint(x: 0, y: 18.76), controlPoint2: CGPoint(x: 2.33, y: 12.4))
-            fill11.addCurve(to: CGPoint(x: 23.98, y: 0), controlPoint1: CGPoint(x: 11.65, y: 2.48), controlPoint2: CGPoint(x: 17.32, y: 0))
-            fill11.addCurve(to: CGPoint(x: 32.61, y: 1.71), controlPoint1: CGPoint(x: 27.05, y: 0), controlPoint2: CGPoint(x: 29.92, y: 0.57))
-            fill11.addCurve(to: CGPoint(x: 40.08, y: 6.84), controlPoint1: CGPoint(x: 35.31, y: 2.85), controlPoint2: CGPoint(x: 37.79, y: 4.56))
-            fill11.addLine(to: CGPoint(x: 40.08, y: 4.26))
-            fill11.addLine(to: CGPoint(x: 40.08, y: 4.26))
-            fill11.close()
-            fill11.move(to: CGPoint(x: 40.08, y: 4.26))
-            context.saveGState()
-            context.translateBy(x: 246.35, y: 80.38)
-            fill11.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill11.fill()
-            context.restoreGState()
-            
-            /// Fill 12
-            let fill12 = UIBezierPath()
-            fill12.move(to: CGPoint(x: 6.41, y: 0))
-            fill12.addCurve(to: CGPoint(x: 0, y: 6.31), controlPoint1: CGPoint(x: 2.87, y: 0), controlPoint2: CGPoint(x: 0, y: 2.82))
-            fill12.addLine(to: CGPoint(x: 0, y: 42.34))
-            fill12.addLine(to: CGPoint(x: 12.83, y: 42.34))
-            fill12.addLine(to: CGPoint(x: 12.83, y: 6.31))
-            fill12.addCurve(to: CGPoint(x: 6.41, y: 0), controlPoint1: CGPoint(x: 12.83, y: 2.82), controlPoint2: CGPoint(x: 9.95, y: 0))
-            context.saveGState()
-            context.translateBy(x: 196.54, y: 89.59)
-            fill12.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill12.fill()
-            context.restoreGState()
-            
-            /// Fill 13
-            let fill13 = UIBezierPath()
-            fill13.move(to: CGPoint(x: 11.49, y: 0))
-            fill13.addCurve(to: CGPoint(x: 19.65, y: 3.39), controlPoint1: CGPoint(x: 14.66, y: 0), controlPoint2: CGPoint(x: 17.38, y: 1.13))
-            fill13.addCurve(to: CGPoint(x: 23.05, y: 11.59), controlPoint1: CGPoint(x: 21.91, y: 5.64), controlPoint2: CGPoint(x: 23.05, y: 8.38))
-            fill13.addCurve(to: CGPoint(x: 19.68, y: 19.7), controlPoint1: CGPoint(x: 23.05, y: 14.76), controlPoint2: CGPoint(x: 21.92, y: 17.46))
-            fill13.addCurve(to: CGPoint(x: 11.62, y: 23.05), controlPoint1: CGPoint(x: 17.43, y: 21.93), controlPoint2: CGPoint(x: 14.75, y: 23.05))
-            fill13.addCurve(to: CGPoint(x: 3.4, y: 19.63), controlPoint1: CGPoint(x: 8.41, y: 23.05), controlPoint2: CGPoint(x: 5.67, y: 21.91))
-            fill13.addCurve(to: CGPoint(x: 0, y: 11.33), controlPoint1: CGPoint(x: 1.13, y: 17.35), controlPoint2: CGPoint(x: 0, y: 14.59))
-            fill13.addCurve(to: CGPoint(x: 3.37, y: 3.32), controlPoint1: CGPoint(x: 0, y: 8.2), controlPoint2: CGPoint(x: 1.12, y: 5.54))
-            fill13.addCurve(to: CGPoint(x: 11.49, y: 0), controlPoint1: CGPoint(x: 5.61, y: 1.11), controlPoint2: CGPoint(x: 8.32, y: 0))
-            context.saveGState()
-            context.translateBy(x: 186.62, y: 62.27)
-            fill13.usesEvenOddFillRule = true
-            UIColor.black.setFill()
-            fill13.fill()
-            context.restoreGState()
-            
-            context.restoreGState()
-        }
-        
-        context.restoreGState()
-    }
-    
-    class func drawAddImage(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-        
-        /// Group
-        do {
-            context.saveGState()
-            context.translateBy(x: 37, y: 37)
-            
-            /// Shape
-            let shape = UIBezierPath()
-            shape.move(to: CGPoint(x: 162.9, y: 0))
-            shape.addLine(to: CGPoint(x: 61.59, y: 0))
-            shape.addCurve(to: CGPoint(x: 0, y: 62.01), controlPoint1: CGPoint(x: 27.63, y: 0), controlPoint2: CGPoint(x: 0, y: 27.82))
-            shape.addLine(to: CGPoint(x: 0, y: 163.99))
-            shape.addCurve(to: CGPoint(x: 61.59, y: 226), controlPoint1: CGPoint(x: 0, y: 198.18), controlPoint2: CGPoint(x: 27.63, y: 226))
-            shape.addLine(to: CGPoint(x: 162.9, y: 226))
-            shape.addCurve(to: CGPoint(x: 224.49, y: 163.99), controlPoint1: CGPoint(x: 196.86, y: 226), controlPoint2: CGPoint(x: 224.49, y: 198.18))
-            shape.addLine(to: CGPoint(x: 224.49, y: 62.01))
-            shape.addCurve(to: CGPoint(x: 162.9, y: 0), controlPoint1: CGPoint(x: 224.5, y: 27.82), controlPoint2: CGPoint(x: 196.86, y: 0))
-            shape.close()
-            shape.move(to: CGPoint(x: 212.68, y: 163.99))
-            shape.addCurve(to: CGPoint(x: 162.9, y: 214.1), controlPoint1: CGPoint(x: 212.68, y: 191.62), controlPoint2: CGPoint(x: 190.35, y: 214.1))
-            shape.addLine(to: CGPoint(x: 61.59, y: 214.1))
-            shape.addCurve(to: CGPoint(x: 11.81, y: 163.99), controlPoint1: CGPoint(x: 34.15, y: 214.1), controlPoint2: CGPoint(x: 11.81, y: 191.62))
-            shape.addLine(to: CGPoint(x: 11.81, y: 62.01))
-            shape.addCurve(to: CGPoint(x: 61.59, y: 11.9), controlPoint1: CGPoint(x: 11.81, y: 34.38), controlPoint2: CGPoint(x: 34.15, y: 11.9))
-            shape.addLine(to: CGPoint(x: 162.9, y: 11.9))
-            shape.addCurve(to: CGPoint(x: 212.68, y: 62.01), controlPoint1: CGPoint(x: 190.35, y: 11.9), controlPoint2: CGPoint(x: 212.68, y: 34.38))
-            shape.addLine(to: CGPoint(x: 212.68, y: 163.99))
-            shape.close()
-            shape.move(to: CGPoint(x: 212.68, y: 163.99))
-            context.saveGState()
-            context.translateBy(x: 0.7, y: 0)
-            shape.usesEvenOddFillRule = true
-            color.setFill()
-            shape.fill()
-            context.restoreGState()
-            
-            /// Shape
-            let shape2 = UIBezierPath()
-            shape2.move(to: CGPoint(x: 57.05, y: 0))
-            shape2.addLine(to: CGPoint(x: 45.24, y: 0))
-            shape2.addLine(to: CGPoint(x: 45.24, y: 45.54))
-            shape2.addLine(to: CGPoint(x: 0, y: 45.54))
-            shape2.addLine(to: CGPoint(x: 0, y: 57.44))
-            shape2.addLine(to: CGPoint(x: 45.24, y: 57.44))
-            shape2.addLine(to: CGPoint(x: 45.24, y: 102.98))
-            shape2.addLine(to: CGPoint(x: 57.05, y: 102.98))
-            shape2.addLine(to: CGPoint(x: 57.05, y: 57.44))
-            shape2.addLine(to: CGPoint(x: 102.29, y: 57.44))
-            shape2.addLine(to: CGPoint(x: 102.29, y: 45.54))
-            shape2.addLine(to: CGPoint(x: 57.05, y: 45.54))
-            shape2.addLine(to: CGPoint(x: 57.05, y: 0))
-            shape2.close()
-            shape2.move(to: CGPoint(x: 57.05, y: 0))
-            context.saveGState()
-            context.translateBy(x: 61.8, y: 61.51)
-            shape2.usesEvenOddFillRule = true
-            color.setFill()
-            shape2.fill()
-            context.restoreGState()
-            
-            context.restoreGState()
-        }
-        
-        context.restoreGState()
-    }
-    
+
     class func drawEdit(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         /// Resize to Target Frame
         context.saveGState()
         let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
         context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-        
+
         /// ic_mode_edit_black_24px
         do {
             context.saveGState()
-            
+
             /// Group
             do {
                 context.saveGState()
-                
+
                 /// Shape
                 let shape = UIBezierPath()
                 shape.move(to: CGPoint(x: 0, y: 178.16))
@@ -448,7 +62,7 @@ class Icons: NSObject {
                 color.setFill()
                 shape.fill()
                 context.restoreGState()
-                
+
                 /// Shape
                 let shape2 = UIBezierPath()
                 shape2.move(to: CGPoint.zero)
@@ -458,33 +72,33 @@ class Icons: NSObject {
                 shape2.addLine(to: CGPoint.zero)
                 shape2.close()
                 shape2.move(to: CGPoint.zero)
-                
+
                 context.restoreGState()
             }
-            
+
             context.restoreGState()
         }
-        
+
         context.restoreGState()
     }
-    
-       /// -Form copy
-    
-    class func drawAddImage2(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-      
+
+    /// -Form copy
+
+    class func drawAddImage(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
+
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         //// Resize to Target Frame
         context.saveGState()
         let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 24, height: 24), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
         context.scaleBy(x: resizedFrame.width / 24, y: resizedFrame.height / 24)
-        
-        
+
+
         //// Color Declarations
         let fillColor = color
-        
+
         //// addScreenshotIcon.pdf Group
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
@@ -511,8 +125,8 @@ class Icons: NSObject {
         bezierPath.usesEvenOddFillRule = true
         fillColor.setFill()
         bezierPath.fill()
-        
-        
+
+
         //// Bezier 2 Drawing
         let bezier2Path = UIBezierPath()
         bezier2Path.move(to: CGPoint(x: 12.62, y: 6.53))
@@ -532,157 +146,26 @@ class Icons: NSObject {
         bezier2Path.usesEvenOddFillRule = true
         fillColor.setFill()
         bezier2Path.fill()
-        
+
         context.restoreGState()
-        
+
     }
-    
-    class func drawEdit2(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-        
-        /// ic_mode_edit_black_24px
-        do {
-            context.saveGState()
-            
-            /// Group
-            do {
-                context.saveGState()
-                
-                /// Shape
-                let shape = UIBezierPath()
-                shape.move(to: CGPoint(x: 0, y: 178.16))
-                shape.addLine(to: CGPoint(x: 0, y: 225.03))
-                shape.addLine(to: CGPoint(x: 46.88, y: 225.03))
-                shape.addLine(to: CGPoint(x: 185.13, y: 86.78))
-                shape.addLine(to: CGPoint(x: 138.25, y: 39.91))
-                shape.addLine(to: CGPoint(x: 0, y: 178.16))
-                shape.close()
-                shape.move(to: CGPoint(x: 221.38, y: 50.53))
-                shape.addCurve(to: CGPoint(x: 221.38, y: 32.91), controlPoint1: CGPoint(x: 226.25, y: 45.66), controlPoint2: CGPoint(x: 226.25, y: 37.78))
-                shape.addLine(to: CGPoint(x: 192.13, y: 3.66))
-                shape.addCurve(to: CGPoint(x: 174.5, y: 3.66), controlPoint1: CGPoint(x: 187.25, y: -1.22), controlPoint2: CGPoint(x: 179.38, y: -1.22))
-                shape.addLine(to: CGPoint(x: 151.63, y: 26.53))
-                shape.addLine(to: CGPoint(x: 198.5, y: 73.41))
-                shape.addLine(to: CGPoint(x: 221.38, y: 50.53))
-                shape.close()
-                shape.move(to: CGPoint(x: 221.38, y: 50.53))
-                context.saveGState()
-                context.translateBy(x: 37.5, y: 37.47)
-                shape.usesEvenOddFillRule = true
-                color.setFill()
-                shape.fill()
-                context.restoreGState()
-                
-                /// Shape
-                let shape2 = UIBezierPath()
-                shape2.move(to: CGPoint.zero)
-                shape2.addLine(to: CGPoint(x: 300, y: 0))
-                shape2.addLine(to: CGPoint(x: 300, y: 300))
-                shape2.addLine(to: CGPoint(x: 0, y: 300))
-                shape2.addLine(to: CGPoint.zero)
-                shape2.close()
-                shape2.move(to: CGPoint.zero)
-                
-                context.restoreGState()
-            }
-            
-            context.restoreGState()
-        }
-        
-        context.restoreGState()
-    }
-    
-    class func drawDelete2(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-        
-        /// Rectangle
-        _ = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
-        /// trash
-        let trash = UIBezierPath()
-        trash.miterLimit = -10
-        trash.move(to: CGPoint(x: 151.38, y: 201.79))
-        trash.addCurve(to: CGPoint(x: 125.42, y: 226), controlPoint1: CGPoint(x: 151.38, y: 215.16), controlPoint2: CGPoint(x: 139.75, y: 226))
-        trash.addLine(to: CGPoint(x: 47.58, y: 226))
-        trash.addCurve(to: CGPoint(x: 21.63, y: 201.79), controlPoint1: CGPoint(x: 33.25, y: 226), controlPoint2: CGPoint(x: 21.63, y: 215.16))
-        trash.addLine(to: CGPoint(x: 8.65, y: 40.36))
-        trash.addLine(to: CGPoint(x: 164.35, y: 40.36))
-        trash.addLine(to: CGPoint(x: 151.38, y: 201.79))
-        trash.close()
-        trash.move(to: CGPoint(x: 54.04, y: 64.57))
-        trash.addLine(to: CGPoint(x: 43.25, y: 64.57))
-        trash.addLine(to: CGPoint(x: 49.75, y: 201.79))
-        trash.addLine(to: CGPoint(x: 60.55, y: 201.79))
-        trash.addLine(to: CGPoint(x: 54.04, y: 64.57))
-        trash.close()
-        trash.move(to: CGPoint(x: 90.5, y: 64.57))
-        trash.addLine(to: CGPoint(x: 81.85, y: 64.57))
-        trash.addLine(to: CGPoint(x: 81.85, y: 201.79))
-        trash.addLine(to: CGPoint(x: 90.5, y: 201.79))
-        trash.addLine(to: CGPoint(x: 90.5, y: 64.57))
-        trash.close()
-        trash.move(to: CGPoint(x: 118.95, y: 64.57))
-        trash.addLine(to: CGPoint(x: 112.45, y: 201.79))
-        trash.addLine(to: CGPoint(x: 123.25, y: 201.79))
-        trash.addLine(to: CGPoint(x: 129.75, y: 64.57))
-        trash.addLine(to: CGPoint(x: 118.95, y: 64.57))
-        trash.close()
-        trash.move(to: CGPoint(x: 129.75, y: 32.29))
-        trash.addLine(to: CGPoint(x: 43.25, y: 32.29))
-        trash.addLine(to: CGPoint(x: 0, y: 32.29))
-        trash.addLine(to: CGPoint(x: 0, y: 30.27))
-        trash.addCurve(to: CGPoint(x: 10.81, y: 20.18), controlPoint1: CGPoint(x: 0, y: 24.69), controlPoint2: CGPoint(x: 4.84, y: 20.18))
-        trash.addLine(to: CGPoint(x: 44.69, y: 20.18))
-        trash.addLine(to: CGPoint(x: 56.23, y: 4.04))
-        trash.addCurve(to: CGPoint(x: 64.88, y: 0), controlPoint1: CGPoint(x: 56.23, y: 1.81), controlPoint2: CGPoint(x: 62.49, y: 0))
-        trash.addLine(to: CGPoint(x: 108.13, y: 0))
-        trash.addCurve(to: CGPoint(x: 116.77, y: 4.04), controlPoint1: CGPoint(x: 110.51, y: 0), controlPoint2: CGPoint(x: 116.77, y: 1.81))
-        trash.addLine(to: CGPoint(x: 128.31, y: 20.18))
-        trash.addLine(to: CGPoint(x: 162.19, y: 20.18))
-        trash.addCurve(to: CGPoint(x: 173, y: 30.27), controlPoint1: CGPoint(x: 168.16, y: 20.18), controlPoint2: CGPoint(x: 173, y: 24.69))
-        trash.addLine(to: CGPoint(x: 173, y: 32.29))
-        trash.addLine(to: CGPoint(x: 129.75, y: 32.29))
-        trash.addLine(to: CGPoint(x: 129.75, y: 32.29))
-        trash.close()
-        trash.move(to: CGPoint(x: 129.75, y: 32.29))
-        context.saveGState()
-        context.translateBy(x: 64, y: 37)
-        trash.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        trash.fill()
-        context.restoreGState()
-        
-        context.restoreGState()
-    }
-    
+
     /// Symbols
-    
+
     class func drawPoweredBy(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 40), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         /// Resize to Target Frame
         context.saveGState()
         let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 149, height: 33), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
         context.scaleBy(x: resizedFrame.width / 149, y: resizedFrame.height / 33)
-        
+
         /// Powered by
         let poweredBy2 = NSMutableAttributedString(string: "Powered by")
-       
+
         poweredBy2.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: poweredBy2.length))
         poweredBy2.addAttribute(NSKernAttributeName, value: -0.24, range: NSRange(location: 0, length: poweredBy2.length))
         context.saveGState()
@@ -692,7 +175,7 @@ class Icons: NSObject {
         do {
             context.saveGState()
             context.translateBy(x: 67, y: -2)
-            
+
             /// Fill 1
             let fill1 = UIBezierPath()
             fill1.move(to: CGPoint(x: 4.84, y: 2.38))
@@ -706,7 +189,7 @@ class Icons: NSObject {
             color.setFill()
             fill1.fill()
             context.restoreGState()
-            
+
             /// Fill 2
             let fill2 = UIBezierPath()
             fill2.move(to: CGPoint(x: 2.5, y: 1.23))
@@ -720,7 +203,7 @@ class Icons: NSObject {
             color.setFill()
             fill2.fill()
             context.restoreGState()
-            
+
             /// Fill 3
             let fill3 = UIBezierPath()
             fill3.move(to: CGPoint(x: 5.09, y: 2.5))
@@ -734,7 +217,7 @@ class Icons: NSObject {
             color.setFill()
             fill3.fill()
             context.restoreGState()
-            
+
             /// Fill 4
             let fill4 = UIBezierPath()
             fill4.move(to: CGPoint(x: 6.75, y: 3.31))
@@ -748,7 +231,7 @@ class Icons: NSObject {
             color.setFill()
             fill4.fill()
             context.restoreGState()
-            
+
             /// Fill 5
             let fill5 = UIBezierPath()
             fill5.move(to: CGPoint.zero)
@@ -776,7 +259,7 @@ class Icons: NSObject {
             color.setFill()
             fill5.fill()
             context.restoreGState()
-            
+
             /// Fill 6
             let fill6 = UIBezierPath()
             fill6.move(to: CGPoint(x: 7.65, y: 1.8))
@@ -810,7 +293,7 @@ class Icons: NSObject {
             color.setFill()
             fill6.fill()
             context.restoreGState()
-            
+
             /// Fill 7
             let fill7 = UIBezierPath()
             fill7.move(to: CGPoint(x: 5.76, y: 2.52))
@@ -846,7 +329,7 @@ class Icons: NSObject {
             color.setFill()
             fill7.fill()
             context.restoreGState()
-            
+
             /// Fill 8
             let fill8 = UIBezierPath()
             fill8.move(to: CGPoint(x: 5.68, y: 6.01))
@@ -882,7 +365,7 @@ class Icons: NSObject {
             color.setFill()
             fill8.fill()
             context.restoreGState()
-            
+
             /// Fill 9
             let fill9 = UIBezierPath()
             fill9.move(to: CGPoint(x: 0, y: 14.65))
@@ -898,7 +381,7 @@ class Icons: NSObject {
             color.setFill()
             fill9.fill()
             context.restoreGState()
-            
+
             /// Fill 10
             let fill10 = UIBezierPath()
             fill10.move(to: CGPoint(x: 0, y: 14.65))
@@ -914,7 +397,7 @@ class Icons: NSObject {
             color.setFill()
             fill10.fill()
             context.restoreGState()
-            
+
             /// Fill 11
             let fill11 = UIBezierPath()
             fill11.move(to: CGPoint(x: 5.76, y: 2.52))
@@ -950,7 +433,7 @@ class Icons: NSObject {
             color.setFill()
             fill11.fill()
             context.restoreGState()
-            
+
             /// Fill 12
             let fill12 = UIBezierPath()
             fill12.move(to: CGPoint(x: 1.39, y: 0))
@@ -965,7 +448,7 @@ class Icons: NSObject {
             color.setFill()
             fill12.fill()
             context.restoreGState()
-            
+
             /// Fill 13
             let fill13 = UIBezierPath()
             fill13.move(to: CGPoint(x: 2.49, y: 0))
@@ -983,480 +466,23 @@ class Icons: NSObject {
             color.setFill()
             fill13.fill()
             context.restoreGState()
-            
+
             context.restoreGState()
         }
-        
+
         context.restoreGState()
     }
-    
-    class func drawLogo2(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 372, height: 169), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 372, height: 169), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 372, y: resizedFrame.height / 169)
-        
-        /// Fill 1
-        let fill1 = UIBezierPath()
-        fill1.move(to: CGPoint(x: 27.7, y: 13.85))
-        fill1.addCurve(to: CGPoint(x: 13.85, y: 27.7), controlPoint1: CGPoint(x: 27.7, y: 21.5), controlPoint2: CGPoint(x: 21.5, y: 27.7))
-        fill1.addCurve(to: CGPoint(x: 0, y: 13.85), controlPoint1: CGPoint(x: 6.2, y: 27.7), controlPoint2: CGPoint(x: 0, y: 21.5))
-        fill1.addCurve(to: CGPoint(x: 13.85, y: 0), controlPoint1: CGPoint(x: 0, y: 6.2), controlPoint2: CGPoint(x: 6.2, y: 0))
-        fill1.addCurve(to: CGPoint(x: 27.7, y: 13.85), controlPoint1: CGPoint(x: 21.5, y: 0), controlPoint2: CGPoint(x: 27.7, y: 6.2))
-        context.saveGState()
-        context.translateBy(x: 187.01, y: 36.31)
-        fill1.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill1.fill()
-        context.restoreGState()
-        /// Fill 2
-        let fill2 = UIBezierPath()
-        fill2.move(to: CGPoint(x: 14.32, y: 7.16))
-        fill2.addCurve(to: CGPoint(x: 7.16, y: 14.32), controlPoint1: CGPoint(x: 14.32, y: 11.12), controlPoint2: CGPoint(x: 11.12, y: 14.32))
-        fill2.addCurve(to: CGPoint(x: 0, y: 7.16), controlPoint1: CGPoint(x: 3.21, y: 14.32), controlPoint2: CGPoint(x: 0, y: 11.12))
-        fill2.addCurve(to: CGPoint(x: 7.16, y: 0), controlPoint1: CGPoint(x: 0, y: 3.21), controlPoint2: CGPoint(x: 3.21, y: 0))
-        fill2.addCurve(to: CGPoint(x: 14.32, y: 7.16), controlPoint1: CGPoint(x: 11.12, y: 0), controlPoint2: CGPoint(x: 14.32, y: 3.21))
-        context.saveGState()
-        context.translateBy(x: 210.97, y: 68.22)
-        fill2.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill2.fill()
-        context.restoreGState()
-        /// Fill 3
-        let fill3 = UIBezierPath()
-        fill3.move(to: CGPoint(x: 29.12, y: 14.56))
-        fill3.addCurve(to: CGPoint(x: 14.56, y: 29.12), controlPoint1: CGPoint(x: 29.12, y: 22.61), controlPoint2: CGPoint(x: 22.61, y: 29.12))
-        fill3.addCurve(to: CGPoint(x: 0, y: 14.56), controlPoint1: CGPoint(x: 6.52, y: 29.12), controlPoint2: CGPoint(x: 0, y: 22.61))
-        fill3.addCurve(to: CGPoint(x: 14.56, y: 0), controlPoint1: CGPoint(x: 0, y: 6.52), controlPoint2: CGPoint(x: 6.52, y: 0))
-        fill3.addCurve(to: CGPoint(x: 29.12, y: 14.56), controlPoint1: CGPoint(x: 22.61, y: 0), controlPoint2: CGPoint(x: 29.12, y: 6.52))
-        context.saveGState()
-        context.translateBy(x: 200.15, y: 0.02)
-        fill3.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill3.fill()
-        context.restoreGState()
-        /// Fill 4
-        let fill4 = UIBezierPath()
-        fill4.move(to: CGPoint(x: 38.6, y: 19.3))
-        fill4.addCurve(to: CGPoint(x: 19.3, y: 38.6), controlPoint1: CGPoint(x: 38.6, y: 29.96), controlPoint2: CGPoint(x: 29.96, y: 38.6))
-        fill4.addCurve(to: CGPoint(x: 0, y: 19.3), controlPoint1: CGPoint(x: 8.64, y: 38.6), controlPoint2: CGPoint(x: 0, y: 29.96))
-        fill4.addCurve(to: CGPoint(x: 19.3, y: 0), controlPoint1: CGPoint(x: 0, y: 8.64), controlPoint2: CGPoint(x: 8.64, y: 0))
-        fill4.addCurve(to: CGPoint(x: 38.6, y: 19.3), controlPoint1: CGPoint(x: 29.96, y: 0), controlPoint2: CGPoint(x: 38.6, y: 8.64))
-        context.saveGState()
-        context.translateBy(x: 223.16, y: 29.14)
-        fill4.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill4.fill()
-        context.restoreGState()
-        /// Fill 5
-        let fill5 = UIBezierPath()
-        fill5.move(to: CGPoint.zero)
-        fill5.addLine(to: CGPoint(x: 16.08, y: 0))
-        fill5.addLine(to: CGPoint(x: 16.08, y: 31.77))
-        fill5.addCurve(to: CGPoint(x: 17.31, y: 44.15), controlPoint1: CGPoint(x: 16.08, y: 37.72), controlPoint2: CGPoint(x: 16.49, y: 41.84))
-        fill5.addCurve(to: CGPoint(x: 21.25, y: 49.54), controlPoint1: CGPoint(x: 18.12, y: 46.46), controlPoint2: CGPoint(x: 19.44, y: 48.26))
-        fill5.addCurve(to: CGPoint(x: 27.94, y: 51.46), controlPoint1: CGPoint(x: 23.06, y: 50.82), controlPoint2: CGPoint(x: 25.29, y: 51.46))
-        fill5.addCurve(to: CGPoint(x: 34.68, y: 49.57), controlPoint1: CGPoint(x: 30.58, y: 51.46), controlPoint2: CGPoint(x: 32.83, y: 50.84))
-        fill5.addCurve(to: CGPoint(x: 38.8, y: 44.01), controlPoint1: CGPoint(x: 36.53, y: 48.31), controlPoint2: CGPoint(x: 37.9, y: 46.46))
-        fill5.addCurve(to: CGPoint(x: 39.79, y: 32.3), controlPoint1: CGPoint(x: 39.46, y: 42.18), controlPoint2: CGPoint(x: 39.79, y: 38.28))
-        fill5.addLine(to: CGPoint(x: 39.79, y: 0))
-        fill5.addLine(to: CGPoint(x: 55.7, y: 0))
-        fill5.addLine(to: CGPoint(x: 55.7, y: 28.1))
-        fill5.addCurve(to: CGPoint(x: 53.07, y: 50.82), controlPoint1: CGPoint(x: 55.7, y: 39.17), controlPoint2: CGPoint(x: 54.82, y: 46.75))
-        fill5.addCurve(to: CGPoint(x: 43.64, y: 62.27), controlPoint1: CGPoint(x: 50.94, y: 55.8), controlPoint2: CGPoint(x: 47.79, y: 59.61))
-        fill5.addCurve(to: CGPoint(x: 27.79, y: 66.26), controlPoint1: CGPoint(x: 39.48, y: 64.93), controlPoint2: CGPoint(x: 34.2, y: 66.26))
-        fill5.addCurve(to: CGPoint(x: 10.92, y: 61.6), controlPoint1: CGPoint(x: 20.84, y: 66.26), controlPoint2: CGPoint(x: 15.21, y: 64.71))
-        fill5.addCurve(to: CGPoint(x: 1.86, y: 48.61), controlPoint1: CGPoint(x: 6.63, y: 58.5), controlPoint2: CGPoint(x: 3.61, y: 54.17))
-        fill5.addCurve(to: CGPoint(x: 0, y: 27.64), controlPoint1: CGPoint(x: 0.62, y: 44.76), controlPoint2: CGPoint(x: 0, y: 37.78))
-        fill5.addLine(to: CGPoint.zero)
-        context.saveGState()
-        context.translateBy(x: 0, y: 101.76)
-        fill5.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill5.fill()
-        context.restoreGState()
-        /// Fill 6
-        let fill6 = UIBezierPath()
-        fill6.move(to: CGPoint(x: 43.81, y: 10.49))
-        fill6.addLine(to: CGPoint(x: 33.96, y: 20.33))
-        fill6.addCurve(to: CGPoint(x: 23.07, y: 14.39), controlPoint1: CGPoint(x: 29.96, y: 16.37), controlPoint2: CGPoint(x: 26.33, y: 14.39))
-        fill6.addCurve(to: CGPoint(x: 18.87, y: 15.53), controlPoint1: CGPoint(x: 21.28, y: 14.39), controlPoint2: CGPoint(x: 19.89, y: 14.77))
-        fill6.addCurve(to: CGPoint(x: 17.36, y: 18.35), controlPoint1: CGPoint(x: 17.86, y: 16.28), controlPoint2: CGPoint(x: 17.36, y: 17.23))
-        fill6.addCurve(to: CGPoint(x: 18.32, y: 20.71), controlPoint1: CGPoint(x: 17.36, y: 19.21), controlPoint2: CGPoint(x: 17.68, y: 19.99))
-        fill6.addCurve(to: CGPoint(x: 23.07, y: 23.65), controlPoint1: CGPoint(x: 18.96, y: 21.43), controlPoint2: CGPoint(x: 20.54, y: 22.41))
-        fill6.addLine(to: CGPoint(x: 28.9, y: 26.56))
-        fill6.addCurve(to: CGPoint(x: 41.54, y: 35.83), controlPoint1: CGPoint(x: 35.03, y: 29.59), controlPoint2: CGPoint(x: 39.25, y: 32.68))
-        fill6.addCurve(to: CGPoint(x: 44.97, y: 46.9), controlPoint1: CGPoint(x: 43.83, y: 38.98), controlPoint2: CGPoint(x: 44.97, y: 42.67))
-        fill6.addCurve(to: CGPoint(x: 38.77, y: 61), controlPoint1: CGPoint(x: 44.97, y: 52.53), controlPoint2: CGPoint(x: 42.91, y: 57.23))
-        fill6.addCurve(to: CGPoint(x: 22.14, y: 66.65), controlPoint1: CGPoint(x: 34.63, y: 64.76), controlPoint2: CGPoint(x: 29.09, y: 66.65))
-        fill6.addCurve(to: CGPoint(x: 0, y: 55.81), controlPoint1: CGPoint(x: 12.89, y: 66.65), controlPoint2: CGPoint(x: 5.51, y: 63.04))
-        fill6.addLine(to: CGPoint(x: 9.79, y: 45.15))
-        fill6.addCurve(to: CGPoint(x: 16.34, y: 50.43), controlPoint1: CGPoint(x: 11.65, y: 47.33), controlPoint2: CGPoint(x: 13.83, y: 49.08))
-        fill6.addCurve(to: CGPoint(x: 23.01, y: 52.43), controlPoint1: CGPoint(x: 18.84, y: 51.77), controlPoint2: CGPoint(x: 21.07, y: 52.43))
-        fill6.addCurve(to: CGPoint(x: 28.08, y: 50.92), controlPoint1: CGPoint(x: 25.11, y: 52.43), controlPoint2: CGPoint(x: 26.8, y: 51.93))
-        fill6.addCurve(to: CGPoint(x: 30, y: 47.42), controlPoint1: CGPoint(x: 29.36, y: 49.91), controlPoint2: CGPoint(x: 30, y: 48.74))
-        fill6.addCurve(to: CGPoint(x: 23.07, y: 40.26), controlPoint1: CGPoint(x: 30, y: 44.98), controlPoint2: CGPoint(x: 27.69, y: 42.59))
-        fill6.addLine(to: CGPoint(x: 17.71, y: 37.58))
-        fill6.addCurve(to: CGPoint(x: 2.33, y: 18.18), controlPoint1: CGPoint(x: 7.46, y: 32.41), controlPoint2: CGPoint(x: 2.33, y: 25.95))
-        fill6.addCurve(to: CGPoint(x: 8.13, y: 5.33), controlPoint1: CGPoint(x: 2.33, y: 13.17), controlPoint2: CGPoint(x: 4.26, y: 8.88))
-        fill6.addCurve(to: CGPoint(x: 22.95, y: 0), controlPoint1: CGPoint(x: 11.99, y: 1.78), controlPoint2: CGPoint(x: 16.93, y: 0))
-        fill6.addCurve(to: CGPoint(x: 34.58, y: 2.71), controlPoint1: CGPoint(x: 27.07, y: 0), controlPoint2: CGPoint(x: 30.94, y: 0.9))
-        fill6.addCurve(to: CGPoint(x: 43.81, y: 10.49), controlPoint1: CGPoint(x: 38.21, y: 4.52), controlPoint2: CGPoint(x: 41.28, y: 7.11))
-        context.saveGState()
-        context.translateBy(x: 56.94, y: 101.38)
-        fill6.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill6.fill()
-        context.restoreGState()
-        /// Fill 7
-        let fill7 = UIBezierPath()
-        fill7.move(to: CGPoint(x: 32.98, y: 14.68))
-        fill7.addCurve(to: CGPoint(x: 20.73, y: 19.9), controlPoint1: CGPoint(x: 28.06, y: 14.68), controlPoint2: CGPoint(x: 23.97, y: 16.42))
-        fill7.addCurve(to: CGPoint(x: 15.85, y: 33.26), controlPoint1: CGPoint(x: 17.47, y: 23.37), controlPoint2: CGPoint(x: 15.85, y: 27.83))
-        fill7.addCurve(to: CGPoint(x: 20.81, y: 46.78), controlPoint1: CGPoint(x: 15.85, y: 38.74), controlPoint2: CGPoint(x: 17.5, y: 43.25))
-        fill7.addCurve(to: CGPoint(x: 33.03, y: 52.08), controlPoint1: CGPoint(x: 24.12, y: 50.32), controlPoint2: CGPoint(x: 28.2, y: 52.08))
-        fill7.addCurve(to: CGPoint(x: 45.46, y: 46.87), controlPoint1: CGPoint(x: 38.03, y: 52.08), controlPoint2: CGPoint(x: 42.17, y: 50.35))
-        fill7.addCurve(to: CGPoint(x: 50.39, y: 33.21), controlPoint1: CGPoint(x: 48.75, y: 43.39), controlPoint2: CGPoint(x: 50.39, y: 38.84))
-        fill7.addCurve(to: CGPoint(x: 45.46, y: 19.81), controlPoint1: CGPoint(x: 50.39, y: 27.69), controlPoint2: CGPoint(x: 48.75, y: 23.22))
-        fill7.addCurve(to: CGPoint(x: 32.98, y: 14.68), controlPoint1: CGPoint(x: 42.17, y: 16.39), controlPoint2: CGPoint(x: 38.01, y: 14.68))
-        fill7.close()
-        fill7.move(to: CGPoint(x: 49.7, y: 5.37))
-        fill7.addLine(to: CGPoint(x: 65.6, y: 5.37))
-        fill7.addLine(to: CGPoint(x: 65.6, y: 65.02))
-        fill7.addLine(to: CGPoint(x: 49.7, y: 65.02))
-        fill7.addLine(to: CGPoint(x: 49.7, y: 58.32))
-        fill7.addCurve(to: CGPoint(x: 40.36, y: 64.7), controlPoint1: CGPoint(x: 46.59, y: 61.27), controlPoint2: CGPoint(x: 43.48, y: 63.4))
-        fill7.addCurve(to: CGPoint(x: 30.2, y: 66.65), controlPoint1: CGPoint(x: 37.23, y: 66), controlPoint2: CGPoint(x: 33.85, y: 66.65))
-        fill7.addCurve(to: CGPoint(x: 8.96, y: 57.12), controlPoint1: CGPoint(x: 22.02, y: 66.65), controlPoint2: CGPoint(x: 14.94, y: 63.47))
-        fill7.addCurve(to: CGPoint(x: 0, y: 33.44), controlPoint1: CGPoint(x: 2.99, y: 50.77), controlPoint2: CGPoint(x: 0, y: 42.88))
-        fill7.addCurve(to: CGPoint(x: 8.67, y: 9.38), controlPoint1: CGPoint(x: 0, y: 23.65), controlPoint2: CGPoint(x: 2.89, y: 15.63))
-        fill7.addCurve(to: CGPoint(x: 29.74, y: 0), controlPoint1: CGPoint(x: 14.45, y: 3.13), controlPoint2: CGPoint(x: 21.47, y: 0))
-        fill7.addCurve(to: CGPoint(x: 40.44, y: 2.16), controlPoint1: CGPoint(x: 33.54, y: 0), controlPoint2: CGPoint(x: 37.11, y: 0.72))
-        fill7.addCurve(to: CGPoint(x: 49.7, y: 8.62), controlPoint1: CGPoint(x: 43.78, y: 3.59), controlPoint2: CGPoint(x: 46.86, y: 5.75))
-        fill7.addLine(to: CGPoint(x: 49.7, y: 5.37))
-        fill7.addLine(to: CGPoint(x: 49.7, y: 5.37))
-        fill7.close()
-        fill7.move(to: CGPoint(x: 49.7, y: 5.37))
-        context.saveGState()
-        context.translateBy(x: 104.41, y: 101.38)
-        fill7.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill7.fill()
-        context.restoreGState()
-        /// Fill 8
-        let fill8 = UIBezierPath()
-        fill8.move(to: CGPoint(x: 32.51, y: 35.03))
-        fill8.addCurve(to: CGPoint(x: 20.04, y: 40.16), controlPoint1: CGPoint(x: 27.5, y: 35.03), controlPoint2: CGPoint(x: 23.34, y: 36.74))
-        fill8.addCurve(to: CGPoint(x: 15.09, y: 53.56), controlPoint1: CGPoint(x: 16.74, y: 43.57), controlPoint2: CGPoint(x: 15.09, y: 48.04))
-        fill8.addCurve(to: CGPoint(x: 20.04, y: 67.22), controlPoint1: CGPoint(x: 15.09, y: 59.19), controlPoint2: CGPoint(x: 16.74, y: 63.74))
-        fill8.addCurve(to: CGPoint(x: 32.51, y: 72.43), controlPoint1: CGPoint(x: 23.34, y: 70.69), controlPoint2: CGPoint(x: 27.5, y: 72.43))
-        fill8.addCurve(to: CGPoint(x: 44.77, y: 67.13), controlPoint1: CGPoint(x: 37.36, y: 72.43), controlPoint2: CGPoint(x: 41.45, y: 70.66))
-        fill8.addCurve(to: CGPoint(x: 49.75, y: 53.61), controlPoint1: CGPoint(x: 48.1, y: 63.6), controlPoint2: CGPoint(x: 49.75, y: 59.09))
-        fill8.addCurve(to: CGPoint(x: 44.86, y: 40.24), controlPoint1: CGPoint(x: 49.75, y: 48.18), controlPoint2: CGPoint(x: 48.12, y: 43.72))
-        fill8.addCurve(to: CGPoint(x: 32.51, y: 35.03), controlPoint1: CGPoint(x: 41.6, y: 36.77), controlPoint2: CGPoint(x: 37.48, y: 35.03))
-        fill8.close()
-        fill8.move(to: CGPoint(x: 15.79, y: 0))
-        fill8.addLine(to: CGPoint(x: 15.79, y: 28.97))
-        fill8.addCurve(to: CGPoint(x: 25.11, y: 22.51), controlPoint1: CGPoint(x: 18.66, y: 26.1), controlPoint2: CGPoint(x: 21.77, y: 23.94))
-        fill8.addCurve(to: CGPoint(x: 35.83, y: 20.35), controlPoint1: CGPoint(x: 28.45, y: 21.07), controlPoint2: CGPoint(x: 32.02, y: 20.35))
-        fill8.addCurve(to: CGPoint(x: 56.92, y: 29.73), controlPoint1: CGPoint(x: 44.1, y: 20.35), controlPoint2: CGPoint(x: 51.13, y: 23.47))
-        fill8.addCurve(to: CGPoint(x: 65.6, y: 53.79), controlPoint1: CGPoint(x: 62.71, y: 35.98), controlPoint2: CGPoint(x: 65.6, y: 44))
-        fill8.addCurve(to: CGPoint(x: 56.63, y: 77.47), controlPoint1: CGPoint(x: 65.6, y: 63.23), controlPoint2: CGPoint(x: 62.61, y: 71.12))
-        fill8.addCurve(to: CGPoint(x: 35.36, y: 87), controlPoint1: CGPoint(x: 50.65, y: 83.82), controlPoint2: CGPoint(x: 43.56, y: 87))
-        fill8.addCurve(to: CGPoint(x: 25.17, y: 85.05), controlPoint1: CGPoint(x: 31.71, y: 87), controlPoint2: CGPoint(x: 28.32, y: 86.35))
-        fill8.addCurve(to: CGPoint(x: 15.79, y: 78.66), controlPoint1: CGPoint(x: 22.02, y: 83.75), controlPoint2: CGPoint(x: 18.9, y: 81.62))
-        fill8.addLine(to: CGPoint(x: 15.79, y: 85.37))
-        fill8.addLine(to: CGPoint(x: 0, y: 85.37))
-        fill8.addLine(to: CGPoint.zero)
-        fill8.addLine(to: CGPoint(x: 15.79, y: 0))
-        fill8.addLine(to: CGPoint(x: 15.79, y: 0))
-        fill8.close()
-        fill8.move(to: CGPoint(x: 15.79, y: 0))
-        context.saveGState()
-        context.translateBy(x: 173.9, y: 81.03)
-        fill8.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill8.fill()
-        context.restoreGState()
-        /// Fill 9
-        let fill9 = UIBezierPath()
-        fill9.move(to: CGPoint(x: 0, y: 85.37))
-        fill9.addLine(to: CGPoint(x: 15.9, y: 85.37))
-        fill9.addLine(to: CGPoint(x: 15.9, y: 0))
-        fill9.addLine(to: CGPoint.zero)
-        fill9.addLine(to: CGPoint(x: 0, y: 85.37))
-        fill9.close()
-        fill9.move(to: CGPoint(x: 0, y: 85.37))
-        context.saveGState()
-        context.translateBy(x: 265.1, y: 81.03)
-        fill9.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill9.fill()
-        context.restoreGState()
-        /// Fill 10
-        let fill10 = UIBezierPath()
-        fill10.move(to: CGPoint(x: 0, y: 85.37))
-        fill10.addLine(to: CGPoint(x: 15.91, y: 85.37))
-        fill10.addLine(to: CGPoint(x: 15.91, y: 0))
-        fill10.addLine(to: CGPoint.zero)
-        fill10.addLine(to: CGPoint(x: 0, y: 85.37))
-        fill10.close()
-        fill10.move(to: CGPoint(x: 0, y: 85.37))
-        context.saveGState()
-        context.translateBy(x: 285.25, y: 81.03)
-        fill10.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill10.fill()
-        context.restoreGState()
-        /// Fill 11
-        let fill11 = UIBezierPath()
-        fill11.move(to: CGPoint(x: 32.98, y: 14.68))
-        fill11.addCurve(to: CGPoint(x: 20.72, y: 19.9), controlPoint1: CGPoint(x: 28.06, y: 14.68), controlPoint2: CGPoint(x: 23.97, y: 16.42))
-        fill11.addCurve(to: CGPoint(x: 15.85, y: 33.26), controlPoint1: CGPoint(x: 17.47, y: 23.37), controlPoint2: CGPoint(x: 15.85, y: 27.83))
-        fill11.addCurve(to: CGPoint(x: 20.81, y: 46.78), controlPoint1: CGPoint(x: 15.85, y: 38.74), controlPoint2: CGPoint(x: 17.5, y: 43.25))
-        fill11.addCurve(to: CGPoint(x: 33.03, y: 52.08), controlPoint1: CGPoint(x: 24.12, y: 50.32), controlPoint2: CGPoint(x: 28.19, y: 52.08))
-        fill11.addCurve(to: CGPoint(x: 45.46, y: 46.87), controlPoint1: CGPoint(x: 38.03, y: 52.08), controlPoint2: CGPoint(x: 42.17, y: 50.35))
-        fill11.addCurve(to: CGPoint(x: 50.39, y: 33.21), controlPoint1: CGPoint(x: 48.75, y: 43.39), controlPoint2: CGPoint(x: 50.39, y: 38.84))
-        fill11.addCurve(to: CGPoint(x: 45.46, y: 19.81), controlPoint1: CGPoint(x: 50.39, y: 27.69), controlPoint2: CGPoint(x: 48.75, y: 23.22))
-        fill11.addCurve(to: CGPoint(x: 32.98, y: 14.68), controlPoint1: CGPoint(x: 42.17, y: 16.39), controlPoint2: CGPoint(x: 38.01, y: 14.68))
-        fill11.close()
-        fill11.move(to: CGPoint(x: 49.7, y: 5.37))
-        fill11.addLine(to: CGPoint(x: 65.6, y: 5.37))
-        fill11.addLine(to: CGPoint(x: 65.6, y: 65.02))
-        fill11.addLine(to: CGPoint(x: 49.7, y: 65.02))
-        fill11.addLine(to: CGPoint(x: 49.7, y: 58.32))
-        fill11.addCurve(to: CGPoint(x: 40.36, y: 64.7), controlPoint1: CGPoint(x: 46.59, y: 61.27), controlPoint2: CGPoint(x: 43.48, y: 63.4))
-        fill11.addCurve(to: CGPoint(x: 30.2, y: 66.65), controlPoint1: CGPoint(x: 37.23, y: 66), controlPoint2: CGPoint(x: 33.85, y: 66.65))
-        fill11.addCurve(to: CGPoint(x: 8.96, y: 57.12), controlPoint1: CGPoint(x: 22.02, y: 66.65), controlPoint2: CGPoint(x: 14.94, y: 63.47))
-        fill11.addCurve(to: CGPoint(x: 0, y: 33.44), controlPoint1: CGPoint(x: 2.99, y: 50.77), controlPoint2: CGPoint(x: 0, y: 42.88))
-        fill11.addCurve(to: CGPoint(x: 8.67, y: 9.38), controlPoint1: CGPoint(x: 0, y: 23.65), controlPoint2: CGPoint(x: 2.89, y: 15.63))
-        fill11.addCurve(to: CGPoint(x: 29.74, y: 0), controlPoint1: CGPoint(x: 14.45, y: 3.13), controlPoint2: CGPoint(x: 21.47, y: 0))
-        fill11.addCurve(to: CGPoint(x: 40.44, y: 2.16), controlPoint1: CGPoint(x: 33.54, y: 0), controlPoint2: CGPoint(x: 37.1, y: 0.72))
-        fill11.addCurve(to: CGPoint(x: 49.7, y: 8.62), controlPoint1: CGPoint(x: 43.78, y: 3.59), controlPoint2: CGPoint(x: 46.86, y: 5.75))
-        fill11.addLine(to: CGPoint(x: 49.7, y: 5.37))
-        fill11.addLine(to: CGPoint(x: 49.7, y: 5.37))
-        fill11.close()
-        fill11.move(to: CGPoint(x: 49.7, y: 5.37))
-        context.saveGState()
-        context.translateBy(x: 305.48, y: 101.38)
-        fill11.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill11.fill()
-        context.restoreGState()
-        /// Fill 12
-        let fill12 = UIBezierPath()
-        fill12.move(to: CGPoint(x: 7.95, y: 0))
-        fill12.addCurve(to: CGPoint(x: 0, y: 7.95), controlPoint1: CGPoint(x: 3.56, y: 0), controlPoint2: CGPoint(x: 0, y: 3.56))
-        fill12.addLine(to: CGPoint(x: 0, y: 53.4))
-        fill12.addLine(to: CGPoint(x: 15.9, y: 53.4))
-        fill12.addLine(to: CGPoint(x: 15.9, y: 7.95))
-        fill12.addCurve(to: CGPoint(x: 7.95, y: 0), controlPoint1: CGPoint(x: 15.9, y: 3.56), controlPoint2: CGPoint(x: 12.34, y: 0))
-        context.saveGState()
-        context.translateBy(x: 243.71, y: 113)
-        fill12.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill12.fill()
-        context.restoreGState()
-        /// Fill 13
-        let fill13 = UIBezierPath()
-        fill13.move(to: CGPoint(x: 14.25, y: 0))
-        fill13.addCurve(to: CGPoint(x: 24.36, y: 4.27), controlPoint1: CGPoint(x: 18.18, y: 0), controlPoint2: CGPoint(x: 21.55, y: 1.42))
-        fill13.addCurve(to: CGPoint(x: 28.58, y: 14.62), controlPoint1: CGPoint(x: 27.17, y: 7.12), controlPoint2: CGPoint(x: 28.58, y: 10.57))
-        fill13.addCurve(to: CGPoint(x: 24.4, y: 24.84), controlPoint1: CGPoint(x: 28.58, y: 18.62), controlPoint2: CGPoint(x: 27.19, y: 22.02))
-        fill13.addCurve(to: CGPoint(x: 14.41, y: 29.07), controlPoint1: CGPoint(x: 21.62, y: 27.66), controlPoint2: CGPoint(x: 18.29, y: 29.07))
-        fill13.addCurve(to: CGPoint(x: 4.22, y: 24.76), controlPoint1: CGPoint(x: 10.43, y: 29.07), controlPoint2: CGPoint(x: 7.03, y: 27.63))
-        fill13.addCurve(to: CGPoint(x: 0, y: 14.29), controlPoint1: CGPoint(x: 1.41, y: 21.89), controlPoint2: CGPoint(x: 0, y: 18.4))
-        fill13.addCurve(to: CGPoint(x: 4.17, y: 4.19), controlPoint1: CGPoint(x: 0, y: 10.35), controlPoint2: CGPoint(x: 1.39, y: 6.98))
-        fill13.addCurve(to: CGPoint(x: 14.25, y: 0), controlPoint1: CGPoint(x: 6.96, y: 1.4), controlPoint2: CGPoint(x: 10.32, y: 0))
-        context.saveGState()
-        context.translateBy(x: 231.4, y: 78.54)
-        fill13.usesEvenOddFillRule = true
-        UIColor.black.setFill()
-        fill13.fill()
-        context.restoreGState()
-        
-        context.restoreGState()
-    }
-    
-    
-    class func drawDelete(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-        
-        /// Rectangle
-        _ = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
-        /// trash
-        let trash = UIBezierPath()
-        trash.move(to: CGPoint(x: 197.75, y: 201.79))
-        trash.addCurve(to: CGPoint(x: 163.85, y: 226), controlPoint1: CGPoint(x: 197.75, y: 215.16), controlPoint2: CGPoint(x: 182.57, y: 226))
-        trash.addLine(to: CGPoint(x: 62.15, y: 226))
-        trash.addCurve(to: CGPoint(x: 28.26, y: 201.79), controlPoint1: CGPoint(x: 43.43, y: 226), controlPoint2: CGPoint(x: 28.26, y: 215.16))
-        trash.addLine(to: CGPoint(x: 11.3, y: 40.36))
-        trash.addLine(to: CGPoint(x: 214.7, y: 40.36))
-        trash.addLine(to: CGPoint(x: 197.75, y: 201.79))
-        trash.close()
-        trash.move(to: CGPoint(x: 70.6, y: 64.57))
-        trash.addLine(to: CGPoint(x: 56.5, y: 64.57))
-        trash.addLine(to: CGPoint(x: 65, y: 201.79))
-        trash.addLine(to: CGPoint(x: 79.1, y: 201.79))
-        trash.addLine(to: CGPoint(x: 70.6, y: 64.57))
-        trash.close()
-        trash.move(to: CGPoint(x: 118.23, y: 64.57))
-        trash.addLine(to: CGPoint(x: 106.93, y: 64.57))
-        trash.addLine(to: CGPoint(x: 106.93, y: 201.79))
-        trash.addLine(to: CGPoint(x: 118.23, y: 201.79))
-        trash.addLine(to: CGPoint(x: 118.23, y: 64.57))
-        trash.close()
-        trash.move(to: CGPoint(x: 155.4, y: 64.57))
-        trash.addLine(to: CGPoint(x: 146.9, y: 201.79))
-        trash.addLine(to: CGPoint(x: 161, y: 201.79))
-        trash.addLine(to: CGPoint(x: 169.5, y: 64.57))
-        trash.addLine(to: CGPoint(x: 155.4, y: 64.57))
-        trash.close()
-        trash.move(to: CGPoint(x: 169.5, y: 32.29))
-        trash.addLine(to: CGPoint(x: 56.5, y: 32.29))
-        trash.addLine(to: CGPoint(x: 0, y: 32.29))
-        trash.addLine(to: CGPoint(x: 0, y: 30.27))
-        trash.addCurve(to: CGPoint(x: 14.13, y: 20.18), controlPoint1: CGPoint(x: 0, y: 24.69), controlPoint2: CGPoint(x: 6.32, y: 20.18))
-        trash.addLine(to: CGPoint(x: 58.38, y: 20.18))
-        trash.addLine(to: CGPoint(x: 73.45, y: 4.04))
-        trash.addCurve(to: CGPoint(x: 84.75, y: 0), controlPoint1: CGPoint(x: 73.45, y: 1.81), controlPoint2: CGPoint(x: 81.63, y: 0))
-        trash.addLine(to: CGPoint(x: 141.25, y: 0))
-        trash.addCurve(to: CGPoint(x: 152.55, y: 4.04), controlPoint1: CGPoint(x: 144.37, y: 0), controlPoint2: CGPoint(x: 152.55, y: 1.81))
-        trash.addLine(to: CGPoint(x: 167.62, y: 20.18))
-        trash.addLine(to: CGPoint(x: 211.88, y: 20.18))
-        trash.addCurve(to: CGPoint(x: 226, y: 30.27), controlPoint1: CGPoint(x: 219.68, y: 20.18), controlPoint2: CGPoint(x: 226, y: 24.69))
-        trash.addLine(to: CGPoint(x: 226, y: 32.29))
-        trash.addLine(to: CGPoint(x: 169.5, y: 32.29))
-        trash.addLine(to: CGPoint(x: 169.5, y: 32.29))
-        trash.close()
-        trash.move(to: CGPoint(x: 169.5, y: 32.29))
-        context.saveGState()
-        context.translateBy(x: 37, y: 37)
-        trash.usesEvenOddFillRule = true
-        UIColor.red.setFill()
-        trash.fill()
-        context.restoreGState()
-        
-        context.restoreGState()
-    }
-    
-    
-    class func drawTrash(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-        
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-        
-        /// Rectangle
-        _ = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 300, height: 300))
-        /// noun_451948_cc
-        do {
-            context.saveGState()
-            context.translateBy(x: 60, y: 37)
-            
-            /// Group
-            do {
-                context.saveGState()
-                
-                /// a-link
-                do {
-                    context.saveGState()
-                    
-                    /// a
-                    do {
-                        context.saveGState()
-                        
-                        /// Shape
-                        let shape = UIBezierPath()
-                        shape.move(to: CGPoint(x: 162.69, y: 55.89))
-                        shape.addLine(to: CGPoint(x: 16.36, y: 55.89))
-                        shape.addLine(to: CGPoint(x: 16.36, y: 224.77))
-                        shape.addLine(to: CGPoint(x: 162.69, y: 224.77))
-                        shape.addLine(to: CGPoint(x: 162.69, y: 55.89))
-                        shape.addLine(to: CGPoint(x: 162.69, y: 55.89))
-                        shape.close()
-                        shape.move(to: CGPoint(x: 82.27, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 96.66, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 96.66, y: 203.03))
-                        shape.addLine(to: CGPoint(x: 82.27, y: 203.03))
-                        shape.addLine(to: CGPoint(x: 82.27, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 82.27, y: 70.75))
-                        shape.close()
-                        shape.move(to: CGPoint(x: 119.78, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 134.16, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 134.16, y: 203.03))
-                        shape.addLine(to: CGPoint(x: 119.78, y: 203.03))
-                        shape.addLine(to: CGPoint(x: 119.78, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 119.78, y: 70.75))
-                        shape.close()
-                        shape.move(to: CGPoint(x: 45.38, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 59.76, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 59.76, y: 203.03))
-                        shape.addLine(to: CGPoint(x: 45.38, y: 203.03))
-                        shape.addLine(to: CGPoint(x: 45.38, y: 70.75))
-                        shape.addLine(to: CGPoint(x: 45.38, y: 70.75))
-                        shape.close()
-                        shape.move(to: CGPoint(x: 178.93, y: 46.06))
-                        shape.addLine(to: CGPoint(x: 178.93, y: 18.06))
-                        shape.addLine(to: CGPoint(x: 112.15, y: 18.06))
-                        shape.addLine(to: CGPoint(x: 112.15, y: 0.61))
-                        shape.addLine(to: CGPoint(x: 111.54, y: 0))
-                        shape.addLine(to: CGPoint(x: 67.51, y: 0))
-                        shape.addLine(to: CGPoint(x: 66.9, y: 0.25))
-                        shape.addLine(to: CGPoint(x: 66.9, y: 18.06))
-                        shape.addLine(to: CGPoint(x: 0, y: 18.06))
-                        shape.addLine(to: CGPoint(x: 0, y: 46.06))
-                        shape.addLine(to: CGPoint(x: 178.93, y: 46.06))
-                        shape.close()
-                        shape.move(to: CGPoint(x: 178.93, y: 46.06))
-                        context.saveGState()
-                        context.translateBy(x: 0.48, y: 0.61)
-                        shape.usesEvenOddFillRule = true
-                        UIColor.black.setFill()
-                        shape.fill()
-                        context.restoreGState()
-                        
-                        context.restoreGState()
-                    }
-                    
-                    context.restoreGState()
-                }
-                
-                context.restoreGState()
-            }
-            
-            context.restoreGState()
-        }
-        
-        context.restoreGState()
-    }
-    
-    
+
     class func drawArtboard(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 21, height: 30), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         /// Resize to Target Frame
         context.saveGState()
         let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 20, height: 28), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
         context.scaleBy(x: resizedFrame.width / 20, y: resizedFrame.height / 28)
-        
+
         /// Icon
         let icon = UIBezierPath()
         icon.move(to: CGPoint(x: 1, y: 5))
@@ -1509,15 +535,15 @@ class Icons: NSObject {
         color.setFill()
         icon.fill()
         context.restoreGState()
-        
+
         context.restoreGState()
     }
-    
-    
+
+
     //MARK: - Canvas Images
-    
+
     /// Page 1
-    
+
     class func imageOfArtboard(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
@@ -1531,98 +557,11 @@ class Icons: NSObject {
         Icons.drawArtboard(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         LocalCache.image = image
         return image
     }
-    
-    
-    
-    //MARK: - Canvas Images
-    
-    /// Icons
-    
-    class func imageOfTrash() -> UIImage {
-        struct LocalCache {
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawTrash()
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
-    
-    //MARK: - Canvas Images
-    
-    /// Icons
-    
-    class func imageOfDelete() -> UIImage {
-        struct LocalCache {
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawDelete()
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
-    //MARK: - Canvas Images
-    
-    /// Icons
-    
-    class func imageOfLogo(color: UIColor) -> UIImage {
-        struct LocalCache {
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 132), false, 0)
-        Icons.drawLogo(color: color)
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
-    class func imageOfAddImage(color: UIColor) -> UIImage {
-        struct LocalCache {
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        let size = CGSize(width: 38, height: 38)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        Icons.drawAddImage(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
+
     class func imageOfEdit(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
@@ -1631,21 +570,20 @@ class Icons: NSObject {
             return LocalCache.image
         }
         var image: UIImage
-        
+
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
         Icons.drawEdit(color: color)
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         LocalCache.image = image
         return image
     }
-    
- 
-    
+
+
     /// -Form copy
-    
-    class func imageOfAddImage2(color: UIColor) -> UIImage {
+
+    class func imageOfAddImage(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
         }
@@ -1653,108 +591,53 @@ class Icons: NSObject {
             return LocalCache.image
         }
         var image: UIImage
-        
+
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawAddImage2(color: color)
+        Icons.drawAddImage(color: color)
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         LocalCache.image = image
         return image
     }
-    
-    class func imageOfEdit2(color: UIColor) -> UIImage {
-        struct LocalCache {
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawEdit2(color: color)
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
-    class func imageOfDelete2(color: UIColor) -> UIImage {
-        struct LocalCache { 
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawDelete2()
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
+
     /// Symbols
-    
+
     class func imageOfPoweredBy(color: UIColor) -> UIImage {
-        struct LocalCache { 
+        struct LocalCache {
             static var image: UIImage!
         }
         if LocalCache.image != nil {
             return LocalCache.image
         }
         var image: UIImage
-        
+
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 149, height: 33), false, 0)
         Icons.drawPoweredBy(color: color)
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         LocalCache.image = image
         return image
     }
-    
-    class func imageOfLogo2() -> UIImage {
-        struct LocalCache {
-            static var image: UIImage!
-        }
-        if LocalCache.image != nil {
-            return LocalCache.image
-        }
-        var image: UIImage
-        
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 186, height: 98), false, 0)
-        Icons.drawLogo2()
-        image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        LocalCache.image = image
-        return image
-    }
-    
-    
+
     //MARK: - Resizing Behavior
-    
+
     enum ResizingBehavior {
         case aspectFit /// The content is proportionally resized to fit into the target rectangle.
         case aspectFill /// The content is proportionally resized to completely fill the target rectangle.
         case stretch /// The content is stretched to match the entire target rectangle.
         case center /// The content is centered in the target rectangle, but it is NOT resized.
-        
+
         func apply(rect: CGRect, target: CGRect) -> CGRect {
             if rect == target || target == CGRect.zero {
                 return rect
             }
-            
+
             var scales = CGSize.zero
             scales.width = abs(target.width / rect.width)
             scales.height = abs(target.height / rect.height)
-            
+
             switch self {
             case .aspectFit:
                 scales.width = min(scales.width, scales.height)
@@ -1768,7 +651,7 @@ class Icons: NSObject {
                 scales.width = 1
                 scales.height = 1
             }
-            
+
             var result = rect.standardized
             result.size.width *= scales.width
             result.size.height *= scales.height
@@ -1777,6 +660,6 @@ class Icons: NSObject {
             return result
         }
     }
-    
-    
+
+
 } // swiftlint:disable:this file_length
