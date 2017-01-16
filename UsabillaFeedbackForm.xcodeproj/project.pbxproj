@@ -92,6 +92,7 @@
 		4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
+		43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */; };
 		D662F2DD6CE421FB1929AA41 /* Pods_UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +194,7 @@
 		4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphFieldModel.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModelTest.swift; sourceTree = "<group>"; };
 		471DCA52DB6AD43E382683E6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5765CAF16710869F6BFCFF3C /* Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests/Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C5FC34D93DD0CE1FB1C6C5B /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -442,6 +444,7 @@
 				4334E8651E29071F00AC895C /* BaseFieldModelTest.swift */,
 				4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */,
 				41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */,
+				43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04575B721D99799C001E0EC3 /* ExtensionTest.swift in Sources */,
+				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				04D6EC6C1CEDDDDE00E12C89 /* Extension.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
