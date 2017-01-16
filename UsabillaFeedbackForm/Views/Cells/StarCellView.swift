@@ -9,29 +9,31 @@
 import Foundation
 
 
-class StarCellView: RootCellView, SwiftStarDelegate {
+class StarCellView: RootCellView {
 
-    var starRatingView: StarRatingiView
+    var ratingControl: RatingControl
     var starModel: StarFieldModel!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        starRatingView = StarRatingiView()
-        starRatingView.maximumValue = 5
-        starRatingView.minimumValue = 1
-        starRatingView.currentValue = 0
-        starRatingView.tintColor = UIColor(colorLiteralRed: 239.0/255.0, green: 197.0/255.0, blue: 54.0/255.0, alpha: 1.0)
+        ratingControl = RatingControl()
+        ratingControl.mode = .rating
+//        starRatingView.maximumValue = 5
+//        starRatingView.minimumValue = 1
+//        starRatingView.currentValue = 0
+        ratingControl.tintColor = UIColor(colorLiteralRed: 239.0/255.0, green: 197.0/255.0, blue: 54.0/255.0, alpha: 1.0)
         //starRatingView.allowsHalfStars = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        starRatingView.delegate = self
+//        starRatingView.delegate = self
 
 
+        ratingControl.addTarget(self, action: #selector(StarCellView.pickRating(sender:)), for: [.valueChanged])
 
-        self.contentView.addSubview(starRatingView)
+        self.contentView.addSubview(ratingControl)
 
 
-        self.starRatingView.translatesAutoresizingMaskIntoConstraints = false
+        self.ratingControl.translatesAutoresizingMaskIntoConstraints = false
         
-        addConstraintToFillContainerView(view: starRatingView)
+        addConstraintToFillContainerView(view: ratingControl)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,22 +48,26 @@ class StarCellView: RootCellView, SwiftStarDelegate {
         }
         starModel = item
         if let value = starModel.fieldValue {
-            starRatingView.currentValue = value
+            ratingControl.rating = value
         } else {
-            starRatingView.currentValue = 0
+            ratingControl.rating = 0
             starModel.fieldValue = nil
         }
-        starRatingView.backgroundColor = starModel.themeConfig.backgroundColor
+        ratingControl.backgroundColor = starModel.themeConfig.backgroundColor
         let theme = starModel.themeConfig
         if theme.fullStar != nil && theme.emptyStar != nil {
-            starRatingView.filledStarImage = theme.fullStar
-            starRatingView.emptyStarImage = theme.emptyStar
+            if let fullStar = theme.fullStar {
+                ratingControl.selectedImages = [fullStar]
+            }
+            if let emptyStar = theme.emptyStar {
+                ratingControl.unselectedImages = [emptyStar]
+            }
         }
     }
 
 
-    func starValueChanged(_ value: Int) {
-        starModel.fieldValue = value
+    func pickRating(sender: RatingControl) {
+        starModel.fieldValue = sender.rating
     }
 
 //    deinit {
