@@ -9,7 +9,7 @@
 import Foundation
 
 class BaseFieldModel: FieldModelProtocol {
-    
+
     var isViewCurrentlyVisible = false
     unowned var pageModel: PageModel
     unowned var themeConfig: UsabillaThemeConfigurator
@@ -19,7 +19,7 @@ class BaseFieldModel: FieldModelProtocol {
     var isModelValid: Bool = true
     var type: String
     var rule: ShowHideRule?
-    
+
     init(json: JSON, pageModel: PageModel) {
         self.pageModel = pageModel
         self.type = json["type"].stringValue
@@ -29,24 +29,22 @@ class BaseFieldModel: FieldModelProtocol {
         self.rule = nil
         self.themeConfig = pageModel.themeConfig
     }
-    
+
     func convertToJSON() -> Any? {
         return nil
     }
-    
+
     func isValid() -> Bool {
         isModelValid = false
         return false
     }
-    
+
     func shouldAppear() -> Bool {
-        
         if rule == nil {
             return true
-        } else {
-            let satisfied = rule!.isSatisfied()
-            return satisfied && rule!.showIfRuleIsSatisfied || !satisfied && !rule!.showIfRuleIsSatisfied
         }
+        let satisfied = rule!.isSatisfied()
+        return satisfied && rule!.showIfRuleIsSatisfied || !satisfied && !rule!.showIfRuleIsSatisfied
     }
-    
+
 }
