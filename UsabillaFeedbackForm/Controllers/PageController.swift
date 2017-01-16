@@ -37,10 +37,13 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         self.view.backgroundColor = pageModel.themeConfig.backgroundColor
         self.tableView.backgroundColor = pageModel.themeConfig.backgroundColor
 
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        let gestureReCognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        gestureReCognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureReCognizer)
         registerEventsBus()
     }
 
+    
     func registerEventsBus() {
         SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
             self.reloadCellInTableAfterEvent()

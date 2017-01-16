@@ -11,7 +11,6 @@
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044204E11DD07A3B004FA09F /* UsabillaThemeConfigurator.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		044204E21DD07A68004FA09F /* UsabillaFeedbackForm.swift in Headers */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		044E187E1D883E2D00AED8BC /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E187D1D883E2D00AED8BC /* StarRatingView.swift */; };
 		044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E68161DD3777A00CE75E1 /* PerformanceTest.swift */; };
 		044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044E68191DD37FA200CE75E1 /* testAssets.xcassets */; };
 		04575B711D99799C001E0EC3 /* ChunkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B5D1D99787F001E0EC3 /* ChunkTest.swift */; };
@@ -81,7 +80,7 @@
 		25CD276821D9317C1A977818 /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5FC34D93DD0CE1FB1C6C5B /* Pods_UsabillaFeedbackForm_UsabillaFeedbackFormTests.framework */; };
 		41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */; };
 		432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
-		43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43307FBD1E1FE62E0071298B /* MoodControl.swift */; };
+		4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
 		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
 		4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
 		4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
@@ -109,7 +108,6 @@
 
 /* Begin PBXFileReference section */
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
-		044E187D1D883E2D00AED8BC /* StarRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 		044E68161DD3777A00CE75E1 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
 		04575B5D1D99787F001E0EC3 /* ChunkTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkTest.swift; sourceTree = "<group>"; };
@@ -184,7 +182,7 @@
 		126A640B400159020A1CAA09 /* Pods_UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModelTest.swift; sourceTree = "<group>"; };
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
-		43307FBD1E1FE62E0071298B /* MoodControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
+		4331DA401E27B362009C97B6 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactoryTest.swift; sourceTree = "<group>"; };
 		4334E85A1E29008200AC895C /* BaseFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFieldModel.swift; sourceTree = "<group>"; };
 		4334E85C1E29009B00AC895C /* StringFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFieldModel.swift; sourceTree = "<group>"; };
@@ -229,14 +227,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		042285F61D6758EC0012CF92 /* StarRating */ = {
-			isa = PBXGroup;
-			children = (
-				044E187D1D883E2D00AED8BC /* StarRatingView.swift */,
-			);
-			path = StarRating;
-			sourceTree = "<group>";
-		};
 		044204DE1DCC89ED004FA09F /* FieldModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +346,6 @@
 		04F54DE41CD75AD6002F501E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				042285F61D6758EC0012CF92 /* StarRating */,
 				045E46441D1A8073007A1E48 /* CheckBox */,
 				04F54E181CD76708002F501E /* DeviceInfo.swift */,
 				04F54E191CD76708002F501E /* Extension.swift */,
@@ -408,7 +397,7 @@
 		04F54DE71CD75BA8002F501E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				43307FBD1E1FE62E0071298B /* MoodControl.swift */,
+				4331DA401E27B362009C97B6 /* RatingControl.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -553,8 +542,8 @@
 					};
 					04F54DD11CD75A3F002F501E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 24ZZS38JW5;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -707,8 +696,8 @@
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
+				4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
-				43307FBE1E1FE62E0071298B /* MoodControl.swift in Sources */,
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
 				0483E9FC1CDCDFB1004EC234 /* SliderCellView.swift in Sources */,
@@ -724,7 +713,6 @@
 				0483E9F31CDCDFB1004EC234 /* BaseTextAreaCellView.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
-				044E187E1D883E2D00AED8BC /* StarRatingView.swift in Sources */,
 				0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */,
 				0483E9FD1CDCDFB1004EC234 /* StarCellView.swift in Sources */,
 				0483E9FA1CDCDFB1004EC234 /* RadioCellView.swift in Sources */,
@@ -977,9 +965,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8CC246C4A5094492CE1872F /* Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 24ZZS38JW5;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = UsabillaFeedbackFormTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -994,9 +981,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5765CAF16710869F6BFCFF3C /* Pods-UsabillaFeedbackForm-UsabillaFeedbackFormTests.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 24ZZS38JW5;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = UsabillaFeedbackFormTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
