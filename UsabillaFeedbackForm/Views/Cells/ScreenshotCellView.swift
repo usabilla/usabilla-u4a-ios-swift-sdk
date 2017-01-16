@@ -58,7 +58,6 @@ class ScreenshotCellView: RootCellView {
         addIcon.addTarget(self, action: #selector(ScreenshotCellView.pickImage), for: .touchUpInside)
         addScreenshotLabel = UIButton(type: UIButtonType.system)
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
-        addScreenshotLabel.setTitle("placeholder", for: .normal)
         addScreenshotLabel.addTarget(self, action: #selector(ScreenshotCellView.pickImage), for: .touchUpInside)
 
 
@@ -139,6 +138,7 @@ class ScreenshotCellView: RootCellView {
         addIcon.setImage(Icons.imageOfAddImage2(color: themeConfig.textColor), for: UIControlState())
         addScreenshotLabel.setTitleColor(themeConfig.titleColor, for: .normal)
         addScreenshotLabel.titleLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize)
+        addScreenshotLabel.setTitle(screenshotModel.pageModel.copy?.screenshotPlaceholder, for: .normal)
         addScreenshotLine.backgroundColor = themeConfig.hintColor
         screenShotView.layer.borderColor = themeConfig.hintColor.cgColor
 
