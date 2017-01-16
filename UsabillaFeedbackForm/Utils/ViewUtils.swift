@@ -16,7 +16,7 @@ class ViewUtils {
         let logo = UIButton(type: UIButtonType.custom)
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.addTarget(PageController.self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
-        logo.setImage(Icons.imageOfPoweredBy(color: themeConfig.accentColor.withAlphaComponent(0.5)), for: UIControlState())
+        logo.setImage(Icons.imageOfPoweredBy(color: themeConfig.textColor.withAlphaComponent(0.5)), for: UIControlState())
         view.backgroundColor = themeConfig.backgroundColor
         view.addSubview(logo)
         
