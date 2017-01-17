@@ -11,6 +11,41 @@ import PromiseKit
 import Alamofire
 
 
+struct HTTPClientResponse {
+    let data: Any?
+    let error: NSError?
+    let success: Bool
+}
+
+class HTTPClient {
+    
+    class func request(request: URLRequest, completion: @escaping (HTTPClientResponse) -> ()){
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            debugPrint(response)
+            
+            guard error == nil else {
+                completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
+                return
+            }
+            guard let data = data else {
+                completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                debugPrint(json)
+                completion(HTTPClientResponse(data: json, error: nil, success: true))
+            }
+            catch {
+                completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+            }
+        }
+        task.resume()
+    }
+    
+}
+
 class NetworkManager {
 
 
@@ -34,26 +69,22 @@ class NetworkManager {
             "os": "iOS"
         ]
 
-
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
+        
         return Promise { fulfill, reject in
-
-            Alamofire.request(request_url, headers: headers)
-                .responseJSON { response in
-                    debugPrint(response)
-                    switch response.result {
-                    case .success:
-                        fulfill(JSON(response.result.value!))
-                    case .failure:
-                        return reject(NSError(domain: "Invalid Request", code: 0, userInfo: [:]))
-                    }
+            let request = NSMutableURLRequest(url: URL(string:request_url)!)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+            
+            HTTPClient.request(request: request as URLRequest){ response in
+                if response.success {
+                    fulfill(JSON(response.data))
+                    return
+                }
+                reject(response.error!)
             }
-
         }
-
     }
-
-
 
     /// Submits the form results to usabilla
     ///
