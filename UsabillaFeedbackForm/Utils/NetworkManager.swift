@@ -8,8 +8,6 @@
 
 import Foundation
 import PromiseKit
-import Alamofire
-
 
 struct HTTPClientResponse {
     let data: Any?
@@ -173,20 +171,18 @@ class NetworkManager {
         payload["done"] = false
         payload["data"] = contentDictionary
 
-
-
         return Promise { fulfill, reject in
-
-            Alamofire.request(submitUrl, method: HTTPMethod.post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
-                .responseJSON { response in
-                    debugPrint(response)
-                    switch response.result {
-                    case .success(_):
-                        fulfill(true)
-
-                    case .failure(_):
-                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
-                    }
+            let request = NSMutableURLRequest(url: URL(string: submitUrl)!)
+            request.httpMethod = "POST"
+            let data = try JSONSerialization.data(withJSONObject: payload)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = data
+            HTTPClient.request(request: request as URLRequest) { response in
+                if response.success {
+                    fulfill(true)
+                    return
+                }
+                reject(response.error!)
             }
         }
 
