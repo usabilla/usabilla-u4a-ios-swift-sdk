@@ -150,8 +150,11 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
         for (index, field) in pageModel.fields.enumerated() {
             if !field.isValid() {
-                let indexPath = IndexPath(row: index, section: 0)
-                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                
+                if correctlyFilled {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
                 correctlyFilled = false
             }
         }
