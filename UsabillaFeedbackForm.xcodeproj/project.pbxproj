@@ -89,6 +89,7 @@
 		4334E8631E2901A700AC895C /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8621E2901A700AC895C /* FieldModel.swift */; };
 		4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8651E29071F00AC895C /* BaseFieldModelTest.swift */; };
 		4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */; };
+		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */; };
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
@@ -196,6 +197,7 @@
 		4334E8621E2901A700AC895C /* FieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
 		4334E8651E29071F00AC895C /* BaseFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFieldModelTest.swift; sourceTree = "<group>"; };
 		4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphFieldModel.swift; sourceTree = "<group>"; };
+		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfiguratorTest.swift; sourceTree = "<group>"; };
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */,
 				04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */,
 				049D77811E1BF2EB00117606 /* ViewUtils.swift */,
+				434A27831E2E8719002864C6 /* HTTPClient.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				048641AF1CF7217D00006A80 /* BaseCheckBoxCellView.swift in Sources */,
+				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
 				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,

@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (4.0.1)
   - Nimble (5.1.1)
   - PromiseKit/CorePromise (4.0.5)
   - PromiseKit/UIKit (4.0.5):
@@ -7,18 +6,16 @@ PODS:
   - Quick (1.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0.0)
   - Nimble (= 5.1.1)
   - PromiseKit/CorePromise (~> 4.0.0)
   - PromiseKit/UIKit (~> 4.0.0)
   - Quick (= 1.0.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   PromiseKit: 593b5e24ded6cbb1ebc708bc2c3428a8a5632d91
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
 
-PODFILE CHECKSUM: f45c097ebb621c784605a3423d939014776e01e3
+PODFILE CHECKSUM: 94e5b852b708c8fb7a6151d6a42e2e1cf0071f37
 
 COCOAPODS: 1.1.1

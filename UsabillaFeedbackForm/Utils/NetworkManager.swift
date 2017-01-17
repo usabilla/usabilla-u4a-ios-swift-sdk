@@ -9,40 +9,6 @@
 import Foundation
 import PromiseKit
 
-struct HTTPClientResponse {
-    let data: Any?
-    let error: NSError?
-    let success: Bool
-}
-
-class HTTPClient {
-
-    class func request(request: URLRequest, completion: @escaping (HTTPClientResponse) -> ()) {
-
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-            debugPrint(response)
-
-            guard error == nil else {
-                completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
-                return
-            }
-            guard let data = data else {
-                completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
-                return
-            }
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                debugPrint(json)
-                completion(HTTPClientResponse(data: json, error: nil, success: true))
-            }
-            catch {
-                completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
-            }
-        }
-        task.resume()
-    }
-
-}
 
 class NetworkManager {
 
@@ -70,13 +36,12 @@ class NetworkManager {
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
 
         return Promise { fulfill, reject in
-            let request = NSMutableURLRequest(url: URL(string: request_url)!)
-            request.httpMethod = "GET"
-            request.allHTTPHeaderFields = headers
-
-            HTTPClient.request(request: request as URLRequest) { response in
+            HTTPClient.request(request_url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) { response in
                 if response.success {
-                    fulfill(JSON(response.data))
+                    guard let data = response.data else {
+                        return
+                    }
+                    fulfill(JSON(data))
                     return
                 }
                 reject(response.error!)
@@ -92,7 +57,10 @@ class NetworkManager {
 
     class func submitFormToUsabilla(payload: [String: Any], screenshot: String?) {
         submitFeedbackSmallData(payload: payload).then { response -> Void in
-            let json = JSON(response.data)
+            guard let data = response.data else {
+                return
+            }
+            let json = JSON(data)
             let id = json["id"].stringValue
             let signature = json["sig"].stringValue
             if let screenshot = screenshot {
@@ -142,12 +110,7 @@ class NetworkManager {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            let request = NSMutableURLRequest(url: URL(string: submitUrl)!)
-            request.httpMethod = "POST"
-            let data = try JSONSerialization.data(withJSONObject: payload)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = data
-            HTTPClient.request(request: request as URLRequest) { response in
+            HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -172,12 +135,7 @@ class NetworkManager {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            let request = NSMutableURLRequest(url: URL(string: submitUrl)!)
-            request.httpMethod = "POST"
-            let data = try JSONSerialization.data(withJSONObject: payload)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = data
-            HTTPClient.request(request: request as URLRequest) { response in
+            HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -195,12 +153,7 @@ class NetworkManager {
     /// - Returns: Promise containig the responde data from the widget server
     class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-            let request = NSMutableURLRequest(url: URL(string: submitUrl)!)
-            request.httpMethod = "POST"
-            let data = try JSONSerialization.data(withJSONObject: payload)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = data
-            HTTPClient.request(request: request as URLRequest) { response in
+            HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
                 if response.success {
                     fulfill(response)
                     return

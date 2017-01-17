@@ -11,7 +11,6 @@ def testing_pods
 end
 
 def main_pods
-    pod 'Alamofire','~> 4.0.0'
     pod 'PromiseKit/CorePromise',"~> 4.0.0"
     pod 'PromiseKit/UIKit', "~> 4.0.0"
 end
