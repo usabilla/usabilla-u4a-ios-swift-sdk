@@ -18,12 +18,12 @@ struct HTTPClientResponse {
 }
 
 class HTTPClient {
-    
-    class func request(request: URLRequest, completion: @escaping (HTTPClientResponse) -> ()){
-        
+
+    class func request(request: URLRequest, completion: @escaping (HTTPClientResponse) -> ()) {
+
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             debugPrint(response)
-            
+
             guard error == nil else {
                 completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
                 return
@@ -43,7 +43,7 @@ class HTTPClient {
         }
         task.resume()
     }
-    
+
 }
 
 class NetworkManager {
@@ -70,13 +70,13 @@ class NetworkManager {
         ]
 
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
-        
+
         return Promise { fulfill, reject in
-            let request = NSMutableURLRequest(url: URL(string:request_url)!)
+            let request = NSMutableURLRequest(url: URL(string: request_url)!)
             request.httpMethod = "GET"
             request.allHTTPHeaderFields = headers
-            
-            HTTPClient.request(request: request as URLRequest){ response in
+
+            HTTPClient.request(request: request as URLRequest) { response in
                 if response.success {
                     fulfill(JSON(response.data))
                     return
@@ -91,31 +91,19 @@ class NetworkManager {
     /// - Parameters:
     ///   - payload: Payload containing the user data
     ///   - screenshot: self explanatory screenshot
+
     class func submitFormToUsabilla(payload: [String: Any], screenshot: String?) {
-
-
-        submitFeedbackSmallData(payload: payload).then { (response: DataResponse<Any>) -> Void in
-
-            switch response.result {
-            case .success(let data):
-                let json = JSON(data)
-                let id = json["id"].stringValue
-                let signature = json["sig"].stringValue
-                if let screenshot = screenshot {
-                    submitFeedbackScreenshot(id: id, signature: signature, screenshot: screenshot)
-                }
-                break
-                default:
-                print("Request failed with error: \(response.response?.statusCode)")
-                break
+        submitFeedbackSmallData(payload: payload).then { response -> Void in
+            let json = JSON(response.data)
+            let id = json["id"].stringValue
+            let signature = json["sig"].stringValue
+            if let screenshot = screenshot {
+                submitFeedbackScreenshot(id: id, signature: signature, screenshot: screenshot)
             }
         }.catch { error in
             print(error)
         }
-
-
     }
-
 
 
     /// Submits the screenshot as a separate request
@@ -209,25 +197,22 @@ class NetworkManager {
     ///
     /// - Parameter payload: data to submit
     /// - Returns: Promise containig the responde data from the widget server
-    class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<DataResponse<Any>> {
+    class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-
-            Alamofire.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
-                .responseJSON { response in
-                    switch response.result {
-                    case .success:
-                        fulfill(response)
-                    case .failure:
-                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
-                    }
-
+            let request = NSMutableURLRequest(url: URL(string: submitUrl)!)
+            request.httpMethod = "POST"
+            let data = try JSONSerialization.data(withJSONObject: payload)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = data
+            HTTPClient.request(request: request as URLRequest) { response in
+                if response.success {
+                    fulfill(response)
+                    return
+                }
+                reject(response.error!)
             }
         }
     }
-
-
-
-
 
     ///Stuff moved to be private
 
