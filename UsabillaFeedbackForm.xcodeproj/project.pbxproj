@@ -90,6 +90,7 @@
 		4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8651E29071F00AC895C /* BaseFieldModelTest.swift */; };
 		4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */; };
 		43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */; };
+		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
 		43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */; };
@@ -196,6 +197,7 @@
 		4334E8651E29071F00AC895C /* BaseFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFieldModelTest.swift; sourceTree = "<group>"; };
 		4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphFieldModel.swift; sourceTree = "<group>"; };
 		43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfiguratorTest.swift; sourceTree = "<group>"; };
+		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModelTest.swift; sourceTree = "<group>"; };
@@ -262,19 +264,20 @@
 		04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */ = {
 			isa = PBXGroup;
 			children = (
-				43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */,
-				4334E8641E2906FE00AC895C /* Models */,
-				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
 				04575B5D1D99787F001E0EC3 /* ChunkTest.swift */,
 				04575B5E1D99787F001E0EC3 /* ExtensionTest.swift */,
+				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
 				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
-				04575B621D99787F001E0EC3 /* JSONParserTest.swift */,
-				04575B631D99787F001E0EC3 /* PageControllerTest.swift */,
-				04575B641D99787F001E0EC3 /* UsabillaFeedbackFormTests.swift */,
-				044E68161DD3777A00CE75E1 /* PerformanceTest.swift */,
 				04575B611D99787F001E0EC3 /* Info.plist */,
+				04575B621D99787F001E0EC3 /* JSONParserTest.swift */,
+				4334E8641E2906FE00AC895C /* Models */,
+				43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */,
+				04575B631D99787F001E0EC3 /* PageControllerTest.swift */,
+				044E68161DD3777A00CE75E1 /* PerformanceTest.swift */,
 				04575B651D99787F001E0EC3 /* test.json */,
 				044E68191DD37FA200CE75E1 /* testAssets.xcassets */,
+				04575B641D99787F001E0EC3 /* UsabillaFeedbackFormTests.swift */,
+				43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */,
 			);
 			name = UsabillaFeedbackFormTest;
 			path = UsabillaFeedbackFormTests;
@@ -442,13 +445,13 @@
 			isa = PBXGroup;
 			children = (
 				4334E8651E29071F00AC895C /* BaseFieldModelTest.swift */,
-				4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */,
-				41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */,
 				43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */,
-				43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */,
 				43B0A2101E2CC4FB00879E5F /* IntFieldModelTest.swift */,
 				43B0A2131E2CC94E00879E5F /* OptionsFieldModelTest.swift */,
+				4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */,
+				41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */,
 				43B0A2151E2CCFC700879E5F /* ScreenshotModelTest.swift */,
+				43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
 				4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */,
 				43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */,
+				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
