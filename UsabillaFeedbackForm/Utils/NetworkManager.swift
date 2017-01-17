@@ -144,19 +144,19 @@ class NetworkManager {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-
-            Alamofire.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
-                .responseJSON { response in
-                    switch response.result {
-                    case .success:
-                        fulfill(true)
-                    case .failure:
-                        return reject(NSError(domain: "Invalid response", code: 0, userInfo: [:]))
-                    }
+            let request = NSMutableURLRequest(url: URL(string: submitUrl)!)
+            request.httpMethod = "POST"
+            let data = try JSONSerialization.data(withJSONObject: payload)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = data
+            HTTPClient.request(request: request as URLRequest) { response in
+                if response.success {
+                    fulfill(true)
+                    return
+                }
+                reject(response.error!)
             }
         }
-
-
     }
 
     class func createPromise(id: String, signature: String, v: Int, screenshot: String) -> Promise<Bool> {
