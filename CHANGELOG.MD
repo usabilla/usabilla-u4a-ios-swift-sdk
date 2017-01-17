@@ -1,3 +1,19 @@
+## 3.1.0
+#### Added
+- Possibility to configure font size in the SDK. See the wiki for more info.
+- Possibility to set the titles of the form in bold.
+- Added new "Add screenshot" call to action. See the wiki for more info.
+- New field specific error message. This error will appear, under the field title, when the user tries to move forward in the form without having filled all mandatory fields.
+- The navigation bar now has it's own color 'headerColor', settable in the SDK. If set, it will override the default color group.
+
+#### Updated
+- Revamped and polsihed the UI.
+- The screenshot will now keep its aspect ratio, stretching the form if necessary.
+
+#### Fixed 
+- Small bug in the paragraph component.
+
+
 ## 3.0.0
 #### Updated
 - Updated to compile against Swift 3.0
