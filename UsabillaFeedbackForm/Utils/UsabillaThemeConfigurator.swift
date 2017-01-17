@@ -30,9 +30,8 @@ open class UsabillaThemeConfigurator {
     var font: UIFont {
         if let font = customFont {
             return font
-        } else {
-            return UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
+        return UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
     open var titleFontSize: CGFloat
