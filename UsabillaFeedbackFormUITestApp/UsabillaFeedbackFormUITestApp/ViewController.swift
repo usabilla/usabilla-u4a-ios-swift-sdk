@@ -8,7 +8,6 @@
 
 import UIKit
 import UsabillaFeedbackForm
-import PromiseKit
 
 class ViewController: UIViewController {
 

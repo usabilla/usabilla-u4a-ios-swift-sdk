@@ -7,19 +7,12 @@
 //
 
 import Foundation
-import PromiseKit
-import Alamofire
-
 
 class NetworkManager {
-
-
 
     static let bundle = Bundle(for: NetworkManager.self)
     static let apiUrl = bundle.infoDictionary!["USABILLA_API_URL"] as? String ?? ""
     static let submitUrl = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as? String ?? ""
-
-
 
     /// Gets the json of the corrisponding form ID from the Usabilla API
     ///
@@ -34,57 +27,43 @@ class NetworkManager {
             "os": "iOS"
         ]
 
-
         let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
+
         return Promise { fulfill, reject in
-
-            Alamofire.request(request_url, headers: headers)
-                .responseJSON { response in
-                    debugPrint(response)
-                    switch response.result {
-                    case .success:
-                        fulfill(JSON(response.result.value!))
-                    case .failure:
-                        return reject(NSError(domain: "Invalid Request", code: 0, userInfo: [:]))
+            HTTPClient.request(request_url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) { response in
+                if response.success {
+                    guard let data = response.data else {
+                        return
                     }
+                    fulfill(JSON(data))
+                    return
+                }
+                reject(response.error!)
             }
-
         }
-
     }
-
-
 
     /// Submits the form results to usabilla
     ///
     /// - Parameters:
     ///   - payload: Payload containing the user data
     ///   - screenshot: self explanatory screenshot
+
     class func submitFormToUsabilla(payload: [String: Any], screenshot: String?) {
-
-
-        submitFeedbackSmallData(payload: payload).then { (response: DataResponse<Any>) -> Void in
-
-            switch response.result {
-            case .success(let data):
-                let json = JSON(data)
-                let id = json["id"].stringValue
-                let signature = json["sig"].stringValue
-                if let screenshot = screenshot {
-                    submitFeedbackScreenshot(id: id, signature: signature, screenshot: screenshot)
-                }
-                break
-                default:
-                print("Request failed with error: \(response.response?.statusCode)")
-                break
+        submitFeedbackSmallData(payload: payload).then { response -> Void in
+            guard let data = response.data else {
+                return
+            }
+            let json = JSON(data)
+            let id = json["id"].stringValue
+            let signature = json["sig"].stringValue
+            if let screenshot = screenshot {
+                submitFeedbackScreenshot(id: id, signature: signature, screenshot: screenshot)
             }
         }.catch { error in
             print(error)
         }
-
-
     }
-
 
 
     /// Submits the screenshot as a separate request
@@ -95,19 +74,24 @@ class NetworkManager {
     ///   - screenshot: base64 representation of the screenshot
     class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) {
         let chuckSize = 31250
-        var promiseArray: [Promise<Bool>] = []
         let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
 
+        var promisedSucceeded = 0
+
         for (index, chunk) in stringChunks.enumerated() {
-            promiseArray.append(createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk))
+            createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk).then(execute: { _ in
+                promisedSucceeded += 1
+                if promisedSucceeded == stringChunks.count {
+                    closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
+                        debugPrint("Deal closed")
+                    }).catch(execute: { (err) in
+                        debugPrint(err)
+                    })
+                }
+            }).catch(execute: { err in
+                debugPrint(err)
+            })
         }
-
-        when(resolved: promiseArray).then { _ in
-            closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1)
-        }.catch { error in
-            print(error)
-        }
-
     }
 
     class func closeTheDeal(id: String, signature: String, v: Int) -> Promise<Bool> {
@@ -125,19 +109,14 @@ class NetworkManager {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-
-            Alamofire.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
-                .responseJSON { response in
-                    switch response.result {
-                    case .success:
-                        fulfill(true)
-                    case .failure:
-                        return reject(NSError(domain: "Invalid response", code: 0, userInfo: [:]))
-                    }
+            HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+                if response.success {
+                    fulfill(true)
+                    return
+                }
+                reject(response.error!)
             }
         }
-
-
     }
 
     class func createPromise(id: String, signature: String, v: Int, screenshot: String) -> Promise<Bool> {
@@ -154,20 +133,13 @@ class NetworkManager {
         payload["done"] = false
         payload["data"] = contentDictionary
 
-
-
         return Promise { fulfill, reject in
-
-            Alamofire.request(submitUrl, method: HTTPMethod.post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
-                .responseJSON { response in
-                    debugPrint(response)
-                    switch response.result {
-                    case .success(_):
-                        fulfill(true)
-
-                    case .failure(_):
-                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
-                    }
+            HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+                if response.success {
+                    fulfill(true)
+                    return
+                }
+                reject(response.error!)
             }
         }
 
@@ -178,31 +150,23 @@ class NetworkManager {
     ///
     /// - Parameter payload: data to submit
     /// - Returns: Promise containig the responde data from the widget server
-    class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<DataResponse<Any>> {
+    class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-
-            Alamofire.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
-                .responseJSON { response in
-                    switch response.result {
-                    case .success:
-                        fulfill(response)
-                    case .failure:
-                        return reject(NSError(domain: "Invalid FormID", code: 0, userInfo: [:]))
-                    }
-
+            HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+                if response.success {
+                    fulfill(response)
+                    return
+                }
+                reject(response.error!)
             }
         }
     }
-
-
-
-
 
     ///Stuff moved to be private
 
     class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
-        getFormWithFormID(formID: appId).then(on: DispatchQueue.global(qos: .background), execute: { (jsonObj: JSON) -> Void in
+        getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
             let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
 
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
@@ -219,11 +183,11 @@ class NetworkManager {
             DispatchQueue.main.async {
                 UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
             }
-        })
-            .catch { _ in
-                Swift.debugPrint("calling fail protocol")
-                UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
-        } }
+        }.catch { _ in
+            Swift.debugPrint("calling fail protocol")
+            UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
+        }
+    }
 
 
     class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> UINavigationController? {
