@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		043298EE1D92B542003E8304 /* derpottero.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 043298E21D9273D3003E8304 /* derpottero.ttf */; };
-		0487610E1E1E4B090084FADD /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0487610C1E1E4B090084FADD /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		048761111E1E4B090084FADD /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0487610F1E1E4B090084FADD /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		048761141E1E4B090084FADD /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 048761121E1E4B090084FADD /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		04A5168E1D92DD2100B9E4E2 /* batang.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 04A5168D1D92DCDD00B9E4E2 /* batang.ttc */; };
 		04E228E21D2A95D8009BEA65 /* asd.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04E228E11D2A95D8009BEA65 /* asd.strings */; };
 		04E95FF41D1998D90041E4CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E95FF31D1998D90041E4CA /* AppDelegate.swift */; };
@@ -18,6 +15,8 @@
 		04E95FF91D1998DA0041E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FF71D1998DA0041E4CA /* Main.storyboard */; };
 		04E95FFB1D1998DA0041E4CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFA1D1998DA0041E4CA /* Assets.xcassets */; };
 		04E95FFE1D1998DA0041E4CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFC1D1998DA0041E4CA /* LaunchScreen.storyboard */; };
+		43A838D71E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */; };
+		43A838D81E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,15 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		048761151E1E4B0A0084FADD /* Embed Frameworks */ = {
+		43B0A2261E2D0CBA00879E5F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				048761141E1E4B090084FADD /* PromiseKit.framework in Embed Frameworks */,
-				0487610E1E1E4B090084FADD /* UsabillaFeedbackForm.framework in Embed Frameworks */,
-				048761111E1E4B090084FADD /* Alamofire.framework in Embed Frameworks */,
+				43A838D81E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,11 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		040F854D1D893C0600E4A360 /* Pods_UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_UsabillaFeedbackForm.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ailubwgsomsrxycxkrrovpcpajet/Build/Products/Release-iphonesimulator/Pods_UsabillaFeedbackForm.framework"; sourceTree = "<group>"; };
 		043298E21D9273D3003E8304 /* derpottero.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = derpottero.ttf; sourceTree = "<group>"; };
-		0487610C1E1E4B090084FADD /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0487610F1E1E4B090084FADD /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		048761121E1E4B090084FADD /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A5168D1D92DCDD00B9E4E2 /* batang.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = batang.ttc; sourceTree = "<group>"; };
 		04E228E11D2A95D8009BEA65 /* asd.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = asd.strings; sourceTree = "<group>"; };
 		04E95FF01D1998D90041E4CA /* SwiftDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,8 +56,6 @@
 		04E95FFF1D1998DA0041E4CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04E960041D1998DA0041E4CA /* SwiftDevAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftDevAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E9600A1D1998DA0041E4CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43D50D871E1D204D0080BCB8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
-		43D50D881E1D204D0080BCB8 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/PromiseKit/PromiseKit.framework"; sourceTree = "<group>"; };
 		43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UsabillaFeedbackForm.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/UsabillaFeedbackForm.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A838D71E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,10 +81,7 @@
 		040F854C1D893C0500E4A360 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				43D50D871E1D204D0080BCB8 /* Alamofire.framework */,
-				43D50D881E1D204D0080BCB8 /* PromiseKit.framework */,
 				43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */,
-				040F854D1D893C0600E4A360 /* Pods_UsabillaFeedbackForm.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,9 +89,6 @@
 		04E95FE71D1998D90041E4CA = {
 			isa = PBXGroup;
 			children = (
-				048761121E1E4B090084FADD /* PromiseKit.framework */,
-				0487610F1E1E4B090084FADD /* Alamofire.framework */,
-				0487610C1E1E4B090084FADD /* UsabillaFeedbackForm.framework */,
 				04E95FF21D1998D90041E4CA /* SwiftDevApp */,
 				04E960071D1998DA0041E4CA /* SwiftDevAppTests */,
 				04E95FF11D1998D90041E4CA /* Products */,
@@ -154,7 +140,7 @@
 				04E95FEC1D1998D90041E4CA /* Sources */,
 				04E95FED1D1998D90041E4CA /* Frameworks */,
 				04E95FEE1D1998D90041E4CA /* Resources */,
-				048761151E1E4B0A0084FADD /* Embed Frameworks */,
+				43B0A2261E2D0CBA00879E5F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,10 +395,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alamofire\"",
-					"\"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Promisekit\"",
-				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = SwiftDevApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -430,7 +412,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alamofire/Alamofire\"/** $BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Promisekit";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = SwiftDevApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

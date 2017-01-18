@@ -7,18 +7,12 @@
 //
 
 import Foundation
-import PromiseKit
-
 
 class NetworkManager {
-
-
 
     static let bundle = Bundle(for: NetworkManager.self)
     static let apiUrl = bundle.infoDictionary!["USABILLA_API_URL"] as? String ?? ""
     static let submitUrl = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as? String ?? ""
-
-
 
     /// Gets the json of the corrisponding form ID from the Usabilla API
     ///
@@ -80,19 +74,24 @@ class NetworkManager {
     ///   - screenshot: base64 representation of the screenshot
     class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) {
         let chuckSize = 31250
-        var promiseArray: [Promise<Bool>] = []
         let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
 
+        var promisedSucceeded = 0
+
         for (index, chunk) in stringChunks.enumerated() {
-            promiseArray.append(createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk))
+            createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk).then(execute: { _ in
+                promisedSucceeded += 1
+                if promisedSucceeded == stringChunks.count {
+                    closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
+                        debugPrint("Deal closed")
+                    }).catch(execute: { (err) in
+                        debugPrint(err)
+                    })
+                }
+            }).catch(execute: { err in
+                debugPrint(err)
+            })
         }
-
-        when(resolved: promiseArray).then { _ in
-            closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1)
-        }.catch { error in
-            print(error)
-        }
-
     }
 
     class func closeTheDeal(id: String, signature: String, v: Int) -> Promise<Bool> {
@@ -167,7 +166,7 @@ class NetworkManager {
 
     class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
-        getFormWithFormID(formID: appId).then(on: DispatchQueue.global(qos: .background), execute: { (jsonObj: JSON) -> Void in
+        getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
             let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
 
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
@@ -184,11 +183,11 @@ class NetworkManager {
             DispatchQueue.main.async {
                 UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
             }
-        })
-            .catch { _ in
-                Swift.debugPrint("calling fail protocol")
-                UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
-        } }
+        }.catch { _ in
+            Swift.debugPrint("calling fail protocol")
+            UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
+        }
+    }
 
 
     class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> UINavigationController? {

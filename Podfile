@@ -15,18 +15,9 @@ def main_pods
     pod 'PromiseKit/UIKit', "~> 4.0.0"
 end
 
-target 'UsabillaFeedbackForm' do
+target 'UsabillaFeedbackFormTests' do
     project 'UsabillaFeedbackForm.xcodeproj'
-    main_pods
-
-    target 'UsabillaFeedbackFormTests' do
-        testing_pods
-    end
-end
-
-target 'UsabillaFeedbackFormUITestApp' do
-    project 'UsabillaFeedbackFormUITestApp/UsabillaFeedbackFormUITestApp.xcodeproj'
-    main_pods
+    testing_pods
 end
 
 post_install do |installer|
