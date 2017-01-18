@@ -1,7 +1,11 @@
 machine:
   xcode:
     version: 8.2
-
+dependencies:
+  override:
+    - bin/bootstrap-if-needed
+  cache_directories:
+    - "Carthage"
 test:
     override:
       - set -o pipefail &&
