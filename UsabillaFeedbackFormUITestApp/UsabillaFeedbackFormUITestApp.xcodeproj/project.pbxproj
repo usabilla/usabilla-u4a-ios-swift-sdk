@@ -77,7 +77,6 @@
 		437B96C41E266A8F00AA0A25 = {
 			isa = PBXGroup;
 			children = (
-				437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */,
 				437B96CF1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */,
 				437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */,
 				437B96CE1E266A8F00AA0A25 /* Products */,
@@ -119,6 +118,7 @@
 		9B799909DBB261666DE0010F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

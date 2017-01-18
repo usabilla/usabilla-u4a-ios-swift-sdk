@@ -50,6 +50,8 @@ class RatingControl: UIControl {
         }
         set {
             guard let v = newValue, v > 0 && v <= maxValue else {
+                selectedIndex = -1
+                refreshSelection()
                 return
             }
             selectedIndex = v - 1
