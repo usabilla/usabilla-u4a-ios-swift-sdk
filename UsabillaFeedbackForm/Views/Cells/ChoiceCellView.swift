@@ -9,63 +9,123 @@
 import Foundation
 import UIKit
 
-class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource {
+class ChoiceCellView: RootCellView {
 
-    var choiceModel: ChoiceFieldModel!
-    let picker: UIPickerView
+    var choiceModel: ChoiceFieldModel?
+    let picker = UIPickerView()
+    let pickerButton = UIButton()
+    let topBorder = UIView()
+    let bottomBorder = UIView()
+    let pickerHeightConstraint: NSLayoutConstraint
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        picker = UIPickerView()
+
+        pickerHeightConstraint = picker.heightAnchor.constraint(equalToConstant: 0)
+        pickerHeightConstraint.isActive = true
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        rootCellContainerView.addSubview(topBorder)
+        rootCellContainerView.addSubview(pickerButton)
+        rootCellContainerView.addSubview(bottomBorder)
+        rootCellContainerView.addSubview(picker)
+
+        //top border
+        topBorder.translatesAutoresizingMaskIntoConstraints = false
+        topBorder.topAnchor.constraint(equalTo: rootCellContainerView.topAnchor).isActive = true
+        topBorder.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).isActive = true
+        topBorder.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
+        topBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
+        // button
+        pickerButton.translatesAutoresizingMaskIntoConstraints = false
+        pickerButton.topAnchor.constraint(equalTo: topBorder.bottomAnchor).isActive = true
+        pickerButton.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).isActive = true
+        pickerButton.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
+
+        pickerButton.addTarget(self, action: #selector(ChoiceCellView.pickerButtonClicked), for: .touchUpInside)
+
+        // bottom border
+        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
+        bottomBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).isActive = true
+        bottomBorder.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).isActive = true
+        bottomBorder.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
+        bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
+
+        // picker
         picker.dataSource = self
         picker.delegate = self
-        self.contentView.addSubview(picker)
-
+        picker.showsSelectionIndicator = true
         picker.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        picker.topAnchor.constraint(equalTo: bottomBorder.bottomAnchor).isActive = true
+        picker.bottomAnchor.constraint(equalTo: rootCellContainerView.bottomAnchor).isActive = true
+        picker.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).isActive = true
+        picker.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
 
-        let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-
-        let v = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
-
-        let z = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1, constant: 8)
-
-        contentView.addConstraints([f, a, v, z])
 
     }
 
     override func applyCustomisations() {
         super.applyCustomisations()
-        picker.backgroundColor = choiceModel.themeConfig.backgroundColor
-        picker.tintColor = choiceModel.themeConfig.textColor
+        guard let theme = choiceModel?.themeConfig else {
+            return
+        }
+        pickerButton.setTitleColor(theme.textColor, for: .normal)
+        pickerButton.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
+
+        picker.backgroundColor = theme.backgroundColor
+        picker.tintColor = theme.textColor
+        bottomBorder.backgroundColor = theme.hintColor
+        topBorder.backgroundColor = theme.hintColor
+
+
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func pickerButtonClicked() {
+        if let choiceModel = choiceModel {
+            choiceModel.expanded = !choiceModel.expanded
+        }
+        SwiftEventBus.postToMainThread("reloadCellForModel", userInfo: ["model": choiceModel as Any])
+    }
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
 
-        choiceModel = item as! ChoiceFieldModel
-        if choiceModel.fieldValue.isEmpty {
-            choiceModel.fieldValue = [choiceModel.options[0].value]
+        choiceModel = item as? ChoiceFieldModel
+        guard let model = choiceModel else {
+            return
+        }
+        pickerHeightConstraint.isActive = !model.expanded
+        if model.fieldValue.isEmpty {
+            model.fieldValue = [model.options[0].value]
+            pickerButton.setTitle(model.options[0].title, for: .normal)
+            picker.selectRow(0, inComponent: 0, animated: true)
         } else {
-            for (index, option) in choiceModel.options.enumerated() {
-                if option.value == choiceModel.fieldValue[0] {
+            for (index, option) in model.options.enumerated() {
+                if option.value == model.fieldValue[0] {
+                    pickerButton.setTitle(option.title, for: .normal)
                     picker.selectRow(index, inComponent: 0, animated: false)
                 }
             }
         }
 
-        if choiceModel.options.count < 4 {
+        if model.options.count < 5 {
             let a = NSLayoutConstraint(item: picker, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
-                a.priority = 750
-                a.isActive = true
+            a.priority = 750
+            a.isActive = true
         }
+
     }
+
+}
+
+extension ChoiceCellView: UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -73,21 +133,33 @@ class ChoiceCellView: RootCellView, UIPickerViewDelegate, UIPickerViewDataSource
 
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return choiceModel.options.count
+        return choiceModel?.options.count ?? 0
     }
 
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: choiceModel.options[row].title, attributes: [NSForegroundColorAttributeName: choiceModel.themeConfig.textColor])
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+
+        var pickerLabel = view as? UILabel
+
+        if pickerLabel == nil {
+            pickerLabel = UILabel()
+            pickerLabel?.textAlignment = NSTextAlignment.center
+            pickerLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize + 2)
+            pickerLabel?.textColor = themeConfig.textColor
+        }
+
+        pickerLabel?.text = choiceModel?.options[row].title
+        return pickerLabel!
     }
 
+}
+
+extension ChoiceCellView: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        choiceModel.fieldValue = [choiceModel.options[row].value]
-        Swift.debugPrint("picked \(choiceModel.fieldValue)")
-
+        if let item = choiceModel?.options[row] {
+            choiceModel?.fieldValue = [item.value]
+            pickerButton.setTitle(item.title, for: .normal)
+            Swift.debugPrint("picked \(item.value)")
+        }
     }
-
-//    deinit {
-//        print("choice cell deinit")
-//    }
 }

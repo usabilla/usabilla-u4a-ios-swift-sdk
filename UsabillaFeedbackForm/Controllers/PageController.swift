@@ -7,12 +7,15 @@
 //
 
 import UIKit
+let footerHeight: CGFloat = 80.0
 
-class PageController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PageController: UIViewController, UINavigationControllerDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
     var pageModel: PageModel!
     var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
+    var showErrorMessages = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,24 +28,26 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         self.tableView.register(TextInputCellView.self, forCellReuseIdentifier: "text")
         self.tableView.register(ParagraphCellView.self, forCellReuseIdentifier: "paragraph")
         self.tableView.register(TextAreaCellView.self, forCellReuseIdentifier: "textArea")
-        self.tableView.register(NPSCellView.self, forCellReuseIdentifier: "nps")
         self.tableView.register(ChoiceCellView.self, forCellReuseIdentifier: "choice")
         self.tableView.register(ScreenshotCellView.self, forCellReuseIdentifier: "screenshot")
+        self.tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
-        self.tableView.tableFooterView = UIView()
-        self.tableView.tableHeaderView = headerView()
+        addHeaderView()
 
         self.view.backgroundColor = pageModel.themeConfig.backgroundColor
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        self.tableView.backgroundColor = pageModel.themeConfig.backgroundColor
 
+        let gestureReCognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        gestureReCognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(gestureReCognizer)
         registerEventsBus()
     }
 
+    
     func registerEventsBus() {
         SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
             self.reloadCellInTableAfterEvent()
         }
-
 
         SwiftEventBus.onMainThread(self, name: "pick") { _ in
             self.pickImageFromGallery()
@@ -51,8 +56,21 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         SwiftEventBus.onMainThread(self, name: "updateScreenshotHeight") { _ in
             self.updateScreenshotHeight()
         }
-    }
 
+        SwiftEventBus.onMainThread(self, name: "updateMySize") { _ in
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
+
+        SwiftEventBus.onMainThread(self, name: "reloadCellForModel") { info in
+            guard let model = info.userInfo?["model"] as? BaseFieldModel,
+                let row = self.pageModel.fields.index( where: { $0 === model })else {
+                    return
+            }
+            let indexPath = IndexPath(row: row, section: 0)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
 
     func updateScreenshotHeight() {
         for index in self.tableView.visibleCells {
@@ -62,7 +80,14 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    func reloadCellInTableAfterEvent () {
+    func tableViewContentHeight() -> CGFloat {
+        let indexPath = IndexPath(row: pageModel.fields.count - 1, section: 0)
+        let lastRowFrame = tableView.rectForRow(at: indexPath)
+        let emptySpaceHeight = tableView.frame.size.height - (lastRowFrame.origin.y + lastRowFrame.size.height)
+        return emptySpaceHeight
+    }
+
+    func reloadCellInTableAfterEvent() {
         var listOfIndexes: [IndexPath] = []
         for index in dynamicFields {
             if let cell = tableView.cellForRow(at: index) as? RootCellView {
@@ -76,99 +101,34 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    func headerView() -> UIView? {
+    func addHeaderView() {
         requiredLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         requiredLabel.text = pageModel.errorMessage
-        requiredLabel.textAlignment = .right
+        requiredLabel.textAlignment = .left
         requiredLabel.textColor = pageModel.themeConfig.textColor
-        let constraint = NSLayoutConstraint.constraints(withVisualFormat: "H:[label]", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["label": requiredLabel])
+        requiredLabel.font = pageModel.themeConfig.font.withSize(pageModel.themeConfig.miniFontSize)
+        requiredLabel.backgroundColor = pageModel.themeConfig.backgroundColor
+        requiredLabel.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = requiredLabel
 
-        requiredLabel.addConstraints(constraint)
-
-        return requiredLabel
+        requiredLabel.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10).isActive = true
+        requiredLabel.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 16).isActive = true
     }
 
-
-    func deinitPageController () {
+    func deinitPageController() {
         SwiftEventBus.unregister(self)
     }
-
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !pageModel.fields[indexPath.row].shouldAppear() {
-            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
-                cell.isCurrentlyDisplayed = false
-            }
-            return 0
-        } else {
-            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
-                cell.isCurrentlyDisplayed = true
-            }
-            return UITableViewAutomaticDimension
-        }
-    }
-
-
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if  !pageModel.fields[indexPath.row].shouldAppear() {
-            return 0
-        } else {
-            return UITableViewAutomaticDimension
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pageModel.fields.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let item = pageModel.fields[indexPath.row]
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for:indexPath) as! RootCellView
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.setFeedbackItem(item)
-        cell.applyCustomisations()
-        if !item.shouldAppear() {
-            cell.isHidden = true
-            cell.isUserInteractionEnabled = false
-            cell.isCurrentlyDisplayed = false
-        } else {
-            cell.isHidden = false
-            cell.isUserInteractionEnabled = true
-            cell.isCurrentlyDisplayed = true
-        }
-        if item.rule != nil {
-            dynamicFields.append(indexPath)
-        }
-        return cell
-    }
-
 
     func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
-        self.tableView.reloadData()
-        //Magic
+        showErrorMessages = false
+        tableView?.reloadData()
     }
 
-
     func reloadTableWithAnimation() {
-        let range = NSMakeRange(0, self.tableView.numberOfSections)
-        let sections = IndexSet(integersIn: range.toRange() ?? 0..<0)
-        //self.tableView.reloadData()
+        let range = 0..<tableView.numberOfSections
+        let sections = IndexSet(integersIn: range)
         self.tableView.reloadSections(sections, with: .automatic)
     }
 
@@ -183,30 +143,28 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         tableView.layer.removeAllAnimations()
         tableView.setContentOffset(tableViewOffset, animated: false)
         UIView.setAnimationsEnabled(true)
-
     }
-
 
     func isCorrectlyFilled() -> Bool {
         var correctlyFilled = true
 
-        for field in pageModel.fields {
+        for (index, field) in pageModel.fields.enumerated() {
             if !field.isValid() {
+                
+                if correctlyFilled {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
                 correctlyFilled = false
             }
         }
 
         if !correctlyFilled {
-            //reloadTableWithAnimation()
             tableView.reloadData()
-            requiredLabel.textColor = pageModel.themeConfig.errorColor
-        } else {
-            requiredLabel.textColor = pageModel.themeConfig.hintColor
         }
 
         return correctlyFilled
     }
-
 
     func whereShouldIJump() -> String? {
         if pageModel.jumpRuleList != nil && pageModel.jumpRuleList!.count > 0 {
@@ -218,7 +176,6 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
         return pageModel.defaultJumpTo
     }
-
 
     //Image handling stuff
     func pickImageFromGallery() {
@@ -233,14 +190,87 @@ class PageController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
+    static func openUsabilla() {
+        UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
+    }
+}
+
+extension PageController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? pageModel.fields.count : 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
+            if let cell = cell as? FooterTableViewCell {
+                cell.footerView = ViewUtils.generateFooter(themeConfig: pageModel.themeConfig)
+            }
+            cell.backgroundColor = pageModel.themeConfig.backgroundColor
+            return cell
+        }
+
+        let item: BaseFieldModel = pageModel.fields[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath)
+        if let cell = cell as? RootCellView {
+            cell.showErrorMessage = showErrorMessages
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.setFeedbackItem(item)
+            cell.applyCustomisations()
+            if !item.shouldAppear() {
+                cell.isHidden = true
+                cell.isUserInteractionEnabled = false
+                cell.isCurrentlyDisplayed = false
+            } else {
+                cell.isHidden = false
+                cell.isUserInteractionEnabled = true
+                cell.isCurrentlyDisplayed = true
+            }
+            if item.rule != nil && !dynamicFields.contains(indexPath) {
+                dynamicFields.append(indexPath)
+            }
+        }
+        return cell
+    }
+}
+
+extension PageController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && !pageModel.fields[indexPath.row].shouldAppear() {
+            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
+                cell.isCurrentlyDisplayed = false
+            }
+            return 0
+        } else if indexPath.section == 1 {
+            let emptySpace = tableViewContentHeight()
+            return emptySpace < footerHeight ? footerHeight : emptySpace
+        } else {
+            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
+                cell.isCurrentlyDisplayed = true
+            }
+            return UITableViewAutomaticDimension
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && !pageModel.fields[indexPath.row].shouldAppear() {
+            return 0
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+
+}
+
+extension PageController: UIImagePickerControllerDelegate {
+
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         self.dismiss(animated: true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
-
-
-    //    deinit {
-    //        print("calling pagecontroller deinit of page \(pageModel.pageName),\(pageModel.pageNumber)")
-    //
-    //    }
 }

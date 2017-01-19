@@ -29,7 +29,7 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
         self.contentView.addSubview(buttonView!)
         buttonView!.translatesAutoresizingMaskIntoConstraints = false
 
-        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.dividerLine, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
+        let f = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8)
 
         let a = NSLayoutConstraint(item: buttonView!, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
 
@@ -50,7 +50,10 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        npsModel = item as! NPSFieldModel
+        guard let item = item as? NPSFieldModel else {
+            return
+        }
+        npsModel = item
         buttonView?.themeConfig = item.themeConfig
 
         if let value = npsModel.fieldValue {

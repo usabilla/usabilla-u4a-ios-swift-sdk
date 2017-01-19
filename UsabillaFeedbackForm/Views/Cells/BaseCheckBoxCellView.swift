@@ -11,7 +11,7 @@ import UIKit
 class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     var checkBoxes: [CheckboxWithText] = []
-    var model: FieldModelWithOptions!
+    var model: OptionsFieldModel!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,7 +23,7 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     func updateCheckBoxeslayout() {
         for checkBox in checkBoxes {
-            checkBox.height.isActive =  isCurrentlyDisplayed ? true : false
+            checkBox.height.isActive = isCurrentlyDisplayed ? true : false
         }
     }
 
@@ -35,7 +35,10 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
         super.setFeedbackItem(item)
-        model = item as! FieldModelWithOptions
+        guard let item = item as? OptionsFieldModel else {
+            return
+        }
+        model = item
         for checkbox in checkBoxes {
             checkbox.removeFromSuperview()
         }
@@ -56,28 +59,30 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
             checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.isUserInteractionEnabled = true
             checkBox.applyCustomisation()
-            if model.fieldValue.contains(option.value ) {
+            if model.fieldValue.contains(option.value) {
                 checkBox.checkBox.on = true
             }
 
-            self.contentView.addSubview(checkBox)
+            self.rootCellContainerView.addSubview(checkBox)
             checkBoxes.append(checkBox)
 
             checkBox.height.isActive = true
-            NSLayoutConstraint(item: checkBox, attribute: .width, relatedBy: .equal, toItem: self.contentView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+            NSLayoutConstraint(item: checkBox, attribute: .width, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+            NSLayoutConstraint(item: checkBox, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: 0).isActive = true
 
             if index == 0 {
                 //First checkbox
-                NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: dividerLine, attribute: .bottom, multiplier: 1, constant: 4).isActive = true
+                NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: rootCellContainerView, attribute: .top, multiplier: 1, constant: 0).isActive = true
             } else {
-                let a = NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: previousCheckbox!, attribute: .bottom, multiplier: 1, constant: 8)
+                //Middle checkboxes
+                let a = NSLayoutConstraint(item: checkBox, attribute: .top, relatedBy: .equal, toItem: previousCheckbox!, attribute: .bottom, multiplier: 1, constant: 12)
                 a.priority = 750
                 a.isActive = true
             }
 
             if index == model.options.count - 1 {
-                //Last element
-                NSLayoutConstraint(item: checkBox, attribute: .bottom, relatedBy: .equal, toItem: self.contentView, attribute: .bottom, multiplier: 1, constant: -12).isActive = true
+                //Last checkbox
+                NSLayoutConstraint(item: checkBox, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
             }
 
 

@@ -1,21 +1,67 @@
 disabled_rules: # rule identifiers to exclude from running
-  - force_cast
   - trailing_whitespace
-  - colon+
-  - variable_name
   - type_body_length
   - function_body_length
-  - variable_name_min_length
+  - vertical_whitespace  
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
   - Source/ExcludedFolder
   - Source/ExcludedFile.swift
   - UsabillaFeedbackForm/Utils/SwiftyJSON.swift 
+  - UsabillaFeedbackForm/Utils/StyleKit.swift 
 
 
 # configurable rules can be customized from this configuration file
 # binary rules can set their severity level
-force_cast: warning # implicitly
-line_length: 310
+line_length: 300
 function_body_length: 50
+
+type_name:
+  min_length: 4 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+variable_name:
+  min_length: 
+    warning: 3
+    error: 3
+  max_length: # warning and error
+    warning: 40
+    error: 50
+  excluded: # excluded via string array
+    - id
+    - URL
+    - _
+    - on
+    - v
+
+
+# No temp or asd
+
+custom_rules:
+  no_temp_allowed: # rule identifier
+    included: ".*.swift" # regex that defines paths to include during linting. optional.
+    name: "No Temp Allowed" # rule name. optional.
+    regex: "([t,T][e]?mp[ ]+)" # matching pattern
+    match_kinds: # SyntaxKinds to match. optional.
+      - comment
+      - identifier
+    message: "Do not use temp." # violation message. optional.
+    severity: error # violation severity. optional.
+  no_temp_in_strings:
+    regex: "([t,T][e]?mp[ ]+)"
+    match_kinds: string
+
+
+ no_asd_allowed: # rule identifier
+    included: ".*.swift" # regex that defines paths to include during linting. optional.
+    name: "No Asd Allowed" # rule name. optional.
+    regex: "([a,A]sd)" # matching pattern
+    match_kinds: # SyntaxKinds to match. optional.
+      - comment
+      - identifier
+    message: "Do not use asd." # violation message. optional.
+    severity: error # violation severity. optional.
+
+

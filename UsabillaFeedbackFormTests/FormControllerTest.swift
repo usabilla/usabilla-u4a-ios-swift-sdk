@@ -28,18 +28,22 @@ class FormControllerTest: QuickSpec {
             }
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-            let base = storyboard.instantiateViewController(withIdentifier: "base") as! UINavigationController
-            viewController = base.childViewControllers[0] as! FormViewController
-            viewController.initWithFormModel(formModel)
-            //viewController.
+            if let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
+                let vc = base.childViewControllers[0] as? FormViewController {
+                viewController = vc
+                viewController.initWithFormModel(formModel)
+                //viewController.
+                
+                
+                // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
+                let _ =  viewController.view
+                
+                // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
+                viewController.beginAppearanceTransition(true, animated: false)
+                viewController.endAppearanceTransition()
+            }
             
-            
-            // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-            let _ =  viewController.view
-            
-            // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
-            viewController.beginAppearanceTransition(true, animated: false)
-            viewController.endAppearanceTransition()
+          
             
         }
         
@@ -65,7 +69,7 @@ class FormControllerTest: QuickSpec {
         }
         
         describe("turn the first page") {
-            it("turns the page, expext right updates"){
+            it("turns the page, expext right updates") {
                 var newPageIndex = viewController.selectNewPage()
                 expect(newPageIndex).to(equal(2))
                 

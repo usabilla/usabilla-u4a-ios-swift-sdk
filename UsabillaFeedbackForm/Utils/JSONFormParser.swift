@@ -15,7 +15,7 @@ class JSONFormParser {
 
         let data = json["data"]
         let copyModel = parseCopy(json)
-        
+
         let hasScreenshot = data["screenshot"].boolValue
         let version = json["version"].intValue
         let appStoreRedirect = data["appStoreRedirect"].bool
@@ -26,28 +26,28 @@ class JSONFormParser {
 
         var pages: [PageModel] = []
 
-        for (index, subJson):(String, JSON) in json["form"]["pages"] {
+        for (index, subJson): (String, JSON) in json["form"]["pages"] {
             let page = parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
             page.errorMessage = copyModel.errorMessage
             pages.append(page)
         }
         pages.last?.isLastPage = true
 
-        var screenshotJson: [String: AnyObject] = [:]
-        screenshotJson["type"] = "screenshot" as AnyObject?
-        screenshotJson["name"] = "screenshot" as AnyObject?
-        screenshotJson["title"] = "Screenshot" as AnyObject?
-        screenshotJson["required"] = false as AnyObject?
+        var screenshotJson: [String: Any] = [:]
+        screenshotJson["type"] = "screenshot"
+        screenshotJson["name"] = "screenshot"
+        screenshotJson["title"] = "Screenshot"
+        screenshotJson["required"] = false
 
         let pageModel = pages.first
         if hasScreenshot {
             pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
 
-        return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig:  themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
+        return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig: themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
     }
 
-    fileprivate class func parseCopy(_ json: JSON) -> CopyModel{
+    fileprivate class func parseCopy(_ json: JSON) -> CopyModel {
         let copyModel = CopyModel()
         let data = json["data"]
 
@@ -57,22 +57,22 @@ class JSONFormParser {
 
         let localization = json["localization"]
 
-        if let appStore = localization["appStore"].string{
+        if let appStore = localization["appStore"].string {
             copyModel.appStore = appStore
         }
-        if let moreFeedback = localization["moreFeedback"].string{
+        if let moreFeedback = localization["moreFeedback"].string {
             copyModel.moreFeedback = moreFeedback
         }
-        if let screenshotTitle = localization["screenshotTitle"].string{
+        if let screenshotTitle = localization["screenshotTitle"].string {
             copyModel.screenshotTitle = screenshotTitle
         }
-        if let cancelButton = localization["cancelButton"].string{
+        if let cancelButton = localization["cancelButton"].string {
             copyModel.cancelButton = cancelButton
         }
-        if let navigationNext = localization["navigationNext"].string{
+        if let navigationNext = localization["navigationNext"].string {
             copyModel.navigationNext = navigationNext
         }
-        
+
         return copyModel
     }
 
@@ -100,7 +100,7 @@ class JSONFormParser {
         if pageJson["jumpRules"].exists() {
             var jumpRules: [JumpRule] = []
 
-            for (_, subJson):(String, JSON) in pageJson["jumpRules"] {
+            for (_, subJson): (String, JSON) in pageJson["jumpRules"] {
                 jumpRules.append(parseJumpRule(subJson, pageModel: currentPage))
             }
             currentPage.jumpRuleList = jumpRules
@@ -116,7 +116,7 @@ class JSONFormParser {
         let setJumpTo = jumpJson["jump"].stringValue
 
         var values: [String] = []
-        for (_, subJson):(String, JSON) in jumpJson["value"] {
+        for (_, subJson): (String, JSON) in jumpJson["value"] {
             values.append(subJson.stringValue)
         }
 
@@ -127,15 +127,12 @@ class JSONFormParser {
     fileprivate class func parseFieldModel(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
 
         if let field: BaseFieldModel = FieldFactory.createField(json, pagemodel: pagemodel) {
-
             if json["showHideRule"].exists() && !json["showHideRule"].isEmpty {
-                field.rule =  parseShowHideRule(json["showHideRule"], pageModel: pagemodel)
+                field.rule = parseShowHideRule(json["showHideRule"], pageModel: pagemodel)
             }
-            //print("return field \(field)")
             return field
-        } else {
-            return nil
         }
+        return nil
     }
 
     fileprivate class func parseShowHideRule(_ json: JSON, pageModel: PageModel) -> ShowHideRule {
@@ -143,7 +140,7 @@ class JSONFormParser {
         let setDependsOnID = json["control"].stringValue
 
         var values: [String] = []
-        for (_, subJson):(String, JSON) in json["value"] {
+        for (_, subJson): (String, JSON) in json["value"] {
             values.append(subJson.stringValue)
         }
 

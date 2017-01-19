@@ -35,9 +35,9 @@ public enum ReachabilityError: Error {
     case UnableToSetDispatchQueue
 }
 
-public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
+public let reachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
+func callback(reachability: SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
     
     guard let info = info else { return }
     
@@ -50,8 +50,8 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
 
 public class Reachability {
     
-    public typealias NetworkReachable = (Reachability) -> ()
-    public typealias NetworkUnreachable = (Reachability) -> ()
+    public typealias NetworkReachable = (Reachability) -> Void
+    public typealias NetworkUnreachable = (Reachability) -> Void
     
     public enum NetworkStatus: CustomStringConvertible {
         
@@ -237,7 +237,7 @@ fileprivate extension Reachability {
         let block = isReachable ? whenReachable : whenUnreachable
         block?(self)
         
-        self.notificationCenter.post(name: ReachabilityChangedNotification, object:self)
+        self.notificationCenter.post(name: reachabilityChangedNotification, object:self)
         
         previousFlags = flags
     }
