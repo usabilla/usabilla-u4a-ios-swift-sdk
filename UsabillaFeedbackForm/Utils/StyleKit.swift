@@ -20,7 +20,7 @@ class Icons: NSObject {
 
     /// Icons
 
-    class func drawEdit(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
+    private class func drawEdit(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -84,7 +84,7 @@ class Icons: NSObject {
 
     /// -Form copy
 
-    class func drawAddImage(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
+    private class func drawAddImage(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
 
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
@@ -153,7 +153,7 @@ class Icons: NSObject {
 
     /// Symbols
 
-    class func drawPoweredBy(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 40), resizing: ResizingBehavior = .aspectFit) {
+    private class func drawPoweredBy(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 149, height: 40), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
@@ -473,7 +473,7 @@ class Icons: NSObject {
         context.restoreGState()
     }
 
-    class func drawArtboard(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 21, height: 30), resizing: ResizingBehavior = .aspectFit) {
+    private class func drawArtboard(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 21, height: 30), resizing: ResizingBehavior = .aspectFit) {
         /// General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
