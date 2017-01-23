@@ -55,22 +55,26 @@ class HTTPClient {
 
     class func request(request: URLRequest,
                        completion: @escaping (HTTPClientResponse) -> Void) {
+
+        let senderQueue = OperationQueue.current
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-            debugPrint(response ?? "")
-            guard error == nil else {
-                completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
-                return
-            }
-            guard let data = data else {
-                completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
-                return
-            }
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                debugPrint(json)
-                completion(HTTPClientResponse(data: json, error: nil, success: true))
-            } catch {
-                completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+            senderQueue?.addOperation {
+                debugPrint(response ?? "")
+                guard error == nil else {
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
+                    return
+                }
+                guard let data = data else {
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
+                    return
+                }
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    debugPrint(json)
+                    completion(HTTPClientResponse(data: json, error: nil, success: true))
+                } catch {
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+                }
             }
         }
         task.resume()
