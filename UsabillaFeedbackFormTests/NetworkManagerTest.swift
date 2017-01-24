@@ -16,14 +16,27 @@ class NetworkManagerTest: QuickSpec {
     override func spec() {
         describe("NetworkManager") {
 
-            it("NetworkManager submitFormToUsabilla should fail") {
+            it("NetworkManager submitFormToUsabilla should succeed") {
                 waitUntil(timeout: 2.0) { done in
                     let payload = ["data": []]
-                    let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: "")
+                    let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: nil)
                     promise.then { _ in
-                        fail("should not go here")
-                    }.catch { _ in
                         done()
+                    }.catch { _ in
+                        fail("should not go here")
+                    }
+                }
+            }
+
+            it("NetworkManager submitFormToUsabilla should succeed") {
+                waitUntil(timeout: 2.0) { done in
+                    let payload = ["data": []]
+                    let screenshot = Icons.imageOfPoweredBy(color: .blue).toBase64()
+                    let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: screenshot)
+                    promise.then { _ in
+                        done()
+                    }.catch { _ in
+                        fail("should not go here")
                     }
                 }
             }
