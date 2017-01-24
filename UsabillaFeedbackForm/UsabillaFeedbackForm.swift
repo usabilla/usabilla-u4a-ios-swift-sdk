@@ -31,7 +31,7 @@ open class UsabillaFeedbackForm {
        The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
     */
     open class func load() {
-        SubmissionManager.shared // init the singleton to send persisted feedback
+        _ = SubmissionManager.shared // init the singleton to send persisted feedback
     }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {

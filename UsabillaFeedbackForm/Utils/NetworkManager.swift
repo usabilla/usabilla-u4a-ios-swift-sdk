@@ -87,7 +87,10 @@ class NetworkManager {
 
             let chuckSize = 31250
             let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
-
+            if stringChunks.count == 0 {
+                reject(NSError(domain: "invalid screenshot", code: 0, userInfo: nil))
+                return
+            }
             var promisedSucceeded = 0
 
             for (index, chunk) in stringChunks.enumerated() {

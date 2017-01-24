@@ -50,6 +50,37 @@ class PromiseTest: QuickSpec {
                 }
             }
 
+            it("Promise succeed without async") {
+                waitUntil(timeout: 2.0) { done in
+                    Promise<Bool> { fullfilled, _ in
+                        fullfilled(true)
+
+                    }.then { success in
+                        expect(success).to(beTrue())
+                        done()
+                    }.catch { _ in
+                        fail("should not go here")
+
+                    }
+
+                }
+            }
+
+            it("Promise failure without async") {
+                waitUntil(timeout: 2.0) { done in
+                    Promise<Bool> { _, reject in
+                        reject(NSError(domain: "", code: 0, userInfo: nil))
+                    }.then { _ in
+                        fail("should not go here")
+
+                    }.catch { err in
+                        expect(err).toNot(beNil())
+                        done()
+                    }
+
+                }
+            }
+
         }
     }
 }

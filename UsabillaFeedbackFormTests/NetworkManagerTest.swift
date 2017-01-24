@@ -16,23 +16,39 @@ class NetworkManagerTest: QuickSpec {
     override func spec() {
         describe("NetworkManager") {
 
-            it("NetworkManager submitFormToUsabilla") {
-                let payload = ["data": []]
-                NetworkManager.submitFormToUsabilla(payload: payload, screenshot: "")
+            it("NetworkManager submitFormToUsabilla should fail") {
+                waitUntil(timeout: 2.0) { done in
+                    let payload = ["data": []]
+                    let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: "")
+                    promise.then { _ in
+                        fail("should not go here")
+                    }.catch { _ in
+                        done()
+                    }
+                }
             }
-            
-            it("NetworkManager submitFormToUsabilla") {
-                NetworkManager.submitFormToUsabilla(payload: [:], screenshot: "")
+
+            it("NetworkManager submitFormToUsabilla should fail") {
+                waitUntil(timeout: 2.0) { done in
+                    let promise = NetworkManager.submitFormToUsabilla(payload: [:], screenshot: "")
+                    promise.then { _ in
+                        fail("should not go here")
+
+                    }.catch { _ in
+                        done()
+
+                    }
+                }
             }
 
             it("NetworkManager getForm should fail") {
                 NetworkManager.getFormJsonFromServer("thisIsNotAValidFormId", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
             }
-            
+
             it("NetworkManager getForm should fail") {
                 NetworkManager.getFormJsonFromServer("583c0d8ea935028022c145f4", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
             }
-            
+
             it("NetworkManager getForm should fail") {
                 waitUntil(timeout: 2.0) { done in
                     let promise = NetworkManager.getFormWithFormID(formID: "thisIsNotAValidFormId")
@@ -54,7 +70,7 @@ class NetworkManagerTest: QuickSpec {
                     }
                 }
             }
-            
+
 
 
             it("NetworkManager submitForm should fail") {
