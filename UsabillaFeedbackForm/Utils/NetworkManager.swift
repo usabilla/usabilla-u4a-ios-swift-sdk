@@ -49,19 +49,29 @@ class NetworkManager {
     ///   - payload: Payload containing the user data
     ///   - screenshot: self explanatory screenshot
 
-    class func submitFormToUsabilla(payload: [String: Any], screenshot: String?) {
-        submitFeedbackSmallData(payload: payload).then { response -> Void in
-            guard let data = response.data else {
-                return
+    class func submitFormToUsabilla(payload: [String: Any], screenshot: String?) -> Promise<Bool> {
+        return Promise { fulfill, reject in
+            submitFeedbackSmallData(payload: payload).then { response -> Void in
+                guard let data = response.data else {
+                    reject(NSError(domain: "no response", code: 0, userInfo: nil))
+                    return
+                }
+                let json = JSON(data)
+                let id = json["id"].stringValue
+                let signature = json["sig"].stringValue
+                if let screenshot = screenshot {
+                    submitFeedbackScreenshot(id: id, signature: signature, screenshot: screenshot).then { _ in
+                        fulfill(true)
+                    }.catch { err in
+                        reject(err)
+                    }
+                } else {
+                    fulfill(true)
+                }
+            }.catch { error in
+                reject(error)
+                print(error)
             }
-            let json = JSON(data)
-            let id = json["id"].stringValue
-            let signature = json["sig"].stringValue
-            if let screenshot = screenshot {
-                submitFeedbackScreenshot(id: id, signature: signature, screenshot: screenshot)
-            }
-        }.catch { error in
-            print(error)
         }
     }
 
@@ -72,25 +82,30 @@ class NetworkManager {
     ///   - id: ID of the data that the screenshot must be added to. (Widget server data)
     ///   - signature: Same as ID
     ///   - screenshot: base64 representation of the screenshot
-    class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) {
-        let chuckSize = 31250
-        let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
+    class func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) -> Promise<Bool> {
+        return Promise { fulfill, reject in
 
-        var promisedSucceeded = 0
+            let chuckSize = 31250
+            let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
 
-        for (index, chunk) in stringChunks.enumerated() {
-            createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk).then(execute: { _ in
-                promisedSucceeded += 1
-                if promisedSucceeded == stringChunks.count {
-                    closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
-                        debugPrint("Deal closed")
-                    }).catch(execute: { (err) in
-                        debugPrint(err)
-                    })
-                }
-            }).catch(execute: { err in
-                debugPrint(err)
-            })
+            var promisedSucceeded = 0
+
+            for (index, chunk) in stringChunks.enumerated() {
+                createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk).then(execute: { _ in
+                    promisedSucceeded += 1
+                    if promisedSucceeded == stringChunks.count {
+                        closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
+                            debugPrint("Deal closed")
+                            fulfill(true)
+                        }).catch { err in
+                            reject(err)
+                            debugPrint(err)
+                        }
+                    }
+                }).catch(execute: { err in
+                    debugPrint(err)
+                })
+            }
         }
     }
 

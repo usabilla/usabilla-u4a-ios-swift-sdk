@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 open class UsabillaFeedbackForm {
-    
+
     //Various init methods with many parameters\
     open static weak var delegate: UsabillaFeedbackFormDelegate? = nil
     open static var appStoreId: String? = nil
@@ -23,11 +23,21 @@ open class UsabillaFeedbackForm {
         }
     }
     
-    
+    /**
+       Initialize the **Usabilla SDK**
+     
+       This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
+     
+       The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
+    */
+    open class func load() {
+        SubmissionManager.shared // init the singleton to send persisted feedback
+    }
+
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
         NetworkManager.getFormJsonFromServer(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)
     }
-    
+
     open class func takeScreenshot(_ view: UIView) -> UIImage? {
         //Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)
@@ -36,12 +46,12 @@ open class UsabillaFeedbackForm {
         UIGraphicsEndImageContext()
         return image
     }
-    
+
 }
 
 public protocol UsabillaFeedbackFormDelegate: class {
-    
+
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool)
     func formFailedLoading(_ backupForm: UINavigationController)
-    
+
 }
