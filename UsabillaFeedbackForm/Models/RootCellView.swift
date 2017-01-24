@@ -15,7 +15,6 @@ class RootCellView: UITableViewCell {
     var titleLabel: UILabel!
     var errorLabel: UILabel!
     var item: BaseFieldModel!
-    var showErrorMessage = false
 
     var isValid: Bool = true {
         didSet {
