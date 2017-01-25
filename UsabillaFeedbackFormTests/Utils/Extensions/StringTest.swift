@@ -15,7 +15,7 @@ class StringTest: QuickSpec {
 
     override func spec() {
         
-        describe("divideInChunksOfSize") {
+        describe("String divideInChunksOfSize") {
             let stringToChunk = "abcdefghilmnopqrst"
 
             it("should correctly divide by 3") {
@@ -46,18 +46,16 @@ class StringTest: QuickSpec {
             }
         }
         
-        describe("String Extension ") {
-  
+        describe("String htmlToString") {
+            let htmlString = "<center>Here is some <b>HTML</b></center>"
             it("htmlToAttributedString") {
-
+               let t = htmlString.htmlToAttributedString
+                expect(t).toNot(beNil())
             }
+            
             it("htmlToString") {
-                var t: String? = nil
-                expect(t?.htmlToString).to(beNil())
-                t = "test"
-                expect(t?.htmlToString).to(equal("test"))
+                expect(htmlString.htmlToString).to(equal("Here is some HTML\n"))
             }
-
         }
     }
 }
