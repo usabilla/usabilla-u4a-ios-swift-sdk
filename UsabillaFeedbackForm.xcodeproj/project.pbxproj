@@ -104,7 +104,6 @@
 		43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EC1E37B5C900A97F1D /* UIColor.swift */; };
 		43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EE1E37B61000A97F1D /* UIDevice.swift */; };
 		43E883F11E37B69700A97F1D /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F01E37B69700A97F1D /* UIFont.swift */; };
-		43E883F31E37B6AA00A97F1D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F21E37B6AA00A97F1D /* UIView.swift */; };
 		43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F51E37B7B900A97F1D /* StringTest.swift */; };
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
@@ -219,7 +218,6 @@
 		43E883EC1E37B5C900A97F1D /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		43E883EE1E37B61000A97F1D /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		43E883F01E37B69700A97F1D /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
-		43E883F21E37B6AA00A97F1D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		43E883F51E37B7B900A97F1D /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		43E883F71E38A28A00A97F1D /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
@@ -484,7 +482,6 @@
 				43E883EC1E37B5C900A97F1D /* UIColor.swift */,
 				43E883EE1E37B61000A97F1D /* UIDevice.swift */,
 				43E883F01E37B69700A97F1D /* UIFont.swift */,
-				43E883F21E37B6AA00A97F1D /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -671,7 +668,6 @@
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
-				43E883F31E37B6AA00A97F1D /* UIView.swift in Sources */,
 				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
