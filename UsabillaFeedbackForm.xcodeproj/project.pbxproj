@@ -107,6 +107,7 @@
 		43E883F31E37B6AA00A97F1D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F21E37B6AA00A97F1D /* UIView.swift */; };
 		43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F51E37B7B900A97F1D /* StringTest.swift */; };
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
+		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +222,7 @@
 		43E883F21E37B6AA00A97F1D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		43E883F51E37B7B900A97F1D /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		43E883F71E38A28A00A97F1D /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
+		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -492,6 +494,7 @@
 			children = (
 				43E883F51E37B7B900A97F1D /* StringTest.swift */,
 				43E883F71E38A28A00A97F1D /* UIColorTest.swift */,
+				43E883F91E38A91100A97F1D /* UIDeviceTest.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
+				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,

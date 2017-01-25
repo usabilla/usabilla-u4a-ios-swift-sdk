@@ -9,7 +9,7 @@
 import Foundation
 
 extension UIDevice {
-    
+
     var modelName: String {
         var systemInfo = utsname()
         uname(&systemInfo)
@@ -18,7 +18,12 @@ extension UIDevice {
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
-        
+
+        return UIDevice.model(identifier: identifier)
+    }
+    
+    // swiftlint:disable:next cyclomatic_complexity
+    class func model(identifier: String) -> String {
         switch identifier {
         case "iPod5,1": return "iPod Touch 5"
         case "iPod7,1": return "iPod Touch 6"
@@ -49,6 +54,4 @@ extension UIDevice {
         default: return identifier
         }
     }
-    
 }
-
