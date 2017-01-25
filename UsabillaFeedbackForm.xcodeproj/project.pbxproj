@@ -106,6 +106,7 @@
 		43E883F11E37B69700A97F1D /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F01E37B69700A97F1D /* UIFont.swift */; };
 		43E883F31E37B6AA00A97F1D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F21E37B6AA00A97F1D /* UIView.swift */; };
 		43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F51E37B7B900A97F1D /* StringTest.swift */; };
+		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +220,7 @@
 		43E883F01E37B69700A97F1D /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		43E883F21E37B6AA00A97F1D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		43E883F51E37B7B900A97F1D /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
+		43E883F71E38A28A00A97F1D /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -489,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				43E883F51E37B7B900A97F1D /* StringTest.swift */,
+				43E883F71E38A28A00A97F1D /* UIColorTest.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
 				4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */,
+				43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */,
 				43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */,
 				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
