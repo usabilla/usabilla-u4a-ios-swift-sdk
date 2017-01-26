@@ -22,11 +22,7 @@ class ScreenshotModel: BaseFieldModel {
     }
 
     func toBase64String() -> String? {
-        if let screen = screenshot {
-            let data = UIImageJPEGRepresentation(screen.fixSizeAndOrientation(), 0.5)
-            return data?.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-        }
-        return nil
+        return screenshot?.toBase64()
     }
 
     override func isValid() -> Bool {
