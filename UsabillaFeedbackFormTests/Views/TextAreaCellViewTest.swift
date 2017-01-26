@@ -32,7 +32,7 @@ class TextAreaCellViewTest: QuickSpec {
                 expect(view?.model).to(beNil())
             }
             
-            it("TextAreaCellViewTest ini") {
+            it("TextAreaCellViewTest init wtithout value") {
                 view = TextAreaCellView(style: .default, reuseIdentifier: nil)
                 expect(view).toNot(beNil())
                 model = TextAreaFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\"}"), pageModel: pageModel)
@@ -42,6 +42,18 @@ class TextAreaCellViewTest: QuickSpec {
                 expect(view?.isPlaceholder).to(beTrue())
                 expect(view?.textView.text).to(equal("myplaceholder"))
             }
+            
+            it("TextAreaCellViewTest init with value") {
+                view = TextAreaCellView(style: .default, reuseIdentifier: nil)
+                expect(view).toNot(beNil())
+                model = TextAreaFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\"}"), pageModel: pageModel)
+                model.fieldValue = "test"
+                view?.setFeedbackItem(model)
+                view?.applyCustomisations()
+                expect(view?.isPlaceholder).to(beFalse())
+                expect(view?.textView.text).to(equal("test"))
+            }
+            
             
             it("TextAreaCellViewTest begin editing") {
                 view?.textViewDidBeginEditing(view!.textView)
