@@ -1,32 +1,23 @@
 //
-//  ChunkTest.swift
+//  StringTest.swift
 //  UsabillaFeedbackForm
 //
-//  Created by Giacomo Pinato on 19/05/16.
-//  Copyright © 2016 Usabilla. All rights reserved.
+//  Created by Benjamin Grima on 24/01/2017.
+//  Copyright © 2017 Usabilla. All rights reserved.
 //
 
 import Quick
 import Nimble
 
+@testable import UsabillaFeedbackForm
 
-class ChunkTest: QuickSpec {
-    
-    
-    
+class StringTest: QuickSpec {
+
     override func spec() {
         
-        let stringToChunk = "abcdefghilmnopqrst"
-        
-        beforeSuite {
-            
-        }
-        
-        describe("chunking a string") {
-            beforeEach {
-                //Only for this describe
-            }
-            
+        describe("String divideInChunksOfSize") {
+            let stringToChunk = "abcdefghilmnopqrst"
+
             it("should correctly divide by 3") {
                 let stringChunks = stringToChunk.divideInChunksOfSize(3)
                 expect(stringChunks.count).to(equal(6))
@@ -52,6 +43,18 @@ class ChunkTest: QuickSpec {
                 expect(stringChunks[0].characters.count).to(equal(5))
                 expect(stringChunks[3]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abcde"))
+            }
+        }
+        
+        describe("String htmlToString") {
+            let htmlString = "<center>Here is some <b>HTML</b></center>"
+            it("htmlToAttributedString") {
+               let t = htmlString.htmlToAttributedString
+                expect(t).toNot(beNil())
+            }
+            
+            it("htmlToString") {
+                expect(htmlString.htmlToString).to(equal("Here is some HTML\n"))
             }
         }
     }
