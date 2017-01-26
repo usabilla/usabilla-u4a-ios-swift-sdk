@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409BD661E38F75C00045E44 /* DataStoreTest.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044204E11DD07A3B004FA09F /* UsabillaThemeConfigurator.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -119,6 +120,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0409BD661E38F75C00045E44 /* DataStoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTest.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		044E68161DD3777A00CE75E1 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
@@ -242,6 +244,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0409BD651E38F74E00045E44 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0409BD661E38F75C00045E44 /* DataStoreTest.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		044204DE1DCC89ED004FA09F /* FieldModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +279,7 @@
 		04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */ = {
 			isa = PBXGroup;
 			children = (
+				0409BD651E38F74E00045E44 /* Managers */,
 				04575B5D1D99787F001E0EC3 /* ChunkTest.swift */,
 				04575B5E1D99787F001E0EC3 /* ExtensionTest.swift */,
 				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
@@ -738,6 +749,7 @@
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				04575B711D99799C001E0EC3 /* ChunkTest.swift in Sources */,
+				0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,

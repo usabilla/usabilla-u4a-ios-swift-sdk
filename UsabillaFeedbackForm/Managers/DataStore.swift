@@ -9,31 +9,34 @@
 import Foundation
 
 class DataStore {
+    
+    
     private static let feedbackToSendStorePath = "com.usabilla.u4a.feedback.to.send"
+    
     typealias FeedbackType = FeedbackRequest
-    static let shared = DataStore()
 
-    private(set) var feedbacks: [FeedbackType] = []
-
-    init() {
+    
+    static var feedbacks: [FeedbackType] = {
         if let storedFeedbacks = UserDefaults.standard.value(forKey: DataStore.feedbackToSendStorePath) as? [[String: AnyObject]] {
-            feedbacks = storedFeedbacks.map { FeedbackType(data: $0) }
+            return storedFeedbacks.map { FeedbackType(data: $0) }
         } else {
-            feedbacks = []
+            return []
+        }
+    }()
+
+    static func removeFeedback(index: Int) {
+        if feedbacks.count > index {
+            feedbacks.remove(at: index)
+            saveFeedbacks()
         }
     }
 
-    func removeFeedback(index: Int) {
-        feedbacks.remove(at: index)
-        saveFeedbacks()
-    }
-
-    func addFeedback(type: FeedbackType) {
+    static func addFeedback(type: FeedbackType) {
         feedbacks.append(type)
         saveFeedbacks()
     }
 
-    private func saveFeedbacks() {
+    static private func saveFeedbacks() {
         UserDefaults.standard.set(feedbacks.map { $0.encode() }, forKey: DataStore.feedbackToSendStorePath)
     }
 }

@@ -23,12 +23,12 @@ class SubmissionManager {
 
     private func trySendData() {
         objc_sync_enter(self)
-        guard let feedbackRequest = DataStore.shared.feedbacks.first else {
+        guard let feedbackRequest = DataStore.feedbacks.first else {
             objc_sync_exit(self)
             return
         }
         NetworkManager.submitFormToUsabilla(payload: feedbackRequest.payload, screenshot: feedbackRequest.screenshot).then { _ in
-            DataStore.shared.removeFeedback(index: 0)
+            DataStore.removeFeedback(index: 0)
             self.trySendData()
             objc_sync_exit(self)
         }.catch { _ in
@@ -47,7 +47,7 @@ class SubmissionManager {
 
     func submit(form: FormModel, customVars: [String: Any]?) {
         let feedbackRequest = createSubmission(formModel: form, customVars: nil)
-        DataStore.shared.addFeedback(type: feedbackRequest)
+        DataStore.addFeedback(type: feedbackRequest)
         
         if reachability.currentReachabilityStatus != .notReachable {
             trySendData()
