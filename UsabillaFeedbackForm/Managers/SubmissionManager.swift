@@ -8,17 +8,22 @@
 
 import Foundation
 
+protocol Reachable {
+    func startNotifier() throws
+    var whenReachable: ((Reachability) -> Void)? { get set }
+    var isReachable: Bool { get }
+    var currentReachabilityStatus: Reachability.NetworkStatus { get }
+}
+
+extension Reachability: Reachable { }
+
 class SubmissionManager {
 
-    static let shared = SubmissionManager()
-    private let reachability = Reachability()!
+    static let shared = SubmissionManager(reachability: Reachability()!)
+    private let reachability: Reachable
 
     private func setUpReachability() {
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
+        try? reachability.startNotifier()
     }
 
     private func trySendData() {
@@ -36,9 +41,10 @@ class SubmissionManager {
         }
     }
 
-    init() {
-        reachability.whenReachable = { reachability in
-            if reachability.isReachable {
+    init(reachability: Reachable) {
+        self.reachability = reachability
+        self.reachability.whenReachable = { reachability in
+            if self.reachability.isReachable {
                 self.trySendData()
             }
         }
@@ -46,10 +52,10 @@ class SubmissionManager {
     }
 
     func submit(form: FormModel, customVars: [String: Any]?) {
-        let feedbackRequest = createSubmission(formModel: form, customVars: nil)
+        let feedbackRequest = createSubmission(formModel: form, customVars: customVars)
         DataStore.addFeedback(type: feedbackRequest)
-        
-        if reachability.currentReachabilityStatus != .notReachable {
+
+        if reachability.isReachable {
             trySendData()
         }
     }
@@ -100,7 +106,7 @@ class SubmissionManager {
         if formModel.isDefault {
             contentDictionary["defaultForm"] = true
         }
-        
+
         var payload: [String: Any] = [:]
 
         payload["type"] = "app_feedback"
