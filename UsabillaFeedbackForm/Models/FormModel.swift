@@ -38,5 +38,21 @@ class FormModel {
         
         _ = pages.map { $0.copy = copyModel }
     }
+    
+    func toDictionnary() -> [String: Any] {
+        var formDictionary = [String: Any]()
+        let indexToStop = pages.count - 1
+        for index in 0...indexToStop - 1 {
+            let page = pages[index]
+            for field in page.fields {
+                if let converted = field.convertToJSON() {
+                    if field.fieldId.characters.count > 0 {
+                        formDictionary[field.fieldId] = converted
+                    }
+                }
+            }
+        }
+        return formDictionary
+    }
 
 }
