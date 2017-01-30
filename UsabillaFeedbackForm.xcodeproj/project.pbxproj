@@ -302,8 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				0409BD651E38F74E00045E44 /* Managers */,
-				04575B5D1D99787F001E0EC3 /* ChunkTest.swift */,
-				04575B5E1D99787F001E0EC3 /* ExtensionTest.swift */,
 				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
 				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
 				04575B611D99787F001E0EC3 /* Info.plist */,
@@ -815,7 +813,6 @@
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
-				04575B711D99799C001E0EC3 /* ChunkTest.swift in Sources */,
 				0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
