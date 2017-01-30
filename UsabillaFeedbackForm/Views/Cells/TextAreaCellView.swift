@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class TextAreaCellView: BaseTextAreaCellView {
-    var model: TextAreaFieldModel!
+    var model: TextAreaFieldModel?
     var line: UIView
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -42,12 +42,12 @@ class TextAreaCellView: BaseTextAreaCellView {
     override func applyCustomisations() {
         
         super.applyCustomisations()
-        if model.fieldValue != nil {
-            textView.text = model.fieldValue
+        if model?.fieldValue != nil {
+            textView.text = model?.fieldValue
             isPlaceholder = false
         } else {
             isPlaceholder = true
-            textView.text = model.placeHolder
+            textView.text = model?.placeHolder
         }
         line.backgroundColor = themeConfig.hintColor
         setCorrectFont()
@@ -62,14 +62,14 @@ class TextAreaCellView: BaseTextAreaCellView {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        model.fieldValue = textView.text
+        model?.fieldValue = textView.text
         SwiftEventBus.postToMainThread("updateMySize")
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = model.placeHolder
-            model.fieldValue = nil
+            textView.text = model?.placeHolder
+            model?.fieldValue = nil
             isPlaceholder = true
             setCorrectFont()
         }
@@ -77,10 +77,10 @@ class TextAreaCellView: BaseTextAreaCellView {
     
     func setCorrectFont() {
         if !isPlaceholder {
-            textView.font = model.themeConfig.font.withSize(themeConfig.textFontSize)
-            textView.textColor = model.themeConfig.textColor
+            textView.font = model?.themeConfig.font.withSize(themeConfig.textFontSize)
+            textView.textColor = model?.themeConfig.textColor
         } else {
-            textView.textColor = model.themeConfig.hintColor
+            textView.textColor = model?.themeConfig.hintColor
             if let customFont = themeConfig.font.withSize(themeConfig.textFontSize).withTraits(.traitItalic) {
                 textView.font = customFont
             } else {

@@ -77,6 +77,9 @@
 		41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */; };
 		4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */; };
 		4300EB7F1E38BDD200920FE6 /* UIFontTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4300EB7E1E38BDD200920FE6 /* UIFontTest.swift */; };
+		4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */; };
+		4304B0401E390EAA007C8796 /* TextAreaCellViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */; };
+		4304B0421E39FF1E007C8796 /* TextInputCellViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */; };
 		432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
 		4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
 		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
@@ -198,6 +201,9 @@
 		41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModelTest.swift; sourceTree = "<group>"; };
 		4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManagerTest.swift; sourceTree = "<group>"; };
 		4300EB7E1E38BDD200920FE6 /* UIFontTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontTest.swift; sourceTree = "<group>"; };
+		4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoTest.swift; sourceTree = "<group>"; };
+		4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaCellViewTest.swift; sourceTree = "<group>"; };
+		4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputCellViewTest.swift; sourceTree = "<group>"; };
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		4331DA401E27B362009C97B6 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactoryTest.swift; sourceTree = "<group>"; };
@@ -302,6 +308,7 @@
 				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
 				04575B611D99787F001E0EC3 /* Info.plist */,
 				04575B621D99787F001E0EC3 /* JSONParserTest.swift */,
+				4304B03E1E390E8D007C8796 /* Views */,
 				434A27891E2F6FD6002864C6 /* Utils */,
 				4334E8641E2906FE00AC895C /* Models */,
 				43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */,
@@ -477,6 +484,16 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		4304B03E1E390E8D007C8796 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */,
+				4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */,
+			);
+			name = Views;
+			path = UsabillaFeedbackFormTests/Views;
+			sourceTree = SOURCE_ROOT;
+		};
 		4334E8641E2906FE00AC895C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +524,7 @@
 				43E883F41E37B7AA00A97F1D /* Extensions */,
 				434A278A1E2F6FE6002864C6 /* PromiseTest.swift */,
 				434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */,
+				4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -779,6 +797,7 @@
 			files = (
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
+				4304B0401E390EAA007C8796 /* TextAreaCellViewTest.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
 				43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */,
@@ -788,6 +807,7 @@
 				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
+				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,
 				434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */,
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
 				4300EB7F1E38BDD200920FE6 /* UIFontTest.swift in Sources */,
@@ -802,6 +822,7 @@
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,
+				4304B0421E39FF1E007C8796 /* TextInputCellViewTest.swift in Sources */,
 				43B0A2121E2CC4FF00879E5F /* IntFieldModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
