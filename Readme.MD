@@ -161,14 +161,6 @@ In this example you can see a ViewController in Obj-C:
 @implementation ViewController
 
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-    // Dispose of any resources that can be recreated.
-}
-
-
 - (IBAction)buttonPressed:(id)sender {
       [self  showForm];
     
