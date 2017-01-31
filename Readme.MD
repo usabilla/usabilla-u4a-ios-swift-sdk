@@ -139,6 +139,71 @@ This invitation will only be showed if:
 You have to specify the app id omitting the initial "id", leaving only the numerical part.
 
 
+## Integration with Obj-C application
+
+To integrate the SDK in your Obj-C application, follow apple official guidelines on how to [use Swift and Objective-C in the Same Project](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html)
+
+A quick way to approach this problem is to create a Swift file from where you will handle your application. After creating the new file and having set up the Bridging Header, you can extend your exsisting view controllers inside the Swift class to seamlessy integrate the SDK in your app.
+
+In this example you can see a ViewController in Obj-C:
+
+```
+#import "ViewController.h"
+
+//Remember to import the auto generated Swift header, otherwise you won't see you Swift extension
+#import "objctest-Swift.h"
 
 
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)buttonPressed:(id)sender {
+      [self  showForm];
+    
+}
+
+
+@end
+
+```
+
+And its Swift extension, implementing the SDK:
+
+```
+import UsabillaFeedbackForm
+
+extension ViewController : UsabillaFeedbackFormDelegate {
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        UsabillaFeedbackForm.delegate = self
+    }
+    
+    
+    public func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
+        present(form, animated:  true)
+    }
+    
+    public func formFailedLoading(_ backupForm: UINavigationController) {
+        
+    }
+    
+    @objc public func showForm(){
+        UsabillaFeedbackForm.loadFeedbackForm("Form ID")
+    }
+}
+
+```
 
