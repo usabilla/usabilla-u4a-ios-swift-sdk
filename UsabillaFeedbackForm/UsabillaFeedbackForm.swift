@@ -22,7 +22,7 @@ open class UsabillaFeedbackForm {
             defaultLocalisationFile = false
         }
     }
-    
+
     /**
        Initialize the **Usabilla SDK**
      
@@ -49,9 +49,31 @@ open class UsabillaFeedbackForm {
 
 }
 
+public struct FeedbackResult {
+    let formId: String
+    let mood: Int?
+    let abandonedPageIndex: Int?
+    
+    var sent : Bool {
+        return mood != nil
+    }
+}
+
 public protocol UsabillaFeedbackFormDelegate: class {
 
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool)
     func formFailedLoading(_ backupForm: UINavigationController)
+    
+    /**
+        This method is called once the user has submitted the form
+        - Parameter mood: Int between 1 and 5 (included) matching the value set by the user on the mood control
+    */
+    func formDidClose(with feedbackResults:[FeedbackResult])
 
+}
+
+public extension UsabillaFeedbackFormDelegate {
+    func formDidClose(with feedbackResults:[FeedbackResult]) {
+        
+    }
 }
