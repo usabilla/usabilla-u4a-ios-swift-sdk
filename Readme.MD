@@ -3,6 +3,24 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
+## Latest changes in v3.2.0
+#### Added
+- Carthage compatibility
+- Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a the connection is back
+
+#### Removed
+- Alamofire dependency
+- PromiseKit dependency
+
+#### Fixed
+- Issue with the rating control (star and mood) where it was not reset correctly after reuse
+
+#### Updated
+
+- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
+
+ *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
+
 ## Requirements
 
 - iOS 9.0+

@@ -141,8 +141,4 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @interface UIImage (SWIFT_EXTENSION(UsabillaFeedbackForm))
 @end
 
-
-@interface UIView (SWIFT_EXTENSION(UsabillaFeedbackForm))
-@end
-
 #pragma clang diagnostic pop
