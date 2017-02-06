@@ -55,7 +55,6 @@ class FormViewController: UIViewController {
 
 
         setUpLeftButton()
-        setUpReachability()
     }
     
     
@@ -66,16 +65,6 @@ class FormViewController: UIViewController {
         if !UsabillaFeedbackForm.showCancelButton {
             leftNavItem.title = ""
             leftNavItem.isEnabled = false
-        }
-    }
-
-
-    func setUpReachability() {
-        do {
-            reachability = Reachability.init()
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
         }
     }
 
@@ -93,12 +82,7 @@ class FormViewController: UIViewController {
             let newPageIndex = selectNewPage()
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
-                let (payload, screenshot) = createDictionaryForSubmission()
-                if reachability.currentReachabilityStatus == .notReachable {
-                    //Queue
-                } else {
-                    submitForm(payload, screenshotString: screenshot)
-                }
+                SubmissionManager.shared.submit(form: formModel, customVars: customVars)
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
@@ -229,91 +213,7 @@ class FormViewController: UIViewController {
         currentPage = page
     }
 
-    func convertFormToDictionary() -> [String: Any] {
-        var formDictionary = [String: Any]()
-        let indexToStop = formModel.pages.count - 1
-        for index in 0...indexToStop - 1 {
-            let page = formModel.pages[index]
-            for field in page.fields {
-                if let converted = field.convertToJSON() {
-                    if field.fieldId.characters.count > 0 {
-                        formDictionary[field.fieldId] = converted
-                    }
-                }
-            }
-        }
-        return formDictionary
-    }
-
-    func createDictionaryForSubmission() -> ([String: Any], String? ) {
-        let uiDevice = UIDevice()
-        var contentDictionary: [String: Any] = [:]
-        contentDictionary["app_id"] = formModel.appId   //String
-        contentDictionary["version"] = formModel.version   //String
-        contentDictionary["SDK_version"] = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")  
-
-        contentDictionary["data"] = convertFormToDictionary()  
-
-        contentDictionary["timestamp"] = String(format: "%.0f", arguments: [Date().timeIntervalSince1970])  
-
-        contentDictionary["device"] = uiDevice.modelName  
-
-        contentDictionary["system"] = "ios"  
-        contentDictionary["os_version"] = uiDevice.systemVersion
-        UIDevice.current.isBatteryMonitoringEnabled = true
-        contentDictionary["battery"] = UIDevice.current.batteryLevel
-        contentDictionary["lang"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)
-        contentDictionary["orientation"] = UIDeviceOrientationIsLandscape(uiDevice.orientation) ? "Landscape": "Portrait"
-        //contentDictionary["free_memory"] = Int(DeviceInfo.deviceRemainingFreeSpaceInBytes()! / 1024)
-        //contentDictionary["total_memory"] = Int(DeviceInfo.totalRamOfDevice() / 1024)
-
-        contentDictionary["reachability"] = reachability.currentReachabilityStatus.description
-
-        contentDictionary["free_space"] = Int(DeviceInfo.DiskStatus.freeDiskSpaceInBytes / 1024)  
-        contentDictionary["total_space"] = Int(DeviceInfo.DiskStatus.totalDiskSpaceInBytes / 1024)  
-        contentDictionary["rooted"] = DeviceInfo.isJailbroken()  
-
-        let screenBounds = UIScreen.main.bounds
-        contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"  
-
-        contentDictionary["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]  
-        contentDictionary["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]  
-
-        var screenshotString: String?
-        if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
-            if let screenshot = screenshotModel.base64Value {
-                //contentDictionary["media"] = ["screenshot" : screenshot]
-                screenshotString = screenshot
-            }
-        }
-
-        if customVars != nil {
-            contentDictionary["custom_variables"] = customVars  
-        }
-
-        if formModel.isDefault {
-            contentDictionary["defaultForm"] = true  
-        }
-
-
-        var payload: [String: Any] = [:]
-
-        payload["type"] = "app_feedback" 
-        payload["subtype"] = "form"  
-        payload["v"] = NSNumber(value: 1 as Int32)
-        payload["done"] = true  
-        payload["data"] = contentDictionary  
-
-
-        //And now to send the request
-        //print(screenshotString)
-        return (payload, screenshotString)
-    }
-
-    func submitForm(_ payload: [String: Any], screenshotString: String? ) {
-        NetworkManager.submitFormToUsabilla(payload: payload, screenshot:  screenshotString)
-    }
-
+   
 
     //    deinit {
     //        print("calling form controller deinit")

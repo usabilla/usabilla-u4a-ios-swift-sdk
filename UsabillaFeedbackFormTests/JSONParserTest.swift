@@ -13,6 +13,9 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
+
+// swiftlint:disable force_cast
+
 class JSONParserTest: QuickSpec {
 
     override func spec() {
@@ -43,7 +46,7 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.copyModel.appTitle).to(equal("FeedbackTest"))
                     expect(formModel.copyModel.navigationSubmit).to(equal("TestSubmit"))
                     expect(formModel.hasScreenshot).to(equal(true))
-                    expect(formModel.version).to(equal(1))
+                    expect(formModel.version).to(equal(6))
                     expect(formModel.appId).to(equal("a"))
                     expect(formModel.isDefault).to(equal(false))
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
@@ -51,11 +54,11 @@ class JSONParserTest: QuickSpec {
 
                 describe("the colors group") {
                     it("should have been correctly parsed") {
-                        expect(formModel.themeConfig.titleColor.hexString(false)).to(equal("#AAAAAA"))
-                        expect(formModel.themeConfig.accentColor.hexString(false)).to(equal("#BBBBBB"))
-                        expect(formModel.themeConfig.textColor.hexString(false)).to(equal("#CCCCCC"))
-                        expect(formModel.themeConfig.errorColor.hexString(false)).to(equal("#DDDDDD"))
-                        expect(formModel.themeConfig.backgroundColor.hexString(false)).to(equal("#EEEEEE"))
+                        expect(formModel.themeConfig.titleColor.hexString(false)).to(equal("#41474C"))
+                        expect(formModel.themeConfig.accentColor.hexString(false)).to(equal("#00A5C9"))
+                        expect(formModel.themeConfig.textColor.hexString(false)).to(equal("#59636B"))
+                        expect(formModel.themeConfig.errorColor.hexString(false)).to(equal("#F4606E"))
+                        expect(formModel.themeConfig.backgroundColor.hexString(false)).to(equal("#FFFFFF"))
                         expect(formModel.themeConfig.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
                     }
                 }
@@ -70,72 +73,106 @@ class JSONParserTest: QuickSpec {
 
                         it("should contain valid data") {
                             let page = formModel.pages[1]
-                            expect(page.pageName).to(equal("middle"))
+                            expect(page.pageName).to(equal("second"))
                         }
 
                         it("should have the correct jump rule") {
-                            let page = formModel.pages[1]
-                            expect(page.defaultJumpTo).to(equal("end"))
+                            let page = formModel.pages[0]
+                            expect(page.defaultJumpTo).to(equal("Third"))
                             expect(page.jumpRuleList?.count).to(equal(1))
-                            expect(page.jumpRuleList![0].jumpTo).to(equal("secondMiddle"))
-                            expect(page.jumpRuleList![0].dependsOnID).to(equal("SISSM"))
-                            expect(page.jumpRuleList![0].targetValues.count).to(equal(1))
-                            expect(page.jumpRuleList![0].targetValues[0]).to(equal("option_1"))
+                            expect(page.jumpRuleList![0].jumpTo).to(equal("second"))
+                            expect(page.jumpRuleList![0].dependsOnID).to(equal("nps"))
+                            expect(page.jumpRuleList![0].targetValues.count).to(equal(5))
+                            expect(page.jumpRuleList![0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
 
                         }
 
                         describe("the field array") {
 
                             it("should have the correct properties") {
-                                let fields = formModel.pages[1].fields
-                                expect(fields.count).to(equal(4))
-
+                                let fields = formModel.pages[0].fields
+                                expect(fields.count).to(equal(6))
                             }
 
                             it("should containt a valid first field") {
-                                guard let field: CheckboxFieldModel = (formModel.pages[1].fields[0]) as? CheckboxFieldModel else {
-                                    expect(true).to(equal(true))
-                                    return
-                                }
-                                expect(field.fieldId).to(equal("SISSM"))
-                                expect(field.fieldTitle).to(equal("SISSM"))
-                                expect(field.type).to(equal("checkbox"))
-                                expect(field.required).to(equal(false))
-                                expect(field.options.count).to(equal(2))
-                                expect(field.fieldId).to(equal("SISSM"))
-                                expect(field.fieldId).to(equal("SISSM"))
-
+                                let field: MoodFieldModel = (formModel.pages[0].fields[0]) as! MoodFieldModel
+                                expect(field.fieldId).to(equal("mood"))
+                                expect(field.fieldTitle).to(equal("Click to edit question"))
+                                expect(field.type).to(equal("mood"))
+                                expect(field.required).to(beTrue())
+                                expect(field.fieldId).to(equal("mood"))
+                                expect(field.fieldId).to(equal("mood"))
+                                expect(field.rule).to(beNil())
                             }
 
                             it("should containt a valid second field") {
-                                guard let field: RatingFieldModel = formModel.pages[1].fields[1] as? RatingFieldModel else {
-                                    expect(true).to(equal(true))
-                                    return
-                                }
-                                expect(field.fieldTitle).to(equal("Ik ben een slider!"))
-                                expect(field.fieldId).to(equal("Ik_ben_een_slide"))
+                                let field: ParagraphFieldModel = formModel.pages[0].fields[1] as! ParagraphFieldModel
+                                expect(field.fieldTitle).to(beEmpty())
+                                expect(field.fieldId).to(beEmpty())
+                                expect(field.type).to(equal("paragraph"))
+                                expect(field.required).to(beFalse())
+                                expect(field.fieldValue).to(equal("I am a paragraph"))
+                                expect(field.shouldAppear()).to(beFalse())
+                                expect(field.rule?.showIfRuleIsSatisfied).to(beTrue())
+                                expect(field.rule?.targetValues).to(equal(["1", "2"]))
+                                expect(field.rule?.dependsOnID).to(equal("mood"))
+                            }
+                            
+                            
+                            it("should containt a valid third field") {
+                                let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
+                                expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
+                                expect(field.fieldId).to(equal("nps"))
                                 expect(field.type).to(equal("rating"))
-                                expect(field.required).to(equal(false))
-                                expect(field.scale).to(equal(5))
-                                expect(field.high).to(equal("high >>"))
-                                expect(field.low).to(equal("<< low"))
-                                expect(field.shouldAppear()).to(equal(true))
-
+                                expect(field.required).to(beTrue())
+                                expect(field.fieldValue).to(beNil())
+                                expect(field.shouldAppear()).to(beFalse())
+                                expect(field.rule?.showIfRuleIsSatisfied).to(beTrue())
+                                expect(field.rule?.targetValues).to(equal(["4", "5"]))
+                                expect(field.rule?.dependsOnID).to(equal("mood"))
+                                expect(field.high).to(equal("very likely"))
+                                expect(field.low).to(equal("not at all"))
+                                expect(field.shouldAppear()).to(beFalse())
+                            }
+                            
+                            it("should containt a valid fourth field") {
+                                let field: TextFieldModel = formModel.pages[0].fields[3] as! TextFieldModel
+                                expect(field.fieldTitle).to(equal("Click to edit"))
+                                expect(field.fieldId).to(equal("text"))
+                                expect(field.type).to(equal("text"))
+                                expect(field.required).to(beFalse())
+                                expect(field.fieldValue).to(beNil())
+                                expect(field.placeHolder).to(equal("I am a placeholder"))
+                                expect(field.shouldAppear()).to(beTrue())
+                            }
+                            
+                            it("should containt a valid fifth field") {
+                                let field: CheckboxFieldModel = formModel.pages[0].fields[4] as! CheckboxFieldModel
+                                expect(field.fieldTitle).to(equal("Checkboxah"))
+                                expect(field.fieldId).to(equal("Checkboxah"))
+                                expect(field.type).to(equal("checkbox"))
+                                expect(field.required).to(beFalse())
+                                expect(field.fieldValue).to(equal([]))
+                                expect(field.shouldAppear()).to(beTrue())
                             }
 
-                            it("should containt a valid email field") {
-                                guard let field: EmailFieldModel = formModel.pages[1].fields[2] as? EmailFieldModel else {
-                                    return
-                                }
-                                expect(field.fieldTitle).to(equal("Email address"))
-                                expect(field.fieldId).to(equal("email"))
-                                expect(field.placeHolder).to(equal("Dit is een email"))
-                                expect(field.required).to(equal(true))
-                                expect(field.rule).toNot(beNil())
-
-                            }
                         }
                     }
+                }
+                
+                describe("the page model") {
+                    
+                    it("should have the correct jump rule") {
+                        let pageModel = formModel.pages[0]
+                        expect(pageModel.defaultJumpTo).to(equal("Third"))
+                        expect(pageModel.jumpRuleList?.count).to(equal(1))
+                        expect(pageModel.jumpRuleList?[0].jumpTo).to(equal("second"))
+                        expect(pageModel.jumpRuleList?[0].dependsOnID).to(equal("nps"))
+                        expect(pageModel.jumpRuleList?[0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
+                    }
+                    
+                    
+                
                 }
             }
         }

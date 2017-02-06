@@ -15,7 +15,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     var pageModel: PageModel!
     var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
-    var showErrorMessages = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +121,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     func initWithPage(_ page: PageModel) {
         pageModel = page
         dynamicFields = []
-        showErrorMessages = false
         tableView?.reloadData()
     }
 
@@ -217,7 +215,6 @@ extension PageController: UITableViewDataSource {
         let item: BaseFieldModel = pageModel.fields[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: item.type, for: indexPath)
         if let cell = cell as? RootCellView {
-            cell.showErrorMessage = showErrorMessages
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.setFeedbackItem(item)
             cell.applyCustomisations()

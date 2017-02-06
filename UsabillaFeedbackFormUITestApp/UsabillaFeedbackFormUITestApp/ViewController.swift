@@ -8,13 +8,13 @@
 
 import UIKit
 import UsabillaFeedbackForm
-import PromiseKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         UsabillaFeedbackForm.delegate = self
+        UsabillaFeedbackForm.hideGiveMoreFeedback = false
     }
     
     @IBAction func scenario1ButtonTap(_ sender: Any) {

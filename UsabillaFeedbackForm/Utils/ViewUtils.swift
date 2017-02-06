@@ -19,22 +19,11 @@ class ViewUtils {
         logo.setImage(Icons.imageOfPoweredBy(color: themeConfig.textColor.withAlphaComponent(0.5)), for: UIControlState())
         view.backgroundColor = themeConfig.backgroundColor
         view.addSubview(logo)
-        
+
         logo.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         logo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logo.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         return view
     }
-    
-    
-    
-    public static func addConstraintToFillContainerView(innerview: UIView, outerview: UIView, withMargin: CGFloat = 0) {
-        NSLayoutConstraint(item: innerview, attribute: .bottom, relatedBy: .equal, toItem: outerview, attribute: .bottom, multiplier: 1, constant: -withMargin).isActive = true
-        NSLayoutConstraint(item: innerview, attribute: .top, relatedBy: .equal, toItem: outerview, attribute: .top, multiplier: 1, constant: withMargin).isActive = true
-        NSLayoutConstraint(item: innerview, attribute: .leading, relatedBy: .equal, toItem: outerview, attribute: .leading, multiplier: 1, constant: withMargin).isActive = true
-        NSLayoutConstraint(item: innerview, attribute: .trailing, relatedBy: .equal, toItem: outerview, attribute: .trailing, multiplier: 1, constant: -withMargin).isActive = true
-    }
 
-    
-    
 }
