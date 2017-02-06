@@ -45,7 +45,9 @@ class SubmissionManager {
         self.reachability = reachability
         self.reachability.whenReachable = { reachability in
             if self.reachability.isReachable {
-                self.trySendData()
+                DispatchQueue.main.async {
+                    self.trySendData()
+                }
             }
         }
         setUpReachability()
