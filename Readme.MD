@@ -3,24 +3,33 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
+## Latest changes in v3.2.0
+#### Added
+- Carthage compatibility
+- Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a the connection is back
+
+#### Removed
+- Alamofire dependency
+- PromiseKit dependency
+
+#### Fixed
+- Issue with the rating control (star and mood) where it was not reset correctly after reuse
+
+#### Updated
+
+- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
+
+ *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
+
 ## Requirements
 
-- iOS 9.0+ 
+- iOS 9.0+
 - Xcode 8.0+
 - Swift 3.0+
 
 For older versions of iOS you can use v2.3.0 of the SDK.
 
-## Dependencies
-
-The SDK depends on the following libraries:
-
-- Alamofire	~> 4.0.0
-- PromiseKit/CorePromise	~> 4.0.0
-- PromiseKit/UIKit	~> 4.0.0
-
-
-## Installation 
+## Installation
 
 ### CocoaPods
 
@@ -29,7 +38,6 @@ The Usabilla SDK is available on [CocoaPods](http://cocoapods.org). You can inst
 ```bash
 $ gem install cocoapods
 ```
-
 
 To use the SDK in your project, specify it in your `Podfile`:
 
@@ -49,20 +57,54 @@ Then, run the following command:
 $ pod install
 ```
 
+### Carthage
+
+The Usabilla SDK is also available through [Carthage](https://github.com/Carthage/Carthage).
+
+Follow [these instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
+to add carthage to your project.
+
+And add this line to your `Cartfile`:
+
+```yaml
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.2.0"
+```
+
+### Manual
+
+Alternatively you can download the latest version of the repository and add **UsabillaFeedbackForm.framework** to your app’s embedded frameworks.
+
 ## How to get started
 
 ### On the web
 - Create a new form on your [Usabilla](https://app.usabilla.com/member/) Live for Apps section.
-- Copy th Form ID of the form you just created and use it to open it in the SDK.
+- Copy the Form ID of the form you just created and use it to open it in the SDK.
 
 
 ### In the SDK
+
+#### Initialization
+
+Inside your **AppDelegate** add the following line at the top of your file to import the sdk.
+
+```swift
+import UsabillaFeedbackForm
+```
+
+Add the following line to the **didFinishLaunchingWithOptions**:
+```swift
+UsabillaFeedbackForm.load()
+```
+The **load** method is here in order to init the caching feature : submit the previously submitted feedbacks.
+
+#### Using forms
+
+
 The SDK uses the Form ID you previously got from [Usabilla](https://app.usabilla.com/member/) to fetch and display your form inside your app.
 
 A basic implementation of the SDK would be the following.
 
-```
-
+```swift
 class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
 
     override func viewDidLoad() {
@@ -147,7 +189,7 @@ A quick way to approach this problem is to create a Swift file from where you wi
 
 In this example you can see a ViewController in Obj-C:
 
-```
+```objectivec
 #import "ViewController.h"
 
 //Remember to import the auto generated Swift header, otherwise you won't see you Swift extension
@@ -163,7 +205,7 @@ In this example you can see a ViewController in Obj-C:
 
 - (IBAction)buttonPressed:(id)sender {
       [self  showForm];
-    
+
 }
 
 
@@ -173,7 +215,7 @@ In this example you can see a ViewController in Obj-C:
 
 And its Swift extension, implementing the SDK:
 
-```
+```swift
 import UsabillaFeedbackForm
 
 extension ViewController : UsabillaFeedbackFormDelegate {
@@ -182,20 +224,19 @@ extension ViewController : UsabillaFeedbackFormDelegate {
         super.viewDidLoad()
         UsabillaFeedbackForm.delegate = self
     }
-    
-    
+
+
     public func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
         present(form, animated:  true)
     }
-    
+
     public func formFailedLoading(_ backupForm: UINavigationController) {
-        
+
     }
-    
+
     @objc public func showForm(){
         UsabillaFeedbackForm.loadFeedbackForm("Form ID")
     }
 }
 
 ```
-

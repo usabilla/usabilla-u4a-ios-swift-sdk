@@ -1,3 +1,21 @@
+## 3.2.0
+#### Added
+- Carthage compatibility
+- Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a the connection is back
+
+#### Removed
+- Alamofire dependency
+- PromiseKit dependency
+
+#### Fixed
+- Issue with the rating control (star and mood) where it was not reset correctly after reuse
+
+#### Updated
+
+- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
+
+ *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
+
 ## 3.1.0
 #### Added
 - Possibility to configure font size in the SDK. See the wiki for more info.
@@ -10,7 +28,7 @@
 - Revamped and polsihed the UI.
 - The screenshot will now keep its aspect ratio, stretching the form if necessary.
 
-#### Fixed 
+#### Fixed
 - Small bug in the paragraph component.
 
 
@@ -28,7 +46,7 @@
 ## 2.3.0
 #### Added
 - It is now possible to set most text fields (like submit, cancel, redirect to play store) from the web interface
- 
+
 
 ## 2.2.1
 #### Fixed
@@ -51,9 +69,9 @@
 ## 2.1
 
 - SDK updated to be compatible with Swift 2.3
-- Fixed some broken constraint 
+- Fixed some broken constraint
 - Fixed typo on UsabillaFeedbackFormDelegate
-- Reduced number of dependencies 
+- Reduced number of dependencies
 - In UsabillaThemeConfigurator, statusBarColor has been changed from UIBarStyle to UIStatusBarStyle
 - SDK no longer use custom font as default
 - Minor fixes and improvements

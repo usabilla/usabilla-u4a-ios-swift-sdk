@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "3.1.0"
+  s.version      = "3.2.0"
   s.summary      = "Collect feedback from your users."
 
   s.description  = 'With Usabilla FeedbackSDK you can collect feedback from your users.'
@@ -18,9 +18,9 @@ Pod::Spec.new do |s|
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
- 
+
   s.author             = { "Giacomo Pinato" => "giacomo@usabilla.com" }
- 
+
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -32,12 +32,7 @@ Pod::Spec.new do |s|
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
- 
+
   s.ios.vendored_frameworks = 'UsabillaFeedbackForm.framework'
 
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'Alamofire', '~> 4.0.0'
-  s.dependency 'PromiseKit/CorePromise','~>  4.0.0'
-  s.dependency 'PromiseKit/UIKit','~>  4.0.0'
 end
