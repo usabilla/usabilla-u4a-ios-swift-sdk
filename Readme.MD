@@ -6,7 +6,9 @@ Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki)
 ## Latest changes in v3.2.0
 #### Added
 - Carthage compatibility
-- Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a the connection is back
+- Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a connection is back.
+
+ Follow [these steps](#initialization) in order to enable the caching feature.
 
 #### Removed
 - Alamofire dependency
