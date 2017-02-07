@@ -3,7 +3,7 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.2.0
+## Latest changes in v3.2.1
 #### Added
 - Carthage compatibility
 - Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a connection is back.
@@ -16,7 +16,8 @@ Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki)
 
 #### Fixed
 - Issue with the rating control (star and mood) where it was not reset correctly after reuse
-
+- Synchronization (thread) issue that could freeze the user interface
+- Textfield position when the keyboard is showing up
 
 ## Requirements
 
