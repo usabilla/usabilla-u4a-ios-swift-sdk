@@ -17,11 +17,6 @@ Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki)
 #### Fixed
 - Issue with the rating control (star and mood) where it was not reset correctly after reuse
 
-#### Updated
-
-- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
-
- *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
 
 ## Requirements
 
@@ -69,7 +64,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.2.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.2.1"
 ```
 
 ### Manual

@@ -1,3 +1,9 @@
+## 3.2.1
+#### Fixed
+
+- Synchronization (thread) issue that could freeze the user interface
+- Textfield position when the keyboard is showing up
+
 ## 3.2.0
 #### Added
 - Carthage compatibility
@@ -11,12 +17,6 @@
 
 #### Fixed
 - Issue with the rating control (star and mood) where it was not reset correctly after reuse
-
-#### Updated
-
-- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
-
- *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
 
 ## 3.1.0
 #### Added
