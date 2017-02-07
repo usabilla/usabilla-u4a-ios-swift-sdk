@@ -54,11 +54,10 @@ class JSONEncoding: ParameterEncoding {
 class HTTPClient {
 
     class func request(request: URLRequest,
+                       responseQueue: DispatchQueue? = nil,
                        completion: @escaping (HTTPClientResponse) -> Void) {
-
-        let senderQueue = OperationQueue.current
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-            senderQueue?.addOperation {
+            (responseQueue ?? DispatchQueue.main).async {
                 debugPrint(response ?? "")
                 guard error == nil else {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
@@ -85,6 +84,7 @@ class HTTPClient {
                        parameters: Parameters? = nil,
                        encoding: ParameterEncoding = JSONEncoding.default,
                        headers: HTTPHeaders? = nil,
+                       responseQueue: DispatchQueue? = nil,
                        completion: @escaping (HTTPClientResponse) -> Void) {
         guard let url = URL(string: url) else {
             return
@@ -103,7 +103,7 @@ class HTTPClient {
             completion(HTTPClientResponse(data: nil, error: error as NSError?, success: false))
             return
         }
-        HTTPClient.request(request: request as URLRequest, completion: completion)
+        HTTPClient.request(request: request as URLRequest, responseQueue: responseQueue, completion: completion)
     }
 
 }
