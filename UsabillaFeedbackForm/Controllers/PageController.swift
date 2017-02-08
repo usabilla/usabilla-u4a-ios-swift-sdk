@@ -39,10 +39,34 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         let gestureReCognizer = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         gestureReCognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(gestureReCognizer)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
         registerEventsBus()
     }
 
-    
+
+    func keyboardWillShow(notification: NSNotification) {
+        guard var userInfo = notification.userInfo else {
+            return
+        }
+        guard var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        var contentInset: UIEdgeInsets = self.tableView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.tableView.contentInset = contentInset
+    }
+
+
+    func keyboardWillHide(notification: NSNotification) {
+        let contentInset: UIEdgeInsets = UIEdgeInsets.zero
+        self.tableView.contentInset = contentInset
+    }
+
     func registerEventsBus() {
         SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
             self.reloadCellInTableAfterEvent()
@@ -148,7 +172,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
         for (index, field) in pageModel.fields.enumerated() {
             if !field.isValid() {
-                
+
                 if correctlyFilled {
                     let indexPath = IndexPath(row: index, section: 0)
                     tableView.scrollToRow(at: indexPath, at: .top, animated: true)
