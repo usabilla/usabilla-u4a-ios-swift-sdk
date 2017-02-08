@@ -586,7 +586,7 @@
 				04F54DC51CD75A3F002F501E /* Headers */,
 				04F54DC61CD75A3F002F501E /* Resources */,
 				04ECA08F1CE3224D0033CAFB /* Linter */,
-				0460E4FA1E487E7A005D6049 /* SDK */,
+				04DB37331E4A0D7A00441113 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -680,14 +680,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0460E4FA1E487E7A005D6049 /* SDK */ = {
+		04DB37331E4A0D7A00441113 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = SDK;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
