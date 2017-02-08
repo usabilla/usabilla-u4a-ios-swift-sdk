@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         UsabillaFeedbackForm.delegate = self
         UsabillaFeedbackForm.hideGiveMoreFeedback = false
+        UsabillaFeedbackForm.showCancelButton = true
+        UsabillaFeedbackForm.dismissAutomatically = false
     }
     
     @IBAction func scenario1ButtonTap(_ sender: Any) {
@@ -30,5 +32,9 @@ extension ViewController: UsabillaFeedbackFormDelegate {
     
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
         present(form, animated: true, completion: nil)
+    }
+    
+    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+        dismiss(animated: true, completion: nil)
     }
 }
