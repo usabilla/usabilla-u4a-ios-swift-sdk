@@ -203,7 +203,9 @@ class NetworkManager {
             }
         }.catch { _ in
             Swift.debugPrint("calling fail protocol")
-            UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
+            DispatchQueue.main.async {
+                UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
+            }
         }
     }
 
