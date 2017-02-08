@@ -21,23 +21,25 @@ class SubmissionManager {
 
     static let shared = SubmissionManager(reachability: Reachability()!)
     private let reachability: Reachable
-
+    fileprivate let submissionSerialQueue = DispatchQueue(label: "com.usabilla.u4a.submissionmanager")
+    fileprivate let semaphore = DispatchSemaphore(value: 0)
     private func setUpReachability() {
         try? reachability.startNotifier()
     }
 
     private func trySendData() {
-        objc_sync_enter(self)
-        guard let feedbackRequest = DataStore.feedbacks.first else {
-            objc_sync_exit(self)
-            return
-        }
-        NetworkManager.submitFormToUsabilla(payload: feedbackRequest.payload, screenshot: feedbackRequest.screenshot).then { _ in
-            DataStore.removeFeedback(index: 0)
-            self.trySendData()
-            objc_sync_exit(self)
-        }.catch { _ in
-            objc_sync_exit(self)
+        submissionSerialQueue.async {
+            guard let feedbackRequest = DataStore.feedbacks.first else {
+                return
+            }
+            NetworkManager.submitFormToUsabilla(payload: feedbackRequest.payload, screenshot: feedbackRequest.screenshot).then { _ in
+                DataStore.removeFeedback(index: 0)
+                self.trySendData()
+                self.semaphore.signal()
+            }.catch { _ in
+                self.semaphore.signal()
+            }
+            self.semaphore.wait()
         }
     }
 
@@ -53,8 +55,8 @@ class SubmissionManager {
 
     func submit(form: FormModel, customVars: [String: Any]?) {
         let feedbackRequest = createSubmission(formModel: form, customVars: customVars)
+        
         DataStore.addFeedback(type: feedbackRequest)
-
         if reachability.isReachable {
             trySendData()
         }
