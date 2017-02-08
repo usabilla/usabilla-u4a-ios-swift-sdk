@@ -11,7 +11,7 @@ import Foundation
 
 class FormModel {
 
-    
+
     let hasScreenshot: Bool
     let version: Int
     let pages: [PageModel]
@@ -22,10 +22,10 @@ class FormModel {
     let showProgressBar: Bool
     let themeConfig: UsabillaThemeConfigurator
     let copyModel: CopyModel
-    
-    
+
+
     // swiftlint:disable:next function_parameter_count
-    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel ) {
+    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
@@ -35,10 +35,10 @@ class FormModel {
         self.themeConfig = themeConfig
         self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
-        
+
         _ = pages.map { $0.copy = copyModel }
     }
-    
+
     func toDictionnary() -> [String: Any] {
         var formDictionary = [String: Any]()
         let indexToStop = pages.count - 1
@@ -53,6 +53,27 @@ class FormModel {
             }
         }
         return formDictionary
+    }
+
+    /**
+        Create a FeedbackResult based on the currentState of the form
+        
+        - parameter latestPageIndex: the higher page index of the form that has been shown to the user (starting from 0)
+        - returns : FeedbackResult matching the input parameters
+     
+          If **latestPageIndex** is lower than the last pages number the abandonnedPageIndex is set to the latestPageIndex
+          ise it returns a FeedbackResult witht the rating of the form if there is one.
+    */
+    func toFeedbackResult(latestPageIndex: Int) -> FeedbackResult {
+        let rating = pages.first?.fields.first {
+            type(of: $0) == StarFieldModel.self || type(of: $0) == MoodFieldModel.self
+        } as? IntFieldModel
+        let ratingValue = rating?.fieldValue
+
+        if latestPageIndex != pages.count - 1 {
+            return FeedbackResult(rating: ratingValue, abandonedPageIndex: latestPageIndex)
+        }
+        return FeedbackResult(rating: ratingValue, abandonedPageIndex: nil)
     }
 
 }
