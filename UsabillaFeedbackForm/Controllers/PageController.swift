@@ -202,7 +202,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     //Image handling stuff
     func pickImageFromGallery() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            let imagePicker = UIImagePickerController()
+            let imagePicker: UIImagePickerController = ImagePickerOrientationSupport()
 
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
