@@ -236,9 +236,9 @@ class RatingControl: UIControl {
             return
         }
 
-        self.selectedIndex = newIndex
-        self.sendActions(for: .valueChanged)
-        self.refreshSelection()
+        selectedIndex = newIndex
+        sendActions(for: .valueChanged)
+        refreshSelection()
 
     }
 }
