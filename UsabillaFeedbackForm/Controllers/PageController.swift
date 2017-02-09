@@ -202,12 +202,12 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     //Image handling stuff
     func pickImageFromGallery() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            let imagePicker: UIImagePickerController = ImagePickerOrientationSupport()
+            let imagePicker = UIImagePickerController()
 
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
             imagePicker.allowsEditing = false
-
+            imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
             present(imagePicker, animated: true, completion: nil)
         }
     }

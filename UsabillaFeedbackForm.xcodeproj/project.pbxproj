@@ -99,7 +99,6 @@
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */; };
-		437BD7D31E4C6CC400E6FE2A /* ImagePickerOrientationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7D21E4C6CC400E6FE2A /* ImagePickerOrientationSupport.swift */; };
 		43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */; };
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
@@ -225,7 +224,6 @@
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTest.swift; sourceTree = "<group>"; };
-		437BD7D21E4C6CC400E6FE2A /* ImagePickerOrientationSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerOrientationSupport.swift; sourceTree = "<group>"; };
 		43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfiguratorTest.swift; sourceTree = "<group>"; };
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
@@ -415,7 +413,6 @@
 				049D77811E1BF2EB00117606 /* ViewUtils.swift */,
 				434A27831E2E8719002864C6 /* HTTPClient.swift */,
 				434A27851E2F5FFD002864C6 /* Promise.swift */,
-				437BD7D21E4C6CC400E6FE2A /* ImagePickerOrientationSupport.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -726,7 +723,6 @@
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				048641AF1CF7217D00006A80 /* BaseCheckBoxCellView.swift in Sources */,
-				437BD7D31E4C6CC400E6FE2A /* ImagePickerOrientationSupport.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
