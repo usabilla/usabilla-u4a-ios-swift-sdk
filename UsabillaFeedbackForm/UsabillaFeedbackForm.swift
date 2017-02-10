@@ -48,6 +48,13 @@ open class UsabillaFeedbackForm {
         UIGraphicsEndImageContext()
         return image
     }
+    
+    class func testFunc() {
+        var a = "this func is never called"
+        var b = a
+        
+        a = b
+    }
 
 }
 
@@ -80,6 +87,5 @@ public protocol UsabillaFeedbackFormDelegate: class {
 
 public extension UsabillaFeedbackFormDelegate {
     func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
-        let t = ""
     }
 }
