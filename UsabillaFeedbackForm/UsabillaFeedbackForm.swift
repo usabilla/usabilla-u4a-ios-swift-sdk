@@ -80,6 +80,6 @@ public protocol UsabillaFeedbackFormDelegate: class {
 
 public extension UsabillaFeedbackFormDelegate {
     func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
-
+        let t = ""
     }
 }
