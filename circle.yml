@@ -7,9 +7,6 @@ dependencies:
   cache_directories:
     - "Carthage"
 test:
-    post:
-    - bundle exec slather
-    - bash <(curl -s https://codecov.io/bash) -f xml_report/cobertura.xml -X coveragepy -X gcov -X xcode -t $CODE_COV_TOKEN
     override:
       - set -o pipefail &&
         xcodebuild
