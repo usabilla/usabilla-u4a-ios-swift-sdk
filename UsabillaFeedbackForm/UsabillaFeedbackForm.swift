@@ -48,13 +48,6 @@ open class UsabillaFeedbackForm {
         UIGraphicsEndImageContext()
         return image
     }
-    
-    class func testFunc() {
-        var a = "this func is never called"
-        var b = a
-        
-        a = b
-    }
 
 }
 
