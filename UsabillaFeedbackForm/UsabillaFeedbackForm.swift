@@ -16,13 +16,15 @@ open class UsabillaFeedbackForm {
     open static var appStoreId: String? = nil
     open static var hideGiveMoreFeedback: Bool = true
     open static var showCancelButton: Bool = false
+    open static var dismissAutomatically: Bool = true
+
     static var defaultLocalisationFile = true
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
             defaultLocalisationFile = false
         }
     }
-    
+
     /**
        Initialize the **Usabilla SDK**
      
@@ -49,9 +51,34 @@ open class UsabillaFeedbackForm {
 
 }
 
+public struct FeedbackResult {
+    let rating: Int?
+    let abandonedPageIndex: Int?
+    var sent: Bool {
+        return abandonedPageIndex == nil
+    }
+}
+
 public protocol UsabillaFeedbackFormDelegate: class {
 
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool)
     func formFailedLoading(_ backupForm: UINavigationController)
 
+    /**
+        This method is called once the form is closed
+     
+        - Parameter feedbackResults: Array of FeedbackResult
+     
+        If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
+        Otherwise the feedbackResults can contains between 1 and n FeedbackResult
+     
+        This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
+    */
+    func formDidClose(formID: String, with feedbackResults: [FeedbackResult])
+
+}
+
+public extension UsabillaFeedbackFormDelegate {
+    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+    }
 }

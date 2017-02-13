@@ -207,7 +207,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
             imagePicker.allowsEditing = false
-
+            imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
             present(imagePicker, animated: true, completion: nil)
         }
     }
