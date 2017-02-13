@@ -17,12 +17,14 @@ class FormViewController: UIViewController {
     var thankYouController: ThankYouController!
     var customVars: [String: Any]? = nil
 
+    fileprivate var results: [FeedbackResult] = []
+
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var leftNavItem: UIBarButtonItem!
     @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var progressBarHeight: NSLayoutConstraint!
-    
+
     override func loadView() {
         super.loadView()
 
@@ -39,13 +41,13 @@ class FormViewController: UIViewController {
             progressBar.isHidden = true
             progressBarHeight.constant = 0
         } else {
-            progressBar.progressTintColor =  formModel.themeConfig.accentColor
+            progressBar.progressTintColor = formModel.themeConfig.accentColor
             progressBar.trackTintColor = formModel.themeConfig.backgroundColor
         }
         updateProgressBar()
         updateRightButton()
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
-        
+
         if let headerColor = formModel.themeConfig.headerColor {
             self.navigationController?.navigationBar.barTintColor = headerColor
         } else {
@@ -56,8 +58,8 @@ class FormViewController: UIViewController {
 
         setUpLeftButton()
     }
-    
-    
+
+
 
     func setUpLeftButton() {
         leftNavItem.title = formModel.copyModel.cancelButton
@@ -82,6 +84,7 @@ class FormViewController: UIViewController {
             let newPageIndex = selectNewPage()
             //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
+                results.append(formModel.toFeedbackResult(latestPageIndex: newPageIndex))
                 SubmissionManager.shared.submit(form: formModel, customVars: customVars)
                 showThankYouPage()
             } else {
@@ -91,8 +94,6 @@ class FormViewController: UIViewController {
             }
         }
     }
-
-
 
     func showThankYouPage() {
         progressBar.setProgress(1, animated: true)
@@ -107,7 +108,7 @@ class FormViewController: UIViewController {
         thankYouController.redirectEnabled = formModel.redirectToAppStore
         thankYouController.redirectToAppStore = formModel.copyModel.appStore
         thankYouController.giveMoreFeedback = formModel.copyModel.moreFeedback
-        
+
         var headerFieldValue: String?
         var thanksFieldValue: String?
         if let lastPage = formModel.pages.last {
@@ -144,7 +145,9 @@ class FormViewController: UIViewController {
         thankYouController.willMove(toParentViewController: nil)
         addChildViewController(pageController)
         pageController.view.frame = containerView.bounds
-        transition(from: thankYouController, to: pageController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        transition(from: thankYouController, to: pageController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: { _ in
+            self.thankYouController = nil
+        })
         updateRightButton()
         updateProgressBar()
         setUpLeftButton()
@@ -194,9 +197,15 @@ class FormViewController: UIViewController {
 
     @IBAction func leftBarButtonPressed(_ sender: UIBarButtonItem) {
         deinitForm()
-        self.dismiss(animated: true, completion: nil)
-    }
+        if thankYouController == nil {
+            results.append(formModel.toFeedbackResult(latestPageIndex: currentPage))
+        }
+        UsabillaFeedbackForm.delegate?.formDidClose(formID: formModel.appId, with: results)
 
+        if UsabillaFeedbackForm.dismissAutomatically {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
     func deinitForm() {
         SwiftEventBus.postToMainThread("kill")
@@ -212,11 +221,5 @@ class FormViewController: UIViewController {
         pageController.initWithPage(formModel.pages[page])
         currentPage = page
     }
-
-   
-
-    //    deinit {
-    //        print("calling form controller deinit")
-    //    }
 
 }

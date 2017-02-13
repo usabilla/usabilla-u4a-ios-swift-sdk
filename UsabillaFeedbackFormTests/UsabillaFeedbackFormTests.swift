@@ -20,8 +20,10 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
 
         describe("UsabillaFeedbackFormTest") {
             
-            UsabillaFeedbackForm.delegate = self
-
+            beforeEach {
+                UsabillaFeedbackForm.delegate = self
+            }
+            
             it("UsabillaFeedbackFormTest localizable") {
                 expect(UsabillaFeedbackForm.defaultLocalisationFile).to(beTrue())
                 UsabillaFeedbackForm.localizedStringFile = "test"
