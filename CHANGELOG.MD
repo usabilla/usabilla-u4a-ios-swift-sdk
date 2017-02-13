@@ -1,3 +1,14 @@
+## 3.3.0
+
+#### Added
+- **UsabillaFeedbackForm.dismissAutomatically** Bool attribute to handle automatic or manual form dismiss
+- **formDidClose** delegate method of **UsabillaFeedbackFormDelegate** protocol, take a look at the [documentation](Readme.MD/#submission-callback)
+
+#### Fixed
+
+- Screenshot image picker orientation always in portrait: now showing in the same orientation as previous view controller
+- Unexpected scrolling when typing in textfield
+
 ## 3.2.1
 #### Fixed
 
@@ -17,6 +28,12 @@
 
 #### Fixed
 - Issue with the rating control (star and mood) where it was not reset correctly after reuse
+
+#### Updated
+
+- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
+
+ *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
 
 ## 3.1.0
 #### Added
