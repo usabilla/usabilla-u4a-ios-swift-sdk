@@ -3,25 +3,15 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.2.0
+## Latest changes in v3.3.0
+
 #### Added
-- Carthage compatibility
-- Caching for feedback: when there is no internet connection feedbacks are now saved and sent when a connection is back.
-
- Follow [these steps](#initialization) in order to enable the caching feature.
-
-#### Removed
-- Alamofire dependency
-- PromiseKit dependency
+- **UsabillaFeedbackForm.dismissAutomatically** Bool attribute to handle automatic or manual form dismiss
+- **formDidClose** delegate method of **UsabillaFeedbackFormDelegate** protocol, take a look at the [documentation](Readme.MD/#formDidClose)
 
 #### Fixed
-- Issue with the rating control (star and mood) where it was not reset correctly after reuse
-
-#### Updated
-
-- The methods from `UsabillaFeedbackFormDelegate` protocol are now executed in the same thread of the one where the `UsabillaFeedbackForm.loadFeedbackForm` method is executed.
-
- *Be sure to execute the `present(form....)` on the Main thread if you are calling `UsabillaFeedbackForm.loadFeedbackForm` in a background thread and want the form to correctly show.*
+- Screenshot image picker orientation always in portrait: now showing in the same orientation as previous view controller
+- Unexpected scrolling when typing in textfield
 
 ## Requirements
 
@@ -49,7 +39,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'MyApp' do
-    pod 'UsabillaFeedbackForm', '~> 3.0'
+    pod 'UsabillaFeedbackForm', '~> 3.3.0'
 end
 ```
 
@@ -69,7 +59,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.2.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.3.0"
 ```
 
 ### Manual
@@ -97,7 +87,7 @@ Add the following line to the **didFinishLaunchingWithOptions**:
 ```swift
 UsabillaFeedbackForm.load()
 ```
-The **load** method is here in order to init the caching feature : submit the previously submitted feedbacks.
+The **load** method is here in order to init the caching feature : submit the previously submitted feedback.
 
 #### Using forms
 
@@ -182,8 +172,73 @@ This invitation will only be showed if:
 
 You have to specify the app id omitting the initial "id", leaving only the numerical part.
 
+### Submission callback
 
-## Integration with Obj-C application
+Since **v3.3.0** it is possible to get information about the feedback the user has left by implementing UsabillaFeedbackFormDelegate.**formDidClose** method.
+
+You will also be notified if the user has left the form without submitting it.
+
+This method provides you with an array of **FeedbackResult**:
+
+```swift
+struct FeedbackResult {
+    let rating: Int?
+    let abandonedPageIndex: Int?
+    var sent: Bool
+}
+```
+
+This is because the user may submit the form multiple times and this method will be called only once for all feedback sent.
+
+The **rating** value is set as soon as the user interacts with it and will be reported even if the form is not submitted.
+
+The **abandonedPageIndex** is only set if the user cancels the form before submission.
+
+Here is a sample implementation :
+
+```swift
+func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+     guard let feedback = feedbackResults.first else {
+         return
+     }
+
+     if feedback.sent == false {
+         let abandonedPageIndex = feedback.abandonedPageIndex
+         print("Hey why did you left the form here \(abandonedPageIndex)")
+         return
+     }
+
+     if let rating = feedback.rating {
+         if rating >= 4 {
+             // thanks the user with a nice Emoji 🙏
+             // or give the user a coupon code
+         }
+     }
+ }
+```
+
+### Handle manual dismiss
+
+Since **v3.3.0** it is possible to customize the way the form is dismissed
+
+Set the automatic UsabillaFeedbackForm dismissal attribute to false:
+
+```swift
+UsabillaFeedbackForm.dismissAutomatically = false
+```
+
+and implement the **formDidClose** delegate method:
+
+```swift
+func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+    // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
+}
+```
+
+**Warning**: by doing this the form will not dismiss by itself and you will be the only one  responsible for its correct behaviour.
+
+
+## Integration with Obj-C applications
 
 To integrate the SDK in your Obj-C application, follow apple official guidelines on how to [use Swift and Objective-C in the Same Project](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html)
 
