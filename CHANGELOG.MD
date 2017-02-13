@@ -1,3 +1,20 @@
+## 3.3.0
+
+#### Added
+- **UsabillaFeedbackForm.dismissAutomatically** Bool attribute to handle automatic or manual form dismiss
+- **formDidClose** delegate method of **UsabillaFeedbackFormDelegate** protocol, take a look at the [documentation](Readme.MD/#submission-callback)
+
+#### Fixed
+
+- Screenshot image picker orientation always in portrait: now showing in the same orientation as previous view controller
+- Unexpected scrolling when typing in textfield
+
+## 3.2.1
+#### Fixed
+
+- Synchronization (thread) issue that could freeze the user interface
+- Textfield position when the keyboard is showing up
+
 ## 3.2.0
 #### Added
 - Carthage compatibility
