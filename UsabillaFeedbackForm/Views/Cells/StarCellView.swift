@@ -17,19 +17,12 @@ class StarCellView: RootCellView {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         ratingControl = RatingControl()
         ratingControl.mode = .rating
-//        starRatingView.maximumValue = 5
-//        starRatingView.minimumValue = 1
-//        starRatingView.currentValue = 0
         ratingControl.tintColor = UIColor(colorLiteralRed: 239.0/255.0, green: 197.0/255.0, blue: 54.0/255.0, alpha: 1.0)
-        //starRatingView.allowsHalfStars = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        starRatingView.delegate = self
-
 
         ratingControl.addTarget(self, action: #selector(StarCellView.pickRating(sender:)), for: [.valueChanged])
 
         self.contentView.addSubview(ratingControl)
-
 
         self.ratingControl.translatesAutoresizingMaskIntoConstraints = false
         
