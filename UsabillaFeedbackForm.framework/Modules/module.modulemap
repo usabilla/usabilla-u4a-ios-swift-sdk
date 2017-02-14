@@ -1,0 +1,10 @@
+framework module UsabillaFeedbackForm {
+  umbrella header "UsabillaFeedbackForm.h"
+
+  export *
+  module * { export * }
+}
+
+module UsabillaFeedbackForm.Swift {
+    header "UsabillaFeedbackForm-Swift.h"
+}
