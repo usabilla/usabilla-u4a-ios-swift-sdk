@@ -1,3 +1,10 @@
+
+## 3.3.1
+
+#### Fixed
+
+- Importing framework issue: "cannot load underlying module for 'UsabillaFeedbackForm'"
+
 ## 3.3.0
 
 #### Added
