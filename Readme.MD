@@ -3,7 +3,7 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.3.0
+## Latest changes in v3.3.1
 
 #### Added
 - **UsabillaFeedbackForm.dismissAutomatically** Bool attribute to handle automatic or manual form dismiss
@@ -39,7 +39,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'MyApp' do
-    pod 'UsabillaFeedbackForm', '~> 3.3.0'
+    pod 'UsabillaFeedbackForm', '~> 3.3.1'
 end
 ```
 
@@ -59,7 +59,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.3.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.3.1"
 ```
 
 ### Manual

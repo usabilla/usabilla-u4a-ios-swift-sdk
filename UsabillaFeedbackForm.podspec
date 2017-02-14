@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "UsabillaFeedbackForm"
-  s.version      = "3.3.0"
+  s.version      = "3.3.1"
   s.summary      = "Collect feedback from your users."
 
   s.description  = 'With Usabilla FeedbackSDK you can collect feedback from your users.'
