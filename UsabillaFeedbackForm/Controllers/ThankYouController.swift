@@ -46,8 +46,9 @@ class ThankYouController: UIViewController {
             rateButton.setTitle(redirectToAppStore, for: UIControlState())
             rateButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else {
-            rateButton.isHidden = true
-            distanceBetweenButtons.isActive = false
+            distanceBetweenButtons.constant = 0
+            rateButton.clipsToBounds = true
+            rateButton.heightAnchor.constraint(equalToConstant: 0).isActive = true
         }
             
         

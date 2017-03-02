@@ -132,21 +132,14 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZx-0E-Van">
                                 <rect key="frame" x="164" y="141" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ix4-VQ-BPE"/>
-                                </constraints>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-WL-LbX">
                                 <rect key="frame" x="164" y="201" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="v3g-SS-qmI"/>
-                                </constraints>
                                 <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="top" secondItem="pru-GS-JSd" secondAttribute="bottom" priority="750" constant="30" id="0hd-uL-E3e"/>
                             <constraint firstItem="3Ot-WL-LbX" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="BTD-Ex-S2x"/>
                             <constraint firstItem="QZx-0E-Van" firstAttribute="top" secondItem="pru-GS-JSd" secondAttribute="bottom" constant="30" id="EmQ-sf-VSq"/>
                             <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pNJ-qN-bEC" secondAttribute="leadingMargin" id="HoF-rF-ULw"/>
