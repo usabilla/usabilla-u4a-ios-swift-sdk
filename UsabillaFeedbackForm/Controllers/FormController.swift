@@ -201,9 +201,7 @@ class FormViewController: UIViewController {
             results.append(formModel.toFeedbackResult(latestPageIndex: currentPage))
         }
         
-        if let nav = navigationController {
-            UsabillaFeedbackForm.delegate?.formDidClose(nav, formID: formModel.appId, with: results)
-        }
+        UsabillaFeedbackForm.delegate?.formDidClose(navigationController!, formID: formModel.appId, with: results)
 
         if UsabillaFeedbackForm.dismissAutomatically {
             self.dismiss(animated: true, completion: nil)
