@@ -42,14 +42,27 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         }
         moodModel = item
         moodControl.backgroundColor = themeConfig.backgroundColor
-        moodControl.selectedImages = item.themeConfig.enabledEmoticons
-        moodControl.unselectedImages = item.themeConfig.disabledEmoticons
+        moodControl.maxValue = moodModel.points
+        moodControl.selectedImages = item.themeConfig.emoticons(size: moodModel.points, emoticons: item.themeConfig.enabledEmoticons)
+        moodControl.unselectedImages = item.themeConfig.emoticons(size: moodModel.points, emoticons: item.themeConfig.disabledEmoticons)
         moodControl.rating = moodModel.fieldValue
     }
 
     func pickMood(sender: RatingControl) {
-        moodModel.fieldValue = moodControl.rating
-        print("You pick state \(moodControl.rating)")
+        let selectedIndex = emoticonValue(index: moodControl.rating!)
+        moodModel.fieldValue = selectedIndex
+        print("You picked the state \(selectedIndex)")
+    }
+    
+    func emoticonValue(index: Int) -> Int {
+        switch moodModel.points {
+        case 2:
+            return (index - 1) * 4 + 1
+        case 3:
+            return (index - 1) * 2 + 1
+        default:
+            return index
+        }
     }
 
 }
