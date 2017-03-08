@@ -113,7 +113,7 @@ class MoodCellViewTests: QuickSpec {
                     expect(moodCellView.emoticonValue(index: 0, maxMoods: 2)).to(equal(0))
                     expect(moodCellView.emoticonValue(index: 11111, maxMoods: 2)).to(equal(0))
                 })
-                it("reversEmoticonValue func should return correct values for different mood sizes", closure: {
+                it("reverseEmoticonValue func should return correct values for different mood sizes", closure: {
                     // init cell
                     moodCellView = MoodCellView(style: .default, reuseIdentifier: nil)
                     expect(moodCellView).toNot(beNil())
@@ -121,21 +121,21 @@ class MoodCellViewTests: QuickSpec {
                     moodCellView.setFeedbackItem(moodModel)
 
                     // for 5 moods
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 1, maxMoods: 5)).to(equal(1))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 2, maxMoods: 5)).to(equal(2))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 3, maxMoods: 5)).to(equal(3))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 4, maxMoods: 5)).to(equal(4))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 5, maxMoods: 5)).to(equal(5))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 1, maxMoods: 5)).to(equal(1))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 2, maxMoods: 5)).to(equal(2))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 3, maxMoods: 5)).to(equal(3))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 4, maxMoods: 5)).to(equal(4))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 5, maxMoods: 5)).to(equal(5))
                     // for 3 moods
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 1, maxMoods: 3)).to(equal(1))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 3, maxMoods: 3)).to(equal(2))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 5, maxMoods: 3)).to(equal(3))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 1, maxMoods: 3)).to(equal(1))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 3, maxMoods: 3)).to(equal(2))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 5, maxMoods: 3)).to(equal(3))
                     // for 2 moods
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 1, maxMoods: 2)).to(equal(1))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 5, maxMoods: 2)).to(equal(2))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 1, maxMoods: 2)).to(equal(1))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 5, maxMoods: 2)).to(equal(2))
                     // extreem values
-                    expect(moodCellView.reversEmoticonValue(fieldValue: nil, maxMoods: 2)).to(equal(0))
-                    expect(moodCellView.reversEmoticonValue(fieldValue: 515151, maxMoods: 2)).to(equal(0))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: nil, maxMoods: 2)).to(equal(0))
+                    expect(moodCellView.reverseEmoticonValue(fieldValue: 515151, maxMoods: 2)).to(equal(0))
                 })
             })
         }

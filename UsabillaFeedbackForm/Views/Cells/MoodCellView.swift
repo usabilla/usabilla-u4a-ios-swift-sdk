@@ -45,7 +45,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         moodControl.maxValue = moodModel.points
         moodControl.selectedImages = item.themeConfig.emoticons(size: moodModel.points, emoticons: item.themeConfig.enabledEmoticons)
         moodControl.unselectedImages = item.themeConfig.emoticons(size: moodModel.points, emoticons: item.themeConfig.disabledEmoticons)
-        moodControl.rating = reversEmoticonValue(fieldValue: moodModel.fieldValue, maxMoods: moodModel.points)
+        moodControl.rating = reverseEmoticonValue(fieldValue: moodModel.fieldValue, maxMoods: moodModel.points)
     }
 
     func pickMood(sender: RatingControl) {
@@ -84,7 +84,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
      
      - return Int: the real index of the selected mood
      */
-    func reversEmoticonValue(fieldValue: Int?, maxMoods: Int) -> Int {
+    func reverseEmoticonValue(fieldValue: Int?, maxMoods: Int) -> Int {
         guard let index = fieldValue, fieldValue != nil && index <= 5 else {
             return 0
         }
