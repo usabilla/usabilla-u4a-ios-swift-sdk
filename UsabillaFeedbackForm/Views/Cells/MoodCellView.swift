@@ -63,6 +63,10 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
      - return Int: the real value of the emoticon selected
      */
     func emoticonValue(index: Int, maxMoods: Int) -> Int {
+        guard index >= 1 && index <= maxMoods else {
+            return 0
+        }
+        
         switch maxMoods {
         case 2:
             return (index - 1) * 4 + 1
@@ -74,14 +78,14 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     }
     
     /**
-     Reverese of what "func emoticonValue(..)" does. Convert teh value of the emoticon seleced to the real index to be selected in the mood control
+     Reverese of what "func emoticonValue(..)" does. Convert the value of the emoticon seleced to the real index to be selected in the mood control
      - parameter fieldValue: the value of the selected mood
      - parameter maxMoods: maximum moods visible in the mood control
      
      - return Int: the real index of the selected mood
      */
     func reversEmoticonValue(fieldValue: Int?, maxMoods: Int) -> Int {
-        guard let index = fieldValue, index != nil else {
+        guard let index = fieldValue, fieldValue != nil && index <= 5 else {
             return 0
         }
         
