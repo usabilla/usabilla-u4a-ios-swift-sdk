@@ -86,6 +86,7 @@ class FormViewController: UIViewController {
         if pageController.isCorrectlyFilled() {
             let newPageIndex = selectNewPage()
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
+                currentPage = newPageIndex
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
