@@ -84,7 +84,7 @@ class JSONFormParser {
 
         let currentPage = PageModel(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
-        currentPage.type = type
+        currentPage.type = PageType(rawValue: type)
 
         var fields: [BaseFieldModel] = []
 

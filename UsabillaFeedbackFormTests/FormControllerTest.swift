@@ -12,7 +12,8 @@ import Nimble
 
 class FormControllerTest: QuickSpec {
 
-    fileprivate var closed: (([FeedbackResult]) -> Void)?
+    fileprivate var doneRight: (() -> Void)?
+    fileprivate var doneLeft: (() -> Void)?
 
     override func spec() {
         var viewController: FormViewController!
@@ -22,7 +23,7 @@ class FormControllerTest: QuickSpec {
 
 
             beforeEach {
-                let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
+                let path = Bundle(for: FormControllerTest.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as? Data)!)
                 formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
@@ -33,6 +34,7 @@ class FormControllerTest: QuickSpec {
                     let vc = base.childViewControllers[0] as? FormViewController {
                         viewController = vc
                         viewController.initWithFormModel(formModel)
+                        viewController.delegate = self
 
                         // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
                         let _ = viewController.view
@@ -88,8 +90,8 @@ class FormControllerTest: QuickSpec {
                         expect(viewController.progressBar.progress).to(equal(1))
 
                     }
-
                 }
+
 
                 describe(".viewWillDisappear()") {
                     beforeEach {
@@ -99,59 +101,37 @@ class FormControllerTest: QuickSpec {
 
                 }
             }
-            
-            
-            describe("if cancel during form it should return one empty feedbackresult") {
-                it("cancel the form should dismiss it") {
-                    UsabillaFeedbackForm.delegate = self
-                    waitUntil(timeout: 5.0) { done in
-                        self.closed = { feedbackResults in
-                            expect(feedbackResults.count).to(equal(1))
-                            expect(feedbackResults.first?.sent).to(beFalse())
-                            done()
-                        }
-                        viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+        }
+        
+        describe("delegate methods test") {
+            it("tap on right button should notify delegate") {
+                waitUntil(timeout: 5.0) { done in
+                    self.doneRight = {
+                        done()
                     }
+                    viewController.rightBarButtonPressed(UIBarButtonItem())
                 }
             }
             
-            describe("if cancel after submission it should return a success feedbackresult") {
-                it("cancel the form should dismiss it") {
-                    
-                    
-                    viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
-                    viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
-                    expect(viewController.thankYouController).toNot(beNil())
-                    
-                    UsabillaFeedbackForm.delegate = self
-                    waitUntil(timeout: 5.0) { done in
-                        self.closed = { feedbackResults in
-                            expect(feedbackResults.count).to(equal(1))
-                            expect(feedbackResults.first?.sent).to(beTrue())
-                            done()
-                        }
-                        viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+            it("tap on left button should notify delegate") {
+                waitUntil(timeout: 5.0) { done in
+                    self.doneLeft = {
+                        done()
                     }
+                    viewController.leftBarButtonPressed(UIBarButtonItem())
                 }
             }
-
         }
     }
 
-
-
 }
 
-extension FormControllerTest: UsabillaFeedbackFormDelegate {
-    func formFailedLoading(_ backupForm: UINavigationController) {
-
+extension FormControllerTest: FormViewControllerDelegate {
+    func rightBarButtonTapped(_ formViewController: FormViewController) {
+        doneRight?()
     }
 
-    func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
-
-    }
-
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
-        closed!(feedbackResults)
+    func leftBarButtonTapped(_ formViewController: FormViewController) {
+        doneLeft?()
     }
 }

@@ -81,6 +81,8 @@
 		4304B0401E390EAA007C8796 /* TextAreaCellViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */; };
 		4304B0421E39FF1E007C8796 /* TextInputCellViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */; };
 		4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */; };
+		43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EBF1E71B57500E3011A /* PassiveFormController.swift */; };
+		43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */; };
 		432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
 		4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
 		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
@@ -208,6 +210,8 @@
 		4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaCellViewTest.swift; sourceTree = "<group>"; };
 		4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputCellViewTest.swift; sourceTree = "<group>"; };
 		4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManagerTest.swift; sourceTree = "<group>"; };
+		43127EBF1E71B57500E3011A /* PassiveFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormController.swift; sourceTree = "<group>"; };
+		43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormControllerTest.swift; sourceTree = "<group>"; };
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		4331DA401E27B362009C97B6 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactoryTest.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				044E68191DD37FA200CE75E1 /* testAssets.xcassets */,
 				04575B641D99787F001E0EC3 /* UsabillaFeedbackFormTests.swift */,
 				43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */,
+				43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */,
 			);
 			name = UsabillaFeedbackFormTest;
 			path = UsabillaFeedbackFormTests;
@@ -382,6 +387,7 @@
 				04F54E531CD76789002F501E /* FormController.swift */,
 				04F54E541CD76789002F501E /* PageController.swift */,
 				04F54E551CD76789002F501E /* ThankYouController.swift */,
+				43127EBF1E71B57500E3011A /* PassiveFormController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -595,7 +601,6 @@
 				04F54DC51CD75A3F002F501E /* Headers */,
 				04F54DC61CD75A3F002F501E /* Resources */,
 				04ECA08F1CE3224D0033CAFB /* Linter */,
-				049DB9C71E53172900024075 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -689,19 +694,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		049DB9C71E53172900024075 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nunset TOOLCHAINS\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Next, work out if we're in SIM or DEVICE\nif [ \"false\" == ${ALREADYINVOKED:-false} ]\nthen\n\nexport ALREADYINVOKED=\"true\"\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration Release -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nelse\nxcodebuild -target \"${PROJECT_NAME}\" -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nfi\n\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 5.5 Copy framework to public directory as well\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"/Users/Jack/Usabilla/iOS/Swift Public Repo\"\n\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n\nfi";
-		};
 		04ECA08F1CE3224D0033CAFB /* Linter */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -795,6 +787,7 @@
 				04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */,
 				43E883F11E37B69700A97F1D /* UIFont.swift in Sources */,
 				0483E9FE1CDCDFB1004EC234 /* TextAreaCellView.swift in Sources */,
+				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
 				041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */,
 				0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
@@ -829,6 +822,7 @@
 				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
 				04747EFF1E5205D40083CE57 /* StarCellViewTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
+				43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */,
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,

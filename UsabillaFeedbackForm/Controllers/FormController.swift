@@ -11,12 +11,16 @@ import UIKit
 class FormViewController: UIViewController {
 
     var currentPage = 0
+    var currentPageModel: PageModel? {
+        return currentPage < formModel.pages.count ? formModel.pages[currentPage] : nil
+    }
     var formModel: FormModel!
     var reachability: Reachability!
     var pageController: PageController!
     var thankYouController: ThankYouController!
-    var customVars: [String: Any]? = nil
-
+    var customVars: [String: Any]?
+    var delegate: FormViewControllerDelegate?
+    
     fileprivate var results: [FeedbackResult] = []
 
     @IBOutlet weak var progressBar: UIProgressView!
@@ -79,13 +83,9 @@ class FormViewController: UIViewController {
     }
 
     @IBAction func rightBarButtonPressed(_ sender: UIBarButtonItem) {
-
         if pageController.isCorrectlyFilled() {
             let newPageIndex = selectNewPage()
-            //If I'm at the last page, submit and don't change
             if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
-                results.append(formModel.toFeedbackResult(latestPageIndex: newPageIndex))
-                SubmissionManager.shared.submit(form: formModel, customVars: customVars)
                 showThankYouPage()
             } else {
                 swipeToPage(newPageIndex)
@@ -93,6 +93,7 @@ class FormViewController: UIViewController {
                 updateRightButton()
             }
         }
+        delegate?.rightBarButtonTapped(self)
     }
 
     func showThankYouPage() {
@@ -197,14 +198,7 @@ class FormViewController: UIViewController {
 
     @IBAction func leftBarButtonPressed(_ sender: UIBarButtonItem) {
         deinitForm()
-        if thankYouController == nil {
-            results.append(formModel.toFeedbackResult(latestPageIndex: currentPage))
-        }
-        UsabillaFeedbackForm.delegate?.formDidClose(formID: formModel.appId, with: results)
-
-        if UsabillaFeedbackForm.dismissAutomatically {
-            self.dismiss(animated: true, completion: nil)
-        }
+        delegate?.leftBarButtonTapped(self)
     }
 
     func deinitForm() {
