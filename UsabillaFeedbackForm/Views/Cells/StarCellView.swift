@@ -17,6 +17,7 @@ class StarCellView: RootCellView {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         ratingControl = RatingControl()
         ratingControl.mode = .rating
+        ratingControl.maxValue = 5
         ratingControl.tintColor = UIColor(colorLiteralRed: 239.0/255.0, green: 197.0/255.0, blue: 54.0/255.0, alpha: 1.0)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
