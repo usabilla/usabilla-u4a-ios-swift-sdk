@@ -20,7 +20,7 @@ class FormViewController: UIViewController {
     var thankYouController: ThankYouController!
     var customVars: [String: Any]?
     var delegate: FormViewControllerDelegate?
-    
+
     fileprivate var results: [FeedbackResult] = []
 
     @IBOutlet weak var progressBar: UIProgressView!
@@ -85,7 +85,7 @@ class FormViewController: UIViewController {
     @IBAction func rightBarButtonPressed(_ sender: UIBarButtonItem) {
         if pageController.isCorrectlyFilled() {
             let newPageIndex = selectNewPage()
-            if currentPage == formModel.pages.count - 2 || newPageIndex == formModel.pages.count - 1 {
+            if newPageIndex < formModel.pages.count && formModel.pages[newPageIndex].type == .end {
                 currentPage = newPageIndex
                 showThankYouPage()
             } else {
