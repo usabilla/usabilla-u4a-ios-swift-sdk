@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum PageType: String {
+    case form
+    case end
+}
+
 class PageModel {
 
     var fields: [BaseFieldModel]
@@ -19,7 +24,7 @@ class PageModel {
 
     let pageNumber: Int?
     let pageName: String?
-    var type: String?
+    var type: PageType?
     var isLastPage: Bool?
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?

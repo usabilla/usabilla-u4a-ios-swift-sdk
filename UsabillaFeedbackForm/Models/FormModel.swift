@@ -69,8 +69,8 @@ class FormModel {
             type(of: $0) == StarFieldModel.self || type(of: $0) == MoodFieldModel.self
         } as? IntFieldModel
         let ratingValue = rating?.fieldValue
-
-        if latestPageIndex != pages.count - 1 {
+        
+        if pages[latestPageIndex].type != .end {
             return FeedbackResult(rating: ratingValue, abandonedPageIndex: latestPageIndex)
         }
         return FeedbackResult(rating: ratingValue, abandonedPageIndex: nil)

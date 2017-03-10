@@ -196,6 +196,8 @@ class NetworkManager {
 
             formController.initWithFormModel(form)
             formController.customVars = customVariables
+            formController.delegate = PassiveFormController()
+            
             Swift.debugPrint("calling success protocol")
 
             DispatchQueue.main.async {
@@ -225,7 +227,7 @@ class NetworkManager {
 
                     formController!.initWithFormModel(form)
                     formController!.customVars = customVariables
-
+                    formController!.delegate = PassiveFormController()
                     return base!
 
                 } else {
