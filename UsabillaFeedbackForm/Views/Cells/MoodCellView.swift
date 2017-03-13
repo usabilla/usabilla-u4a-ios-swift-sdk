@@ -42,14 +42,60 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
         }
         moodModel = item
         moodControl.backgroundColor = themeConfig.backgroundColor
-        moodControl.selectedImages = item.themeConfig.enabledEmoticons
-        moodControl.unselectedImages = item.themeConfig.disabledEmoticons
-        moodControl.rating = moodModel.fieldValue
+        moodControl.maxValue = moodModel.points
+        moodControl.selectedImages = item.themeConfig.emoticons(size: moodModel.points, emoticons: item.themeConfig.enabledEmoticons)
+        moodControl.unselectedImages = item.themeConfig.emoticons(size: moodModel.points, emoticons: item.themeConfig.disabledEmoticons)
+        moodControl.rating = reverseEmoticonValue(fieldValue: moodModel.fieldValue, maxMoods: moodModel.points)
     }
 
     func pickMood(sender: RatingControl) {
-        moodModel.fieldValue = moodControl.rating
-        print("You pick state \(moodControl.rating)")
+        let selectedIndex = emoticonValue(index: moodControl.rating!, maxMoods: moodModel.points)
+        moodModel.fieldValue = selectedIndex
+        print("You picked the state \(selectedIndex)")
     }
-
+    
+    /**
+     Get the real value of the emoticon selected. Ex if there are only two moods : converts index 0 to 1 and index 1 to 5
+     to reflect the real values of the emoticons
+     - parameter index: the selected index
+     - parameter maxMoods: maximum moods visible in the mood control
+     
+     - return Int: the real value of the emoticon selected
+     */
+    func emoticonValue(index: Int, maxMoods: Int) -> Int {
+        guard index >= 1 && index <= maxMoods else {
+            return 0
+        }
+        
+        switch maxMoods {
+        case 2:
+            return (index - 1) * 4 + 1
+        case 3:
+            return (index - 1) * 2 + 1
+        default:
+            return index
+        }
+    }
+    
+    /**
+     Reverese of what "func emoticonValue(..)" does. Convert the value of the emoticon seleced to the real index to be selected in the mood control
+     - parameter fieldValue: the value of the selected mood
+     - parameter maxMoods: maximum moods visible in the mood control
+     
+     - return Int: the real index of the selected mood
+     */
+    func reverseEmoticonValue(fieldValue: Int?, maxMoods: Int) -> Int {
+        guard let index = fieldValue, fieldValue != nil && index <= 5 else {
+            return 0
+        }
+        
+        switch maxMoods {
+        case 2:
+            return (index - 1) / 4 + 1
+        case 3:
+            return (index - 1) / 2 + 1
+        default:
+            return index
+        }
+    }
 }

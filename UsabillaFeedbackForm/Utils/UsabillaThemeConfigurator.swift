@@ -58,7 +58,6 @@ open class UsabillaThemeConfigurator {
         headerColor = nil
     }
 
-
     fileprivate class func createEmoticons() -> [UIImage] {
         var toReturn: [UIImage] = []
         let bundle = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")
@@ -69,6 +68,26 @@ open class UsabillaThemeConfigurator {
         toReturn.append(UIImage(named: "05", in: bundle, compatibleWith: nil)!)
         return toReturn
     }
-
-
+    
+    /**
+     Get the correct array of emoticons if mood control contains only 2 or 3 moods
+     
+     - parameter size: the size of the mood array
+     - parameter emoticons: array of emoticons to create the new array from
+     - returns : [UIImage]? array of emoticon images adjusted to the size wanted
+    */
+    func emoticons(size: Int, emoticons: [UIImage]?) -> [UIImage]? {
+        guard let array = emoticons, array.count == 5 else {
+            return nil
+        }
+        
+        switch size {
+        case 2:
+            return [array[0], array[4]]
+        case 3:
+            return [array[0], array[2], array[4]]
+        default:
+            return array
+        }
+    }
 }

@@ -52,9 +52,9 @@ open class UsabillaFeedbackForm {
 }
 
 public struct FeedbackResult {
-    let rating: Int?
-    let abandonedPageIndex: Int?
-    var sent: Bool {
+    public let rating: Int?
+    public let abandonedPageIndex: Int?
+    public var sent: Bool {
         return abandonedPageIndex == nil
     }
 }
@@ -67,6 +67,8 @@ public protocol UsabillaFeedbackFormDelegate: class {
     /**
         This method is called once the form is closed
      
+        - Parameter form: UINavigationcontroller which is being dismissed
+        - Parameter formID: String representing the ID of the form
         - Parameter feedbackResults: Array of FeedbackResult
      
         If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
@@ -74,11 +76,11 @@ public protocol UsabillaFeedbackFormDelegate: class {
      
         This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
     */
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult])
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
 
 }
 
 public extension UsabillaFeedbackFormDelegate {
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
     }
 }
