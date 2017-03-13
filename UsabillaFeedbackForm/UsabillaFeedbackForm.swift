@@ -52,9 +52,9 @@ open class UsabillaFeedbackForm {
 }
 
 public struct FeedbackResult {
-    let rating: Int?
-    let abandonedPageIndex: Int?
-    var sent: Bool {
+    public let rating: Int?
+    public let abandonedPageIndex: Int?
+    public var sent: Bool {
         return abandonedPageIndex == nil
     }
 }
