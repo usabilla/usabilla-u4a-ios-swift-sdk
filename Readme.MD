@@ -3,15 +3,17 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.3.1
-
-#### Added
-- **UsabillaFeedbackForm.dismissAutomatically** Bool attribute to handle automatic or manual form dismiss
-- **formDidClose** delegate method of **UsabillaFeedbackFormDelegate** protocol, take a look at the [documentation](Readme.MD/#formDidClose)
+## Latest changes in v3.3.2
 
 #### Fixed
-- Screenshot image picker orientation always in portrait: now showing in the same orientation as previous view controller
-- Unexpected scrolling when typing in textfield
+
+- Redirect to App Store button not working correctly
+- The mood control now correctly displays the 2 or 3 options mode
+- The feedback result access level has been set to public
+
+#### Updated
+- Added the `form` parameter to `formDidClose`
+
 
 ## Requirements
 
@@ -230,7 +232,7 @@ UsabillaFeedbackForm.dismissAutomatically = false
 and implement the **formDidClose** delegate method:
 
 ```swift
-func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
     // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
 }
 ```

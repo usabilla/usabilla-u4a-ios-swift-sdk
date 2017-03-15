@@ -1,3 +1,13 @@
+## 3.3.2
+
+#### Fixed
+
+- Redirect to App Store button not working correctly
+- The mood control now correctly displays the 2 or 3 options mode
+- The feedback result access level has been set to public
+
+#### Updated
+- Added the `form` parameter to `formDidClose`
 
 ## 3.3.1
 
