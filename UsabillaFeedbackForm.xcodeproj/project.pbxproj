@@ -120,6 +120,7 @@
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		C5097F1E1E701F4C00186CEC /* MoodCellViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */; };
 		C564D1851E7945B70004705A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1841E7945B70004705A /* DataStore.swift */; };
+		C564D18F1E794B8B0004705A /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D18E1E794B8B0004705A /* CacheManager.swift */; };
 		C56873CC1E7943C5006D417D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56873CB1E7943C5006D417D /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -248,6 +249,7 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellViewTests.swift; sourceTree = "<group>"; };
 		C564D1841E7945B70004705A /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		C564D18E1E794B8B0004705A /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		C56873CB1E7943C5006D417D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -524,6 +526,7 @@
 			children = (
 				C56873CB1E7943C5006D417D /* NetworkManager.swift */,
 				434085C01E36430D00B4A4B9 /* SubmissionManager.swift */,
+				C564D18E1E794B8B0004705A /* CacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
 				0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */,
 				0483E9F91CDCDFB1004EC234 /* ParagraphCellView.swift in Sources */,
+				C564D18F1E794B8B0004705A /* CacheManager.swift in Sources */,
 				0483E9F51CDCDFB1004EC234 /* ChoiceCellView.swift in Sources */,
 				0483E9F61CDCDFB1004EC234 /* EmailCellView.swift in Sources */,
 				04F54E571CD76789002F501E /* PageController.swift in Sources */,
