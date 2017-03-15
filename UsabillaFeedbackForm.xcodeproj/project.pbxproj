@@ -63,7 +63,6 @@
 		04F54DF41CD766EC002F501E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
 		04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E181CD76708002F501E /* DeviceInfo.swift */; };
 		04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1A1CD76708002F501E /* JSONFormParser.swift */; };
-		04F54E231CD76708002F501E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1B1CD76708002F501E /* NetworkManager.swift */; };
 		04F54E241CD76708002F501E /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
 		04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */; };
 		04F54E501CD76717002F501E /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
@@ -121,6 +120,7 @@
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		C5097F1E1E701F4C00186CEC /* MoodCellViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */; };
+		C56873CC1E7943C5006D417D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56873CB1E7943C5006D417D /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,7 +190,6 @@
 		04F54DF31CD766EC002F501E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		04F54E181CD76708002F501E /* DeviceInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfo.swift; sourceTree = "<group>"; };
 		04F54E1A1CD76708002F501E /* JSONFormParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFormParser.swift; sourceTree = "<group>"; };
-		04F54E1B1CD76708002F501E /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		04F54E1C1CD76708002F501E /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		04F54E1D1CD76708002F501E /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEventBus.swift; sourceTree = "<group>"; };
 		04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfigurator.swift; sourceTree = "<group>"; };
@@ -249,6 +248,7 @@
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellViewTests.swift; sourceTree = "<group>"; };
+		C56873CB1E7943C5006D417D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -410,7 +410,6 @@
 				045E46441D1A8073007A1E48 /* CheckBox */,
 				04F54E181CD76708002F501E /* DeviceInfo.swift */,
 				04F54E1A1CD76708002F501E /* JSONFormParser.swift */,
-				04F54E1B1CD76708002F501E /* NetworkManager.swift */,
 				04F54E1C1CD76708002F501E /* StyleKit.swift */,
 				04F54E1D1CD76708002F501E /* SwiftEventBus.swift */,
 				04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */,
@@ -522,6 +521,7 @@
 		434085BF1E3642FB00B4A4B9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C56873CB1E7943C5006D417D /* NetworkManager.swift */,
 				434085C01E36430D00B4A4B9 /* SubmissionManager.swift */,
 				434085C41E364BA900B4A4B9 /* DataStore.swift */,
 			);
@@ -764,7 +764,6 @@
 				0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */,
 				0483E9FD1CDCDFB1004EC234 /* StarCellView.swift in Sources */,
 				0483E9FA1CDCDFB1004EC234 /* RadioCellView.swift in Sources */,
-				04F54E231CD76708002F501E /* NetworkManager.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				0483E9FB1CDCDFB1004EC234 /* ScreenshotCellView.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,
@@ -781,6 +780,7 @@
 				04F54E571CD76789002F501E /* PageController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
+				C56873CC1E7943C5006D417D /* NetworkManager.swift in Sources */,
 				04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */,
 				43E883F11E37B69700A97F1D /* UIFont.swift in Sources */,
 				0483E9FE1CDCDFB1004EC234 /* TextAreaCellView.swift in Sources */,
