@@ -93,7 +93,6 @@
 		4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */; };
 		434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */; };
 		434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C01E36430D00B4A4B9 /* SubmissionManager.swift */; };
-		434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C41E364BA900B4A4B9 /* DataStore.swift */; };
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
@@ -120,6 +119,7 @@
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		C5097F1E1E701F4C00186CEC /* MoodCellViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */; };
+		C564D1851E7945B70004705A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1841E7945B70004705A /* DataStore.swift */; };
 		C56873CC1E7943C5006D417D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56873CB1E7943C5006D417D /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -221,7 +221,6 @@
 		4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphFieldModel.swift; sourceTree = "<group>"; };
 		434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKitTest.swift; sourceTree = "<group>"; };
 		434085C01E36430D00B4A4B9 /* SubmissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
-		434085C41E364BA900B4A4B9 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
@@ -248,6 +247,7 @@
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellViewTests.swift; sourceTree = "<group>"; };
+		C564D1841E7945B70004705A /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		C56873CB1E7943C5006D417D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -343,6 +343,7 @@
 		04F54DBE1CD75A3F002F501E = {
 			isa = PBXGroup;
 			children = (
+				C564D1831E79457F0004705A /* Stores */,
 				04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */,
 				04F54DCA1CD75A3F002F501E /* UsabillaFeedbackForm */,
 				04F54DC91CD75A3F002F501E /* Products */,
@@ -523,7 +524,6 @@
 			children = (
 				C56873CB1E7943C5006D417D /* NetworkManager.swift */,
 				434085C01E36430D00B4A4B9 /* SubmissionManager.swift */,
-				434085C41E364BA900B4A4B9 /* DataStore.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -561,6 +561,15 @@
 				43F9B9AD1E38E18600C78051 /* UIImageTest.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C564D1831E79457F0004705A /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				C564D1841E7945B70004705A /* DataStore.swift */,
+			);
+			name = Stores;
+			path = UsabillaFeedbackForm/Stores;
 			sourceTree = "<group>";
 		};
 		F08DB90AC856170888540D82 /* Frameworks */ = {
@@ -738,7 +747,6 @@
 				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
-				434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */,
@@ -787,6 +795,7 @@
 				041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */,
 				0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
+				C564D1851E7945B70004705A /* DataStore.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
