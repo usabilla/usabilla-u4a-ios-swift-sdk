@@ -179,9 +179,26 @@ class NetworkManager {
             }
         }
     }
-
-    ///Stuff moved to be private
-
+    
+    /**
+        getForm : loads a form with id from network and returns a FormModel object of it to be used
+ 
+        @parameter formId: the form id
+        @return Pormise<FormModel> : a promess of a valid form model
+     */
+    class func getForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> Promise<FormModel> {
+        return Promise { fulfill, reject in
+            getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
+                let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
+                Swift.debugPrint("form loaded successfully")
+                fulfill(form)
+                }.catch { error in
+                    Swift.debugPrint("form couldn't load")
+                    reject(error)
+            }
+        }
+    }
+    
     class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
         getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
@@ -208,7 +225,6 @@ class NetworkManager {
             }
         }
     }
-
 
     class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> UINavigationController? {
         if let path = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.path(forResource: "defaultJson", ofType: "json") {
