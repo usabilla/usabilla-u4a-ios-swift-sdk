@@ -343,7 +343,6 @@
 		04F54DBE1CD75A3F002F501E = {
 			isa = PBXGroup;
 			children = (
-				C564D1831E79457F0004705A /* Stores */,
 				04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */,
 				04F54DCA1CD75A3F002F501E /* UsabillaFeedbackForm */,
 				04F54DC91CD75A3F002F501E /* Products */,
@@ -363,6 +362,7 @@
 		04F54DCA1CD75A3F002F501E /* UsabillaFeedbackForm */ = {
 			isa = PBXGroup;
 			children = (
+				C564D1831E79457F0004705A /* Stores */,
 				434085BF1E3642FB00B4A4B9 /* Managers */,
 				04F54DEC1CD766B4002F501E /* Storyboards */,
 				04F54DE91CD75BE6002F501E /* Protocols */,
@@ -568,8 +568,7 @@
 			children = (
 				C564D1841E7945B70004705A /* DataStore.swift */,
 			);
-			name = Stores;
-			path = UsabillaFeedbackForm/Stores;
+			path = Stores;
 			sourceTree = "<group>";
 		};
 		F08DB90AC856170888540D82 /* Frameworks */ = {
