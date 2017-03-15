@@ -78,7 +78,7 @@ class FormViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
             self.pageController = vc
-            pageController.initWithPage(formModel.pages[0])
+            swipeToPage(0)
         }
     }
 
@@ -158,7 +158,7 @@ class FormViewController: UIViewController {
     func resetAndRestartForm() {
         currentPage = 0
         formModel = JSONFormParser.parseFormJson(formModel.formJsonString, appId: formModel.appId, screenshot: nil, themeConfig: formModel.themeConfig)
-        pageController.initWithPage(formModel.pages[0])
+        swipeToPage(0)
     }
 
 
@@ -213,7 +213,8 @@ class FormViewController: UIViewController {
     }
 
     func swipeToPage(_ page: Int) {
-        pageController.initWithPage(formModel.pages[page])
+        let pageViewModel = PageViewModel(page: formModel.pages[page])
+        pageController.initWithPage(pageViewModel)
         currentPage = page
     }
 

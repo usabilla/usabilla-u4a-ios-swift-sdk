@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StringFieldModel: BaseFieldModel {
+class StringFieldModel: BaseFieldModel, StringComponentModel {
 
     override var isViewCurrentlyVisible: Bool {
         didSet {

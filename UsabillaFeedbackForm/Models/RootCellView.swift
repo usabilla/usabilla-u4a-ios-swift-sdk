@@ -14,25 +14,28 @@ class RootCellView: UITableViewCell {
     var rootCellContainerView: UIView
     var titleLabel: UILabel!
     var errorLabel: UILabel!
-    var item: BaseFieldModel!
+    var component: UIView?
 
-    var isValid: Bool = true {
+    var cellViewModel: CellViewModel! {
         didSet {
+            let visible = cellViewModel.shouldAppear
+            isHidden = !visible
+            isUserInteractionEnabled = visible
+            isCurrentlyDisplayed = visible
+            updateView()
+            applyCustomisations()
             updateValidStatus()
         }
     }
+
     var isCurrentlyDisplayed = false {
         didSet {
             isCurrentlyDisplayedChanged()
         }
     }
-    var themeConfig: UsabillaThemeConfigurator {
-        return item.themeConfig
-    }
-
 
     func isCurrentlyDisplayedChanged() {
-        item.isViewCurrentlyVisible = isCurrentlyDisplayed
+        cellViewModel.isViewCurrentlyVisible = isCurrentlyDisplayed
     }
 
     let errorLabelHeightConstraint: NSLayoutConstraint
@@ -44,11 +47,11 @@ class RootCellView: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         rootCellContainerView = UIView()
         errorLabel = UILabel()
-        
+
         errorLabelHeightConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
         errorLabelHeightConstraint.isActive = true
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         titleLabel = createTitleLabel()
 
         contentView.addSubview(titleLabel)
@@ -57,7 +60,6 @@ class RootCellView: UITableViewCell {
 
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         rootCellContainerView.translatesAutoresizingMaskIntoConstraints = false
-
 
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
@@ -84,49 +86,54 @@ class RootCellView: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func shoudlAppear() -> Bool? {
-        return item.shouldAppear()
-    }
-
-    func setFeedbackItem(_ item: FieldModelProtocol) {
-        guard let item = item as? BaseFieldModel else {
-            return
+    private func updateView() {
+        component?.removeFromSuperview()
+        if let componentViewModel = cellViewModel.componentViewModel {
+            component = ComponentFactory.component(viewModel: componentViewModel)
+            if let comp = component {
+                comp.translatesAutoresizingMaskIntoConstraints = false
+                rootCellContainerView.addSubview(comp)
+                comp.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).withId("RootCellView component left constraint").activate()
+                comp.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).withId("RootCellView component right constraint").activate()
+                comp.topAnchor.constraint(equalTo: rootCellContainerView.topAnchor).withId("RootCellView component top constraint").activate()
+                comp.bottomAnchor.constraint(equalTo: rootCellContainerView.bottomAnchor).withId("RootCellView component bottom constraint").activate()
+            }
         }
-        self.item = item
-        titleLabel.text = item.fieldTitle
+        titleLabel.text = cellViewModel.title
         titleLabel.numberOfLines = 5
         titleLabel.sizeToFit()
-        titleLabel.textColor = item.themeConfig.titleColor
 
-        if item.required {
-            titleLabel.text = String(format: "%@ *", item.fieldTitle) as String
+        if cellViewModel.required {
+            titleLabel.text = String(format: "%@ *", cellViewModel.title) as String
 
             let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
 
-            text.addAttribute(NSForegroundColorAttributeName, value: item.themeConfig.hintColor,
+            text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.hintColor,
                               range: NSRange.init(location: (self.titleLabel?.text?.characters.count)! - 1, length: 1))
 
             titleLabel.attributedText = text
 
         } else {
-            self.titleLabel.text = item.fieldTitle
+            self.titleLabel.text = cellViewModel.title
         }
 
-        isValid = item.isModelValid
     }
 
-    func applyCustomisations() {
-        titleLabel.font = themeConfig.font.withSize(themeConfig.titleFontSize)
-        errorLabel.font = themeConfig.font.withSize(themeConfig.miniFontSize)
-        errorLabel.textColor = themeConfig.errorColor
-        errorLabel.text = item.pageModel.copy?.requiredFieldError
-        if themeConfig.setTitlesInBold {
+    private func applyCustomisations() {
+        let theme = cellViewModel.theme
+        let copy = cellViewModel.copy
+        titleLabel.textColor = theme.titleColor
+        titleLabel.font = theme.font.withSize(theme.titleFontSize)
+        errorLabel.font = theme.font.withSize(theme.miniFontSize)
+        errorLabel.textColor = theme.errorColor
+        errorLabel.text = copy.requiredFieldError
+        if theme.setTitlesInBold {
             if let boldVersion = titleLabel.font.withTraits(.traitBold) {
                 titleLabel.font = boldVersion
             }
         }
 
-        backgroundColor = item.themeConfig.backgroundColor
+        backgroundColor = theme.backgroundColor
     }
 
     func createTitleLabel() -> UILabel {
@@ -152,9 +159,9 @@ class RootCellView: UITableViewCell {
     }
 
     func updateValidStatus() {
-        guard let required = item?.required else {
-            return
-        }
+        let required = cellViewModel.required
+        let isValid = cellViewModel.required
         errorLabelHeightConstraint.isActive = !(required && !isValid)
     }
+
 }

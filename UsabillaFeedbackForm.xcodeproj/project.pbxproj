@@ -35,23 +35,10 @@
 		0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CC1CDCDF86004EC234 /* RootCellView.swift */; };
 		0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */; };
 		0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */; };
-		0483E9F31CDCDFB1004EC234 /* BaseTextAreaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9E51CDCDFB1004EC234 /* BaseTextAreaCellView.swift */; };
-		0483E9F51CDCDFB1004EC234 /* ChoiceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9E71CDCDFB1004EC234 /* ChoiceCellView.swift */; };
-		0483E9F61CDCDFB1004EC234 /* EmailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9E81CDCDFB1004EC234 /* EmailCellView.swift */; };
-		0483E9F71CDCDFB1004EC234 /* MoodCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9E91CDCDFB1004EC234 /* MoodCellView.swift */; };
-		0483E9F91CDCDFB1004EC234 /* ParagraphCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9EB1CDCDFB1004EC234 /* ParagraphCellView.swift */; };
-		0483E9FA1CDCDFB1004EC234 /* RadioCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9EC1CDCDFB1004EC234 /* RadioCellView.swift */; };
-		0483E9FB1CDCDFB1004EC234 /* ScreenshotCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9ED1CDCDFB1004EC234 /* ScreenshotCellView.swift */; };
-		0483E9FC1CDCDFB1004EC234 /* SliderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9EE1CDCDFB1004EC234 /* SliderCellView.swift */; };
-		0483E9FD1CDCDFB1004EC234 /* StarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9EF1CDCDFB1004EC234 /* StarCellView.swift */; };
-		0483E9FE1CDCDFB1004EC234 /* TextAreaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9F01CDCDFB1004EC234 /* TextAreaCellView.swift */; };
-		0483E9FF1CDCDFB1004EC234 /* TextInputCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9F11CDCDFB1004EC234 /* TextInputCellView.swift */; };
-		0483EA011CDCDFCD004EC234 /* CheckboxCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA001CDCDFCD004EC234 /* CheckboxCellView.swift */; };
 		0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA021CDCE003004EC234 /* ScreenshotModel.swift */; };
 		0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */; };
 		0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */; };
 		0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */; };
-		048641AF1CF7217D00006A80 /* BaseCheckBoxCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048641AE1CF7217D00006A80 /* BaseCheckBoxCellView.swift */; };
 		0489CE0C1CD7739400E84E0F /* UsabillaFeedbackForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D77811E1BF2EB00117606 /* ViewUtils.swift */; };
 		04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
@@ -81,10 +68,12 @@
 		4304B0401E390EAA007C8796 /* TextAreaCellViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */; };
 		4304B0421E39FF1E007C8796 /* TextInputCellViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */; };
 		4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */; };
+		4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
+		430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */; };
+		430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B21E76D8E30078E3B3 /* PageViewModel.swift */; };
+		430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B41E76D8EE0078E3B3 /* CellViewModel.swift */; };
 		43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EBF1E71B57500E3011A /* PassiveFormController.swift */; };
 		43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */; };
-		432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
-		4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
 		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
 		4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
 		4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
@@ -111,6 +100,36 @@
 		43B0A2121E2CC4FF00879E5F /* IntFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A2101E2CC4FB00879E5F /* IntFieldModelTest.swift */; };
 		43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A2131E2CC94E00879E5F /* OptionsFieldModelTest.swift */; };
 		43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A2151E2CCFC700879E5F /* ScreenshotModelTest.swift */; };
+		43CCD4321E77E1C200B3E4FE /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
+		43CCD4341E77E1CA00B3E4FE /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669911E76B4B30078E3B3 /* BaseComponent.swift */; };
+		43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669961E76B4B30078E3B3 /* ComponentFactory.swift */; };
+		43CCD4361E77E27A00B3E4FE /* ChoiceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669951E76B4B30078E3B3 /* ChoiceComponent.swift */; };
+		43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669991E76B4B30078E3B3 /* MoodComponent.swift */; };
+		43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */; };
+		43CCD4451E7828DB00B3E4FE /* BaseTextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */; };
+		43CCD4481E7835BF00B3E4FE /* BaseCheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */; };
+		43CCD4561E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
+		43CCD4571E78366A00B3E4FE /* BaseStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */; };
+		43CCD4581E78366A00B3E4FE /* ChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */; };
+		43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */; };
+		43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */; };
+		43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */; };
+		43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */; };
+		43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */; };
+		43CCD45F1E78366A00B3E4FE /* TextFieldComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */; };
+		43CCD4601E783ED800B3E4FE /* CheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */; };
+		43CCD4611E783F1100B3E4FE /* RadioComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699B1E76B4B30078E3B3 /* RadioComponent.swift */; };
+		43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */; };
+		43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */; };
+		43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */; };
+		43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */; };
+		43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669971E76B4B30078E3B3 /* EmailComponent.swift */; };
+		43CCD46E1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */; };
+		43CCD4701E799AE500B3E4FE /* ParagraphComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */; };
+		43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */; };
+		43CCD4731E799DD300B3E4FE /* SliderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */; };
+		43CCD4751E79A05100B3E4FE /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4741E79A05100B3E4FE /* NPSComponentViewModel.swift */; };
+		43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699C1E76B4B30078E3B3 /* SliderComponent.swift */; };
 		43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* FeedbackRequest.swift */; };
 		43E883E91E37B5B800A97F1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
 		43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
@@ -210,6 +229,24 @@
 		4304B03F1E390EAA007C8796 /* TextAreaCellViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaCellViewTest.swift; sourceTree = "<group>"; };
 		4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputCellViewTest.swift; sourceTree = "<group>"; };
 		4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManagerTest.swift; sourceTree = "<group>"; };
+		430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCheckBoxComponent.swift; sourceTree = "<group>"; };
+		430669911E76B4B30078E3B3 /* BaseComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
+		430669921E76B4B30078E3B3 /* BaseLabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
+		430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextAreaComponent.swift; sourceTree = "<group>"; };
+		430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxComponent.swift; sourceTree = "<group>"; };
+		430669951E76B4B30078E3B3 /* ChoiceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceComponent.swift; sourceTree = "<group>"; };
+		430669961E76B4B30078E3B3 /* ComponentFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactory.swift; sourceTree = "<group>"; };
+		430669971E76B4B30078E3B3 /* EmailComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponent.swift; sourceTree = "<group>"; };
+		430669981E76B4B30078E3B3 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
+		430669991E76B4B30078E3B3 /* MoodComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponent.swift; sourceTree = "<group>"; };
+		4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponent.swift; sourceTree = "<group>"; };
+		4306699B1E76B4B30078E3B3 /* RadioComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioComponent.swift; sourceTree = "<group>"; };
+		4306699C1E76B4B30078E3B3 /* SliderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderComponent.swift; sourceTree = "<group>"; };
+		4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaComponent.swift; sourceTree = "<group>"; };
+		4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextFieldComponent.swift; sourceTree = "<group>"; };
+		430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraint.swift; sourceTree = "<group>"; };
+		430669B21E76D8E30078E3B3 /* PageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
+		430669B41E76D8EE0078E3B3 /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		43127EBF1E71B57500E3011A /* PassiveFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormController.swift; sourceTree = "<group>"; };
 		43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormControllerTest.swift; sourceTree = "<group>"; };
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
@@ -240,6 +277,22 @@
 		43B0A2101E2CC4FB00879E5F /* IntFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntFieldModelTest.swift; sourceTree = "<group>"; };
 		43B0A2131E2CC94E00879E5F /* OptionsFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsFieldModelTest.swift; sourceTree = "<group>"; };
 		43B0A2151E2CCFC700879E5F /* ScreenshotModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotModelTest.swift; sourceTree = "<group>"; };
+		43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOptionsComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStringComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewModel.swift; sourceTree = "<group>"; };
+		43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModelFactory.swift; sourceTree = "<group>"; };
+		43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIntComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextFieldComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4741E79A05100B3E4FE /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
 		43E883E31E37575B00A97F1D /* FeedbackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackRequest.swift; sourceTree = "<group>"; };
 		43E883E81E37B5B800A97F1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		43E883EA1E37B5C000A97F1D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -368,6 +421,7 @@
 				04F54DEC1CD766B4002F501E /* Storyboards */,
 				04F54DE91CD75BE6002F501E /* Protocols */,
 				04F54DE51CD75AE2002F501E /* Views */,
+				430669B11E76D8D80078E3B3 /* ViewModels */,
 				04F54DE41CD75AD6002F501E /* Utils */,
 				04F54DE31CD75ACB002F501E /* Models */,
 				04F54DE21CD75A75002F501E /* Controllers */,
@@ -462,7 +516,22 @@
 		04F54DE71CD75BA8002F501E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */,
+				430669911E76B4B30078E3B3 /* BaseComponent.swift */,
+				430669921E76B4B30078E3B3 /* BaseLabelComponent.swift */,
+				430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */,
+				4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */,
+				430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */,
+				430669951E76B4B30078E3B3 /* ChoiceComponent.swift */,
+				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
+				430669971E76B4B30078E3B3 /* EmailComponent.swift */,
+				430669981E76B4B30078E3B3 /* HeaderComponent.swift */,
+				430669991E76B4B30078E3B3 /* MoodComponent.swift */,
+				4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */,
+				4306699B1E76B4B30078E3B3 /* RadioComponent.swift */,
 				4331DA401E27B362009C97B6 /* RatingControl.swift */,
+				4306699C1E76B4B30078E3B3 /* SliderComponent.swift */,
+				4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -506,6 +575,16 @@
 			path = UsabillaFeedbackFormTests/Views;
 			sourceTree = SOURCE_ROOT;
 		};
+		430669B11E76D8D80078E3B3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				43CCD44B1E78364700B3E4FE /* Components */,
+				430669B41E76D8EE0078E3B3 /* CellViewModel.swift */,
+				430669B21E76D8E30078E3B3 /* PageViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4334E8641E2906FE00AC895C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +621,29 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		43CCD44B1E78364700B3E4FE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */,
+				43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */,
+				43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */,
+				43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */,
+				43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */,
+				43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */,
+				43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */,
+				43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */,
+				43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */,
+				43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */,
+				43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */,
+				43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */,
+				43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */,
+				43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */,
+				43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */,
+				43CCD4741E79A05100B3E4FE /* NPSComponentViewModel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		43E883E71E37B5AE00A97F1D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +652,7 @@
 				43E883EC1E37B5C900A97F1D /* UIColor.swift */,
 				43E883EE1E37B61000A97F1D /* UIDevice.swift */,
 				43E883F01E37B69700A97F1D /* UIFont.swift */,
+				430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -731,70 +834,89 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CCD4561E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift in Sources */,
 				43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */,
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
-				048641AF1CF7217D00006A80 /* BaseCheckBoxCellView.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
+				43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */,
+				43CCD4581E78366A00B3E4FE /* ChoiceViewModel.swift in Sources */,
 				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
+				43CCD4731E799DD300B3E4FE /* SliderComponentViewModel.swift in Sources */,
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
 				434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
+				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
+				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
-				4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
+				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
-				0483E9FC1CDCDFB1004EC234 /* SliderCellView.swift in Sources */,
+				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
+				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
+				43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */,
 				04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */,
-				0483E9F71CDCDFB1004EC234 /* MoodCellView.swift in Sources */,
+				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
 				04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */,
+				430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */,
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
-				0483EA011CDCDFCD004EC234 /* CheckboxCellView.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
-				432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */,
 				434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */,
 				0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */,
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
-				0483E9F31CDCDFB1004EC234 /* BaseTextAreaCellView.swift in Sources */,
+				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
+				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
 				43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */,
 				0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */,
-				0483E9FD1CDCDFB1004EC234 /* StarCellView.swift in Sources */,
-				0483E9FA1CDCDFB1004EC234 /* RadioCellView.swift in Sources */,
 				04F54E231CD76708002F501E /* NetworkManager.swift in Sources */,
+				43CCD4571E78366A00B3E4FE /* BaseStringComponentViewModel.swift in Sources */,
+				43CCD46E1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
-				0483E9FB1CDCDFB1004EC234 /* ScreenshotCellView.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,
+				43CCD4751E79A05100B3E4FE /* NPSComponentViewModel.swift in Sources */,
 				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,
 				0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */,
 				0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */,
+				43CCD4601E783ED800B3E4FE /* CheckBoxComponent.swift in Sources */,
 				4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */,
+				43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */,
+				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
 				0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */,
-				0483E9F91CDCDFB1004EC234 /* ParagraphCellView.swift in Sources */,
-				0483E9F51CDCDFB1004EC234 /* ChoiceCellView.swift in Sources */,
-				0483E9F61CDCDFB1004EC234 /* EmailCellView.swift in Sources */,
 				04F54E571CD76789002F501E /* PageController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
 				04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */,
+				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43E883F11E37B69700A97F1D /* UIFont.swift in Sources */,
-				0483E9FE1CDCDFB1004EC234 /* TextAreaCellView.swift in Sources */,
+				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
 				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
+				4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */,
+				43CCD4701E799AE500B3E4FE /* ParagraphComponentViewModel.swift in Sources */,
+				43CCD4481E7835BF00B3E4FE /* BaseCheckBoxComponent.swift in Sources */,
 				041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */,
 				0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */,
+				43CCD4321E77E1C200B3E4FE /* RatingControl.swift in Sources */,
+				43CCD4611E783F1100B3E4FE /* RadioComponent.swift in Sources */,
+				43CCD4341E77E1CA00B3E4FE /* BaseComponent.swift in Sources */,
+				43CCD4451E7828DB00B3E4FE /* BaseTextAreaComponent.swift in Sources */,
+				43CCD45F1E78366A00B3E4FE /* TextFieldComponentViewModel.swift in Sources */,
+				43CCD4361E77E27A00B3E4FE /* ChoiceComponent.swift in Sources */,
+				43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */,
+				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
+				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
-				0483E9FF1CDCDFB1004EC234 /* TextInputCellView.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
 				04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */,
