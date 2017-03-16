@@ -123,8 +123,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         SwiftEventBus.unregister(self)
     }
 
-    func initWithPage(_ page: PageViewModel) {
-        pageViewModel = page
+    func initWithViewModel(_ viewModel: PageViewModel) {
+        pageViewModel = viewModel
         dynamicFields = []
         tableView?.reloadData()
     }
