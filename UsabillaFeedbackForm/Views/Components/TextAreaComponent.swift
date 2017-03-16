@@ -12,5 +12,6 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
     // TODO manage placeholder
     func textViewDidChange(_ textView: UITextView) {
         viewModel.value = textView.text
+        SwiftEventBus.postToMainThread("updateMySize")
     }
 }
