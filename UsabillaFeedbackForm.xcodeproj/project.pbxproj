@@ -237,7 +237,7 @@
 		430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextAreaComponent.swift; sourceTree = "<group>"; };
 		430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxComponent.swift; sourceTree = "<group>"; };
 		430669951E76B4B30078E3B3 /* ChoiceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceComponent.swift; sourceTree = "<group>"; };
-		430669961E76B4B30078E3B3 /* ComponentFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactory.swift; sourceTree = "<group>"; };
+		430669961E76B4B30078E3B3 /* ComponentFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentFactory.swift; path = Components/ComponentFactory.swift; sourceTree = "<group>"; };
 		430669971E76B4B30078E3B3 /* EmailComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponent.swift; sourceTree = "<group>"; };
 		430669981E76B4B30078E3B3 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
 		430669991E76B4B30078E3B3 /* MoodComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponent.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 		43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStringComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewModel.swift; sourceTree = "<group>"; };
 		43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
-		43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModelFactory.swift; sourceTree = "<group>"; };
+		43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentViewModelFactory.swift; path = Components/ComponentViewModelFactory.swift; sourceTree = "<group>"; };
 		43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIntComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponentViewModel.swift; sourceTree = "<group>"; };
@@ -488,9 +488,10 @@
 		04F54DE51CD75AE2002F501E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				04F54DE71CD75BA8002F501E /* Components */,
 				04F54DE61CD75AF3002F501E /* Cells */,
 				0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */,
+				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
+				04F54DE71CD75BA8002F501E /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -527,7 +528,6 @@
 				4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */,
 				430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */,
 				430669951E76B4B30078E3B3 /* ChoiceComponent.swift */,
-				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
 				430669971E76B4B30078E3B3 /* EmailComponent.swift */,
 				430669981E76B4B30078E3B3 /* HeaderComponent.swift */,
 				430669991E76B4B30078E3B3 /* MoodComponent.swift */,
@@ -585,6 +585,7 @@
 			children = (
 				43CCD44B1E78364700B3E4FE /* Components */,
 				430669B41E76D8EE0078E3B3 /* CellViewModel.swift */,
+				43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */,
 				430669B21E76D8E30078E3B3 /* PageViewModel.swift */,
 			);
 			path = ViewModels;
@@ -637,7 +638,6 @@
 				43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */,
 				43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */,
 				43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */,
-				43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */,
 				43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */,
 				43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */,
 				43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */,

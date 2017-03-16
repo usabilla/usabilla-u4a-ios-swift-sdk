@@ -9,5 +9,16 @@
 import Foundation
 
 class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldModel> {
-    
+    override var value: String? {
+        get {
+            let text = model.fieldValue
+            if model.html != nil && model.html == true {
+                return text?.htmlToString ?? text
+            }
+            return text
+        }
+        set {
+            
+        }
+    }
 }

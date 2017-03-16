@@ -10,15 +10,12 @@ import Foundation
 
 class ParagraphComponent: BaseTextAreaComponent<ParagraphComponentViewModel> {
 
-    var html: Bool = false
-
     override func build() {
         super.build()
 
         textView.isEditable = false
         textView.dataDetectorTypes = [.link, .phoneNumber]
         textView.isScrollEnabled = false
-
-        textView.text = html ? viewModel.value?.htmlToString : viewModel.value
+        textView.text = viewModel.value
     }
 }
