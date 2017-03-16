@@ -8,6 +8,6 @@
 
 import Foundation
 
-class TextAreaComponentViewModel : BaseStringComponentViewModel<TextAreaFieldModel> {
-    
+class TextAreaComponentViewModel: BaseStringComponentViewModel<TextAreaFieldModel> {
+
 }

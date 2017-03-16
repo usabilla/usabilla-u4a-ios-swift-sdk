@@ -74,15 +74,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
         }
-
-        SwiftEventBus.onMainThread(self, name: "reloadCellForModel") { info in
-//            guard let model = info.userInfo?["model"] as? BaseFieldModel,
-//                let row = self.pageModel.fields.index( where: { $0 === model })else {
-//                    return
-//            }
-//            let indexPath = IndexPath(row: row, section: 0)
-//            self.tableView.reloadRows(at: [indexPath], with: .none)
-        }
     }
 
     func updateScreenshotHeight() {

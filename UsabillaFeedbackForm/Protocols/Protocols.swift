@@ -56,4 +56,3 @@ protocol EditableStringComponentModel: StringComponentModel {
 protocol ImageComponentModel: ComponentModel {
     var image: UIImage? { get set }
 }
-

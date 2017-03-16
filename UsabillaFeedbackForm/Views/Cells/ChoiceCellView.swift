@@ -91,7 +91,7 @@ class ChoiceCellView: RootCellView {
         if let choiceModel = choiceModel {
             choiceModel.expanded = !choiceModel.expanded
         }
-        SwiftEventBus.postToMainThread("reloadCellForModel", userInfo: ["model": choiceModel as Any])
+        SwiftEventBus.postToMainThread("updateMySize")
     }
 
     override func setFeedbackItem(_ item: FieldModelProtocol) {
