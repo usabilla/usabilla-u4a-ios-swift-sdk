@@ -18,17 +18,20 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl?.translatesAutoresizingMaskIntoConstraints = false
         moodControl?.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
 
-        moodControl?.backgroundColor = viewModel.theme.backgroundColor
-        moodControl?.selectedImages = viewModel.theme.enabledEmoticons
-        moodControl?.unselectedImages = viewModel.theme.disabledEmoticons
-        moodControl?.rating = viewModel.value
-
         addSubview(moodControl)
 
+        // positioning
         moodControl.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         moodControl.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         moodControl.topAnchor.constraint(equalTo: topAnchor).isActive = true
         moodControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        // customizaiton
+        moodControl?.backgroundColor = viewModel.theme.backgroundColor
+        moodControl?.selectedImages = viewModel.theme.enabledEmoticons
+        moodControl?.unselectedImages = viewModel.theme.disabledEmoticons
+        
+        moodControl?.rating = viewModel.value
     }
 
     func pickMood(sender: RatingControl) {

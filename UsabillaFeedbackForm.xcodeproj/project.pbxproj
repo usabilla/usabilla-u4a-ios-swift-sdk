@@ -124,7 +124,7 @@
 		43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */; };
 		43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */; };
 		43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669971E76B4B30078E3B3 /* EmailComponent.swift */; };
-		43CCD46E1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */; };
+		43CCD46E1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46D1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift */; };
 		43CCD4701E799AE500B3E4FE /* ParagraphComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */; };
 		43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */; };
 		43CCD4731E799DD300B3E4FE /* SliderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */; };
@@ -289,7 +289,7 @@
 		43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioComponentViewModel.swift; sourceTree = "<group>"; };
-		43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextFieldComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD46D1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEditableStringComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponent.swift; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 				43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */,
 				43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */,
 				43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */,
-				43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */,
+				43CCD46D1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift */,
 				43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */,
 				43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */,
 				43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */,
@@ -881,7 +881,7 @@
 				43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */,
 				04F54E231CD76708002F501E /* NetworkManager.swift in Sources */,
 				43CCD4571E78366A00B3E4FE /* BaseStringComponentViewModel.swift in Sources */,
-				43CCD46E1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift in Sources */,
+				43CCD46E1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,
 				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,

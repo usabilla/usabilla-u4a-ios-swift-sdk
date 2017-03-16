@@ -34,6 +34,8 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         addSubview(leftLabel)
         addSubview(rightLabel)
 
+        // positioning
+        
         slider.topAnchor.constraint(equalTo: topAnchor, constant: 15).activate()
         slider.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         slider.rightAnchor.constraint(equalTo: valueLabel.leftAnchor, constant: -6).isActive = true
@@ -50,6 +52,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         rightLabel.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: 0).isActive = true
         rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
 
+        // configuration
         if viewModel.isNPS {
             valueLabel.text = "0/10"
             slider.minimumValue = 0
@@ -82,6 +85,19 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         } else {
             slider.setValue(0, animated: false)
         }
+        
+        // customization
+        let theme = viewModel.theme
+        
+        slider.tintColor = theme.accentColor
+        slider.thumbTintColor = theme.accentColor
+        
+        valueLabel.font = theme.font.withSize(theme.miniFontSize)
+        valueLabel.textColor = theme.textColor
+        rightLabel.font = theme.font.withSize(theme.miniFontSize)
+        rightLabel.textColor = theme.textColor
+        leftLabel.font = theme.font.withSize(theme.miniFontSize)
+        leftLabel.textColor = theme.textColor
 
     }
 

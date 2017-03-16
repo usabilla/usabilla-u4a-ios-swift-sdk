@@ -8,6 +8,6 @@
 
 import Foundation
 
-class TextFieldComponentViewModel: BaseTextFieldComponentViewModel<TextFieldModel> {
+class TextFieldComponentViewModel: BaseEditableStringComponentViewModel<TextFieldModel> {
 
 }

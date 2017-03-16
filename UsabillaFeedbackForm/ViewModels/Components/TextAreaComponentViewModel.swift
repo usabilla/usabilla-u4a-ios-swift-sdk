@@ -8,6 +8,6 @@
 
 import Foundation
 
-class TextAreaComponentViewModel: BaseStringComponentViewModel<TextAreaFieldModel> {
-
+class TextAreaComponentViewModel: BaseEditableStringComponentViewModel<TextAreaFieldModel> {
+    var isPlaceHolder: Bool = true
 }

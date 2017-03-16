@@ -34,7 +34,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
         line.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).isActive = true
         line.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).isActive = true
         line.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 2).isActive = true
-        line.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         textField.text = viewModel.value
         

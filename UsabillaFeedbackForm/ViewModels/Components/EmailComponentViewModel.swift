@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EmailComponentViewModel: BaseTextFieldComponentViewModel<EmailFieldModel> {
+class EmailComponentViewModel: BaseEditableStringComponentViewModel<EmailFieldModel> {
     var isValid: Bool {
         guard let email = value else {
             return false

@@ -9,9 +9,73 @@
 import Foundation
 
 class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
-    // TODO manage placeholder
+    
+    var line: UIView!
+    
+    override func build() {
+        super.build()
+        line = UIView()
+        
+        textView.dataDetectorTypes = .link
+        line.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(line)
+        
+        // positioning
+        line.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).activate()
+        line.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).activate()
+        line.heightAnchor.constraint(equalToConstant: 1).activate()
+        line.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 2).activate()
+        
+  
+        // configuration
+        if viewModel.value != nil {
+            textView.text = viewModel.value
+            viewModel.isPlaceHolder = false
+        } else {
+            viewModel.isPlaceHolder = true
+            textView.text = viewModel.placeHolder
+        }
+        
+        // customization
+        setCorrectFont()
+        line.backgroundColor = viewModel.theme.hintColor
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if viewModel.isPlaceHolder {
+            textView.text = nil
+        }
+        viewModel.isPlaceHolder = false
+        setCorrectFont()
+    }
+
     func textViewDidChange(_ textView: UITextView) {
         viewModel.value = textView.text
         SwiftEventBus.postToMainThread("updateMySize")
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = viewModel.placeHolder
+            viewModel.value = nil
+            viewModel.isPlaceHolder = true
+            setCorrectFont()
+        }
+    }
+    
+    func setCorrectFont() {
+        let theme = viewModel.theme
+        if !viewModel.isPlaceHolder {
+            textView.font = theme.font.withSize(theme.textFontSize)
+            textView.textColor = theme.textColor
+        } else {
+            textView.textColor = theme.hintColor
+            if let customFont = theme.font.withSize(theme.textFontSize).withTraits(.traitItalic) {
+                textView.font = customFont
+            } else {
+                textView.font = UIFont.italicSystemFont(ofSize: theme.textFontSize)
+            }
+        }
+        
     }
 }
