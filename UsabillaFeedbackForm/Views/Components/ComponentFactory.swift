@@ -29,6 +29,8 @@ class ComponentFactory {
             return MoodComponent(viewModel: (viewModel as? MoodComponentViewModel)!)
         case is ParagraphComponentViewModel:
             return ParagraphComponent(viewModel: (viewModel as? ParagraphComponentViewModel)!)
+        case is ScreenshotComponentViewModel:
+            return ScreenshotComponent(viewModel: (viewModel as? ScreenshotComponentViewModel)!)
         case is SliderComponentViewModel:
             return SliderComponent(viewModel: (viewModel as? SliderComponentViewModel)!)
 //        case is HeaderFieldModel:

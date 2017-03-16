@@ -32,18 +32,22 @@ class ComponentViewModelFactory {
         case is ParagraphFieldModel:
             let m = (field as? ParagraphFieldModel)!
             return ParagraphComponentViewModel(model: m)
-        case is RatingFieldModel:
-            let m = (field as? RatingFieldModel)!
-            return SliderComponentViewModel(model: m)
         case is RadioFieldModel:
             let m = (field as? RadioFieldModel)!
             return RadioComponentViewModel(model: m)
+        case is RatingFieldModel:
+            let m = (field as? RatingFieldModel)!
+            return SliderComponentViewModel(model: m)
+        case is ScreenshotModel:
+            let m = (field as? ScreenshotModel)!
+            return ScreenshotComponentViewModel(model: m)
         case is TextAreaFieldModel:
             let m = (field as? TextAreaFieldModel)!
             return TextAreaComponentViewModel(model: m)
         case is TextFieldModel:
             let m = (field as? TextFieldModel)!
             return TextFieldComponentViewModel(model: m)
+
         default:
             break
         }

@@ -86,11 +86,12 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func updateScreenshotHeight() {
-//        for index in self.tableView.visibleCells {
-//            if let cell = index as? ScreenshotCellView {
-//                self.reloadCellsWithAnimation([self.tableView.indexPath(for: cell)!])
-//            }
-//        }
+        let index = pageViewModel.cellViewModels.index {
+            $0.componentViewModel is ScreenshotComponentViewModel
+        }
+        if let i = index {
+            reloadCellsWithAnimation([IndexPath(row: i, section: 0)])
+        }
     }
 
     func tableViewContentHeight() -> CGFloat {

@@ -10,7 +10,7 @@ import Foundation
 
 class PageViewModel {
 
-    private var cellViewModels: [CellViewModel]
+    var cellViewModels: [CellViewModel]
     private let model: PageModel
 
     let theme: UsabillaThemeConfigurator

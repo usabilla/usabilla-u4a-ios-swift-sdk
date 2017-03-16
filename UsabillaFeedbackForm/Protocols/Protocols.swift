@@ -53,3 +53,7 @@ protocol EditableStringComponentModel: StringComponentModel {
     var placeHolder: String? { get }
 }
 
+protocol ImageComponentModel: ComponentModel {
+    var image: UIImage? { get set }
+}
+

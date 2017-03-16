@@ -128,8 +128,10 @@
 		43CCD4701E799AE500B3E4FE /* ParagraphComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */; };
 		43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */; };
 		43CCD4731E799DD300B3E4FE /* SliderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */; };
-		43CCD4751E79A05100B3E4FE /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4741E79A05100B3E4FE /* NPSComponentViewModel.swift */; };
 		43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699C1E76B4B30078E3B3 /* SliderComponent.swift */; };
+		43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
+		43CCD47A1E7A855000B3E4FE /* BaseImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4791E7A855000B3E4FE /* BaseImageViewModel.swift */; };
+		43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */; };
 		43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* FeedbackRequest.swift */; };
 		43E883E91E37B5B800A97F1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
 		43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
@@ -292,7 +294,9 @@
 		43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextFieldComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderComponentViewModel.swift; sourceTree = "<group>"; };
-		43CCD4741E79A05100B3E4FE /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
+		43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponent.swift; sourceTree = "<group>"; };
+		43CCD4791E7A855000B3E4FE /* BaseImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseImageViewModel.swift; sourceTree = "<group>"; };
+		43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponentViewModel.swift; sourceTree = "<group>"; };
 		43E883E31E37575B00A97F1D /* FeedbackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackRequest.swift; sourceTree = "<group>"; };
 		43E883E81E37B5B800A97F1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		43E883EA1E37B5C000A97F1D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -532,6 +536,7 @@
 				4331DA401E27B362009C97B6 /* RatingControl.swift */,
 				4306699C1E76B4B30078E3B3 /* SliderComponent.swift */,
 				4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */,
+				43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -624,6 +629,8 @@
 		43CCD44B1E78364700B3E4FE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				43CCD4791E7A855000B3E4FE /* BaseImageViewModel.swift */,
+				43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */,
 				43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */,
 				43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */,
 				43CCD46D1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift */,
@@ -632,14 +639,13 @@
 				43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */,
 				43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */,
 				43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */,
-				43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */,
 				43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */,
 				43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */,
 				43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */,
+				43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */,
+				43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */,
 				43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */,
 				43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */,
-				43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */,
-				43CCD4741E79A05100B3E4FE /* NPSComponentViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -873,14 +879,15 @@
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
+				43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */,
 				43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */,
 				0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */,
+				43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */,
 				04F54E231CD76708002F501E /* NetworkManager.swift in Sources */,
 				43CCD4571E78366A00B3E4FE /* BaseStringComponentViewModel.swift in Sources */,
 				43CCD46E1E79990C00B3E4FE /* BaseTextFieldComponentViewModel.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,
-				43CCD4751E79A05100B3E4FE /* NPSComponentViewModel.swift in Sources */,
 				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,
 				0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */,
 				0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */,
@@ -907,6 +914,7 @@
 				43CCD4321E77E1C200B3E4FE /* RatingControl.swift in Sources */,
 				43CCD4611E783F1100B3E4FE /* RadioComponent.swift in Sources */,
 				43CCD4341E77E1CA00B3E4FE /* BaseComponent.swift in Sources */,
+				43CCD47A1E7A855000B3E4FE /* BaseImageViewModel.swift in Sources */,
 				43CCD4451E7828DB00B3E4FE /* BaseTextAreaComponent.swift in Sources */,
 				43CCD45F1E78366A00B3E4FE /* TextFieldComponentViewModel.swift in Sources */,
 				43CCD4361E77E27A00B3E4FE /* ChoiceComponent.swift in Sources */,
