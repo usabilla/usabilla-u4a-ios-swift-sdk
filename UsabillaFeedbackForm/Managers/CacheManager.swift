@@ -35,8 +35,13 @@ class CacheManager {
     }
     
     // MARK: Dictionary caching mechanism
+    
+    private func fileNameFormatterForForm(id: String) -> String {
+        return "\(filePrefix)-\(id)"
+    }
+
     private func getJsonForm(id: String) -> JSON? {
-        print("[CacheManager] : getting \(id) from cache")
+        print("[CacheManager] : getting \(id) from cache ⏳")
         let fileName = fileNameFormatterForForm(id: id)
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -69,6 +74,10 @@ class CacheManager {
         }
     }
     
+    
+    //MARK: FileManager remove form methods
+    
+    // Removes cahced from with id
     private func removeFormId(id: String) {
         let fileName = fileNameFormatterForForm(id: id)
         
@@ -83,7 +92,29 @@ class CacheManager {
         }
     }
     
-    private func fileNameFormatterForForm(id: String) -> String {
-        return "\(filePrefix)-\(id)"
+    // Removes all forms cached
+    func removeAllCachedForms() {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: [], options: FileManager.DirectoryEnumerationOptions(rawValue: 0))
+            
+            if urls.count > 0 {
+                for url in urls {
+                    removeFileAtUrl(url: url)
+                }
+            }
+        } catch {
+            print("no url found")
+        }
+    }
+    
+    // Removes file at given Url
+    private func removeFileAtUrl(url: URL) {
+        do {
+            try FileManager.default.removeItem(at: url)
+            Swift.debugPrint("file deleted ✅")
+        } catch {
+            Swift.debugPrint("file not found ❌")
+        }
     }
 }
