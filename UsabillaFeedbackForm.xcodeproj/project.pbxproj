@@ -121,6 +121,7 @@
 		C5097F1E1E701F4C00186CEC /* MoodCellViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */; };
 		C564D1851E7945B70004705A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1841E7945B70004705A /* DataStore.swift */; };
 		C564D18F1E794B8B0004705A /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D18E1E794B8B0004705A /* CacheManager.swift */; };
+		C564D1911E799A190004705A /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
 		C56873CC1E7943C5006D417D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56873CB1E7943C5006D417D /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -250,6 +251,7 @@
 		C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellViewTests.swift; sourceTree = "<group>"; };
 		C564D1841E7945B70004705A /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		C564D18E1E794B8B0004705A /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		C564D1901E799A190004705A /* FormStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormStore.swift; sourceTree = "<group>"; };
 		C56873CB1E7943C5006D417D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -570,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				C564D1841E7945B70004705A /* DataStore.swift */,
+				C564D1901E799A190004705A /* FormStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
+				C564D1911E799A190004705A /* FormStore.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				4331DA411E27B362009C97B6 /* RatingControl.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
