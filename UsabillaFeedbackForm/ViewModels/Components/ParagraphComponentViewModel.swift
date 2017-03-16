@@ -8,6 +8,6 @@
 
 import Foundation
 
-class ParagraphComponentViewModel : BaseStringComponentViewModel<ParagraphFieldModel> {
+class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldModel> {
     
 }
