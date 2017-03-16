@@ -13,7 +13,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var pageViewModel: PageViewModel!
-    var dynamicFields: [IndexPath] = []
     var requiredLabel: UILabel!
 
     override func viewDidLoad() {
@@ -32,7 +31,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
         registerEventsBus()
     }
 
@@ -93,12 +91,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func reloadCellInTableAfterEvent() {
-        var listOfIndexes: [IndexPath] = []
-        for index in dynamicFields {
-            let cellViewModel = pageViewModel.viewModelForCellAt(index: index.row)
-            if cellViewModel?.shouldAppear == false {
-                listOfIndexes.append(index)
-            }
+        let listOfIndexes: [IndexPath] = pageViewModel.dynamicFields.map {
+            IndexPath(row: $0, section: 0)
         }
         if listOfIndexes.count > 0 {
             self.reloadCellsWithAnimation(listOfIndexes)
@@ -125,7 +119,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
     func initWithViewModel(_ viewModel: PageViewModel) {
         pageViewModel = viewModel
-        dynamicFields = []
         tableView?.reloadData()
     }
 
@@ -203,12 +196,6 @@ extension PageController: UITableViewDataSource {
         if let cell = cell as? RootCellView {
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.cellViewModel = cellViewModel
-
-
-
-//            if item.rule != nil && !dynamicFields.contains(indexPath) {
-//                dynamicFields.append(indexPath)
-//            }
         }
         return cell
     }

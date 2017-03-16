@@ -28,7 +28,9 @@ class CellViewModel {
         }
 
         set {
-            model.isViewCurrentlyVisible = newValue
+            if model.isViewCurrentlyVisible != newValue {
+                model.isViewCurrentlyVisible = newValue
+            }
         }
     }
     init(model: BaseFieldModel) {

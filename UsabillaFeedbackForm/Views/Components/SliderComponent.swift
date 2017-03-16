@@ -22,7 +22,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         leftLabel = UILabel()
         rightLabel = UILabel()
         slider = UISlider()
-
+        slider.isContinuous = false
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         rightLabel.translatesAutoresizingMaskIntoConstraints = false

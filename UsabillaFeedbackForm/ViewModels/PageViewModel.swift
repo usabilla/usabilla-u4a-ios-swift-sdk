@@ -10,9 +10,10 @@ import Foundation
 
 class PageViewModel {
 
-    var cellViewModels: [CellViewModel]
+    var cellViewModels: [CellViewModel] = []
     private let model: PageModel
-
+    var dynamicFields: [Int] = []
+    
     let theme: UsabillaThemeConfigurator
     let copy: CopyModel
     let errorMessage: String?
@@ -22,14 +23,16 @@ class PageViewModel {
     }
 
     init(page: PageModel) {
-        self.cellViewModels = []
         self.model = page
         self.theme = page.themeConfig
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 
-        for fieldModel in page.fields {
+        for (index,fieldModel) in page.fields.enumerated() {
             cellViewModels.append(CellViewModel(model: fieldModel))
+            if fieldModel.rule != nil {
+                dynamicFields.append(index)
+            }
         }
     }
 

@@ -11,7 +11,7 @@ import Foundation
 class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldModel> {
     override var value: String? {
         get {
-            let text = model.fieldValue
+            let text = model.immutableParagraphValue
             if model.html != nil && model.html == true {
                 return text?.htmlToString ?? text
             }

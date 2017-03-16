@@ -75,10 +75,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         
         bottomBorder.backgroundColor = theme.hintColor
         topBorder.backgroundColor = theme.hintColor
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        
         configure()
     }
 
