@@ -28,8 +28,8 @@ class PageViewModel {
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 
-        for f in page.fields {
-            cellViewModels.append(CellViewModel(model: (f as? BaseFieldModel)!))
+        for fieldModel in page.fields {
+            cellViewModels.append(CellViewModel(model: fieldModel))
         }
     }
 
