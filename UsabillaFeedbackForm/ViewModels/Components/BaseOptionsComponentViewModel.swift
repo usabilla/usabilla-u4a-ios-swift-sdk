@@ -10,10 +10,9 @@ import Foundation
 
 class BaseOptionsComponentViewModel<T: OptionsFieldModel>: BaseComponentViewModel<[String], OptionsFieldModel>, OptionsComponentViewModel {
     var options: [Options] {
-        get {
-            return model.options
-        }
+        return model.options
     }
+    
     override var value: [String]? {
         get {
             return model.fieldValue
@@ -23,4 +22,3 @@ class BaseOptionsComponentViewModel<T: OptionsFieldModel>: BaseComponentViewMode
         }
     }
 }
-

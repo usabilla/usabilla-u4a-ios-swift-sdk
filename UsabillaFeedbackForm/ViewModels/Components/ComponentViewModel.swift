@@ -20,4 +20,3 @@ class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
         self.model = model
     }
 }
-

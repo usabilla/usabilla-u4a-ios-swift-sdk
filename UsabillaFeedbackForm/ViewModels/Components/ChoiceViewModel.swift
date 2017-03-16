@@ -11,10 +11,9 @@ import Foundation
 class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel> {
     var expanded: Bool = false
     var options: [Options] {
-        get {
-            return model.options
-        }
+        return model.options
     }
+    
     override var value: String? {
         get {
             return model.fieldValue.first
