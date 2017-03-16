@@ -33,10 +33,6 @@ class ComponentFactory {
             return ScreenshotComponent(viewModel: (viewModel as? ScreenshotComponentViewModel)!)
         case is SliderComponentViewModel:
             return SliderComponent(viewModel: (viewModel as? SliderComponentViewModel)!)
-//        case is HeaderFieldModel:
-//            let m = (field as? HeaderFieldModel)!
-//            let c = HeaderComponent(value: m.fieldValue)
-//            return c
         default:
             break
         }

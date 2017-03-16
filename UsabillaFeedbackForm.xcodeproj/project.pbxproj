@@ -233,13 +233,11 @@
 		4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManagerTest.swift; sourceTree = "<group>"; };
 		430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCheckBoxComponent.swift; sourceTree = "<group>"; };
 		430669911E76B4B30078E3B3 /* BaseComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseComponent.swift; sourceTree = "<group>"; };
-		430669921E76B4B30078E3B3 /* BaseLabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLabelComponent.swift; sourceTree = "<group>"; };
 		430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextAreaComponent.swift; sourceTree = "<group>"; };
 		430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxComponent.swift; sourceTree = "<group>"; };
 		430669951E76B4B30078E3B3 /* ChoiceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceComponent.swift; sourceTree = "<group>"; };
 		430669961E76B4B30078E3B3 /* ComponentFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentFactory.swift; path = Components/ComponentFactory.swift; sourceTree = "<group>"; };
 		430669971E76B4B30078E3B3 /* EmailComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponent.swift; sourceTree = "<group>"; };
-		430669981E76B4B30078E3B3 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
 		430669991E76B4B30078E3B3 /* MoodComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponent.swift; sourceTree = "<group>"; };
 		4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponent.swift; sourceTree = "<group>"; };
 		4306699B1E76B4B30078E3B3 /* RadioComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioComponent.swift; sourceTree = "<group>"; };
@@ -523,13 +521,11 @@
 			children = (
 				430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */,
 				430669911E76B4B30078E3B3 /* BaseComponent.swift */,
-				430669921E76B4B30078E3B3 /* BaseLabelComponent.swift */,
 				430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */,
 				4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */,
 				430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */,
 				430669951E76B4B30078E3B3 /* ChoiceComponent.swift */,
 				430669971E76B4B30078E3B3 /* EmailComponent.swift */,
-				430669981E76B4B30078E3B3 /* HeaderComponent.swift */,
 				430669991E76B4B30078E3B3 /* MoodComponent.swift */,
 				4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */,
 				4306699B1E76B4B30078E3B3 /* RadioComponent.swift */,
