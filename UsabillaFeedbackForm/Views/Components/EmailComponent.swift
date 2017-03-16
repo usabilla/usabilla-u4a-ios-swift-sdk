@@ -15,14 +15,13 @@ class EmailComponent: BaseTextFieldComponent<EmailComponentViewModel> {
     }
 
     func updateBorderColor(email: String?) {
-        if let toTest = email {
-            let theme = viewModel.theme
-            if viewModel.isValid {
-                textField.layer.borderColor = theme.hintColor.cgColor
-            } else {
-                textField.layer.borderColor = theme.errorColor.cgColor
-            }
+        let theme = viewModel.theme
+        if viewModel.isValid {
+            textField.layer.borderColor = theme.hintColor.cgColor
+        } else {
+            textField.layer.borderColor = theme.errorColor.cgColor
         }
+
     }
 
     override func textFieldDidEndEditing(_ textField: UITextField) {
