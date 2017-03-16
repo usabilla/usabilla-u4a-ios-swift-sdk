@@ -102,6 +102,8 @@ class CacheManager {
                 for url in urls {
                     removeFileAtUrl(url: url)
                 }
+            } else {
+                Swift.debugPrint("No form cache found")
             }
         } catch {
             print("no url found")
