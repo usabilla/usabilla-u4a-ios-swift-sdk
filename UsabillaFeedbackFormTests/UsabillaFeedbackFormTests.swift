@@ -49,18 +49,6 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                     UsabillaFeedbackForm.loadFeedbackForm("588616eca935029b15d51a51")
                 }
             }
-
-            it("UsabillaFeedbackFormTest loadFeedbackForm shoud fail") {
-                waitUntil(timeout: 5.0) { done in
-                    self.succeed = {
-                        fail()
-                    }
-                    self.failed = {
-                        done()
-                    }
-                    UsabillaFeedbackForm.loadFeedbackForm("test")
-                }
-            }
         }
     }
 
