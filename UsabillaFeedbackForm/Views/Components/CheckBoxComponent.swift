@@ -29,6 +29,7 @@ class CheckBoxComponent: BaseCheckBoxComponent<CheckBoxComponentViewModel> {
             }
         }
         viewModel.value = values
+        valueChanged()
     }
 
 }

@@ -11,7 +11,7 @@ import Foundation
 class MoodComponent: UBComponent<MoodComponentViewModel> {
 
     var moodControl: RatingControl!
-    
+
     override func build() {
         moodControl = RatingControl()
         moodControl?.mode = .selection
@@ -25,17 +25,18 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         moodControl.topAnchor.constraint(equalTo: topAnchor).isActive = true
         moodControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
+
         // customizaiton
         moodControl?.backgroundColor = viewModel.theme.backgroundColor
         moodControl?.selectedImages = viewModel.theme.enabledEmoticons
         moodControl?.unselectedImages = viewModel.theme.disabledEmoticons
-        
+
         moodControl?.rating = viewModel.value
     }
 
     func pickMood(sender: RatingControl) {
         viewModel.value = moodControl.rating
         print("You pick state \(viewModel.value)")
+        valueChanged()
     }
 }

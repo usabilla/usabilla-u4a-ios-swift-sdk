@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UBComponent<CVM : ComponentViewModel>: UIView {
+class UBComponent<CVM : ComponentViewModel>: UIControl {
     internal var viewModel: CVM!
 
     required init(viewModel: CVM) {
@@ -22,5 +22,9 @@ class UBComponent<CVM : ComponentViewModel>: UIView {
     }
 
     func build() {
+    }
+
+    func valueChanged() {
+        sendActions(for: .valueChanged)
     }
 }

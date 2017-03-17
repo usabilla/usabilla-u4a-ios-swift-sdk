@@ -108,5 +108,6 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
             valueLabel.text = "\(fieldValue)/10"
         }
         viewModel.value = fieldValue
+        valueChanged()
     }
 }

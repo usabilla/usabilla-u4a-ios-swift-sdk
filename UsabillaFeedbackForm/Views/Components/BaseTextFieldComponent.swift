@@ -61,6 +61,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         viewModel.value = textField.text
+        valueChanged()
     }
 
 }

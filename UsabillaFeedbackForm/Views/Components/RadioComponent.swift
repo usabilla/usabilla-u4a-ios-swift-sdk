@@ -35,6 +35,7 @@ class RadioComponent: BaseCheckBoxComponent<RadioComponentViewModel> {
             }
         }
         viewModel.value = values
+        valueChanged()
     }
     
 }

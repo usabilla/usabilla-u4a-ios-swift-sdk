@@ -51,6 +51,7 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
 
     func textViewDidChange(_ textView: UITextView) {
         viewModel.value = textView.text
+        valueChanged()
         SwiftEventBus.postToMainThread("updateMySize")
     }
     
@@ -60,6 +61,7 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
             viewModel.value = nil
             viewModel.isPlaceHolder = true
             setCorrectFont()
+            valueChanged()
         }
     }
     

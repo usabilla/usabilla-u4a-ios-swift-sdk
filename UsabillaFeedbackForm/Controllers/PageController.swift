@@ -132,8 +132,10 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func isCorrectlyFilled() -> Bool {
+        pageViewModel.verifyFields()
         if let index = pageViewModel.indexOfInvalidField() {
-            tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             tableView.reloadData()
             return false
         }

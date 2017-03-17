@@ -15,12 +15,9 @@ class CellViewModel {
     let theme: UsabillaThemeConfigurator
     let copy: CopyModel
     let required: Bool
-
     var componentViewModel: ComponentViewModel?
+    var showErrorLabel: Bool = false
 
-    var isValid: Bool {
-        return model.isModelValid
-    }
 
     var isViewCurrentlyVisible: Bool {
         get {
@@ -44,5 +41,9 @@ class CellViewModel {
 
     var shouldAppear: Bool {
         return model.shouldAppear()
+    }
+
+    func updateErrorLabel() {
+        showErrorLabel = required && !model.isValid()
     }
 }

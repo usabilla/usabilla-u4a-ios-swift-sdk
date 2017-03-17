@@ -10,7 +10,7 @@ import Foundation
 
 class ComponentFactory {
 
-    class func component(viewModel: ComponentViewModel) -> UIView {
+    class func component(viewModel: ComponentViewModel) -> UIControl {
 
         switch viewModel {
         case is ChoiceComponentViewModel:

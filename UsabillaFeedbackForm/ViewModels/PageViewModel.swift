@@ -71,4 +71,11 @@ class PageViewModel {
         return model.defaultJumpTo
     }
 
+    func verifyFields() {
+        cellViewModels.filter {
+            $0.required == true
+        }.forEach {
+            $0.updateErrorLabel()
+        }
+    }
 }

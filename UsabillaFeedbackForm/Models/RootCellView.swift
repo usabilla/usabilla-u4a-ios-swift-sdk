@@ -14,7 +14,7 @@ class RootCellView: UITableViewCell {
     var rootCellContainerView: UIView
     var titleLabel: UILabel!
     var errorLabel: UILabel!
-    var component: UIView?
+    var component: UIControl?
 
     var cellViewModel: CellViewModel! {
         didSet {
@@ -97,6 +97,7 @@ class RootCellView: UITableViewCell {
                 comp.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).withId("RootCellView component right constraint").activate()
                 comp.topAnchor.constraint(equalTo: rootCellContainerView.topAnchor).withId("RootCellView component top constraint").activate()
                 comp.bottomAnchor.constraint(equalTo: rootCellContainerView.bottomAnchor).withId("RootCellView component bottom constraint").activate()
+                comp.addTarget(self, action: #selector(RootCellView.componentValueChanged), for: .valueChanged)
             }
         }
         titleLabel.text = cellViewModel.title
@@ -116,7 +117,6 @@ class RootCellView: UITableViewCell {
         } else {
             self.titleLabel.text = cellViewModel.title
         }
-
     }
 
     private func applyCustomisations() {
@@ -158,10 +158,18 @@ class RootCellView: UITableViewCell {
         return dividerLine
     }
 
-    func updateValidStatus() {
-        let required = cellViewModel.required
-        let isValid = cellViewModel.required
-        errorLabelHeightConstraint.isActive = !(required && !isValid)
+    @discardableResult func updateValidStatus() -> Bool {
+        if !cellViewModel.showErrorLabel != errorLabelHeightConstraint.isActive {
+            errorLabelHeightConstraint.isActive = !cellViewModel.showErrorLabel
+            return true
+        }
+        return false
     }
 
+    func componentValueChanged() {
+        cellViewModel.updateErrorLabel()
+        if updateValidStatus() {
+            SwiftEventBus.postToMainThread("updateMySize")
+        }
+    }
 }

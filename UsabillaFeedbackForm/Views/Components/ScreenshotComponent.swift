@@ -158,6 +158,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
         if updateModel == true {
             viewModel.value = image
+            valueChanged()
         }
 
         setupRatioConstraint(imageSize: image?.size)

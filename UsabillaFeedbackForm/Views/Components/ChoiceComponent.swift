@@ -110,9 +110,6 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         viewModel.expanded = !viewModel.expanded
         pickerDismissConstraint.isActive = !viewModel.expanded
         SwiftEventBus.postToMainThread("updateMySize")
-
-        let tempValue = viewModel.value
-        viewModel.value = tempValue // trigger update of the heigh
     }
 
     // Delegate
@@ -121,7 +118,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         let item = viewModel.options[row]
         viewModel.value = item.value
         pickerButton.setTitle(item.title, for: .normal)
-        
+        valueChanged()
     }
 
     // Datasource
