@@ -13,11 +13,13 @@ class PageViewModel {
     var cellViewModels: [CellViewModel] = []
     private let model: PageModel
     var dynamicFields: [Int] = []
-    
+
     let theme: UsabillaThemeConfigurator
     let copy: CopyModel
     let errorMessage: String?
-
+    var name: String? {
+        return model.pageName
+    }
     var numberOfCells: Int {
         return cellViewModels.count
     }
@@ -28,7 +30,7 @@ class PageViewModel {
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 
-        for (index,fieldModel) in page.fields.enumerated() {
+        for (index, fieldModel) in page.fields.enumerated() {
             cellViewModels.append(CellViewModel(model: fieldModel))
             if fieldModel.rule != nil {
                 dynamicFields.append(index)
@@ -54,7 +56,7 @@ class PageViewModel {
         }
         return nil
     }
-    
+
     /**
      Returns the name/id of the next page name based on the jump rules
      */
