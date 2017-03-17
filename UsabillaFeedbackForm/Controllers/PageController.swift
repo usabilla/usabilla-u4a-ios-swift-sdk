@@ -78,11 +78,14 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func reloadCellInTableAfterEvent() {
-        let listOfIndexes: [IndexPath] = pageViewModel.dynamicFields.map {
+        let listOfIndexes = pageViewModel.dynamicFields.filter {
+            pageViewModel.viewModelForCellAt(index: $0)?.isViewCurrentlyVisible != pageViewModel.viewModelForCellAt(index: $0)?.shouldAppear
+        }
+        let indexPaths: [IndexPath] = listOfIndexes.map {
             IndexPath(row: $0, section: 0)
         }
         if listOfIndexes.count > 0 {
-            self.reloadCellsWithAnimation(listOfIndexes)
+            self.reloadCellsWithAnimation(indexPaths)
         }
     }
 
