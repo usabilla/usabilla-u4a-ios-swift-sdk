@@ -64,22 +64,9 @@ class PageController: UIViewController, UINavigationControllerDelegate {
             self.pickImageFromGallery()
         }
 
-        SwiftEventBus.onMainThread(self, name: "updateScreenshotHeight") { _ in
-            self.updateScreenshotHeight()
-        }
-
         SwiftEventBus.onMainThread(self, name: "updateMySize") { _ in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-        }
-    }
-
-    func updateScreenshotHeight() {
-        let index = pageViewModel.cellViewModels.index {
-            $0.componentViewModel is ScreenshotComponentViewModel
-        }
-        if let i = index {
-            reloadCellsWithAnimation([IndexPath(row: i, section: 0)])
         }
     }
 

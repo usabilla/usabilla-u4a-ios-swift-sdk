@@ -112,7 +112,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         }
         applyCustomisations()
 
-        setImage(image: viewModel.value, updateUI: false)
+        setImage(image: viewModel.value, updateUI: false, updateModel: false)
     }
 
 
@@ -138,17 +138,11 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     }
 
     func updateUI() {
-        if viewModel.value == nil {
-            addIcon.isHidden = false
-            addScreenshotLabel.isHidden = false
-            addScreenshotLine.isHidden = false
-            screenShotView.isHidden = true
-        } else {
-            screenShotView.isHidden = false
-            addIcon.isHidden = true
-            addScreenshotLabel.isHidden = true
-            addScreenshotLine.isHidden = true
-        }
+        let hasScreeenShot = viewModel.value != nil
+        addIcon.isHidden = hasScreeenShot
+        addScreenshotLabel.isHidden = hasScreeenShot
+        addScreenshotLine.isHidden = hasScreeenShot
+        screenShotView.isHidden = !hasScreeenShot
     }
 
     func deleteScreenshot() {
@@ -159,13 +153,18 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         SwiftEventBus.post("pick", sender: nil)
     }
 
-    func setImage(image: UIImage?, updateUI: Bool = true) {
+    func setImage(image: UIImage?, updateUI: Bool = true, updateModel: Bool = true) {
         screenShotView.image = image
-        viewModel.value = image
+
+        if updateModel == true {
+            viewModel.value = image
+        }
+
         setupRatioConstraint(imageSize: image?.size)
         self.updateUI()
+
         if updateUI == true {
-            SwiftEventBus.post("updateScreenshotHeight", sender: nil)
+            SwiftEventBus.post("updateMySize")
         }
     }
 
