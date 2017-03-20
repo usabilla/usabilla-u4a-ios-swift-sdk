@@ -14,24 +14,26 @@ class CacheManager {
     let filePrefix = "usabillaFormId"
     
     private init () {
-        
     }
     
     // MARK: Form Caching Methods
     func cacheForm(id: String, form: FormModel) -> Bool {
-        return saveToCacheForm(id: id, formJson: form.formJsonString)
+        let fileName = fileNameFormatterForForm(id: id)
+        return saveToCacheForm(id: fileName, formJson: form.formJsonString)
     }
     
     func getForm(id: String) -> FormModel? {
-        if let jsonForm = getJsonForm(id: id) {
+        let fileName = fileNameFormatterForForm(id: id)
+        if let jsonForm = getJsonForm(id: fileName) {
             return JSONFormParser.parseFormJson(jsonForm, appId: id, screenshot: nil, themeConfig: UsabillaThemeConfigurator())
         }
         
         return nil
     }
     
-    func removeCachedForm(id: String) {
-        removeFormId(id: id)
+    func removeCachedForm(id: String) -> Bool {
+        let fileName = fileNameFormatterForForm(id: id)
+        return removeFormId(id: fileName)
     }
     
     // MARK: Dictionary caching mechanism
@@ -42,10 +44,10 @@ class CacheManager {
 
     private func getJsonForm(id: String) -> JSON? {
         print("[CacheManager] : getting \(id) from cache ⏳")
-        let fileName = fileNameFormatterForForm(id: id)
+        
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileURL = documentsURL.appendingPathComponent("\(fileName)")
+            let fileURL = documentsURL.appendingPathComponent("\(id)")
             let data = try Data.init(contentsOf: fileURL)
 
             Swift.debugPrint("[CacheManager] : getting \(id) from cache -> done ✅")
@@ -59,10 +61,9 @@ class CacheManager {
     }
     
     private func saveToCacheForm(id: String, formJson: JSON) -> Bool {
-        let fileName = fileNameFormatterForForm(id: id)
         do {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileURL = documentsURL.appendingPathComponent("\(fileName)")
+            let fileURL = documentsURL.appendingPathComponent("\(id)")
             let data = try formJson.rawData()
             try data.write(to: fileURL)
             Swift.debugPrint("[CacheManager] : saving \(id) to cache -> OK ✅")
@@ -75,48 +76,52 @@ class CacheManager {
     }
     
     
-    //MARK: FileManager remove form methods
+    // MARK: FileManager remove form methods
     
     // Removes cahced from with id
-    private func removeFormId(id: String) {
-        let fileName = fileNameFormatterForForm(id: id)
-        
+    private func removeFormId(id: String) -> Bool {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsURL.appendingPathComponent("\(fileName)")
+        let fileURL = documentsURL.appendingPathComponent("\(id)")
         
-        do {
-            try FileManager.default.removeItem(at: fileURL)
-            Swift.debugPrint("file deleted ✅")
-        } catch {
-            Swift.debugPrint("file not found ❌")
-        }
+        return removeFileAtUrl(url: fileURL)
     }
     
     // Removes all forms cached
-    func removeAllCachedForms() {
+    func removeAllCachedForms() -> Bool {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        var removeSucceeded = false
         do {
             let urls = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: [], options: FileManager.DirectoryEnumerationOptions(rawValue: 0))
             
             if urls.count > 0 {
                 for url in urls {
-                    removeFileAtUrl(url: url)
+                    if url.absoluteString.contains(filePrefix) {
+                        print("removing this form id : \(url.absoluteString)")
+                        _ = removeFileAtUrl(url: url)
+                        removeSucceeded = true
+                    }
                 }
+                
+                return removeSucceeded
             } else {
                 Swift.debugPrint("No form cache found")
             }
         } catch {
             print("no url found")
         }
+        
+        return false
     }
     
     // Removes file at given Url
-    private func removeFileAtUrl(url: URL) {
+    private func removeFileAtUrl(url: URL) -> Bool {
         do {
             try FileManager.default.removeItem(at: url)
             Swift.debugPrint("file deleted ✅")
+            return true
         } catch {
             Swift.debugPrint("file not found ❌")
+            return false
         }
     }
 }
