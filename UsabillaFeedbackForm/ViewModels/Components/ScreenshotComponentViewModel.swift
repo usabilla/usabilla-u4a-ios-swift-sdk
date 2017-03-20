@@ -8,6 +8,6 @@
 
 import Foundation
 
-class ScreenshotComponentViewModel: BaseImageViewModel<ScreenshotModel> {
+class ScreenshotComponentViewModel: BaseImageComponentViewModel<ScreenshotModel> {
 
 }

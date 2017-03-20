@@ -13,8 +13,6 @@ class EmailComponentViewModel: BaseEditableStringComponentViewModel<EmailFieldMo
         guard let email = value else {
             return false
         }
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
+        return model.isValidEmail(testStr: email)
     }
 }

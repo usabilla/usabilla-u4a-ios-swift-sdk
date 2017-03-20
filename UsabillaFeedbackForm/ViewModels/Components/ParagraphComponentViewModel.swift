@@ -11,14 +11,14 @@ import Foundation
 class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldModel> {
     override var value: String? {
         get {
-            let text = model.immutableParagraphValue
+            guard let text = model.immutableParagraphValue else {
+                return nil
+            }
             if model.html != nil && model.html == true {
-                return text?.htmlToString ?? text
+                return text.htmlToString
             }
             return text
         }
-        set {
-            
-        }
+        set {}
     }
 }

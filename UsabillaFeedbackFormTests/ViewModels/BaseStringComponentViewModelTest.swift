@@ -1,0 +1,41 @@
+//
+//  BaseStringComponentViewModelTest.swift
+//  UsabillaFeedbackForm
+//
+//  Created by Benjamin Grima on 20/03/2017.
+//  Copyright © 2017 Usabilla. All rights reserved.
+//
+
+import Quick
+import Nimble
+
+@testable import UsabillaFeedbackForm
+
+class BaseStringComponentViewModelTest: QuickSpec {
+
+    override func spec() {
+
+        var viewModel: BaseStringComponentViewModel<StringFieldModel>!
+        var model: StringFieldModel!
+        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+
+        beforeSuite {
+            model = StringFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
+            viewModel = BaseStringComponentViewModel<StringFieldModel>(model: model)
+        }
+
+        describe("BaseStringComponentViewModelTest") {
+            context("when updating value") {
+                it("should update model") {
+                    viewModel.value = ""
+                    expect(model.fieldValue).to(equal(""))
+                }
+
+                it("should update viewModel") {
+                    viewModel.value = "hello"
+                    expect(viewModel.value).to(equal("hello"))
+                }
+            }
+        }
+    }
+}

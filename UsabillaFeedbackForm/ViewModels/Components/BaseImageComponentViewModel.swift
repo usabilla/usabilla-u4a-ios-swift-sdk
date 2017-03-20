@@ -1,5 +1,5 @@
 //
-//  BaseImageViewModel.swift
+//  BaseImageComponentViewModel.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 16/03/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BaseImageViewModel<T: ImageComponentModel>: BaseComponentViewModel<UIImage, T> {
+class BaseImageComponentViewModel<T: ImageComponentModel>: BaseComponentViewModel<UIImage, T> {
     override var value: UIImage? {
         get {
             return model.image
