@@ -85,6 +85,7 @@
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
+		434E6C361E8008190087DB30 /* ComponentFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTest.swift */; };
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */; };
@@ -187,23 +188,10 @@
 		0483E9CC1CDCDF86004EC234 /* RootCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootCellView.swift; path = ../../Models/RootCellView.swift; sourceTree = "<group>"; };
 		0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarFieldModel.swift; sourceTree = "<group>"; };
 		0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
-		0483E9E51CDCDFB1004EC234 /* BaseTextAreaCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextAreaCellView.swift; sourceTree = "<group>"; };
-		0483E9E71CDCDFB1004EC234 /* ChoiceCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceCellView.swift; sourceTree = "<group>"; };
-		0483E9E81CDCDFB1004EC234 /* EmailCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailCellView.swift; sourceTree = "<group>"; };
-		0483E9E91CDCDFB1004EC234 /* MoodCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellView.swift; sourceTree = "<group>"; };
-		0483E9EB1CDCDFB1004EC234 /* ParagraphCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphCellView.swift; sourceTree = "<group>"; };
-		0483E9EC1CDCDFB1004EC234 /* RadioCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioCellView.swift; sourceTree = "<group>"; };
-		0483E9ED1CDCDFB1004EC234 /* ScreenshotCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotCellView.swift; sourceTree = "<group>"; };
-		0483E9EE1CDCDFB1004EC234 /* SliderCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCellView.swift; sourceTree = "<group>"; };
-		0483E9EF1CDCDFB1004EC234 /* StarCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarCellView.swift; sourceTree = "<group>"; };
-		0483E9F01CDCDFB1004EC234 /* TextAreaCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaCellView.swift; sourceTree = "<group>"; };
-		0483E9F11CDCDFB1004EC234 /* TextInputCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputCellView.swift; sourceTree = "<group>"; };
-		0483EA001CDCDFCD004EC234 /* CheckboxCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxCellView.swift; sourceTree = "<group>"; };
 		0483EA021CDCE003004EC234 /* ScreenshotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotModel.swift; sourceTree = "<group>"; };
 		0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaFeedbackForm.swift; sourceTree = "<group>"; };
 		0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaFieldModel.swift; sourceTree = "<group>"; };
 		0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModel.swift; sourceTree = "<group>"; };
-		048641AE1CF7217D00006A80 /* BaseCheckBoxCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCheckBoxCellView.swift; sourceTree = "<group>"; };
 		049D77811E1BF2EB00117606 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftCheckBox.swift; sourceTree = "<group>"; };
@@ -270,6 +258,7 @@
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
+		434E6C351E8008190087DB30 /* ComponentFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTest.swift; sourceTree = "<group>"; };
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTest.swift; sourceTree = "<group>"; };
@@ -513,19 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				0483E9CC1CDCDF86004EC234 /* RootCellView.swift */,
-				048641AE1CF7217D00006A80 /* BaseCheckBoxCellView.swift */,
-				0483EA001CDCDFCD004EC234 /* CheckboxCellView.swift */,
-				0483E9E51CDCDFB1004EC234 /* BaseTextAreaCellView.swift */,
-				0483E9E71CDCDFB1004EC234 /* ChoiceCellView.swift */,
-				0483E9E81CDCDFB1004EC234 /* EmailCellView.swift */,
-				0483E9E91CDCDFB1004EC234 /* MoodCellView.swift */,
-				0483E9EB1CDCDFB1004EC234 /* ParagraphCellView.swift */,
-				0483E9EC1CDCDFB1004EC234 /* RadioCellView.swift */,
-				0483E9ED1CDCDFB1004EC234 /* ScreenshotCellView.swift */,
-				0483E9EE1CDCDFB1004EC234 /* SliderCellView.swift */,
-				0483E9EF1CDCDFB1004EC234 /* StarCellView.swift */,
-				0483E9F01CDCDFB1004EC234 /* TextAreaCellView.swift */,
-				0483E9F11CDCDFB1004EC234 /* TextInputCellView.swift */,
 				432D0B541E264940003BA70A /* FooterTableViewCell.swift */,
 			);
 			path = Cells;
@@ -586,6 +562,7 @@
 				4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */,
 				04747EFD1E52055B0083CE57 /* StarCellViewTest.swift */,
 				C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */,
+				434E6C351E8008190087DB30 /* ComponentFactoryTest.swift */,
 			);
 			name = Views;
 			path = UsabillaFeedbackFormTests/Views;
@@ -988,6 +965,7 @@
 				43B7083E1E7FE2D600F05A40 /* EmailComponentViewModelTest.swift in Sources */,
 				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
+				434E6C361E8008190087DB30 /* ComponentFactoryTest.swift in Sources */,
 				43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */,
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,

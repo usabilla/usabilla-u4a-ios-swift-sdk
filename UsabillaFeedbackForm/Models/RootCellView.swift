@@ -75,13 +75,6 @@ class RootCellView: UITableViewCell {
         rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).isActive = true
     }
 
-    func addConstraintToFillContainerView(view: UIView, withMargin: CGFloat = 0) {
-        NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .bottom, multiplier: 1, constant: -withMargin).isActive = true
-        NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .top, multiplier: 1, constant: withMargin).isActive = true
-        NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .leading, multiplier: 1, constant: withMargin).isActive = true
-        NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.rootCellContainerView, attribute: .trailing, multiplier: 1, constant: -withMargin).isActive = true
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -141,21 +134,6 @@ class RootCellView: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 3
         return titleLabel
-    }
-
-    func createSecondaryLabel() -> UILabel {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = NSTextAlignment.right
-        titleLabel.numberOfLines = 0
-        return titleLabel
-    }
-
-
-    func createDividerLine() -> UIView {
-        let dividerLine = UIView()
-        dividerLine.translatesAutoresizingMaskIntoConstraints = false
-        return dividerLine
     }
 
     @discardableResult func updateValidStatus() -> Bool {
