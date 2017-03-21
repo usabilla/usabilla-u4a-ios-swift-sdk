@@ -56,6 +56,13 @@ class FormStoreTests: QuickSpec {
                     }
                 })
             })
+            
+            context("When loading the defaultForm", {
+                it("should return a default form successfully", closure: {
+                    let defaultFrom  = FormStore.sharedInstance.loadDefaultForm("", screenshot: nil, customVariables: [:], themeConfig: UsabillaThemeConfigurator())
+                    expect(defaultFrom).toNot(beNil())
+                })
+            })
         }
     }
 }
