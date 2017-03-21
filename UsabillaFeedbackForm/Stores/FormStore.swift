@@ -27,7 +27,7 @@ class FormStore {
         return Promise { fulfill, reject in
             NetworkManager.getForm(id, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then(execute: { form in
                 self.form = form
-                CacheManager.sharedInstance.cacheForm(id: form.appId, form: form)
+                let _ = CacheManager.sharedInstance.cacheForm(id: form.appId, form: form)
                 Swift.debugPrint("FormModel is loaded successfully")
                 fulfill(form)
             }).catch(execute: { error in

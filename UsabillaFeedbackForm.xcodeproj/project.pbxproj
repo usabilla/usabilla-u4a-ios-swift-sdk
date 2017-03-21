@@ -124,6 +124,8 @@
 		C564D1911E799A190004705A /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
 		C564D1951E7C1D5D0004705A /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1941E7C1D5D0004705A /* CacheManagerTests.swift */; };
 		C56873CC1E7943C5006D417D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56873CB1E7943C5006D417D /* NetworkManager.swift */; };
+		C59C820A1E8133F000840D4E /* FormStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C82091E8133F000840D4E /* FormStoreTests.swift */; };
+		C59C820C1E813F9E00840D4E /* UBMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820B1E813F9E00840D4E /* UBMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,6 +257,8 @@
 		C564D1901E799A190004705A /* FormStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormStore.swift; sourceTree = "<group>"; };
 		C564D1941E7C1D5D0004705A /* CacheManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
 		C56873CB1E7943C5006D417D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C59C82091E8133F000840D4E /* FormStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormStoreTests.swift; sourceTree = "<group>"; };
+		C59C820B1E813F9E00840D4E /* UBMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBMock.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -285,6 +289,7 @@
 				0409BD661E38F75C00045E44 /* DataStoreTest.swift */,
 				4304B0431E3A09AE007C8796 /* SubmissionManagerTest.swift */,
 				C564D1941E7C1D5D0004705A /* CacheManagerTests.swift */,
+				C59C82091E8133F000840D4E /* FormStoreTests.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				04575B641D99787F001E0EC3 /* UsabillaFeedbackFormTests.swift */,
 				43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */,
 				4306698D1E7692690078E3B3 /* FeedbackResultTest.swift */,
+				C59C820B1E813F9E00840D4E /* UBMock.swift */,
 			);
 			name = UsabillaFeedbackFormTest;
 			path = UsabillaFeedbackFormTests;
@@ -831,8 +837,10 @@
 				4304B0401E390EAA007C8796 /* TextAreaCellViewTest.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
+				C59C820A1E8133F000840D4E /* FormStoreTests.swift in Sources */,
 				43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */,
 				4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */,
+				C59C820C1E813F9E00840D4E /* UBMock.swift in Sources */,
 				43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */,
 				43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */,
 				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
