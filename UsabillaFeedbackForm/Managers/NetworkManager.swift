@@ -163,7 +163,6 @@ class NetworkManager {
 
     }
 
-
     /// Submits form data without screenshot (Only text)
     ///
     /// - Parameter payload: data to submit
@@ -179,7 +178,7 @@ class NetworkManager {
             }
         }
     }
-    
+
     /**
         getForm : loads a form with id from network and returns a FormModel object of it to be used
  
@@ -192,13 +191,13 @@ class NetworkManager {
                 let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
                 Swift.debugPrint("form loaded successfully")
                 fulfill(form)
-                }.catch { error in
-                    Swift.debugPrint("form couldn't load")
-                    reject(error)
+            }.catch { error in
+                Swift.debugPrint("form couldn't load")
+                reject(error)
             }
         }
     }
-    
+
     class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
         getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in

@@ -19,11 +19,11 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
     override func spec() {
 
         describe("UsabillaFeedbackFormTest") {
-            
+
             beforeEach {
                 UsabillaFeedbackForm.delegate = self
             }
-            
+
             it("UsabillaFeedbackFormTest localizable") {
                 expect(UsabillaFeedbackForm.defaultLocalisationFile).to(beTrue())
                 UsabillaFeedbackForm.localizedStringFile = "test"

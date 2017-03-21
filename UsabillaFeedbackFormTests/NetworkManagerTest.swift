@@ -23,8 +23,8 @@ class NetworkManagerTest: QuickSpec {
                         let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: nil)
                         promise.then { _ in
                             done()
-                            }.catch { _ in
-                                fail("should not go here")
+                        }.catch { _ in
+                            fail("should not go here")
                         }
                     }
                 }
@@ -35,8 +35,8 @@ class NetworkManagerTest: QuickSpec {
                         let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: screenshot)
                         promise.then { _ in
                             done()
-                            }.catch { _ in
-                                fail("should not go here")
+                        }.catch { _ in
+                            fail("should not go here")
                         }
                     }
                 }
@@ -45,33 +45,33 @@ class NetworkManagerTest: QuickSpec {
                         let promise = NetworkManager.submitFormToUsabilla(payload: [:], screenshot: "")
                         promise.then { _ in
                             fail("should not go here")
-                            
-                            }.catch { _ in
-                                done()
-                                
+
+                        }.catch { _ in
+                            done()
+
                         }
                     }
                 }
             })
-            
+
             context("When calling getFormJsonFromServer ", {
                 it("should fail with invalid formId") {
                     NetworkManager.getFormJsonFromServer("thisIsNotAValidFormId", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
                 }
-                
+
                 it("NetworkManager getForm should fail") {
                     NetworkManager.getFormJsonFromServer("583c0d8ea935028022c145f4", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
                 }
             })
-            
+
             context("When calling getFormWithFormID", {
                 it("should fail with an invalid formId") {
                     waitUntil(timeout: 2.0) { done in
                         let promise = NetworkManager.getFormWithFormID(formID: "thisIsNotAValidFormId")
                         promise.then { _ in
                             fail("should not go here")
-                            }.catch { _ in
-                                done()
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }
@@ -80,21 +80,21 @@ class NetworkManagerTest: QuickSpec {
                         let promise = NetworkManager.getFormWithFormID(formID: "583c0d8ea935028022c145f4")
                         promise.then { _ in
                             done()
-                            }.catch { _ in
-                                fail("should not go here")
+                        }.catch { _ in
+                            fail("should not go here")
                         }
                     }
                 }
             })
-            
+
             context("when calling submitFeedbackSmallData", {
                 it("should fail when using wrong payload") {
                     waitUntil(timeout: 2.0) { done in
                         let promise = NetworkManager.submitFeedbackSmallData(payload: [:])
                         promise.then { _ in
                             fail("should not go here")
-                            }.catch { _ in
-                                done()
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }
@@ -104,21 +104,21 @@ class NetworkManagerTest: QuickSpec {
                         let promise = NetworkManager.submitFeedbackSmallData(payload: payload)
                         promise.then { _ in
                             done()
-                            }.catch { _ in
-                                fail("should not go here")
+                        }.catch { _ in
+                            fail("should not go here")
                         }
                     }
                 }
             })
-            
+
             context("When calling loadDefaultForm", {
                 it("should return the default form successfully") {
                     let nc = NetworkManager.loadDefaultForm("", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
                     expect(nc).toNot(beNil())
                 }
             })
-            
-            context("When getFormJson is called", { 
+
+            context("When getFormJson is called", {
                 it("should fail getting formModel when formId is wrong") {
                     waitUntil(timeout: 2.0) { done in
                         let promise = NetworkManager.getForm("ThisIsAnInvalidFormId", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
@@ -140,7 +140,7 @@ class NetworkManagerTest: QuickSpec {
                     }
                 }
             })
-            
+
         }
     }
 }
