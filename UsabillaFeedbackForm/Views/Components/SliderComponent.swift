@@ -45,11 +45,16 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
 
         leftLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         leftLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
-        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-
+        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        leftLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
+        leftLabel.numberOfLines = 0
+        
         rightLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         rightLabel.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: 0).isActive = true
-        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        rightLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
+        rightLabel.numberOfLines = 0
+        rightLabel.textAlignment = .right
 
         // configuration
         if viewModel.isNPS {
