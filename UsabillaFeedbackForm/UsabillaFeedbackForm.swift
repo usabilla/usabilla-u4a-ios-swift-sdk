@@ -37,15 +37,15 @@ open class UsabillaFeedbackForm {
     }
     
     open class func removeCachedForms() {
-        CacheManager.sharedInstance.removeAllCachedForms()
+        CacheManager.shared.removeAllCachedForms()
     }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
         
-        FormStore.sharedInstance.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then { form in
+        FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then { form in
                 UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
             }.catch {_ in
-                if let defaulForm = FormStore.sharedInstance.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig) {
+                if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig) {
                 UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
             }
         }
