@@ -1,5 +1,5 @@
 //
-//  BaseImageComponentViewModelTest.swift
+//  BaseImageComponentViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class BaseImageComponentViewModelTest: QuickSpec {
+class BaseImageComponentViewModelTests: QuickSpec {
     
     override func spec() {
         
@@ -24,7 +24,7 @@ class BaseImageComponentViewModelTest: QuickSpec {
             viewModel = BaseImageComponentViewModel<ScreenshotModel>(model: model)
         }
         
-        describe("BaseImageComponentViewModelTest") {
+        describe("BaseImageComponentViewModelTests") {
             context("when changing value") {
                 it("should update model") {
                     let image = Icons.imageOfAddImage(color: .black)

@@ -1,5 +1,5 @@
 //
-//  ParagraphComponentViewModelTest.swift
+//  ParagraphComponentViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class ParagraphComponentViewModelTest: QuickSpec {
+class ParagraphComponentViewModelTests: QuickSpec {
 
     override func spec() {
 
@@ -19,7 +19,7 @@ class ParagraphComponentViewModelTest: QuickSpec {
         var model: ParagraphFieldModel!
         let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
 
-        describe("ParagraphComponentViewModelTest") {
+        describe("ParagraphComponentViewModelTests") {
             
             context("when paragraph has no value") {
                 it("should return a nil value") {

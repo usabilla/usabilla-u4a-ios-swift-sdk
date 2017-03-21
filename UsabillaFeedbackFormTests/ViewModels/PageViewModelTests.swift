@@ -1,5 +1,5 @@
 //
-//  PageViewModelTest.swift
+//  PageViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class PageViewModelTest: QuickSpec {
+class PageViewModelTests: QuickSpec {
 
     override func spec() {
 
@@ -20,7 +20,7 @@ class PageViewModelTest: QuickSpec {
         var formModel: FormModel!
 
         beforeSuite {
-            let path = Bundle(for: PageViewModelTest.self).path(forResource: "test", ofType: "json")!
+            let path = Bundle(for: PageViewModelTests.self).path(forResource: "test", ofType: "json")!
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: data as Data)
@@ -31,7 +31,7 @@ class PageViewModelTest: QuickSpec {
             }
         }
 
-        describe("PageViewModelTest") {
+        describe("PageViewModelTests") {
 
             it("should correctly map fields") {
                 viewModel = PageViewModel(page: pageModel)
@@ -41,21 +41,19 @@ class PageViewModelTest: QuickSpec {
                 expect(viewModel.numberOfCells).to(equal(6))
             }
 
-            context("when viewModelForCellAt is called with right index") {
-                it("should return the correct viewModel") {
+            context("when viewModelForCellAt is called ") {
+                it("should return the correct viewModel when called with right index") {
                     var cellViewModel = viewModel.viewModelForCellAt(index: 0)
                     expect(cellViewModel?.model is MoodFieldModel).to(beTrue())
-                    
+
                     cellViewModel = viewModel.viewModelForCellAt(index: 1)
                     expect(cellViewModel?.model is ParagraphFieldModel).to(beTrue())
                 }
-            }
 
-            context("when viewModelForCellAt is called with wrong index") {
-                it("should return nil") {
+                it("should return nil when called with wrong index") {
                     var cellViewModel = viewModel.viewModelForCellAt(index: -1)
                     expect(cellViewModel).to(beNil())
-                    
+
                     cellViewModel = viewModel.viewModelForCellAt(index: 10)
                     expect(cellViewModel).to(beNil())
                 }

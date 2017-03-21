@@ -1,5 +1,5 @@
 //
-//  EmailComponentViewModelTest.swift
+//  EmailComponentViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class EmailComponentViewModelTest: QuickSpec {
+class EmailComponentViewModelTests: QuickSpec {
 
     override func spec() {
 
@@ -24,7 +24,7 @@ class EmailComponentViewModelTest: QuickSpec {
             viewModel = EmailComponentViewModel(model: model)
         }
 
-        describe("EmailComponentViewModelTest") {
+        describe("EmailComponentViewModelTests") {
 
             context("when email has no value") {
                 it("should be invalid") {

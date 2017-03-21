@@ -1,5 +1,5 @@
 //
-//  BaseIntComponentViewModelTest.swift
+//  BaseIntComponentViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 17/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class BaseIntComponentViewModelTest: QuickSpec {
+class BaseIntComponentViewModelTests: QuickSpec {
     
     override func spec() {
 
@@ -24,7 +24,7 @@ class BaseIntComponentViewModelTest: QuickSpec {
             viewModel = BaseIntComponentViewModel<IntFieldModel>(model: model)
         }
         
-        describe("BaseIntComponentViewModelTest") {
+        describe("BaseIntComponentViewModelTests") {
             context("when changing value") {
                 it("should update model") {
                     viewModel.value = 5

@@ -1,5 +1,5 @@
 //
-//  BaseStringComponentViewModelTest.swift
+//  BaseStringComponentViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class BaseStringComponentViewModelTest: QuickSpec {
+class BaseStringComponentViewModelTests: QuickSpec {
 
     override func spec() {
 
@@ -24,7 +24,7 @@ class BaseStringComponentViewModelTest: QuickSpec {
             viewModel = BaseStringComponentViewModel<StringFieldModel>(model: model)
         }
 
-        describe("BaseStringComponentViewModelTest") {
+        describe("BaseStringComponentViewModelTests") {
             context("when updating value") {
                 it("should update model") {
                     viewModel.value = ""

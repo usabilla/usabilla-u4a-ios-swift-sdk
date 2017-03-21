@@ -11,11 +11,11 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class ComponentFactoryTest: QuickSpec {
+class ComponentFactoryTests: QuickSpec {
     
     override func spec() {
         let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
-        describe("ComponentFactoryTest") {
+        describe("ComponentFactoryTests") {
             context("when model is ChecboxComponentViewModel") {
                 it("should viewModel a CheckBoxComponent") {
                     let model = CheckboxFieldModel(json: JSON.parse(""), pageModel: pageModel)

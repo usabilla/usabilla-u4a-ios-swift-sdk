@@ -85,7 +85,7 @@
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
-		434E6C361E8008190087DB30 /* ComponentFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTest.swift */; };
+		434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */; };
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */; };
@@ -93,20 +93,20 @@
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
-		43AF1B7C1E7C220500BA309B /* BaseIntComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTest.swift */; };
+		43AF1B7C1E7C220500BA309B /* BaseIntComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */; };
 		43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */; };
 		43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */; };
 		43B0A2121E2CC4FF00879E5F /* IntFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A2101E2CC4FB00879E5F /* IntFieldModelTest.swift */; };
 		43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A2131E2CC94E00879E5F /* OptionsFieldModelTest.swift */; };
 		43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A2151E2CCFC700879E5F /* ScreenshotModelTest.swift */; };
-		43B708341E7FD28800F05A40 /* BaseStringComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708331E7FD28800F05A40 /* BaseStringComponentViewModelTest.swift */; };
-		43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTest.swift */; };
-		43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708371E7FD7DD00F05A40 /* ChoiceComponentViewModelTest.swift */; };
-		43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTest.swift */; };
-		43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTest.swift */; };
-		43B7083E1E7FE2D600F05A40 /* EmailComponentViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B7083D1E7FE2D600F05A40 /* EmailComponentViewModelTest.swift */; };
-		43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B7083F1E7FE49300F05A40 /* ComponentViewModelFactoryTest.swift */; };
-		43B708421E7FE74800F05A40 /* PageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708411E7FE74800F05A40 /* PageViewModelTest.swift */; };
+		43B708341E7FD28800F05A40 /* BaseStringComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708331E7FD28800F05A40 /* BaseStringComponentViewModelTests.swift */; };
+		43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift */; };
+		43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708371E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift */; };
+		43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift */; };
+		43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift */; };
+		43B7083E1E7FE2D600F05A40 /* EmailComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B7083D1E7FE2D600F05A40 /* EmailComponentViewModelTests.swift */; };
+		43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B7083F1E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift */; };
+		43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B708411E7FE74800F05A40 /* PageViewModelTests.swift */; };
 		43CCD4321E77E1C200B3E4FE /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
 		43CCD4341E77E1CA00B3E4FE /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669911E76B4B30078E3B3 /* BaseComponent.swift */; };
 		43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669961E76B4B30078E3B3 /* ComponentFactory.swift */; };
@@ -258,7 +258,7 @@
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
-		434E6C351E8008190087DB30 /* ComponentFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTest.swift; sourceTree = "<group>"; };
+		434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTests.swift; sourceTree = "<group>"; };
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTest.swift; sourceTree = "<group>"; };
@@ -266,20 +266,20 @@
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
-		43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIntComponentViewModelTest.swift; sourceTree = "<group>"; };
+		43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIntComponentViewModelTests.swift; sourceTree = "<group>"; };
 		43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModelTest.swift; sourceTree = "<group>"; };
 		43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFieldModeltest.swift; sourceTree = "<group>"; };
 		43B0A2101E2CC4FB00879E5F /* IntFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntFieldModelTest.swift; sourceTree = "<group>"; };
 		43B0A2131E2CC94E00879E5F /* OptionsFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsFieldModelTest.swift; sourceTree = "<group>"; };
 		43B0A2151E2CCFC700879E5F /* ScreenshotModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotModelTest.swift; sourceTree = "<group>"; };
-		43B708331E7FD28800F05A40 /* BaseStringComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStringComponentViewModelTest.swift; sourceTree = "<group>"; };
-		43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOptionsComponentViewModelTest.swift; sourceTree = "<group>"; };
-		43B708371E7FD7DD00F05A40 /* ChoiceComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceComponentViewModelTest.swift; sourceTree = "<group>"; };
-		43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseImageComponentViewModelTest.swift; sourceTree = "<group>"; };
-		43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponentViewModelTest.swift; sourceTree = "<group>"; };
-		43B7083D1E7FE2D600F05A40 /* EmailComponentViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponentViewModelTest.swift; sourceTree = "<group>"; };
-		43B7083F1E7FE49300F05A40 /* ComponentViewModelFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModelFactoryTest.swift; sourceTree = "<group>"; };
-		43B708411E7FE74800F05A40 /* PageViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewModelTest.swift; sourceTree = "<group>"; };
+		43B708331E7FD28800F05A40 /* BaseStringComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStringComponentViewModelTests.swift; sourceTree = "<group>"; };
+		43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOptionsComponentViewModelTests.swift; sourceTree = "<group>"; };
+		43B708371E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceComponentViewModelTests.swift; sourceTree = "<group>"; };
+		43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseImageComponentViewModelTests.swift; sourceTree = "<group>"; };
+		43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphComponentViewModelTests.swift; sourceTree = "<group>"; };
+		43B7083D1E7FE2D600F05A40 /* EmailComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailComponentViewModelTests.swift; sourceTree = "<group>"; };
+		43B7083F1E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModelFactoryTests.swift; sourceTree = "<group>"; };
+		43B708411E7FE74800F05A40 /* PageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewModelTests.swift; sourceTree = "<group>"; };
 		43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOptionsComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStringComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewModel.swift; sourceTree = "<group>"; };
@@ -562,7 +562,7 @@
 				4304B0411E39FF1E007C8796 /* TextInputCellViewTest.swift */,
 				04747EFD1E52055B0083CE57 /* StarCellViewTest.swift */,
 				C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */,
-				434E6C351E8008190087DB30 /* ComponentFactoryTest.swift */,
+				434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */,
 			);
 			name = Views;
 			path = UsabillaFeedbackFormTests/Views;
@@ -619,7 +619,7 @@
 			isa = PBXGroup;
 			children = (
 				43B708431E7FE74E00F05A40 /* Components */,
-				43B708411E7FE74800F05A40 /* PageViewModelTest.swift */,
+				43B708411E7FE74800F05A40 /* PageViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -627,14 +627,14 @@
 		43B708431E7FE74E00F05A40 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTest.swift */,
-				43B708331E7FD28800F05A40 /* BaseStringComponentViewModelTest.swift */,
-				43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTest.swift */,
-				43B708371E7FD7DD00F05A40 /* ChoiceComponentViewModelTest.swift */,
-				43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTest.swift */,
-				43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTest.swift */,
-				43B7083D1E7FE2D600F05A40 /* EmailComponentViewModelTest.swift */,
-				43B7083F1E7FE49300F05A40 /* ComponentViewModelFactoryTest.swift */,
+				43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */,
+				43B708331E7FD28800F05A40 /* BaseStringComponentViewModelTests.swift */,
+				43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift */,
+				43B708371E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift */,
+				43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift */,
+				43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift */,
+				43B7083D1E7FE2D600F05A40 /* EmailComponentViewModelTests.swift */,
+				43B7083F1E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -954,28 +954,28 @@
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
-				43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTest.swift in Sources */,
+				43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift in Sources */,
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
-				43B708341E7FD28800F05A40 /* BaseStringComponentViewModelTest.swift in Sources */,
-				43AF1B7C1E7C220500BA309B /* BaseIntComponentViewModelTest.swift in Sources */,
+				43B708341E7FD28800F05A40 /* BaseStringComponentViewModelTests.swift in Sources */,
+				43AF1B7C1E7C220500BA309B /* BaseIntComponentViewModelTests.swift in Sources */,
 				43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */,
 				4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */,
 				43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */,
 				43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */,
-				43B7083E1E7FE2D600F05A40 /* EmailComponentViewModelTest.swift in Sources */,
+				43B7083E1E7FE2D600F05A40 /* EmailComponentViewModelTests.swift in Sources */,
 				43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */,
 				04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */,
-				434E6C361E8008190087DB30 /* ComponentFactoryTest.swift in Sources */,
+				434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */,
 				43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */,
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,
 				434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */,
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
-				43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTest.swift in Sources */,
-				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTest.swift in Sources */,
+				43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift in Sources */,
+				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */,
 				4300EB7F1E38BDD200920FE6 /* UIFontTest.swift in Sources */,
-				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTest.swift in Sources */,
+				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */,
@@ -983,8 +983,8 @@
 				0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
-				43B708421E7FE74800F05A40 /* PageViewModelTest.swift in Sources */,
-				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTest.swift in Sources */,
+				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
+				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,

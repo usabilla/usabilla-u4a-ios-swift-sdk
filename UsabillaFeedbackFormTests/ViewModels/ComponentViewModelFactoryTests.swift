@@ -1,5 +1,5 @@
 //
-//  ComponentViewModelFactoryTest.swift
+//  ComponentViewModelFactoryTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,11 +11,11 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class ComponentViewModelFactoryTest: QuickSpec {
+class ComponentViewModelFactoryTests: QuickSpec {
 
     override func spec() {
         let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
-        describe("ComponentViewModelFactoryTest") {
+        describe("ComponentViewModelFactoryTests") {
             context("when model is CheckBox") {
                 it("should return a ChecboxComponentViewModel") {
                     let model = CheckboxFieldModel(json: JSON.parse(""), pageModel: pageModel)

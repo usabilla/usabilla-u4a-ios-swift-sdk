@@ -1,5 +1,5 @@
 //
-//  ChoiceComponentViewModelTest.swift
+//  BaseOptionsComponentViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -11,33 +11,33 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class ChoiceComponentViewModelTest: QuickSpec {
+class BaseOptionsComponentViewModelTests: QuickSpec {
     
     override func spec() {
         
-        var viewModel: ChoiceComponentViewModel!
-        var model: ChoiceFieldModel!
+        var viewModel: BaseOptionsComponentViewModel<OptionsFieldModel>!
+        var model: OptionsFieldModel!
         let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
         
         beforeSuite {
-            model = ChoiceFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
-            viewModel = ChoiceComponentViewModel(model: model)
+            model = OptionsFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
+            viewModel = BaseOptionsComponentViewModel<OptionsFieldModel>(model: model)
         }
         
-        describe("ChoiceComponentViewModelTest") {
+        describe("BaseOptionsComponentViewModelTests") {
             it("viewModel options should match model options") {
                 expect(model.options.count).to(equal(viewModel.options.count))
             }
-            
+
             context("when updating value") {
                 it("should update model") {
-                    viewModel.value = "hello"
-                    expect(model.fieldValue).to(equal(["hello"]))
+                    viewModel.value = []
+                    expect(model.fieldValue).to(equal([]))
                 }
                 
                 it("should update viewModel") {
-                    viewModel.value = "hi"
-                    expect(viewModel.value).to(equal("hi"))
+                    viewModel.value = ["hello"]
+                    expect(viewModel.value).to(equal(["hello"]))
                 }
             }
         }
