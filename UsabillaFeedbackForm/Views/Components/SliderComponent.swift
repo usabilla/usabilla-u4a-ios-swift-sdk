@@ -35,7 +35,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
 
         // positioning
         
-        slider.topAnchor.constraint(equalTo: topAnchor, constant: 15).activate()
+        slider.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         slider.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         slider.rightAnchor.constraint(equalTo: valueLabel.leftAnchor, constant: -6).isActive = true
 
