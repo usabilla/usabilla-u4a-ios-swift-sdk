@@ -25,6 +25,7 @@ class CampaignViewController: UIViewController {
         self.campaign = campaign
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
+        self.view = UBCustomTouchableaView()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,13 +33,13 @@ class CampaignViewController: UIViewController {
     }
 }
 
-extension CampaignViewController : FormViewControllerDelegate {
-    
+extension CampaignViewController: FormViewControllerDelegate {
+
     func leftBarButtonTapped(_ formViewController: FormViewController) {
         // TO DO dismiss modal
         delegate?.campaignDidEnd(success: false)
     }
-    
+
     func rightBarButtonTapped(_ formViewController: FormViewController) {
         // TO DO dismiss modal and show end page
     }
