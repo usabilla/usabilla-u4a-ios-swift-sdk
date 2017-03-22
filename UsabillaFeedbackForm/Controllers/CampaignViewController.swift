@@ -25,7 +25,7 @@ class CampaignViewController: UIViewController {
         self.campaign = campaign
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
-        self.view = UBCustomTouchableaView()
+        self.view = UBCustomTouchableView()
     }
 
     required init?(coder aDecoder: NSCoder) {

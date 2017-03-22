@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UBCustomTouchableaView: UIView {
+class UBCustomTouchableView: UIView {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for v in subviews {
             if v.hitTest(convert(point, to: v), with: event) != nil {
