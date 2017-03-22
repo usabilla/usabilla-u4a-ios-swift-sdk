@@ -9,24 +9,23 @@
 import Foundation
 import UIKit
 
-class ScreenshotModel: BaseFieldModel {
-
-    var screenshot: UIImage?
+class ScreenshotModel: BaseFieldModel, ImageComponentModel {
+    var image: UIImage?
     var base64Value: String? {
         return toBase64String()
     }
 
     required init(json: JSON, pageModel: PageModel, screenShot: UIImage? = nil) {
         super.init(json: json, pageModel: pageModel)
-        self.screenshot = screenShot
+        self.image = screenShot
     }
 
     func toBase64String() -> String? {
-        return screenshot?.toBase64()
+        return image?.toBase64()
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || screenshot != nil
+        isModelValid = !isViewCurrentlyVisible || !required || image != nil
         return isModelValid
     }
 }
