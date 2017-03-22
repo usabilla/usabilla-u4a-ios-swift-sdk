@@ -10,7 +10,7 @@ import Foundation
 
 class Campaign {
     let id: String
-    let form: FormModel?
+    let form: FormModel
 
     init(id: String, form: FormModel) {
         self.id = id

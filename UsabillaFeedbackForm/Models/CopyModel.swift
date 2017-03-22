@@ -20,6 +20,9 @@ class CopyModel {
     var errorMessage: String?
     var requiredFieldError: String?
     var screenshotPlaceholder: String?
+    var introContinueButton: String?
+    var introCancelButton: String?
+    
     init() {
         cancelButton = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         navigationNext = LocalisationHandler.getLocalisedStringForKey("usa_form_continue_button")

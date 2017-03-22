@@ -82,6 +82,8 @@
 		434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */; };
 		434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C01E36430D00B4A4B9 /* SubmissionManager.swift */; };
 		434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C41E364BA900B4A4B9 /* DataStore.swift */; };
+		4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
+		4342CBA31E82C02000601F3D /* IntroPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA21E82C02000601F3D /* IntroPageModel.swift */; };
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
@@ -97,6 +99,7 @@
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
+		43AE0AEA1E82B9A500B1441C /* CampaignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */; };
 		43AF1B7C1E7C220500BA309B /* BaseIntComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */; };
 		43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */; };
 		43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */; };
@@ -259,6 +262,8 @@
 		434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKitTest.swift; sourceTree = "<group>"; };
 		434085C01E36430D00B4A4B9 /* SubmissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
 		434085C41E364BA900B4A4B9 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewModel.swift; sourceTree = "<group>"; };
+		4342CBA21E82C02000601F3D /* IntroPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageModel.swift; sourceTree = "<group>"; };
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
@@ -274,6 +279,7 @@
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewModel.swift; sourceTree = "<group>"; };
 		43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIntComponentViewModelTests.swift; sourceTree = "<group>"; };
 		43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModelTest.swift; sourceTree = "<group>"; };
 		43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFieldModeltest.swift; sourceTree = "<group>"; };
@@ -472,6 +478,7 @@
 				0483E9C51CDCDF86004EC234 /* FormModel.swift */,
 				0483E9C91CDCDF86004EC234 /* PageModel.swift */,
 				04F54DE81CD75BCB002F501E /* Rules */,
+				4342CBA21E82C02000601F3D /* IntroPageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -583,6 +590,7 @@
 		430669B11E76D8D80078E3B3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				43AE0AE61E82B92200B1441C /* Campaign */,
 				43CCD44B1E78364700B3E4FE /* Components */,
 				430669B41E76D8EE0078E3B3 /* CellViewModel.swift */,
 				43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */,
@@ -625,6 +633,15 @@
 				4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		43AE0AE61E82B92200B1441C /* Campaign */ = {
+			isa = PBXGroup;
+			children = (
+				43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */,
+				4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */,
+			);
+			path = Campaign;
 			sourceTree = "<group>";
 		};
 		43AF1B791E7C21D600BA309B /* ViewModels */ = {
@@ -881,6 +898,7 @@
 				434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
+				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
@@ -888,18 +906,17 @@
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
 				436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */,
-				0483E9FC1CDCDFB1004EC234 /* SliderCellView.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
 				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
 				43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */,
 				04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */,
+				43AE0AEA1E82B9A500B1441C /* CampaignViewModel.swift in Sources */,
 				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
 				04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */,
 				430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */,
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
-				432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */,
 				436F554E1E8271EC00E91E58 /* UBCustomTouchableView.swift in Sources */,
 				434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */,
 				0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */,
@@ -943,6 +960,7 @@
 				43CCD4321E77E1C200B3E4FE /* RatingControl.swift in Sources */,
 				43CCD4611E783F1100B3E4FE /* RadioComponent.swift in Sources */,
 				43CCD4341E77E1CA00B3E4FE /* BaseComponent.swift in Sources */,
+				4342CBA31E82C02000601F3D /* IntroPageModel.swift in Sources */,
 				43CCD47A1E7A855000B3E4FE /* BaseImageComponentViewModel.swift in Sources */,
 				43CCD4451E7828DB00B3E4FE /* BaseTextAreaComponent.swift in Sources */,
 				43CCD45F1E78366A00B3E4FE /* TextFieldComponentViewModel.swift in Sources */,
