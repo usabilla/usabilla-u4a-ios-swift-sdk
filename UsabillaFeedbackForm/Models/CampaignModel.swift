@@ -1,0 +1,19 @@
+//
+//  CampaignModel.swift
+//  UsabillaFeedbackForm
+//
+//  Created by Benjamin Grima on 21/03/2017.
+//  Copyright © 2017 Usabilla. All rights reserved.
+//
+
+import Foundation
+
+class Campaign {
+    let id: String
+    let form: FormModel?
+
+    init(id: String, form: FormModel) {
+        self.id = id
+        self.form = form
+    }
+}

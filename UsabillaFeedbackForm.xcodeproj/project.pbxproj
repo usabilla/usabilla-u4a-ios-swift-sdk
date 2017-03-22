@@ -88,6 +88,10 @@
 		434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */; };
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
+		436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
+		436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
+		436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F554B1E817C8B00E91E58 /* CampaignWindow.swift */; };
+		436F554E1E8271EC00E91E58 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */; };
 		43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */; };
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
@@ -261,6 +265,10 @@
 		434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTests.swift; sourceTree = "<group>"; };
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		436F55471E8178D500E91E58 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
+		436F55491E8178EF00E91E58 /* CampaignModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignModel.swift; sourceTree = "<group>"; };
+		436F554B1E817C8B00E91E58 /* CampaignWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignWindow.swift; sourceTree = "<group>"; };
+		436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCustomTouchableView.swift; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTest.swift; sourceTree = "<group>"; };
 		43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfiguratorTest.swift; sourceTree = "<group>"; };
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
@@ -448,6 +456,7 @@
 				04F54E541CD76789002F501E /* PageController.swift */,
 				04F54E551CD76789002F501E /* ThankYouController.swift */,
 				43127EBF1E71B57500E3011A /* PassiveFormController.swift */,
+				436F55471E8178D500E91E58 /* CampaignViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -455,13 +464,14 @@
 		04F54DE31CD75ACB002F501E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				044204DE1DCC89ED004FA09F /* FieldModels */,
+				436F55491E8178EF00E91E58 /* CampaignModel.swift */,
+				044204DF1DCC94C1004FA09F /* CopyModel.swift */,
+				43E883E31E37575B00A97F1D /* FeedbackRequest.swift */,
 				0483E9C31CDCDF86004EC234 /* FieldFactory.swift */,
+				044204DE1DCC89ED004FA09F /* FieldModels */,
 				0483E9C51CDCDF86004EC234 /* FormModel.swift */,
 				0483E9C91CDCDF86004EC234 /* PageModel.swift */,
-				044204DF1DCC94C1004FA09F /* CopyModel.swift */,
 				04F54DE81CD75BCB002F501E /* Rules */,
-				43E883E31E37575B00A97F1D /* FeedbackRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -492,6 +502,8 @@
 			children = (
 				04F54DE61CD75AF3002F501E /* Cells */,
 				0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */,
+				436F554B1E817C8B00E91E58 /* CampaignWindow.swift */,
+				436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */,
 				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
 				04F54DE71CD75BA8002F501E /* Components */,
 			);
@@ -858,6 +870,7 @@
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
+				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
 				43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */,
 				43CCD4581E78366A00B3E4FE /* ChoiceViewModel.swift in Sources */,
@@ -874,6 +887,8 @@
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
+				436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */,
+				0483E9FC1CDCDFB1004EC234 /* SliderCellView.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
 				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
 				43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */,
@@ -884,6 +899,8 @@
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
+				432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */,
+				436F554E1E8271EC00E91E58 /* UBCustomTouchableView.swift in Sources */,
 				434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */,
 				0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */,
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
@@ -936,6 +953,7 @@
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
+				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
