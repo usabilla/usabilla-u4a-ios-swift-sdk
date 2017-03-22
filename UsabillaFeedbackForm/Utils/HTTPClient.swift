@@ -79,7 +79,7 @@ class HTTPClient {
         task.resume()
     }
 
-    class func request( _ url: String,
+    class func request(_ url: String,
                        method: HTTPMethod = .get,
                        parameters: Parameters? = nil,
                        encoding: ParameterEncoding = JSONEncoding.default,

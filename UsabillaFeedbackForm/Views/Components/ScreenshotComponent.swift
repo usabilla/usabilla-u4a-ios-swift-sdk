@@ -1,29 +1,25 @@
 //
-//  ScreenshotCellView.swift
-//  ubform_swift
+//  ScreenshotComponent.swift
+//  UsabillaFeedbackForm
 //
-//  Created by Giacomo Pinato on 16/03/16.
-//  Copyright © 2016 Usabilla. All rights reserved.
+//  Created by Benjamin Grima on 16/03/2017.
+//  Copyright © 2017 Usabilla. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
-class ScreenshotCellView: RootCellView {
+class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
-    var screenshotModel: ScreenshotModel!
-    let screenShotView: UIImageView
+    var screenShotView: UIImageView!
     var addIcon: UIButton!
     var editIcon: UIButton!
     var deleteIcon: UIButton!
     var addScreenshotLabel: UIButton!
-    let iconContainerView: UIView
-    let addScreenshotLine: UIView
+    var iconContainerView: UIView!
+    var addScreenshotLine: UIView!
     var ratioConstraint: NSLayoutConstraint!
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-
-
+    override func build() {
         //View init
         screenShotView = UIImageView()
         screenShotView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,29 +38,27 @@ class ScreenshotCellView: RootCellView {
         iconContainerView.layer.cornerRadius = 5
         iconContainerView.layer.masksToBounds = true
 
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         //Buttons
         deleteIcon = UIButton(type: UIButtonType.custom)
         deleteIcon.translatesAutoresizingMaskIntoConstraints = false
-        deleteIcon.addTarget(self, action: #selector(ScreenshotCellView.deleteScreenshot), for: .touchUpInside)
+        deleteIcon.addTarget(self, action: #selector(ScreenshotComponent.deleteScreenshot), for: .touchUpInside)
 
         editIcon = UIButton(type: UIButtonType.custom)
         editIcon.translatesAutoresizingMaskIntoConstraints = false
-        editIcon.addTarget(self, action: #selector(ScreenshotCellView.pickImage), for: .touchUpInside)
+        editIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
 
         addIcon = UIButton(type: UIButtonType.custom)
         addIcon.translatesAutoresizingMaskIntoConstraints = false
-        addIcon.addTarget(self, action: #selector(ScreenshotCellView.pickImage), for: .touchUpInside)
+        addIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
         addScreenshotLabel = UIButton(type: UIButtonType.system)
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
-        addScreenshotLabel.addTarget(self, action: #selector(ScreenshotCellView.pickImage), for: .touchUpInside)
+        addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
 
 
-        rootCellContainerView.addSubview(screenShotView)
-        rootCellContainerView.addSubview(addIcon)
-        rootCellContainerView.addSubview(addScreenshotLabel)
-        rootCellContainerView.addSubview(addScreenshotLine)
+        addSubview(screenShotView)
+        addSubview(addIcon)
+        addSubview(addScreenshotLabel)
+        addSubview(addScreenshotLine)
 
         screenShotView.addSubview(iconContainerView)
         iconContainerView.addSubview(deleteIcon)
@@ -74,7 +68,10 @@ class ScreenshotCellView: RootCellView {
         let editIconSize: CGFloat = 48
         let iconSpacing: CGFloat = 12
 
-        addConstraintToFillContainerView(view: screenShotView, withMargin: 12)
+        screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).activate()
+        screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).activate()
+        screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 12).activate()
+        screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).activate()
 
         iconContainerView.trailingAnchor.constraint(equalTo: screenShotView.trailingAnchor, constant: -16).isActive = true
         iconContainerView.topAnchor.constraint(equalTo: screenShotView.topAnchor, constant: 16).isActive = true
@@ -91,8 +88,8 @@ class ScreenshotCellView: RootCellView {
         editIcon.heightAnchor.constraint(equalToConstant: editIconSize).isActive = true
         editIcon.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
 
-        addIcon.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
-        addIcon.centerYAnchor.constraint(equalTo: rootCellContainerView.centerYAnchor).isActive = true
+        addIcon.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        addIcon.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         addIcon.widthAnchor.constraint(equalToConstant: 25).isActive = true
         addIcon.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
@@ -100,8 +97,8 @@ class ScreenshotCellView: RootCellView {
         addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 4).isActive = true
 
         addScreenshotLine.topAnchor.constraint(equalTo: addScreenshotLabel.bottomAnchor, constant: 3).isActive = true
-        addScreenshotLine.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).isActive = true
-        addScreenshotLine.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).isActive = true
+        addScreenshotLine.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        addScreenshotLine.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         addScreenshotLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
@@ -113,9 +110,11 @@ class ScreenshotCellView: RootCellView {
         SwiftEventBus.onMainThread(self, name: "kill") { _ in
             SwiftEventBus.unregister(self)
         }
+        applyCustomisations()
 
-
+        setImage(image: viewModel.value, updateUI: false, updateModel: false)
     }
+
 
     func setupRatioConstraint(imageSize: CGSize?) {
         ratioConstraint?.isActive = false
@@ -127,68 +126,50 @@ class ScreenshotCellView: RootCellView {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func applyCustomisations() {
-        super.applyCustomisations()
+    func applyCustomisations() {
+        let theme = viewModel.theme
         deleteIcon.setImage(Icons.imageOfArtboard(color: UIColor.white), for: UIControlState())
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
-        addIcon.setImage(Icons.imageOfAddImage(color: themeConfig.textColor), for: UIControlState())
-        addScreenshotLabel.setTitleColor(themeConfig.titleColor, for: .normal)
-        addScreenshotLabel.titleLabel?.font = themeConfig.font.withSize(themeConfig.titleFontSize)
-        addScreenshotLabel.setTitle(screenshotModel.pageModel.copy?.screenshotPlaceholder, for: .normal)
-        addScreenshotLine.backgroundColor = themeConfig.hintColor
-        screenShotView.layer.borderColor = themeConfig.hintColor.cgColor
-
-    }
-
-    override func setFeedbackItem(_ item: FieldModelProtocol) {
-        super.setFeedbackItem(item)
-        guard let item = item as? ScreenshotModel else {
-            return
-        }
-        screenshotModel = item
-        setImage(image: screenshotModel.screenshot)
-        updateUI()
+        addIcon.setImage(Icons.imageOfAddImage(color: theme.textColor), for: UIControlState())
+        addScreenshotLabel.setTitleColor(theme.titleColor, for: .normal)
+        addScreenshotLabel.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
+        addScreenshotLine.backgroundColor = theme.hintColor
+        screenShotView.layer.borderColor = theme.hintColor.cgColor
     }
 
     func updateUI() {
-        if screenshotModel.screenshot == nil {
-            addIcon.isHidden = false
-            addScreenshotLabel.isHidden = false
-            addScreenshotLine.isHidden = false
-            screenShotView.isHidden = true
-        } else {
-            screenShotView.isHidden = false
-            addIcon.isHidden = true
-            addScreenshotLabel.isHidden = true
-            addScreenshotLine.isHidden = true
-        }
-
-        SwiftEventBus.post("updateScreenshotHeight", sender: nil)
+        let hasScreeenShot = viewModel.value != nil
+        addIcon.isHidden = hasScreeenShot
+        addScreenshotLabel.isHidden = hasScreeenShot
+        addScreenshotLine.isHidden = hasScreeenShot
+        screenShotView.isHidden = !hasScreeenShot
     }
 
     func deleteScreenshot() {
-        screenshotModel.screenshot = nil
-        screenShotView.image = nil
-        updateUI()
+        setImage(image: nil)
     }
 
     func pickImage() {
         SwiftEventBus.post("pick", sender: nil)
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(image: UIImage?, updateUI: Bool = true, updateModel: Bool = true) {
         screenShotView.image = image
-        screenshotModel.screenshot = image
+
+        if updateModel == true {
+            viewModel.value = image
+            valueChanged()
+        }
+
         setupRatioConstraint(imageSize: image?.size)
+        self.updateUI()
+
+        if updateUI == true {
+            SwiftEventBus.post("updateMySize")
+        }
     }
 
     func imagePicked(_ image: UIImage) {
         setImage(image: image)
-        updateUI()
     }
-
 }
