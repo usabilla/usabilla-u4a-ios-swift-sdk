@@ -23,7 +23,7 @@ class CampaignWindow: UIWindow {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     /**
      Display a campaign if no other campaigns are displaying
 
@@ -40,8 +40,8 @@ class CampaignWindow: UIWindow {
     }
 
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        for v in subviews {
-            if v.hitTest(convert(point, to: v), with: event) != nil {
+        for subView in subviews {
+            if subView.hitTest(convert(point, to: subView), with: event) != nil {
                 return true
             }
         }
