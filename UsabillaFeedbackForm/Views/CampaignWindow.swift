@@ -13,7 +13,7 @@ class CampaignWindow: UIWindow {
 
     private var currentCampaign: Campaign?
 
-    init() {
+    private init() {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = .clear
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
