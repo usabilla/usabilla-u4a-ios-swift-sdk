@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TextAreaFieldModel: StringFieldModel {
+class TextAreaFieldModel: StringFieldModel, EditableStringComponentModel {
 
     let placeHolder: String?
 

@@ -8,8 +8,7 @@
 
 import Foundation
 
-class TextFieldModel: StringFieldModel {
-
+class TextFieldModel: StringFieldModel, EditableStringComponentModel {
     let placeHolder: String?
     let defaultValue: String?
 

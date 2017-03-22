@@ -73,7 +73,7 @@ class FormControllerTest: QuickSpec {
 
 
                         expect(viewController.currentPage).to(equal(newPageIndex))
-                        expect(viewController.pageController.pageModel.pageName).to(equal(formModel.pages[newPageIndex].pageName))
+                        expect(viewController.pageController.pageViewModel.name).to(equal(formModel.pages[newPageIndex].pageName))
                         expect(viewController.rightNavItem.title).to(equal("TestSubmit"))
                         expect(viewController.progressBar.progress).to(equal(0.75))
 

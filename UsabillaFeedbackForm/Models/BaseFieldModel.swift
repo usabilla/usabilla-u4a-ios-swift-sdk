@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BaseFieldModel: FieldModelProtocol {
+class BaseFieldModel: FieldModelProtocol, ComponentModel {
 
     var isViewCurrentlyVisible = false
     unowned var pageModel: PageModel

@@ -83,7 +83,7 @@ class SubmissionManagerTest: QuickSpec {
 
             it("SubmissionManager submit with custom vars, screenshot") {                
                 let screenshost = ScreenshotModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: formModel!.pages.first!)
-                screenshost.screenshot = Icons.imageOfPoweredBy(color: .blue)
+                screenshost.image = Icons.imageOfPoweredBy(color: .blue)
                 formModel?.pages.first?.fields.append(screenshost)
                 formModel?.isDefault = true
                 SubmissionManager.submit(sm)(form: formModel!, customVars: ["test": "test"])
