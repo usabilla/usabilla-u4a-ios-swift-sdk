@@ -120,4 +120,7 @@ class IntroOutroView: UIView {
     func continueAction() {
         delegate?.introViewDidContinue(introView: self)
     }
+    
+    
+    
 }

@@ -11,7 +11,6 @@ import Foundation
 
 protocol UBIntroOutroDisplay {
     static func build(view: IntroOutroView)
-    static func update(view: IntroOutroView)
 }
 
 class UBBannerDisplay: UBIntroOutroDisplay {
@@ -20,6 +19,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
     static func build(view: IntroOutroView) {
         view.buttonsStackView?.axis = .horizontal
 
+        // line
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
         view.buttonsStackView?.addSubview(line)
@@ -29,6 +29,13 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor, constant: 0.0).activate()
         line.heightAnchor.constraint(equalToConstant: 1.0).activate()
         view.buttonsStackView?.clipsToBounds = true
+        
+        // shadow
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: -1.0)
+        view.layer.shadowOpacity = 0.6
+        view.layer.shadowRadius = 4
         
         guard view.viewModel.hasContinueButton else {
             view.cancelButton.contentHorizontalAlignment = .center
@@ -45,15 +52,6 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         }
 
 
-    }
-
-    static func update(view: IntroOutroView) {
-        let path = UIBezierPath(rect: view.bounds)
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowPath = path.cgPath
-        view.layer.shadowRadius = 4
+        
     }
 }
