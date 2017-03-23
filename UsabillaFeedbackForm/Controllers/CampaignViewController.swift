@@ -20,8 +20,9 @@ class CampaignViewController: UIViewController {
 
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
-            let introOutro = IntroOutroView(viewModel: introPageViewModel)
-            
+            let introOutroView = IntroOutroView(viewModel: introPageViewModel)
+            view.addSubview(introOutroView)
+            viewModel.introPresenter?.present(view: introOutroView, inView: view)
             // TO DO : display intro
             return
         }

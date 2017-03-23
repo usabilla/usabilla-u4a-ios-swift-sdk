@@ -41,6 +41,10 @@ class IntroOutroView: UIView {
     let sidesMargin: CGFloat = 16
     let outsideVerticalMargin: CGFloat = 20
     let marginBetweenComponentAndTitle: CGFloat = 10
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     required init(viewModel: IntroPageViewModel) {
         self.viewModel = viewModel
@@ -51,7 +55,6 @@ class IntroOutroView: UIView {
         titleLabel.text = viewModel.title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = viewModel.titleColor
-
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
         titleLabel.numberOfLines = 0
 
@@ -64,11 +67,9 @@ class IntroOutroView: UIView {
         buttonsWrapper = UIStackView()
         buttonsWrapper?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(buttonsWrapper!)
-
         buttonsWrapper?.leftAnchor.constraint(equalTo: leftAnchor).activate()
         buttonsWrapper?.rightAnchor.constraint(equalTo: rightAnchor).activate()
         buttonsWrapperBottomContraint = buttonsWrapper?.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-
         buttonsWrapper?.axis = .horizontal
         buttonsWrapper?.distribution = .fillEqually
 
@@ -80,8 +81,11 @@ class IntroOutroView: UIView {
         if viewModel.hasContinueButton {
             continueButton = UIButton()
             buttonsWrapper.addArrangedSubview(continueButton!)
+            continueButton!.addTarget(self, action: #selector(IntroOutroView.continueAction), for: .touchUpInside)
         }
 
+        cancelButton.addTarget(self, action: #selector(IntroOutroView.dismissAction), for: .touchUpInside)
+        
         // component
         if let componentViewModel = viewModel.componentViewModel {
             let component = ComponentFactory.component(viewModel: componentViewModel)
@@ -105,8 +109,12 @@ class IntroOutroView: UIView {
 
         display.build(view: self)
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    func dismissAction() {
+        delegate?.introViewDidCancel(introView: self)
+    }
+    
+    func continueAction() {
+        delegate?.introViewDidContinue(introView: self)
     }
 }

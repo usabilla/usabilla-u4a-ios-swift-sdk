@@ -92,6 +92,8 @@
 		434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */; };
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
+		436613981E83F35D0024B220 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436613971E83F35D0024B220 /* UBIntroOutroPresenter.swift */; };
+		4366139A1E83F42B0024B220 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436613991E83F42B0024B220 /* UBBannerPresenter.swift */; };
 		436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
 		436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
 		436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F554B1E817C8B00E91E58 /* CampaignWindow.swift */; };
@@ -274,6 +276,8 @@
 		434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTests.swift; sourceTree = "<group>"; };
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		436613971E83F35D0024B220 /* UBIntroOutroPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBIntroOutroPresenter.swift; sourceTree = "<group>"; };
+		436613991E83F42B0024B220 /* UBBannerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerPresenter.swift; sourceTree = "<group>"; };
 		436F55471E8178D500E91E58 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		436F55491E8178EF00E91E58 /* CampaignModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignModel.swift; sourceTree = "<group>"; };
 		436F554B1E817C8B00E91E58 /* CampaignWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignWindow.swift; sourceTree = "<group>"; };
@@ -519,6 +523,8 @@
 				04F54DE71CD75BA8002F501E /* Components */,
 				4342CBA41E83B7B300601F3D /* IntroOutroView.swift */,
 				4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */,
+				436613971E83F35D0024B220 /* UBIntroOutroPresenter.swift */,
+				436613991E83F42B0024B220 /* UBBannerPresenter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -957,6 +963,7 @@
 				04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */,
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43E883F11E37B69700A97F1D /* UIFont.swift in Sources */,
+				4366139A1E83F42B0024B220 /* UBBannerPresenter.swift in Sources */,
 				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
 				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
 				4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */,
@@ -976,6 +983,7 @@
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
 				4342CBA51E83B7B300601F3D /* IntroOutroView.swift in Sources */,
+				436613981E83F35D0024B220 /* UBIntroOutroPresenter.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
