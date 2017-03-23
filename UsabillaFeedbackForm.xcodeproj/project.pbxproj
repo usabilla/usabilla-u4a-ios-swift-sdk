@@ -84,6 +84,8 @@
 		434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C41E364BA900B4A4B9 /* DataStore.swift */; };
 		4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
 		4342CBA31E82C02000601F3D /* IntroPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA21E82C02000601F3D /* IntroPageModel.swift */; };
+		4342CBA51E83B7B300601F3D /* IntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA41E83B7B300601F3D /* IntroOutroView.swift */; };
+		4342CBA71E83C60900601F3D /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */; };
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
@@ -264,6 +266,8 @@
 		434085C41E364BA900B4A4B9 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewModel.swift; sourceTree = "<group>"; };
 		4342CBA21E82C02000601F3D /* IntroPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageModel.swift; sourceTree = "<group>"; };
+		4342CBA41E83B7B300601F3D /* IntroOutroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroOutroView.swift; sourceTree = "<group>"; };
+		4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerDisplay.swift; sourceTree = "<group>"; };
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
@@ -513,6 +517,8 @@
 				436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */,
 				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
 				04F54DE71CD75BA8002F501E /* Components */,
+				4342CBA41E83B7B300601F3D /* IntroOutroView.swift */,
+				4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -898,6 +904,7 @@
 				434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
+				4342CBA71E83C60900601F3D /* UBBannerDisplay.swift in Sources */,
 				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
@@ -968,6 +975,7 @@
 				43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */,
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
+				4342CBA51E83B7B300601F3D /* IntroOutroView.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,

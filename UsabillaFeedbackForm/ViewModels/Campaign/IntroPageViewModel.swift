@@ -34,6 +34,14 @@ class IntroPageViewModel {
     var displayMode: IntroPageDisplayMode {
         return introPage.displayMode
     }
+    
+    var backgroundColor: UIColor {
+        return introPage.themeConfig.backgroundColor
+    }
+    
+    var titleColor: UIColor {
+        return introPage.themeConfig.titleColor
+    }
 
     // TO DO add customization attributes
     
