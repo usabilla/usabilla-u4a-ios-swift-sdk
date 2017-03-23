@@ -18,8 +18,18 @@ class UBBannerDisplay: UBIntroOutroDisplay {
     private static let topBannerMargin: CGFloat = 10
     
     static func build(view: IntroOutroView) {
-        view.buttonsWrapper?.axis = .horizontal
+        view.buttonsStackView?.axis = .horizontal
 
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        view.buttonsStackView?.addSubview(line)
+        line.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        line.rightAnchor.constraint(equalTo: view.buttonsStackView.rightAnchor).activate()
+        line.leftAnchor.constraint(equalTo: view.buttonsStackView.leftAnchor).activate()
+        line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor, constant: 0.0).activate()
+        line.heightAnchor.constraint(equalToConstant: 1.0).activate()
+        view.buttonsStackView?.clipsToBounds = true
+        
         guard view.viewModel.hasContinueButton else {
             view.cancelButton.contentHorizontalAlignment = .center
             return
@@ -34,15 +44,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
             view.titleTopConstraint?.constant += UBBannerDisplay.topBannerMargin
         }
 
-        let line = UIView()
-        line.translatesAutoresizingMaskIntoConstraints = false
-        view.buttonsWrapper?.addSubview(line)
-        line.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        line.rightAnchor.constraint(equalTo: view.buttonsWrapper.rightAnchor).activate()
-        line.leftAnchor.constraint(equalTo: view.buttonsWrapper.leftAnchor).activate()
-        line.topAnchor.constraint(equalTo: view.buttonsWrapper.topAnchor, constant: 0.0).activate()
-        line.heightAnchor.constraint(equalToConstant: 1.0).activate()
-        view.buttonsWrapper?.clipsToBounds = true
+
     }
 
     static func update(view: IntroOutroView) {

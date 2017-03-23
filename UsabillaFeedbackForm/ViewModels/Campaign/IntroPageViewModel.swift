@@ -42,6 +42,10 @@ class IntroPageViewModel {
     var titleColor: UIColor {
         return introPage.themeConfig.titleColor
     }
+    
+    var buttonsColor: UIColor {
+        return .blue // TO DO update color
+    }
 
     // TO DO add customization attributes
     

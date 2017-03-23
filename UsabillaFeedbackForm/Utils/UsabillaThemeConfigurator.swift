@@ -68,7 +68,7 @@ open class UsabillaThemeConfigurator {
         toReturn.append(UIImage(named: "05", in: bundle, compatibleWith: nil)!)
         return toReturn
     }
-    
+
     /**
      Get the correct array of emoticons if mood control contains only 2 or 3 moods
      
@@ -80,7 +80,7 @@ open class UsabillaThemeConfigurator {
         guard let array = emoticons, array.count == 5 else {
             return nil
         }
-        
+
         switch size {
         case 2:
             return [array[0], array[4]]
@@ -88,6 +88,28 @@ open class UsabillaThemeConfigurator {
             return [array[0], array[2], array[4]]
         default:
             return array
+        }
+    }
+
+    func updateConfig(json: JSON) {
+        // TO DO guard with empty check
+        if let titleColorHex = json["group1"]["hash"].string {
+            titleColor = UIColor(rgba: titleColorHex)
+        }
+        if let accentColorHex = json["group2"]["hash"].string {
+            accentColor = UIColor(rgba: accentColorHex)
+        }
+        if let textColorHex = json["group3"]["hash"].string {
+            textColor = UIColor(rgba: textColorHex)
+        }
+        if let errorColorHex = json["group4"]["hash"].string {
+            errorColor = UIColor(rgba: errorColorHex)
+        }
+        if let backgroundColorHex = json["group5"]["hash"].string {
+            backgroundColor = UIColor(rgba: backgroundColorHex)
+        }
+        if let textOnAccentHex = json["group6"]["hash"].string {
+            textOnAccentColor = UIColor(rgba: textOnAccentHex)
         }
     }
 }

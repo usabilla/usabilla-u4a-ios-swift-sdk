@@ -30,11 +30,12 @@ class CampaignWindow: UIWindow {
      - parameter campaign: Campaign to display
      */
     @discardableResult func showCampaign(_ campaign: Campaign) -> Bool {
-        guard currentCampaign != nil else {
+        guard currentCampaign == nil else {
             return false
         }
         currentCampaign = campaign
         rootViewController = CampaignViewController(campaign: campaign, delegate: self)
+        
         isHidden = false
         return true
     }

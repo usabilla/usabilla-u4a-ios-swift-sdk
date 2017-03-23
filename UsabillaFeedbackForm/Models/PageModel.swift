@@ -9,6 +9,7 @@
 import Foundation
 
 enum PageType: String {
+    case start
     case form
     case end
 }
@@ -32,7 +33,7 @@ class PageModel {
     let themeConfig: UsabillaThemeConfigurator
     weak var copy: CopyModel?
 
-    init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
+    required init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
         self.pageNumber = pageNumber
         self.pageName = pageName
         errorMessage = nil

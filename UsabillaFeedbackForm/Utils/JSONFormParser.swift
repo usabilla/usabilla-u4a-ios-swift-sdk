@@ -10,7 +10,8 @@ import Foundation
 
 
 class JSONFormParser {
-
+    
+    /*
     class func parseFormJson(_ json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
 
         let data = json["data"]
@@ -45,46 +46,18 @@ class JSONFormParser {
         }
 
         return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig: themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
-    }
+    }*/
 
-    fileprivate class func parseCopy(_ json: JSON) -> CopyModel {
-        let copyModel = CopyModel()
-        let data = json["data"]
-
-        copyModel.appTitle = data["appTitle"].string
-        copyModel.navigationSubmit = data["appSubmit"].string
-        copyModel.errorMessage = data["errorMessage"].string
-
-        let localization = json["localization"]
-
-        if let appStore = localization["appStore"].string {
-            copyModel.appStore = appStore
-        }
-        if let moreFeedback = localization["moreFeedback"].string {
-            copyModel.moreFeedback = moreFeedback
-        }
-        if let screenshotTitle = localization["screenshotTitle"].string {
-            copyModel.screenshotTitle = screenshotTitle
-        }
-        if let cancelButton = localization["cancelButton"].string {
-            copyModel.cancelButton = cancelButton
-        }
-        if let navigationNext = localization["navigationNext"].string {
-            copyModel.navigationNext = navigationNext
-        }
-
-        return copyModel
-    }
-
-    fileprivate class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
+    class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
 
         let pageName = pageJson["name"].stringValue
-        let type = pageJson["type"].stringValue
+        let type = PageType(rawValue:pageJson["type"].stringValue)
 
-        let currentPage = PageModel(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
+        let pageModelClass : PageModel.Type = type != .start ? PageModel.self : IntroPageModel.self
+        let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
-        currentPage.type = PageType(rawValue: type)
+        currentPage.type = type
 
         var fields: [BaseFieldModel] = []
 

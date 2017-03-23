@@ -32,9 +32,9 @@ class IntroOutroView: UIView {
 
     var titleLabel: UILabel!
     var componentView: UIView?
-    var buttonsWrapper: UIStackView!
+    var buttonsStackView: UIStackView!
 
-    var buttonsWrapperBottomContraint: NSLayoutConstraint?
+    var buttonsStackViewBottomContraint: NSLayoutConstraint?
     var titleTopConstraint: NSLayoutConstraint!
 
     // constants
@@ -64,23 +64,25 @@ class IntroOutroView: UIView {
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).activate()
 
         // buttons container
-        buttonsWrapper = UIStackView()
-        buttonsWrapper?.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(buttonsWrapper!)
-        buttonsWrapper?.leftAnchor.constraint(equalTo: leftAnchor).activate()
-        buttonsWrapper?.rightAnchor.constraint(equalTo: rightAnchor).activate()
-        buttonsWrapperBottomContraint = buttonsWrapper?.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-        buttonsWrapper?.axis = .horizontal
-        buttonsWrapper?.distribution = .fillEqually
+        buttonsStackView = UIStackView()
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(buttonsStackView!)
+        buttonsStackView.leftAnchor.constraint(equalTo: leftAnchor).activate()
+        buttonsStackView.rightAnchor.constraint(equalTo: rightAnchor).activate()
+        buttonsStackViewBottomContraint = buttonsStackView?.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+        buttonsStackView.heightAnchor.constraint(equalToConstant: 44).activate()
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.distribution = .fillEqually
 
         // buttons
-        cancelButton = UIButton()
+        cancelButton = UIButton(type: .custom)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
-        buttonsWrapper.addArrangedSubview(cancelButton)
+        buttonsStackView.addArrangedSubview(cancelButton)
 
         if viewModel.hasContinueButton {
             continueButton = UIButton()
-            buttonsWrapper.addArrangedSubview(continueButton!)
+            buttonsStackView.addArrangedSubview(continueButton!)
+            continueButton!.setTitle(viewModel.coninueLabelText, for: .normal)
             continueButton!.addTarget(self, action: #selector(IntroOutroView.continueAction), for: .touchUpInside)
         }
 
@@ -94,14 +96,15 @@ class IntroOutroView: UIView {
             component.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).isActive = true
             component.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).isActive = true
             component.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: marginBetweenComponentAndTitle).isActive = true
-            buttonsWrapper?.topAnchor.constraint(equalTo: component.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+            buttonsStackView?.topAnchor.constraint(equalTo: component.bottomAnchor, constant: outsideVerticalMargin).isActive = true
         } else {
-            buttonsWrapper?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+            buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: outsideVerticalMargin).isActive = true
         }
 
         // customization
         backgroundColor = viewModel.backgroundColor
-
+        cancelButton.setTitleColor(viewModel.buttonsColor, for: .normal)
+        continueButton?.setTitleColor(viewModel.buttonsColor, for: .normal)
         // TO DO font custimization
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
         heightAnchor?.priority = 249

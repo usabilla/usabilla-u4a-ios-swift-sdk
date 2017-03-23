@@ -16,4 +16,9 @@ class Campaign {
         self.id = id
         self.form = form
     }
+    
+    init(id: String, json: JSON) {
+        self.form = FormModel(json: json, id: id, themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+        self.id = id
+    }
 }

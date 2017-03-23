@@ -28,13 +28,16 @@ class CampaignViewController: UIViewController {
         }
         // TO DO : display modal
     }
+    
+    override func loadView() {
+        self.view = UBCustomTouchableView()
+    }
 
     init(campaign: Campaign, delegate: CampaignViewControllerDelegate) {
         self.campaign = campaign
         self.viewModel = CampaignViewModel(campaign: campaign)
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
-        self.view = UBCustomTouchableView()
     }
 
     required init?(coder aDecoder: NSCoder) {

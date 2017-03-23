@@ -49,6 +49,10 @@ open class UsabillaFeedbackForm {
         return image
     }
 
+    open class func showCampaign(json: JSON) {
+        let campaign = Campaign(id: "", json: json)
+        CampaignWindow.shared.showCampaign(campaign)
+    }
 }
 
 public struct FeedbackResult {
