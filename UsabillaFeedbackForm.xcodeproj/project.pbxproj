@@ -84,20 +84,20 @@
 		434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C41E364BA900B4A4B9 /* DataStore.swift */; };
 		4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
 		4342CBA31E82C02000601F3D /* IntroPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA21E82C02000601F3D /* IntroPageModel.swift */; };
-		4342CBA51E83B7B300601F3D /* IntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA41E83B7B300601F3D /* IntroOutroView.swift */; };
-		4342CBA71E83C60900601F3D /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */; };
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
 		434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */; };
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
-		436613981E83F35D0024B220 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436613971E83F35D0024B220 /* UBIntroOutroPresenter.swift */; };
-		4366139A1E83F42B0024B220 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436613991E83F42B0024B220 /* UBBannerPresenter.swift */; };
+		436C2B7D1E85187000741E10 /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B771E85187000741E10 /* UBBannerDisplay.swift */; };
+		436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B781E85187000741E10 /* UBBannerPresenter.swift */; };
+		436C2B7F1E85187000741E10 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */; };
+		436C2B801E85187000741E10 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
+		436C2B811E85187000741E10 /* IntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* IntroOutroView.swift */; };
+		436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */; };
 		436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
 		436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
-		436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F554B1E817C8B00E91E58 /* CampaignWindow.swift */; };
-		436F554E1E8271EC00E91E58 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */; };
 		43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */; };
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
@@ -268,20 +268,20 @@
 		434085C41E364BA900B4A4B9 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewModel.swift; sourceTree = "<group>"; };
 		4342CBA21E82C02000601F3D /* IntroPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageModel.swift; sourceTree = "<group>"; };
-		4342CBA41E83B7B300601F3D /* IntroOutroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroOutroView.swift; sourceTree = "<group>"; };
-		4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerDisplay.swift; sourceTree = "<group>"; };
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
 		434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTests.swift; sourceTree = "<group>"; };
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		436613971E83F35D0024B220 /* UBIntroOutroPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBIntroOutroPresenter.swift; sourceTree = "<group>"; };
-		436613991E83F42B0024B220 /* UBBannerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerPresenter.swift; sourceTree = "<group>"; };
+		436C2B771E85187000741E10 /* UBBannerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerDisplay.swift; sourceTree = "<group>"; };
+		436C2B781E85187000741E10 /* UBBannerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerPresenter.swift; sourceTree = "<group>"; };
+		436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBIntroOutroPresenter.swift; sourceTree = "<group>"; };
+		436C2B7A1E85187000741E10 /* CampaignWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignWindow.swift; sourceTree = "<group>"; };
+		436C2B7B1E85187000741E10 /* IntroOutroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroOutroView.swift; sourceTree = "<group>"; };
+		436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCustomTouchableView.swift; sourceTree = "<group>"; };
 		436F55471E8178D500E91E58 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		436F55491E8178EF00E91E58 /* CampaignModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignModel.swift; sourceTree = "<group>"; };
-		436F554B1E817C8B00E91E58 /* CampaignWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignWindow.swift; sourceTree = "<group>"; };
-		436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCustomTouchableView.swift; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTest.swift; sourceTree = "<group>"; };
 		43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfiguratorTest.swift; sourceTree = "<group>"; };
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
@@ -515,16 +515,11 @@
 		04F54DE51CD75AE2002F501E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				436C2B761E85182000741E10 /* Campaigns */,
 				04F54DE61CD75AF3002F501E /* Cells */,
 				0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */,
-				436F554B1E817C8B00E91E58 /* CampaignWindow.swift */,
-				436F554D1E8271EC00E91E58 /* UBCustomTouchableView.swift */,
 				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
 				04F54DE71CD75BA8002F501E /* Components */,
-				4342CBA41E83B7B300601F3D /* IntroOutroView.swift */,
-				4342CBA61E83C60900601F3D /* UBBannerDisplay.swift */,
-				436613971E83F35D0024B220 /* UBIntroOutroPresenter.swift */,
-				436613991E83F42B0024B220 /* UBBannerPresenter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -645,6 +640,19 @@
 				4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		436C2B761E85182000741E10 /* Campaigns */ = {
+			isa = PBXGroup;
+			children = (
+				436C2B771E85187000741E10 /* UBBannerDisplay.swift */,
+				436C2B781E85187000741E10 /* UBBannerPresenter.swift */,
+				436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */,
+				436C2B7A1E85187000741E10 /* CampaignWindow.swift */,
+				436C2B7B1E85187000741E10 /* IntroOutroView.swift */,
+				436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */,
+			);
+			path = Campaigns;
 			sourceTree = "<group>";
 		};
 		43AE0AE61E82B92200B1441C /* Campaign */ = {
@@ -904,13 +912,15 @@
 				43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */,
 				43CCD4581E78366A00B3E4FE /* ChoiceViewModel.swift in Sources */,
 				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,
+				436C2B801E85187000741E10 /* CampaignWindow.swift in Sources */,
+				436C2B7D1E85187000741E10 /* UBBannerDisplay.swift in Sources */,
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
 				43CCD4731E799DD300B3E4FE /* SliderComponentViewModel.swift in Sources */,
 				0483E9D41CDCDF86004EC234 /* CommentFieldModel.swift in Sources */,
 				434085C51E364BA900B4A4B9 /* DataStore.swift in Sources */,
+				436C2B7F1E85187000741E10 /* UBIntroOutroPresenter.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
-				4342CBA71E83C60900601F3D /* UBBannerDisplay.swift in Sources */,
 				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
@@ -918,7 +928,6 @@
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
-				436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
 				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
 				43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */,
@@ -930,7 +939,6 @@
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
-				436F554E1E8271EC00E91E58 /* UBCustomTouchableView.swift in Sources */,
 				434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */,
 				0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */,
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
@@ -963,7 +971,6 @@
 				04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */,
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43E883F11E37B69700A97F1D /* UIFont.swift in Sources */,
-				4366139A1E83F42B0024B220 /* UBBannerPresenter.swift in Sources */,
 				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
 				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
 				4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */,
@@ -982,17 +989,18 @@
 				43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */,
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
-				4342CBA51E83B7B300601F3D /* IntroOutroView.swift in Sources */,
-				436613981E83F35D0024B220 /* UBIntroOutroPresenter.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
+				436C2B811E85187000741E10 /* IntroOutroView.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
+				436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */,
 				04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */,
 				04F54E511CD76717002F501E /* Rule.swift in Sources */,
+				436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */,
 				4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */,
 				0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */,
 				04F54DF41CD766EC002F501E /* Protocols.swift in Sources */,
