@@ -10,7 +10,7 @@ import Foundation
 
 
 class JSONFormParser {
-    
+
     /*
     class func parseFormJson(_ json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
 
@@ -52,13 +52,13 @@ class JSONFormParser {
 
 
         let pageName = pageJson["name"].stringValue
-        let type = PageType(rawValue:pageJson["type"].stringValue)
+        let type = PageType(rawValue: pageJson["type"].stringValue)
 
-        let pageModelClass : PageModel.Type = type != .start ? PageModel.self : IntroPageModel.self
+        let pageModelClass: PageModel.Type = type != .start ? PageModel.self : IntroPageModel.self
         let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
         currentPage.type = type
-        
+
         // specific intro page parsing
         if let introPage = currentPage as? IntroPageModel {
             introPage.hasContinueButton = pageJson["hasContinueButton"].boolValue

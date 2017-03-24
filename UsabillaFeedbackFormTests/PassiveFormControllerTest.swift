@@ -21,8 +21,7 @@ class PassiveFormControllerTest: QuickSpec {
             let path = Bundle(for: PassiveFormControllerTest.self).path(forResource: "test", ofType: "json")!
             let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             let jsonObj: JSON = JSON(data: (data as? Data)!)
-            let formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
-
+            let formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
 
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
             if let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
