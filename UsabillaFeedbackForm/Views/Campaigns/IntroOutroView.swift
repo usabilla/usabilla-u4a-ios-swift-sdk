@@ -20,18 +20,18 @@ class UBIntroOutroView: UIView {
     var display: UBIntroOutroDisplay.Type {
         switch viewModel.displayMode {
         case .alert:
-            return UBBannerDisplay.self
+            return UBAlertDisplay.self
         default:
             return UBBannerDisplay.self
         }
     }
-    
+
     // UI elements
     var continueButton: UIButton?
     var cancelButton: UIButton!
 
     var titleLabel: UILabel!
-    var componentView: UIView?
+    var componentView: UIControl?
     var buttonsStackView: UIStackView!
 
     var buttonsStackViewBottomContraint: NSLayoutConstraint?
@@ -41,7 +41,7 @@ class UBIntroOutroView: UIView {
     let sidesMargin: CGFloat = 16
     let outsideVerticalMargin: CGFloat = 20
     let marginBetweenComponentAndTitle: CGFloat = 10
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -77,6 +77,7 @@ class UBIntroOutroView: UIView {
         // buttons
         cancelButton = UIButton(type: .custom)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
+
         buttonsStackView.addArrangedSubview(cancelButton)
 
         if viewModel.hasContinueButton {
@@ -84,10 +85,11 @@ class UBIntroOutroView: UIView {
             buttonsStackView.addArrangedSubview(continueButton!)
             continueButton!.setTitle(viewModel.coninueLabelText, for: .normal)
             continueButton!.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
+
         }
 
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
-        
+
         // component
         if let componentViewModel = viewModel.componentViewModel {
             let component = ComponentFactory.component(viewModel: componentViewModel)
@@ -105,6 +107,10 @@ class UBIntroOutroView: UIView {
         backgroundColor = viewModel.backgroundColor
         cancelButton.setTitleColor(viewModel.buttonsColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonsColor, for: .normal)
+        cancelButton.titleLabel?.font = viewModel.cancelButtonFont
+        continueButton!.titleLabel?.font = viewModel.continueButtonFont
+
+        
         // TO DO font custimization
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
         heightAnchor?.priority = 249
@@ -112,15 +118,15 @@ class UBIntroOutroView: UIView {
 
         display.build(view: self)
     }
-    
+
     func dismissAction() {
         delegate?.introViewDidCancel(introView: self)
     }
-    
+
     func continueAction() {
         delegate?.introViewDidContinue(introView: self)
     }
-    
-    
-    
+
+
+
 }

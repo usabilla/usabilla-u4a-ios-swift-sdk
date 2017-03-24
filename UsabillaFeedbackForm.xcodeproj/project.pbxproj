@@ -96,6 +96,8 @@
 		436C2B801E85187000741E10 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
 		436C2B811E85187000741E10 /* IntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* IntroOutroView.swift */; };
 		436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */; };
+		436C2B841E8518E600741E10 /* UBAlertDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B831E8518E600741E10 /* UBAlertDisplay.swift */; };
+		436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B851E851EF300741E10 /* UBAlertPresenter.swift */; };
 		436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
 		436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */; };
@@ -280,6 +282,8 @@
 		436C2B7A1E85187000741E10 /* CampaignWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignWindow.swift; sourceTree = "<group>"; };
 		436C2B7B1E85187000741E10 /* IntroOutroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroOutroView.swift; sourceTree = "<group>"; };
 		436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCustomTouchableView.swift; sourceTree = "<group>"; };
+		436C2B831E8518E600741E10 /* UBAlertDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBAlertDisplay.swift; sourceTree = "<group>"; };
+		436C2B851E851EF300741E10 /* UBAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBAlertPresenter.swift; sourceTree = "<group>"; };
 		436F55471E8178D500E91E58 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewController.swift; sourceTree = "<group>"; };
 		436F55491E8178EF00E91E58 /* CampaignModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignModel.swift; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTest.swift; sourceTree = "<group>"; };
@@ -651,6 +655,8 @@
 				436C2B7A1E85187000741E10 /* CampaignWindow.swift */,
 				436C2B7B1E85187000741E10 /* IntroOutroView.swift */,
 				436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */,
+				436C2B831E8518E600741E10 /* UBAlertDisplay.swift */,
+				436C2B851E851EF300741E10 /* UBAlertPresenter.swift */,
 			);
 			path = Campaigns;
 			sourceTree = "<group>";
@@ -945,6 +951,7 @@
 				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
+				436C2B841E8518E600741E10 /* UBAlertDisplay.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
 				43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */,
 				43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */,
@@ -995,6 +1002,7 @@
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
+				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
 				436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */,

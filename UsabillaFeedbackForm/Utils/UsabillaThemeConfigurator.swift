@@ -20,6 +20,7 @@ open class UsabillaThemeConfigurator {
     open var errorColor: UIColor
     open var statusBarColor: UIStatusBarStyle
     open var customFont: UIFont?
+    open var customFontBold: UIFont?
     open var enabledEmoticons: [UIImage]
     open var disabledEmoticons: [UIImage]?
     open var fullStar: UIImage?

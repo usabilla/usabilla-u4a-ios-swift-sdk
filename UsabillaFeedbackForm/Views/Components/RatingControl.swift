@@ -19,7 +19,7 @@ class RatingControl: UIControl {
     private var selectedIndex = -1
 
     private let size: CGFloat = 60
-    private let spacing: CGFloat = 23
+    private let spacing: CGFloat = 12
 
     var maxValue = 5 {
         didSet {
@@ -140,14 +140,13 @@ class RatingControl: UIControl {
             button.isUserInteractionEnabled = false
             contentView.addArrangedSubview(button)
 
-            if !centered {
-                button.setContentHuggingPriority(999, for: .horizontal)
-                if let prev = prevbutton {
-                    button.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
-                } else {
-                    prevbutton = button
-                }
+            button.setContentHuggingPriority(999, for: .horizontal)
+            if let prev = prevbutton {
+                button.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
             }
+            prevbutton = button
+            
+
         }
 
         if !centered { // add blank view to fill stackview

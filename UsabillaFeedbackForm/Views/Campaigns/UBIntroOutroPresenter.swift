@@ -9,6 +9,6 @@
 import Foundation
 
 protocol UBIntroOutroPresenter {
-    func present(view: UBIntroOutroView, inView: UIView)
-    func dismiss(view: UBIntroOutroView, inView: UIView, completion: (() -> Void)?)
+    func present(view: UBIntroOutroView, inView: UIView, animations: (()->Void)?)
+    func dismiss(view: UBIntroOutroView, inView: UIView, animations: (()->Void)?, completion: (() -> Void)?)
 }

@@ -14,9 +14,10 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
     override func build() {
         moodControl = RatingControl()
-        moodControl?.mode = .selection
-        moodControl?.translatesAutoresizingMaskIntoConstraints = false
-        moodControl?.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
+        moodControl.mode = .selection
+        moodControl.centered = viewModel.centered
+        moodControl.translatesAutoresizingMaskIntoConstraints = false
+        moodControl.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
 
         addSubview(moodControl)
 
@@ -27,10 +28,10 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
         // customizaiton
-        moodControl?.backgroundColor = viewModel.theme.backgroundColor
-        moodControl?.selectedImages = viewModel.theme.enabledEmoticons
-        moodControl?.unselectedImages = viewModel.theme.disabledEmoticons
-
+        moodControl.backgroundColor = viewModel.theme.backgroundColor
+        moodControl.selectedImages = viewModel.theme.enabledEmoticons
+        moodControl.unselectedImages = viewModel.theme.disabledEmoticons
+        
         moodControl?.rating = viewModel.value
     }
 
