@@ -11,7 +11,7 @@ import Foundation
 class CampaignWindow: UIWindow {
     static let shared = CampaignWindow()
 
-    private var currentCampaign: Campaign?
+    fileprivate var currentCampaign: Campaign?
 
     private init() {
         super.init(frame: UIScreen.main.bounds)
@@ -54,5 +54,6 @@ extension CampaignWindow: CampaignViewControllerDelegate {
     func campaignDidEnd(success: Bool) {
         isHidden = true
         rootViewController = nil
+        currentCampaign = nil
     }
 }

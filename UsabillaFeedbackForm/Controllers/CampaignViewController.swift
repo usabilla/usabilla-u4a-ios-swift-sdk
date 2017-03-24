@@ -20,7 +20,8 @@ class CampaignViewController: UIViewController {
 
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
-            let introOutroView = IntroOutroView(viewModel: introPageViewModel)
+            let introOutroView = UBIntroOutroView(viewModel: introPageViewModel)
+            introOutroView.delegate = self
             view.addSubview(introOutroView)
             viewModel.introPresenter?.present(view: introOutroView, inView: view)
             // TO DO : display intro
@@ -31,6 +32,7 @@ class CampaignViewController: UIViewController {
     
     override func loadView() {
         self.view = UBCustomTouchableView()
+        self.view.frame = UIScreen.main.bounds
     }
 
     init(campaign: Campaign, delegate: CampaignViewControllerDelegate) {
@@ -42,6 +44,18 @@ class CampaignViewController: UIViewController {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension CampaignViewController: UBIntroOutroViewDelegate {
+    
+    internal func introViewDidCancel(introView: UBIntroOutroView) {
+        introView.removeFromSuperview()
+        delegate?.campaignDidEnd(success: false)
+    }
+
+    internal func introViewDidContinue(introView: UBIntroOutroView) {
+        
     }
 }
 

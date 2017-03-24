@@ -10,13 +10,13 @@ import Foundation
 
 
 protocol UBIntroOutroDisplay {
-    static func build(view: IntroOutroView)
+    static func build(view: UBIntroOutroView)
 }
 
 class UBBannerDisplay: UBIntroOutroDisplay {
     private static let topBannerMargin: CGFloat = 10
     
-    static func build(view: IntroOutroView) {
+    static func build(view: UBIntroOutroView) {
         view.buttonsStackView?.axis = .horizontal
 
         // line

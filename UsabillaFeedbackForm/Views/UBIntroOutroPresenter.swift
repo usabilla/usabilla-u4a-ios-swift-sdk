@@ -9,6 +9,6 @@
 import Foundation
 
 protocol UBIntroOutroPresenter {
-    func present(view: IntroOutroView, inView: UIView)
+    func present(view: UBIntroOutroView, inView: UIView)
     
 }

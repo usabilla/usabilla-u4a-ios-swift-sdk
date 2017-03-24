@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol IntroViewDelegate: class {
-    func introViewDidCancel(introView: IntroOutroView)
-    func introViewDidContinue(introView: IntroOutroView)
+protocol UBIntroOutroViewDelegate: class {
+    func introViewDidCancel(introView: UBIntroOutroView)
+    func introViewDidContinue(introView: UBIntroOutroView)
 }
 
-class IntroOutroView: UIView {
+class UBIntroOutroView: UIView {
 
     var viewModel: IntroPageViewModel!
-    weak var delegate: IntroViewDelegate?
+    weak var delegate: UBIntroOutroViewDelegate?
     var display: UBIntroOutroDisplay.Type {
         switch viewModel.displayMode {
         case .alert:
@@ -83,10 +83,10 @@ class IntroOutroView: UIView {
             continueButton = UIButton()
             buttonsStackView.addArrangedSubview(continueButton!)
             continueButton!.setTitle(viewModel.coninueLabelText, for: .normal)
-            continueButton!.addTarget(self, action: #selector(IntroOutroView.continueAction), for: .touchUpInside)
+            continueButton!.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
         }
 
-        cancelButton.addTarget(self, action: #selector(IntroOutroView.dismissAction), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
         
         // component
         if let componentViewModel = viewModel.componentViewModel {

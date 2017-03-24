@@ -15,7 +15,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var leftConstraint: NSLayoutConstraint?
     var rightConstraint: NSLayoutConstraint?
 
-    func present(view: IntroOutroView, inView: UIView) {
+    func present(view: UBIntroOutroView, inView: UIView) {
 
         let style = view.viewModel.displayMode
 
@@ -26,7 +26,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         bottomConstraint = bannerView.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
         leftConstraint = bannerView.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
         rightConstraint = bannerView.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
-        bannerView.layoutIfNeeded()
+        inView.layoutIfNeeded()
 
         let offset = bannerView.bounds.height
         topConstraint?.constant = -offset
@@ -34,16 +34,16 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         topConstraint?.isActive = style != .bannerBottom
         bottomConstraint?.isActive = style == .bannerBottom
-        bannerView.layoutIfNeeded()
+        inView.layoutIfNeeded()
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
+        
 
-        UIView.animate(withDuration: 0.33, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
             self.topConstraint?.constant = 0
             self.bottomConstraint?.constant = 0
             bannerView.alpha = 1
-            view.layoutIfNeeded()
-        }) { _ in
-        }
+            inView.layoutIfNeeded()
+        })
     }
 }
