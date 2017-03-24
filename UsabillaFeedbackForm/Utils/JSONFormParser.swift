@@ -58,6 +58,14 @@ class JSONFormParser {
         let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
         currentPage.type = type
+        
+        // specific intro page parsing
+        if let introPage = currentPage as? IntroPageModel {
+            introPage.hasContinueButton = pageJson["hasContinueButton"].boolValue
+            if let displayMode = IntroPageDisplayMode(rawValue: pageJson["display"].stringValue) {
+                introPage.displayMode = displayMode
+            }
+        }
 
         var fields: [BaseFieldModel] = []
 

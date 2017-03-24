@@ -15,6 +15,6 @@ enum IntroPageDisplayMode: String {
 }
 
 class IntroPageModel: PageModel {
-    var hasContinueButton: Bool = true
+    var hasContinueButton: Bool = false
     var displayMode: IntroPageDisplayMode = .bannerBottom
 }
