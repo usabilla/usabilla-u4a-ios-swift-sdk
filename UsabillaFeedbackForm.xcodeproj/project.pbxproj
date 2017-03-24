@@ -162,6 +162,7 @@
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
+		C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820F1E8574E100840D4E /* CopyModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +336,7 @@
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellViewTests.swift; sourceTree = "<group>"; };
+		C59C820F1E8574E100840D4E /* CopyModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModelTests.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -622,6 +624,7 @@
 				43B0A2151E2CCFC700879E5F /* ScreenshotModelTest.swift */,
 				43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */,
 				437BD7CC1E4B2CDB00E6FE2A /* FormModelTests.swift */,
+				C59C820F1E8574E100840D4E /* CopyModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1020,6 +1023,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
+				C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
 				43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift in Sources */,
