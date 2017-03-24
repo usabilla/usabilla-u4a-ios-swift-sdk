@@ -15,35 +15,45 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var leftConstraint: NSLayoutConstraint?
     var rightConstraint: NSLayoutConstraint?
 
+    var offset: CGFloat = 0.0
+
     func present(view: UBIntroOutroView, inView: UIView) {
-
         let style = view.viewModel.displayMode
-
-        let bannerView = view
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        bannerView.alpha = 0
-        topConstraint = bannerView.topAnchor.constraint(equalTo: inView.topAnchor)
-        bottomConstraint = bannerView.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
-        leftConstraint = bannerView.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
-        rightConstraint = bannerView.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
+        topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
+        bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
+        leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
+        rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
         inView.layoutIfNeeded()
 
-        let offset = bannerView.bounds.height
+        offset = view.bounds.height
         topConstraint?.constant = -offset
         bottomConstraint?.constant = offset
 
+        // activate bottom or top constraint based on banner position
         topConstraint?.isActive = style != .bannerBottom
         bottomConstraint?.isActive = style == .bannerBottom
         inView.layoutIfNeeded()
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
-        
 
         UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
             self.topConstraint?.constant = 0
             self.bottomConstraint?.constant = 0
-            bannerView.alpha = 1
+            view.alpha = 1
             inView.layoutIfNeeded()
         })
+    }
+
+    func dismiss(view: UBIntroOutroView, inView: UIView, completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+            self.topConstraint?.constant = -self.offset
+            self.bottomConstraint?.constant = self.offset
+            view.alpha = 1
+            inView.layoutIfNeeded()
+        }) { _ in
+            completion?()
+        }
     }
 }

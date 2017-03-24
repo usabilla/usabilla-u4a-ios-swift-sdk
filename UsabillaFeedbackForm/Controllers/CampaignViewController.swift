@@ -50,8 +50,10 @@ class CampaignViewController: UIViewController {
 extension CampaignViewController: UBIntroOutroViewDelegate {
     
     internal func introViewDidCancel(introView: UBIntroOutroView) {
-        introView.removeFromSuperview()
-        delegate?.campaignDidEnd(success: false)
+        viewModel.introPresenter?.dismiss(view: introView, inView: self.view){
+            introView.removeFromSuperview()
+            self.delegate?.campaignDidEnd(success: false)
+        }
     }
 
     internal func introViewDidContinue(introView: UBIntroOutroView) {
