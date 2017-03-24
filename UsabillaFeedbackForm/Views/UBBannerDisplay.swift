@@ -31,9 +31,8 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         view.buttonsStackView?.clipsToBounds = true
         
         // shadow
-        view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        view.layer.shadowOffset = CGSize(width: 0.0, height: -1.0)
+        view.layer.shadowOffset = CGSize(width: 0.0, height: view.viewModel.displayMode == .bannerBottom ? -1.0 : 1.0)
         view.layer.shadowOpacity = 0.6
         view.layer.shadowRadius = 4
         
@@ -50,8 +49,5 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         if view.viewModel.displayMode != .bannerBottom {
             view.titleTopConstraint?.constant += UBBannerDisplay.topBannerMargin
         }
-
-
-        
     }
 }

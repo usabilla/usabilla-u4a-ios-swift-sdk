@@ -50,7 +50,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
             self.topConstraint?.constant = -self.offset
             self.bottomConstraint?.constant = self.offset
-            view.alpha = 1
+            view.alpha = 0
             inView.layoutIfNeeded()
         }) { _ in
             completion?()
