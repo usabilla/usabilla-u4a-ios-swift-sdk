@@ -71,6 +71,8 @@
 		430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B41E76D8EE0078E3B3 /* CellViewModel.swift */; };
 		43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EBF1E71B57500E3011A /* PassiveFormController.swift */; };
 		43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */; };
+		432A8A0B1E89184E00928F54 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0A1E89184E00928F54 /* HeaderComponent.swift */; };
+		432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */; };
 		4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */; };
 		4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
 		4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
@@ -258,6 +260,8 @@
 		430669B41E76D8EE0078E3B3 /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		43127EBF1E71B57500E3011A /* PassiveFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormController.swift; sourceTree = "<group>"; };
 		43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormControllerTest.swift; sourceTree = "<group>"; };
+		432A8A0A1E89184E00928F54 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
+		432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponentViewModel.swift; sourceTree = "<group>"; };
 		432D0B541E264940003BA70A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		4331DA401E27B362009C97B6 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldFactoryTest.swift; sourceTree = "<group>"; };
@@ -560,6 +564,7 @@
 				4306699C1E76B4B30078E3B3 /* SliderComponent.swift */,
 				4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */,
 				43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */,
+				432A8A0A1E89184E00928F54 /* HeaderComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */,
 				43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */,
 				43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */,
+				432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -959,6 +965,7 @@
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
 				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
+				432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
 				436C2B841E8518E600741E10 /* UBAlertDisplay.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
@@ -968,6 +975,7 @@
 				43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */,
 				04F54E231CD76708002F501E /* NetworkManager.swift in Sources */,
 				43CCD4571E78366A00B3E4FE /* BaseStringComponentViewModel.swift in Sources */,
+				432A8A0B1E89184E00928F54 /* HeaderComponent.swift in Sources */,
 				43CCD46E1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,

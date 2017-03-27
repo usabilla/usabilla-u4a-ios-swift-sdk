@@ -71,8 +71,17 @@ class IntroPageViewModel {
         self.introPage = introPage
         field = introPage.fields.first
         if let field = field {
+
+            // skip component view model creation if it is an header with an empty content
+            guard let headerContent = (field as? HeaderFieldModel)?.fieldValue,
+                !headerContent.isEmpty else {
+                    componentViewModel = nil
+                    return
+            }
+
+            // create component view model
             componentViewModel = ComponentViewModelFactory.component(field: field)
-            if displayMode == .alert, let cvm = componentViewModel as? MoodComponentViewModel {
+            if displayMode == .alert, var cvm = componentViewModel as? Centerable {
                 cvm.centered = true
             }
             return

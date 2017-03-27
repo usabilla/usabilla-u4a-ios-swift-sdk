@@ -37,6 +37,10 @@ protocol OptionsComponentViewModel: ComponentViewModel {
     var options: [Options] { get }
 }
 
+protocol Centerable {
+    var centered: Bool { get set }
+}
+
 protocol ComponentModel {
     var themeConfig: UsabillaThemeConfigurator { get set }
 }

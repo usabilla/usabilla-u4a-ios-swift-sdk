@@ -8,6 +8,6 @@
 
 import Foundation
 
-class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel> {
+class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centerable {
     var centered: Bool = false
 }
