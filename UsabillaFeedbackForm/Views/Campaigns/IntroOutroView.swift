@@ -83,7 +83,7 @@ class UBIntroOutroView: UIView {
         if viewModel.hasContinueButton {
             continueButton = UIButton()
             buttonsStackView.addArrangedSubview(continueButton!)
-            continueButton!.setTitle(viewModel.coninueLabelText, for: .normal)
+            continueButton!.setTitle(viewModel.continueLabelText, for: .normal)
             continueButton!.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
 
         }

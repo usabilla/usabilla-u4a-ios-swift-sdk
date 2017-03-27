@@ -23,7 +23,7 @@ class IntroPageViewModel {
         return introPage.hasContinueButton
     }
 
-    var coninueLabelText: String? {
+    var continueLabelText: String? {
         return introPage.copy!.introContinueButton
     }
 
