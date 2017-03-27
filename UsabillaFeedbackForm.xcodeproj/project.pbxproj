@@ -167,6 +167,7 @@
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820F1E8574E100840D4E /* CopyModelTests.swift */; };
+		C59C82401E8914C200840D4E /* CampainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C823F1E8914C200840D4E /* CampainViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -345,6 +346,7 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		C5097F1D1E701F4C00186CEC /* MoodCellViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodCellViewTests.swift; sourceTree = "<group>"; };
 		C59C820F1E8574E100840D4E /* CopyModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModelTests.swift; sourceTree = "<group>"; };
+		C59C823F1E8914C200840D4E /* CampainViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampainViewModelTests.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -689,6 +691,7 @@
 				43B708431E7FE74E00F05A40 /* Components */,
 				43B708411E7FE74800F05A40 /* PageViewModelTests.swift */,
 				43B9AF991E856464009EC83A /* IntroPageViewModelTests.swift */,
+				C59C823F1E8914C200840D4E /* CampainViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1042,6 +1045,7 @@
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
 				43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift in Sources */,
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
+				C59C82401E8914C200840D4E /* CampainViewModelTests.swift in Sources */,
 				43B708341E7FD28800F05A40 /* BaseStringComponentViewModelTests.swift in Sources */,
 				43AF1B7C1E7C220500BA309B /* BaseIntComponentViewModelTests.swift in Sources */,
 				43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */,
