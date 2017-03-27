@@ -93,6 +93,11 @@ class UBIntroOutroView: UIView {
         // component
         if let componentViewModel = viewModel.componentViewModel {
             let component = ComponentFactory.component(viewModel: componentViewModel)
+            
+            if !viewModel.hasContinueButton {
+                component.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
+            }
+            
             addSubview(component)
             component.translatesAutoresizingMaskIntoConstraints = false
             component.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).isActive = true
@@ -108,9 +113,9 @@ class UBIntroOutroView: UIView {
         cancelButton.setTitleColor(viewModel.buttonsColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonsColor, for: .normal)
         cancelButton.titleLabel?.font = viewModel.cancelButtonFont
-        continueButton!.titleLabel?.font = viewModel.continueButtonFont
+        continueButton?.titleLabel?.font = viewModel.continueButtonFont
 
-        
+
         // TO DO font custimization
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
         heightAnchor?.priority = 249
@@ -127,6 +132,7 @@ class UBIntroOutroView: UIView {
         delegate?.introViewDidContinue(introView: self)
     }
 
-
-
+    func componentValueChanged() {
+        delegate?.introViewDidContinue(introView: self)
+    }
 }

@@ -73,10 +73,9 @@ class IntroPageViewModel {
         if let field = field {
 
             // skip component view model creation if it is an header with an empty content
-            guard let headerContent = (field as? HeaderFieldModel)?.fieldValue,
-                !headerContent.isEmpty else {
-                    componentViewModel = nil
-                    return
+            if let headerContent = (field as? HeaderFieldModel)?.fieldValue, !headerContent.isEmpty {
+                componentViewModel = nil
+                return
             }
 
             // create component view model
