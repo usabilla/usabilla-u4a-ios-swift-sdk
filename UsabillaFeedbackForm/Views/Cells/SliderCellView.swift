@@ -143,9 +143,4 @@ class SliderCellView: RootCellView {
 
         sliderModel.fieldValue = fieldValue
     }
-
-//    deinit {
-//        print("Slider cell deinit")
-//    }
-
 }

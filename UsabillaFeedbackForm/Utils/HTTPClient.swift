@@ -58,7 +58,7 @@ class HTTPClient {
                        completion: @escaping (HTTPClientResponse) -> Void) {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             (responseQueue ?? DispatchQueue.main).async {
-                debugPrint(response ?? "")
+                PLog(response)
                 guard error == nil else {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
                     return
@@ -69,7 +69,7 @@ class HTTPClient {
                 }
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    debugPrint(json)
+                    PLog(json)
                     completion(HTTPClientResponse(data: json, error: nil, success: true))
                 } catch {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
