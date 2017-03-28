@@ -3,17 +3,19 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.3.2
+## Latest changes in v3.4.0
 
-#### Fixed
+#### Added
+- Form caching. Forms loaded from our servers will be now cached locally and will be correctly displayed even when the user is offline.
 
-- Redirect to App Store button not working correctly
-- The mood control now correctly displays the 2 or 3 options mode
-- The feedback result access level has been set to public
 
 #### Updated
-- Added the `form` parameter to `formDidClose`
 
+- Updated SDK to be compatible with Swift 3.1
+
+#### Removed
+
+- Removed some unecessary logs
 
 ## Requirements
 
@@ -199,7 +201,7 @@ The **abandonedPageIndex** is only set if the user cancels the form before submi
 Here is a sample implementation :
 
 ```swift
-func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]){
      guard let feedback = feedbackResults.first else {
          return
      }
