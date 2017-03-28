@@ -1,3 +1,18 @@
+## 3.4.0
+
+#### Added
+- Form caching. Forms loaded from our servers will be now cached locally and will be correctly displayed even when the user is offline.
+
+
+#### Updated
+
+- Updated SDK to be compatible with Swift 3.1
+
+#### Removed
+
+- Removed some unecessary logs
+
+
 ## 3.3.2
 
 #### Fixed
