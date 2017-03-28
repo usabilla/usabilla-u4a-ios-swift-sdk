@@ -70,7 +70,7 @@ class NetworkManager {
                 }
             }.catch { error in
                 reject(error)
-                print(error)
+                PLog(error)
             }
         }
     }
@@ -98,15 +98,15 @@ class NetworkManager {
                     promisedSucceeded += 1
                     if promisedSucceeded == stringChunks.count {
                         closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
-                            debugPrint("Deal closed")
+                            PLog("Deal closed")
                             fulfill(true)
                         }).catch { err in
                             reject(err)
-                            debugPrint(err)
+                            PLog(err)
                         }
                     }
                 }).catch(execute: { err in
-                    debugPrint(err)
+                    PLog(err)
                 })
             }
         }
@@ -163,7 +163,6 @@ class NetworkManager {
 
     }
 
-
     /// Submits form data without screenshot (Only text)
     ///
     /// - Parameter payload: data to submit
@@ -180,7 +179,24 @@ class NetworkManager {
         }
     }
 
-    ///Stuff moved to be private
+    /**
+        getForm : loads a form with id from network and returns a FormModel object of it to be used
+ 
+        @parameter formId: the form id
+        @return Pormise<FormModel> : a promess of a valid form model
+     */
+    class func getForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> Promise<FormModel> {
+        return Promise { fulfill, reject in
+            getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
+                let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
+                PLog("form loaded successfully")
+                fulfill(form)
+            }.catch { error in
+                PLog("form couldn't load")
+                reject(error)
+            }
+        }
+    }
 
     class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
@@ -196,19 +212,18 @@ class NetworkManager {
 
             formController.initWithFormModel(form)
             formController.customVars = customVariables
-            Swift.debugPrint("calling success protocol")
+            PLog("calling success protocol")
 
             DispatchQueue.main.async {
                 UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
             }
         }.catch { _ in
-            Swift.debugPrint("calling fail protocol")
+            PLog("calling fail protocol")
             DispatchQueue.main.async {
                 UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
             }
         }
     }
-
 
     class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> UINavigationController? {
         if let path = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.path(forResource: "defaultJson", ofType: "json") {
@@ -229,13 +244,13 @@ class NetworkManager {
                     return base!
 
                 } else {
-                    Swift.debugPrint("could not get json from file, make sure that file contains valid json.")
+                    PLog("could not get json from file, make sure that file contains valid json.")
                 }
             } catch let error as NSError {
-                Swift.debugPrint(error.localizedDescription)
+                PLog(error.localizedDescription)
             }
         } else {
-            Swift.debugPrint("Invalid filename/path.")
+            PLog("Invalid filename/path.")
         }
         return nil
     }

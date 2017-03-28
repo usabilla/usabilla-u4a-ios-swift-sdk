@@ -20,7 +20,7 @@ extension Reachability: Reachable { }
 class SubmissionManager {
 
     static let shared = SubmissionManager(reachability: Reachability()!)
-    private let reachability: Reachable
+    private var reachability: Reachable
     fileprivate let submissionSerialQueue = DispatchQueue(label: "com.usabilla.u4a.submissionmanager")
     fileprivate let semaphore = DispatchSemaphore(value: 0)
     private func setUpReachability() {

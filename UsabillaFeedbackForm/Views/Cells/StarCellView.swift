@@ -63,9 +63,4 @@ class StarCellView: RootCellView {
     func pickRating(sender: RatingControl) {
         starModel.fieldValue = sender.rating
     }
-
-//    deinit {
-//        print("Star  cell deinit")
-//    }
-
 }
