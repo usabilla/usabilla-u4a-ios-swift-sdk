@@ -70,7 +70,7 @@ class NetworkManager {
                 }
             }.catch { error in
                 reject(error)
-                loggingPrint(error)
+                PLog(error)
             }
         }
     }
@@ -98,15 +98,15 @@ class NetworkManager {
                     promisedSucceeded += 1
                     if promisedSucceeded == stringChunks.count {
                         closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
-                            loggingPrint("Deal closed")
+                            PLog("Deal closed")
                             fulfill(true)
                         }).catch { err in
                             reject(err)
-                            loggingPrint(err)
+                            PLog(err)
                         }
                     }
                 }).catch(execute: { err in
-                    loggingPrint(err)
+                    PLog(err)
                 })
             }
         }
@@ -189,10 +189,10 @@ class NetworkManager {
         return Promise { fulfill, reject in
             getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
                 let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
-                loggingPrint("form loaded successfully")
+                PLog("form loaded successfully")
                 fulfill(form)
             }.catch { error in
-                loggingPrint("form couldn't load")
+                PLog("form couldn't load")
                 reject(error)
             }
         }
@@ -212,13 +212,13 @@ class NetworkManager {
 
             formController.initWithFormModel(form)
             formController.customVars = customVariables
-            loggingPrint("calling success protocol")
+            PLog("calling success protocol")
 
             DispatchQueue.main.async {
                 UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
             }
         }.catch { _ in
-            loggingPrint("calling fail protocol")
+            PLog("calling fail protocol")
             DispatchQueue.main.async {
                 UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
             }
@@ -244,13 +244,13 @@ class NetworkManager {
                     return base!
 
                 } else {
-                    loggingPrint("could not get json from file, make sure that file contains valid json.")
+                    PLog("could not get json from file, make sure that file contains valid json.")
                 }
             } catch let error as NSError {
-                loggingPrint(error.localizedDescription)
+                PLog(error.localizedDescription)
             }
         } else {
-            loggingPrint("Invalid filename/path.")
+            PLog("Invalid filename/path.")
         }
         return nil
     }

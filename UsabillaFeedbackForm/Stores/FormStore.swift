@@ -18,7 +18,7 @@ class FormStore {
         return Promise { fulfill, reject in
             NetworkManager.getForm(id, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then(execute: { form in
                 CacheManager.shared.cacheForm(id: form.appId, form: form)
-                loggingPrint("FormModel is loaded successfully")
+                PLog("FormModel is loaded successfully")
                 fulfill(form)
             }).catch(execute: { error in
                 if let cachedForm = CacheManager.shared.getForm(id: id) {
@@ -41,13 +41,13 @@ class FormStore {
                     form.isDefault = true
                     return form
                 } else {
-                    loggingPrint("could not get json from file, make sure that file contains valid json.")
+                    PLog("could not get json from file, make sure that file contains valid json.")
                 }
             } catch let error as NSError {
-                loggingPrint(error.localizedDescription)
+                PLog(error.localizedDescription)
             }
         } else {
-            loggingPrint("Invalid filename/path.")
+            PLog("Invalid filename/path.")
         }
 
         return nil

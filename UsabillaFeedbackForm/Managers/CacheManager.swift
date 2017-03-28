@@ -25,7 +25,7 @@ class CacheManager {
         do {
             try FileManager.default.createDirectory(atPath: formsCacheFolder!.path, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
-            loggingPrint("Error creating directory: \(error.localizedDescription)")
+            PLog("Error creating directory: \(error.localizedDescription)")
         }
     }
 
@@ -58,16 +58,16 @@ class CacheManager {
     }
 
     private func getJsonForm(id: String) -> JSON? {
-        loggingPrint("[CacheManager] : getting \(id) from cache ⏳")
+        PLog("[CacheManager] : getting \(id) from cache ⏳")
         do {
             let fileURL = formsCacheFolder!.appendingPathComponent("\(id)")
             let data = try Data.init(contentsOf: fileURL)
 
-            loggingPrint("[CacheManager] : getting \(id) from cache -> done ✅")
+            PLog("[CacheManager] : getting \(id) from cache -> done ✅")
 
             return JSON(data: data)
         } catch {
-            loggingPrint("[CacheManager] : getting \(id) from cache -> Error ❌")
+            PLog("[CacheManager] : getting \(id) from cache -> Error ❌")
         }
 
         return nil
@@ -78,11 +78,11 @@ class CacheManager {
             let fileURL = formsCacheFolder?.appendingPathComponent("\(id)")
             let data = try formJson.rawData()
             try data.write(to: fileURL!)
-            loggingPrint("[CacheManager] : saving \(id) to cache -> OK ✅")
+            PLog("[CacheManager] : saving \(id) to cache -> OK ✅")
 
             return true
         } catch {
-            loggingPrint("[CacheManager] : saving \(id) to cache -> Error ❌")
+            PLog("[CacheManager] : saving \(id) to cache -> Error ❌")
             return false
         }
     }
@@ -105,10 +105,10 @@ class CacheManager {
     @discardableResult private func removeFileAtUrl(url: URL) -> Bool {
         do {
             try FileManager.default.removeItem(at: url)
-            loggingPrint("file deleted ✅")
+            PLog("file deleted ✅")
             return true
         } catch {
-            loggingPrint("file not found ❌")
+            PLog("file not found ❌")
             return false
         }
     }

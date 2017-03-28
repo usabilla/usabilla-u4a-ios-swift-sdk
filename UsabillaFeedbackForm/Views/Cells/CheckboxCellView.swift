@@ -28,7 +28,7 @@ class CheckboxCellView: BaseCheckboxCellView {
                 values.append(option.value)
             }
         }
-        loggingPrint("values: \(values)")
+        PLog("values: \(values)")
         super.model.fieldValue = values
     }
 }
