@@ -70,12 +70,5 @@ class EmailCellView: TextInputCellView {
     override func applyCustomisations() {
         super.applyCustomisations()
         updateBorderColor(email: mailModel.fieldValue)
-    }
-    
-    
-    
-    //    deinit {
-    //        print("mail cell deinit")
-    //    }
-    
+    }    
 }

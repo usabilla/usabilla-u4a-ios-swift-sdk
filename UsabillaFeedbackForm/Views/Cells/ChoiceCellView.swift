@@ -159,7 +159,7 @@ extension ChoiceCellView: UIPickerViewDelegate {
         if let item = choiceModel?.options[row] {
             choiceModel?.fieldValue = [item.value]
             pickerButton.setTitle(item.title, for: .normal)
-            Swift.debugPrint("picked \(item.value)")
+            loggingPrint("picked \(item.value)")
         }
     }
 }

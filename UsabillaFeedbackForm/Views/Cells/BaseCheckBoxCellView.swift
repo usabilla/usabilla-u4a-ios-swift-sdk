@@ -98,9 +98,4 @@ class BaseCheckboxCellView: RootCellView, SwiftCheckBoxDelegate {
     func styleCheckBox(_ checkBox: CheckboxWithText) {
         fatalError("styleCheckBox has not been implemented")
     }
-
-
-//    deinit {
-//        print("base checkbox  cell deinit")
-//    }
 }

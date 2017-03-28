@@ -51,7 +51,7 @@ class MoodCellView: RootCellView, IntFieldHandlerProtocol {
     func pickMood(sender: RatingControl) {
         let selectedIndex = emoticonValue(index: moodControl.rating!, maxMoods: moodModel.points)
         moodModel.fieldValue = selectedIndex
-        print("You picked the state \(selectedIndex)")
+        loggingPrint("You picked the state \(selectedIndex)")
     }
     
     /**

@@ -25,7 +25,7 @@ class CacheManager {
         do {
             try FileManager.default.createDirectory(atPath: formsCacheFolder!.path, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
-            Swift.debugPrint("Error creating directory: \(error.localizedDescription)")
+            loggingPrint("Error creating directory: \(error.localizedDescription)")
         }
     }
 
@@ -58,16 +58,16 @@ class CacheManager {
     }
 
     private func getJsonForm(id: String) -> JSON? {
-        Swift.debugPrint("[CacheManager] : getting \(id) from cache ⏳")
+        loggingPrint("[CacheManager] : getting \(id) from cache ⏳")
         do {
             let fileURL = formsCacheFolder!.appendingPathComponent("\(id)")
             let data = try Data.init(contentsOf: fileURL)
 
-            Swift.debugPrint("[CacheManager] : getting \(id) from cache -> done ✅")
+            loggingPrint("[CacheManager] : getting \(id) from cache -> done ✅")
 
             return JSON(data: data)
         } catch {
-            Swift.debugPrint("[CacheManager] : getting \(id) from cache -> Error ❌")
+            loggingPrint("[CacheManager] : getting \(id) from cache -> Error ❌")
         }
 
         return nil
@@ -78,11 +78,11 @@ class CacheManager {
             let fileURL = formsCacheFolder?.appendingPathComponent("\(id)")
             let data = try formJson.rawData()
             try data.write(to: fileURL!)
-            Swift.debugPrint("[CacheManager] : saving \(id) to cache -> OK ✅")
+            loggingPrint("[CacheManager] : saving \(id) to cache -> OK ✅")
 
             return true
         } catch {
-            Swift.debugPrint("[CacheManager] : saving \(id) to cache -> Error ❌")
+            loggingPrint("[CacheManager] : saving \(id) to cache -> Error ❌")
             return false
         }
     }
@@ -105,10 +105,10 @@ class CacheManager {
     @discardableResult private func removeFileAtUrl(url: URL) -> Bool {
         do {
             try FileManager.default.removeItem(at: url)
-            Swift.debugPrint("file deleted ✅")
+            loggingPrint("file deleted ✅")
             return true
         } catch {
-            Swift.debugPrint("file not found ❌")
+            loggingPrint("file not found ❌")
             return false
         }
     }

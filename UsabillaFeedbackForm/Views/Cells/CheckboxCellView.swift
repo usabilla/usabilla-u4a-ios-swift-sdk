@@ -28,11 +28,7 @@ class CheckboxCellView: BaseCheckboxCellView {
                 values.append(option.value)
             }
         }
-        Swift.debugPrint("values: \(values)")
+        loggingPrint("values: \(values)")
         super.model.fieldValue = values
     }
-
-//    deinit {
-//        print("checkbox cell deinit")
-//    }
 }
