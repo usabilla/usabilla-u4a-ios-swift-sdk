@@ -24,7 +24,7 @@ class RepetitionDecorator: Decorator {
             currentCount = currentCount + 1
         }
 
-        return currentCount == occurrences
+        return currentCount >= occurrences
     }
 
     // MARK: NSCoding

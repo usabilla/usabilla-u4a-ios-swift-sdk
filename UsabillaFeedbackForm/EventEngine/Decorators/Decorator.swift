@@ -23,7 +23,10 @@ class Decorator: NSObject, Rule {
     }
 
     func triggersWith(event: Event) -> Bool {
-        return customTriggersWith(event: event)
+        if !alreadyTriggered {
+            alreadyTriggered = customTriggersWith(event: event)
+        }
+        return alreadyTriggered
     }
 
 
