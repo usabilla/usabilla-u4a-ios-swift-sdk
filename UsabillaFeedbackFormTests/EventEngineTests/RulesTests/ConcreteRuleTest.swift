@@ -44,7 +44,7 @@ class ConcreteRuleTest: QuickSpec {
         }
 
 
-        describe("Concrete Rule") {
+        describe("The Concrete Rule") {
 
             context("The object", {
                 it("should initialise correctly") {

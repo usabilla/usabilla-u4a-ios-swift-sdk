@@ -43,7 +43,7 @@ class OrRuleTest: QuickSpec {
         }
         
         
-        describe("And Rule") {
+        describe("The Or Rule") {
             
             context("When creating an object", {
                 it("should initialise correctly") {

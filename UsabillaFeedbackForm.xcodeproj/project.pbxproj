@@ -41,6 +41,7 @@
 		0489CE0C1CD7739400E84E0F /* UsabillaFeedbackForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D77811E1BF2EB00117606 /* ViewUtils.swift */; };
 		04A0C1BE1E8BB86E00A483AC /* OrRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BD1E8BB86E00A483AC /* OrRuleTest.swift */; };
+		04A0C1C01E8BB9D100A483AC /* SequenceRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */; };
 		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
 		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
 		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
@@ -213,6 +214,7 @@
 		0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModel.swift; sourceTree = "<group>"; };
 		049D77811E1BF2EB00117606 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		04A0C1BD1E8BB86E00A483AC /* OrRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrRuleTest.swift; sourceTree = "<group>"; };
+		04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceRuleTest.swift; sourceTree = "<group>"; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
 		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				04DC25BF1E8BB371002962A3 /* AndRuleTest.swift */,
 				04DC25C01E8BB371002962A3 /* ConcreteRuleTest.swift */,
 				04A0C1BD1E8BB86E00A483AC /* OrRuleTest.swift */,
+				04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */,
 			);
 			name = RulesTest;
 			path = RulesTests;
@@ -1106,6 +1109,7 @@
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */,
+				04A0C1C01E8BB9D100A483AC /* SequenceRuleTest.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
 				04A0C1BE1E8BB86E00A483AC /* OrRuleTest.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,

@@ -44,7 +44,7 @@ class AndRuleTest: QuickSpec {
         }
         
         
-        describe("And Rule") {
+        describe("The And Rule") {
 
             context("When creating an object", {
                 it("should initialise correctly") {
