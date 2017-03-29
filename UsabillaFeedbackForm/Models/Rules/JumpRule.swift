@@ -8,7 +8,7 @@
 
 import Foundation
 
-class JumpRule: Rule {
+class JumpRule: UBRule {
 
     let jumpTo: String
 

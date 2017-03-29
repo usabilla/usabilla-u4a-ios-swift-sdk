@@ -50,11 +50,10 @@
 		04DC25B41E8BB347002962A3 /* PercentageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */; };
 		04DC25B51E8BB347002962A3 /* RepetitionDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */; };
 		04DC25B61E8BB347002962A3 /* TimerDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B21E8BB347002962A3 /* TimerDecorator.swift */; };
-		04DC25BA1E8BB34D002962A3 /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B71E8BB34D002962A3 /* Campaign.swift */; };
 		04DC25BB1E8BB34D002962A3 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B81E8BB34D002962A3 /* Engine.swift */; };
 		04DC25BC1E8BB34D002962A3 /* Scheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B91E8BB34D002962A3 /* Scheduling.swift */; };
-		04DC25C11E8BB371002962A3 /* AndRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25BF1E8BB371002962A3 /* AndRuleTest.swift */; };
-		04DC25C21E8BB371002962A3 /* ConcreteRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25C01E8BB371002962A3 /* ConcreteRuleTest.swift */; };
+		04DC25C31E8BB391002962A3 /* AndRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25BF1E8BB371002962A3 /* AndRuleTest.swift */; };
+		04DC25C41E8BB393002962A3 /* ConcreteRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25C01E8BB371002962A3 /* ConcreteRuleTest.swift */; };
 		04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */; };
 		04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
@@ -222,7 +221,6 @@
 		04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageDecorator.swift; sourceTree = "<group>"; };
 		04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepetitionDecorator.swift; sourceTree = "<group>"; };
 		04DC25B21E8BB347002962A3 /* TimerDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerDecorator.swift; sourceTree = "<group>"; };
-		04DC25B71E8BB34D002962A3 /* Campaign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
 		04DC25B81E8BB34D002962A3 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		04DC25B91E8BB34D002962A3 /* Scheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduling.swift; sourceTree = "<group>"; };
 		04DC25BF1E8BB371002962A3 /* AndRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRuleTest.swift; sourceTree = "<group>"; };
@@ -243,9 +241,9 @@
 		04F54E1C1CD76708002F501E /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		04F54E1D1CD76708002F501E /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEventBus.swift; sourceTree = "<group>"; };
 		04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfigurator.swift; sourceTree = "<group>"; };
-		04F54E4D1CD76717002F501E /* JumpRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpRule.swift; sourceTree = "<group>"; };
-		04F54E4E1CD76717002F501E /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		04F54E4F1CD76717002F501E /* ShowHideRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHideRule.swift; sourceTree = "<group>"; };
+		04F54E4D1CD76717002F501E /* JumpRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JumpRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F54E4E1CD76717002F501E /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Rule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F54E4F1CD76717002F501E /* ShowHideRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ShowHideRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E531CD76789002F501E /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E541CD76789002F501E /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		04F54E551CD76789002F501E /* ThankYouController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouController.swift; sourceTree = "<group>"; };
@@ -443,7 +441,6 @@
 		04DC25951E8B9D4F002962A3 /* EventEngine */ = {
 			isa = PBXGroup;
 			children = (
-				04DC25B71E8BB34D002962A3 /* Campaign.swift */,
 				04DC25B81E8BB34D002962A3 /* Engine.swift */,
 				04DC25B91E8BB34D002962A3 /* Scheduling.swift */,
 				04DC25981E8B9D77002962A3 /* Rules */,
@@ -959,7 +956,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04DC25BA1E8BB34D002962A3 /* Campaign.swift in Sources */,
 				43CCD4561E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift in Sources */,
 				43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */,
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
@@ -1030,8 +1026,6 @@
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
-				04DC25C11E8BB371002962A3 /* AndRuleTest.swift in Sources */,
-				04DC25C21E8BB371002962A3 /* ConcreteRuleTest.swift in Sources */,
 				0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */,
 				04F54E571CD76789002F501E /* PageController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
@@ -1077,6 +1071,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DC25C31E8BB391002962A3 /* AndRuleTest.swift in Sources */,
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
@@ -1104,6 +1099,7 @@
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
+				04DC25C41E8BB393002962A3 /* ConcreteRuleTest.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */,
