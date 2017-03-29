@@ -11,31 +11,22 @@ import Foundation
 class Event: NSObject, NSCoding {
 
     let name: String
-    let payload: [String: Any]?
 
     init(name: String) {
         self.name = name
-        payload = nil
-    }
-
-    init(name: String, payload: [String: Any]?) {
-        self.name = name
-        self.payload = payload
     }
 
     func toString() -> String {
-        return "\(name), \(payload)"
+        return name
     }
 
     public required convenience init?(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "name") as? String
-        let payload = aDecoder.decodeObject(forKey: "payload") as? [String: Any]?
-        self.init(name: name!, payload: payload!)
+        self.init(name: name!)
     }
 
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.name, forKey: "name")
-        aCoder.encode(self.payload, forKey: "payload")
 
     }
 }
