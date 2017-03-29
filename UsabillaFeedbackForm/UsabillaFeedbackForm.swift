@@ -35,9 +35,35 @@ open class UsabillaFeedbackForm {
     open class func load() {
         _ = SubmissionManager.shared // init the singleton to send persisted feedback
     }
+    
+    open class func removeCachedForms() {
+        CacheManager.shared.removeAllCachedForms()
+    }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
-        NetworkManager.getFormJsonFromServer(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)
+        
+        FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then { form in
+                UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
+            }.catch {_ in
+                if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig) {
+                UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
+            }
+        }
+    }
+    
+    private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
+        let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
+        guard let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
+            let formController = base.childViewControllers[0] as? FormViewController else {
+                return
+        }
+        
+        formController.initWithFormModel(form)
+        formController.customVars = customeVariables
+        
+        DispatchQueue.main.async {
+            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
+        }
     }
 
     open class func takeScreenshot(_ view: UIView) -> UIImage? {
@@ -52,9 +78,9 @@ open class UsabillaFeedbackForm {
 }
 
 public struct FeedbackResult {
-    let rating: Int?
-    let abandonedPageIndex: Int?
-    var sent: Bool {
+    public let rating: Int?
+    public let abandonedPageIndex: Int?
+    public var sent: Bool {
         return abandonedPageIndex == nil
     }
 }
@@ -67,6 +93,8 @@ public protocol UsabillaFeedbackFormDelegate: class {
     /**
         This method is called once the form is closed
      
+        - Parameter form: UINavigationcontroller which is being dismissed
+        - Parameter formID: String representing the ID of the form
         - Parameter feedbackResults: Array of FeedbackResult
      
         If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
@@ -74,11 +102,11 @@ public protocol UsabillaFeedbackFormDelegate: class {
      
         This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
     */
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult])
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
 
 }
 
 public extension UsabillaFeedbackFormDelegate {
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
     }
 }

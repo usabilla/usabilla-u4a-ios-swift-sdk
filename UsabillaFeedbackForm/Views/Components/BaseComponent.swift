@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UBComponent<CVM : ComponentViewModel>: UIControl {
+class UBComponent<CVM: ComponentViewModel>: UIControl {
     internal var viewModel: CVM!
 
     required init(viewModel: CVM) {

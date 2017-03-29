@@ -19,11 +19,11 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
     override func spec() {
 
         describe("UsabillaFeedbackFormTest") {
-            
+
             beforeEach {
                 UsabillaFeedbackForm.delegate = self
             }
-            
+
             it("UsabillaFeedbackFormTest localizable") {
                 expect(UsabillaFeedbackForm.defaultLocalisationFile).to(beTrue())
                 UsabillaFeedbackForm.localizedStringFile = "test"
@@ -47,18 +47,6 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                         fail()
                     }
                     UsabillaFeedbackForm.loadFeedbackForm("588616eca935029b15d51a51")
-                }
-            }
-
-            it("UsabillaFeedbackFormTest loadFeedbackForm shoud fail") {
-                waitUntil(timeout: 5.0) { done in
-                    self.succeed = {
-                        fail()
-                    }
-                    self.failed = {
-                        done()
-                    }
-                    UsabillaFeedbackForm.loadFeedbackForm("test")
                 }
             }
         }

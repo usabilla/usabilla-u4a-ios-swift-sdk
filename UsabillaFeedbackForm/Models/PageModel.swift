@@ -43,9 +43,4 @@ class PageModel {
         defaultJumpTo = nil
         self.themeConfig = themeConfig
     }
-
-//    deinit {
-//        print("called page model \(pageName) , \(pageNumber) deinit")
-//        print("containing \(fields.count) fields")
-//    }
 }

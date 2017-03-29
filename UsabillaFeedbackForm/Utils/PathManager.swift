@@ -26,14 +26,14 @@ class PathManager {
         switch self.boxType {
         case .square:
             path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: 3.0)
-            path.apply(CGAffineTransform.identity.rotated(by: CGFloat( M_PI * 2.5)))
+            path.apply(CGAffineTransform.identity.rotated(by: CGFloat( .pi * 2.5)))
             path.apply(CGAffineTransform(translationX: size, y: 0))
             
             break
             
         default:
             let radius: CGFloat = self.size / 2
-            path = UIBezierPath.init(arcCenter: CGPoint(x: size/2, y: size/2), radius: radius, startAngle: CGFloat(-M_PI / 4), endAngle: CGFloat(2 * M_PI - M_PI / 4), clockwise: true)
+            path = UIBezierPath.init(arcCenter: CGPoint(x: size/2, y: size/2), radius: radius, startAngle: CGFloat((-1 * Double.pi) / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
             
             
             break
