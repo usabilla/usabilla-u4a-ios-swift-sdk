@@ -28,10 +28,10 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
         // customizaiton
         moodControl?.backgroundColor = viewModel.backgroundColor
+        moodControl?.maxValue = viewModel.maxValue
         moodControl?.selectedImages = viewModel.selectedImages
         moodControl?.unselectedImages = viewModel.unselectedImages
         moodControl?.rating = viewModel.value
-        moodControl?.maxValue = viewModel.maxValue
     }
 
     func pickMood(sender: RatingControl) {
