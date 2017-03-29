@@ -182,10 +182,10 @@ class NetworkManager {
 
     ///Stuff moved to be private
 
-    class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
+    class func getFormJsonFromServer(_ formId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
-        getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
-            let form = FormModel(json: jsonObj, id: appId, themeConfig: themeConfig, screenshot: screenshot)
+        getFormWithFormID(formID: formId).then { (jsonObj: JSON) -> Void in
+            let form = FormModel(json: jsonObj, id: formId, themeConfig: themeConfig, screenshot: screenshot)
 
             
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
