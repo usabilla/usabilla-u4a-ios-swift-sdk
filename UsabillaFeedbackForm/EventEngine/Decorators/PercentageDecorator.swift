@@ -20,14 +20,11 @@ class PercentageDecorator: Decorator {
     override func customTriggersWith(event: Event) -> Bool {
         let triggered = rule.triggersWith(event: event)
         let diceRoll = Int(arc4random_uniform(100) + 1)
-
-        if chance > diceRoll && triggered {
-            print("setting already triggered")
-            return true
-        }
-
-        return false
-
+        return checkIfTriggers(triggered: triggered, diceRoll: diceRoll)
+    }
+    
+    func checkIfTriggers(triggered: Bool, diceRoll: Int) -> Bool {
+        return chance >= diceRoll && triggered
     }
 
     // MARK: NSCoding

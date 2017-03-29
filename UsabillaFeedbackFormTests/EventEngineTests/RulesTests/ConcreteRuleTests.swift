@@ -1,5 +1,5 @@
 //
-//  ConcreteRuleTest.swift
+//  ConcreteRuleTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Giacomo Pinato on 28/03/2017.
@@ -12,7 +12,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class ConcreteRuleTest: QuickSpec {
+class ConcreteRuleTests: QuickSpec {
 
     let event1 = Event(name: "event1")
     let event2 = Event(name: "event2")
@@ -78,13 +78,10 @@ class ConcreteRuleTest: QuickSpec {
 
                 }
 
-
-                it("should not allow customTriggers to be called") {
-                    let or = ConcreteRule(type: .and, childRules: self.mixed, ruleID: "id", alreadyTriggered: true)
-                    //expect { or.customTriggersWith(event: self.event1) }.to(throwAssertion())
-
-                }
-
+//                it("should not allow customTriggers to be called") {
+//                    let or = ConcreteRule(type: .and, childRules: self.mixed, ruleID: "id", alreadyTriggered: true)
+//                    //expect { or.customTriggersWith(event: self.event1) }.to(throwAssertion())
+//                }
 
             })
 

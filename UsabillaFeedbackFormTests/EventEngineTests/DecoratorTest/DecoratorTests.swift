@@ -1,5 +1,5 @@
 //
-//  DecoratorTest.swift
+//  DecoratorTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Giacomo Pinato on 29/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class DecoratorTest: QuickSpec {
+class DecoratorTests: QuickSpec {
 
     let event1 = Event(name: "event1")
 

@@ -1,5 +1,5 @@
 //
-//  EventTest.swift
+//  EventTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Giacomo Pinato on 29/03/2017.
@@ -11,17 +11,20 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class EventTest: QuickSpec {
+class EventTests: QuickSpec {
 
     override func spec() {
 
         describe("And event") {
 
-            it("Is initialised correctly") {
-                let event1 = Event(name: "event1")
-                expect(event1.name).to(equal("event1"))
-            }
+            context("when initalised", {
 
+                it("Is initialised correctly with valid data") {
+                    let event1 = Event(name: "event1")
+                    expect(event1.name).to(equal("event1"))
+                }
+
+            })
 
             it("prints itself correctly") {
                 let event1 = Event(name: "event1")
@@ -36,12 +39,12 @@ class EventTest: QuickSpec {
                 expect(event1 != event2).to(beTrue())
 
             }
-            
+
             it("serialises correctly") {
                 let event1 = Event(name: "event1")
-                
+
                 let data = NSKeyedArchiver.archivedData(withRootObject: event1)
-                
+
                 expect(data).toNot(beNil())
                 // swiftlint:disable force_cast
                 let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! Event

@@ -1,5 +1,5 @@
 //
-//  AndRuleTest.swift
+//  AndRuleTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Giacomo Pinato on 28/03/2017.
@@ -12,7 +12,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class AndRuleTest: QuickSpec {
+class AndRuleTests: QuickSpec {
 
     let event1 = Event(name: "event1")
     let event2 = Event(name: "event2")
