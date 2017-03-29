@@ -43,6 +43,7 @@
 		04A0C1BE1E8BB86E00A483AC /* OrRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BD1E8BB86E00A483AC /* OrRuleTest.swift */; };
 		04A0C1C01E8BB9D100A483AC /* SequenceRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */; };
 		04A0C1C21E8BBD0400A483AC /* LeafRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C11E8BBD0400A483AC /* LeafRuleTest.swift */; };
+		04A0C1C51E8BBE7200A483AC /* RepetitionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C41E8BBE7200A483AC /* RepetitionTest.swift */; };
 		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
 		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
 		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
@@ -217,6 +218,7 @@
 		04A0C1BD1E8BB86E00A483AC /* OrRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrRuleTest.swift; sourceTree = "<group>"; };
 		04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceRuleTest.swift; sourceTree = "<group>"; };
 		04A0C1C11E8BBD0400A483AC /* LeafRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRuleTest.swift; sourceTree = "<group>"; };
+		04A0C1C41E8BBE7200A483AC /* RepetitionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepetitionTest.swift; sourceTree = "<group>"; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
 		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
@@ -444,6 +446,14 @@
 			name = CheckBox;
 			sourceTree = "<group>";
 		};
+		04A0C1C31E8BBE4B00A483AC /* DecoratorTest */ = {
+			isa = PBXGroup;
+			children = (
+				04A0C1C41E8BBE7200A483AC /* RepetitionTest.swift */,
+			);
+			path = DecoratorTest;
+			sourceTree = "<group>";
+		};
 		04DC25951E8B9D4F002962A3 /* EventEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +500,7 @@
 		04DC25BD1E8BB355002962A3 /* EventEngineTest */ = {
 			isa = PBXGroup;
 			children = (
+				04A0C1C31E8BBE4B00A483AC /* DecoratorTest */,
 				04DC25BE1E8BB365002962A3 /* RulesTest */,
 			);
 			name = EventEngineTest;
@@ -1106,6 +1117,7 @@
 				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */,
 				4300EB7F1E38BDD200920FE6 /* UIFontTest.swift in Sources */,
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
+				04A0C1C51E8BBE7200A483AC /* RepetitionTest.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTest.swift in Sources */,

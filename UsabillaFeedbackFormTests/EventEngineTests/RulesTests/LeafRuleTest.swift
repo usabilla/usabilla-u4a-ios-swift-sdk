@@ -26,6 +26,8 @@ class LeafRuleTest: QuickSpec {
                     let leaf = LeafRule(event: self.event1, ruleID: "id", alreadyTriggered: false)
                     expect(leaf.type).to(equal(RuleType.leaf))
                     expect(leaf.alreadyTriggered).to(beFalse())
+                    expect(leaf.childRules).to(beEmpty())
+
                     
                 }
             })
