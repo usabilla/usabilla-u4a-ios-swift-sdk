@@ -57,7 +57,7 @@ open class UsabillaFeedbackForm {
             let formController = base.childViewControllers[0] as? FormViewController else {
                 return
         }
-        
+        formController.delegate = PassiveFormController()
         formController.initWithFormModel(form)
         formController.customVars = customeVariables
         

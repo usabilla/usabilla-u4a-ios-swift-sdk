@@ -54,16 +54,6 @@ class NetworkManagerTest: QuickSpec {
                 }
             })
 
-            context("When calling getFormJsonFromServer ", {
-                it("should fail with invalid formId") {
-                    NetworkManager.getFormJsonFromServer("thisIsNotAValidFormId", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
-                }
-
-                it("NetworkManager getForm should fail") {
-                    NetworkManager.getFormJsonFromServer("583c0d8ea935028022c145f4", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
-                }
-            })
-
             context("When calling getFormWithFormID", {
                 it("should fail with an invalid formId") {
                     waitUntil(timeout: 2.0) { done in
@@ -108,13 +98,6 @@ class NetworkManagerTest: QuickSpec {
                             fail("should not go here")
                         }
                     }
-                }
-            })
-
-            context("When calling loadDefaultForm", {
-                it("should return the default form successfully") {
-                    let nc = NetworkManager.loadDefaultForm("", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
-                    expect(nc).toNot(beNil())
                 }
             })
 
