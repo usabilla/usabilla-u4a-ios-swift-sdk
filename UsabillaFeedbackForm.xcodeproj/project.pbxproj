@@ -44,6 +44,7 @@
 		04A0C1C01E8BB9D100A483AC /* SequenceRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */; };
 		04A0C1C21E8BBD0400A483AC /* LeafRuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C11E8BBD0400A483AC /* LeafRuleTest.swift */; };
 		04A0C1C51E8BBE7200A483AC /* RepetitionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C41E8BBE7200A483AC /* RepetitionTest.swift */; };
+		04A0C1C81E8BD59500A483AC /* EventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C71E8BD59500A483AC /* EventTest.swift */; };
 		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
 		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
 		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
@@ -219,6 +220,7 @@
 		04A0C1BF1E8BB9D100A483AC /* SequenceRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceRuleTest.swift; sourceTree = "<group>"; };
 		04A0C1C11E8BBD0400A483AC /* LeafRuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRuleTest.swift; sourceTree = "<group>"; };
 		04A0C1C41E8BBE7200A483AC /* RepetitionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepetitionTest.swift; sourceTree = "<group>"; };
+		04A0C1C71E8BD59500A483AC /* EventTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTest.swift; sourceTree = "<group>"; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
 		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
@@ -454,6 +456,14 @@
 			path = DecoratorTest;
 			sourceTree = "<group>";
 		};
+		04A0C1C61E8BD57900A483AC /* LeafTest */ = {
+			isa = PBXGroup;
+			children = (
+				04A0C1C71E8BD59500A483AC /* EventTest.swift */,
+			);
+			path = LeafTest;
+			sourceTree = "<group>";
+		};
 		04DC25951E8B9D4F002962A3 /* EventEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +510,7 @@
 		04DC25BD1E8BB355002962A3 /* EventEngineTest */ = {
 			isa = PBXGroup;
 			children = (
+				04A0C1C61E8BD57900A483AC /* LeafTest */,
 				04A0C1C31E8BBE4B00A483AC /* DecoratorTest */,
 				04DC25BE1E8BB365002962A3 /* RulesTest */,
 			);
@@ -1115,6 +1126,7 @@
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
 				43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift in Sources */,
 				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */,
+				04A0C1C81E8BD59500A483AC /* EventTest.swift in Sources */,
 				4300EB7F1E38BDD200920FE6 /* UIFontTest.swift in Sources */,
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
 				04A0C1C51E8BBE7200A483AC /* RepetitionTest.swift in Sources */,

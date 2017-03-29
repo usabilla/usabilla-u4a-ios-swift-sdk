@@ -37,7 +37,6 @@ class AndRuleTest: QuickSpec {
             self.leafRule3 = LeafRule(event: self.event3, ruleID: "id3", alreadyTriggered: false)
             self.leafRule4 = LeafRule(event: self.event4, ruleID: "id4", alreadyTriggered: false)
 
-
             self.allPositive = [self.leafRule1, self.leafRule2]
             self.allNegative = [self.leafRule3, self.leafRule4]
             self.mixed = [self.leafRule1, self.leafRule2, self.leafRule3]
