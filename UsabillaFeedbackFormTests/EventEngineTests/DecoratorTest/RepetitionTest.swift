@@ -40,23 +40,27 @@ class RepetitionRuleTest: QuickSpec {
             context("When checking for validity", {
                 it("should trigger only after the correct number of repetition") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
+                    expect(rep.alreadyTriggered).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
-
+                    expect(rep.alreadyTriggered).to(beTrue())
+                    
                 }
                 
                 
                 it("should trigger even when the number of occurrences surpasses the threshold") {
                     let rep = RepetitionDecorator(occurrences: 2, rule: self.leafRule1)
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
+                    expect(rep.alreadyTriggered).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
-                    
+                    expect(rep.alreadyTriggered).to(beTrue())
+
                 }
                 
                 

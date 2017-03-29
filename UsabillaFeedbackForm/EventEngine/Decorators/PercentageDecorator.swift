@@ -23,7 +23,7 @@ class PercentageDecorator: Decorator {
 
         if chance > diceRoll && triggered {
             print("setting already triggered")
-            return triggered
+            return true
         }
 
         return false
