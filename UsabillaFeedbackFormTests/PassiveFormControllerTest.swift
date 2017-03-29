@@ -20,7 +20,7 @@ class PassiveFormControllerTest: QuickSpec {
         beforeEach {
             let path = Bundle(for: PassiveFormControllerTest.self).path(forResource: "test", ofType: "json")!
             let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            let jsonObj: JSON = JSON(data: (data as? Data)!)
+            let jsonObj: JSON = JSON(data: (data as Data?)!)
             let formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
 
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
@@ -30,7 +30,7 @@ class PassiveFormControllerTest: QuickSpec {
                     viewController.initWithFormModel(formModel)
                     viewController.delegate = PassiveFormController()
                     // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-                    let _ = viewController.view
+                    _ = viewController.view
 
                     // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
                     viewController.beginAppearanceTransition(true, animated: false)

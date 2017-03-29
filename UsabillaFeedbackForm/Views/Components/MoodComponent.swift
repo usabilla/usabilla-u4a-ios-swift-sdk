@@ -37,7 +37,7 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
     func pickMood(sender: RatingControl) {
         viewModel.value = moodControl.rating
-        print("You pick state \(viewModel.value)")
+        print("You pick state \(String(describing: viewModel.value))")
         valueChanged()
     }
 }

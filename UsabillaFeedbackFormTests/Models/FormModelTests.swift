@@ -22,7 +22,7 @@ class FormModelTests: QuickSpec {
             beforeEach {
                 let path = Bundle(for: FormModelTests.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                self.jsonObj = JSON(data: (data as? Data)!)
+                self.jsonObj = JSON(data: (data as Data?)!)
                 self.formModel = FormModel(json: self.jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
             }
 
