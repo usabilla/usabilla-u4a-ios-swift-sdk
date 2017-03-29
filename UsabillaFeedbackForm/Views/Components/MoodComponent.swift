@@ -31,7 +31,7 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl.backgroundColor = viewModel.theme.backgroundColor
         moodControl.selectedImages = viewModel.theme.enabledEmoticons
         moodControl.unselectedImages = viewModel.theme.disabledEmoticons
-        
+
         moodControl?.rating = viewModel.value
     }
 
