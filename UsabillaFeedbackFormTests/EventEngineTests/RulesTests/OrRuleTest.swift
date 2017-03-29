@@ -1,34 +1,33 @@
 //
-//  AndRuleTest.swift
+//  OrRuleTest.swift
 //  UsabillaFeedbackForm
 //
-//  Created by Giacomo Pinato on 28/03/2017.
+//  Created by Giacomo Pinato on 29/03/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
-
 
 import Quick
 import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class AndRuleTest: QuickSpec {
-
+class OrRuleTest: QuickSpec {
+    
     let event1 = Event(name: "event1")
     let event2 = Event(name: "event2")
     let event3 = Event(name: "event3")
     let event4 = Event(name: "event4")
-
+    
     var leafRule1: Rule!
     var leafRule2: Rule!
     var leafRule3: Rule!
     var leafRule4: Rule!
-
+    
     var allPositive: [Rule]!
     var allNegative: [Rule]!
     var mixed: [Rule]!
-
-
+    
+    
     override func spec() {
         
         beforeEach {
@@ -45,42 +44,34 @@ class AndRuleTest: QuickSpec {
         
         
         describe("And Rule") {
-
+            
             context("When creating an object", {
                 it("should initialise correctly") {
-                    let newAnd = AndRule(childRules: [self.leafRule1])
-                    expect(newAnd.type).to(equal(RuleType.and))
-                    expect(newAnd.alreadyTriggered).to(beFalse())
-
+                    let or = OrRule(childRules: [self.leafRule1])
+                    expect(or.type).to(equal(RuleType.or))
+                    expect(or.alreadyTriggered).to(beFalse())
+                    
                 }
             })
             
             
             
             context("when checking for validity", {
-                it("should return true if all children is satisfied") {
-                    let newAnd = AndRule(childRules: self.allPositive)
-                    expect(newAnd.triggersWith(event: self.event1)).to(beTrue())
-                    expect(newAnd.triggersWith(event: self.event4)).to(beTrue())
+                it("should return true if any of the children is satisfied") {
+                    var or = OrRule(childRules: self.allPositive)
+                    expect(or.triggersWith(event: self.event1)).to(beTrue())
                     
-                    let newAnd2 = AndRule(childRules: self.mixed)
-                    expect(newAnd2.triggersWith(event: self.event3)).to(beTrue())
+                    or = OrRule(childRules: self.mixed)
+                    expect(or.triggersWith(event: self.event4)).to(beTrue())
+                    
+                    or = OrRule(childRules: self.allNegative)
+                    expect(or.triggersWith(event: self.event4)).to(beTrue())
                 }
                 
-                it("should return false if even one children is not satisfied") {
-                               
-                    let newAnd2 = AndRule(childRules: self.mixed)
-                    expect(newAnd2.triggersWith(event: self.event2)).to(beFalse())
-                }
-                
-                
-                it("should progress correctly") {
-                    let newAnd2 = AndRule(childRules: self.allNegative)
-                    expect(newAnd2.triggersWith(event: self.event2)).to(beFalse())
-                    expect(newAnd2.triggersWith(event: self.event3)).to(beFalse())
-                    expect(newAnd2.triggersWith(event: self.event1)).to(beFalse())
-                    expect(newAnd2.triggersWith(event: self.event4)).to(beTrue())
-
+                it("should return false if all children are not satisfied") {
+                    let or = OrRule(childRules: self.allNegative)
+                    expect(or.triggersWith(event: self.event1)).to(beFalse())
+                    
                 }
             })
             
