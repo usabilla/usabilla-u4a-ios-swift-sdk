@@ -81,7 +81,7 @@ class IntroPageViewModel {
             // create component view model
             componentViewModel = ComponentViewModelFactory.component(field: field)
             if displayMode == .alert, var cvm = componentViewModel as? Centerable {
-                cvm.centered = true
+                cvm.isCentered = true
             }
             return
         }

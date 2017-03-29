@@ -9,5 +9,5 @@
 import Foundation
 
 class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centerable {
-    var centered: Bool = false
+    var isCentered: Bool = false
 }

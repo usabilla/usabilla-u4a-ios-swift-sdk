@@ -38,7 +38,7 @@ protocol OptionsComponentViewModel: ComponentViewModel {
 }
 
 protocol Centerable {
-    var centered: Bool { get set }
+    var isCentered: Bool { get set }
 }
 
 protocol ComponentModel {

@@ -9,5 +9,5 @@
 import Foundation
 
 class HeaderComponentViewModel: BaseStringComponentViewModel<HeaderFieldModel>, Centerable {
-    var centered: Bool = false
+    var isCentered: Bool = false
 }
