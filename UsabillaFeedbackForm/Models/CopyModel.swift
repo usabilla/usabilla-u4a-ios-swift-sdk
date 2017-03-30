@@ -32,35 +32,21 @@ class CopyModel {
         screenshotPlaceholder = LocalisationHandler.getLocalisedStringForKey("usa_screnshot_placeholder")
     }
 
-    init(json: JSON) {
+    convenience init(json: JSON) {
+        self.init()
+
         let data = json["data"]
         appTitle = data["appTitle"].string
         navigationSubmit = data["appSubmit"].string
         errorMessage = data["errorMessage"].string
 
-        let localization = json["localization"]
-
-        if let appStore = localization["appStore"].string {
-            self.appStore = appStore
-        }
-        if let moreFeedback = localization["moreFeedback"].string {
-            self.moreFeedback = moreFeedback
-        }
-        if let screenshotTitle = localization["screenshotTitle"].string {
-            self.screenshotTitle = screenshotTitle
-        }
-        if let cancelButton = localization["cancelButton"].string {
-            self.cancelButton = cancelButton
-        }
-        if let navigationNext = localization["navigationNext"].string {
-            self.navigationNext = navigationNext
-        }
-        if let introCancel = localization["introCancelButton"].string {
-            self.introCancelButton = introCancel
-        }
-        if let introContinue = localization["introContinueButton"].string {
-            self.introContinueButton = introContinue
-        }
+        let loc = json["localization"]
+        self.appStore = loc["appStore"].string ?? self.appStore
+        self.moreFeedback = loc["moreFeedback"].string ?? self.moreFeedback
+        self.screenshotTitle = loc["screenshotTitle"].string ?? self.screenshotTitle
+        self.cancelButton = loc["cancelButton"].string ?? self.cancelButton
+        self.navigationNext = loc["navigationNext"].string ?? self.navigationNext
+        self.introCancelButton = loc["introCancelButton"].string ?? self.introCancelButton
+        self.introContinueButton = loc["introContinueButton"].string ?? self.introContinueButton
     }
-
 }
