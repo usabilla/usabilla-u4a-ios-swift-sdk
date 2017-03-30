@@ -10,10 +10,10 @@ import Foundation
 
 class PercentageDecorator: Decorator {
 
-    var chance: Int
+    var percentage: Int
 
-    init(chance: Int, rule: Rule) {
-        self.chance = chance
+    init(percentage: Int, rule: Rule) {
+        self.percentage = percentage
         super.init(rule: rule)
     }
 
@@ -24,21 +24,21 @@ class PercentageDecorator: Decorator {
     }
     
     func checkIfTriggers(triggered: Bool, diceRoll: Int) -> Bool {
-        return chance >= diceRoll && triggered
+        return percentage >= diceRoll && triggered
     }
 
     // MARK: NSCoding
 
 
     public required init?(coder aDecoder: NSCoder) {
-        let chance = aDecoder.decodeInteger(forKey: "chance")
-        self.chance = chance
+        let percentage = aDecoder.decodeInteger(forKey: "percentage")
+        self.percentage = percentage
         super.init(coder: aDecoder)
 
     }
 
     public override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
-        aCoder.encode(self.chance, forKey: "chance")
+        aCoder.encode(self.percentage, forKey: "percentage")
     }
 }
