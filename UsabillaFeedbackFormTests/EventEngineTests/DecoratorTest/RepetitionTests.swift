@@ -78,7 +78,7 @@ class RepetitionRuleTests: QuickSpec {
 
                     expect(unserialised.type).to(equal(RuleType.leaf))
                     expect(unserialised.ruleID).to(equal("id1"))
-                    expect(unserialised.rule).to(beAKindOf(LeafRule))
+                    expect(unserialised.rule).to(beAKindOf(LeafRule.self))
                     expect(unserialised.rule.ruleID).to(equal("id1"))
                     expect(unserialised.alreadyTriggered).to(beFalse())
                     expect(unserialised.currentCount).to(equal(2))
