@@ -15,11 +15,28 @@ protocol UBIntroOutroDisplay {
 
 class UBBannerDisplay: UBIntroOutroDisplay {
     private static let topBannerMargin: CGFloat = 10
-    
+
     static func build(view: UBIntroOutroView) {
         view.buttonsStackView?.axis = .horizontal
 
-        // line
+        buildShadow(view)
+        buildHorizontaleLine(view)
+
+        guard view.viewModel.hasContinueButton else {
+            view.cancelButton.contentHorizontalAlignment = .center
+            return
+        }
+        configureWithContinueButton(view)
+    }
+
+    static private func buildShadow(_ view: UBIntroOutroView) {
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: view.viewModel.displayMode == .bannerBottom ? -1.0 : 1.0)
+        view.layer.shadowOpacity = 0.6
+        view.layer.shadowRadius = 4
+    }
+
+    static private func buildHorizontaleLine(_ view: UBIntroOutroView) {
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
         view.buttonsStackView?.addSubview(line)
@@ -29,17 +46,9 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor, constant: 0.0).activate()
         line.heightAnchor.constraint(equalToConstant: 1.0).activate()
         view.buttonsStackView?.clipsToBounds = true
-        
-        // shadow
-        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        view.layer.shadowOffset = CGSize(width: 0.0, height: view.viewModel.displayMode == .bannerBottom ? -1.0 : 1.0)
-        view.layer.shadowOpacity = 0.6
-        view.layer.shadowRadius = 4
-        
-        guard view.viewModel.hasContinueButton else {
-            view.cancelButton.contentHorizontalAlignment = .center
-            return
-        }
+    }
+
+    static private func configureWithContinueButton(_ view: UBIntroOutroView) {
         view.cancelButton.contentHorizontalAlignment = .left
         view.cancelButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
 
