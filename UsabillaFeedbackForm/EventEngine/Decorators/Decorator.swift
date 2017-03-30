@@ -34,10 +34,7 @@ class Decorator: NSObject, Rule {
         fatalError("Abstract method not implemented")
     }
 
-
     // MARK: NSCoding
-
-
     public required init?(coder aDecoder: NSCoder) {
         let rule = aDecoder.decodeObject(forKey: "rule") as? Rule
         let alreadyTriggered = aDecoder.decodeBool(forKey: "alreadyTriggered")
@@ -50,7 +47,5 @@ class Decorator: NSObject, Rule {
         aCoder.encode(self.rule, forKey: "rule")
         aCoder.encode(self.alreadyTriggered, forKey: "alreadyTriggered")
     }
-
-
 
 }

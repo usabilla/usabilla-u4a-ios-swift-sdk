@@ -56,7 +56,6 @@
 		04DC25B31E8BB347002962A3 /* Decorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25AF1E8BB347002962A3 /* Decorator.swift */; };
 		04DC25B41E8BB347002962A3 /* PercentageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */; };
 		04DC25B51E8BB347002962A3 /* RepetitionDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */; };
-		04DC25B61E8BB347002962A3 /* TimerDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B21E8BB347002962A3 /* TimerDecorator.swift */; };
 		04DC25C31E8BB391002962A3 /* AndRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25BF1E8BB371002962A3 /* AndRuleTests.swift */; };
 		04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25C01E8BB371002962A3 /* ConcreteRuleTests.swift */; };
 		04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
@@ -232,7 +231,6 @@
 		04DC25AF1E8BB347002962A3 /* Decorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decorator.swift; sourceTree = "<group>"; };
 		04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PercentageDecorator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepetitionDecorator.swift; sourceTree = "<group>"; };
-		04DC25B21E8BB347002962A3 /* TimerDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerDecorator.swift; sourceTree = "<group>"; };
 		04DC25BF1E8BB371002962A3 /* AndRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRuleTests.swift; sourceTree = "<group>"; };
 		04DC25C01E8BB371002962A3 /* ConcreteRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteRuleTests.swift; sourceTree = "<group>"; };
 		04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -484,7 +482,6 @@
 				04DC25AF1E8BB347002962A3 /* Decorator.swift */,
 				04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */,
 				04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */,
-				04DC25B21E8BB347002962A3 /* TimerDecorator.swift */,
 			);
 			path = Decorators;
 			sourceTree = "<group>";
@@ -1033,7 +1030,6 @@
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
 				04DC25AD1E8BB33E002962A3 /* Rules.swift in Sources */,
-				04DC25B61E8BB347002962A3 /* TimerDecorator.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
 				43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */,
 				43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */,

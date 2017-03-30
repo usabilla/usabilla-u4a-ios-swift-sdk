@@ -28,8 +28,6 @@ class PercentageDecorator: Decorator {
     }
 
     // MARK: NSCoding
-
-
     public required init?(coder aDecoder: NSCoder) {
         let percentage = aDecoder.decodeInteger(forKey: "percentage")
         self.percentage = percentage
