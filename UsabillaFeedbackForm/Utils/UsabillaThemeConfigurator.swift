@@ -94,23 +94,11 @@ open class UsabillaThemeConfigurator {
 
     func updateConfig(json: JSON) {
         // TO DO guard with empty check
-        if let titleColorHex = json["group1"]["hash"].string {
-            titleColor = UIColor(rgba: titleColorHex)
-        }
-        if let accentColorHex = json["group2"]["hash"].string {
-            accentColor = UIColor(rgba: accentColorHex)
-        }
-        if let textColorHex = json["group3"]["hash"].string {
-            textColor = UIColor(rgba: textColorHex)
-        }
-        if let errorColorHex = json["group4"]["hash"].string {
-            errorColor = UIColor(rgba: errorColorHex)
-        }
-        if let backgroundColorHex = json["group5"]["hash"].string {
-            backgroundColor = UIColor(rgba: backgroundColorHex)
-        }
-        if let textOnAccentHex = json["group6"]["hash"].string {
-            textOnAccentColor = UIColor(rgba: textOnAccentHex)
-        }
+        self.titleColor = UIColor(rgbao: json["group1"]["hash"].string) ?? titleColor
+        self.accentColor = UIColor(rgbao: json["group2"]["hash"].string) ?? accentColor
+        self.textColor = UIColor(rgbao: json["group3"]["hash"].string) ?? textColor
+        self.errorColor = UIColor(rgbao: json["group4"]["hash"].string) ?? errorColor
+        self.backgroundColor = UIColor(rgbao: json["group5"]["hash"].string) ?? backgroundColor
+        self.textOnAccentColor = UIColor(rgbao: json["group6"]["hash"].string) ?? textOnAccentColor
     }
 }
