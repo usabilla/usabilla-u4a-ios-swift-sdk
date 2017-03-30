@@ -49,8 +49,10 @@ open class UsabillaFeedbackForm {
         return image
     }
 
-    open class func showCampaign(json: JSON) {
-        let campaign = Campaign(id: "", json: json)
+    open class func showCampaign(formJson: JSON) {
+        let campaign = CampaignModel(id: "", json: JSON.parse(""))
+        let formModel = FormModel(json: formJson, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+        campaign.form = formModel
         CampaignWindow.shared.showCampaign(campaign)
     }
 }

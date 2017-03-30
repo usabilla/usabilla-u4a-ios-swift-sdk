@@ -14,8 +14,8 @@ protocol CampaignViewControllerDelegate: class {
 
 class CampaignViewController: UIViewController {
 
-    fileprivate let campaign: Campaign
     fileprivate let viewModel: CampaignViewModel
+
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     var backgroundLayer: UIView?
@@ -48,12 +48,9 @@ class CampaignViewController: UIViewController {
         self.view.frame = UIScreen.main.bounds
     }
 
-    init(campaign: Campaign, delegate: CampaignViewControllerDelegate) {
-        self.campaign = campaign
-        self.viewModel = CampaignViewModel(campaign: campaign)
+    init(viewModel: CampaignViewModel, delegate: CampaignViewControllerDelegate) {
+        self.viewModel = viewModel
         self.delegate = delegate
-
-
 
         super.init(nibName: nil, bundle: nil)
     }

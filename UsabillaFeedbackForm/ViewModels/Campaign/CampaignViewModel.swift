@@ -10,14 +10,14 @@ import Foundation
 
 class CampaignViewModel {
 
-    private var campaign: Campaign
+    private var campaign: CampaignModel
     var introPageViewModel: IntroPageViewModel?
     var introPresenter: UBIntroOutroPresenter?
 
-    init(campaign: Campaign) {
+    init(campaign: CampaignModel) {
         self.campaign = campaign
 
-        let introPageModel = campaign.form.pages.first {
+        let introPageModel = campaign.form?.pages.first {
             $0 is IntroPageModel
         }
 

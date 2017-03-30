@@ -9,9 +9,9 @@
 import Foundation
 
 class CampaignWindow: UIWindow {
+    
     static let shared = CampaignWindow()
-
-    fileprivate var currentCampaign: Campaign?
+    fileprivate var currentCampaign: CampaignModel?
 
     private init() {
         super.init(frame: UIScreen.main.bounds)
@@ -29,14 +29,19 @@ class CampaignWindow: UIWindow {
 
      - parameter campaign: Campaign to display
      */
-    @discardableResult func showCampaign(_ campaign: Campaign) -> Bool {
+    @discardableResult func showCampaign(_ campaign: CampaignModel) -> Bool {
         guard currentCampaign == nil else {
             return false
         }
-        currentCampaign = campaign
-        rootViewController = CampaignViewController(campaign: campaign, delegate: self)
         
         isHidden = false
+        currentCampaign = campaign
+        
+        // TO DO fetch form model (networking)
+        
+        let campaignViewModel = CampaignViewModel(campaign: campaign)
+        rootViewController = CampaignViewController(viewModel: campaignViewModel, delegate: self)
+        
         return true
     }
 
@@ -46,6 +51,7 @@ class CampaignWindow: UIWindow {
                 return true
             }
         }
+        
         return false
     }
 }
