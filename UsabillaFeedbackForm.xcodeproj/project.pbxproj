@@ -96,7 +96,7 @@
 		436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B781E85187000741E10 /* UBBannerPresenter.swift */; };
 		436C2B7F1E85187000741E10 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */; };
 		436C2B801E85187000741E10 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
-		436C2B811E85187000741E10 /* IntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* IntroOutroView.swift */; };
+		436C2B811E85187000741E10 /* UBIntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* UBIntroOutroView.swift */; };
 		436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */; };
 		436C2B841E8518E600741E10 /* UBAlertDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B831E8518E600741E10 /* UBAlertDisplay.swift */; };
 		436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B851E851EF300741E10 /* UBAlertPresenter.swift */; };
@@ -288,7 +288,7 @@
 		436C2B781E85187000741E10 /* UBBannerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerPresenter.swift; sourceTree = "<group>"; };
 		436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBIntroOutroPresenter.swift; sourceTree = "<group>"; };
 		436C2B7A1E85187000741E10 /* CampaignWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignWindow.swift; sourceTree = "<group>"; };
-		436C2B7B1E85187000741E10 /* IntroOutroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroOutroView.swift; sourceTree = "<group>"; };
+		436C2B7B1E85187000741E10 /* UBIntroOutroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBIntroOutroView.swift; sourceTree = "<group>"; };
 		436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCustomTouchableView.swift; sourceTree = "<group>"; };
 		436C2B831E8518E600741E10 /* UBAlertDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBAlertDisplay.swift; sourceTree = "<group>"; };
 		436C2B851E851EF300741E10 /* UBAlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBAlertPresenter.swift; sourceTree = "<group>"; };
@@ -668,7 +668,7 @@
 				436C2B781E85187000741E10 /* UBBannerPresenter.swift */,
 				436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */,
 				436C2B7A1E85187000741E10 /* CampaignWindow.swift */,
-				436C2B7B1E85187000741E10 /* IntroOutroView.swift */,
+				436C2B7B1E85187000741E10 /* UBIntroOutroView.swift */,
 				436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */,
 				436C2B831E8518E600741E10 /* UBAlertDisplay.swift */,
 				436C2B851E851EF300741E10 /* UBAlertPresenter.swift */,
@@ -1017,7 +1017,7 @@
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
-				436C2B811E85187000741E10 /* IntroOutroView.swift in Sources */,
+				436C2B811E85187000741E10 /* UBIntroOutroView.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,

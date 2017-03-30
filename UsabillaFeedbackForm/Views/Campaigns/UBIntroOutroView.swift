@@ -50,20 +50,35 @@ class UBIntroOutroView: UIView {
         self.viewModel = viewModel
         super.init(frame: CGRect.zero)
 
-        // title
+        setupTitle()
+        setupComponent()
+        setupButtons()
+
+        if componentView != nil {
+            buttonsStackView?.topAnchor.constraint(equalTo: componentView!.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+        } else {
+            buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+        }
+
+        setupCustomizations()
+
+        display.build(view: self)
+    }
+
+    private func setupTitle() {
         titleLabel = UILabel()
         titleLabel.text = viewModel.title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = viewModel.titleColor
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
         titleLabel.numberOfLines = 0
-
         addSubview(titleLabel)
         titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: outsideVerticalMargin).activate()
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).activate()
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).activate()
+    }
 
-        // buttons container
+    private func setupButtons() {
         buttonsStackView = UIStackView()
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(buttonsStackView!)
@@ -74,7 +89,6 @@ class UBIntroOutroView: UIView {
         buttonsStackView.axis = .horizontal
         buttonsStackView.distribution = .fillEqually
 
-        // buttons
         cancelButton = UIButton(type: .custom)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
 
@@ -87,41 +101,35 @@ class UBIntroOutroView: UIView {
             continueButton!.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
 
         }
-
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
+    }
 
-        // component
+    private func setupComponent() {
         if let componentViewModel = viewModel.componentViewModel {
-            let component = ComponentFactory.component(viewModel: componentViewModel)
-            
-            if !viewModel.hasContinueButton {
-                component.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
-            }
-            
-            addSubview(component)
-            component.translatesAutoresizingMaskIntoConstraints = false
-            component.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).isActive = true
-            component.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).isActive = true
-            component.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: marginBetweenComponentAndTitle).isActive = true
-            buttonsStackView?.topAnchor.constraint(equalTo: component.bottomAnchor, constant: outsideVerticalMargin).isActive = true
-        } else {
-            buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: outsideVerticalMargin).isActive = true
-        }
+            componentView = ComponentFactory.component(viewModel: componentViewModel)
 
-        // customization
+            if !viewModel.hasContinueButton {
+                componentView?.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
+            }
+
+            addSubview(componentView!)
+            componentView?.translatesAutoresizingMaskIntoConstraints = false
+            componentView?.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).isActive = true
+            componentView?.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).isActive = true
+            componentView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: marginBetweenComponentAndTitle).isActive = true
+        }
+    }
+
+    private func setupCustomizations() {
         backgroundColor = viewModel.backgroundColor
         cancelButton.setTitleColor(viewModel.buttonsColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonsColor, for: .normal)
         cancelButton.titleLabel?.font = viewModel.cancelButtonFont
         continueButton?.titleLabel?.font = viewModel.continueButtonFont
 
-
-        // TO DO font custimization
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
         heightAnchor?.priority = 249
         heightAnchor?.isActive = true
-
-        display.build(view: self)
     }
 
     func dismissAction() {
