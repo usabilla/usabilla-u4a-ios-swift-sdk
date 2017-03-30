@@ -14,14 +14,14 @@ protocol CampaignViewControllerDelegate: class {
 
 class CampaignViewController: UIViewController {
 
-    fileprivate let campaign: Campaign
+    fileprivate let campaign: CampaignModel
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     override func viewDidLoad() {
 
     }
 
-    init(campaign: Campaign, delegate: CampaignViewControllerDelegate) {
+    init(campaign: CampaignModel, delegate: CampaignViewControllerDelegate) {
         self.campaign = campaign
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)

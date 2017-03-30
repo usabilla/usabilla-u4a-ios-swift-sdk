@@ -40,6 +40,24 @@
 		0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */; };
 		0489CE0C1CD7739400E84E0F /* UsabillaFeedbackForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D77811E1BF2EB00117606 /* ViewUtils.swift */; };
+		04A0C1BE1E8BB86E00A483AC /* OrRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BD1E8BB86E00A483AC /* OrRuleTests.swift */; };
+		04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BF1E8BB9D100A483AC /* SequenceRuleTests.swift */; };
+		04A0C1C21E8BBD0400A483AC /* LeafRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C11E8BBD0400A483AC /* LeafRuleTests.swift */; };
+		04A0C1C51E8BBE7200A483AC /* RepetitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C41E8BBE7200A483AC /* RepetitionTests.swift */; };
+		04A0C1C81E8BD59500A483AC /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C71E8BD59500A483AC /* EventTests.swift */; };
+		04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */; };
+		04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */; };
+		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
+		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
+		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
+		04DC25AC1E8BB33E002962A3 /* OrRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A71E8BB33E002962A3 /* OrRule.swift */; };
+		04DC25AD1E8BB33E002962A3 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A81E8BB33E002962A3 /* Rules.swift */; };
+		04DC25AE1E8BB33E002962A3 /* SequenceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A91E8BB33E002962A3 /* SequenceRule.swift */; };
+		04DC25B31E8BB347002962A3 /* Decorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25AF1E8BB347002962A3 /* Decorator.swift */; };
+		04DC25B41E8BB347002962A3 /* PercentageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */; };
+		04DC25B51E8BB347002962A3 /* RepetitionDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */; };
+		04DC25C31E8BB391002962A3 /* AndRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25BF1E8BB371002962A3 /* AndRuleTests.swift */; };
+		04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25C01E8BB371002962A3 /* ConcreteRuleTests.swift */; };
 		04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */; };
 		04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
@@ -53,7 +71,7 @@
 		04F54E241CD76708002F501E /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
 		04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */; };
 		04F54E501CD76717002F501E /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
-		04F54E511CD76717002F501E /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4E1CD76717002F501E /* Rule.swift */; };
+		04F54E511CD76717002F501E /* UBRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4E1CD76717002F501E /* UBRule.swift */; };
 		04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4F1CD76717002F501E /* ShowHideRule.swift */; };
 		04F54E561CD76789002F501E /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormController.swift */; };
 		04F54E571CD76789002F501E /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageController.swift */; };
@@ -197,6 +215,24 @@
 		0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAreaFieldModel.swift; sourceTree = "<group>"; };
 		0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailFieldModel.swift; sourceTree = "<group>"; };
 		049D77811E1BF2EB00117606 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		04A0C1BD1E8BB86E00A483AC /* OrRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrRuleTests.swift; sourceTree = "<group>"; };
+		04A0C1BF1E8BB9D100A483AC /* SequenceRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceRuleTests.swift; sourceTree = "<group>"; };
+		04A0C1C11E8BBD0400A483AC /* LeafRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRuleTests.swift; sourceTree = "<group>"; };
+		04A0C1C41E8BBE7200A483AC /* RepetitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepetitionTests.swift; sourceTree = "<group>"; };
+		04A0C1C71E8BD59500A483AC /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
+		04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratorTests.swift; sourceTree = "<group>"; };
+		04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageTest.swift; sourceTree = "<group>"; };
+		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
+		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
+		04DC25A71E8BB33E002962A3 /* OrRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrRule.swift; sourceTree = "<group>"; };
+		04DC25A81E8BB33E002962A3 /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		04DC25A91E8BB33E002962A3 /* SequenceRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceRule.swift; sourceTree = "<group>"; };
+		04DC25AF1E8BB347002962A3 /* Decorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decorator.swift; sourceTree = "<group>"; };
+		04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PercentageDecorator.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepetitionDecorator.swift; sourceTree = "<group>"; };
+		04DC25BF1E8BB371002962A3 /* AndRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRuleTests.swift; sourceTree = "<group>"; };
+		04DC25C01E8BB371002962A3 /* ConcreteRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteRuleTests.swift; sourceTree = "<group>"; };
 		04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftCheckBox.swift; sourceTree = "<group>"; };
 		04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisationHandler.swift; sourceTree = "<group>"; };
@@ -213,9 +249,9 @@
 		04F54E1C1CD76708002F501E /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		04F54E1D1CD76708002F501E /* SwiftEventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEventBus.swift; sourceTree = "<group>"; };
 		04F54E1E1CD76708002F501E /* UsabillaThemeConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfigurator.swift; sourceTree = "<group>"; };
-		04F54E4D1CD76717002F501E /* JumpRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpRule.swift; sourceTree = "<group>"; };
-		04F54E4E1CD76717002F501E /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		04F54E4F1CD76717002F501E /* ShowHideRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowHideRule.swift; sourceTree = "<group>"; };
+		04F54E4D1CD76717002F501E /* JumpRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JumpRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F54E4E1CD76717002F501E /* UBRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UBRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F54E4F1CD76717002F501E /* ShowHideRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ShowHideRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E531CD76789002F501E /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E541CD76789002F501E /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		04F54E551CD76789002F501E /* ThankYouController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYouController.swift; sourceTree = "<group>"; };
@@ -377,6 +413,7 @@
 		04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */ = {
 			isa = PBXGroup;
 			children = (
+				04DC25BD1E8BB355002962A3 /* EventEngineTest */,
 				0409BD651E38F74E00045E44 /* Managers */,
 				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
 				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
@@ -409,6 +446,89 @@
 			name = CheckBox;
 			sourceTree = "<group>";
 		};
+		04A0C1C31E8BBE4B00A483AC /* DecoratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				04A0C1C41E8BBE7200A483AC /* RepetitionTests.swift */,
+				04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */,
+				04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */,
+			);
+			name = DecoratorTests;
+			path = DecoratorTest;
+			sourceTree = "<group>";
+		};
+		04A0C1C61E8BD57900A483AC /* LeafTests */ = {
+			isa = PBXGroup;
+			children = (
+				04A0C1C71E8BD59500A483AC /* EventTests.swift */,
+			);
+			name = LeafTests;
+			path = LeafTest;
+			sourceTree = "<group>";
+		};
+		04DC25951E8B9D4F002962A3 /* EventEngine */ = {
+			isa = PBXGroup;
+			children = (
+				04DC25981E8B9D77002962A3 /* Rules */,
+				04DC25971E8B9D6D002962A3 /* Leaves */,
+				04DC25961E8B9D5E002962A3 /* Decorators */,
+			);
+			path = EventEngine;
+			sourceTree = "<group>";
+		};
+		04DC25961E8B9D5E002962A3 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				04DC25AF1E8BB347002962A3 /* Decorator.swift */,
+				04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */,
+				04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
+		04DC25971E8B9D6D002962A3 /* Leaves */ = {
+			isa = PBXGroup;
+			children = (
+				04DC25A31E8BB32F002962A3 /* Event.swift */,
+			);
+			path = Leaves;
+			sourceTree = "<group>";
+		};
+		04DC25981E8B9D77002962A3 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				04DC25A51E8BB33E002962A3 /* AndRule.swift */,
+				04DC25A61E8BB33E002962A3 /* LeafRule.swift */,
+				04DC25A71E8BB33E002962A3 /* OrRule.swift */,
+				04DC25A81E8BB33E002962A3 /* Rules.swift */,
+				04DC25A91E8BB33E002962A3 /* SequenceRule.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		04DC25BD1E8BB355002962A3 /* EventEngineTest */ = {
+			isa = PBXGroup;
+			children = (
+				04A0C1C61E8BD57900A483AC /* LeafTests */,
+				04A0C1C31E8BBE4B00A483AC /* DecoratorTests */,
+				04DC25BE1E8BB365002962A3 /* RulesTests */,
+			);
+			name = EventEngineTest;
+			path = EventEngineTests;
+			sourceTree = "<group>";
+		};
+		04DC25BE1E8BB365002962A3 /* RulesTests */ = {
+			isa = PBXGroup;
+			children = (
+				04DC25BF1E8BB371002962A3 /* AndRuleTests.swift */,
+				04DC25C01E8BB371002962A3 /* ConcreteRuleTests.swift */,
+				04A0C1BD1E8BB86E00A483AC /* OrRuleTests.swift */,
+				04A0C1BF1E8BB9D100A483AC /* SequenceRuleTests.swift */,
+				04A0C1C11E8BBD0400A483AC /* LeafRuleTests.swift */,
+			);
+			path = RulesTests;
+			sourceTree = "<group>";
+		};
 		04F54DBE1CD75A3F002F501E = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +551,7 @@
 		04F54DCA1CD75A3F002F501E /* UsabillaFeedbackForm */ = {
 			isa = PBXGroup;
 			children = (
+				04DC25951E8B9D4F002962A3 /* EventEngine */,
 				434085BF1E3642FB00B4A4B9 /* Managers */,
 				04F54DEC1CD766B4002F501E /* Storyboards */,
 				04F54DE91CD75BE6002F501E /* Protocols */,
@@ -544,7 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				04F54E4D1CD76717002F501E /* JumpRule.swift */,
-				04F54E4E1CD76717002F501E /* Rule.swift */,
+				04F54E4E1CD76717002F501E /* UBRule.swift */,
 				04F54E4F1CD76717002F501E /* ShowHideRule.swift */,
 			);
 			path = Rules;
@@ -869,6 +990,7 @@
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
+				04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
@@ -883,12 +1005,12 @@
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
+				04DC25AE1E8BB33E002962A3 /* SequenceRule.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
 				436F554C1E817C8B00E91E58 /* CampaignWindow.swift in Sources */,
-				0483E9FC1CDCDFB1004EC234 /* SliderCellView.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
 				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
 				43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */,
@@ -899,14 +1021,15 @@
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
-				432D0B551E264940003BA70A /* FooterTableViewCell.swift in Sources */,
 				436F554E1E8271EC00E91E58 /* UBCustomTouchableView.swift in Sources */,
+				04DC25B41E8BB347002962A3 /* PercentageDecorator.swift in Sources */,
 				434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */,
 				0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */,
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
 				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
+				04DC25AD1E8BB33E002962A3 /* Rules.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
 				43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */,
 				43E883E41E37575B00A97F1D /* FeedbackRequest.swift in Sources */,
@@ -917,9 +1040,12 @@
 				43CCD46E1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,
+				04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */,
 				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,
 				0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */,
+				04DC25B51E8BB347002962A3 /* RepetitionDecorator.swift in Sources */,
 				0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */,
+				04DC25AC1E8BB33E002962A3 /* OrRule.swift in Sources */,
 				43CCD4601E783ED800B3E4FE /* CheckBoxComponent.swift in Sources */,
 				4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */,
 				43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */,
@@ -930,6 +1056,7 @@
 				04F54E571CD76789002F501E /* PageController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
+				04DC25B31E8BB347002962A3 /* Decorator.swift in Sources */,
 				04F54E261CD76708002F501E /* UsabillaThemeConfigurator.swift in Sources */,
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43E883F11E37B69700A97F1D /* UIFont.swift in Sources */,
@@ -940,6 +1067,7 @@
 				43CCD4481E7835BF00B3E4FE /* BaseCheckBoxComponent.swift in Sources */,
 				041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */,
 				0483E9D81CDCDF86004EC234 /* FormModel.swift in Sources */,
+				04DC25A41E8BB32F002962A3 /* Event.swift in Sources */,
 				43CCD4321E77E1C200B3E4FE /* RatingControl.swift in Sources */,
 				43CCD4611E783F1100B3E4FE /* RadioComponent.swift in Sources */,
 				43CCD4341E77E1CA00B3E4FE /* BaseComponent.swift in Sources */,
@@ -958,7 +1086,7 @@
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
 				04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */,
-				04F54E511CD76717002F501E /* Rule.swift in Sources */,
+				04F54E511CD76717002F501E /* UBRule.swift in Sources */,
 				4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */,
 				0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */,
 				04F54DF41CD766EC002F501E /* Protocols.swift in Sources */,
@@ -969,8 +1097,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DC25C31E8BB391002962A3 /* AndRuleTests.swift in Sources */,
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
+				04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
 				43B708381E7FD7DD00F05A40 /* ChoiceComponentViewModelTests.swift in Sources */,
 				43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */,
@@ -992,14 +1122,21 @@
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
 				43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift in Sources */,
 				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */,
+				04A0C1C81E8BD59500A483AC /* EventTests.swift in Sources */,
 				4300EB7F1E38BDD200920FE6 /* UIFontTest.swift in Sources */,
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
+				04A0C1C51E8BBE7200A483AC /* RepetitionTests.swift in Sources */,
+				04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
+				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */,
+				04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
+				04A0C1BE1E8BB86E00A483AC /* OrRuleTests.swift in Sources */,
+				04A0C1C21E8BBD0400A483AC /* LeafRuleTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
 				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
