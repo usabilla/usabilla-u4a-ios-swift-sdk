@@ -43,6 +43,15 @@ class ComponentFactoryTests: QuickSpec {
                 }
             }
             
+            context("when viewModel is HeaderComponentViewModel") {
+                it("should return a HeaderComponent") {
+                    let model = HeaderFieldModel(json: JSON.parse(""), pageModel: pageModel)
+                    let viewModel = HeaderComponentViewModel(model: model)
+                    let component = ComponentFactory.component(viewModel: viewModel)
+                    expect(component is HeaderComponent).to(beTrue())
+                }
+            }
+            
             context("when viewModel is MoodComponentViewModel") {
                 it("should return a MoodComponent") {
                     let model = MoodFieldModel(json: JSON.parse(""), pageModel: pageModel)

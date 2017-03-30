@@ -21,7 +21,7 @@ class RepetitionDecorator: Decorator {
 
     override func customTriggersWith(event: Event) -> Bool {
         if rule.triggersWith(event: event) {
-            currentCount = currentCount + 1
+            currentCount += 1
         }
 
         return currentCount >= occurrences

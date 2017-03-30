@@ -108,11 +108,6 @@ class NetworkManagerTest: QuickSpec {
                     }
                 }
             }
-
-            it("NetworkManager load default form") {
-                let nc = NetworkManager.loadDefaultForm("", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
-                expect(nc).toNot(beNil())
-            }
         }
     }
 }

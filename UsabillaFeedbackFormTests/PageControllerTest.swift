@@ -25,7 +25,7 @@ class PageControllerTest: QuickSpec {
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: data as Data)
-                formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
+                formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
 
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
@@ -39,7 +39,7 @@ class PageControllerTest: QuickSpec {
             viewController.initWithViewModel(pageViewModel)
 
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-            let _ = viewController.view
+            _ = viewController.view
 
             // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
             viewController.beginAppearanceTransition(true, animated: false)

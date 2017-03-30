@@ -65,17 +65,17 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
 
 
         // customization
-        
+
         let theme = viewModel.theme
         pickerButton.setTitleColor(theme.textColor, for: .normal)
         pickerButton.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
-        
+
         picker.backgroundColor = theme.backgroundColor
         picker.tintColor = theme.textColor
-        
+
         bottomBorder.backgroundColor = theme.hintColor
         topBorder.backgroundColor = theme.hintColor
-        
+
         configure()
     }
 
@@ -92,20 +92,18 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
             pickerButton.setTitle(viewModel.options[0].title, for: .normal)
             picker.selectRow(0, inComponent: 0, animated: true)
         } else {
-            for (index, option) in viewModel.options.enumerated() {
-                if option.value == tmpValue {
-                    pickerButton.setTitle(option.title, for: .normal)
-                    picker.selectRow(index, inComponent: 0, animated: false)
-                }
+            for (index, option) in viewModel.options.enumerated() where option.value == tmpValue {
+                pickerButton.setTitle(option.title, for: .normal)
+                picker.selectRow(index, inComponent: 0, animated: false)
             }
         }
 
         if viewModel.options.count < 5 {
             picker.heightAnchor.constraint(equalToConstant: 100).prioritize(750).activate()
         }
-        
+
     }
-    
+
     func pickerButtonClicked() {
         viewModel.expanded = !viewModel.expanded
         pickerDismissConstraint.isActive = !viewModel.expanded

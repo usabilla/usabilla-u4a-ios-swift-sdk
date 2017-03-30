@@ -157,7 +157,7 @@ class FormViewController: UIViewController {
 
     func resetAndRestartForm() {
         currentPage = 0
-        formModel = JSONFormParser.parseFormJson(formModel.formJsonString, appId: formModel.appId, screenshot: nil, themeConfig: formModel.themeConfig)
+        formModel = FormModel(json: formModel.formJsonString, id: formModel.appId, themeConfig: formModel.themeConfig, screenshot: nil)
         swipeToPage(0)
     }
 
@@ -165,10 +165,8 @@ class FormViewController: UIViewController {
     func selectNewPage() -> Int {
         var newPageIndex = -1
         if let pageToJump = pageController.whereShouldIJump() {
-            for (index, page) in formModel.pages.enumerated() {
-                if page.pageName == pageToJump {
-                    newPageIndex = index
-                }
+            for (index, page) in formModel.pages.enumerated() where page.pageName == pageToJump {
+                newPageIndex = index
             }
         }
 
@@ -177,7 +175,6 @@ class FormViewController: UIViewController {
         }
 
         return newPageIndex
-
     }
 
 

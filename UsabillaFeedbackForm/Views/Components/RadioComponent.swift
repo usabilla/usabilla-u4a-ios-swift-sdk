@@ -28,14 +28,12 @@ class RadioComponent: BaseCheckBoxComponent<RadioComponentViewModel> {
 
         checkBox.setOn(!checkBox.on, animated: true)
 
-        for (index, checkBox) in checkBoxes.enumerated() {
+        for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on == true {
             let option = viewModel.options[index]
-            if checkBox.checkBox.on {
-                values.append(option.value)
-            }
+            values.append(option.value)
         }
         viewModel.value = values
         valueChanged()
     }
-    
+
 }

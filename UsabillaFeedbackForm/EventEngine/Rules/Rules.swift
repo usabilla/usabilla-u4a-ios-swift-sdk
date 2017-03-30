@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+// swiftlint:disable identifier_name
 enum RuleType: String {
     case and
     case or
@@ -18,6 +18,7 @@ enum RuleType: String {
     case percentage
     case repetition
 }
+// swiftlint:enable identifier_name
 
 protocol Rule: NSCoding {
 

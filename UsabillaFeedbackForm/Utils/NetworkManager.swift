@@ -182,11 +182,12 @@ class NetworkManager {
 
     ///Stuff moved to be private
 
-    class func getFormJsonFromServer(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
+    class func getFormJsonFromServer(_ formId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
 
-        getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
-            let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
+        getFormWithFormID(formID: formId).then { (jsonObj: JSON) -> Void in
+            let form = FormModel(json: jsonObj, id: formId, themeConfig: themeConfig, screenshot: screenshot)
 
+            
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
             guard let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
                 let formController = base.childViewControllers[0] as? FormViewController else {
@@ -206,39 +207,8 @@ class NetworkManager {
         }.catch { _ in
             Swift.debugPrint("calling fail protocol")
             DispatchQueue.main.async {
-                UsabillaFeedbackForm.delegate?.formFailedLoading(loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig)!)
+                UsabillaFeedbackForm.delegate?.formFailedLoading(UINavigationController())
             }
         }
-    }
-
-
-    class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> UINavigationController? {
-        if let path = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.path(forResource: "defaultJson", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
-
-                let jsonObj: JSON = JSON(data: data)
-                if jsonObj != JSON.null {
-                    let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
-                    form.isDefault = true
-                    let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-                    let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController
-                    let formController = base?.childViewControllers[0] as? FormViewController
-
-                    formController!.initWithFormModel(form)
-                    formController!.customVars = customVariables
-                    formController!.delegate = PassiveFormController()
-                    return base!
-
-                } else {
-                    Swift.debugPrint("could not get json from file, make sure that file contains valid json.")
-                }
-            } catch let error as NSError {
-                Swift.debugPrint(error.localizedDescription)
-            }
-        } else {
-            Swift.debugPrint("Invalid filename/path.")
-        }
-        return nil
     }
 }
