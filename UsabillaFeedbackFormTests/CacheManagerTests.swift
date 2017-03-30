@@ -22,10 +22,10 @@ class CacheManagerTests: QuickSpec {
         describe("CacheManagerTests") {
 
             beforeEach {
-                let path = Bundle(for: FormModelTest.self).path(forResource: "test", ofType: "json")!
+                let path = Bundle(for: CacheManagerTests.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                let jsonObj: JSON = JSON(data: (data as? Data)!)
-                self.formModel = JSONFormParser.parseFormJson(jsonObj, appId: self.formId, screenshot: nil, themeConfig: UsabillaThemeConfigurator())
+                let jsonObj: JSON = JSON(data: (data as Data?)!)
+                self.formModel = FormModel(json: jsonObj, id: self.formId, themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
             }
 
             context("When saving form into cache", {

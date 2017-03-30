@@ -188,7 +188,7 @@ class NetworkManager {
     class func getForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
-                let form: FormModel = JSONFormParser.parseFormJson(jsonObj, appId: appId, screenshot: screenshot, themeConfig: themeConfig)
+                let form = FormModel(json: jsonObj, id: appId, themeConfig: themeConfig, screenshot: screenshot)
                 PLog("form loaded successfully")
                 fulfill(form)
             }.catch { error in

@@ -101,7 +101,7 @@ class NetworkManagerTest: QuickSpec {
                 }
             })
 
-            context("When getFormJson is called", {
+            context("When getFormJson is called") {
                 it("should fail getting formModel when formId is wrong") {
                     waitUntil(timeout: 2.0) { done in
                         let promise = NetworkManager.getForm("ThisIsAnInvalidFormId", screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
@@ -122,8 +122,7 @@ class NetworkManagerTest: QuickSpec {
                         })
                     }
                 }
-            })
-
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ open class UsabillaThemeConfigurator {
     open var errorColor: UIColor
     open var statusBarColor: UIStatusBarStyle
     open var customFont: UIFont?
+    open var customFontBold: UIFont?
     open var enabledEmoticons: [UIImage]
     open var disabledEmoticons: [UIImage]?
     open var fullStar: UIImage?
@@ -68,7 +69,7 @@ open class UsabillaThemeConfigurator {
         toReturn.append(UIImage(named: "05", in: bundle, compatibleWith: nil)!)
         return toReturn
     }
-    
+
     /**
      Get the correct array of emoticons if mood control contains only 2 or 3 moods
      
@@ -80,7 +81,7 @@ open class UsabillaThemeConfigurator {
         guard let array = emoticons, array.count == 5 else {
             return nil
         }
-        
+
         switch size {
         case 2:
             return [array[0], array[4]]
@@ -89,5 +90,15 @@ open class UsabillaThemeConfigurator {
         default:
             return array
         }
+    }
+
+    func updateConfig(json: JSON) {
+        // TO DO guard with empty check
+        self.titleColor = UIColor(rgbao: json["group1"]["hash"].string) ?? titleColor
+        self.accentColor = UIColor(rgbao: json["group2"]["hash"].string) ?? accentColor
+        self.textColor = UIColor(rgbao: json["group3"]["hash"].string) ?? textColor
+        self.errorColor = UIColor(rgbao: json["group4"]["hash"].string) ?? errorColor
+        self.backgroundColor = UIColor(rgbao: json["group5"]["hash"].string) ?? backgroundColor
+        self.textOnAccentColor = UIColor(rgbao: json["group6"]["hash"].string) ?? textOnAccentColor
     }
 }

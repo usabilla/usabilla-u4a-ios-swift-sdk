@@ -11,7 +11,6 @@ import Foundation
 
 class FormModel {
 
-
     let hasScreenshot: Bool
     let version: Int
     let pages: [PageModel]
@@ -37,6 +36,41 @@ class FormModel {
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
 
         _ = pages.map { $0.copy = copyModel }
+    }
+    
+    init(json: JSON, id: String, themeConfig: UsabillaThemeConfigurator, screenshot: UIImage?) {
+        let data = json["data"]
+        self.copyModel = CopyModel(json: json)
+        self.hasScreenshot = data["screenshot"].boolValue
+        self.version = json["version"].intValue
+        self.redirectToAppStore = data["appStoreRedirect"].boolValue
+        self.showProgressBar = data["progressBar"].bool ?? true
+        self.appId = id
+        self.formJsonString = json
+        self.themeConfig = themeConfig
+        themeConfig.updateConfig(json:  json["colors"])
+        
+        var newPages: [PageModel] = []
+        
+        for (index, subJson): (String, JSON) in json["form"]["pages"] {
+            let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
+            page.errorMessage = copyModel.errorMessage
+            page.copy = copyModel
+            newPages.append(page)
+        }
+        newPages.last?.isLastPage = true
+        var screenshotJson: [String: Any] = [:]
+        screenshotJson["type"] = "screenshot"
+        screenshotJson["name"] = "screenshot"
+        screenshotJson["title"] = "Screenshot"
+        screenshotJson["required"] = false
+        
+        let pageModel = newPages.first
+        if hasScreenshot {
+            newPages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
+        }
+        
+        self.pages = newPages
     }
 
     func toDictionnary() -> [String: Any] {

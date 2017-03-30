@@ -21,6 +21,8 @@ class ComponentFactory {
             return CheckBoxComponent(viewModel: (viewModel as? CheckBoxComponentViewModel)!)
         case is EmailComponentViewModel:
             return EmailComponent(viewModel: (viewModel as? EmailComponentViewModel)!)
+        case is HeaderComponentViewModel:
+            return HeaderComponent(viewModel: (viewModel as? HeaderComponentViewModel)!)
         case is TextAreaComponentViewModel:
             return TextAreaComponent(viewModel: (viewModel as? TextAreaComponentViewModel)!)
         case is TextFieldComponentViewModel:

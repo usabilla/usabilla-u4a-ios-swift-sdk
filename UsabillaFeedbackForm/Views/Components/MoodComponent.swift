@@ -14,9 +14,10 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
     override func build() {
         moodControl = RatingControl()
-        moodControl?.mode = .selection
-        moodControl?.translatesAutoresizingMaskIntoConstraints = false
-        moodControl?.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
+        moodControl.mode = .selection
+        moodControl.centered = viewModel.isCentered
+        moodControl.translatesAutoresizingMaskIntoConstraints = false
+        moodControl.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
 
         addSubview(moodControl)
 
@@ -37,6 +38,7 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
     func pickMood(sender: RatingControl) {
         viewModel.value = moodControl.rating
         PLog("You pick state \(String(describing: viewModel.value))")
+
         valueChanged()
     }
 }

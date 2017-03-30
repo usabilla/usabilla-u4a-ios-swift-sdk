@@ -23,6 +23,9 @@ class ComponentViewModelFactory {
         case is EmailFieldModel:
             let m = (field as? EmailFieldModel)!
             return EmailComponentViewModel(model: m)
+        case is HeaderFieldModel:
+            let m = (field as? HeaderFieldModel)!
+            return HeaderComponentViewModel(model: m)
         case is MoodFieldModel:
             let m = (field as? MoodFieldModel)!
             return MoodComponentViewModel(model: m)

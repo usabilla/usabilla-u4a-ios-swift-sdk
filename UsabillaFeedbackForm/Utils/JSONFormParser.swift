@@ -11,80 +11,24 @@ import Foundation
 
 class JSONFormParser {
 
-    class func parseFormJson(_ json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
-
-        let data = json["data"]
-        let copyModel = parseCopy(json)
-
-        let hasScreenshot = data["screenshot"].boolValue
-        let version = json["version"].intValue
-        let appStoreRedirect = data["appStoreRedirect"].bool
-        let progressBar = data["progressBar"].bool
-
-
-        parseColors(themeConfig, json: json["colors"])
-
-        var pages: [PageModel] = []
-
-        for (index, subJson): (String, JSON) in json["form"]["pages"] {
-            let page = parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
-            page.errorMessage = copyModel.errorMessage
-            pages.append(page)
-        }
-        pages.last?.isLastPage = true
-
-        var screenshotJson: [String: Any] = [:]
-        screenshotJson["type"] = "screenshot"
-        screenshotJson["name"] = "screenshot"
-        screenshotJson["title"] = "Screenshot"
-        screenshotJson["required"] = false
-
-        let pageModel = pages.first
-        if hasScreenshot {
-            pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
-        }
-
-        return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig: themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
-    }
-
-    fileprivate class func parseCopy(_ json: JSON) -> CopyModel {
-        let copyModel = CopyModel()
-        let data = json["data"]
-
-        copyModel.appTitle = data["appTitle"].string
-        copyModel.navigationSubmit = data["appSubmit"].string
-        copyModel.errorMessage = data["errorMessage"].string
-
-        let localization = json["localization"]
-
-        if let appStore = localization["appStore"].string {
-            copyModel.appStore = appStore
-        }
-        if let moreFeedback = localization["moreFeedback"].string {
-            copyModel.moreFeedback = moreFeedback
-        }
-        if let screenshotTitle = localization["screenshotTitle"].string {
-            copyModel.screenshotTitle = screenshotTitle
-        }
-        if let cancelButton = localization["cancelButton"].string {
-            copyModel.cancelButton = cancelButton
-        }
-        if let navigationNext = localization["navigationNext"].string {
-            copyModel.navigationNext = navigationNext
-        }
-
-        return copyModel
-    }
-
-    fileprivate class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
+    class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
 
         let pageName = pageJson["name"].stringValue
-        let type = pageJson["type"].stringValue
+        let type = PageType(rawValue: pageJson["type"].stringValue)
 
-        let currentPage = PageModel(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
+        let pageModelClass: PageModel.Type = type != .start ? PageModel.self : IntroPageModel.self
+        let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
-        currentPage.type = PageType(rawValue: type)
+        currentPage.type = type
+
+        // specific intro page parsing
+        if let introPage = currentPage as? IntroPageModel {
+            introPage.hasContinueButton = pageJson["hasContinueButton"].boolValue
+            if let displayMode = IntroPageDisplayMode(rawValue: pageJson["display"].stringValue) {
+                introPage.displayMode = displayMode
+            }
+        }
 
         var fields: [BaseFieldModel] = []
 

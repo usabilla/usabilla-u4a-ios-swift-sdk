@@ -14,22 +14,82 @@ protocol CampaignViewControllerDelegate: class {
 
 class CampaignViewController: UIViewController {
 
-    fileprivate let campaign: Campaign
+    fileprivate let viewModel: CampaignViewModel
+
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
+    var backgroundLayer: UIView?
+
     override func viewDidLoad() {
+        if let introPageViewModel = viewModel.introPageViewModel {
+            let introOutroView = UBIntroOutroView(viewModel: introPageViewModel)
+            introOutroView.delegate = self
 
+            var animations: (() -> Void)?
+
+            if viewModel.introPageViewModel?.displayMode == .alert {
+                createBackgroundLayer()
+                animations = {
+                    self.backgroundLayer!.alpha = 1
+                }
+            }
+            view.addSubview(introOutroView)
+            viewModel.introPresenter?.present(view: introOutroView, inView: view, animations: animations)
+
+            
+            // TO DO : display intro
+            return
+        }
+        // TO DO : display modal
     }
 
-    init(campaign: Campaign, delegate: CampaignViewControllerDelegate) {
-        self.campaign = campaign
-        self.delegate = delegate
-        super.init(nibName: nil, bundle: nil)
+    override func loadView() {
         self.view = UBCustomTouchableView()
+        self.view.frame = UIScreen.main.bounds
     }
 
+    init(viewModel: CampaignViewModel, delegate: CampaignViewControllerDelegate) {
+        self.viewModel = viewModel
+        self.delegate = delegate
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    func createBackgroundLayer() {
+        backgroundLayer = UIView()
+        backgroundLayer!.alpha = 0.0
+        backgroundLayer!.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        backgroundLayer!.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(backgroundLayer!)
+        backgroundLayer!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundLayer!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundLayer!.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroundLayer!.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension CampaignViewController: UBIntroOutroViewDelegate {
+
+    internal func introViewDidCancel(introView: UBIntroOutroView) {
+        var animations: (() -> Void)?
+        if viewModel.introPageViewModel?.displayMode == .alert {
+            animations = {
+                self.backgroundLayer!.alpha = 0.0
+            }
+        }
+
+        viewModel.introPresenter?.dismiss(view: introView, inView: self.view, animations: animations) {
+            self.backgroundLayer?.removeFromSuperview()
+            introView.removeFromSuperview()
+            self.delegate?.campaignDidEnd(success: false)
+        }
+    }
+
+    internal func introViewDidContinue(introView: UBIntroOutroView) {
+
     }
 }
 

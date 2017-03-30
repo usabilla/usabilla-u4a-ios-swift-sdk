@@ -10,6 +10,8 @@ import Foundation
 
 class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel> {
 
+    var isCentered: Bool = false
+
     override var value: Int? {
         get {
             return reverseEmoticonValue(fieldValue: model.fieldValue, maxMoods: model.points)
@@ -87,4 +89,5 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel> {
             return index
         }
     }
+
 }

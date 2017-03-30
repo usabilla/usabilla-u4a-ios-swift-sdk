@@ -126,6 +126,13 @@ extension UIColor {
         self.init(cgColor: color.cgColor)
     }
 
+    convenience init?(rgbao: String?, defaultColor: UIColor = UIColor.clear) {
+        guard let color = rgbao else {
+            return nil
+        }
+        self.init(rgba: color, defaultColor: defaultColor)
+    }
+
     /**
      Hex string of a UIColor instance.
      

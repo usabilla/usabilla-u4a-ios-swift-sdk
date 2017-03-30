@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ShowHideRule: Rule {
+class ShowHideRule: UBRule {
 
     let showIfRuleIsSatisfied: Bool
 

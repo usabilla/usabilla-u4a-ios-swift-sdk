@@ -19,7 +19,7 @@ class UIImageTest: QuickSpec {
             let powered = Icons.imageOfPoweredBy(color: .blue)
 
             it("UIImage alpha") {
-                let _ = powered.alpha(value: 0.3)
+                _ = powered.alpha(value: 0.3)
             }
             
             it("UIImage fix and size") {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Rule {
+class UBRule {
 
     let dependsOnID: String
     let targetValues: [String]

@@ -22,11 +22,9 @@ class CheckBoxComponent: BaseCheckBoxComponent<CheckBoxComponentViewModel> {
     override func didTapCheckBox(_ checkBox: SwiftCheckBox) {
         var values: [String] = []
 
-        for (index, checkBox) in checkBoxes.enumerated() {
+        for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on == true {
             let option = viewModel.options[index]
-            if checkBox.checkBox.on {
-                values.append(option.value)
-            }
+            values.append(option.value)
         }
         viewModel.value = values
         valueChanged()
