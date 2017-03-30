@@ -8,19 +8,19 @@
 
 import Foundation
 
-class Campaign: NSObject, NSCoding {
+class CampaignModel: NSObject, NSCoding {
     
     let rule: Rule
     let formId: String
     var numberOfTimesTriggered: Int
-    let displayMoreThanOnce: Bool
+    let maximumDisplays: Int
     var version: Int
     
-    init(rule: Rule, formId: String, displayMoreThanOnce: Bool, numberOfTimesTriggered: Int = 0, version: Int) {
+    init(rule: Rule, formId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, version: Int) {
         self.rule = rule
         self.formId = formId
         self.numberOfTimesTriggered = numberOfTimesTriggered
-        self.displayMoreThanOnce = displayMoreThanOnce
+        self.maximumDisplays = maximumDisplays
         self.version = version
     }
     
@@ -36,10 +36,10 @@ class Campaign: NSObject, NSCoding {
         let rule = aDecoder.decodeObject(forKey: "rule") as! Rule
         let formId = aDecoder.decodeObject(forKey:"formId") as! String
         let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: "numberOfTimesTriggered")
-        let displayMoreThanOnce = aDecoder.decodeBool(forKey: "displayMoreThanOnce")
+        let maximumDisplays = aDecoder.decodeInteger(forKey: "maximumDisplays")
         let version = aDecoder.decodeInteger(forKey: "version")
         
-        self.init(rule: rule, formId: formId, displayMoreThanOnce: displayMoreThanOnce, numberOfTimesTriggered: numberOfTimesTriggered, version: version)
+        self.init(rule: rule, formId: formId, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, version: version)
     }
     // swiftlint:enable force_cast
     
@@ -47,7 +47,7 @@ class Campaign: NSObject, NSCoding {
         aCoder.encode(self.rule, forKey: "rule")
         aCoder.encode(self.formId, forKey: "formId")
         aCoder.encode(self.numberOfTimesTriggered, forKey: "numberOfTimesTriggered")
-        aCoder.encode(self.displayMoreThanOnce, forKey: "displayMoreThanOnce")
+        aCoder.encode(self.maximumDisplays, forKey: "maximumDisplays")
         aCoder.encode(self.version, forKey: "version")
         
     }

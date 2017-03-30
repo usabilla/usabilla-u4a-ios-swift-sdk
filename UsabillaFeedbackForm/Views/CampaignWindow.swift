@@ -11,7 +11,7 @@ import Foundation
 class CampaignWindow: UIWindow {
     static let shared = CampaignWindow()
 
-    private var currentCampaign: Campaign?
+    private var currentCampaign: CampaignModel?
 
     private init() {
         super.init(frame: UIScreen.main.bounds)
@@ -29,7 +29,7 @@ class CampaignWindow: UIWindow {
 
      - parameter campaign: Campaign to display
      */
-    @discardableResult func showCampaign(_ campaign: Campaign) -> Bool {
+    @discardableResult func showCampaign(_ campaign: CampaignModel) -> Bool {
         guard currentCampaign != nil else {
             return false
         }
