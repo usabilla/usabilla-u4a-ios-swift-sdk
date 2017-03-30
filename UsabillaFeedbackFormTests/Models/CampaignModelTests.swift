@@ -28,9 +28,11 @@ class CampaignModelTests: QuickSpec {
         describe("CampaignModelTests") {
             context("When CampaignModel is initialized") {
                 it("Should have right values") {
-                    let campaign = Campaign(id: "id", json: formJson)
-                    expect(campaign.id).to(equal("id"))
-                    expect(campaign.form.pages.count).to(equal(4))
+                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
+                    let formModel = FormModel(json: formJson, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    campaign.form = formModel
+                    expect(campaign.identifier).to(equal("id"))
+                    expect(campaign.form?.pages.count).to(equal(4))
                 }
             }
         }
