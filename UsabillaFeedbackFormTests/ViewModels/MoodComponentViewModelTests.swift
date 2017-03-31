@@ -23,7 +23,7 @@ class MoodComponentViewModelTests: QuickSpec {
         var moodModel: MoodFieldModel!
         
         beforeSuite {
-            moodModel = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": \"5\"}"), pageModel: pageModel)
+            moodModel = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"), pageModel: pageModel)
         }
         
         describe("moodComponentViewModelTests") {
@@ -45,7 +45,7 @@ class MoodComponentViewModelTests: QuickSpec {
                 var moodModelLessThan5Moods: MoodFieldModel!
                 
                 it("should have all values setup correctly for 3 moods", closure: {
-                    moodModelLessThan5Moods = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": \"3\"}"), pageModel: pageModel)
+                    moodModelLessThan5Moods = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"), pageModel: pageModel)
                     
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods)
                     expect(moodComponentViewModel.maxValue).to(equal(3))
@@ -55,7 +55,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(moodComponentViewModel.value).to(equal(0))
                 })
                 it("should have all values setup correctly for 2 moods", closure: {
-                    moodModelLessThan5Moods = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": \"2\"}"), pageModel: pageModel)
+                    moodModelLessThan5Moods = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"), pageModel: pageModel)
                     
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods)
                     
