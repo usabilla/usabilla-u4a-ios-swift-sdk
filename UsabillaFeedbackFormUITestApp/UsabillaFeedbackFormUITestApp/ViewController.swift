@@ -34,7 +34,7 @@ extension ViewController: UsabillaFeedbackFormDelegate {
         present(form, animated: true, completion: nil)
     }
     
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
-        dismiss(animated: true, completion: nil)
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+        form.dismiss(animated: true, completion: nil)
     }
 }

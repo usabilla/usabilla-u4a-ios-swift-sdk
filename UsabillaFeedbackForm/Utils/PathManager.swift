@@ -33,8 +33,7 @@ class PathManager {
             
         default:
             let radius: CGFloat = self.size / 2
-            path = UIBezierPath.init(arcCenter: CGPoint(x: size/2, y: size/2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
-            
+            path = UIBezierPath.init(arcCenter: CGPoint(x: size/2, y: size/2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)            
             break
         }
         return path

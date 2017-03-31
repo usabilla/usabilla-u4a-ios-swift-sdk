@@ -102,7 +102,7 @@ class FormControllerTest: QuickSpec {
                 }
             }
         }
-        
+
         describe("delegate methods test") {
             it("tap on right button should notify delegate") {
                 waitUntil(timeout: 5.0) { done in
@@ -112,7 +112,7 @@ class FormControllerTest: QuickSpec {
                     viewController.rightBarButtonPressed(UIBarButtonItem())
                 }
             }
-            
+
             it("tap on left button should notify delegate") {
                 waitUntil(timeout: 5.0) { done in
                     self.doneLeft = {

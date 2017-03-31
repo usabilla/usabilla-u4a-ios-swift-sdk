@@ -197,6 +197,13 @@ class FormViewController: UIViewController {
     @IBAction func leftBarButtonPressed(_ sender: UIBarButtonItem) {
         deinitForm()
         delegate?.leftBarButtonTapped(self)
+        if thankYouController == nil {
+            results.append(formModel.toFeedbackResult(latestPageIndex: currentPage))
+        }
+        
+        if UsabillaFeedbackForm.dismissAutomatically {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     func deinitForm() {

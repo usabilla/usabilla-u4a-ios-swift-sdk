@@ -82,8 +82,8 @@ extension PassiveFormControllerTest: UsabillaFeedbackFormDelegate {
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
 
     }
-
-    func formDidClose(formID: String, with feedbackResults: [FeedbackResult]) {
+    
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
         closed!(feedbackResults)
     }
 }

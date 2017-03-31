@@ -11,7 +11,7 @@ import Foundation
 class MoodFieldModel: IntFieldModel {
     let points: Int
     override init(json: JSON, pageModel: PageModel) {
-        points = json["points"].intValue
+        points = json["points"].int ?? 5
         super.init(json: json, pageModel: pageModel)
     }
 

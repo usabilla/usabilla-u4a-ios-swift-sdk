@@ -19,7 +19,7 @@ class PassiveFormController: FormViewControllerDelegate {
             results.append(formViewController.formModel.toFeedbackResult(latestPageIndex: i))
         }
 
-        UsabillaFeedbackForm.delegate?.formDidClose(formID: formViewController.formModel.appId, with: results)
+        UsabillaFeedbackForm.delegate?.formDidClose(formViewController.navigationController!, formID: formViewController.formModel.appId, with: results)
 
         if UsabillaFeedbackForm.dismissAutomatically {
             formViewController.dismiss(animated: true, completion: nil)

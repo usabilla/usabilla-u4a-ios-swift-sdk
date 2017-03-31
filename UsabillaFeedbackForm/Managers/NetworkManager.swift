@@ -70,7 +70,7 @@ class NetworkManager {
                 }
             }.catch { error in
                 reject(error)
-                print(error)
+                PLog(error)
             }
         }
     }
@@ -98,15 +98,15 @@ class NetworkManager {
                     promisedSucceeded += 1
                     if promisedSucceeded == stringChunks.count {
                         closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
-                            debugPrint("Deal closed")
+                            PLog("Deal closed")
                             fulfill(true)
                         }).catch { err in
                             reject(err)
-                            debugPrint(err)
+                            PLog(err)
                         }
                     }
                 }).catch(execute: { err in
-                    debugPrint(err)
+                    PLog(err)
                 })
             }
         }
@@ -163,7 +163,6 @@ class NetworkManager {
 
     }
 
-
     /// Submits form data without screenshot (Only text)
     ///
     /// - Parameter payload: data to submit
@@ -180,34 +179,21 @@ class NetworkManager {
         }
     }
 
-    ///Stuff moved to be private
-
-    class func getFormJsonFromServer(_ formId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) {
-
-        getFormWithFormID(formID: formId).then { (jsonObj: JSON) -> Void in
-            let form = FormModel(json: jsonObj, id: formId, themeConfig: themeConfig, screenshot: screenshot)
-
-            
-            let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-            guard let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
-                let formController = base.childViewControllers[0] as? FormViewController else {
-                    return
-            }
-
-
-            formController.initWithFormModel(form)
-            formController.customVars = customVariables
-            formController.delegate = PassiveFormController()
-            
-            Swift.debugPrint("calling success protocol")
-
-            DispatchQueue.main.async {
-                UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
-            }
-        }.catch { _ in
-            Swift.debugPrint("calling fail protocol")
-            DispatchQueue.main.async {
-                UsabillaFeedbackForm.delegate?.formFailedLoading(UINavigationController())
+    /**
+        getForm : loads a form with id from network and returns a FormModel object of it to be used
+ 
+        @parameter formId: the form id
+        @return Pormise<FormModel> : a promess of a valid form model
+     */
+    class func getForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> Promise<FormModel> {
+        return Promise { fulfill, reject in
+            getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
+                let form = FormModel(json: jsonObj, id: appId, themeConfig: themeConfig, screenshot: screenshot)
+                PLog("form loaded successfully")
+                fulfill(form)
+            }.catch { error in
+                PLog("form couldn't load")
+                reject(error)
             }
         }
     }

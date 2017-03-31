@@ -11,43 +11,6 @@ import Foundation
 
 class JSONFormParser {
 
-    /*
-    class func parseFormJson(_ json: JSON, appId: String, screenshot: UIImage?, themeConfig: UsabillaThemeConfigurator) -> FormModel {
-
-        let data = json["data"]
-        let copyModel = parseCopy(json)
-
-        let hasScreenshot = data["screenshot"].boolValue
-        let version = json["version"].intValue
-        let appStoreRedirect = data["appStoreRedirect"].bool
-        let progressBar = data["progressBar"].bool
-
-
-        parseColors(themeConfig, json: json["colors"])
-
-        var pages: [PageModel] = []
-
-        for (index, subJson): (String, JSON) in json["form"]["pages"] {
-            let page = parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
-            page.errorMessage = copyModel.errorMessage
-            pages.append(page)
-        }
-        pages.last?.isLastPage = true
-
-        var screenshotJson: [String: Any] = [:]
-        screenshotJson["type"] = "screenshot"
-        screenshotJson["name"] = "screenshot"
-        screenshotJson["title"] = "Screenshot"
-        screenshotJson["required"] = false
-
-        let pageModel = pages.first
-        if hasScreenshot {
-            pages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
-        }
-
-        return FormModel(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: json, themeConfig: themeConfig, redirectToAppStore: appStoreRedirect, showProgressBar: progressBar, copyModel: copyModel)
-    }*/
-
     class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
 
