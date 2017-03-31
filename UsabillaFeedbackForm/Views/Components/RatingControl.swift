@@ -145,7 +145,7 @@ class RatingControl: UIControl {
                 button.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
             }
             prevbutton = button
-            
+
 
         }
 

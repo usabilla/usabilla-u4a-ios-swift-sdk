@@ -13,7 +13,7 @@ class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel>
     var options: [Options] {
         return model.options
     }
-    
+
     override var value: String? {
         get {
             return model.fieldValue.first

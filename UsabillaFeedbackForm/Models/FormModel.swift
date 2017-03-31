@@ -37,7 +37,7 @@ class FormModel {
 
         _ = pages.map { $0.copy = copyModel }
     }
-    
+
     init(json: JSON, id: String, themeConfig: UsabillaThemeConfigurator, screenshot: UIImage?) {
         let data = json["data"]
         self.copyModel = CopyModel(json: json)
@@ -48,10 +48,10 @@ class FormModel {
         self.appId = id
         self.formJsonString = json
         self.themeConfig = themeConfig
-        themeConfig.updateConfig(json:  json["colors"])
-        
+        themeConfig.updateConfig(json: json["colors"])
+
         var newPages: [PageModel] = []
-        
+
         for (index, subJson): (String, JSON) in json["form"]["pages"] {
             let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
             page.errorMessage = copyModel.errorMessage
@@ -64,12 +64,12 @@ class FormModel {
         screenshotJson["name"] = "screenshot"
         screenshotJson["title"] = "Screenshot"
         screenshotJson["required"] = false
-        
+
         let pageModel = newPages.first
         if hasScreenshot {
             newPages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
         }
-        
+
         self.pages = newPages
     }
 
@@ -103,7 +103,7 @@ class FormModel {
             type(of: $0) == StarFieldModel.self || type(of: $0) == MoodFieldModel.self
         } as? IntFieldModel
         let ratingValue = rating?.fieldValue
-        
+
         if pages[latestPageIndex].type != .end {
             return FeedbackResult(rating: ratingValue, abandonedPageIndex: latestPageIndex)
         }

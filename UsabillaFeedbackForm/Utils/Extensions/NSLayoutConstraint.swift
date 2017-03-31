@@ -13,12 +13,12 @@ extension NSLayoutConstraint {
         self.identifier = identifier
         return self
     }
-    
+
     func prioritize(_ priority: UILayoutPriority) -> NSLayoutConstraint {
         self.priority = priority
         return self
     }
-    
+
     @discardableResult func activate() -> NSLayoutConstraint {
         isActive = true
         return self

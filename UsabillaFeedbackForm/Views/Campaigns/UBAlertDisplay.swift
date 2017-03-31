@@ -13,7 +13,7 @@ class UBAlertDisplay: UBIntroOutroDisplay {
     static func build(view: UBIntroOutroView) {
         addProperties(view)
         buildHorizontaleLine(view)
-        
+
         if view.viewModel.hasContinueButton {
             buildButtonsDividerLine(view)
         }
@@ -25,7 +25,7 @@ class UBAlertDisplay: UBIntroOutroDisplay {
         view.layer.masksToBounds = true
         view.titleLabel?.textAlignment = .center
     }
-    
+
     static private func buildHorizontaleLine(_ view: UBIntroOutroView) {
         let horizontalLine = UIView()
         horizontalLine.translatesAutoresizingMaskIntoConstraints = false

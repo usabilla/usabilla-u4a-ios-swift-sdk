@@ -9,24 +9,24 @@
 import Foundation
 
 class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
-    
+
     var line: UIView!
-    
+
     override func build() {
         super.build()
         line = UIView()
-        
+
         textView.dataDetectorTypes = .link
         line.translatesAutoresizingMaskIntoConstraints = false
         addSubview(line)
-        
+
         // positioning
         line.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).activate()
         line.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).activate()
         line.heightAnchor.constraint(equalToConstant: 1).activate()
         line.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 2).activate()
-        
-  
+
+
         // configuration
         if viewModel.value != nil {
             textView.text = viewModel.value
@@ -35,12 +35,12 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
             viewModel.isPlaceHolder = true
             textView.text = viewModel.placeHolder
         }
-        
+
         // customization
         setCorrectFont()
         line.backgroundColor = viewModel.theme.hintColor
     }
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if viewModel.isPlaceHolder {
             textView.text = nil
@@ -54,7 +54,7 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
         valueChanged()
         SwiftEventBus.postToMainThread("updateMySize")
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = viewModel.placeHolder
@@ -64,7 +64,7 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
             valueChanged()
         }
     }
-    
+
     func setCorrectFont() {
         let theme = viewModel.theme
         if !viewModel.isPlaceHolder {
@@ -78,6 +78,6 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
                 textView.font = UIFont.italicSystemFont(ofSize: theme.textFontSize)
             }
         }
-        
+
     }
 }

@@ -22,7 +22,7 @@ class PercentageDecorator: Decorator {
         let diceRoll = Int(arc4random_uniform(100) + 1)
         return checkIfTriggers(triggered: triggered, diceRoll: diceRoll)
     }
-    
+
     func checkIfTriggers(triggered: Bool, diceRoll: Int) -> Bool {
         return percentage >= diceRoll && triggered
     }

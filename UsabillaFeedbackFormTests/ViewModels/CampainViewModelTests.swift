@@ -16,7 +16,7 @@ class CampainViewModelTests: QuickSpec {
 
     override func spec() {
         describe("CampainViewModelTests") {
-        
+
             beforeSuite {
                 let path = Bundle(for: CampainViewModelTests.self).path(forResource: "test", ofType: "json")!
                 do {
@@ -47,7 +47,7 @@ class CampainViewModelTests: QuickSpec {
                     startDict["fileds"] = []
                     dict["form"]!["pages"].arrayObject!.append(startDict)
                     self.formJson = JSON(dict)
-                    
+
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
                     campaign.form = formModel

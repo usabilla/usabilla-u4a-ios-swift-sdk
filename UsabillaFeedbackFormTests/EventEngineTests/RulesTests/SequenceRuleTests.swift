@@ -58,7 +58,7 @@ class SequenceRuleTests: QuickSpec {
                     expect(sequence.triggersWith(event: self.event4)).to(beTrue())
 
                 }
-                
+
                 it("should trigger with the right sequence even if it is not sequential") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
                     expect(sequence.triggersWith(event: self.event1)).to(beFalse())
@@ -71,7 +71,7 @@ class SequenceRuleTests: QuickSpec {
                     expect(sequence.triggersWith(event: self.event1)).to(beFalse())
                     expect(sequence.triggersWith(event: self.event2)).to(beFalse())
                     expect(sequence.triggersWith(event: self.event4)).to(beTrue())
-                    
+
                 }
 
                 it("should not trigger with the wrong sequence") {

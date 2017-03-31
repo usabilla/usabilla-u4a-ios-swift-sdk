@@ -46,7 +46,7 @@ class PassiveFormControllerTest: QuickSpec {
                         expect(feedbackResults.count).to(equal(1))
                         expect(feedbackResults.first?.sent).to(beFalse())
                         done()
-                        
+
                     }
                     viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
@@ -55,7 +55,7 @@ class PassiveFormControllerTest: QuickSpec {
 
         describe("if cancel after submission it should return a success feedbackresult") {
             it("cancel the form should dismiss it") {
-                
+
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 expect(viewController.thankYouController).toNot(beNil())
@@ -82,7 +82,7 @@ extension PassiveFormControllerTest: UsabillaFeedbackFormDelegate {
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
 
     }
-    
+
     func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
         closed!(feedbackResults)
     }

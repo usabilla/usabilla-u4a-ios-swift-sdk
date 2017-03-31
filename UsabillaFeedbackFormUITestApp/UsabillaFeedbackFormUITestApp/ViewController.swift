@@ -18,22 +18,22 @@ class ViewController: UIViewController {
         UsabillaFeedbackForm.showCancelButton = true
         UsabillaFeedbackForm.dismissAutomatically = false
     }
-    
+
     @IBAction func scenario1ButtonTap(_ sender: Any) {
         UsabillaFeedbackForm.loadFeedbackForm("583c0d8ea935028022c145f4")
     }
 }
 
 extension ViewController: UsabillaFeedbackFormDelegate {
-    
+
     func formFailedLoading(_ backupForm: UINavigationController) {
-        
+
     }
-    
+
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
         present(form, animated: true, completion: nil)
     }
-    
+
     func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
         form.dismiss(animated: true, completion: nil)
     }

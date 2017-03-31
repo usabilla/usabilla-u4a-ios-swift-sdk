@@ -34,7 +34,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         addSubview(rightLabel)
 
         // positioning
-        
+
         slider.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         slider.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         slider.rightAnchor.constraint(equalTo: valueLabel.leftAnchor, constant: -6).isActive = true
@@ -48,7 +48,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
         leftLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
         leftLabel.numberOfLines = 0
-        
+
         rightLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         rightLabel.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: 0).isActive = true
         rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
@@ -89,13 +89,13 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         } else {
             slider.setValue(0, animated: false)
         }
-        
+
         // customization
         let theme = viewModel.theme
-        
+
         slider.tintColor = theme.accentColor
         slider.thumbTintColor = theme.accentColor
-        
+
         valueLabel.font = theme.font.withSize(theme.miniFontSize)
         valueLabel.textColor = theme.textColor
         rightLabel.font = theme.font.withSize(theme.miniFontSize)

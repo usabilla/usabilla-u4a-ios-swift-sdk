@@ -20,7 +20,7 @@ class ParagraphComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
 
         describe("ParagraphComponentViewModelTests") {
-            
+
             context("when paragraph has no value") {
                 it("should return a nil value") {
                     model = ParagraphFieldModel(json: JSON.parse("{\"name\":\"paragraph\", \"html\": 0}"), pageModel: pageModel)
@@ -28,7 +28,7 @@ class ParagraphComponentViewModelTests: QuickSpec {
                     expect(viewModel.value).to(beNil())
                 }
             }
-            
+
             context("when paragraph is not html") {
                 it("should return a normal string") {
                     model = ParagraphFieldModel(json: JSON.parse("{\"name\":\"paragraph\", \"html\": 0, \"text\": \"hello\"}"), pageModel: pageModel)

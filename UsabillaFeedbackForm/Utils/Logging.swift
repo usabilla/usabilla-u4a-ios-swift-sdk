@@ -21,7 +21,7 @@ public func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ fu
         let value = object()
         let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"
         let queue = Thread.isMainThread ? "UI" : "BG"
-        
+
         print("<\(queue)> \(fileURL) \(function)[\(line)]: " + String(reflecting: value))
     #endif
 }

@@ -37,7 +37,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
         line.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         textField.text = viewModel.value
-        
+
         //placeholder
         if let placeHolder = viewModel.placeHolder {
             let theme = viewModel.theme
@@ -47,16 +47,16 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
                 textField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSForegroundColorAttributeName: theme.hintColor, NSFontAttributeName: theme.font.withSize(theme.textFontSize)])
             }
         }
-        
+
         // customization
-        
+
         let theme = viewModel.theme
         textField.tintColor = theme.hintColor
         textField.font = theme.font.withSize(theme.textFontSize)
         textField.textColor = theme.textColor
         textField.backgroundColor = theme.backgroundColor
         line.backgroundColor = theme.hintColor
-        
+
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {

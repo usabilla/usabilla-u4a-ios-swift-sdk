@@ -39,7 +39,7 @@ class ComponentViewModelFactoryTests: QuickSpec {
                     expect(component is EmailComponentViewModel).to(beTrue())
                 }
             }
-            
+
             context("when model is HeaderFieldModel") {
                 it("should return a HeaderComponentViewModel") {
                     let model = HeaderFieldModel(json: JSON.parse(""), pageModel: pageModel)

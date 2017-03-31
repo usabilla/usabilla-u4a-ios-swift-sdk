@@ -16,7 +16,7 @@ class UIDeviceTest: QuickSpec {
     override func spec() {
 
         describe("UIDevice") {
-            
+
             it("UIDevice modelName") {
                 expect(UIDevice.current.modelName).to(equal("x86_64"))
             }

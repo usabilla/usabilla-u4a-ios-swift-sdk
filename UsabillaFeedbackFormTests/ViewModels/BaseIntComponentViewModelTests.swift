@@ -12,7 +12,7 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class BaseIntComponentViewModelTests: QuickSpec {
-    
+
     override func spec() {
 
         var viewModel: BaseIntComponentViewModel<IntFieldModel>!
@@ -23,14 +23,14 @@ class BaseIntComponentViewModelTests: QuickSpec {
             model = IntFieldModel(json: JSON.parse("{\"name\":\"mood\"}"), pageModel: pageModel)
             viewModel = BaseIntComponentViewModel<IntFieldModel>(model: model)
         }
-        
+
         describe("BaseIntComponentViewModelTests") {
             context("when changing value") {
                 it("should update model") {
                     viewModel.value = 5
                     expect(model.fieldValue).to(equal(5))
                 }
-                
+
                 it("should update viewModel") {
                     viewModel.value = 4
                     expect(viewModel.value).to(equal(4))

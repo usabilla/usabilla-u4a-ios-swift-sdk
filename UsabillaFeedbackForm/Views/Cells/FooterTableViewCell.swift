@@ -9,7 +9,7 @@
 import UIKit
 
 class FooterTableViewCell: UITableViewCell {
-    
+
     var footerView: UIView? {
         didSet {
             if let footerView = footerView, contentView.subviews.count == 0 {

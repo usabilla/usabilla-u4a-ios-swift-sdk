@@ -11,7 +11,7 @@ import Foundation
 
 class EmailFieldModel: StringFieldModel, EditableStringComponentModel {
     let placeHolder: String?
-    
+
     override init(json: JSON, pageModel: PageModel) {
         placeHolder = json["placeholder"].string
         super.init(json: json, pageModel: pageModel)

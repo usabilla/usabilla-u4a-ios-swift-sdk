@@ -32,40 +32,40 @@ class OptionsFieldModelTest: QuickSpec {
                 model?.isViewCurrentlyVisible = false
                 expect(model?.fieldValue).to(beEmpty())
             }
-            
+
             it("OptionsFieldModel fieldValue") {
                 model?.isViewCurrentlyVisible = true
                 model?.fieldValue = ["test1", "test2"]
                 expect(pageModel.fieldValuesCollection["myField"]).to(equal(["test1", "test2"]))
             }
-            
+
             it("OptionsFieldModel isValid") {
                 model?.fieldValue = []
-                
+
                 model?.isViewCurrentlyVisible = false
                 model?.required = true
                 expect(model?.isValid()).to(beTrue())
-                
+
                 model?.isViewCurrentlyVisible = true
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
-                
+
                 model?.isViewCurrentlyVisible = true
                 model?.required = true
                 expect(model?.isValid()).to(beFalse())
-                
+
                 model?.fieldValue = ["hello"]
                 expect(model?.isValid()).to(beTrue())
             }
-            
+
             it("StringField convertToJson") {
                 model?.fieldValue = []
                 expect(model?.convertToJSON()).to(beNil())
-                
+
                 model?.fieldValue = ["hello"]
                 expect(model?.convertToJSON() as? [String]).to(equal(["hello"]))
-            }        
-            
+            }
+
         }
     }
 }

@@ -24,11 +24,11 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
             }
         }
     }
-    
+
     var ratingMode: RatingMode {
         return .selection
     }
-    
+
     var maxValue: Int {
         return model.points
     }
@@ -44,7 +44,7 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
     var backgroundColor: UIColor {
         return model.themeConfig.backgroundColor
     }
-    
+
     /**
      Get the real value of the emoticon selected. Ex if there are only two moods : converts index 0 to 1 and index 1 to 5
      to reflect the real values of the emoticons

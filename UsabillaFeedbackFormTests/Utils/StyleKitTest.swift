@@ -13,9 +13,9 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class StyleKitTest: QuickSpec {
-    
+
     override func spec() {
-        
+
         describe("StyleKit") {
             it("StyleKit icons imageOfEdit") {
                 let a = Icons.imageOfEdit(color: .white)
@@ -23,14 +23,14 @@ class StyleKitTest: QuickSpec {
 
                 expect(a).to(equal(b))
             }
-            
+
             it("StyleKit icons imageOfEdit") {
                 let a = Icons.imageOfAddImage(color: .white)
                 let b = Icons.imageOfAddImage(color: .white) // second time for the cache
 
                 expect(a).to(equal(b))
             }
-            
+
             it("StyleKit icons imageOfEdit") {
                 let a = Icons.imageOfArtboard(color: .white)
                 let b = Icons.imageOfArtboard(color: .white) // second time for the cache

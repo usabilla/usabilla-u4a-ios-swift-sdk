@@ -23,9 +23,9 @@ class CampaignViewModel {
 
         if let intro = introPageModel as? IntroPageModel {
             introPageViewModel = IntroPageViewModel(introPage: intro)
-            
+
             if introPageViewModel?.displayMode == .alert {
-                introPresenter =  UBAlertPresenter()
+                introPresenter = UBAlertPresenter()
             } else {
                 introPresenter = UBBannerPresenter()
             }

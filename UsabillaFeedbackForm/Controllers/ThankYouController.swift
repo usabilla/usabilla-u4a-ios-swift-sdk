@@ -16,10 +16,10 @@ class ThankYouController: UIViewController {
     @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var moreFeedbackButton: UIButton!
     @IBOutlet weak var distanceBetweenButtons: NSLayoutConstraint!
-    
+
     weak var themeConfig: UsabillaThemeConfigurator?
     var redirectEnabled: Bool = false
-    
+
     var redirectToAppStore: String?
     var giveMoreFeedback: String?
 
@@ -50,8 +50,8 @@ class ThankYouController: UIViewController {
             rateButton.clipsToBounds = true
             rateButton.heightAnchor.constraint(equalToConstant: 0).isActive = true
         }
-            
-        
+
+
         if !UsabillaFeedbackForm.hideGiveMoreFeedback {
             moreFeedbackButton.setTitle(giveMoreFeedback, for: UIControlState())
             moreFeedbackButton.addTarget(self, action: #selector(ThankYouController.reloadForm), for: .touchUpInside)
@@ -63,20 +63,20 @@ class ThankYouController: UIViewController {
         messageLabel.text = thankMessage
         messageLabel.lineBreakMode = .byWordWrapping
         messageLabel.numberOfLines = 0
-        
+
         if let configuration = themeConfig {
-            
+
             titleLabel.textColor = configuration.titleColor
             titleLabel.font = configuration.font.withSize(configuration.titleFontSize).bold()
 
             let font = configuration.font.withSize(configuration.textFontSize)
-            
+
             rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
             rateButton.titleLabel?.font = font
-            
+
             moreFeedbackButton.setTitleColor(configuration.accentColor, for: UIControlState())
             moreFeedbackButton.titleLabel?.font = font
-            
+
             messageLabel.textColor = configuration.textColor
             messageLabel.font = font
         }

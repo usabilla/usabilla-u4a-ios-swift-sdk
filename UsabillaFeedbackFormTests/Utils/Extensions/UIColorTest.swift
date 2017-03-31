@@ -84,12 +84,12 @@ class UIColorTest: QuickSpec {
                 let color = UIColor(rgba: "aaa", defaultColor: .black)
                 expect(color.hexString(false)).to(equal("#000000"))
             }
-            
+
             it("UIColor hexString") {
                 let color = UIColor(rgba: "####", defaultColor: .black)
                 expect(color.hexString(true)).to(equal("#000000FF"))
             }
-            
+
         }
     }
 }

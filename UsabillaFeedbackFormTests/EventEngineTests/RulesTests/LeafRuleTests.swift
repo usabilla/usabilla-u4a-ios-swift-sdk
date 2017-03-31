@@ -37,7 +37,7 @@ class LeafRuleTests: QuickSpec {
                     expect(leaf.alreadyTriggered).to(beTrue())
 
                 }
-                
+
                 it("should not trigger if the event do not match") {
                     let leaf = LeafRule(event: self.event1, ruleID: "id", alreadyTriggered: false)
                     expect(leaf.triggersWith(event: self.event2)).to(beFalse())

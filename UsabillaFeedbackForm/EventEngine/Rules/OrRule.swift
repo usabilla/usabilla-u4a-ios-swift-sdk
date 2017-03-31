@@ -13,7 +13,7 @@ class OrRule: ConcreteRule {
     init(childRules: [Rule], ruleID: String = UUID().uuidString, alreadyTriggered: Bool = false) {
         super.init(type: .or, childRules: childRules, ruleID: ruleID, alreadyTriggered: alreadyTriggered)
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
