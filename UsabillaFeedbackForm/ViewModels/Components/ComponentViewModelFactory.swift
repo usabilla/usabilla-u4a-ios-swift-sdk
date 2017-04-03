@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable cyclomatic_complexity
+
 import Foundation
 
 class ComponentViewModelFactory {
