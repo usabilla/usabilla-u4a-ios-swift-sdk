@@ -21,8 +21,6 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
         UsabillaFeedbackForm.delegate = self
         UsabillaFeedbackForm.showCancelButton = true
         UsabillaFeedbackForm.appStoreId = "asdasd"
-        //UsabillaFeedbackForm.localizedStringFile = "asd"
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
