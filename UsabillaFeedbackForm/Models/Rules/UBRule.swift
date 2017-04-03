@@ -21,7 +21,6 @@ class UBRule {
             self.targetValues = targetValues
     }
 
-
     func isSatisfied() -> Bool {
         for value in targetValues {
             if let isThere = pageModel.fieldValuesCollection[dependsOnID] {

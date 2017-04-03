@@ -11,7 +11,6 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-
 class CacheManagerTests: QuickSpec {
 
     var formModel: FormModel!

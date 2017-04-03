@@ -26,7 +26,6 @@ class Performance: XCTestCase {
             Swift.debugPrint(error.localizedDescription)
         }
 
-
         let image = UIImage(named: "a", in: Bundle(for: Performance.self), compatibleWith: nil)!
         let data = UIImageJPEGRepresentation(image, 0.5)
         base64image = data?.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
@@ -45,7 +44,6 @@ class Performance: XCTestCase {
             _ = FormModel(json: self.jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
         }
     }
-
 
     func testLoadingTime() {
         self.measure {

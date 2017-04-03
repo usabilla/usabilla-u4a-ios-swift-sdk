@@ -6,11 +6,12 @@
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
 @testable import UsabillaFeedbackForm
-
 
 // swiftlint:disable force_cast
 class PageControllerTest: QuickSpec {
@@ -80,9 +81,6 @@ class PageControllerTest: QuickSpec {
                 expect(viewController.tableView.visibleCells.count).to(equal(7))
                 //expect(viewController.showErrorMessages).to(equal(false))
             }
-
-
-
         }
 
         describe("turns the page only on valid data") {
@@ -107,7 +105,6 @@ class PageControllerTest: QuickSpec {
             }
         }
 
-
         describe("jumping to the next page") {
 
             it("should be correct") {
@@ -119,7 +116,6 @@ class PageControllerTest: QuickSpec {
 
         }
 
-
         describe(".viewWillDisappear()") {
             beforeEach {
                 // Method #3: Directly call the lifecycle event.
@@ -128,6 +124,4 @@ class PageControllerTest: QuickSpec {
 
         }
     }
-
-
 }

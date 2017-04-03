@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class HeaderFieldModel: StringFieldModel {
 
     override init(json: JSON, pageModel: PageModel) {

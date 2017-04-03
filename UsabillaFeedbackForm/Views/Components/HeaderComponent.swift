@@ -9,9 +9,9 @@
 import Foundation
 
 class HeaderComponent: UBComponent<HeaderComponentViewModel> {
-    
+
     var label: UILabel!
-    
+
     override func build() {
         label = UILabel()
         label.text = viewModel.value

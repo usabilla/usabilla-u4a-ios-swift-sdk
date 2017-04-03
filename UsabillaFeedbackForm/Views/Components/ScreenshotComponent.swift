@@ -54,7 +54,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
         addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
 
-
         addSubview(screenShotView)
         addSubview(addIcon)
         addSubview(addScreenshotLabel)
@@ -64,7 +63,23 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         iconContainerView.addSubview(deleteIcon)
         iconContainerView.addSubview(editIcon)
 
-        //Constraints
+        makeConstraints()
+
+        SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
+            if let image = result.object as? UIImage {
+                self.imagePicked(image)
+            }
+        }
+
+        SwiftEventBus.onMainThread(self, name: "kill") { _ in
+            SwiftEventBus.unregister(self)
+        }
+        applyCustomisations()
+
+        setImage(image: viewModel.value, updateUI: false, updateModel: false)
+    }
+
+    func makeConstraints() {
         let editIconSize: CGFloat = 48
         let iconSpacing: CGFloat = 12
 
@@ -100,21 +115,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addScreenshotLine.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         addScreenshotLine.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         addScreenshotLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
-
-        SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
-            if let image = result.object as? UIImage {
-                self.imagePicked(image)
-            }
-        }
-
-        SwiftEventBus.onMainThread(self, name: "kill") { _ in
-            SwiftEventBus.unregister(self)
-        }
-        applyCustomisations()
-
-        setImage(image: viewModel.value, updateUI: false, updateModel: false)
     }
-
 
     func setupRatioConstraint(imageSize: CGSize?) {
         ratioConstraint?.isActive = false

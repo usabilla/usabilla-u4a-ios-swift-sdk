@@ -9,13 +9,13 @@
 import Foundation
 
 extension String {
-    
+
     func divideInChunksOfSize(_ chuckSize: Int) -> [String] {
         var arrayToReturn: [String] = []
         let screenshotCharacterCount = self.characters.count
         let numberOfChunks = screenshotCharacterCount / chuckSize
         let lastChunk = screenshotCharacterCount % chuckSize
-        
+
         if numberOfChunks > 0 {
             for chunk in 0...numberOfChunks - 1 {
                 let start = chunk * chuckSize
@@ -29,11 +29,10 @@ extension String {
             let section = (self as NSString).substring(with: lastRange)
             arrayToReturn.append(section)
         }
-        
+
         return arrayToReturn
     }
-    
-    
+
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
@@ -46,6 +45,4 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
-    
-    
 }

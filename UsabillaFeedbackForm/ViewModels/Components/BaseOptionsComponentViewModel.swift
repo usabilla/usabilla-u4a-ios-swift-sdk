@@ -12,7 +12,7 @@ class BaseOptionsComponentViewModel<T: OptionsFieldModel>: BaseComponentViewMode
     var options: [Options] {
         return model.options
     }
-    
+
     override var value: [String]? {
         get {
             return model.fieldValue

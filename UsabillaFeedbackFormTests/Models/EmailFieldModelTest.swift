@@ -37,20 +37,20 @@ class EmailFieldModelTest: QuickSpec {
                 model?.isViewCurrentlyVisible = false
                 model?.required = true
                 expect(model?.isValid()).to(beTrue())
-                
+
                 model?.isViewCurrentlyVisible = true
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
-                
+
                 model?.isViewCurrentlyVisible = true
                 model?.required = true
                 expect(model?.isValid()).to(beFalse())
-                
+
                 expect(model?.isValid()).to(beFalse())
 
                 model?.fieldValue = "test"
                 expect(model?.isValid()).to(beFalse())
-                
+
                 model?.fieldValue = "test@test.com"
                 expect(model?.isValid()).to(beTrue())
             }

@@ -25,7 +25,7 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
         textView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         textView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         textView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
+
         // customization
         let theme = viewModel.theme
         textView.font = theme.font.withSize(theme.textFontSize)

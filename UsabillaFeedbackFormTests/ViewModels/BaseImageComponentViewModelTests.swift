@@ -12,18 +12,18 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class BaseImageComponentViewModelTests: QuickSpec {
-    
+
     override func spec() {
-        
+
         var viewModel: BaseImageComponentViewModel<ScreenshotModel>!
         var model: ScreenshotModel!
         let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
-        
+
         beforeSuite {
             model = ScreenshotModel(json: JSON.parse("{\"name\":\"image\"}"), pageModel: pageModel)
             viewModel = BaseImageComponentViewModel<ScreenshotModel>(model: model)
         }
-        
+
         describe("BaseImageComponentViewModelTests") {
             context("when changing value") {
                 it("should update model") {
@@ -31,7 +31,7 @@ class BaseImageComponentViewModelTests: QuickSpec {
                     viewModel.value = image
                     expect(model.image).to(equal(image))
                 }
-                
+
                 it("should update viewModel") {
                     let image = Icons.imageOfEdit(color: .black)
                     viewModel.value = image

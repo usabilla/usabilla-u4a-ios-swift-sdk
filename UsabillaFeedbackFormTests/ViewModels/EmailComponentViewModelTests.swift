@@ -31,14 +31,14 @@ class EmailComponentViewModelTests: QuickSpec {
                     expect(viewModel.isValid).to(beFalse())
                 }
             }
-            
+
             context("when email has invalid email") {
                 it("should be invalid") {
                     viewModel.value = "test"
                     expect(viewModel.isValid).to(beFalse())
                 }
             }
-            
+
             context("when email has valid email") {
                 it("should be invalid") {
                     viewModel.value = "test@test.com"

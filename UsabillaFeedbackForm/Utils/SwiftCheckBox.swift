@@ -14,7 +14,7 @@ protocol SwiftCheckBoxDelegate: class {
     //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
 
-class SwiftCheckBox: UIView, CAAnimationDelegate {
+class SwiftCheckBox: UIView {
 
     /** The layer where the box is drawn when the check box is set to On.
      */
@@ -33,7 +33,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         }
     }
 
-    var onTintColor: UIColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 255/255, alpha: 1) {
+    var onTintColor: UIColor = UIColor(colorLiteralRed: 0, green: 122.0 / 255.0, blue: 255 / 255, alpha: 1) {
         didSet {
             reload()
         }
@@ -43,7 +43,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             reload()
         }
     }
-    var onCheckColor: UIColor = UIColor(colorLiteralRed: 0, green: 122.0/255.0, blue: 255/255, alpha: 1) {
+    var onCheckColor: UIColor = UIColor(colorLiteralRed: 0, green: 122.0 / 255.0, blue: 255 / 255, alpha: 1) {
         didSet {
             reload()
         }
@@ -63,8 +63,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
     var minimumTouchSize = CGSize(width: 44, height: 44)
     var onAnimationType = AnimationType.stroke
     var offAnimationType = AnimationType.stroke
-    //var _animationManager: AnimationManager
-
 
     override init(frame: CGRect) {
         pathManager = PathManager()
@@ -91,8 +89,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
 
         backgroundColor = UIColor.clear
         tintColor = UIColor.lightGray
-
-
     }
 
     override func layoutSubviews() {
@@ -105,8 +101,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         offBoxLayer.removeFromSuperlayer()
         onBoxLayer.removeFromSuperlayer()
         checkMarkLayer?.removeFromSuperlayer()
-        //self.onBoxLayer? = nil;
-        //self.checkMarkLayer? = nil;
         setNeedsDisplay()
         layoutIfNeeded()
     }
@@ -135,44 +129,17 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         drawOffBox()
     }
 
-    func handleTapCheckBox() {
-        setOn(!self.on, animated: true)
-        delegate?.didTapCheckBox(self)
-
-    }
-
-    func pointInsidea(_ point: CGPoint, withEvent: UIEvent ) -> Bool {
-
-        var found = super.point(inside: point, with: withEvent)
-
-        let minimumSize = self.minimumTouchSize
-        let width = self.bounds.size.width
-        let height = self.bounds.size.height
-
-        if found == false && (width < minimumSize.width || height < minimumSize.height) {
-            let increaseWidth = minimumSize.width - width
-            let increaseHeight = minimumSize.height - height
-
-            let rect = self.bounds.insetBy(dx: (-increaseWidth / 2), dy: (-increaseHeight / 2))
-
-            found = rect.contains(point)
-        }
-        return found
-    }
-
     override func draw(_ rect: CGRect) {
         setOn(self.on, animated: false)
     }
+}
+
+extension SwiftCheckBox {
 
     /** Draws the entire checkbox, depending on the current state of the on property.
      */
     func drawEntireCheckBox() {
         if !self.hideBox {
-//            if let path = self.offBoxLayer.path {
-//                if  CGPathGetBoundingBox(path).size.height == 0.0 {
-//                drawOffBox()
-//            }  DUNNO WHAT I'M DOING, PLEASE HELP
-//            }
             if self.on {
                 drawOnBox()
             } else {
@@ -194,13 +161,9 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         self.offBoxLayer.fillColor = UIColor.clear.cgColor
         self.offBoxLayer.strokeColor = self.tintColor.cgColor
         self.offBoxLayer.lineWidth = self.lineWidth
-
         self.offBoxLayer.rasterizationScale = 2.0 * UIScreen.main.scale
         self.offBoxLayer.shouldRasterize = true
-
-
         self.layer.addSublayer(offBoxLayer)
-
     }
 
     /** Draws the box when the checkbox is set to On.
@@ -228,7 +191,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         self.checkMarkLayer?.path = pathManager.pathForCheckMark().cgPath
         self.checkMarkLayer?.strokeColor = self.onCheckColor.cgColor
         self.checkMarkLayer?.lineWidth = self.lineWidth
-        self.checkMarkLayer?.fillColor =  UIColor.clear.cgColor
+        self.checkMarkLayer?.fillColor = UIColor.clear.cgColor
         self.checkMarkLayer?.lineCap = kCALineCapRound
         self.checkMarkLayer?.lineJoin = kCALineJoinRound
 
@@ -236,7 +199,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         self.checkMarkLayer?.shouldRasterize = true
 
         self.layer.addSublayer(checkMarkLayer!)
-
     }
 
     func addOnAnimation() {
@@ -277,7 +239,7 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             let morphAnimation = self.animationManager.morphAnimationFromPath(self.pathManager.pathForFlatCheckMark(), toPath: self.pathManager.pathForCheckMark())
             morphAnimation.delegate = self
 
-            let opacity =  self.animationManager.opacityAnimationReverse(false)
+            let opacity = self.animationManager.opacityAnimationReverse(false)
             opacity.duration = self.animationDuration / 5
 
             onBoxLayer.add(opacity, forKey: "opacity")
@@ -346,15 +308,41 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
             break
         }
     }
+}
 
+extension SwiftCheckBox: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag == true {
             if self.on == false {
                 onBoxLayer.removeFromSuperlayer()
                 checkMarkLayer?.removeFromSuperlayer()
             }
-            //delegate?.animationDidStopForCheckBox(self)
         }
+    }
+}
+
+extension SwiftCheckBox {
+    func pointInsidea(_ point: CGPoint, withEvent: UIEvent) -> Bool {
+        var found = super.point(inside: point, with: withEvent)
+
+        let minimumSize = self.minimumTouchSize
+        let width = self.bounds.size.width
+        let height = self.bounds.size.height
+
+        if found == false && (width < minimumSize.width || height < minimumSize.height) {
+            let increaseWidth = minimumSize.width - width
+            let increaseHeight = minimumSize.height - height
+
+            let rect = self.bounds.insetBy(dx: (-increaseWidth / 2), dy: (-increaseHeight / 2))
+
+            found = rect.contains(point)
+        }
+        return found
+    }
+
+    func handleTapCheckBox() {
+        setOn(!self.on, animated: true)
+        delegate?.didTapCheckBox(self)
     }
 }
 

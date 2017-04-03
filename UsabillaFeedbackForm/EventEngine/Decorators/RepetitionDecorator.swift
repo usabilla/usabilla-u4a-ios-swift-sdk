@@ -28,8 +28,7 @@ class RepetitionDecorator: Decorator {
     }
 
     // MARK: NSCoding
-    
-    
+
     public required init?(coder aDecoder: NSCoder) {
         let occurrences = aDecoder.decodeInteger(forKey: "occurrences")
         let currentCount = aDecoder.decodeInteger(forKey: "currentCount")
@@ -39,7 +38,7 @@ class RepetitionDecorator: Decorator {
         super.init(coder: aDecoder)
 
     }
-    
+
     public override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
         aCoder.encode(self.occurrences, forKey: "occurrences")

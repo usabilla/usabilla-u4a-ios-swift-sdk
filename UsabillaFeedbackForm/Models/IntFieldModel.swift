@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class IntFieldModel: BaseFieldModel {
 
     override var isViewCurrentlyVisible: Bool {

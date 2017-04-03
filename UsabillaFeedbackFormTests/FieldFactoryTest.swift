@@ -60,12 +60,12 @@ class FieldFactoryTest: QuickSpec {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"checkbox\"}"), pagemodel: pageModel)
                 expect(field is CheckboxFieldModel).to(beTrue())
             }
-            
+
             it("unknown type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"unkown\"}"), pagemodel: pageModel)
                 expect(field).to(beNil())
             }
-            
+
             it("unknown type") {
                 let field = FieldFactory.createField(JSON.parse(""), pagemodel: pageModel)
                 expect(field).to(beNil())

@@ -55,7 +55,7 @@ class SubmissionManager {
 
     func submit(form: FormModel, customVars: [String: Any]?) {
         let feedbackRequest = createSubmission(formModel: form, customVars: customVars)
-        
+
         DataStore.addFeedback(type: feedbackRequest)
         if reachability.isReachable {
             trySendData()

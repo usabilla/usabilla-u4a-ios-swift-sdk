@@ -11,7 +11,6 @@ import UsabillaFeedbackForm
 
 class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
 
-
     let themeConfig = UsabillaThemeConfigurator()
     var customVariables: [String: Any] = [:]
     var configurator: UsabillaThemeConfigurator!
@@ -22,10 +21,7 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
         UsabillaFeedbackForm.delegate = self
         UsabillaFeedbackForm.showCancelButton = true
         UsabillaFeedbackForm.appStoreId = "asdasd"
-        //UsabillaFeedbackForm.localizedStringFile = "asd"
-
     }
-
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,7 +38,6 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
         themeConfig.disabledEmoticons = [off, off, off, off, off]
         //themeConfig.customFont = UIFont(name: "batang", size: 12)
 
-
         UsabillaFeedbackForm.hideGiveMoreFeedback = false
 
         configurator = UsabillaThemeConfigurator()
@@ -53,7 +48,6 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
         configurator.errorColor = UIColor.red
         configurator.statusBarColor = UIStatusBarStyle.lightContent
 
-
     }
 
     @IBAction func otherShow(_ sender: AnyObject) {
@@ -63,7 +57,6 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
     @IBAction func show(_ sender: Any) {
         UsabillaFeedbackForm.loadFeedbackForm("57ea3cacaaba75e6addebf7b", screenshot: nil, customVariables: customVariables, themeConfig: configurator)
     }
-
 
     func formFailedLoading(_ backupForm: UINavigationController) {
         present(backupForm, animated: true, completion: nil)

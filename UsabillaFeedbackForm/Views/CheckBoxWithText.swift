@@ -36,7 +36,6 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 25)
         height.identifier = "CheckBox Height"
 
-
         self.addSubview(checkBox)
         self.addSubview(label)
 
@@ -44,12 +43,9 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: checkBox, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: checkBox, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-
-
     }
 
     func applyCustomisation() {
-
         let color = themeConfig!.accentColor
         checkBox.tintColor = color
         checkBox.onTintColor = color
@@ -64,7 +60,6 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     func didTapCheckBox(_ checkBox: SwiftCheckBox) {
         delegate?.didTapCheckBox(checkBox)
     }
-
 
     func touchEvent() {
         self.checkBox.setOn(!self.checkBox.on, animated: true)

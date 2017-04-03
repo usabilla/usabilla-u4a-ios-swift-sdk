@@ -21,11 +21,10 @@ public func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ fu
         let value = object()
         let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"
         let queue = Thread.isMainThread ? "UI" : "BG"
-        
+
         print("<\(queue)> \(fileURL) \(function)[\(line)]: " + String(reflecting: value))
     #endif
 }
-
 
 /// Outputs a `dump` of the passed in value along with an optional label, the filename, function name, and line number to the standard output if the build setting for "Active Complilation Conditions" (SWIFT_ACTIVE_COMPILATION_CONDITIONS) defines `DEBUG`.
 ///

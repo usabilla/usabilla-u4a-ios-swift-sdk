@@ -29,7 +29,6 @@ class Decorator: NSObject, Rule {
         return alreadyTriggered
     }
 
-
     func customTriggersWith(event: Event) -> Bool {
         fatalError("Abstract method not implemented")
     }

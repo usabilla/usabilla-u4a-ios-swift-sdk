@@ -13,7 +13,6 @@ class NPSFieldModel: IntFieldModel {
     let mode, low, high: String?
     let colorLegend: Bool?
 
-
     required init(json: JSON, pageModel: PageModel) {
         mode = json["mode"].string
         low = json["low"].string
@@ -21,9 +20,4 @@ class NPSFieldModel: IntFieldModel {
         colorLegend = json["colorLegend"].bool
         super.init(json: json, pageModel: pageModel)
     }
-
-//    deinit {
-//        print("nps field model")
-//    }
-
 }

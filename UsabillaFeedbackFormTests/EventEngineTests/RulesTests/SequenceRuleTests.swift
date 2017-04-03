@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
@@ -24,8 +26,6 @@ class SequenceRuleTests: QuickSpec {
     var leafRule4: Rule!
 
     var children: [Rule]!
-
-
     override func spec() {
 
         beforeEach {
@@ -36,7 +36,6 @@ class SequenceRuleTests: QuickSpec {
 
             self.children = [self.leafRule1, self.leafRule2, self.leafRule3, self.leafRule4]
         }
-
 
         describe("The Sequence Rule") {
 
@@ -58,7 +57,7 @@ class SequenceRuleTests: QuickSpec {
                     expect(sequence.triggersWith(event: self.event4)).to(beTrue())
 
                 }
-                
+
                 it("should trigger with the right sequence even if it is not sequential") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
                     expect(sequence.triggersWith(event: self.event1)).to(beFalse())
@@ -71,7 +70,7 @@ class SequenceRuleTests: QuickSpec {
                     expect(sequence.triggersWith(event: self.event1)).to(beFalse())
                     expect(sequence.triggersWith(event: self.event2)).to(beFalse())
                     expect(sequence.triggersWith(event: self.event4)).to(beTrue())
-                    
+
                 }
 
                 it("should not trigger with the wrong sequence") {
@@ -111,8 +110,6 @@ class SequenceRuleTests: QuickSpec {
                     expect(self.leafRule1.alreadyTriggered).to(beTrue())
 
                 }
-
-
             })
 
         }

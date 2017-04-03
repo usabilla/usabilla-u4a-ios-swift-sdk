@@ -46,7 +46,6 @@ class ConcreteRule: NSObject, Rule {
         self.alreadyTriggered = alreadyTriggered
     }
 
-
     func triggersWith(event: Event) -> Bool {
         if !alreadyTriggered {
             alreadyTriggered = customTriggersWith(event: event)

@@ -15,7 +15,6 @@ class DataStore {
 
     typealias FeedbackType = FeedbackRequest
 
-
     static var feedbacks: [FeedbackType] = {
         if let storedFeedbacks = UserDefaults.standard.value(forKey: DataStore.feedbackToSendStorePath) as? [[String: AnyObject]] {
             return storedFeedbacks.map { FeedbackType(data: $0) }

@@ -9,7 +9,7 @@
 import Foundation
 
 class CampaignWindow: UIWindow {
-    
+
     static let shared = CampaignWindow()
     fileprivate var currentCampaign: CampaignModel?
 
@@ -33,15 +33,15 @@ class CampaignWindow: UIWindow {
         guard currentCampaign == nil else {
             return false
         }
-        
+
         isHidden = false
         currentCampaign = campaign
-        
+
         // TO DO fetch form model (networking)
-        
+
         let campaignViewModel = CampaignViewModel(campaign: campaign)
         rootViewController = CampaignViewController(viewModel: campaignViewModel, delegate: self)
-        
+
         return true
     }
 
@@ -51,7 +51,7 @@ class CampaignWindow: UIWindow {
                 return true
             }
         }
-        
+
         return false
     }
 }

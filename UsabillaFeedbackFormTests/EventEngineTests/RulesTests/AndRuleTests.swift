@@ -6,7 +6,6 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-
 import Quick
 import Nimble
 
@@ -28,7 +27,6 @@ class AndRuleTests: QuickSpec {
     var allNegative: [Rule]!
     var mixed: [Rule]!
 
-
     override func spec() {
 
         beforeEach {
@@ -41,7 +39,6 @@ class AndRuleTests: QuickSpec {
             self.allNegative = [self.leafRule3, self.leafRule4]
             self.mixed = [self.leafRule1, self.leafRule2, self.leafRule3]
         }
-
 
         describe("The And Rule") {
 
@@ -69,7 +66,6 @@ class AndRuleTests: QuickSpec {
                     let newAnd2 = AndRule(childRules: self.mixed)
                     expect(newAnd2.triggersWith(event: self.event2)).to(beFalse())
                 }
-
 
                 it("should progress correctly") {
                     let newAnd2 = AndRule(childRules: self.allNegative)

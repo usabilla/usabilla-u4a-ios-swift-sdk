@@ -27,7 +27,6 @@ class OrRuleTests: QuickSpec {
     var allNegative: [Rule]!
     var mixed: [Rule]!
 
-
     override func spec() {
 
         beforeEach {
@@ -36,12 +35,10 @@ class OrRuleTests: QuickSpec {
             self.leafRule3 = LeafRule(event: self.event3, ruleID: "id3", alreadyTriggered: false)
             self.leafRule4 = LeafRule(event: self.event4, ruleID: "id4", alreadyTriggered: false)
 
-
             self.allPositive = [self.leafRule1, self.leafRule2]
             self.allNegative = [self.leafRule3, self.leafRule4]
             self.mixed = [self.leafRule1, self.leafRule2, self.leafRule3]
         }
-
 
         describe("The Or Rule") {
 
@@ -53,8 +50,6 @@ class OrRuleTests: QuickSpec {
 
                 }
             })
-
-
 
             context("when checking for validity", {
                 it("should return true if any of the children is satisfied") {

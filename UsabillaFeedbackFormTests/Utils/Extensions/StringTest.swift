@@ -14,7 +14,7 @@ import Nimble
 class StringTest: QuickSpec {
 
     override func spec() {
-        
+
         describe("String divideInChunksOfSize") {
             let stringToChunk = "abcdefghilmnopqrst"
 
@@ -26,7 +26,7 @@ class StringTest: QuickSpec {
                 expect(stringChunks[5]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abc"))
             }
-            
+
             it("should correctly divide by 4") {
                 let stringChunks = stringToChunk.divideInChunksOfSize(4)
                 expect(stringChunks.count).to(equal(5))
@@ -35,7 +35,7 @@ class StringTest: QuickSpec {
                 expect(stringChunks[4]).to(equal("st"))
                 expect(stringChunks[0]).to(equal("abcd"))
             }
-            
+
             it("should correctly divide by 5") {
                 let stringChunks = stringToChunk.divideInChunksOfSize(5)
                 expect(stringChunks.count).to(equal(4))
@@ -45,14 +45,14 @@ class StringTest: QuickSpec {
                 expect(stringChunks[0]).to(equal("abcde"))
             }
         }
-        
+
         describe("String htmlToString") {
             let htmlString = "<center>Here is some <b>HTML</b></center>"
             it("htmlToAttributedString") {
-               let t = htmlString.htmlToAttributedString
+                let t = htmlString.htmlToAttributedString
                 expect(t).toNot(beNil())
             }
-            
+
             it("htmlToString") {
                 expect(htmlString.htmlToString).to(equal("Here is some HTML\n"))
             }

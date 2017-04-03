@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
@@ -22,7 +24,6 @@ class RepetitionRuleTests: QuickSpec {
         beforeEach {
             self.leafRule1 = LeafRule(event: self.event1, ruleID: "id1", alreadyTriggered: true)
         }
-
 
         describe("The Repetition Decorator") {
 
@@ -50,7 +51,6 @@ class RepetitionRuleTests: QuickSpec {
 
                 }
 
-
                 it("should trigger even when the number of occurrences surpasses the threshold") {
                     let rep = RepetitionDecorator(occurrences: 2, rule: self.leafRule1)
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
@@ -63,12 +63,10 @@ class RepetitionRuleTests: QuickSpec {
 
                 }
 
-
                 it("should serialize correctly") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
-
 
                     let data = NSKeyedArchiver.archivedData(withRootObject: rep)
 

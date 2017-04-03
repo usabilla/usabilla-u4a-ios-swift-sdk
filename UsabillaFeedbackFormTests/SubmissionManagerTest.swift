@@ -42,7 +42,7 @@ class SubmissionManagerTest: QuickSpec {
         var formModel: FormModel?
         let reachabilityMock = ReachabilityMock()
         var sm: SubmissionManager!
-    
+
         describe("SubmissionManager test") {
             it("SubmissionManager init") {
                 //initialization code not in a before suite to not overlap with DataStore unit tests
@@ -57,7 +57,7 @@ class SubmissionManagerTest: QuickSpec {
                 } catch {
                     fail()
                 }
-                
+
                 sm = SubmissionManager(reachability: reachabilityMock)
             }
 
@@ -81,7 +81,7 @@ class SubmissionManagerTest: QuickSpec {
                 expect(DataStore.feedbacks.count).toEventually(equal(0), timeout: 4)
             }
 
-            it("SubmissionManager submit with custom vars, screenshot") {                
+            it("SubmissionManager submit with custom vars, screenshot") {
                 let screenshost = ScreenshotModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: formModel!.pages.first!)
                 screenshost.image = Icons.imageOfPoweredBy(color: .blue)
                 formModel?.pages.first?.fields.append(screenshost)

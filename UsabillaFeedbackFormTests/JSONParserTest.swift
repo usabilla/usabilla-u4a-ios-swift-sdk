@@ -6,13 +6,12 @@
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
 
 import Quick
 import Nimble
 
-
 @testable import UsabillaFeedbackForm
-
 
 // swiftlint:disable force_cast
 
@@ -117,8 +116,7 @@ class JSONParserTest: QuickSpec {
                                 expect(field.rule?.targetValues).to(equal(["1", "2"]))
                                 expect(field.rule?.dependsOnID).to(equal("mood"))
                             }
-                            
-                            
+
                             it("should containt a valid third field") {
                                 let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
                                 expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
@@ -134,7 +132,7 @@ class JSONParserTest: QuickSpec {
                                 expect(field.low).to(equal("not at all"))
                                 expect(field.shouldAppear()).to(beFalse())
                             }
-                            
+
                             it("should containt a valid fourth field") {
                                 let field: TextFieldModel = formModel.pages[0].fields[3] as! TextFieldModel
                                 expect(field.fieldTitle).to(equal("Click to edit"))
@@ -145,7 +143,7 @@ class JSONParserTest: QuickSpec {
                                 expect(field.placeHolder).to(equal("I am a placeholder"))
                                 expect(field.shouldAppear()).to(beTrue())
                             }
-                            
+
                             it("should containt a valid fifth field") {
                                 let field: CheckboxFieldModel = formModel.pages[0].fields[4] as! CheckboxFieldModel
                                 expect(field.fieldTitle).to(equal("Checkboxah"))
@@ -159,9 +157,9 @@ class JSONParserTest: QuickSpec {
                         }
                     }
                 }
-                
+
                 describe("the page model") {
-                    
+
                     it("should have the correct jump rule") {
                         let pageModel = formModel.pages[0]
                         expect(pageModel.defaultJumpTo).to(equal("Third"))
@@ -170,9 +168,6 @@ class JSONParserTest: QuickSpec {
                         expect(pageModel.jumpRuleList?[0].dependsOnID).to(equal("nps"))
                         expect(pageModel.jumpRuleList?[0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
                     }
-                    
-                    
-                
                 }
             }
         }

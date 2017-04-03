@@ -17,7 +17,7 @@ class CampaignModel: NSObject, NSCoding {
     var maximumDisplays: Int = 0
     var version: Int
     var form: FormModel?
-    
+
     init(id: String, rule: Rule, formId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, version: Int) {
         self.identifier = id
         self.rule = rule
@@ -34,7 +34,7 @@ class CampaignModel: NSObject, NSCoding {
         self.maximumDisplays = json["maximumDisplays"].intValue
         self.version = json["version"].intValue
     }
-    
+
     func triggers(event: Event) -> Bool {
         return rule?.triggersWith(event: event) ?? false
     }

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-
 import Quick
 import Nimble
 
@@ -28,7 +27,6 @@ class ConcreteRuleTests: QuickSpec {
     var allNegative: [Rule]!
     var mixed: [Rule]!
 
-
     override func spec() {
 
         beforeEach {
@@ -36,13 +34,10 @@ class ConcreteRuleTests: QuickSpec {
             self.leafRule2 = LeafRule(event: self.event2, ruleID: "id2", alreadyTriggered: true)
             self.leafRule3 = LeafRule(event: self.event3, ruleID: "id3", alreadyTriggered: false)
             self.leafRule4 = LeafRule(event: self.event4, ruleID: "id4", alreadyTriggered: false)
-
-
             self.allPositive = [self.leafRule1, self.leafRule2]
             self.allNegative = [self.leafRule3, self.leafRule4]
             self.mixed = [self.leafRule1, self.leafRule2, self.leafRule3]
         }
-
 
         describe("The Concrete Rule") {
 
@@ -52,7 +47,6 @@ class ConcreteRuleTests: QuickSpec {
                     expect(or.type).to(equal(RuleType.or))
                     expect(or.ruleID).toNot(beNil())
                     expect(or.alreadyTriggered).to(beFalse())
-
 
                     let and = ConcreteRule(type: .and, childRules: self.mixed, ruleID: "id", alreadyTriggered: true)
                     expect(and.type).to(equal(RuleType.and))
