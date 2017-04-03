@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class ChoiceFieldModel: OptionsFieldModel {
     let defaultValue: String?
     let emptyValue: String?

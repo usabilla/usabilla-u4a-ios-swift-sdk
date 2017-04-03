@@ -17,8 +17,6 @@ class LeafRuleTests: QuickSpec {
     let event2 = Event(name: "event2")
 
     override func spec() {
-
-
         describe("The Leaf Rule") {
 
             context("When creating an object", {
@@ -45,8 +43,6 @@ class LeafRuleTests: QuickSpec {
 
                 }
             })
-
-
         }
     }
 }

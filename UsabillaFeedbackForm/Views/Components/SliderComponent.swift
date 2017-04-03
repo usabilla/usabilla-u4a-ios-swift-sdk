@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class SliderComponent: UBComponent<SliderComponentViewModel> {
 
     var slider: UISlider!

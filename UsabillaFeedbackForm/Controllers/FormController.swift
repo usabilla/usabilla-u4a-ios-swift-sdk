@@ -59,11 +59,8 @@ class FormViewController: UIViewController {
         }
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
 
-
         setUpLeftButton()
     }
-
-
 
     func setUpLeftButton() {
         leftNavItem.title = formModel.copyModel.cancelButton
@@ -73,7 +70,6 @@ class FormViewController: UIViewController {
             leftNavItem.isEnabled = false
         }
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
@@ -132,7 +128,6 @@ class FormViewController: UIViewController {
         addChildViewController(thankYouController)
         thankYouController.view.frame = containerView.bounds
 
-
         transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         var rating: Int = 0
         if let moodRating = moodValue?.fieldValue {
@@ -161,7 +156,6 @@ class FormViewController: UIViewController {
         swipeToPage(0)
     }
 
-
     func selectNewPage() -> Int {
         var newPageIndex = -1
         if let pageToJump = pageController.whereShouldIJump() {
@@ -176,7 +170,6 @@ class FormViewController: UIViewController {
 
         return newPageIndex
     }
-
 
     func updateRightButton() {
         rightNavItem.isEnabled = true

@@ -10,11 +10,9 @@ import Foundation
 
 class PathManager {
 
-
     var boxType: BoxType
     var size: CGFloat!
     var lineWidth: CGFloat!
-
 
     init() {
         boxType = BoxType.square
@@ -46,7 +44,6 @@ class PathManager {
         checkMarkPath.addLine(to: CGPoint(x: self.size / 2.0618, y: self.size / 1.57894))
         checkMarkPath.addLine(to: CGPoint(x: self.size / 1.3953, y: self.size / 2.7272))
 
-
         if self.boxType == .square {
             // If we use a square box, the check mark should be a little bit bigger
             checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
@@ -68,8 +65,6 @@ class PathManager {
             checkMarkPath.addLine(to: CGPoint(x: self.size / 1.2053, y: self.size / 4.5272))
             checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
             checkMarkPath.apply(CGAffineTransform(translationX: -self.size / 4, y: -self.size / 4))
-
-
         } else {
             checkMarkPath.addLine(to: CGPoint(x: self.size / 1.1553, y: self.size / 5.9272))
         }

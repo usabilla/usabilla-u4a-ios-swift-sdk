@@ -34,7 +34,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         registerEventsBus()
     }
 
-
     func keyboardWillShow(notification: NSNotification) {
         guard var userInfo = notification.userInfo else {
             return
@@ -48,7 +47,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         contentInset.bottom = keyboardFrame.size.height
         self.tableView.contentInset = contentInset
     }
-
 
     func keyboardWillHide(notification: NSNotification) {
         let contentInset: UIEdgeInsets = UIEdgeInsets.zero

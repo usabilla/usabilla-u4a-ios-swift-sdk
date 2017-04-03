@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class RootCellView: UITableViewCell {
 
     var rootCellContainerView: UIView

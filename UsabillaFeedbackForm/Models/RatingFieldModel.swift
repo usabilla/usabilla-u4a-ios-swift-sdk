@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class RatingFieldModel: IntFieldModel {
 
     let textPositioning, low, high: String?

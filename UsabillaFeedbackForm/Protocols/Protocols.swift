@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol IntFieldHandlerProtocol: class {
 
     var fieldValue: Int { set get }

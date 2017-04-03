@@ -63,7 +63,6 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         picker.isHidden = false
         pickerButton.addTarget(self, action: #selector(ChoiceComponent.pickerButtonClicked), for: .touchUpInside)
 
-
         // customization
 
         let theme = viewModel.theme

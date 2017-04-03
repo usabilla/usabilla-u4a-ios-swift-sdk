@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class FormModel {
 
     let hasScreenshot: Bool
@@ -21,7 +20,6 @@ class FormModel {
     let showProgressBar: Bool
     let themeConfig: UsabillaThemeConfigurator
     let copyModel: CopyModel
-
 
     // swiftlint:disable:next function_parameter_count
     init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {

@@ -26,7 +26,6 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
         line.heightAnchor.constraint(equalToConstant: 1).activate()
         line.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 2).activate()
 
-
         // configuration
         if viewModel.value != nil {
             textView.text = viewModel.value

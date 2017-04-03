@@ -18,7 +18,6 @@ class CellViewModel {
     var componentViewModel: ComponentViewModel?
     var showErrorLabel: Bool = false
 
-
     var isViewCurrentlyVisible: Bool {
         get {
             return model.isViewCurrentlyVisible

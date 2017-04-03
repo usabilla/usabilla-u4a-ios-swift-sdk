@@ -27,7 +27,6 @@ class UIImageTest: QuickSpec {
                 expect(fixed).to(equal(powered))
             }
 
-
             it("UIImage fix and size landscape") {
                 UIGraphicsBeginImageContextWithOptions(CGSize(width: 900, height: 200), false, 0)
                 let new = UIGraphicsGetImageFromCurrentImageContext()!
@@ -37,7 +36,6 @@ class UIImageTest: QuickSpec {
                 expect(fixed.size.width).to(equal(800))
             }
 
-
             it("UIImage fix and size portrait") {
                 UIGraphicsBeginImageContextWithOptions(CGSize(width: 500, height: 1500), false, 0)
                 let new = UIGraphicsGetImageFromCurrentImageContext()!
@@ -46,8 +44,6 @@ class UIImageTest: QuickSpec {
                 expect(fixed).toNot(equal(powered))
                 expect(fixed.size.height).to(equal(1200))
             }
-
-
         }
     }
 }

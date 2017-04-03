@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class LocalisationHandler {
 
     static func getLocalisedStringForKey(_ key: String) -> String {

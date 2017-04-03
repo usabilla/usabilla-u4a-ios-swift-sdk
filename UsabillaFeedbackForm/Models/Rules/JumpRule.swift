@@ -16,6 +16,4 @@ class JumpRule: UBRule {
         self.jumpTo = jumpTo
         super.init(dependsOnID: dependsOnID, targetValues: targetValues, pageModel: pageModel)
     }
-
-
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class ViewUtils {
 
     public static func generateFooter(themeConfig: UsabillaThemeConfigurator) -> UIView {

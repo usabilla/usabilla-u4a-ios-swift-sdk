@@ -8,11 +8,9 @@
 
 import Foundation
 
-
 class JSONFormParser {
 
     class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
-
 
         let pageName = pageJson["name"].stringValue
         let type = PageType(rawValue: pageJson["type"].stringValue)
@@ -53,7 +51,6 @@ class JSONFormParser {
 
     }
 
-
     fileprivate class func parseJumpRule(_ jumpJson: JSON, pageModel: PageModel) -> JumpRule {
 
         let setDependsOnID = jumpJson["control"].stringValue
@@ -66,7 +63,6 @@ class JSONFormParser {
 
         return JumpRule(jumpTo: setJumpTo, dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel)
     }
-
 
     fileprivate class func parseFieldModel(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
 

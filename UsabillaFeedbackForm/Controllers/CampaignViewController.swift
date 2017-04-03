@@ -35,8 +35,6 @@ class CampaignViewController: UIViewController {
             }
             view.addSubview(introOutroView)
             viewModel.introPresenter?.present(view: introOutroView, inView: view, animations: animations)
-
-
             // TO DO : display intro
             return
         }

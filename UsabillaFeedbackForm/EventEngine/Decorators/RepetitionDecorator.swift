@@ -29,7 +29,6 @@ class RepetitionDecorator: Decorator {
 
     // MARK: NSCoding
 
-
     public required init?(coder aDecoder: NSCoder) {
         let occurrences = aDecoder.decodeInteger(forKey: "occurrences")
         let currentCount = aDecoder.decodeInteger(forKey: "currentCount")

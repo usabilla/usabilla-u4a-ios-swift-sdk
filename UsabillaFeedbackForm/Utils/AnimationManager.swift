@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class AnimationManager {
 
     var animationDuration: Double
@@ -56,8 +55,6 @@ class AnimationManager {
         let animation = CABasicAnimation.init(keyPath: "path")
         animation.duration = self.animationDuration
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-
-
         animation.fromValue = fromPath.cgPath
         animation.toValue = toPath.cgPath
 
@@ -83,10 +80,7 @@ class AnimationManager {
 
             values.append(NSValue(caTransform3D: CATransform3DMakeScale(scale, scale, scale)))
             keyTimes.append(NSNumber(value: Float(time)))
-
-
         }
-
 
         if reverse {
             values.append(NSValue(caTransform3D: CATransform3DMakeScale(0.0001, 0.0001, 0.0001)))
@@ -105,7 +99,6 @@ class AnimationManager {
         animation.fillMode = kCAFillModeForwards
         animation.duration = self.animationDuration
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-
 
         return animation
     }

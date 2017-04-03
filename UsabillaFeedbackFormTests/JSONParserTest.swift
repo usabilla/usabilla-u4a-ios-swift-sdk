@@ -6,13 +6,10 @@
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
 
-
 import Quick
 import Nimble
 
-
 @testable import UsabillaFeedbackForm
-
 
 // swiftlint:disable force_cast
 
@@ -118,7 +115,6 @@ class JSONParserTest: QuickSpec {
                                 expect(field.rule?.dependsOnID).to(equal("mood"))
                             }
 
-
                             it("should containt a valid third field") {
                                 let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
                                 expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
@@ -170,9 +166,6 @@ class JSONParserTest: QuickSpec {
                         expect(pageModel.jumpRuleList?[0].dependsOnID).to(equal("nps"))
                         expect(pageModel.jumpRuleList?[0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
                     }
-
-
-
                 }
             }
         }

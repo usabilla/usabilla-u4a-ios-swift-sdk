@@ -6,7 +6,6 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-
 import Quick
 import Nimble
 

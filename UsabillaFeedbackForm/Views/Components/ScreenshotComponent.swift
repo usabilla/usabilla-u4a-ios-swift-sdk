@@ -54,7 +54,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
         addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
 
-
         addSubview(screenShotView)
         addSubview(addIcon)
         addSubview(addScreenshotLabel)
@@ -114,7 +113,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
         setImage(image: viewModel.value, updateUI: false, updateModel: false)
     }
-
 
     func setupRatioConstraint(imageSize: CGSize?) {
         ratioConstraint?.isActive = false

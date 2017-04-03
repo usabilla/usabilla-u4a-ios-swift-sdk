@@ -64,8 +64,6 @@ class ScreenshotModelTest: QuickSpec {
                 model?.image = UIImage()
                 expect(model?.isValid()).to(beTrue())
             }
-
-
         }
     }
 }

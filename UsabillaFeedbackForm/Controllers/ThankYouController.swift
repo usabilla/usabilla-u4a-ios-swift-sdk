@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ThankYouController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -27,7 +26,6 @@ class ThankYouController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = themeConfig?.backgroundColor
     }
-
 
     func openAppStore() {
         if let appStore = UsabillaFeedbackForm.appStoreId {
@@ -50,7 +48,6 @@ class ThankYouController: UIViewController {
             rateButton.clipsToBounds = true
             rateButton.heightAnchor.constraint(equalToConstant: 0).isActive = true
         }
-
 
         if !UsabillaFeedbackForm.hideGiveMoreFeedback {
             moreFeedbackButton.setTitle(giveMoreFeedback, for: UIControlState())

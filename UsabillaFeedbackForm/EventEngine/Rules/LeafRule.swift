@@ -29,6 +29,4 @@ class LeafRule: ConcreteRule {
         aCoder.encode(self.event, forKey: "event")
         super.encode(with: aCoder)
     }
-
-
 }

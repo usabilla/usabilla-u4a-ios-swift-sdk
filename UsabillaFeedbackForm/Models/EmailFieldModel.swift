@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class EmailFieldModel: StringFieldModel, EditableStringComponentModel {
     let placeHolder: String?
 
@@ -16,7 +15,6 @@ class EmailFieldModel: StringFieldModel, EditableStringComponentModel {
         placeHolder = json["placeholder"].string
         super.init(json: json, pageModel: pageModel)
     }
-
 
     override func isValid() -> Bool {
         isModelValid = !isViewCurrentlyVisible || !required || (fieldValue != nil && fieldValue!.characters.count > 0 && isValidEmail(testStr: fieldValue!))

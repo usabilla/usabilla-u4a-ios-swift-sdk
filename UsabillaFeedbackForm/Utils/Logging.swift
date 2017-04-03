@@ -26,7 +26,6 @@ public func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ fu
     #endif
 }
 
-
 /// Outputs a `dump` of the passed in value along with an optional label, the filename, function name, and line number to the standard output if the build setting for "Active Complilation Conditions" (SWIFT_ACTIVE_COMPILATION_CONDITIONS) defines `DEBUG`.
 ///
 /// The current thread is a prefix on the output. <UI> for the main thread, <BG> for anything else.

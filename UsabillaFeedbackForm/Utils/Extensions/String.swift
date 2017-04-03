@@ -33,7 +33,6 @@ extension String {
         return arrayToReturn
     }
 
-
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
@@ -46,6 +45,4 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
-
-
 }

@@ -20,14 +20,11 @@ class FormControllerTest: QuickSpec {
         var formModel: FormModel!
 
         describe("FormControllerTest ") {
-
-
             beforeEach {
                 let path = Bundle(for: FormControllerTest.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
                 formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
-
 
                 let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
                 if let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
@@ -45,8 +42,6 @@ class FormControllerTest: QuickSpec {
                 }
             }
             describe("basics") {
-
-
                 describe("viewDidLoad") {
 
                     it("sets the progress bar") {
@@ -71,7 +66,6 @@ class FormControllerTest: QuickSpec {
                         viewController.updateRightButton()
                         viewController.updateProgressBar()
 
-
                         expect(viewController.currentPage).to(equal(newPageIndex))
                         expect(viewController.pageController.pageViewModel.name).to(equal(formModel.pages[newPageIndex].pageName))
                         expect(viewController.rightNavItem.title).to(equal("TestSubmit"))
@@ -83,7 +77,6 @@ class FormControllerTest: QuickSpec {
                         //viewController.swipeToPage(newPageIndex)
                         viewController.showThankYouPage()
 
-
                         expect(viewController.currentPage).to(equal(2))
                         expect(viewController.rightNavItem.title).to(equal(""))
                         expect(viewController.rightNavItem.isEnabled).to(equal(false))
@@ -91,7 +84,6 @@ class FormControllerTest: QuickSpec {
 
                     }
                 }
-
 
                 describe(".viewWillDisappear()") {
                     beforeEach {

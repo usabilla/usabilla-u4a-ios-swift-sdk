@@ -63,8 +63,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
     var minimumTouchSize = CGSize(width: 44, height: 44)
     var onAnimationType = AnimationType.stroke
     var offAnimationType = AnimationType.stroke
-    //var _animationManager: AnimationManager
-
 
     override init(frame: CGRect) {
         pathManager = PathManager()
@@ -91,8 +89,6 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
 
         backgroundColor = UIColor.clear
         tintColor = UIColor.lightGray
-
-
     }
 
     override func layoutSubviews() {
@@ -194,13 +190,9 @@ class SwiftCheckBox: UIView, CAAnimationDelegate {
         self.offBoxLayer.fillColor = UIColor.clear.cgColor
         self.offBoxLayer.strokeColor = self.tintColor.cgColor
         self.offBoxLayer.lineWidth = self.lineWidth
-
         self.offBoxLayer.rasterizationScale = 2.0 * UIScreen.main.scale
         self.offBoxLayer.shouldRasterize = true
-
-
         self.layer.addSublayer(offBoxLayer)
-
     }
 
     /** Draws the box when the checkbox is set to On.

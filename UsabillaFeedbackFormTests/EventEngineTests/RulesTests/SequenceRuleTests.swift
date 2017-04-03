@@ -24,8 +24,6 @@ class SequenceRuleTests: QuickSpec {
     var leafRule4: Rule!
 
     var children: [Rule]!
-
-
     override func spec() {
 
         beforeEach {
@@ -36,7 +34,6 @@ class SequenceRuleTests: QuickSpec {
 
             self.children = [self.leafRule1, self.leafRule2, self.leafRule3, self.leafRule4]
         }
-
 
         describe("The Sequence Rule") {
 
@@ -111,8 +108,6 @@ class SequenceRuleTests: QuickSpec {
                     expect(self.leafRule1.alreadyTriggered).to(beTrue())
 
                 }
-
-
             })
 
         }

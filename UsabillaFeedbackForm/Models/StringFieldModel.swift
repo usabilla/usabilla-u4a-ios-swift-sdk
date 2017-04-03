@@ -31,7 +31,6 @@ class StringFieldModel: BaseFieldModel, StringComponentModel {
         super.init(json: json, pageModel: pageModel)
     }
 
-
     override func isValid() -> Bool {
         isModelValid = !isViewCurrentlyVisible || !required || (fieldValue != nil && fieldValue!.characters.count > 0)
         return isModelValid

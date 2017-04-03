@@ -23,7 +23,6 @@ class DecoratorTests: QuickSpec {
             self.leafRule1 = LeafRule(event: self.event1, ruleID: "id1", alreadyTriggered: true)
         }
 
-
         describe("The base Decorator") {
 
             context("When creating an object", {
@@ -37,12 +36,8 @@ class DecoratorTests: QuickSpec {
                 }
             })
 
-
-
             it("should serialize correctly") {
                 let decorator = Decorator(rule: self.leafRule1)
-
-
                 let data = NSKeyedArchiver.archivedData(withRootObject: decorator)
 
                 expect(data).toNot(beNil())

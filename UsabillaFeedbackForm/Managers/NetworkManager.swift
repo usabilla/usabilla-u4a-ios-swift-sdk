@@ -75,7 +75,6 @@ class NetworkManager {
         }
     }
 
-
     /// Submits the screenshot as a separate request
     ///
     /// - Parameters:

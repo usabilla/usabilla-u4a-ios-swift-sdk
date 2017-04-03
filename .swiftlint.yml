@@ -1,7 +1,6 @@
 disabled_rules: # rule identifiers to exclude from running
   - type_body_length
   - function_body_length
-  - vertical_whitespace  
   - cyclomatic_complexity
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage

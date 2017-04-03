@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class CommentFieldModel: StringFieldModel {
 
     let text: String?

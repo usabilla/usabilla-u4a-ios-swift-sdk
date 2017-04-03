@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol UBIntroOutroDisplay {
     static func build(view: UBIntroOutroView)
 }

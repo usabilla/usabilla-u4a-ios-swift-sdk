@@ -13,9 +13,6 @@ import Nimble
 
 // swiftlint:disable force_cast
 class DataStoreTest: QuickSpec {
-
-
-
     override func spec() {
 
         let feedbackToSendStorePath = "com.usabilla.u4a.feedback.to.send"
@@ -25,8 +22,6 @@ class DataStoreTest: QuickSpec {
         var feedback3: FeedbackRequest!
 
         beforeSuite {
-
-
             let payload: [String: Any] = ["key1": "value1", "key2": "value2"]
             let payload2: [String: Any] = ["key12": "value12", "key22": "value22"]
 
@@ -48,7 +43,6 @@ class DataStoreTest: QuickSpec {
                 expect(DataStore.feedbacks.count).to(equal(2))
             }
 
-
             it("adds a feeback correctly") {
                 DataStore.addFeedback(type: feedback3!)
                 expect(DataStore.feedbacks.count).to(equal(3))
@@ -62,9 +56,7 @@ class DataStoreTest: QuickSpec {
                 let value = dbFeedbacks[2].payload["key12"] as! String
                 expect(value).to(equal("value12"))
                 expect(dbFeedbacks[2].screenshot).to(beNil())
-
             }
-
 
             it("removes a feeback correctly") {
                 DataStore.removeFeedback(index: 0)

@@ -14,7 +14,6 @@ class SequenceRule: ConcreteRule {
         super.init(type: .sequence, childRules: childRules, ruleID: ruleID, alreadyTriggered: alreadyTriggered)
     }
 
-
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

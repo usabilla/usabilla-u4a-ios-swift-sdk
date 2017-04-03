@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class CopyModel {
     var navigationNext: String?
     var cancelButton: String?

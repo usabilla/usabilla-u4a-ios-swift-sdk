@@ -34,7 +34,6 @@ extension String {
         return arrayToReturn
     }
 
-
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
@@ -47,10 +46,7 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
-
-
 }
-
 
 extension UIImage {
 
@@ -58,7 +54,6 @@ extension UIImage {
         let data = UIImageJPEGRepresentation(self.fixSizeAndOrientation(), 0.5)
         return data?.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
     }
-
 
     func alpha(value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -95,7 +90,6 @@ extension UIImage {
         return self
     }
 
-
     func renderInColor(_ color: UIColor) -> UIImage {
 
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
@@ -119,7 +113,6 @@ extension UIView {
         ).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 }
-
 
 extension UIFont {
 
@@ -170,8 +163,6 @@ extension UIFont {
             NSLog("UIFont+:  Failed to register font - bundle identifier invalid.")
         }
     }
-
-
 }
 
 extension UIDevice {
@@ -225,7 +216,6 @@ extension UIDevice {
 //  Created by R0CKSTAR on 6/13/14.
 //  Copyright (c) 2014 P.D.Q. All rights reserved.
 //
-
 
 /**
  MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"
