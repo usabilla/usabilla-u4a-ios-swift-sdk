@@ -10,27 +10,36 @@ import Foundation
 
 class SliderComponent: UBComponent<SliderComponentViewModel> {
 
-    var slider: UISlider!
-    var valueLabel: UILabel!
-    var rightLabel: UILabel!
-    var leftLabel: UILabel!
+    lazy var slider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(slider)
+        return slider
+    }()
+
+    lazy var valueLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(label)
+        return label
+    }()
+
+    lazy var rightLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(label)
+        return label
+    }()
+
+    lazy var leftLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(label)
+        return label
+    }()
 
     override func build() {
-
-        valueLabel = UILabel()
-        leftLabel = UILabel()
-        rightLabel = UILabel()
-        slider = UISlider()
-        valueLabel.translatesAutoresizingMaskIntoConstraints = false
-        leftLabel.translatesAutoresizingMaskIntoConstraints = false
-        rightLabel.translatesAutoresizingMaskIntoConstraints = false
         slider.addTarget(self, action: #selector(SliderComponent.barChangedValue), for: .valueChanged)
-        self.slider.translatesAutoresizingMaskIntoConstraints = false
-
-        addSubview(slider)
-        addSubview(valueLabel)
-        addSubview(leftLabel)
-        addSubview(rightLabel)
 
         // positioning
 

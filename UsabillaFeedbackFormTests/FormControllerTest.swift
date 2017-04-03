@@ -5,6 +5,9 @@
 //  Created by Giacomo Pinato on 20/05/16.
 //  Copyright © 2016 Usabilla. All rights reserved.
 //
+
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
