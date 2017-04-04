@@ -58,7 +58,7 @@ open class UsabillaFeedbackForm {
                 return
         }
         formController.delegate = PassiveFormController()
-        formController.initWithFormModel(form)
+        formController.viewModel = UBFormViewModel(formModel: form)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {

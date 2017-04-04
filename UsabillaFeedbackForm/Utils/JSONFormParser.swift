@@ -13,9 +13,18 @@ class JSONFormParser {
     class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
 
         let pageName = pageJson["name"].stringValue
-        let type = PageType(rawValue: pageJson["type"].stringValue)
+        let type = PageType(rawValue: pageJson["type"].stringValue)!
 
-        let pageModelClass: PageModel.Type = type != .start ? PageModel.self : IntroPageModel.self
+        var pageModelClass: PageModel.Type
+
+        switch type {
+        case .start:
+            pageModelClass = IntroPageModel.self
+        case .form:
+            pageModelClass = PageModel.self
+        case .end:
+            pageModelClass = UBEndPageModel.self
+        }
         let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, themeConfig: themeConfig)
         currentPage.defaultJumpTo = pageJson["jump"].string
         currentPage.type = type

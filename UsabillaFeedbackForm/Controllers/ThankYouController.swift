@@ -16,15 +16,11 @@ class ThankYouController: UIViewController {
     @IBOutlet weak var moreFeedbackButton: UIButton!
     @IBOutlet weak var distanceBetweenButtons: NSLayoutConstraint!
 
-    weak var themeConfig: UsabillaThemeConfigurator?
-    var redirectEnabled: Bool = false
-
-    var redirectToAppStore: String?
-    var giveMoreFeedback: String?
+    var viewModel: UBEndPageViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = themeConfig?.backgroundColor
+        self.view.backgroundColor = viewModel?.theme.backgroundColor
     }
 
     func openAppStore() {
@@ -38,10 +34,10 @@ class ThankYouController: UIViewController {
         SwiftEventBus.post("restoreForm")
     }
 
-    func setUpController(_ thresholdMet: Bool, thankTitle: String?, thankMessage: String?) {
+    func setUpController(_ thresholdMet: Bool) {
 
-        if thresholdMet && redirectEnabled && UsabillaFeedbackForm.appStoreId != nil {
-            rateButton.setTitle(redirectToAppStore, for: UIControlState())
+        if thresholdMet && viewModel.redirectToAppStore && UsabillaFeedbackForm.appStoreId != nil {
+            rateButton.setTitle(viewModel.appStoreRedirectText, for: UIControlState())
             rateButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else {
             distanceBetweenButtons.constant = 0
@@ -50,18 +46,18 @@ class ThankYouController: UIViewController {
         }
 
         if !UsabillaFeedbackForm.hideGiveMoreFeedback {
-            moreFeedbackButton.setTitle(giveMoreFeedback, for: UIControlState())
+            moreFeedbackButton.setTitle(viewModel.moreFeedbackText, for: UIControlState())
             moreFeedbackButton.addTarget(self, action: #selector(ThankYouController.reloadForm), for: .touchUpInside)
         } else {
             moreFeedbackButton.isHidden = true
         }
 
-        titleLabel.text = thankTitle
-        messageLabel.text = thankMessage
+        titleLabel.text = viewModel.headerText
+        messageLabel.text = viewModel.thankyouText
         messageLabel.lineBreakMode = .byWordWrapping
         messageLabel.numberOfLines = 0
 
-        if let configuration = themeConfig {
+        if let configuration = viewModel?.theme {
 
             titleLabel.textColor = configuration.titleColor
             titleLabel.font = configuration.font.withSize(configuration.titleFontSize).bold()
