@@ -14,23 +14,27 @@ import Nimble
 class UsabillaThemeConfiguratorTest: QuickSpec {
 
     override func spec() {
-        var theme: UsabillaTheme?
+        var theme: UsabillaTheme!
 
         describe("UsabillaTheme") {
+            
+            beforeEach {
+                theme = UsabillaTheme()
+            }
 
             context("when UsabillaTheme is initilized", {
                 it("init UsabillaTheme") {
-                    theme = UsabillaTheme()
                     expect(theme).toNot(beNil())
                     expect(theme?.enabledEmoticons.count).to(equal(5))
                     expect(theme?.headerColor).to(beNil())
                     expect(theme?.customFont).to(beNil())
                     expect(theme?.hintColor).to(equal(theme?.textColor.withAlphaComponent(0.38)))
+                    expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 17)))
                 }
+                
                 it("UsabillaTheme font") {
-                    expect(theme?.font).to(equal(UIFont.systemFont(ofSize: UIFont.systemFontSize)))
                     theme?.customFont = UIFont.systemFont(ofSize: 50)
-                    expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 50)))
+                    expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 17)))
                 }
             })
 
