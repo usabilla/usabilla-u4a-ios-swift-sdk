@@ -34,8 +34,6 @@ class FormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        swipeToPage(viewModel.firstPageViewModel!)
-
         if viewModel.shouldHideProgressBar {
             progressBar.isHidden = true
             progressBarHeight.constant = 0
@@ -74,6 +72,7 @@ class FormViewController: UIViewController {
             return
         }
         pageController.gotToNextErrorField()
+
     }
 
     func showThankYouPage() {
@@ -96,7 +95,8 @@ class FormViewController: UIViewController {
     }
 
     func restoreFeedbackFormController() {
-        resetAndRestartForm()
+        viewModel.reset()
+        swipeToPage(viewModel.firstPageViewModel!)
         thankYouController.willMove(toParentViewController: nil)
         addChildViewController(pageController)
         pageController.view.frame = containerView.bounds
@@ -106,11 +106,6 @@ class FormViewController: UIViewController {
         updateRightButton()
         updateProgressBar()
         setUpLeftButton()
-    }
-
-    func resetAndRestartForm() {
-        viewModel = UBFormViewModel(formModel: viewModel.newFormModel())
-        swipeToPage(viewModel.firstPageViewModel!)
     }
 
     func updateRightButton() {
@@ -134,16 +129,21 @@ class FormViewController: UIViewController {
 
     func swipeToPage(_ pageViewModel: PageViewModel) {
         pageController.initWithViewModel(pageViewModel)
+        viewModel.currenPageViewModel = pageViewModel
+
         updateProgressBar()
         updateRightButton()
     }
 
     func goToNextPage() {
+        viewModel.currenPageViewModel = viewModel.nextPageViewModel!
         if viewModel.isItTheEnd {
             showThankYouPage()
             return
         }
-        swipeToPage(viewModel.nextPageViewModel)
+        pageController.initWithViewModel(viewModel.currenPageViewModel)
+        updateProgressBar()
+        updateRightButton()
     }
 
 }

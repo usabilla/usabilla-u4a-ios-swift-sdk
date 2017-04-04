@@ -70,21 +70,39 @@ class UBFormViewModel {
         if currentPageIndex == model.pages.count - 2 {
             return model.copyModel.navigationSubmit
         } else if currentPageIndex == model.pages.count - 1 {
-            return model.copyModel.cancelButton
+            return nil
         }
 
         return model.copyModel.navigationNext
     }
 
-    init(formModel: FormModel) {
-        self.model = formModel
-        self.currentPageIndex = 0
-        self.pageViewModels = []
-
-        model.pages.forEach {
-            let vm = PageViewModel(page: $0)
-            self.pageViewModels.append(vm)
+    var currenPageViewModel: PageViewModel {
+        get {
+            return pageViewModels[currentPageIndex]
         }
+
+        set {
+            currentPageIndex = pageViewModels.index(where: {
+                $0.name == newValue.name
+            })!
+        }
+    }
+
+    var endPageViewModel: UBEndPageViewModel? {
+        guard let endPageModel = model.pages[currentPageIndex] as? UBEndPageModel else {
+            return nil
+        }
+        endPageModel.redirectToAppStore = model.redirectToAppStore
+        let moodValue = model.pages.first?.fields[0] as? IntFieldModel
+
+        let endPageViewModel = UBEndPageViewModel(model: endPageModel)
+        var rating: Int = 0
+        if let moodRating = moodValue?.fieldValue {
+            rating = moodRating
+        }
+        endPageViewModel.formRating = rating
+
+        return endPageViewModel
     }
 
     private var nextPageIndex: Int {
@@ -101,7 +119,11 @@ class UBFormViewModel {
         return newPageIndex
     }
 
-    var nextPageViewModel: PageViewModel {
+    var nextPageViewModel: PageViewModel? {
+        guard nextPageIndex < pageViewModels.count else {
+            return nil
+        }
+
         return pageViewModels[nextPageIndex]
     }
 
@@ -109,35 +131,25 @@ class UBFormViewModel {
         return model.pages[currentPageIndex].type == .end
     }
 
-    var nextThankYouPageViewModel: UBEndPageViewModel? {
-        if let thankYouPageModel = model.pages[nextPageIndex] as? UBEndPageModel {
-            return UBEndPageViewModel(model: thankYouPageModel)
-        }
+    init(formModel: FormModel) {
+        self.model = formModel
+        self.currentPageIndex = 0
+        self.pageViewModels = []
 
-        return nil
+        model.pages.forEach {
+            let vm = PageViewModel(page: $0)
+            self.pageViewModels.append(vm)
+        }
     }
 
-    func restart() {
-        currentPageIndex = 0
-    }
+    func reset() {
+        self.model = FormModel(json: model.formJsonString, id: model.appId, themeConfig: model.themeConfig, screenshot: nil)
+        self.currentPageIndex = 0
+        self.pageViewModels = []
 
-    func newFormModel() -> FormModel {
-        return FormModel(json: model.formJsonString, id: model.appId, themeConfig: model.themeConfig, screenshot: nil)
-    }
-
-    var endPageViewModel: UBEndPageViewModel? {
-        guard let endPageModel = model.pages[currentPageIndex] as? UBEndPageModel else {
-            return nil
+        model.pages.forEach {
+            let vm = PageViewModel(page: $0)
+            self.pageViewModels.append(vm)
         }
-        let moodValue = model.pages.first?.fields[0] as? IntFieldModel
-
-        let endPageViewModel = UBEndPageViewModel(model: endPageModel)
-        var rating: Int = 0
-        if let moodRating = moodValue?.fieldValue {
-            rating = moodRating
-        }
-        endPageViewModel.formRating = rating
-
-        return endPageViewModel
     }
 }

@@ -13,7 +13,7 @@ class PassiveFormController: FormViewControllerDelegate {
     private var results: [FeedbackResult] = []
 
     func leftBarButtonTapped(_ formViewController: FormViewController) {
-        if formViewController.viewModel.isItTheEnd {
+        if !formViewController.viewModel.isItTheEnd {
             results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         }
 

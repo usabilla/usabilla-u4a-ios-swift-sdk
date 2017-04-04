@@ -18,8 +18,12 @@ class UBEndPageViewModel {
         return model.themeConfig
     }
 
-    var redirectToAppStore: Bool {
-        return model.redirectToAppStore && formRating > 3
+    var canRedirectToAppStore: Bool {
+        return model.redirectToAppStore && formRating > 3 && UsabillaFeedbackForm.appStoreId != nil
+    }
+
+    var canGiveMoreFeedback: Bool {
+        return !UsabillaFeedbackForm.hideGiveMoreFeedback
     }
 
     var appStoreRedirectText: String? {

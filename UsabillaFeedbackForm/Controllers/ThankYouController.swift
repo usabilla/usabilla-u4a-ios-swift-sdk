@@ -21,22 +21,8 @@ class ThankYouController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = viewModel?.theme.backgroundColor
-    }
 
-    func openAppStore() {
-        if let appStore = UsabillaFeedbackForm.appStoreId {
-            let url = String(format: "http://itunes.apple.com/app/id%@", appStore)
-            UIApplication.shared.openURL(URL(string: url)!)
-        }
-    }
-
-    func reloadForm() {
-        SwiftEventBus.post("restoreForm")
-    }
-
-    func setUpController(_ thresholdMet: Bool) {
-
-        if thresholdMet && viewModel.redirectToAppStore && UsabillaFeedbackForm.appStoreId != nil {
+        if viewModel.canRedirectToAppStore {
             rateButton.setTitle(viewModel.appStoreRedirectText, for: UIControlState())
             rateButton.addTarget(self, action: #selector(ThankYouController.openAppStore), for: .touchUpInside)
         } else {
@@ -45,7 +31,7 @@ class ThankYouController: UIViewController {
             rateButton.heightAnchor.constraint(equalToConstant: 0).isActive = true
         }
 
-        if !UsabillaFeedbackForm.hideGiveMoreFeedback {
+        if viewModel.canGiveMoreFeedback {
             moreFeedbackButton.setTitle(viewModel.moreFeedbackText, for: UIControlState())
             moreFeedbackButton.addTarget(self, action: #selector(ThankYouController.reloadForm), for: .touchUpInside)
         } else {
@@ -73,5 +59,16 @@ class ThankYouController: UIViewController {
             messageLabel.textColor = configuration.textColor
             messageLabel.font = font
         }
+    }
+
+    func openAppStore() {
+        if let appStore = UsabillaFeedbackForm.appStoreId {
+            let url = String(format: "http://itunes.apple.com/app/id%@", appStore)
+            UIApplication.shared.openURL(URL(string: url)!)
+        }
+    }
+
+    func reloadForm() {
+        SwiftEventBus.post("restoreForm")
     }
 }

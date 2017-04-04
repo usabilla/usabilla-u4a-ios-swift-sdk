@@ -114,6 +114,7 @@
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
 		436264121E92865000A0533C /* UBEndPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264111E92865000A0533C /* UBEndPageViewModel.swift */; };
 		436264141E92867A00A0533C /* UBEndPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264131E92867A00A0533C /* UBEndPageModel.swift */; };
+		436264161E93A03200A0533C /* UBFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264151E93A03200A0533C /* UBFormViewModelTests.swift */; };
 		436C2B7D1E85187000741E10 /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B771E85187000741E10 /* UBBannerDisplay.swift */; };
 		436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B781E85187000741E10 /* UBBannerPresenter.swift */; };
 		436C2B7F1E85187000741E10 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */; };
@@ -332,6 +333,7 @@
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		436264111E92865000A0533C /* UBEndPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBEndPageViewModel.swift; sourceTree = "<group>"; };
 		436264131E92867A00A0533C /* UBEndPageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBEndPageModel.swift; sourceTree = "<group>"; };
+		436264151E93A03200A0533C /* UBFormViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormViewModelTests.swift; sourceTree = "<group>"; };
 		436C2B771E85187000741E10 /* UBBannerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerDisplay.swift; sourceTree = "<group>"; };
 		436C2B781E85187000741E10 /* UBBannerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBBannerPresenter.swift; sourceTree = "<group>"; };
 		436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBIntroOutroPresenter.swift; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 				43B708411E7FE74800F05A40 /* PageViewModelTests.swift */,
 				43B9AF991E856464009EC83A /* IntroPageViewModelTests.swift */,
 				C59C823F1E8914C200840D4E /* CampainViewModelTests.swift */,
+				436264151E93A03200A0533C /* UBFormViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTests.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,
+				436264161E93A03200A0533C /* UBFormViewModelTests.swift in Sources */,
 				434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */,
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
 				43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift in Sources */,
