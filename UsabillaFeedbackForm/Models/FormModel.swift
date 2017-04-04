@@ -22,21 +22,21 @@ class FormModel {
     let copyModel: CopyModel
 
     // swiftlint:disable:next function_parameter_count
-    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaTheme, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {
+    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
         self.pages = pages
         self.appId = appId
         self.formJsonString = jsonString
-        self.themeConfig = themeConfig
+        self.themeConfig = UsabillaFeedbackForm.theme
         self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
 
         _ = pages.map { $0.copy = copyModel }
     }
 
-    init(json: JSON, id: String, themeConfig: UsabillaTheme, screenshot: UIImage?) {
+    init(json: JSON, id: String, screenshot: UIImage?) {
         let data = json["data"]
         self.copyModel = CopyModel(json: json)
         self.hasScreenshot = data["screenshot"].boolValue
@@ -45,7 +45,7 @@ class FormModel {
         self.showProgressBar = data["progressBar"].bool ?? true
         self.appId = id
         self.formJsonString = json
-        self.themeConfig = UsabillaFeedbackForm
+        self.themeConfig = UsabillaFeedbackForm.theme
         self.themeConfig.updateConfig(json: json["colors"])
 
         var newPages: [PageModel] = []

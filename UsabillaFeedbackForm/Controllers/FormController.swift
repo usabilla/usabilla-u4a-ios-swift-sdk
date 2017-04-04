@@ -152,7 +152,7 @@ class FormViewController: UIViewController {
 
     func resetAndRestartForm() {
         currentPage = 0
-        formModel = FormModel(json: formModel.formJsonString, id: formModel.appId, themeConfig: formModel.themeConfig, screenshot: nil)
+        formModel = FormModel(json: formModel.formJsonString, id: formModel.appId, screenshot: nil)
         swipeToPage(0)
     }
 

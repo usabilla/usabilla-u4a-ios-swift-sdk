@@ -37,7 +37,7 @@ class FormStore {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: data)
                 if jsonObj != JSON.null {
-                    let form = FormModel(json: jsonObj, id: appId, themeConfig: themeConfig, screenshot: screenshot)
+                    let form = FormModel(json: jsonObj, id: appId, screenshot: screenshot)
                     form.isDefault = true
                     return form
                 } else {

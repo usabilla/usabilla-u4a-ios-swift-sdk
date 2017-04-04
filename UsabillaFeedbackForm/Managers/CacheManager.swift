@@ -40,7 +40,7 @@ class CacheManager {
     func getForm(id: String) -> FormModel? {
         let fileName = fileNameFormatterForForm(id: id)
         if let jsonForm = getJsonForm(id: fileName) {
-            return FormModel(json: jsonForm, id: id, themeConfig: UsabillaTheme(), screenshot: nil)
+            return FormModel(json: jsonForm, id: id, screenshot: nil)
         }
 
         return nil

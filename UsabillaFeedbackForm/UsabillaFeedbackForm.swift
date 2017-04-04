@@ -17,7 +17,7 @@ open class UsabillaFeedbackForm {
     open static var hideGiveMoreFeedback: Bool = true
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
-    open static var theme: UsabillaTheme
+    open static var theme: UsabillaTheme = UsabillaTheme()
     static var defaultLocalisationFile = true
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
@@ -77,7 +77,7 @@ open class UsabillaFeedbackForm {
 
     open class func showCampaign(formJson: JSON) {
         let campaign = CampaignModel(id: "", json: JSON.parse(""))
-        let formModel = FormModel(json: formJson, id: "", themeConfig: UsabillaTheme(), screenshot: nil)
+        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
         campaign.form = formModel
         CampaignWindow.shared.showCampaign(campaign)
     }
