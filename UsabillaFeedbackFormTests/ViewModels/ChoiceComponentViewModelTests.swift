@@ -17,7 +17,7 @@ class ChoiceComponentViewModelTests: QuickSpec {
 
         var viewModel: ChoiceComponentViewModel!
         var model: ChoiceFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaTheme())
 
         beforeSuite {
             model = ChoiceFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)

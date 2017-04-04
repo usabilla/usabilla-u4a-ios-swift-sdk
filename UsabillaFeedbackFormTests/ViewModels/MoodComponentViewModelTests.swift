@@ -19,7 +19,7 @@ class MoodComponentViewModelTests: QuickSpec {
 
     override func spec() {
 
-        let themeConfig = UsabillaThemeConfigurator()
+        let themeConfig = UsabillaTheme()
         let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: themeConfig)
         var moodComponentViewModel: MoodComponentViewModel!
         var moodModel: MoodFieldModel!

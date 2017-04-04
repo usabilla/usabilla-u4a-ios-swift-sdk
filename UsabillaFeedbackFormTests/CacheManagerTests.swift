@@ -24,7 +24,7 @@ class CacheManagerTests: QuickSpec {
                 let path = Bundle(for: CacheManagerTests.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
-                self.formModel = FormModel(json: jsonObj, id: self.formId, themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                self.formModel = FormModel(json: jsonObj, id: self.formId, screenshot: nil)
             }
 
             context("When saving form into cache", {

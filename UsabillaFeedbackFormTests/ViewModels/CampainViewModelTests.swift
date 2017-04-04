@@ -30,7 +30,7 @@ class CampainViewModelTests: QuickSpec {
             context("When initilized CampainViewModel", {
                 it("should not set introPageViewModel & introPresenter when json does not conatin start page", closure: {
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     campaign.form = formModel
 
                     expect(campaign).toNot(beNil())
@@ -49,7 +49,7 @@ class CampainViewModelTests: QuickSpec {
                     self.formJson = JSON(dict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)

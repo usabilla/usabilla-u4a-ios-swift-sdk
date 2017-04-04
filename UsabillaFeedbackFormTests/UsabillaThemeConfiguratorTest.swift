@@ -14,27 +14,27 @@ import Nimble
 class UsabillaThemeConfiguratorTest: QuickSpec {
 
     override func spec() {
-        var theme: UsabillaThemeConfigurator?
+        var theme: UsabillaTheme?
 
-        describe("UsabillaThemeConfigurator") {
+        describe("UsabillaTheme") {
 
-            context("when UsabillaThemeConfigurator is initilized", {
-                it("init UsabillaThemeConfigurator") {
-                    theme = UsabillaThemeConfigurator()
+            context("when UsabillaTheme is initilized", {
+                it("init UsabillaTheme") {
+                    theme = UsabillaTheme()
                     expect(theme).toNot(beNil())
                     expect(theme?.enabledEmoticons.count).to(equal(5))
                     expect(theme?.headerColor).to(beNil())
                     expect(theme?.customFont).to(beNil())
                     expect(theme?.hintColor).to(equal(theme?.textColor.withAlphaComponent(0.38)))
                 }
-                it("UsabillaThemeConfigurator font") {
+                it("UsabillaTheme font") {
                     expect(theme?.font).to(equal(UIFont.systemFont(ofSize: UIFont.systemFontSize)))
                     theme?.customFont = UIFont.systemFont(ofSize: 50)
                     expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 50)))
                 }
             })
 
-            context("when UsabillaThemeConfigurator enabledEmoticons count is different than 5 images", {
+            context("when UsabillaTheme enabledEmoticons count is different than 5 images", {
                 it("should be nil", closure: {
                     expect(theme?.emoticons(size: 5, emoticons: [UIImage(), UIImage()])).to(beNil())
                 })

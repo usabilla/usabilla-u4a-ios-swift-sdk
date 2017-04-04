@@ -17,7 +17,7 @@ class BaseOptionsComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseOptionsComponentViewModel<OptionsFieldModel>!
         var model: OptionsFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaTheme())
 
         beforeSuite {
             model = OptionsFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)

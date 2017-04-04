@@ -16,7 +16,7 @@ import Nimble
 class IntroPageViewModelTests: QuickSpec {
 
     override func spec() {
-        let configurator = UsabillaThemeConfigurator()
+        var configurator = UsabillaTheme()
         let introPage = IntroPageModel(pageNumber: 0, pageName: "test", themeConfig: configurator)
         let copyModel = CopyModel()
         beforeSuite {
@@ -36,9 +36,9 @@ class IntroPageViewModelTests: QuickSpec {
                     expect(introPageViewModel.backgroundColor).to(equal(configurator.backgroundColor))
                     expect(introPageViewModel.titleColor).to(equal(configurator.titleColor))
                     expect(introPageViewModel.hintColor).to(equal(configurator.hintColor))
-                    expect(introPageViewModel.cancelButtonFont).to(equal(UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)))
-                    expect(introPageViewModel.continueButtonFont).to(equal(UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)))
-                    expect(introPageViewModel.buttonsColor).to(equal(UIColor.blue))
+                    expect(introPageViewModel.font).to(equal(UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)))
+                    expect(introPageViewModel.boldFont).to(equal(UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)))
+                    expect(introPageViewModel.accentColor).to(equal(UIColor.blue))
                 }
             }
 
@@ -50,8 +50,8 @@ class IntroPageViewModelTests: QuickSpec {
                     let customFontBold = UIFont(name: "TimesNewRomanPS-BoldMT", size: 17)
                     configurator.customFontBold = customFontBold
 
-                    expect(introPageViewModel.cancelButtonFont).to(equal(customFont))
-                    expect(introPageViewModel.continueButtonFont).to(equal(customFontBold))
+                    expect(introPageViewModel.font).to(equal(customFont))
+                    expect(introPageViewModel.boldFont).to(equal(customFontBold))
                 }
             }
 

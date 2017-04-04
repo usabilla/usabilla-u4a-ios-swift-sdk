@@ -14,7 +14,7 @@ import Nimble
 class RatingFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaTheme())
         var model: RatingFieldModel?
 
         describe("RatingFieldModel") {
