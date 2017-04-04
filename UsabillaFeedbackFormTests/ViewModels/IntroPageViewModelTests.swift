@@ -20,7 +20,7 @@ class IntroPageViewModelTests: QuickSpec {
         configurator.backgroundColor = UIColor(rgba: "#012345")
         configurator.titleColor = UIColor(rgba: "#012346")
         configurator.textColor = UIColor(rgba: "#012347")
-        
+
         let introPage = IntroPageModel(pageNumber: 0, pageName: "test", themeConfig: configurator)
         let copyModel = CopyModel()
         beforeSuite {
@@ -52,7 +52,7 @@ class IntroPageViewModelTests: QuickSpec {
                     configurator.customFontBold = customFontBold
                     let introPage = IntroPageModel(pageNumber: 0, pageName: "test", themeConfig: configurator)
                     let introPageViewModel = IntroPageViewModel(introPage: introPage)
-                    
+
                     expect(introPageViewModel.font).to(equal(customFont))
                     expect(introPageViewModel.boldFont).to(equal(customFontBold))
                 }

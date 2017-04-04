@@ -17,7 +17,7 @@ class UsabillaThemeConfiguratorTest: QuickSpec {
         var theme: UsabillaTheme!
 
         describe("UsabillaTheme") {
-            
+
             beforeEach {
                 theme = UsabillaTheme()
             }
@@ -31,7 +31,7 @@ class UsabillaThemeConfiguratorTest: QuickSpec {
                     expect(theme?.hintColor).to(equal(theme?.textColor.withAlphaComponent(0.38)))
                     expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 17)))
                 }
-                
+
                 it("UsabillaTheme font") {
                     theme?.customFont = UIFont.systemFont(ofSize: 50)
                     expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 17)))
