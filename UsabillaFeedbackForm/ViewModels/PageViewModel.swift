@@ -14,7 +14,7 @@ class PageViewModel {
     private let model: PageModel
     var dynamicFields: [Int] = []
 
-    let theme: UsabillaThemeConfigurator
+    let theme: UsabillaTheme
     let copy: CopyModel
     let errorMessage: String?
     var name: String? {

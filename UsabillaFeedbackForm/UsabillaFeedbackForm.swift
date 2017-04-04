@@ -17,7 +17,7 @@ open class UsabillaFeedbackForm {
     open static var hideGiveMoreFeedback: Bool = true
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
-
+    open static var theme: UsabillaTheme
     static var defaultLocalisationFile = true
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
@@ -40,7 +40,7 @@ open class UsabillaFeedbackForm {
         CacheManager.shared.removeAllCachedForms()
     }
 
-    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
+    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaTheme = UsabillaTheme()) {
 
         FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then { form in
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
@@ -77,7 +77,7 @@ open class UsabillaFeedbackForm {
 
     open class func showCampaign(formJson: JSON) {
         let campaign = CampaignModel(id: "", json: JSON.parse(""))
-        let formModel = FormModel(json: formJson, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+        let formModel = FormModel(json: formJson, id: "", themeConfig: UsabillaTheme(), screenshot: nil)
         campaign.form = formModel
         CampaignWindow.shared.showCampaign(campaign)
     }

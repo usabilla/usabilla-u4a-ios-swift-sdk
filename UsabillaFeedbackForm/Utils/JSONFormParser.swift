@@ -10,7 +10,7 @@ import Foundation
 
 class JSONFormParser {
 
-    class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaThemeConfigurator) -> PageModel {
+    class func parsePage(_ pageJson: JSON, pageNum: Int, themeConfig: UsabillaTheme) -> PageModel {
 
         let pageName = pageJson["name"].stringValue
         let type = PageType(rawValue: pageJson["type"].stringValue)

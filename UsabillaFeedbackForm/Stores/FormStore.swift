@@ -11,7 +11,7 @@ import Foundation
 class FormStore {
 
     // Entry to laod a form from Network or try getting it from Cache
-    class func loadForm(id: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> Promise<FormModel> {
+    class func loadForm(id: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaTheme) -> Promise<FormModel> {
         // 1. try loading form from network if success return it
         // 2. else try loading form from cache if succeeded return it
         // 3. else fail
@@ -31,7 +31,7 @@ class FormStore {
     }
 
     // Loads the default form implemented with the app
-    class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator) -> FormModel? {
+    class func loadDefaultForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaTheme) -> FormModel? {
         if let path = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.path(forResource: "defaultJson", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)

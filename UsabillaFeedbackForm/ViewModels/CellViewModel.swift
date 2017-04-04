@@ -12,7 +12,7 @@ class CellViewModel {
 
     let model: BaseFieldModel
     let title: String
-    let theme: UsabillaThemeConfigurator
+    let theme: UsabillaTheme
     let copy: CopyModel
     let required: Bool
     var componentViewModel: ComponentViewModel?

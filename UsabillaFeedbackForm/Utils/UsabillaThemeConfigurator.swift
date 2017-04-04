@@ -1,5 +1,5 @@
 //
-//  UsabillaThemeConfigurator.swift
+//  UsabillaTheme.swift
 //  ubform_swift
 //
 //  Created by Giacomo Pinato on 02/03/16.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct UsabillaThemeConfigurator {
+public struct UsabillaTheme {
 
     // MARK: Colors
     public var titleColor: UIColor
@@ -64,7 +64,7 @@ public struct UsabillaThemeConfigurator {
         titleColor = UIColor(rgba: "#41474C")
         errorColor = UIColor(rgba: "#F4606E")
         backgroundColor = UIColor.white
-        enabledEmoticons = UsabillaThemeConfigurator.createEmoticons()
+        enabledEmoticons = UsabillaTheme.createEmoticons()
         disabledEmoticons = nil
         fullStar = nil
         emptyStar = nil

@@ -16,7 +16,7 @@ class ThankYouController: UIViewController {
     @IBOutlet weak var moreFeedbackButton: UIButton!
     @IBOutlet weak var distanceBetweenButtons: NSLayoutConstraint!
 
-    var themeConfig: UsabillaThemeConfigurator?
+    var themeConfig: UsabillaTheme?
     var redirectEnabled: Bool = false
 
     var redirectToAppStore: String?

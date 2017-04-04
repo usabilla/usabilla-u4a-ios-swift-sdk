@@ -14,7 +14,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     weak var delegate: SwiftCheckBoxDelegate?
     var label: UILabel!
     var height: NSLayoutConstraint!
-    var themeConfig: UsabillaThemeConfigurator? {
+    var themeConfig: UsabillaTheme? {
         didSet {
             applyCustomisation()
         }

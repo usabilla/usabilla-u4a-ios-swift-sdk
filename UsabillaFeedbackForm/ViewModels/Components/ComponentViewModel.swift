@@ -10,7 +10,7 @@ import Foundation
 
 class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
     var model: V
-    var theme: UsabillaThemeConfigurator {
+    var theme: UsabillaTheme {
         return model.themeConfig
     }
 
