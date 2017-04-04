@@ -9,28 +9,28 @@
 import Foundation
 import UIKit
 
-open class UsabillaThemeConfigurator {
+public struct UsabillaThemeConfigurator {
 
     // MARK: Colors
-    open var titleColor: UIColor
-    open var textColor: UIColor
-    open var accentColor: UIColor
-    open var headerColor: UIColor?
-    open var textOnAccentColor: UIColor
-    open var backgroundColor: UIColor
-    open var errorColor: UIColor
-    open var hintColor: UIColor {
+    public var titleColor: UIColor
+    public var textColor: UIColor
+    public var accentColor: UIColor
+    public var headerColor: UIColor?
+    public var textOnAccentColor: UIColor
+    public var backgroundColor: UIColor
+    public var errorColor: UIColor
+    public var hintColor: UIColor {
         return textColor.withAlphaComponent(0.38)
     }
 
-    open var statusBarColor: UIStatusBarStyle
+    public var statusBarColor: UIStatusBarStyle
 
     // MARK: Fonts
-    open var customFont: UIFont?
-    open var customFontBold: UIFont?
-    open var titleFontSize: CGFloat
-    open var textFontSize: CGFloat
-    open var miniFontSize: CGFloat
+    public var customFont: UIFont?
+    public var customFontBold: UIFont?
+    public var titleFontSize: CGFloat
+    public var textFontSize: CGFloat
+    public var miniFontSize: CGFloat
 
     //Computed font to use in SDK
     var font: UIFont {
@@ -51,10 +51,10 @@ open class UsabillaThemeConfigurator {
     }
 
     // MARK: Custom images
-    open var enabledEmoticons: [UIImage]
-    open var disabledEmoticons: [UIImage]?
-    open var fullStar: UIImage?
-    open var emptyStar: UIImage?
+    public var enabledEmoticons: [UIImage]
+    public var disabledEmoticons: [UIImage]?
+    public var fullStar: UIImage?
+    public var emptyStar: UIImage?
 
     public init() {
         statusBarColor = .default
@@ -74,7 +74,7 @@ open class UsabillaThemeConfigurator {
         headerColor = nil
     }
 
-    fileprivate class func createEmoticons() -> [UIImage] {
+    fileprivate static func createEmoticons() -> [UIImage] {
         var toReturn: [UIImage] = []
         let bundle = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")
         toReturn.append(UIImage(named: "01", in: bundle, compatibleWith: nil)!)
@@ -107,7 +107,7 @@ open class UsabillaThemeConfigurator {
         }
     }
 
-    func updateConfig(json: JSON) {
+    mutating func updateConfig(json: JSON) {
         // TO DO guard with empty check
         self.titleColor = UIColor(rgbao: json["group1"]["hash"].string) ?? titleColor
         self.accentColor = UIColor(rgbao: json["group2"]["hash"].string) ?? accentColor

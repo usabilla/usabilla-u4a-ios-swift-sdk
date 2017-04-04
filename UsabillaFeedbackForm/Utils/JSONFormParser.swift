@@ -90,24 +90,4 @@ class JSONFormParser {
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)
     }
 
-    fileprivate class func parseColors(_ config: UsabillaThemeConfigurator, json: JSON) {
-        if let titleColorHex = json["group1"]["hash"].string {
-            config.titleColor = UIColor(rgba: titleColorHex)
-        }
-        if let accentColorHex = json["group2"]["hash"].string {
-            config.accentColor = UIColor(rgba: accentColorHex)
-        }
-        if let textColorHex = json["group3"]["hash"].string {
-            config.textColor = UIColor(rgba: textColorHex)
-        }
-        if let errorColorHex = json["group4"]["hash"].string {
-            config.errorColor = UIColor(rgba: errorColorHex)
-        }
-        if let backgroundColorHex = json["group5"]["hash"].string {
-            config.backgroundColor = UIColor(rgba: backgroundColorHex)
-        }
-        if let textOnAccentHex = json["group6"]["hash"].string {
-            config.textOnAccentColor = UIColor(rgba: textOnAccentHex)
-        }
-    }
 }

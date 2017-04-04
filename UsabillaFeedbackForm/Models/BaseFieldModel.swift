@@ -12,7 +12,7 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
 
     var isViewCurrentlyVisible = false
     unowned var pageModel: PageModel
-    unowned var themeConfig: UsabillaThemeConfigurator
+    var themeConfig: UsabillaThemeConfigurator
     var fieldId: String
     var fieldTitle: String
     var required: Bool

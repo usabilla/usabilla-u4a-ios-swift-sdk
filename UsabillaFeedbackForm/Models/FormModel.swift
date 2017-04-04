@@ -18,7 +18,7 @@ class FormModel {
     let formJsonString: JSON!
     let redirectToAppStore: Bool
     let showProgressBar: Bool
-    let themeConfig: UsabillaThemeConfigurator
+    var themeConfig: UsabillaThemeConfigurator
     let copyModel: CopyModel
 
     // swiftlint:disable:next function_parameter_count
@@ -46,7 +46,7 @@ class FormModel {
         self.appId = id
         self.formJsonString = json
         self.themeConfig = themeConfig
-        themeConfig.updateConfig(json: json["colors"])
+        self.themeConfig.updateConfig(json: json["colors"])
 
         var newPages: [PageModel] = []
 
