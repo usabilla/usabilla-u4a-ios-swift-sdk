@@ -22,17 +22,16 @@ open class UsabillaThemeConfigurator {
     open var hintColor: UIColor {
         return textColor.withAlphaComponent(0.38)
     }
-    
+
     open var statusBarColor: UIStatusBarStyle
-    
+
     // MARK: Fonts
     open var customFont: UIFont?
     open var customFontBold: UIFont?
     open var titleFontSize: CGFloat
     open var textFontSize: CGFloat
     open var miniFontSize: CGFloat
-    
-    
+
     //Computed font to use in SDK
     var font: UIFont {
         if let font = customFont {
@@ -40,7 +39,7 @@ open class UsabillaThemeConfigurator {
         }
         return UIFont.systemFont(ofSize: textFontSize)
     }
-    
+
     var boldFont: UIFont {
         if let boldFont = customFontBold {
             return boldFont.withSize(titleFontSize)
@@ -50,7 +49,7 @@ open class UsabillaThemeConfigurator {
         }
         return UIFont.systemFont(ofSize: titleFontSize)
     }
-    
+
     // MARK: Custom images
     open var enabledEmoticons: [UIImage]
     open var disabledEmoticons: [UIImage]?
