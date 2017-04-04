@@ -115,16 +115,10 @@ class RootCellView: UITableViewCell {
         let theme = cellViewModel.theme
         let copy = cellViewModel.copy
         titleLabel.textColor = theme.titleColor
-        titleLabel.font = theme.font.withSize(theme.titleFontSize)
+        titleLabel.font = theme.boldFont
         errorLabel.font = theme.font.withSize(theme.miniFontSize)
         errorLabel.textColor = theme.errorColor
         errorLabel.text = copy.requiredFieldError
-        if theme.setTitlesInBold {
-            if let boldVersion = titleLabel.font.withTraits(.traitBold) {
-                titleLabel.font = boldVersion
-            }
-        }
-
         backgroundColor = theme.backgroundColor
     }
 

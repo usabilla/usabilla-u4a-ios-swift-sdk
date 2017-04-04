@@ -69,8 +69,6 @@ class UBIntroOutroView: UIView {
         titleLabel = UILabel()
         titleLabel.text = viewModel.title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = viewModel.titleColor
-        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
         titleLabel.numberOfLines = 0
         addSubview(titleLabel)
         titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: outsideVerticalMargin).activate()
@@ -122,10 +120,13 @@ class UBIntroOutroView: UIView {
 
     private func setupCustomizations() {
         backgroundColor = viewModel.backgroundColor
-        cancelButton.setTitleColor(viewModel.buttonsColor, for: .normal)
-        continueButton?.setTitleColor(viewModel.buttonsColor, for: .normal)
-        cancelButton.titleLabel?.font = viewModel.cancelButtonFont
-        continueButton?.titleLabel?.font = viewModel.continueButtonFont
+        cancelButton.setTitleColor(viewModel.accentColor, for: .normal)
+        continueButton?.setTitleColor(viewModel.accentColor, for: .normal)
+        cancelButton.titleLabel?.font = viewModel.font
+        continueButton?.titleLabel?.font = viewModel.boldFont
+
+        titleLabel.font = viewModel.boldFont
+        titleLabel.textColor = viewModel.titleColor
 
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
         heightAnchor?.priority = 249

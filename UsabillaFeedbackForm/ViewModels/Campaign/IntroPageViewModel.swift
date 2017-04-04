@@ -47,22 +47,16 @@ class IntroPageViewModel {
         return introPage.themeConfig.hintColor
     }
 
-    var buttonsColor: UIColor {
-        return .blue // TO DO update color
+    var accentColor: UIColor {
+        return introPage.themeConfig.accentColor
     }
 
-    var cancelButtonFont: UIFont {
-        if let custom = introPage.themeConfig.customFont {
-            return custom.withSize(17)
-        }
-        return UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
+    var font: UIFont {
+        return introPage.themeConfig.font
     }
 
-    var continueButtonFont: UIFont {
-        if let custom = introPage.themeConfig.customFontBold {
-            return custom.withSize(17)
-        }
-        return UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
+    var boldFont: UIFont {
+        return introPage.themeConfig.boldFont
     }
 
     // TO DO add customization attributes
