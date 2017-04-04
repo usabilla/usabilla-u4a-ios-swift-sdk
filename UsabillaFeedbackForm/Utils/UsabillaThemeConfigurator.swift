@@ -11,6 +11,7 @@ import UIKit
 
 open class UsabillaThemeConfigurator {
 
+    // MARK: Colors
     open var titleColor: UIColor
     open var textColor: UIColor
     open var accentColor: UIColor
@@ -18,27 +19,43 @@ open class UsabillaThemeConfigurator {
     open var textOnAccentColor: UIColor
     open var backgroundColor: UIColor
     open var errorColor: UIColor
+    open var hintColor: UIColor {
+        return textColor.withAlphaComponent(0.38)
+    }
+    
     open var statusBarColor: UIStatusBarStyle
+    
+    // MARK: Fonts
     open var customFont: UIFont?
     open var customFontBold: UIFont?
+    open var titleFontSize: CGFloat
+    open var textFontSize: CGFloat
+    open var miniFontSize: CGFloat
+    
+    
+    //Computed font to use in SDK
+    var font: UIFont {
+        if let font = customFont {
+            return font.withSize(textFontSize)
+        }
+        return UIFont.systemFont(ofSize: textFontSize)
+    }
+    
+    var boldFont: UIFont {
+        if let boldFont = customFontBold {
+            return boldFont.withSize(titleFontSize)
+        }
+        if let font = customFont {
+            return font.withSize(titleFontSize)
+        }
+        return UIFont.systemFont(ofSize: titleFontSize)
+    }
+    
+    // MARK: Custom images
     open var enabledEmoticons: [UIImage]
     open var disabledEmoticons: [UIImage]?
     open var fullStar: UIImage?
     open var emptyStar: UIImage?
-    open var hintColor: UIColor {
-        return textColor.withAlphaComponent(0.38)
-    }
-    var font: UIFont {
-        if let font = customFont {
-            return font
-        }
-        return UIFont.systemFont(ofSize: UIFont.systemFontSize)
-    }
-
-    open var titleFontSize: CGFloat
-    open var textFontSize: CGFloat
-    open var miniFontSize: CGFloat
-    open var setTitlesInBold: Bool
 
     public init() {
         statusBarColor = .default
@@ -55,7 +72,6 @@ open class UsabillaThemeConfigurator {
         titleFontSize = 17
         textFontSize = 17
         miniFontSize = 15
-        setTitlesInBold = true
         headerColor = nil
     }
 
