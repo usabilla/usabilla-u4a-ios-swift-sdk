@@ -66,16 +66,12 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
 
     func setCorrectFont() {
         let theme = viewModel.theme
+        textView.font = theme.font
+
         if !viewModel.isPlaceHolder {
-            textView.font = theme.font.withSize(theme.textFontSize)
             textView.textColor = theme.textColor
         } else {
             textView.textColor = theme.hintColor
-            if let customFont = theme.font.withSize(theme.textFontSize).withTraits(.traitItalic) {
-                textView.font = customFont
-            } else {
-                textView.font = UIFont.italicSystemFont(ofSize: theme.textFontSize)
-            }
         }
 
     }

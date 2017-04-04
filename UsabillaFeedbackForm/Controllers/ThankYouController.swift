@@ -64,9 +64,9 @@ class ThankYouController: UIViewController {
         if let configuration = themeConfig {
 
             titleLabel.textColor = configuration.titleColor
-            titleLabel.font = configuration.font.withSize(configuration.titleFontSize).bold()
+            titleLabel.font = configuration.boldFont
 
-            let font = configuration.font.withSize(configuration.textFontSize)
+            let font = configuration.font
 
             rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
             rateButton.titleLabel?.font = font
