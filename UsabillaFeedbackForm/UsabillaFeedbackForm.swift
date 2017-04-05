@@ -28,7 +28,7 @@ open class UsabillaFeedbackForm {
     }
 
     open class func sendEvent(event: String) {
-        CampaignsManager.sendEvent(event: event)
+        CampaignManager.sendEvent(event: event)
     }
 
     /**
@@ -40,7 +40,7 @@ open class UsabillaFeedbackForm {
     */
     open class func load() {
         _ = SubmissionManager.shared // init the singleton to send persisted feedback
-        CampaignsManager.start() // init the campaigns manager, fetching the latest version
+        CampaignManager.start() // init the campaigns manager, fetching the latest version
     }
 
     open class func removeCachedForms() {
