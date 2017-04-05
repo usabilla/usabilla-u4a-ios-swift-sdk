@@ -11,7 +11,7 @@ import Foundation
 protocol FieldModelProtocol {
 
     var isViewCurrentlyVisible: Bool {set get}
-    var themeConfig: UsabillaTheme {get set}
+    var theme: UsabillaTheme {get set}
     unowned var pageModel: PageModel {set get}
     var fieldId: String {set get}
     var fieldTitle: String {set get}

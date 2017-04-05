@@ -49,7 +49,7 @@ class CampaingViewModelTests: QuickSpec {
                     self.formJson = JSON(dict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = UBMock.formMock()
+                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)

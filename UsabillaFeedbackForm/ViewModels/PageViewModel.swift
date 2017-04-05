@@ -36,7 +36,7 @@ class PageViewModel: UBPageViewModel {
 
     required init(page: PageModel) {
         self.model = page
-        self.theme = page.themeConfig
+        self.theme = page.theme
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 

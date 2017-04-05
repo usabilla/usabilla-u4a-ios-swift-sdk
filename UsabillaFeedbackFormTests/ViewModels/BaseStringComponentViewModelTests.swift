@@ -17,7 +17,7 @@ class BaseStringComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseStringComponentViewModel<StringFieldModel>!
         var model: StringFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaTheme())
+        let pageModel = PageModel(pageNumber: 0, pageName: "", theme: UsabillaTheme())
 
         beforeSuite {
             model = StringFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)

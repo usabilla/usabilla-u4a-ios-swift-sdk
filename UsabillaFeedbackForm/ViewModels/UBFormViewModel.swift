@@ -27,27 +27,27 @@ class UBFormViewModel {
     }
 
     var accentColor: UIColor {
-        return model.themeConfig.accentColor
+        return model.theme.accentColor
     }
 
     var backgrounColor: UIColor {
-        return model.themeConfig.backgroundColor
+        return model.theme.backgroundColor
     }
 
     var statusBarColor: UIStatusBarStyle {
-        return model.themeConfig.statusBarColor
+        return model.theme.statusBarColor
     }
 
     var headerColor: UIColor {
-        if let headerColor = model.themeConfig.headerColor {
+        if let headerColor = model.theme.headerColor {
             return headerColor
         }
 
-        return model.themeConfig.accentColor
+        return model.theme.accentColor
     }
 
     var textOnAccentColor: UIColor {
-        return model.themeConfig.textOnAccentColor
+        return model.theme.textOnAccentColor
     }
 
     var cancelButtonTitle: String? {

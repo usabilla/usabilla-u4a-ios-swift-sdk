@@ -19,8 +19,8 @@ class MoodComponentViewModelTests: QuickSpec {
 
     override func spec() {
 
-        let themeConfig = UsabillaTheme()
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: themeConfig)
+        let theme = UsabillaTheme()
+        let pageModel = PageModel(pageNumber: 0, pageName: "test", theme: theme)
         var moodComponentViewModel: MoodComponentViewModel!
         var moodModel: MoodFieldModel!
 
@@ -37,7 +37,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(moodComponentViewModel).toNot(beNil())
                     expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.selection))
                     expect(moodComponentViewModel.maxValue).to(equal(5))
-                    expect(moodComponentViewModel.selectedImages).to(equal(moodModel.themeConfig.enabledEmoticons))
+                    expect(moodComponentViewModel.selectedImages).to(equal(moodModel.theme.enabledEmoticons))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
                 })
@@ -51,7 +51,7 @@ class MoodComponentViewModelTests: QuickSpec {
 
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods)
                     expect(moodComponentViewModel.maxValue).to(equal(3))
-                    let images = themeConfig.emoticons(size: moodModelLessThan5Moods.points, emoticons: themeConfig.enabledEmoticons)
+                    let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.enabledEmoticons)
                     expect(moodComponentViewModel.selectedImages).to(equal(images))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
@@ -62,7 +62,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods)
 
                     expect(moodComponentViewModel.maxValue).to(equal(2))
-                    let images = themeConfig.emoticons(size: moodModelLessThan5Moods.points, emoticons: themeConfig.enabledEmoticons)
+                    let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.enabledEmoticons)
                     expect(moodComponentViewModel.selectedImages).to(equal(images))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))

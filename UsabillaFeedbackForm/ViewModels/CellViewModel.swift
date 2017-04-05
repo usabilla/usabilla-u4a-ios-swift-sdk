@@ -32,7 +32,7 @@ class CellViewModel {
     init(model: BaseFieldModel) {
         self.model = model
         self.title = model.fieldTitle
-        self.theme = model.themeConfig
+        self.theme = model.theme
         self.copy = model.pageModel.copy!
         self.required = model.required
         componentViewModel = ComponentViewModelFactory.component(field: model)

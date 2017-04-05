@@ -11,7 +11,7 @@ import Foundation
 class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
     var model: V
     var theme: UsabillaTheme {
-        return model.themeConfig
+        return model.theme
     }
 
     var value: T?

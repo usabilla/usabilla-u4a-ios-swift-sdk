@@ -36,27 +36,27 @@ class IntroPageViewModel {
     }
 
     var backgroundColor: UIColor {
-        return introPage.themeConfig.backgroundColor
+        return introPage.theme.backgroundColor
     }
 
     var titleColor: UIColor {
-        return introPage.themeConfig.titleColor
+        return introPage.theme.titleColor
     }
 
     var hintColor: UIColor {
-        return introPage.themeConfig.hintColor
+        return introPage.theme.hintColor
     }
 
     var buttonColor: UIColor {
-        return introPage.themeConfig.accentColor
+        return introPage.theme.accentColor
     }
 
     var font: UIFont {
-        return introPage.themeConfig.font
+        return introPage.theme.font
     }
 
     var boldFont: UIFont {
-        return introPage.themeConfig.boldFont
+        return introPage.theme.boldFont
     }
 
     // TO DO add customization attributes

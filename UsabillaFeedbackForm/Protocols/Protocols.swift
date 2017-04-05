@@ -39,7 +39,7 @@ protocol Centerable {
 }
 
 protocol ComponentModel {
-    var themeConfig: UsabillaTheme { get set }
+    var theme: UsabillaTheme { get set }
 }
 
 protocol IntComponentModel: ComponentModel {

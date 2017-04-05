@@ -21,7 +21,7 @@ class IntroPageViewModelTests: QuickSpec {
         configurator.titleColor = UIColor(rgba: "#012346")
         configurator.textColor = UIColor(rgba: "#012347")
 
-        let introPage = IntroPageModel(pageNumber: 0, pageName: "test", themeConfig: configurator)
+        let introPage = IntroPageModel(pageNumber: 0, pageName: "test", theme: configurator)
         let copyModel = CopyModel()
         beforeSuite {
             let moodField = MoodFieldModel(json: JSON.parse("{\"title\":\"Hello\"}"), pageModel: introPage)
@@ -50,7 +50,7 @@ class IntroPageViewModelTests: QuickSpec {
                     configurator.customFont = customFont
                     let customFontBold = UIFont(name: "TimesNewRomanPS-BoldMT", size: 17)
                     configurator.customFontBold = customFontBold
-                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test", themeConfig: configurator)
+                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test", theme: configurator)
                     let introPageViewModel = IntroPageViewModel(introPage: introPage)
 
                     expect(introPageViewModel.font).to(equal(customFont))
@@ -60,7 +60,7 @@ class IntroPageViewModelTests: QuickSpec {
 
             context("when it is banner with mood component") {
                 it("viewModel attributes should match") {
-                    let introPage2 = IntroPageModel(pageNumber: 0, pageName: "test", themeConfig: configurator)
+                    let introPage2 = IntroPageModel(pageNumber: 0, pageName: "test", theme: configurator)
                     let copy2 = CopyModel()
                     copy2.introCancelButton = "canceltest"
                     introPage2.copy = copy2

@@ -184,7 +184,7 @@ class NetworkManager {
         @parameter formId: the form id
         @return Pormise<FormModel> : a promess of a valid form model
      */
-    class func getForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaTheme) -> Promise<FormModel> {
+    class func getForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, theme: UsabillaTheme) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             getFormWithFormID(formID: appId).then { (jsonObj: JSON) -> Void in
                 let form = FormModel(json: jsonObj, id: appId, screenshot: screenshot)

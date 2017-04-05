@@ -14,7 +14,7 @@ import Nimble
 class IntFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaTheme())
+        let pageModel = PageModel(pageNumber: 0, pageName: "test", theme: UsabillaTheme())
         var model: IntFieldModel?
 
         describe("IntFieldModel") {

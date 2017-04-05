@@ -41,7 +41,7 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
         for option in viewModel.options {
 
             let checkBox = CheckboxWithText()
-            checkBox.themeConfig = viewModel.theme
+            checkBox.theme = viewModel.theme
             checkBox.delegate = self
             checkBox.checkBox.delegate = self
             checkBox.label.text = option.title
