@@ -48,7 +48,7 @@
 		04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */; };
 		04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */; };
 		04C6BEEA1E9521440078F6FC /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
-		04C6BEEC1E9521B80078F6FC /* CampaignsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignsManager.swift */; };
+		04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */; };
 		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
 		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
 		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
@@ -250,7 +250,7 @@
 		04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratorTests.swift; sourceTree = "<group>"; };
 		04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageTest.swift; sourceTree = "<group>"; };
 		04C6BEE91E9521440078F6FC /* EventEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEngine.swift; sourceTree = "<group>"; };
-		04C6BEEB1E9521B80078F6FC /* CampaignsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignsManager.swift; sourceTree = "<group>"; };
+		04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignManager.swift; sourceTree = "<group>"; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
 		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 				04DC25971E8B9D6D002962A3 /* Leaves */,
 				04DC25961E8B9D5E002962A3 /* Decorators */,
 				04C6BEE91E9521440078F6FC /* EventEngine.swift */,
-				04C6BEEB1E9521B80078F6FC /* CampaignsManager.swift */,
+				04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */,
 			);
 			path = EventEngine;
 			sourceTree = "<group>";
@@ -1187,7 +1187,7 @@
 				43CCD4451E7828DB00B3E4FE /* BaseTextAreaComponent.swift in Sources */,
 				43CCD45F1E78366A00B3E4FE /* TextFieldComponentViewModel.swift in Sources */,
 				43CCD4361E77E27A00B3E4FE /* ChoiceComponent.swift in Sources */,
-				04C6BEEC1E9521B80078F6FC /* CampaignsManager.swift in Sources */,
+				04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */,
 				43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */,
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
