@@ -129,19 +129,13 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         UIView.setAnimationsEnabled(true)
     }
 
-    func isCorrectlyFilled() -> Bool {
+    func gotToNextErrorField() {
         pageViewModel.verifyFields()
         if let index = pageViewModel.indexOfInvalidField() {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             tableView.reloadData()
-            return false
         }
-        return true
-    }
-
-    func whereShouldIJump() -> String? {
-        return pageViewModel.nextPageName()
     }
 
     //Image handling stuff

@@ -8,7 +8,11 @@
 
 import Foundation
 
-class PageViewModel {
+protocol UBPageViewModel {
+    init(page: PageModel)
+}
+
+class PageViewModel: UBPageViewModel {
 
     var cellViewModels: [CellViewModel] = []
     private let model: PageModel
@@ -24,7 +28,13 @@ class PageViewModel {
         return cellViewModels.count
     }
 
-    init(page: PageModel) {
+    var isCorrectlyFilled: Bool {
+        return model.fields.filter {
+            !$0.isValid()
+        }.count == 0
+    }
+
+    required init(page: PageModel) {
         self.model = page
         self.theme = page.themeConfig
         self.copy = page.copy!
