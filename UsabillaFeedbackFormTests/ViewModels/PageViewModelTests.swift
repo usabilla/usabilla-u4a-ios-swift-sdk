@@ -24,7 +24,7 @@ class PageViewModelTests: QuickSpec {
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: data as Data)
-                formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
                 pageModel = formModel.pages[0]
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)

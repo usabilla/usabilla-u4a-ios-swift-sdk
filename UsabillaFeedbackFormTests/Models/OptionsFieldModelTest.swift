@@ -14,7 +14,7 @@ import Nimble
 class OptionsFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "test", theme: UsabillaTheme())
         var model: OptionsFieldModel?
 
         describe("OptionsFieldModel") {

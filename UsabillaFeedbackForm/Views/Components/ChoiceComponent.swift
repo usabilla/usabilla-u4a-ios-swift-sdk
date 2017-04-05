@@ -67,7 +67,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
 
         let theme = viewModel.theme
         pickerButton.setTitleColor(theme.textColor, for: .normal)
-        pickerButton.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
+        pickerButton.titleLabel?.font = theme.boldFont
 
         picker.backgroundColor = theme.backgroundColor
         picker.tintColor = theme.textColor

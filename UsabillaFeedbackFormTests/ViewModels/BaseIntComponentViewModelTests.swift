@@ -17,7 +17,7 @@ class BaseIntComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseIntComponentViewModel<IntFieldModel>!
         var model: IntFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "", theme: UsabillaTheme())
 
         beforeSuite {
             model = IntFieldModel(json: JSON.parse("{\"name\":\"mood\"}"), pageModel: pageModel)

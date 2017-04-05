@@ -17,7 +17,7 @@ class ParagraphComponentViewModelTests: QuickSpec {
 
         var viewModel: ParagraphComponentViewModel!
         var model: ParagraphFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "", theme: UsabillaTheme())
 
         describe("ParagraphComponentViewModelTests") {
 

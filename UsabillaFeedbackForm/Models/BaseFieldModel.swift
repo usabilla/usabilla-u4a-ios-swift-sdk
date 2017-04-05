@@ -12,7 +12,7 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
 
     var isViewCurrentlyVisible = false
     unowned var pageModel: PageModel
-    unowned var themeConfig: UsabillaThemeConfigurator
+    var theme: UsabillaTheme
     var fieldId: String
     var fieldTitle: String
     var required: Bool
@@ -27,7 +27,7 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
         self.fieldTitle = json["title"].stringValue
         self.required = json["required"].boolValue
         self.rule = nil
-        self.themeConfig = pageModel.themeConfig
+        self.theme = pageModel.theme
     }
 
     func convertToJSON() -> Any? {

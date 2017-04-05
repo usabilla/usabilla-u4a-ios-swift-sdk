@@ -36,33 +36,27 @@ class IntroPageViewModel {
     }
 
     var backgroundColor: UIColor {
-        return introPage.themeConfig.backgroundColor
+        return introPage.theme.backgroundColor
     }
 
     var titleColor: UIColor {
-        return introPage.themeConfig.titleColor
+        return introPage.theme.titleColor
     }
 
     var hintColor: UIColor {
-        return introPage.themeConfig.hintColor
+        return introPage.theme.hintColor
     }
 
-    var buttonsColor: UIColor {
-        return .blue // TO DO update color
+    var buttonColor: UIColor {
+        return introPage.theme.accentColor
     }
 
-    var cancelButtonFont: UIFont {
-        if let custom = introPage.themeConfig.customFont {
-            return custom.withSize(17)
-        }
-        return UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
+    var font: UIFont {
+        return introPage.theme.font
     }
 
-    var continueButtonFont: UIFont {
-        if let custom = introPage.themeConfig.customFontBold {
-            return custom.withSize(17)
-        }
-        return UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
+    var boldFont: UIFont {
+        return introPage.theme.boldFont
     }
 
     // TO DO add customization attributes
@@ -73,7 +67,7 @@ class IntroPageViewModel {
         if let field = field {
 
             // skip component view model creation if it is an header with an empty content
-            if let headerContent = (field as? HeaderFieldModel)?.fieldValue, !headerContent.isEmpty {
+            if let headerContent = (field as? HeaderFieldModel)?.fieldValue, headerContent.isEmpty {
                 componentViewModel = nil
                 return
             }

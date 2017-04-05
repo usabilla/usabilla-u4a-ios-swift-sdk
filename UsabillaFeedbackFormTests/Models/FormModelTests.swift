@@ -23,7 +23,7 @@ class FormModelTests: QuickSpec {
                 let path = Bundle(for: FormModelTests.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 self.jsonObj = JSON(data: (data as Data?)!)
-                self.formModel = FormModel(json: self.jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
             }
 
             context("When initialized", {
@@ -41,7 +41,7 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel.formJsonString).to(equal(self.jsonObj))
                     expect(self.formModel.redirectToAppStore).to(beFalse())
                     expect(self.formModel.showProgressBar).to(beFalse())
-                    expect(self.formModel.themeConfig).toNot(beNil())
+                    expect(self.formModel.theme).toNot(beNil())
                     expect(self.formModel.copyModel).toNot(beNil())
                 })
             })

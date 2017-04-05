@@ -27,27 +27,27 @@ class UBFormViewModel {
     }
 
     var accentColor: UIColor {
-        return model.themeConfig.accentColor
+        return model.theme.accentColor
     }
 
     var backgrounColor: UIColor {
-        return model.themeConfig.backgroundColor
+        return model.theme.backgroundColor
     }
 
     var statusBarColor: UIStatusBarStyle {
-        return model.themeConfig.statusBarColor
+        return model.theme.statusBarColor
     }
 
     var headerColor: UIColor {
-        if let headerColor = model.themeConfig.headerColor {
+        if let headerColor = model.theme.headerColor {
             return headerColor
         }
 
-        return model.themeConfig.accentColor
+        return model.theme.accentColor
     }
 
     var textOnAccentColor: UIColor {
-        return model.themeConfig.textOnAccentColor
+        return model.theme.textOnAccentColor
     }
 
     var cancelButtonTitle: String? {
@@ -143,7 +143,7 @@ class UBFormViewModel {
     }
 
     func reset() {
-        self.model = FormModel(json: model.formJsonString, id: model.appId, themeConfig: model.themeConfig, screenshot: nil)
+        self.model = FormModel(json: model.formJsonString, id: model.appId, screenshot: nil)
         self.currentPageIndex = 0
         self.pageViewModels = []
 

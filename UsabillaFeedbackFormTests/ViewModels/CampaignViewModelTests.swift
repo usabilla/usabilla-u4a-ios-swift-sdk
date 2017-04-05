@@ -11,14 +11,14 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class CampainViewModelTests: QuickSpec {
+class CampaingViewModelTests: QuickSpec {
     var formJson: JSON!
 
     override func spec() {
         describe("CampainViewModelTests") {
 
             beforeSuite {
-                let path = Bundle(for: CampainViewModelTests.self).path(forResource: "test", ofType: "json")!
+                let path = Bundle(for: CampaingViewModelTests.self).path(forResource: "test", ofType: "json")!
                 do {
                     let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                     self.formJson = JSON(data: data as Data)
@@ -30,7 +30,7 @@ class CampainViewModelTests: QuickSpec {
             context("When initilized CampainViewModel", {
                 it("should not set introPageViewModel & introPresenter when json does not conatin start page", closure: {
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     campaign.form = formModel
 
                     expect(campaign).toNot(beNil())
@@ -49,7 +49,7 @@ class CampainViewModelTests: QuickSpec {
                     self.formJson = JSON(dict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)

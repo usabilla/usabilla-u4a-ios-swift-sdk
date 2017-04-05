@@ -14,7 +14,7 @@ import Nimble
 class FieldFactoryTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "test", theme: UsabillaTheme())
         describe("Field Factory") {
             it("paragraph type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"paragraph\"}"), pagemodel: pageModel)
