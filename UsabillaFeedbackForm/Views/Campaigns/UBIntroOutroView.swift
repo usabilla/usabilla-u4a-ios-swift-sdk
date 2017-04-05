@@ -120,8 +120,8 @@ class UBIntroOutroView: UIView {
 
     private func setupCustomizations() {
         backgroundColor = viewModel.backgroundColor
-        cancelButton.setTitleColor(viewModel.accentColor, for: .normal)
-        continueButton?.setTitleColor(viewModel.accentColor, for: .normal)
+        cancelButton.setTitleColor(viewModel.buttonColor, for: .normal)
+        continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
         cancelButton.titleLabel?.font = viewModel.font
         continueButton?.titleLabel?.font = viewModel.boldFont
 

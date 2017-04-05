@@ -40,7 +40,7 @@ class IntroPageViewModelTests: QuickSpec {
                     expect(introPageViewModel.hintColor).to(equal(configurator.hintColor))
                     expect(introPageViewModel.font).to(equal(UIFont.systemFont(ofSize: 17)))
                     expect(introPageViewModel.boldFont).to(equal(UIFont.systemFont(ofSize: 17)))
-                    expect(introPageViewModel.accentColor).to(equal(configurator.accentColor))
+                    expect(introPageViewModel.buttonColor).to(equal(configurator.accentColor))
                 }
             }
 

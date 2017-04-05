@@ -47,7 +47,7 @@ class IntroPageViewModel {
         return introPage.themeConfig.hintColor
     }
 
-    var accentColor: UIColor {
+    var buttonColor: UIColor {
         return introPage.themeConfig.accentColor
     }
 
