@@ -18,11 +18,17 @@ open class UsabillaFeedbackForm {
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
+    open static var canDisplayCampaigns: Bool = true
+
     static var defaultLocalisationFile = true
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
             defaultLocalisationFile = false
         }
+    }
+
+    open class func sendEvent(event: String) {
+        CampaignManager.sendEvent(event: event)
     }
 
     /**
@@ -34,6 +40,7 @@ open class UsabillaFeedbackForm {
     */
     open class func load() {
         _ = SubmissionManager.shared // init the singleton to send persisted feedback
+        CampaignManager.start() // init the campaigns manager, fetching the latest version
     }
 
     open class func removeCachedForms() {
