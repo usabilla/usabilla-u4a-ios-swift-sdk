@@ -76,7 +76,7 @@ class UBFormViewModel {
         return model.copyModel.navigationNext
     }
 
-    var currenPageViewModel: PageViewModel {
+    var currentPageViewModel: PageViewModel {
         get {
             return pageViewModels[currentPageIndex]
         }

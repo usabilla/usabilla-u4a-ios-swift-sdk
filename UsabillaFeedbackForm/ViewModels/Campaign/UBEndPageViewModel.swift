@@ -23,7 +23,7 @@ class UBEndPageViewModel {
     }
 
     var canGiveMoreFeedback: Bool {
-        return !UsabillaFeedbackForm.hideGiveMoreFeedback
+        return model.giveMoreFeedback
     }
 
     var appStoreRedirectText: String? {
