@@ -60,34 +60,6 @@ class FormControllerTest: QuickSpec {
                     }
                 }
 
-                describe("turn the first page") {
-//                    it("turns the page, expext right updates") {
-//                        var newPageIndex = viewController.selectNewPage()
-//                        expect(newPageIndex).to(equal(2))
-//
-//                        viewController.swipeToPage(newPageIndex)
-//                        viewController.updateRightButton()
-//                        viewController.updateProgressBar()
-//
-//                        expect(viewController.currentPage).to(equal(newPageIndex))
-//                        expect(viewController.pageController.pageViewModel.name).to(equal(formModel.pages[newPageIndex].pageName))
-//                        expect(viewController.rightNavItem.title).to(equal("TestSubmit"))
-//                        expect(viewController.progressBar.progress).to(equal(0.75))
-//
-//                        newPageIndex = viewController.selectNewPage()
-//                        expect(newPageIndex).to(equal(3))
-//
-//                        //viewController.swipeToPage(newPageIndex)
-//                        viewController.showThankYouPage()
-//
-//                        expect(viewController.currentPage).to(equal(2))
-//                        expect(viewController.rightNavItem.title).to(equal(""))
-//                        expect(viewController.rightNavItem.isEnabled).to(equal(false))
-//                        expect(viewController.progressBar.progress).to(equal(1))
-//
-//                    }
-                }
-
                 describe(".viewWillDisappear()") {
                     beforeEach {
                         // Method #3: Directly call the lifecycle event.
