@@ -24,8 +24,8 @@ class CampaignsManager {
         //Saves a single campaign in DB
     }
 
-    class func fetchCampaigns() -> [CampaignModel] {
-        //Retrieves campaigns from DB
-    }
+//    class func fetchCampaigns() -> [CampaignModel] {
+//        //Retrieves campaigns from DB
+//    }
 
 }
