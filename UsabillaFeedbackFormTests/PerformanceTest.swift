@@ -62,12 +62,9 @@ class Performance: XCTestCase {
                 let viewController = base.childViewControllers[0] as? FormViewController else {
                     return
             }
-            viewController.initWithFormModel(formModel!)
-            viewController.loadView()
 
-            // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
-//            viewController.beginAppearanceTransition(true, animated: false)
-//            viewController.endAppearanceTransition()
+            viewController.viewModel = UBFormViewModel(formModel: formModel!)
+            viewController.loadView()
         }
     }
 

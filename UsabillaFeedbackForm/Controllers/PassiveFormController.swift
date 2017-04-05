@@ -13,13 +13,11 @@ class PassiveFormController: FormViewControllerDelegate {
     private var results: [FeedbackResult] = []
 
     func leftBarButtonTapped(_ formViewController: FormViewController) {
-        let i = formViewController.currentPage
-
-        if formViewController.currentPageModel?.type != .end {
-            results.append(formViewController.formModel.toFeedbackResult(latestPageIndex: i))
+        if !formViewController.viewModel.isItTheEnd {
+            results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         }
 
-        UsabillaFeedbackForm.delegate?.formDidClose(formViewController.navigationController!, formID: formViewController.formModel.appId, with: results)
+        UsabillaFeedbackForm.delegate?.formDidClose(formViewController.navigationController!, formID: formViewController.viewModel.id, with: results)
 
         if UsabillaFeedbackForm.dismissAutomatically {
             formViewController.dismiss(animated: true, completion: nil)
@@ -27,10 +25,10 @@ class PassiveFormController: FormViewControllerDelegate {
     }
 
     func rightBarButtonTapped(_ formViewController: FormViewController) {
-        guard formViewController.currentPageModel?.type == .end else {
+        guard formViewController.viewModel.isItTheEnd else {
             return
         }
-        results.append(formViewController.formModel.toFeedbackResult(latestPageIndex: formViewController.currentPage))
-        SubmissionManager.shared.submit(form: formViewController.formModel, customVars: formViewController.customVars)
+        results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
+        SubmissionManager.shared.submit(form: formViewController.viewModel.model, customVars: formViewController.customVars)
     }
 }

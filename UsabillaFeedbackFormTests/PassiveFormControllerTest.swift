@@ -27,7 +27,7 @@ class PassiveFormControllerTest: QuickSpec {
             if let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
                 let vc = base.childViewControllers[0] as? FormViewController {
                     viewController = vc
-                    viewController.initWithFormModel(formModel)
+                    viewController.viewModel = UBFormViewModel(formModel: formModel)
                     viewController.delegate = PassiveFormController()
                     // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
                     _ = viewController.view
@@ -38,8 +38,8 @@ class PassiveFormControllerTest: QuickSpec {
             }
         }
 
-        describe("if cancel during form it should return one empty feedbackresult") {
-            it("cancel the form should dismiss it") {
+        context("When canceling the form before the end page") {
+            it("should create a feedback result") {
                 UsabillaFeedbackForm.delegate = self
                 waitUntil(timeout: 5.0) { done in
                     self.closed = { feedbackResults in
@@ -53,9 +53,8 @@ class PassiveFormControllerTest: QuickSpec {
             }
         }
 
-        describe("if cancel after submission it should return a success feedbackresult") {
-            it("cancel the form should dismiss it") {
-
+        context("When canceling the form at the end page") {
+            it("should create a feedback result") {
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 expect(viewController.thankYouController).toNot(beNil())
