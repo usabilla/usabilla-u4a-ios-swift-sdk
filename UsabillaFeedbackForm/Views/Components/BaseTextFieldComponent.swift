@@ -41,11 +41,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
         //placeholder
         if let placeHolder = viewModel.placeHolder {
             let theme = viewModel.theme
-            if let italics = theme.font.withTraits(.traitItalic) {
-                textField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSForegroundColorAttributeName: theme.hintColor, NSFontAttributeName: italics])
-            } else {
                 textField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSForegroundColorAttributeName: theme.hintColor, NSFontAttributeName: theme.font])
-            }
         }
 
         // customization
