@@ -18,7 +18,7 @@ open class UsabillaFeedbackForm {
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
-    open static var canDisplayCampaign: Bool = true
+    open static var canDisplayCampaigns: Bool = true
 
     static var defaultLocalisationFile = true
     open static var localizedStringFile: String = "usa_localizable" {

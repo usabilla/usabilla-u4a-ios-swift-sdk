@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CampaignsManager {
+class CampaignManager {
 
     static func sendEvent(event: String) {}
 
@@ -16,11 +16,11 @@ class CampaignsManager {
         //Fetch campaigns from BE
     }
 
-    class func saveCampaignsToDB() {
+    class func saveCampaigns() {
         //Save the status of all campaigns
     }
 
-    class func saveCampaignToDB(campaign: CampaignModel) {
+    class func saveCampaign(campaign: CampaignModel) {
         //Saves a single campaign in DB
     }
 
