@@ -9,9 +9,7 @@
 import Foundation
 
 protocol IntFieldHandlerProtocol: class {
-
     var fieldValue: Int { set get }
-    //var themeConfig: UsabillaTheme {get set}
 }
 
 protocol FormViewControllerDelegate: class {

@@ -11,14 +11,14 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class CampainViewModelTests: QuickSpec {
+class CampaingViewModelTests: QuickSpec {
     var formJson: JSON!
 
     override func spec() {
         describe("CampainViewModelTests") {
 
             beforeSuite {
-                let path = Bundle(for: CampainViewModelTests.self).path(forResource: "test", ofType: "json")!
+                let path = Bundle(for: CampaingViewModelTests.self).path(forResource: "test", ofType: "json")!
                 do {
                     let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                     self.formJson = JSON(data: data as Data)
@@ -49,7 +49,7 @@ class CampainViewModelTests: QuickSpec {
                     self.formJson = JSON(dict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
+                    let formModel = UBMock.formMock()
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)
