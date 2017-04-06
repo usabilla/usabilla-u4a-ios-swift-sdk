@@ -9,9 +9,7 @@
 import Foundation
 
 protocol IntFieldHandlerProtocol: class {
-
     var fieldValue: Int { set get }
-    //var themeConfig: UsabillaThemeConfigurator {get set}
 }
 
 protocol FormViewControllerDelegate: class {
@@ -20,7 +18,7 @@ protocol FormViewControllerDelegate: class {
 }
 
 protocol ComponentViewModel {
-    var theme: UsabillaThemeConfigurator { get }
+    var theme: UsabillaTheme { get }
 }
 
 protocol StringComponentViewModel: ComponentViewModel {
@@ -41,7 +39,7 @@ protocol Centerable {
 }
 
 protocol ComponentModel {
-    var themeConfig: UsabillaThemeConfigurator { get set }
+    var theme: UsabillaTheme { get set }
 }
 
 protocol IntComponentModel: ComponentModel {

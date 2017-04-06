@@ -14,8 +14,8 @@ class UBEndPageViewModel {
 
     var formRating: Int = 0
 
-    var theme: UsabillaThemeConfigurator {
-        return model.themeConfig
+    var theme: UsabillaTheme {
+        return model.theme
     }
 
     var canRedirectToAppStore: Bool {

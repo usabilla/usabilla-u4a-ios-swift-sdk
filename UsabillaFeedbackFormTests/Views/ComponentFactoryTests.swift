@@ -16,7 +16,7 @@ import Nimble
 class ComponentFactoryTests: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "test", theme: UsabillaTheme())
         describe("ComponentFactoryTests") {
             context("when model is ChecboxComponentViewModel") {
                 it("should viewModel a CheckBoxComponent") {

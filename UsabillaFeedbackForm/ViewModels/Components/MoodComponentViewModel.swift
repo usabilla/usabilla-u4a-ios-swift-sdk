@@ -34,15 +34,15 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
     }
 
     var selectedImages: [UIImage]? {
-        return model.themeConfig.emoticons(size: model.points, emoticons: model.themeConfig.enabledEmoticons)
+        return model.theme.emoticons(size: model.points, emoticons: model.theme.enabledEmoticons)
     }
 
     var unselectedImages: [UIImage]? {
-        return model.themeConfig.emoticons(size: model.points, emoticons: model.themeConfig.disabledEmoticons)
+        return model.theme.emoticons(size: model.points, emoticons: model.theme.disabledEmoticons)
     }
 
     var backgroundColor: UIColor {
-        return model.themeConfig.backgroundColor
+        return model.theme.backgroundColor
     }
 
     /**

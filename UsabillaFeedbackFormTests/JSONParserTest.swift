@@ -27,7 +27,7 @@ class JSONParserTest: QuickSpec {
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 jsonObj = JSON(data: data as Data)
-                formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
 
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
@@ -53,12 +53,12 @@ class JSONParserTest: QuickSpec {
 
                 describe("the colors group") {
                     it("should have been correctly parsed") {
-                        expect(formModel.themeConfig.titleColor.hexString(false)).to(equal("#41474C"))
-                        expect(formModel.themeConfig.accentColor.hexString(false)).to(equal("#00A5C9"))
-                        expect(formModel.themeConfig.textColor.hexString(false)).to(equal("#59636B"))
-                        expect(formModel.themeConfig.errorColor.hexString(false)).to(equal("#F4606E"))
-                        expect(formModel.themeConfig.backgroundColor.hexString(false)).to(equal("#FFFFFF"))
-                        expect(formModel.themeConfig.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
+                        expect(formModel.theme.titleColor.hexString(false)).to(equal("#41474C"))
+                        expect(formModel.theme.accentColor.hexString(false)).to(equal("#00A5C9"))
+                        expect(formModel.theme.textColor.hexString(false)).to(equal("#59636B"))
+                        expect(formModel.theme.errorColor.hexString(false)).to(equal("#F4606E"))
+                        expect(formModel.theme.backgroundColor.hexString(false)).to(equal("#FFFFFF"))
+                        expect(formModel.theme.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
                     }
                 }
                 describe("the pages array") {

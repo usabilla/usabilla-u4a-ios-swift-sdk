@@ -13,7 +13,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class CampainViewModelTests: QuickSpec {
+class CampaingViewModelTests: QuickSpec {
     var formJson: JSON!
 
     override func spec() {
@@ -26,7 +26,7 @@ class CampainViewModelTests: QuickSpec {
             context("When initilized CampainViewModel", {
                 it("should not set introPageViewModel & introPresenter when json does not conatin start page", closure: {
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     campaign.form = formModel
 
                     expect(campaign).toNot(beNil())
@@ -43,7 +43,8 @@ class CampainViewModelTests: QuickSpec {
                     dict["form"]!["pages"].arrayObject!.append(startDict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: JSON(dict), id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)
@@ -63,7 +64,7 @@ class CampainViewModelTests: QuickSpec {
                     dict["form"]!["pages"].arrayObject!.append(startDict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: JSON(dict), id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)
@@ -76,7 +77,7 @@ class CampainViewModelTests: QuickSpec {
             context("When accessing formViewModel", {
                 it("should return a formViewModel with the right data", closure: {
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                    let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
                     campaign.form = formModel
                     let campainViewModel = CampaignViewModel(campaign: campaign)
                     let formViewModel = campainViewModel.formViewModel

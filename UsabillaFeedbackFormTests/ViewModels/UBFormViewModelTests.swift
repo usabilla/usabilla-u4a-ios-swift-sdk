@@ -33,11 +33,11 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.id).to(equal(self.model.appId))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(0.25))
-                    expect(formViewModel.accentColor).to(equal(self.model.themeConfig.accentColor))
-                    expect(formViewModel.backgrounColor).to(equal(self.model.themeConfig.backgroundColor))
-                    expect(formViewModel.statusBarColor).to(equal(self.model.themeConfig.statusBarColor))
-                    expect(formViewModel.headerColor).to(equal(self.model.themeConfig.accentColor))
-                    expect(formViewModel.textOnAccentColor).to(equal(self.model.themeConfig.textOnAccentColor))
+                    expect(formViewModel.accentColor).to(equal(self.model.theme.accentColor))
+                    expect(formViewModel.backgrounColor).to(equal(self.model.theme.backgroundColor))
+                    expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
+                    expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
+                    expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.textOnAccentColor))
                     expect(formViewModel.cancelButtonTitle).to(beNil())
                     expect(formViewModel.showCancelButton).to(beFalse())
                     expect(formViewModel.isCurrentPageValid).to(beTrue()) // should be false but this needs refactoring isViewCurrentlyVisible
@@ -50,8 +50,8 @@ class UBFormViewModelTests: QuickSpec {
                 it("should have correct values if we change default") {
                     let formViewModel = UBFormViewModel(formModel: self.model)
 
-                    // Change themeConfig header Color
-                    self.model.themeConfig.headerColor = .red
+                    // Change theme header Color
+                    self.model.theme.headerColor = .red
                     expect(formViewModel.headerColor).to(equal(UIColor.red))
                     // Chnage showCancelButton to be true
                     UsabillaFeedbackForm.showCancelButton = true
@@ -59,7 +59,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
 
                     UsabillaFeedbackForm.showCancelButton = false
-                    self.model.themeConfig.headerColor = nil
+                    self.model.theme.headerColor = nil
                 }
             }
 
@@ -119,11 +119,11 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.id).to(equal(self.model.appId))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(0.25))
-                    expect(formViewModel.accentColor).to(equal(self.model.themeConfig.accentColor))
-                    expect(formViewModel.backgrounColor).to(equal(self.model.themeConfig.backgroundColor))
-                    expect(formViewModel.statusBarColor).to(equal(self.model.themeConfig.statusBarColor))
-                    expect(formViewModel.headerColor).to(equal(self.model.themeConfig.accentColor))
-                    expect(formViewModel.textOnAccentColor).to(equal(self.model.themeConfig.textOnAccentColor))
+                    expect(formViewModel.accentColor).to(equal(self.model.theme.accentColor))
+                    expect(formViewModel.backgrounColor).to(equal(self.model.theme.backgroundColor))
+                    expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
+                    expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
+                    expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.textOnAccentColor))
                     expect(formViewModel.cancelButtonTitle).to(beNil())
                     expect(formViewModel.showCancelButton).to(beFalse())
                     expect(formViewModel.isCurrentPageValid).to(beTrue()) // should be false but this needs refactoring isViewCurrentlyVisible

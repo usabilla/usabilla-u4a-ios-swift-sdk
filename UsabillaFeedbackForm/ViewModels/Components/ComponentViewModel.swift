@@ -10,8 +10,8 @@ import Foundation
 
 class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
     var model: V
-    var theme: UsabillaThemeConfigurator {
-        return model.themeConfig
+    var theme: UsabillaTheme {
+        return model.theme
     }
 
     var value: T?

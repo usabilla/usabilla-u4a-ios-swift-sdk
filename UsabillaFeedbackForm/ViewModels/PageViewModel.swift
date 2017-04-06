@@ -20,7 +20,7 @@ class PageViewModel: UBPageViewModel {
     private let model: PageModel
     var dynamicFields: [Int] = []
 
-    let theme: UsabillaThemeConfigurator
+    let theme: UsabillaTheme
     let copy: CopyModel
     let errorMessage: String?
     var name: String? {
@@ -38,7 +38,7 @@ class PageViewModel: UBPageViewModel {
 
     required init(page: PageModel) {
         self.model = page
-        self.theme = page.themeConfig
+        self.theme = page.theme
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 
