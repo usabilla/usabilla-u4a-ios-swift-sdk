@@ -102,7 +102,7 @@ class CampaignViewController: UIViewController {
 
         createBackgroundLayer()
 
-        base.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        base.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
 
         view.layoutIfNeeded()
         viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
