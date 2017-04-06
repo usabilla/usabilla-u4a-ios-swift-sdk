@@ -37,6 +37,10 @@ class JSONFormParser {
             }
         }
 
+        if let endPage = currentPage as? UBEndPageModel {
+            endPage.giveMoreFeedback = !UsabillaFeedbackForm.hideGiveMoreFeedback
+        }
+
         var fields: [BaseFieldModel] = []
 
         for (_, subJson): (String, JSON) in pageJson["fields"] {

@@ -14,6 +14,8 @@ protocol UBPageViewModel {
 
 class PageViewModel: UBPageViewModel {
 
+    var shouldAddMarginToContentSize: Bool = true
+
     var cellViewModels: [CellViewModel] = []
     private let model: PageModel
     var dynamicFields: [Int] = []

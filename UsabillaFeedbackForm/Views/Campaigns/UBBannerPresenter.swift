@@ -47,7 +47,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     }
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5, options: .curveLinear, animations: {
+            animations?()
             self.topConstraint.constant = -self.offset
             self.bottomConstraint.constant = self.offset
             view.alpha = 0

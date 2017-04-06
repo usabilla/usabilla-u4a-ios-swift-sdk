@@ -58,8 +58,9 @@ class FormViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
-            self.pageController = vc
-            swipeToPage(viewModel.firstPageViewModel!)
+            pageController = vc
+            pageController.addMarginWhenKeyboardIsShown = viewModel.shouldAddMarginWhenKeyboardIsShown
+            swipeToPage(viewModel.currentPageViewModel)
         }
     }
 
@@ -129,19 +130,19 @@ class FormViewController: UIViewController {
 
     func swipeToPage(_ pageViewModel: PageViewModel) {
         pageController.initWithViewModel(pageViewModel)
-        viewModel.currenPageViewModel = pageViewModel
+        viewModel.currentPageViewModel = pageViewModel
 
         updateProgressBar()
         updateRightButton()
     }
 
     func goToNextPage() {
-        viewModel.currenPageViewModel = viewModel.nextPageViewModel!
+        viewModel.currentPageViewModel = viewModel.nextPageViewModel!
         if viewModel.isItTheEnd {
             showThankYouPage()
             return
         }
-        pageController.initWithViewModel(viewModel.currenPageViewModel)
+        pageController.initWithViewModel(viewModel.currentPageViewModel)
         updateProgressBar()
         updateRightButton()
     }

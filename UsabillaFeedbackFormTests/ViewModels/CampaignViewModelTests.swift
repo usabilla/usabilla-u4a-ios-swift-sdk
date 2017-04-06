@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
@@ -18,13 +20,7 @@ class CampaingViewModelTests: QuickSpec {
         describe("CampainViewModelTests") {
 
             beforeSuite {
-                let path = Bundle(for: CampaingViewModelTests.self).path(forResource: "test", ofType: "json")!
-                do {
-                    let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                    self.formJson = JSON(data: data as Data)
-                } catch let error as NSError {
-                    Swift.debugPrint(error.localizedDescription)
-                }
+                self.formJson = UBMock.formMock().formJsonString
             }
 
             context("When initilized CampainViewModel", {
@@ -39,23 +35,63 @@ class CampaingViewModelTests: QuickSpec {
                     expect(campainViewModel.introPageViewModel).to(beNil())
                     expect(campainViewModel.introPresenter).to(beNil())
                 })
-                it("should set introPageViewModel & introPresenter when json conatins start page", closure: {
+                it("should set introPageViewModel & introPresenter when json contains start page", closure: {
                     // add start page to json form
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
                     startDict["type"] = "start"
-                    startDict["fileds"] = []
                     dict["form"]!["pages"].arrayObject!.append(startDict)
-                    self.formJson = JSON(dict)
 
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
+
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
                     let campainViewModel = CampaignViewModel(campaign: campaign)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).toNot(beNil())
                     expect(campainViewModel.introPresenter).toNot(beNil())
+                    expect(campainViewModel.introPresenter is UBBannerPresenter).to(beTrue())
+
+                })
+                it("should set introPageViewModel & introPresenter when json contains start page and is an alert", closure: {
+                    // add start page to json form
+                    var dict = self.formJson.dictionaryValue
+                    var startDict = [String: Any]()
+                    startDict["type"] = "start"
+                    startDict["fields"] = []
+                    startDict["display"] = "alert"
+                    dict["form"]!["pages"].arrayObject!.append(startDict)
+
+                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
+                    campaign.form = formModel
+                    expect(campaign).toNot(beNil())
+                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    expect(campainViewModel).toNot(beNil())
+                    expect(campainViewModel.introPageViewModel).toNot(beNil())
+                    expect(campainViewModel.introPresenter is UBAlertPresenter).to(beTrue())
+                })
+            })
+
+            context("When accessing formViewModel", {
+                it("should return a formViewModel with the right data", closure: {
+                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
+                    let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
+                    campaign.form = formModel
+                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    let formViewModel = campainViewModel.formViewModel
+
+                    expect(formViewModel).toNot(beNil())
+                    expect(formViewModel?.currentPageViewModel.name).to(equal("Third"))
+                    expect(formViewModel?.shouldAddMarginWhenKeyboardIsShown).to(beFalse())
+                })
+
+                it("should return nil when the campaign has no form", closure: {
+                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
+                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    let formViewModel = campainViewModel.formViewModel
+                    expect(formViewModel).to(beNil())
                 })
             })
         }
