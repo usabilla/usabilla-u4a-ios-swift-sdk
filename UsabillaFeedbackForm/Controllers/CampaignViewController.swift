@@ -25,6 +25,8 @@ class CampaignViewController: UIViewController {
     var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
 
+    var modalBottomConstraint: NSLayoutConstraint?
+
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
             introView = UBIntroOutroView(viewModel: introPageViewModel)
@@ -56,6 +58,45 @@ class CampaignViewController: UIViewController {
         self.delegate = delegate
 
         super.init(nibName: nil, bundle: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(CampaignViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CampaignViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+
+    func keyboardWillShow(notification: NSNotification) {
+        guard let info: [AnyHashable: Any] = notification.userInfo,
+            let keyboardFrame: CGRect = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+            let bottomConstraint = modalBottomConstraint else { return }
+
+        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
+        let curve = UIViewAnimationOptions(rawValue: UInt(duration))
+        let offset = -topMargin - keyboardFrame.height
+
+        let form = self.formNavigationController?.childViewControllers[0] as? FormViewController
+
+        
+        UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
+            bottomConstraint.constant = offset
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            form?.pageController.tableView.beginUpdates()
+            form?.pageController.tableView.endUpdates()
+
+        })
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        guard let _: [AnyHashable: Any] = notification.userInfo, let bottomConstraint = modalBottomConstraint else { return }
+
+        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
+        let curve = UIViewAnimationOptions(rawValue: UInt(duration))
+        let offset = -topMargin
+
+        UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
+            bottomConstraint.constant = offset
+            self.view.layoutIfNeeded()
+
+        })
     }
 
     func createBackgroundLayer() {
@@ -98,7 +139,7 @@ class CampaignViewController: UIViewController {
         base.view.topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin).activate()
         base.view.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).activate()
         base.view.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).activate()
-        base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -topMargin).activate()
+        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -topMargin).activate()
 
         createBackgroundLayer()
 
