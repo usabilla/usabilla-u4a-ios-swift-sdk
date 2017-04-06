@@ -23,6 +23,7 @@ class CampaignViewController: UIViewController {
 
     var backgroundLayer: UIView?
     var introView: UBIntroOutroView?
+    var formNavigationController: UINavigationController?
 
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
@@ -85,6 +86,8 @@ class CampaignViewController: UIViewController {
         formController.delegate = self
         formController.viewModel = viewModel.formViewModel
 
+        formNavigationController = base
+
         addChildViewController(base)
         view.addSubview(base.view)
         base.view.alpha = 0
@@ -98,14 +101,19 @@ class CampaignViewController: UIViewController {
         base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -topMargin).activate()
 
         createBackgroundLayer()
-        
-        UIView.animate(withDuration: 0.33, animations: {
+
+        base.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+
+        view.layoutIfNeeded()
+        viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
             base.view.alpha = 1
             self.backgroundLayer?.alpha = 1
             self.introView?.alpha = 0
-        }) { _ in
+            base.view.transform = CGAffineTransform.identity
+        }, completion: {
             self.introView?.removeFromSuperview()
-        }
+
+        })
     }
 }
 
@@ -134,8 +142,15 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 extension CampaignViewController: FormViewControllerDelegate {
 
     func leftBarButtonTapped(_ formViewController: FormViewController) {
-        // TO DO dismiss modal
-        delegate?.campaignDidEnd(success: false)
+        UIView.animate(withDuration: 0.33, animations: {
+            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            self.formNavigationController?.view.alpha = 0
+            self.backgroundLayer?.alpha = 0
+        }) { _ in
+            self.formNavigationController?.view.removeFromSuperview()
+            self.formNavigationController?.removeFromParentViewController()
+            self.delegate?.campaignDidEnd(success: false)
+        }
     }
 
     func rightBarButtonTapped(_ formViewController: FormViewController) {
