@@ -21,6 +21,7 @@ class CampaignViewModel {
 
         let formViewModel = UBFormViewModel(formModel: formModel)
         formViewModel.currentPageViewModel = formViewModel.nextPageViewModel!
+        formViewModel.shouldAddMarginWhenKeyboardIsShown = false
 
         return formViewModel
     }

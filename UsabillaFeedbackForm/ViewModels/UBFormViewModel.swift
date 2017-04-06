@@ -14,6 +14,8 @@ class UBFormViewModel {
     private(set) var currentPageIndex: Int
     private var pageViewModels: [PageViewModel]
 
+    var shouldAddMarginWhenKeyboardIsShown: Bool = true
+
     var id: String {
         return model.appId
     }

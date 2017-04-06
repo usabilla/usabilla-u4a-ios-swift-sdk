@@ -58,7 +58,8 @@ class FormViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
-            self.pageController = vc
+            pageController = vc
+            pageController.addMarginWhenKeyboardIsShown = viewModel.shouldAddMarginWhenKeyboardIsShown
             swipeToPage(viewModel.currentPageViewModel)
         }
     }

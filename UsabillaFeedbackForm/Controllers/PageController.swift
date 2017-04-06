@@ -14,9 +14,12 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     var pageViewModel: PageViewModel!
     var requiredLabel: UILabel!
+    var addMarginWhenKeyboardIsShown: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.layer.borderColor = UIColor.red.cgColor
+        self.tableView.layer.borderWidth = 2.0
         self.tableView.register(RootCellView.self, forCellReuseIdentifier: "root")
         self.tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
@@ -35,11 +38,10 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func keyboardWillShow(notification: NSNotification) {
-        guard var userInfo = notification.userInfo else {
-            return
-        }
-        guard var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
+        guard addMarginWhenKeyboardIsShown,
+            var userInfo = notification.userInfo,
+            var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+                return
         }
 
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)

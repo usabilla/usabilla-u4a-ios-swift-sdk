@@ -19,9 +19,9 @@ class UBAlertPresenter: UBIntroOutroPresenter {
         inView.layoutIfNeeded()
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar
-        
+
         view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        
+
         UIView.animate(withDuration: 0.33, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
             view.transform = CGAffineTransform.identity
             view.alpha = 1

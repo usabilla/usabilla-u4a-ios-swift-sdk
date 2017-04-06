@@ -71,17 +71,13 @@ class CampaignViewController: UIViewController {
         let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
         let curve = UIViewAnimationOptions(rawValue: UInt(duration))
         let offset = -topMargin - keyboardFrame.height
-
         let form = self.formNavigationController?.childViewControllers[0] as? FormViewController
 
-        
         UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
             bottomConstraint.constant = offset
             self.view.layoutIfNeeded()
-        }, completion: { _ in
             form?.pageController.tableView.beginUpdates()
             form?.pageController.tableView.endUpdates()
-
         })
     }
 
@@ -126,11 +122,11 @@ class CampaignViewController: UIViewController {
         }
         formController.delegate = self
         formController.viewModel = viewModel.formViewModel
-
         formNavigationController = base
 
         addChildViewController(base)
         view.addSubview(base.view)
+
         base.view.alpha = 0
         base.view.layer.cornerRadius = 14
         base.view.layer.masksToBounds = true
@@ -153,7 +149,6 @@ class CampaignViewController: UIViewController {
             base.view.transform = CGAffineTransform.identity
         }, completion: {
             self.introView?.removeFromSuperview()
-
         })
     }
 }
