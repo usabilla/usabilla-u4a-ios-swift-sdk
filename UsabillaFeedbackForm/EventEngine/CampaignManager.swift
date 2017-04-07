@@ -12,7 +12,7 @@ class CampaignManager {
 
     static func sendEvent(event: String) {}
 
-    class func start() {
+    class func start(appId: NSUUID) {
         //Fetch campaigns from BE
     }
 

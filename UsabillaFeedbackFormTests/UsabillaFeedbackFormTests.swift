@@ -49,6 +49,14 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                     UsabillaFeedbackForm.loadFeedbackForm("588616eca935029b15d51a51")
                 }
             }
+
+            context("when loading the sdk") {
+                it("should be initialized with the correct appId") {
+                    let uuid = NSUUID()
+                    UsabillaFeedbackForm.load(appId: uuid)
+                    expect(UsabillaFeedbackForm.appIdentifier).to(equal(uuid))
+                }
+            }
         }
     }
 

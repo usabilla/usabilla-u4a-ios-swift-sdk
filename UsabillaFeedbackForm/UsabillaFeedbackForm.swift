@@ -20,7 +20,9 @@ open class UsabillaFeedbackForm {
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
 
+    static var appIdentifier: NSUUID?
     static var defaultLocalisationFile = true
+
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
             defaultLocalisationFile = false
@@ -32,15 +34,19 @@ open class UsabillaFeedbackForm {
     }
 
     /**
-       Initialize the **Usabilla SDK**
+    Initialize the **Usabilla SDK**
      
-       This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
+    This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
      
-       The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
+    The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
+    It also allows to fetch the campaigns associated to the **appId**.
+     
+    - parameter appId: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
-    open class func load() {
+    open class func load(appId: NSUUID) {
         _ = SubmissionManager.shared // init the singleton to send persisted feedback
-        CampaignManager.start() // init the campaigns manager, fetching the latest version
+        appIdentifier = appId
+        CampaignManager.start(appId: appId) // init the campaigns manager, fetching the latest version
     }
 
     open class func removeCachedForms() {
