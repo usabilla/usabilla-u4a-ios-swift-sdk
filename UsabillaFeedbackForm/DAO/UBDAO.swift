@@ -1,0 +1,19 @@
+//
+//  UBDAO.swift
+//  UsabillaFeedbackForm
+//
+//  Created by Benjamin Grima on 07/04/2017.
+//  Copyright © 2017 Usabilla. All rights reserved.
+//
+
+import Foundation
+
+protocol UBDAO {
+    associatedtype DataType
+    func create(_ obj: DataType)
+    func readAll() -> [DataType]
+    func read(id: String) -> DataType?
+    func update(_ obj: DataType)
+    func delete(_ obj: DataType)
+    func deleteAll()
+}
