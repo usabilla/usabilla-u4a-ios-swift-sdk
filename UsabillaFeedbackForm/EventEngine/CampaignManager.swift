@@ -10,7 +10,7 @@ import Foundation
 
 class CampaignManager {
 
-    static func sendEvent(event: String) {}
+    static func sendEvent(event: String) { }
 
     class func start(appId: NSUUID) {
         //Fetch campaigns from BE
