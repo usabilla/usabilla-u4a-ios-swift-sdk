@@ -109,30 +109,19 @@ class FormModel: NSObject, NSCoding {
     }
 
     // MARK: NScoding protocols
-    
+
     // swiftlint:disable force_cast
     public required convenience init?(coder aDecoder: NSCoder) {
         let appId = aDecoder.decodeObject(forKey: "appId") as! String
-        let hasScreenshot = aDecoder.decodeBool(forKey: "hasScreenshot")
-        let version = aDecoder.decodeInteger(forKey: "version")
-        let pages = aDecoder.decodeObject(forKey: "pages") as! [PageModel]
         let formJsonString = aDecoder.decodeObject(forKey: "formJsonString") as! JSON
-        let redirectToAppStore = aDecoder.decodeBool(forKey: "redirectToAppStore")
-        let showProgressBar = aDecoder.decodeBool(forKey: "showProgressBar")
-        let copyModel = aDecoder.decodeObject(forKey: "copyModel") as! CopyModel
-        
-        self.init(appId: appId, hasScreenshot: hasScreenshot, version: version, pages: pages, jsonString: formJsonString, redirectToAppStore: redirectToAppStore, showProgressBar: showProgressBar, copyModel: copyModel)
+
+        self.init(json: formJsonString, id: appId, screenshot: nil)
     }
-    
+
     // swiftlint:enable force_cast
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(appId, forKey: "appId")
-        aCoder.encode(hasScreenshot, forKey: "hasScreenshot")
-        aCoder.encode(version, forKey: "version")
-        aCoder.encode(pages, forKey: "pages")
         aCoder.encode(formJsonString, forKey: "formJsonString")
-        aCoder.encode(redirectToAppStore, forKey: "redirectToAppStore")
-        aCoder.encode(showProgressBar, forKey: "showProgressBar")
-        aCoder.encode(copyModel, forKey: "copyModel")
+
     }
 }
