@@ -52,9 +52,13 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
 
             context("when loading the sdk") {
                 it("should be initialized with the correct appId") {
-                    let uuid = NSUUID()
-                    UsabillaFeedbackForm.load(appId: uuid)
-                    expect(UsabillaFeedbackForm.appIdentifier).to(equal(uuid))
+                    UsabillaFeedbackForm.load(appId: "")
+                    expect(UsabillaFeedbackForm.appIdentifier).to(beNil())
+                }
+
+                it("should be initialized with no appId when it is not a UUID") {
+                    UsabillaFeedbackForm.load(appId: "0D5424BE-41AD-4434-A081-32C393A998A3")
+                    expect(UsabillaFeedbackForm.appIdentifier).to(equal("0D5424BE-41AD-4434-A081-32C393A998A3"))
                 }
             }
         }

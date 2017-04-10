@@ -20,7 +20,7 @@ open class UsabillaFeedbackForm {
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
 
-    static var appIdentifier: NSUUID?
+    static var appIdentifier: String?
     static var defaultLocalisationFile = true
 
     open static var localizedStringFile: String = "usa_localizable" {
@@ -43,8 +43,12 @@ open class UsabillaFeedbackForm {
      
     - parameter appId: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
-    open class func load(appId: NSUUID) {
+    open class func load(appId: String) {
         _ = SubmissionManager.shared // init the singleton to send persisted feedback
+        guard NSUUID(uuidString: appId) != nil else {
+            Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
+            return
+        }
         appIdentifier = appId
         CampaignManager.start(appId: appId) // init the campaigns manager, fetching the latest version
     }
