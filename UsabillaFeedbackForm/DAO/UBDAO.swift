@@ -10,7 +10,7 @@ import Foundation
 
 protocol UBDAO {
     associatedtype DataType
-    func create(_ obj: DataType)
+    @discardableResult func create(_ obj: DataType) -> Bool
     func readAll() -> [DataType]
     func read(id: String) -> DataType?
     func update(_ obj: DataType)

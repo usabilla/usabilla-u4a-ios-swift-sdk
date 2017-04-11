@@ -10,6 +10,6 @@ import Foundation
 
 class CampaignDAO: UBFileStorageDAO<CampaignModel> {
     required init() {
-        super.init(directoryName: "campaign")
+        super.init(directoryName: "Campaigns")
     }
 }
