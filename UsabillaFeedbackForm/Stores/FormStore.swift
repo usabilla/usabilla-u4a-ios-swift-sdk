@@ -17,11 +17,11 @@ class FormStore {
         // 3. else fail
         return Promise { fulfill, reject in
             NetworkManager.getForm(id, screenshot: screenshot, customVariables: customVariables, theme: theme).then(execute: { form in
-                CacheManager.shared.cacheForm(id: form.appId, form: form)
-                PLog("FormModel is loaded successfully")
+                UBFormDAO.sahred.create(form)
+                PLog("  FormModel is loaded successfully")
                 fulfill(form)
             }).catch(execute: { error in
-                if let cachedForm = CacheManager.shared.getForm(id: id) {
+                if let cachedForm = UBFormDAO.sahred.read(id: id) {
                     fulfill(cachedForm)
                 } else {
                     reject(error)
