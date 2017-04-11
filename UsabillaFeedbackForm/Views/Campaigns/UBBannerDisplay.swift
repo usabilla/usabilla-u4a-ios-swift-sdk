@@ -14,18 +14,28 @@ protocol UBIntroOutroDisplay {
 
 class UBBannerDisplay: UBIntroOutroDisplay {
     private static let topBannerMargin: CGFloat = 10
+    static let kBannerExtraSpace: CGFloat = 100
 
     static func build(view: UBIntroOutroView) {
         view.buttonsStackView?.axis = .horizontal
 
         buildShadow(view)
         buildHorizontaleLine(view)
+        configureMargins(view)
 
         guard view.viewModel.hasContinueButton else {
             view.cancelButton.contentHorizontalAlignment = .center
             return
         }
         configureWithContinueButton(view)
+    }
+
+    static private func configureMargins(_ view: UBIntroOutroView) {
+        if view.viewModel.displayMode == .bannerBottom {
+            view.buttonsStackViewBottomContraint?.constant -= kBannerExtraSpace
+        } else { // display banner top
+            view.titleTopConstraint?.constant += UBBannerDisplay.topBannerMargin + kBannerExtraSpace
+        }
     }
 
     static private func buildShadow(_ view: UBIntroOutroView) {
@@ -53,9 +63,5 @@ class UBBannerDisplay: UBIntroOutroDisplay {
 
         view.continueButton!.contentHorizontalAlignment = .right
         view.continueButton!.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-
-        if view.viewModel.displayMode != .bannerBottom {
-            view.titleTopConstraint?.constant += UBBannerDisplay.topBannerMargin
-        }
     }
 }
