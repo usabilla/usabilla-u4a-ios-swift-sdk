@@ -113,7 +113,8 @@ class FormModel: NSObject, NSCoding {
     // swiftlint:disable force_cast
     public required convenience init?(coder aDecoder: NSCoder) {
         let appId = aDecoder.decodeObject(forKey: "appId") as! String
-        let formJsonString = aDecoder.decodeObject(forKey: "formJsonString") as! JSON
+        let rawJson = aDecoder.decodeObject(forKey: "formJsonString")
+        let formJsonString = JSON(rawJson!)
 
         self.init(json: formJsonString, id: appId, screenshot: nil)
     }
@@ -121,7 +122,6 @@ class FormModel: NSObject, NSCoding {
     // swiftlint:enable force_cast
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(appId, forKey: "appId")
-        aCoder.encode(formJsonString, forKey: "formJsonString")
-
+        aCoder.encode(formJsonString.rawValue, forKey: "formJsonString")
     }
 }
