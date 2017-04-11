@@ -12,7 +12,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     typealias DataType = ModelType
 
     var directoryName: String
-    let directoryUrl: URL?
+    let directoryUrl: URL
 
     init(directoryName: String) {
         self.directoryName = directoryName
@@ -20,7 +20,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         directoryUrl = documentsDirectory.appendingPathComponent(directoryName)
 
-        createDirectory(url: directoryUrl!)
+        createDirectory(url: directoryUrl)
     }
 
     @discardableResult func create(_ obj: DataType) -> Bool {
@@ -29,11 +29,20 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     }
 
     func readAll() -> [DataType] {
-        return []
+        var data = [DataType]()
+        let files = fileNameInDirectory()
+        files.forEach {
+            if let item = read(id: $0) {
+                data.append(item)
+            }
+        }
+
+        return data
     }
 
     func read(id: String) -> DataType? {
-        return nil
+        let filePath = self.filePathFor(id: id)
+        return NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
     }
 
     func update(_ obj: DataType) {
@@ -67,8 +76,22 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         }
         return didSave
     }
-    
+
     func filePathFor(id: String) -> String {
-        return (directoryUrl?.appendingPathComponent("\(id)").path)!
+        return directoryUrl.appendingPathComponent("\(id)").path
+    }
+
+    func fileNameInDirectory() -> [String] {
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: directoryUrl, includingPropertiesForKeys: nil, options: [])
+            return urls.map { $0.lastPathComponent }
+        } catch let error as NSError {
+            PLog("Error listing directory: \(error.localizedDescription)")
+        }
+        return []
+    }
+
+    func id(forObj: DataType) -> String {
+        return ""
     }
 }
