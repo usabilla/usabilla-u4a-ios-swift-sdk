@@ -54,7 +54,7 @@ open class UsabillaFeedbackForm {
     }
 
     open class func removeCachedForms() {
-        CacheManager.shared.removeAllCachedForms()
+        UBFormDAO.shared.deleteAll()
     }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {

@@ -13,6 +13,6 @@ protocol UBDAO {
     @discardableResult func create(_ obj: DataType) -> Bool
     func readAll() -> [DataType]
     func read(id: String) -> DataType?
-    func delete(_ obj: DataType) -> Bool
-    func deleteAll() -> Bool
+    @discardableResult func delete(_ obj: DataType) -> Bool
+    @discardableResult func deleteAll() -> Bool
 }
