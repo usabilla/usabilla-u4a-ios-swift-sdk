@@ -26,7 +26,7 @@ class PageViewModelTests: QuickSpec {
 
         describe("PageViewModelTests") {
             beforeEach {
-                viewModel = PageViewModel(page: pageModel)
+                viewModel = PageViewModel(page: pageModel, theme: UsabillaTheme())
             }
 
             context("When initilized") {

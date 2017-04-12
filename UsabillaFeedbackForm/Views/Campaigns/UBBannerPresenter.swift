@@ -20,7 +20,6 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
         let style = view.viewModel.displayMode
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = 0
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
         bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
         leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
@@ -29,7 +28,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         offset = view.bounds.height
         topConstraint.constant = -offset
-        bottomConstraint.constant = offset
+        bottomConstraint.constant = offset - UBBannerDisplay.kBannerExtraSpace
 
         // activate bottom or top constraint based on banner position
         topConstraint.isActive = style != .bannerBottom
@@ -38,20 +37,19 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
 
-        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
-            self.topConstraint.constant = 0
-            self.bottomConstraint.constant = 0
-            view.alpha = 1
+        UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.40, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.topConstraint.constant = -UBBannerDisplay.kBannerExtraSpace
+            self.bottomConstraint.constant = UBBannerDisplay.kBannerExtraSpace
             inView.layoutIfNeeded()
         })
     }
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.33, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5, options: .curveLinear, animations: {
+
+        UIView.animate(withDuration: 0.15, animations: {
             animations?()
             self.topConstraint.constant = -self.offset
             self.bottomConstraint.constant = self.offset
-            view.alpha = 0
             inView.layoutIfNeeded()
         }) { _ in
             completion?()

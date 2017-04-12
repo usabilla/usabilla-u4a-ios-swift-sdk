@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UBPageViewModel {
-    init(page: PageModel)
+    init(page: PageModel, theme: UsabillaTheme)
 }
 
 class PageViewModel: UBPageViewModel {
@@ -36,14 +36,14 @@ class PageViewModel: UBPageViewModel {
         }.count == 0
     }
 
-    required init(page: PageModel) {
+    required init(page: PageModel, theme: UsabillaTheme) {
         self.model = page
-        self.theme = page.theme
+        self.theme = theme
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 
         for (index, fieldModel) in page.fields.enumerated() {
-            cellViewModels.append(CellViewModel(model: fieldModel))
+            cellViewModels.append(CellViewModel(model: fieldModel, theme: theme))
             if fieldModel.rule != nil {
                 dynamicFields.append(index)
             }

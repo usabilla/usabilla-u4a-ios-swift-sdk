@@ -49,6 +49,18 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                     UsabillaFeedbackForm.loadFeedbackForm("588616eca935029b15d51a51")
                 }
             }
+
+            context("when loading the sdk") {
+                it("should be initialized with the correct appId") {
+                    UsabillaFeedbackForm.load(appId: "")
+                    expect(UsabillaFeedbackForm.appIdentifier).to(beNil())
+                }
+
+                it("should be initialized with no appId when it is not a UUID") {
+                    UsabillaFeedbackForm.load(appId: "0D5424BE-41AD-4434-A081-32C393A998A3")
+                    expect(UsabillaFeedbackForm.appIdentifier).to(equal("0D5424BE-41AD-4434-A081-32C393A998A3"))
+                }
+            }
         }
     }
 

@@ -178,8 +178,8 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 extension CampaignViewController: FormViewControllerDelegate {
 
     func leftBarButtonTapped(_ formViewController: FormViewController) {
-        UIView.animate(withDuration: 0.33, animations: {
-            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.20, animations: {
+            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.formNavigationController?.view.alpha = 0
             self.backgroundLayer?.alpha = 0
         }) { _ in

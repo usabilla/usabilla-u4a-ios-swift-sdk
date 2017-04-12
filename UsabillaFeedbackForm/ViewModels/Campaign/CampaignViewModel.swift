@@ -40,7 +40,7 @@ class CampaignViewModel {
         }
 
         if let intro = introPageModel as? IntroPageModel {
-            introPageViewModel = IntroPageViewModel(introPage: intro)
+            introPageViewModel = IntroPageViewModel(introPage: intro, theme: campaign.form!.theme)
 
             if introPageViewModel?.displayMode == .alert {
                 introPresenter = UBAlertPresenter()

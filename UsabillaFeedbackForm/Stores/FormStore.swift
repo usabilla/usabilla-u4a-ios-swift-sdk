@@ -17,16 +17,20 @@ class FormStore {
         // 3. else fail
         return Promise { fulfill, reject in
             NetworkManager.getForm(id, screenshot: screenshot, customVariables: customVariables, theme: theme).then(execute: { form in
+
                 UBFormDAO.shared.create(form)
                 PLog("  FormModel is loaded successfully")
                 fulfill(form)
-            }).catch(execute: { error in
+            }).catch { error in
                 if let cachedForm = UBFormDAO.shared.read(id: id) {
+                    cachedForm.theme = theme
+                    cachedForm.updateTheme()
+                    PLog("FormModel is loaded successfully")
                     fulfill(cachedForm)
                 } else {
                     reject(error)
                 }
-            })
+            }
         }
     }
 
@@ -38,6 +42,8 @@ class FormStore {
                 let jsonObj: JSON = JSON(data: data)
                 if jsonObj != JSON.null {
                     let form = FormModel(json: jsonObj, id: appId, screenshot: screenshot)
+                    form.theme = theme
+                    form.updateTheme()
                     form.isDefault = true
                     return form
                 } else {

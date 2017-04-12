@@ -28,7 +28,7 @@ class PageControllerTest: QuickSpec {
 
             viewController = storyboard.instantiateViewController(withIdentifier: "page") as! PageController
 
-            let pageViewModel = PageViewModel(page: formModel.pages.first!)
+            let pageViewModel = PageViewModel(page: formModel.pages.first!, theme: UsabillaTheme())
             viewController.initWithViewModel(pageViewModel)
 
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
