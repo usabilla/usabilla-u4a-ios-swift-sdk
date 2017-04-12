@@ -10,9 +10,9 @@ import Foundation
 
 class CampaignManager {
 
-    static func sendEvent(event: String) {}
+    static func sendEvent(event: String) { }
 
-    class func start() {
+    class func start(appId: String) {
         //Fetch campaigns from BE
     }
 
