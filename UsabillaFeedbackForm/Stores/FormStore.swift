@@ -18,10 +18,14 @@ class FormStore {
         return Promise { fulfill, reject in
             NetworkManager.getForm(id, screenshot: screenshot, customVariables: customVariables, theme: theme).then(execute: { form in
                 CacheManager.shared.cacheForm(id: form.appId, form: form)
+                form.theme = theme
+                form.updateTheme()
                 PLog("FormModel is loaded successfully")
                 fulfill(form)
             }).catch(execute: { error in
                 if let cachedForm = CacheManager.shared.getForm(id: id) {
+                    cachedForm.theme = theme
+                    cachedForm.updateTheme()
                     fulfill(cachedForm)
                 } else {
                     reject(error)
@@ -38,6 +42,8 @@ class FormStore {
                 let jsonObj: JSON = JSON(data: data)
                 if jsonObj != JSON.null {
                     let form = FormModel(json: jsonObj, id: appId, screenshot: screenshot)
+                    form.theme = theme
+                    form.updateTheme()
                     form.isDefault = true
                     return form
                 } else {
