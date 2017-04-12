@@ -25,7 +25,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
 
     @discardableResult func create(_ obj: DataType) -> Bool {
         print(String(describing: type(of: self)))
-        return self.saveToFile(id: "", data: obj)
+        return self.saveToFile(id: self.id(forObj: obj), data: obj)
     }
 
     func readAll() -> [DataType] {
