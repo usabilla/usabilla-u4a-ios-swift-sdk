@@ -97,7 +97,7 @@ class UBFormViewModel {
         endPageModel.redirectToAppStore = model.redirectToAppStore
         let moodValue = model.pages.first?.fields[0] as? IntFieldModel
 
-        let endPageViewModel = UBEndPageViewModel(model: endPageModel)
+        let endPageViewModel = UBEndPageViewModel(model: endPageModel, theme: model.theme)
         var rating: Int = 0
         if let moodRating = moodValue?.fieldValue {
             rating = moodRating
@@ -139,7 +139,7 @@ class UBFormViewModel {
         self.pageViewModels = []
 
         model.pages.forEach {
-            let vm = PageViewModel(page: $0)
+            let vm = PageViewModel(page: $0, theme: model.theme)
             self.pageViewModels.append(vm)
         }
     }
@@ -150,7 +150,7 @@ class UBFormViewModel {
         self.pageViewModels = []
 
         model.pages.forEach {
-            let vm = PageViewModel(page: $0)
+            let vm = PageViewModel(page: $0, theme: model.theme)
             self.pageViewModels.append(vm)
         }
     }

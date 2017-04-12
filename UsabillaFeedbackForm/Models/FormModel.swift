@@ -15,7 +15,7 @@ class FormModel {
     let pages: [PageModel]
     let appId: String
     var isDefault: Bool = false
-    let formJsonString: JSON!
+    let formJsonString: JSON
     let redirectToAppStore: Bool
     let showProgressBar: Bool
     var theme: UsabillaTheme
@@ -45,13 +45,12 @@ class FormModel {
         self.showProgressBar = data["progressBar"].bool ?? true
         self.appId = id
         self.formJsonString = json
-        self.theme = UsabillaFeedbackForm.theme
-        self.theme.updateConfig(json: json["colors"])
+        self.theme = UsabillaTheme()
 
         var newPages: [PageModel] = []
 
         for (index, subJson): (String, JSON) in json["form"]["pages"] {
-            let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!, theme: theme)
+            let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!)
             page.errorMessage = copyModel.errorMessage
             page.copy = copyModel
             newPages.append(page)
@@ -106,6 +105,10 @@ class FormModel {
             return FeedbackResult(rating: ratingValue, abandonedPageIndex: latestPageIndex)
         }
         return FeedbackResult(rating: ratingValue, abandonedPageIndex: nil)
+    }
+    
+    func updateTheme() {
+        self.theme.updateConfig(json: formJsonString["colors"])
     }
 
 }

@@ -10,7 +10,7 @@ import Foundation
 
 class JSONFormParser {
 
-    class func parsePage(_ pageJson: JSON, pageNum: Int, theme: UsabillaTheme) -> PageModel {
+    class func parsePage(_ pageJson: JSON, pageNum: Int) -> PageModel {
 
         let pageName = pageJson["name"].stringValue
         let type = PageType(rawValue: pageJson["type"].stringValue)!
@@ -25,7 +25,7 @@ class JSONFormParser {
         case .end:
             pageModelClass = UBEndPageModel.self
         }
-        let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, theme: theme)
+        let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName)
         currentPage.defaultJumpTo = pageJson["jump"].string
         currentPage.type = type
 
