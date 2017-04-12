@@ -11,12 +11,9 @@ import Foundation
 class UBEndPageViewModel {
 
     private var model: UBEndPageModel
+    private(set) var theme: UsabillaTheme
 
     var formRating: Int = 0
-
-    var theme: UsabillaTheme {
-        return model.theme
-    }
 
     var canRedirectToAppStore: Bool {
         return model.redirectToAppStore && formRating > 3 && UsabillaFeedbackForm.appStoreId != nil
@@ -37,9 +34,9 @@ class UBEndPageViewModel {
     var thankyouText: String?
     var headerText: String?
 
-    init(model: UBEndPageModel) {
+    init(model: UBEndPageModel, theme: UsabillaTheme) {
         self.model = model
-
+        self.theme = theme
         if model.fields.count > 0 {
             if let header: HeaderFieldModel = model.fields[0] as? HeaderFieldModel {
                 headerText = header.fieldValue

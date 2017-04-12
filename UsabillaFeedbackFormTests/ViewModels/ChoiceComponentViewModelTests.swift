@@ -17,11 +17,11 @@ class ChoiceComponentViewModelTests: QuickSpec {
 
         var viewModel: ChoiceComponentViewModel!
         var model: ChoiceFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", theme: UsabillaTheme())
+        let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
             model = ChoiceFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
-            viewModel = ChoiceComponentViewModel(model: model)
+            viewModel = ChoiceComponentViewModel(model: model, theme: UsabillaTheme())
         }
 
         describe("ChoiceComponentViewModelTests") {

@@ -10,13 +10,12 @@ import Foundation
 
 class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
     var model: V
-    var theme: UsabillaTheme {
-        return model.theme
-    }
+    let theme: UsabillaTheme
 
     var value: T?
 
-    init(model: V) {
+    init(model: V, theme: UsabillaTheme) {
         self.model = model
+        self.theme = theme
     }
 }

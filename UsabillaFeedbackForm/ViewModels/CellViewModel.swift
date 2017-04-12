@@ -29,13 +29,13 @@ class CellViewModel {
             }
         }
     }
-    init(model: BaseFieldModel) {
+    init(model: BaseFieldModel, theme: UsabillaTheme) {
         self.model = model
         self.title = model.fieldTitle
-        self.theme = model.theme
+        self.theme = theme
         self.copy = model.pageModel.copy!
         self.required = model.required
-        componentViewModel = ComponentViewModelFactory.component(field: model)
+        componentViewModel = ComponentViewModelFactory.component(field: model, theme: theme)
     }
 
     var shouldAppear: Bool {

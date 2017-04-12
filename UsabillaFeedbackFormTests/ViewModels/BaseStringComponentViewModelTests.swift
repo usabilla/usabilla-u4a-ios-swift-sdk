@@ -17,11 +17,11 @@ class BaseStringComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseStringComponentViewModel<StringFieldModel>!
         var model: StringFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", theme: UsabillaTheme())
+        let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
             model = StringFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
-            viewModel = BaseStringComponentViewModel<StringFieldModel>(model: model)
+            viewModel = BaseStringComponentViewModel<StringFieldModel>(model: model, theme: UsabillaTheme())
         }
 
         describe("BaseStringComponentViewModelTests") {

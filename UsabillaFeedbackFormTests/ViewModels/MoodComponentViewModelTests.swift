@@ -20,7 +20,7 @@ class MoodComponentViewModelTests: QuickSpec {
     override func spec() {
 
         let theme = UsabillaTheme()
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", theme: theme)
+        let pageModel = PageModel(pageNumber: 0, pageName: "test")
         var moodComponentViewModel: MoodComponentViewModel!
         var moodModel: MoodFieldModel!
 
@@ -33,11 +33,11 @@ class MoodComponentViewModelTests: QuickSpec {
             context("When moodComponentViewModel is initialized with correct model") {
 
                 it("should have all values setup correctly", closure: {
-                    moodComponentViewModel = MoodComponentViewModel(model: moodModel)
+                    moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
                     expect(moodComponentViewModel).toNot(beNil())
                     expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.selection))
                     expect(moodComponentViewModel.maxValue).to(equal(5))
-                    expect(moodComponentViewModel.selectedImages).to(equal(moodModel.theme.enabledEmoticons))
+                    expect(moodComponentViewModel.selectedImages).to(equal(theme.enabledEmoticons))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
                 })
@@ -49,7 +49,7 @@ class MoodComponentViewModelTests: QuickSpec {
                 it("should have all values setup correctly for 3 moods", closure: {
                     moodModelLessThan5Moods = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"), pageModel: pageModel)
 
-                    moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods)
+                    moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods, theme: theme)
                     expect(moodComponentViewModel.maxValue).to(equal(3))
                     let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.enabledEmoticons)
                     expect(moodComponentViewModel.selectedImages).to(equal(images))
@@ -59,7 +59,7 @@ class MoodComponentViewModelTests: QuickSpec {
                 it("should have all values setup correctly for 2 moods", closure: {
                     moodModelLessThan5Moods = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"), pageModel: pageModel)
 
-                    moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods)
+                    moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods, theme: theme)
 
                     expect(moodComponentViewModel.maxValue).to(equal(2))
                     let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.enabledEmoticons)
@@ -73,7 +73,7 @@ class MoodComponentViewModelTests: QuickSpec {
 
                 it("emoticonValue func should return correct values for different mood sizes", closure: {
                     // init cell
-                    moodComponentViewModel = MoodComponentViewModel(model: moodModel)
+                    moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
 
                     // for 5 moods
                     expect(moodComponentViewModel.emoticonValue(index: 1, maxMoods: 5)).to(equal(1))
@@ -94,7 +94,7 @@ class MoodComponentViewModelTests: QuickSpec {
                 })
                 it("reverseEmoticonValue func should return correct values for different mood sizes", closure: {
                     // init cell
-                    moodComponentViewModel = MoodComponentViewModel(model: moodModel)
+                    moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
                     expect(moodComponentViewModel).toNot(beNil())
 
                     // for 5 moods

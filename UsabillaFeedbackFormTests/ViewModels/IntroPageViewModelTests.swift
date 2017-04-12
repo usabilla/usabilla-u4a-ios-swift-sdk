@@ -21,7 +21,7 @@ class IntroPageViewModelTests: QuickSpec {
         configurator.titleColor = UIColor(rgba: "#012346")
         configurator.textColor = UIColor(rgba: "#012347")
 
-        let introPage = IntroPageModel(pageNumber: 0, pageName: "test", theme: configurator)
+        let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
         let copyModel = CopyModel()
         beforeSuite {
             let moodField = MoodFieldModel(json: JSON.parse("{\"title\":\"Hello\"}"), pageModel: introPage)
@@ -34,7 +34,7 @@ class IntroPageViewModelTests: QuickSpec {
         describe("IntroPageViewModel") {
             context("when using default font") {
                 it("customization should match") {
-                    let introPageViewModel = IntroPageViewModel(introPage: introPage)
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
                     expect(introPageViewModel.backgroundColor).to(equal(configurator.backgroundColor))
                     expect(introPageViewModel.titleColor).to(equal(configurator.titleColor))
                     expect(introPageViewModel.hintColor).to(equal(configurator.hintColor))
@@ -50,8 +50,8 @@ class IntroPageViewModelTests: QuickSpec {
                     configurator.customFont = customFont
                     let customFontBold = UIFont(name: "TimesNewRomanPS-BoldMT", size: 17)
                     configurator.customFontBold = customFontBold
-                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test", theme: configurator)
-                    let introPageViewModel = IntroPageViewModel(introPage: introPage)
+                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
 
                     expect(introPageViewModel.font).to(equal(customFont))
                     expect(introPageViewModel.boldFont).to(equal(customFontBold))
@@ -60,12 +60,12 @@ class IntroPageViewModelTests: QuickSpec {
 
             context("when it is banner with mood component") {
                 it("viewModel attributes should match") {
-                    let introPage2 = IntroPageModel(pageNumber: 0, pageName: "test", theme: configurator)
+                    let introPage2 = IntroPageModel(pageNumber: 0, pageName: "test")
                     let copy2 = CopyModel()
                     copy2.introCancelButton = "canceltest"
                     introPage2.copy = copy2
                     introPage2.fields = [MoodFieldModel(json: JSON.parse("{\"title\":\"Hello\"}"), pageModel: introPage2)]
-                    let introPageViewModel2 = IntroPageViewModel(introPage: introPage2)
+                    let introPageViewModel2 = IntroPageViewModel(introPage: introPage2, theme: configurator)
                     expect(introPageViewModel2.displayMode).to(equal(IntroPageDisplayMode.bannerBottom))
                     expect(introPageViewModel2.title).to(equal("Hello"))
                     expect(introPageViewModel2.cancelLabelText).to(equal("canceltest"))
@@ -79,7 +79,7 @@ class IntroPageViewModelTests: QuickSpec {
                     copyModel.introContinueButton = "continuetest"
                     introPage.hasContinueButton = true
                     introPage.displayMode = .alert
-                    let introPageViewModel = IntroPageViewModel(introPage: introPage)
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
                     expect(introPageViewModel.displayMode).to(equal(IntroPageDisplayMode.alert))
                     expect(introPageViewModel.title).to(equal("Hello"))
                     expect(introPageViewModel.cancelLabelText).to(equal("canceltest"))
@@ -91,7 +91,7 @@ class IntroPageViewModelTests: QuickSpec {
             context("when there is no component") {
                 it("viewModel should have no componentViewModel") {
                     introPage.fields = []
-                    let introPageViewModel = IntroPageViewModel(introPage: introPage)
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
                     expect(introPageViewModel.componentViewModel).to(beNil())
                 }
             }

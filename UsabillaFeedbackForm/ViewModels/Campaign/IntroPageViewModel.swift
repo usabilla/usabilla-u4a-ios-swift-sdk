@@ -12,6 +12,7 @@ class IntroPageViewModel {
 
     private let introPage: IntroPageModel
     private let field: BaseFieldModel?
+    private let theme: UsabillaTheme
 
     let componentViewModel: ComponentViewModel?
 
@@ -36,33 +37,34 @@ class IntroPageViewModel {
     }
 
     var backgroundColor: UIColor {
-        return introPage.theme.backgroundColor
+        return theme.backgroundColor
     }
 
     var titleColor: UIColor {
-        return introPage.theme.titleColor
+        return theme.titleColor
     }
 
     var hintColor: UIColor {
-        return introPage.theme.hintColor
+        return theme.hintColor
     }
 
     var buttonColor: UIColor {
-        return introPage.theme.accentColor
+        return theme.accentColor
     }
 
     var font: UIFont {
-        return introPage.theme.font
+        return theme.font
     }
 
     var boldFont: UIFont {
-        return introPage.theme.boldFont
+        return theme.boldFont
     }
 
     // TO DO add customization attributes
 
-    init(introPage: IntroPageModel) {
+    init(introPage: IntroPageModel, theme: UsabillaTheme) {
         self.introPage = introPage
+        self.theme = theme
         field = introPage.fields.first
         if let field = field {
 
@@ -73,7 +75,7 @@ class IntroPageViewModel {
             }
 
             // create component view model
-            componentViewModel = ComponentViewModelFactory.component(field: field)
+            componentViewModel = ComponentViewModelFactory.component(field: field, theme: theme)
             if displayMode == .alert, var cvm = componentViewModel as? Centerable {
                 cvm.isCentered = true
             }
