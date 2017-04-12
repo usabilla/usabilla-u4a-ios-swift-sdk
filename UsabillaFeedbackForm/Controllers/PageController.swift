@@ -18,8 +18,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.layer.borderColor = UIColor.red.cgColor
-        self.tableView.layer.borderWidth = 2.0
         self.tableView.register(RootCellView.self, forCellReuseIdentifier: "root")
         self.tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
