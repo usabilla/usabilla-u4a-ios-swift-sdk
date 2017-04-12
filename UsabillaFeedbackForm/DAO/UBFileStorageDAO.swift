@@ -24,7 +24,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     }
 
     @discardableResult func create(_ obj: DataType) -> Bool {
-        print(String(describing: type(of: self)))
+        createDirectory(url: directoryUrl)
         return self.saveToFile(id: self.id(forObj: obj), data: obj)
     }
 
@@ -45,24 +45,35 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         return NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
     }
 
-    func update(_ obj: DataType) {
-
+    @discardableResult func delete(_ obj: DataType) -> Bool {
+        let path = filePathFor(id: id(forObj: obj))
+        do {
+            try FileManager.default.removeItem(atPath: path)
+            return true
+        } catch {
+            PLog("Impossible to delete file at path \(path)")
+            return false
+        }
     }
 
-    func delete(_ obj: DataType) {
-
-    }
-
-    func deleteAll() {
-
+    @discardableResult func deleteAll() -> Bool {
+        do {
+            try FileManager.default.removeItem(at: directoryUrl)
+            return true
+        } catch {
+            PLog("Impossible to empty directory at path \(directoryUrl)")
+            return false
+        }
     }
 
     // MARK: Utility methods
-    func createDirectory (url: URL) {
+    @discardableResult func createDirectory (url: URL) -> Bool {
         do {
             try FileManager.default.createDirectory(atPath: url.path, withIntermediateDirectories: true, attributes: nil)
+            return true
         } catch let error as NSError {
             PLog("Error creating directory: \(error.localizedDescription)")
+            return false
         }
     }
 
