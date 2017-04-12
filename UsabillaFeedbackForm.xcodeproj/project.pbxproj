@@ -92,6 +92,7 @@
 		43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */; };
 		431CC0171E92565100205D9D /* UBFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CC0161E92565100205D9D /* UBFormViewModel.swift */; };
 		431F6B001E9E4BCD00D5BF17 /* UBFileStorageDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6AFE1E9E4BC600D5BF17 /* UBFileStorageDAOTests.swift */; };
+		431F6B021E9E803900D5BF17 /* UBFormDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B011E9E803900D5BF17 /* UBFormDAOTests.swift */; };
 		432A8A0B1E89184E00928F54 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0A1E89184E00928F54 /* HeaderComponent.swift */; };
 		432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */; };
 		432BDE3E1E8BB906008100C7 /* MoodComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BDE3C1E8BB902008100C7 /* MoodComponentViewModelTests.swift */; };
@@ -315,6 +316,7 @@
 		43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveFormControllerTest.swift; sourceTree = "<group>"; };
 		431CC0161E92565100205D9D /* UBFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormViewModel.swift; sourceTree = "<group>"; };
 		431F6AFE1E9E4BC600D5BF17 /* UBFileStorageDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFileStorageDAOTests.swift; sourceTree = "<group>"; };
+		431F6B011E9E803900D5BF17 /* UBFormDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAOTests.swift; sourceTree = "<group>"; };
 		432A8A0A1E89184E00928F54 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
 		432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponentViewModel.swift; sourceTree = "<group>"; };
 		432BDE3C1E8BB902008100C7 /* MoodComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponentViewModelTests.swift; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 			isa = PBXGroup;
 			children = (
 				431F6AFE1E9E4BC600D5BF17 /* UBFileStorageDAOTests.swift */,
+				431F6B011E9E803900D5BF17 /* UBFormDAOTests.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1288,6 +1291,7 @@
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
 				04A0C1C51E8BBE7200A483AC /* RepetitionTests.swift in Sources */,
 				04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */,
+				431F6B021E9E803900D5BF17 /* UBFormDAOTests.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,

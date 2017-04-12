@@ -9,11 +9,11 @@
 import Foundation
 
 class UBFormDAO: UBFileStorageDAO<FormModel> {
-
+    static let directoryName = "Forms"
     static let shared = UBFormDAO()
 
     internal required init() {
-        super.init(directoryName: "Forms")
+        super.init(directoryName: UBFormDAO.directoryName)
     }
 
     override func id(forObj: FormModel) -> String {
