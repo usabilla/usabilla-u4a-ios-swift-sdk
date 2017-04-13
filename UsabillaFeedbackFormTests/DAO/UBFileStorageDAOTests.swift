@@ -71,7 +71,7 @@ class UBFileStorageDAOTests: QuickSpec {
                 try? FileManager.default.removeItem(at: directoryUrl)
                 let exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                 expect(exist).to(beFalse())
-                UBFile.createDirectory(url: directoryUrl)
+                UBFileHelper.createDirectory(url: directoryUrl)
             }
 
             context("When there is no data") {

@@ -28,7 +28,7 @@ class UBFormDAOTests: QuickSpec {
                     var exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                     expect(exist).to(beFalse())
 
-                    UBFile.createDirectory(url: directoryUrl)
+                    UBFileHelper.createDirectory(url: directoryUrl)
 
                     exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                     expect(exist).to(beTrue())

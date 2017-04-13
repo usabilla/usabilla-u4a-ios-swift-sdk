@@ -1,5 +1,5 @@
 //
-//  UBFile.swift
+//  UBFileHelper.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 13/04/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UBFile {
+class UBFileHelper {
 
     @discardableResult class func deleteDirectory(url: URL) -> Bool {
         do {
@@ -30,7 +30,7 @@ class UBFile {
         return false
     }
 
-    class func nameOfFilesIn(directory directoryURL: URL) -> [String] {
+    class func filesNameIn(directory directoryURL: URL) -> [String] {
         PLog("listing \(directoryURL)")
         do {
             let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil, options: [])

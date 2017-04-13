@@ -28,19 +28,19 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directoryName)
 
         fileStorageSerialQueue.sync {
-            UBFile.createDirectory(url: sdkRootDirectoryUrl)
-            UBFile.createDirectory(url: directoryUrl)
+            UBFileHelper.createDirectory(url: sdkRootDirectoryUrl)
+            UBFileHelper.createDirectory(url: directoryUrl)
         }
     }
 
     @discardableResult func create(_ obj: DataType) -> Bool {
-        var res = false
+        var isCreated = false
         fileStorageSerialQueue.sync {
-            UBFile.createDirectory(url: sdkRootDirectoryUrl)
-            UBFile.createDirectory(url: directoryUrl)
+            UBFileHelper.createDirectory(url: sdkRootDirectoryUrl)
+            UBFileHelper.createDirectory(url: directoryUrl)
         }
-        res = saveToFile(id: self.id(forObj: obj), data: obj)
-        return res
+        isCreated = saveToFile(id: self.id(forObj: obj), data: obj)
+        return isCreated
     }
 
     func readAll() -> [DataType] {
@@ -48,7 +48,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         var files = [String]()
 
         fileStorageSerialQueue.sync {
-            files = UBFile.nameOfFilesIn(directory: directoryUrl)
+            files = UBFileHelper.filesNameIn(directory: directoryUrl)
         }
 
         files.forEach {
@@ -62,13 +62,13 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
 
     func read(id: String) -> DataType? {
         let filePath = fileURLFor(id: id).path
-        var res: DataType?
+        var result: DataType?
 
         fileStorageSerialQueue.sync {
-            res = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
+            result = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
         }
 
-        return res
+        return result
     }
 
     @discardableResult func delete(_ obj: DataType) -> Bool {
@@ -83,16 +83,16 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     }
 
     @discardableResult func deleteAll() -> Bool {
-        var res = false
+        var isDeleted = false
         fileStorageSerialQueue.sync {
             do {
                 try FileManager.default.removeItem(at: directoryUrl)
-                res = true
+                isDeleted = true
             } catch {
                 PLog("Impossible to empty directory at path \(directoryUrl)")
             }
         }
-        return res
+        return isDeleted
     }
 
     // MARK: Utility methods

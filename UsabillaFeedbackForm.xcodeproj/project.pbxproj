@@ -93,9 +93,9 @@
 		431F6B001E9E4BCD00D5BF17 /* UBFileStorageDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6AFE1E9E4BC600D5BF17 /* UBFileStorageDAOTests.swift */; };
 		431F6B021E9E803900D5BF17 /* UBFormDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B011E9E803900D5BF17 /* UBFormDAOTests.swift */; };
 		431F6B041E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */; };
-		431F6B061E9F865800D5BF17 /* UBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFile.swift */; };
+		431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
 		431F6B081E9F9B0300D5BF17 /* UBFeedbackRequestDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B071E9F9B0300D5BF17 /* UBFeedbackRequestDAOTests.swift */; };
-		431F6B0A1E9FB1DF00D5BF17 /* UBFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B091E9FB1DF00D5BF17 /* UBFileTests.swift */; };
+		431F6B0A1E9FB1DF00D5BF17 /* UBFileHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B091E9FB1DF00D5BF17 /* UBFileHelperTests.swift */; };
 		432A8A0B1E89184E00928F54 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0A1E89184E00928F54 /* HeaderComponent.swift */; };
 		432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */; };
 		432BDE3E1E8BB906008100C7 /* MoodComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BDE3C1E8BB902008100C7 /* MoodComponentViewModelTests.swift */; };
@@ -317,9 +317,9 @@
 		431F6AFE1E9E4BC600D5BF17 /* UBFileStorageDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFileStorageDAOTests.swift; sourceTree = "<group>"; };
 		431F6B011E9E803900D5BF17 /* UBFormDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAOTests.swift; sourceTree = "<group>"; };
 		431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFeedbackRequestDAO.swift; sourceTree = "<group>"; };
-		431F6B051E9F865800D5BF17 /* UBFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFile.swift; sourceTree = "<group>"; };
+		431F6B051E9F865800D5BF17 /* UBFileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFileHelper.swift; sourceTree = "<group>"; };
 		431F6B071E9F9B0300D5BF17 /* UBFeedbackRequestDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFeedbackRequestDAOTests.swift; sourceTree = "<group>"; };
-		431F6B091E9FB1DF00D5BF17 /* UBFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFileTests.swift; sourceTree = "<group>"; };
+		431F6B091E9FB1DF00D5BF17 /* UBFileHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFileHelperTests.swift; sourceTree = "<group>"; };
 		432A8A0A1E89184E00928F54 /* HeaderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponent.swift; sourceTree = "<group>"; };
 		432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderComponentViewModel.swift; sourceTree = "<group>"; };
 		432BDE3C1E8BB902008100C7 /* MoodComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodComponentViewModelTests.swift; sourceTree = "<group>"; };
@@ -687,7 +687,7 @@
 				434A27831E2E8719002864C6 /* HTTPClient.swift */,
 				434A27851E2F5FFD002864C6 /* Promise.swift */,
 				433794361E8A6C0100965EC8 /* Logging.swift */,
-				431F6B051E9F865800D5BF17 /* UBFile.swift */,
+				431F6B051E9F865800D5BF17 /* UBFileHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -828,7 +828,7 @@
 				434A278A1E2F6FE6002864C6 /* PromiseTest.swift */,
 				434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */,
 				4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */,
-				431F6B091E9FB1DF00D5BF17 /* UBFileTests.swift */,
+				431F6B091E9FB1DF00D5BF17 /* UBFileHelperTests.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1125,7 +1125,7 @@
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */,
-				431F6B061E9F865800D5BF17 /* UBFile.swift in Sources */,
+				431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
@@ -1267,7 +1267,7 @@
 				C59C820A1E8133F000840D4E /* FormStoreTests.swift in Sources */,
 				43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */,
 				4334E8591E28E1C700AC895C /* FieldFactoryTest.swift in Sources */,
-				431F6B0A1E9FB1DF00D5BF17 /* UBFileTests.swift in Sources */,
+				431F6B0A1E9FB1DF00D5BF17 /* UBFileHelperTests.swift in Sources */,
 				C59C820C1E813F9E00840D4E /* UBMock.swift in Sources */,
 				43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */,
 				43B0A2141E2CC94E00879E5F /* OptionsFieldModelTest.swift in Sources */,
