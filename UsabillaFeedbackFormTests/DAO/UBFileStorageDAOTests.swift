@@ -51,7 +51,8 @@ class UBFileStorageDAOTests: QuickSpec {
 
     override func spec() {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let directoryUrl = documentsDirectory.appendingPathComponent(kDirectoryName)
+        let rootUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
+        let directoryUrl = rootUrl.appendingPathComponent(kDirectoryName)
 
         describe("UBFileStorageDAOTests") {
 
@@ -70,7 +71,7 @@ class UBFileStorageDAOTests: QuickSpec {
                 try? FileManager.default.removeItem(at: directoryUrl)
                 let exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                 expect(exist).to(beFalse())
-                TestDAO.shared.createDirectory(url: directoryUrl)
+                UBFile.createDirectory(url: directoryUrl)
             }
 
             context("When creating directory") {
@@ -78,14 +79,14 @@ class UBFileStorageDAOTests: QuickSpec {
                     try? FileManager.default.removeItem(at: directoryUrl)
                     var exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                     expect(exist).to(beFalse())
-                    let isCreated = TestDAO.shared.createDirectory(url: directoryUrl)
+                    let isCreated = UBFile.createDirectory(url: directoryUrl)
                     expect(isCreated).to(beTrue())
                     exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                     expect(exist).to(beTrue())
                 }
 
                 it("should failed when using a wrong url") {
-                    let isCreated = TestDAO.shared.createDirectory(url: URL(fileURLWithPath: "/temp"))
+                    let isCreated = UBFile.createDirectory(url: URL(fileURLWithPath: "/temp"))
                     expect(isCreated).to(beFalse())
                 }
             }
