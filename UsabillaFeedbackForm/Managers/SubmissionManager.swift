@@ -29,11 +29,11 @@ class SubmissionManager {
 
     private func trySendData() {
         submissionSerialQueue.async {
-            guard let feedbackRequest = DataStore.feedbacks.first else {
+            guard let feedbackRequest = UBFeedbackRequestDAO.shared.readAll().first else {
                 return
             }
             NetworkManager.submitFormToUsabilla(payload: feedbackRequest.payload, screenshot: feedbackRequest.screenshot).then { _ in
-                DataStore.removeFeedback(index: 0)
+                UBFeedbackRequestDAO.shared.delete(feedbackRequest)
                 self.trySendData()
                 self.semaphore.signal()
             }.catch { _ in
@@ -56,13 +56,13 @@ class SubmissionManager {
     func submit(form: FormModel, customVars: [String: Any]?) {
         let feedbackRequest = createSubmission(formModel: form, customVars: customVars)
 
-        DataStore.addFeedback(type: feedbackRequest)
+        UBFeedbackRequestDAO.shared.create(feedbackRequest)
         if reachability.isReachable {
             trySendData()
         }
     }
 
-    private func createSubmission(formModel: FormModel, customVars: [String: Any]?) -> FeedbackRequest {
+    private func createSubmission(formModel: FormModel, customVars: [String: Any]?) -> UBFeedbackRequest {
         let uiDevice = UIDevice()
         var contentDictionary: [String: Any] = [:]
         contentDictionary["app_id"] = formModel.appId //String
@@ -117,6 +117,6 @@ class SubmissionManager {
         payload["done"] = true
         payload["data"] = contentDictionary
 
-        return FeedbackRequest(payload: payload, screenshot: screenshotString)
+        return UBFeedbackRequest(payload: payload, screenshot: screenshotString)
     }
 }
