@@ -10,7 +10,10 @@ import Foundation
 
 let kSDKRootDirectoryName = "UBSDK"
 
+let fileStorageSerialQueue = DispatchQueue(label: "com.usabilla.u4a.storage")
+
 class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
+
     typealias DataType = ModelType
 
     let directoryName: String
@@ -24,19 +27,30 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         sdkRootDirectoryUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
         directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directoryName)
 
-        UBFile.createDirectory(url: sdkRootDirectoryUrl)
-        UBFile.createDirectory(url: directoryUrl)
+        fileStorageSerialQueue.sync {
+            UBFile.createDirectory(url: sdkRootDirectoryUrl)
+            UBFile.createDirectory(url: directoryUrl)
+        }
     }
 
     @discardableResult func create(_ obj: DataType) -> Bool {
-        UBFile.createDirectory(url: sdkRootDirectoryUrl)
-        UBFile.createDirectory(url: directoryUrl)
-        return self.saveToFile(id: self.id(forObj: obj), data: obj)
+        var res = false
+        fileStorageSerialQueue.sync {
+            UBFile.createDirectory(url: sdkRootDirectoryUrl)
+            UBFile.createDirectory(url: directoryUrl)
+        }
+        res = saveToFile(id: self.id(forObj: obj), data: obj)
+        return res
     }
 
     func readAll() -> [DataType] {
         var data = [DataType]()
-        let files = UBFile.nameOfFilesIn(directory: directoryUrl)
+        var files = [String]()
+
+        fileStorageSerialQueue.sync {
+            files = UBFile.nameOfFilesIn(directory: directoryUrl)
+        }
+
         files.forEach {
             if let item = read(id: $0) {
                 data.append(item)
@@ -48,7 +62,13 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
 
     func read(id: String) -> DataType? {
         let filePath = fileURLFor(id: id).path
-        return NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
+        var res: DataType?
+
+        fileStorageSerialQueue.sync {
+            res = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
+        }
+
+        return res
     }
 
     @discardableResult func delete(_ obj: DataType) -> Bool {
@@ -63,23 +83,30 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     }
 
     @discardableResult func deleteAll() -> Bool {
-        do {
-            try FileManager.default.removeItem(at: directoryUrl)
-            return true
-        } catch {
-            PLog("Impossible to empty directory at path \(directoryUrl)")
-            return false
+        var res = false
+        fileStorageSerialQueue.sync {
+            do {
+                try FileManager.default.removeItem(at: directoryUrl)
+                res = true
+            } catch {
+                PLog("Impossible to empty directory at path \(directoryUrl)")
+            }
         }
+        return res
     }
 
     // MARK: Utility methods
     @discardableResult func saveToFile(id: String, data: DataType) -> Bool {
         let filePath = fileURLFor(id: id).path
-        let didSave = NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
-        if didSave {
-            PLog("[CacheManager] : saving \(id) to cache -> OK ✅")
-        } else {
-            PLog("[CacheManager] : saving \(id) to cache -> Error ❌")
+
+        var didSave = false
+        fileStorageSerialQueue.sync {
+            didSave = NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
+            if didSave {
+                PLog("[CacheManager] : saving \(id) to cache -> OK ✅")
+            } else {
+                PLog("[CacheManager] : saving \(id) to cache -> Error ❌")
+            }
         }
         return didSave
     }
