@@ -74,23 +74,6 @@ class UBFileStorageDAOTests: QuickSpec {
                 UBFile.createDirectory(url: directoryUrl)
             }
 
-            context("When creating directory") {
-                it("should succeed") {
-                    try? FileManager.default.removeItem(at: directoryUrl)
-                    var exist = FileManager.default.fileExists(atPath: directoryUrl.path)
-                    expect(exist).to(beFalse())
-                    let isCreated = UBFile.createDirectory(url: directoryUrl)
-                    expect(isCreated).to(beTrue())
-                    exist = FileManager.default.fileExists(atPath: directoryUrl.path)
-                    expect(exist).to(beTrue())
-                }
-
-                it("should failed when using a wrong url") {
-                    let isCreated = UBFile.createDirectory(url: URL(fileURLWithPath: "/temp"))
-                    expect(isCreated).to(beFalse())
-                }
-            }
-
             context("When there is no data") {
                 it("should have no data") {
                     expect(TestDAO.shared.readAll().count).to(equal(0))

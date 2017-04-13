@@ -78,8 +78,8 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
             return true
         } catch {
             PLog("Impossible to delete file at url \(url)")
-            return false
         }
+        return false
     }
 
     @discardableResult func deleteAll() -> Bool {

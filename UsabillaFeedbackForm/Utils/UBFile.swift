@@ -15,9 +15,9 @@ class UBFile {
             try FileManager.default.removeItem(at: url)
             return true
         } catch let error as NSError {
-            PLog("Error creating directory: \(error.localizedDescription)")
-            return false
+            PLog("Error deleting directory: \(error.localizedDescription)")
         }
+        return false
     }
 
     @discardableResult class func createDirectory (url: URL) -> Bool {
@@ -26,8 +26,8 @@ class UBFile {
             return true
         } catch let error as NSError {
             PLog("Error creating directory: \(error.localizedDescription)")
-            return false
         }
+        return false
     }
 
     class func nameOfFilesIn(directory directoryURL: URL) -> [String] {
