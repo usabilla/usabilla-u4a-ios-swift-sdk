@@ -18,7 +18,7 @@ class CampaignModel: NSObject, NSCoding {
     var version: Int
     var form: FormModel?
 
-    init(id: String, rule: Rule, formId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, version: Int) {
+    init(id: String, rule: Rule?, formId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, version: Int) {
         self.identifier = id
         self.rule = rule
         self.formId = formId
@@ -44,7 +44,7 @@ class CampaignModel: NSObject, NSCoding {
     // swiftlint:disable force_cast
     public required convenience init?(coder aDecoder: NSCoder) {
         let identifier = aDecoder.decodeObject(forKey: "identifier") as! String
-        let rule = aDecoder.decodeObject(forKey: "rule") as! Rule
+        let rule = aDecoder.decodeObject(forKey: "rule") as? Rule
         let formId = aDecoder.decodeObject(forKey: "formId") as! String
         let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: "numberOfTimesTriggered")
         let maximumDisplays = aDecoder.decodeInteger(forKey: "maximumDisplays")
