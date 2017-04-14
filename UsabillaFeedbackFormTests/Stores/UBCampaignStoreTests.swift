@@ -23,8 +23,8 @@ class UBCampaignStoreTests: QuickSpec {
 
                     // Create campaign
                     let campaign = UBMock.campaignMock()
-                    let isSave = UBCampaignStore.saveCampaign(campaign: campaign)
-                    expect(isSave).to(beTrue())
+                    let isSaved = UBCampaignStore.saveCampaign(campaign: campaign)
+                    expect(isSaved).to(beTrue())
 
                     let allCampaigns = UBCampaignDAO.shared.readAll()
                     expect(allCampaigns.count).to(equal(1))
