@@ -30,6 +30,7 @@ class UBFeedbackRequestDAOTests: QuickSpec {
 
                     exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                     expect(exist).to(beTrue())
+                    expect(directoryUrl.lastPathComponent).to(equal("FeedbackRequests"))
                 }
             }
 
