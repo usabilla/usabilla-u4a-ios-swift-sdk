@@ -8,8 +8,15 @@
 
 import Foundation
 
-class CampaignDAO: UBFileStorageDAO<CampaignModel> {
-    required init() {
-        super.init(directoryName: "Campaigns")
+class UBCampaignDAO: UBFileStorageDAO<CampaignModel> {
+    static let directoryName = "Campaigns"
+    static let shared = UBCampaignDAO()
+
+    internal required init() {
+        super.init(directoryName: UBCampaignDAO.directoryName)
+    }
+
+    override func id(forObj: CampaignModel) -> String {
+        return forObj.identifier
     }
 }
