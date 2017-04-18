@@ -196,4 +196,15 @@ class NetworkManager {
             }
         }
     }
+
+    // NSMARK: New structure
+    
+    class func getAllCampaigns(withAppId id: String) -> Promise<[CampaignModel]> {
+        let request = RequestBuilder.buildGetAllCampaigns()
+        return Promise { fulfill, reject in
+            let stuff = HTTPClient.request(request: request, completion: { (HTTPClientResponse) in
+                CampaignBuilder
+            })
+        }
+    }
 }

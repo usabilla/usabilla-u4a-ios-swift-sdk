@@ -90,6 +90,7 @@ class HTTPClient {
         }
 
         var request = NSMutableURLRequest(url: url)
+        request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = method.rawValue
 
         if let headers = headers {
