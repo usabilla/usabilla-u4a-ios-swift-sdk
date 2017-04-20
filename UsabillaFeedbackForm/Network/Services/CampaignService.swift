@@ -7,16 +7,16 @@
 //
 
 class CampaignService {
-
-    class func getCampaignForm(withId id: String) -> Promise<FormModel> {
-        let request = RequestBuilder.buildGetCampaignForm(withFormId: id)
-        return Promise { fulfill, reject in
-            HTTPClient.request(request: request as URLRequest, completion: { response in
-                if let json = response.data {
-                    fulfill(FormModel(json: json, id: "a", screenshot: nil))
-                }
-                reject(response.error!)
-            })
-        }
-    }
+    
+//    class func getCampaignForm(withId id: String) -> Promise<FormModel> {
+//        let request = RequestBuilder.buildGetCampaignForm(withFormId: id)
+//        return Promise { fulfill, reject in
+//            HTTPClient.request(request: request as URLRequest, completion: { response in
+//                if let json = response.data {
+//                    fulfill(FormModel(json: json as! JSON, id: "a", screenshot: nil))
+//                }
+//                reject(response.error!)
+//            })
+//        }
+//    }
 }

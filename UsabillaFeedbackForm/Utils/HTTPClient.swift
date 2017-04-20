@@ -13,8 +13,8 @@ public enum HTTPMethod: String {
     case post = "POST"
 }
 
-struct JSONClientResponse {
-    let data: JSON?
+struct HTTPClientResponse {
+    let data: Any?
     let error: NSError?
     let success: Bool
 }
@@ -54,24 +54,24 @@ class HTTPClient {
 
     class func request(request: URLRequest,
                        responseQueue: DispatchQueue? = nil,
-                       completion: @escaping (JSONClientResponse) -> Void) {
+                       completion: @escaping (HTTPClientResponse) -> Void) {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             (responseQueue ?? DispatchQueue.main).async {
                 PLog(response)
                 guard error == nil else {
-                    completion(JSONClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
                     return
                 }
                 guard let data = data else {
-                    completion(JSONClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
                     return
                 }
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     PLog(json)
-                    completion(JSONClientResponse(data: JSON(json), error: nil, success: true))
+                    completion(HTTPClientResponse(data: json, error: nil, success: true))
                 } catch {
-                    completion(JSONClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
                 }
             }
         }
@@ -84,7 +84,7 @@ class HTTPClient {
                        encoding: ParameterEncoding = JSONEncoding.default,
                        headers: HTTPHeaders? = nil,
                        responseQueue: DispatchQueue? = nil,
-                       completion: @escaping (JSONClientResponse) -> Void) {
+                       completion: @escaping (HTTPClientResponse) -> Void) {
         guard let url = URL(string: url) else {
             return
         }
@@ -100,7 +100,7 @@ class HTTPClient {
         do {
             request = try encoding.encode(request, with: parameters)
         } catch {
-            completion(JSONClientResponse(data: nil, error: error as NSError?, success: false))
+            completion(HTTPClientResponse(data: nil, error: error as NSError?, success: false))
             return
         }
         HTTPClient.request(request: request as URLRequest, responseQueue: responseQueue, completion: completion)

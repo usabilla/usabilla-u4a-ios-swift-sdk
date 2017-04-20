@@ -166,7 +166,7 @@ class NetworkManager {
     ///
     /// - Parameter payload: data to submit
     /// - Returns: Promise containig the responde data from the widget server
-    class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<JSONClientResponse> {
+    class func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
             HTTPClient.request(submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
                 if response.success {

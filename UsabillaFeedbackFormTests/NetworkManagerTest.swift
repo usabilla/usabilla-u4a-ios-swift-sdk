@@ -30,7 +30,7 @@ class NetworkManagerTest: QuickSpec {
                     }
                 }
                 it("should succeed with a screenshot") {
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: 3.0) { done in
                         let payload = ["data": []]
                         let screenshot = Icons.imageOfPoweredBy(color: .blue).toBase64()
                         let promise = NetworkManager.submitFormToUsabilla(payload: payload, screenshot: screenshot)
