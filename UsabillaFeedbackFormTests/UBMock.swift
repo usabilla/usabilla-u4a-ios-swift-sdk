@@ -16,4 +16,9 @@ class UBMock {
         let jsonObj: JSON = JSON(data: (data as Data?)!)
         return FormModel(json: jsonObj, id: "mockFormId", screenshot: nil)
     }
+
+    class func campaignMock() -> CampaignModel {
+        return CampaignModel(id: "campaignid", json: JSON.parse(""))
+    }
+
 }

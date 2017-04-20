@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FormModel {
+class FormModel: NSObject, NSCoding {
 
     let hasScreenshot: Bool
     let version: Int
@@ -111,4 +111,20 @@ class FormModel {
         self.theme.updateConfig(json: formJsonString["colors"])
     }
 
+    // MARK: NScoding protocols
+
+    // swiftlint:disable force_cast
+    public required convenience init?(coder aDecoder: NSCoder) {
+        let appId = aDecoder.decodeObject(forKey: "appId") as! String
+        let rawJson = aDecoder.decodeObject(forKey: "formJsonString")
+        let formJsonString = JSON(rawJson!)
+
+        self.init(json: formJsonString, id: appId, screenshot: nil)
+    }
+
+    // swiftlint:enable force_cast
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(appId, forKey: "appId")
+        aCoder.encode(formJsonString.rawValue, forKey: "formJsonString")
+    }
 }

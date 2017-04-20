@@ -7,4 +7,4 @@ output_directory: ./xml_report
 ignore:
  - UsabillaFeedbackForm/Utils/Reachability.swift
  - UsabillaFeedbackForm/Utils/SwiftyJSON.swift
-
+ - UsabillaFeedbackFormTests/*
