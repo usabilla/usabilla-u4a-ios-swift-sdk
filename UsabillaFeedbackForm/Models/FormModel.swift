@@ -106,7 +106,7 @@ class FormModel {
         }
         return FeedbackResult(rating: ratingValue, abandonedPageIndex: nil)
     }
-    
+
     func updateTheme() {
         self.theme.updateConfig(json: formJsonString["colors"])
     }
