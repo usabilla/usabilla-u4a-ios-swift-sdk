@@ -41,12 +41,12 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
         for option in viewModel.options {
 
             let checkBox = CheckboxWithText()
+            checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.theme = viewModel.theme
             checkBox.delegate = self
             checkBox.checkBox.delegate = self
             checkBox.label.text = option.title
             checkBox.label.textColor = viewModel.theme.textColor
-            checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.isUserInteractionEnabled = true
             checkBox.label.textColor = .black
 
