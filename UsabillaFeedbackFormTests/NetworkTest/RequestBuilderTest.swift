@@ -43,7 +43,6 @@ class RequestBuilderTest: QuickSpec {
             post.allHTTPHeaderFields?["Content-Type"] = "application/json"
 
             self.correctPost = post as URLRequest
-
         }
 
         describe("The Request builder") {

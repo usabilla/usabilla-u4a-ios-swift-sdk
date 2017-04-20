@@ -19,7 +19,7 @@ class RequestBuilder {
     static let apiUrl: String = bundle.infoDictionary!["USABILLA_API_URL"] as! String
     static let submitUrl: String = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
 
-    static let headers: [String: String]? = [
+    static let headers: [String: String] = [
         "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
         "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
         "sdk-version": Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
@@ -29,11 +29,11 @@ class RequestBuilder {
     /**
      Creates a URL
      
-     @param endpoint: the endpoint of the URL
+     - Parameter endpoint: the endpoint of the URL
      
-     @param param: parameter to add at the end of the URL
+     - Parameter param: parameter to add at the end of the URL
      
-     @return and URL with endpoint and parameter
+     - Return: and URL with endpoint and parameter
      */
     class func buildURL(withEndpoint endpoint: Endpoints, withURLParam param: String? = nil) -> URL {
         if let param = param {
@@ -45,9 +45,9 @@ class RequestBuilder {
     /**
      Creates a basic GET request
      
-     @param url: the url to use for the GET request
+     - Parameter url: the url to use for the GET request
      
-     @return the basic GET request
+     - Return: the basic GET request
      */
     class func buildBaseGet(withURL url: URL) -> NSMutableURLRequest {
         let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
@@ -61,11 +61,11 @@ class RequestBuilder {
     /**
      Creates a basic POST request
      
-     @param url: the url to use for the POST request
+     - Parameter url: the url to use for the POST request
      
-     @param parameters: the parameters to use for the POST
+     - Parameter parameters: the parameters to use for the POST
 
-     @return the basic POST request
+     - Return: the basic POST request
      */
     class func buildBasePost(withURL url: URL, parameters: Parameters) -> NSMutableURLRequest {
         var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
