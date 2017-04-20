@@ -35,7 +35,7 @@ class RequestBuilder {
      
      @return and URL with endpoint and parameter
      */
-    private class func buildURL(withEndpoint endpoint: Endpoints, withURLParam param: String?) -> URL {
+    class func buildURL(withEndpoint endpoint: Endpoints, withURLParam param: String? = nil) -> URL {
         if let param = param {
             return URL(string: apiUrl.appending(endpoint.rawValue).appending(param))!
         }
@@ -49,7 +49,7 @@ class RequestBuilder {
      
      @return the basic GET request
      */
-    private class func buildBaseGet(withURL url: URL) -> NSMutableURLRequest {
+    class func buildBaseGet(withURL url: URL) -> NSMutableURLRequest {
         let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = HTTPMethod.get.rawValue
@@ -67,7 +67,7 @@ class RequestBuilder {
 
      @return the basic POST request
      */
-    private class func buildBasePost(withURL url: URL, parameters: Parameters) -> NSMutableURLRequest {
+    class func buildBasePost(withURL url: URL, parameters: Parameters) -> NSMutableURLRequest {
         var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = HTTPMethod.post.rawValue

@@ -8,7 +8,6 @@
 
 class CampaignService {
 
-
     class func getCampaignForm(withId id: String) -> Promise<FormModel> {
         let request = RequestBuilder.buildGetCampaignForm(withFormId: id)
         return Promise { fulfill, reject in

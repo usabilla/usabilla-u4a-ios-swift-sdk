@@ -13,6 +13,8 @@
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044204E11DD07A3B004FA09F /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		044204E21DD07A68004FA09F /* UsabillaFeedbackForm.swift in Headers */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		0445F87B1EA8BD86007704D5 /* CampaignServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445F87A1EA8BD86007704D5 /* CampaignServiceTest.swift */; };
+		0445F87F1EA8C97C007704D5 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */; };
 		044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E68161DD3777A00CE75E1 /* PerformanceTest.swift */; };
 		044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044E68191DD37FA200CE75E1 /* testAssets.xcassets */; };
 		04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B601D99787F001E0EC3 /* FormControllerTest.swift */; };
@@ -217,6 +219,8 @@
 		0409BD661E38F75C00045E44 /* DataStoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTest.swift; sourceTree = "<group>"; };
 		040C97DC1EA6527200A59C95 /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
+		0445F87A1EA8BD86007704D5 /* CampaignServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTest.swift; sourceTree = "<group>"; };
+		0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
 		044E68161DD3777A00CE75E1 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
 		04575B601D99787F001E0EC3 /* FormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormControllerTest.swift; sourceTree = "<group>"; };
@@ -476,9 +480,27 @@
 			name = FieldModels;
 			sourceTree = "<group>";
 		};
+		0445F8791EA8BD5D007704D5 /* ServiceTest */ = {
+			isa = PBXGroup;
+			children = (
+				0445F87A1EA8BD86007704D5 /* CampaignServiceTest.swift */,
+			);
+			path = ServiceTest;
+			sourceTree = "<group>";
+		};
+		0445F87C1EA8C957007704D5 /* NetworkTest */ = {
+			isa = PBXGroup;
+			children = (
+				0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */,
+			);
+			path = NetworkTest;
+			sourceTree = "<group>";
+		};
 		04575B5B1D997868001E0EC3 /* UsabillaFeedbackFormTest */ = {
 			isa = PBXGroup;
 			children = (
+				0445F87C1EA8C957007704D5 /* NetworkTest */,
+				0445F8791EA8BD5D007704D5 /* ServiceTest */,
 				04DC25BD1E8BB355002962A3 /* EventEngineTest */,
 				0409BD651E38F74E00045E44 /* Managers */,
 				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
@@ -1280,6 +1302,7 @@
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,
+				0445F87F1EA8C97C007704D5 /* RequestBuilderTest.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTest.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				4306698E1E7692690078E3B3 /* FeedbackResultTest.swift in Sources */,
@@ -1292,6 +1315,7 @@
 				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
+				0445F87B1EA8BD86007704D5 /* CampaignServiceTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,
 				43B9AF9B1E856467009EC83A /* IntroPageViewModelTests.swift in Sources */,
