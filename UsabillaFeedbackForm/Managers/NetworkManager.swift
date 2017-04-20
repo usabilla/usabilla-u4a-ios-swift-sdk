@@ -20,14 +20,14 @@ class NetworkManager {
     /// - Returns: Promise containing the JSON description of the form, error if form not found
     class func getFormWithFormID(formID: String) -> Promise<JSON> {
 
-        let headers: [String: String]? = [
+        let headers: HTTPHeaders = [
             "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
             "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
             "sdk-version": Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
             "os": "iOS"
         ]
 
-        let request_url = String(format: "https://%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
+        let request_url = String(format: "%@/live/mobile/app/forms/%@", arguments: [apiUrl, formID])
 
         return Promise { fulfill, reject in
             HTTPClient.request(request_url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers) { response in
@@ -194,17 +194,6 @@ class NetworkManager {
                 PLog("form couldn't load")
                 reject(error)
             }
-        }
-    }
-
-    // NSMARK: New structure
-    
-    class func getAllCampaigns(withAppId id: String) -> Promise<[CampaignModel]> {
-        let request = RequestBuilder.buildGetAllCampaigns()
-        return Promise { fulfill, reject in
-            let stuff = HTTPClient.request(request: request, completion: { (HTTPClientResponse) in
-                CampaignBuilder
-            })
         }
     }
 }
