@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0409BD681E38F79900045E44 /* DataStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409BD661E38F75C00045E44 /* DataStoreTest.swift */; };
+		040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044204E11DD07A3B004FA09F /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -214,6 +215,7 @@
 
 /* Begin PBXFileReference section */
 		0409BD661E38F75C00045E44 /* DataStoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTest.swift; sourceTree = "<group>"; };
+		040C97DC1EA6527200A59C95 /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		044E68161DD3777A00CE75E1 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
@@ -442,6 +444,14 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		040C97DB1EA6525500A59C95 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				040C97DC1EA6527200A59C95 /* CampaignService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		044204DE1DCC89ED004FA09F /* FieldModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +537,7 @@
 		04B12F071E9FC87C00E65BE5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				040C97DB1EA6525500A59C95 /* Services */,
 				434A27831E2E8719002864C6 /* HTTPClient.swift */,
 				04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */,
 				04F149DE1CE0B8D000D56B29 /* Reachability.swift */,
@@ -1105,6 +1116,7 @@
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
 				04F54E561CD76789002F501E /* FormController.swift in Sources */,
+				040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */,
 				436264121E92865000A0533C /* UBEndPageViewModel.swift in Sources */,
 				43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */,
 				43CCD4581E78366A00B3E4FE /* ChoiceViewModel.swift in Sources */,
@@ -1435,9 +1447,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				USABILLA_API_URL = "api-staging.usabilla.com";
+				USABILLA_API_URL = "https://api-staging.usabilla.com";
 				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
-				USABILLA_WIDGET_SERVER_URL = "w-staging.usabilla.com";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
@@ -1464,9 +1475,8 @@
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-				USABILLA_API_URL = api.usabilla.com;
+				USABILLA_API_URL = "https://api.usabilla.com";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
-				USABILLA_WIDGET_SERVER_URL = w.usabilla.com;
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
