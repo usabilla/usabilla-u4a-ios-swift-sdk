@@ -12,6 +12,7 @@ class RequestBuilder {
 
     enum Endpoints: String {
         case campaignForm = "/v2/sdk/forms/"
+        case passiveForm = "/live/mobile/app/forms/"
     }
 
     static let bundle = Bundle(for: NetworkManager.self)
@@ -81,9 +82,9 @@ class RequestBuilder {
         return request
     }
 
-    class func buildGetCampaignForm(withFormId id: String) -> NSURLRequest {
+    class func buildGetCampaignForm(withFormId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignForm, withURLParam: id)
-        return buildBaseGet(withURL: url)
+        return buildBaseGet(withURL: url) as URLRequest
     }
 
 }
