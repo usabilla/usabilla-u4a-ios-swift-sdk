@@ -208,6 +208,7 @@
 		C59C820C1E813F9E00840D4E /* UBMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820B1E813F9E00840D4E /* UBMock.swift */; };
 		C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820F1E8574E100840D4E /* CopyModelTests.swift */; };
 		C59C82401E8914C200840D4E /* CampaignViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C823F1E8914C200840D4E /* CampaignViewModelTests.swift */; };
+		C5E456FC1EA8A2480078D324 /* MoodFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -423,6 +424,7 @@
 		C59C820B1E813F9E00840D4E /* UBMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBMock.swift; sourceTree = "<group>"; };
 		C59C820F1E8574E100840D4E /* CopyModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModelTests.swift; sourceTree = "<group>"; };
 		C59C823F1E8914C200840D4E /* CampaignViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewModelTests.swift; sourceTree = "<group>"; };
+		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -816,6 +818,7 @@
 				437BD7CC1E4B2CDB00E6FE2A /* FormModelTests.swift */,
 				C59C820F1E8574E100840D4E /* CopyModelTests.swift */,
 				43B9AF9C1E890288009EC83A /* CampaignModelTests.swift */,
+				C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1320,6 +1323,7 @@
 				43B0EE6E1EA0BAF000241D44 /* UBCampaignDAOTests.swift in Sources */,
 				4306698E1E7692690078E3B3 /* FeedbackResultTest.swift in Sources */,
 				04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */,
+				C5E456FC1EA8A2480078D324 /* MoodFieldModelTests.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
 				04A0C1BE1E8BB86E00A483AC /* OrRuleTests.swift in Sources */,
 				04A0C1C21E8BBD0400A483AC /* LeafRuleTests.swift in Sources */,
