@@ -49,7 +49,7 @@ class RequestBuilder {
      
      - Return: the basic GET request
      */
-    private class func buildBaseGet(withURL url: URL) -> NSMutableURLRequest {
+    private class func requestForGet(withURL url: URL) -> NSMutableURLRequest {
         let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = HTTPMethod.get.rawValue
@@ -67,7 +67,7 @@ class RequestBuilder {
 
      - Return: the basic POST request
      */
-    private class func buildBasePost(withURL url: URL, parameters: Parameters) -> NSMutableURLRequest {
+    private class func requestForPost(withURL url: URL, parameters: Parameters) -> NSMutableURLRequest {
         var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = HTTPMethod.post.rawValue
@@ -83,9 +83,9 @@ class RequestBuilder {
     }
 
     // MARK: Public methods
-    class func buildGetCampaignForm(withFormId id: String) -> URLRequest {
+    class func requestGetCampaignForm(withId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignForm, withURLParam: id)
-        return buildBaseGet(withURL: url) as URLRequest
+        return requestForGet(withURL: url) as URLRequest
     }
 
 }
