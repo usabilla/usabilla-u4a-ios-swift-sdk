@@ -47,7 +47,7 @@ class RequestBuilderTest: QuickSpec {
 
         describe("The Request builder") {
             it("Builds the campaign form request correctly") {
-                let get = RequestBuilder.buildGetCampaignForm(withFormId: "a")
+                let get = RequestBuilder.requestGetCampaignForm(withId: "a")
                 expect(get.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/forms/a"))
                 expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
                 expect(get.httpMethod).to(equal(self.correctGet.httpMethod))
