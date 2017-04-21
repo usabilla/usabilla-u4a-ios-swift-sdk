@@ -17,8 +17,9 @@ class FormStore {
         // 3. else fail
         return Promise { fulfill, reject in
             NetworkManager.getForm(id, screenshot: screenshot, customVariables: customVariables, theme: theme).then(execute: { form in
-
                 UBFormDAO.shared.create(form)
+                form.theme = theme
+                form.updateTheme()
                 PLog("  FormModel is loaded successfully")
                 fulfill(form)
             }).catch { error in

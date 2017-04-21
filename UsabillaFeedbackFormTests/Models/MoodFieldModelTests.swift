@@ -22,19 +22,28 @@ class MoodFieldModelTests: QuickSpec {
 
             context("When MoodFieldModel is initlized with correct json") {
                 it("should have the correct values set up with 5 emojis") {
-                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": 5}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": \"5\"}"), pageModel: pageModel)
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(5))
+                    expect(model?.mode).to(equal(RatingMode.emoticon))
                 }
                 it("should have the correct values set up with 3 emojis") {
-                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": 3}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": \"3\"}"), pageModel: pageModel)
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(3))
+                    expect(model?.mode).to(equal(RatingMode.emoticon))
                 }
                 it("should have the correct values set up with 1 emojis") {
-                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": 1}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": \"1\"}"), pageModel: pageModel)
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(1))
+                    expect(model?.mode).to(equal(RatingMode.emoticon))
+                }
+                it("should have the correct values for star") {
+                    model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": \"1\", \"mode\": \"star\"}"), pageModel: pageModel)
+                    expect(model).toNot(beNil())
+                    expect(model?.points).to(equal(5))
+                    expect(model?.mode).to(equal(RatingMode.star))
                 }
             }
 

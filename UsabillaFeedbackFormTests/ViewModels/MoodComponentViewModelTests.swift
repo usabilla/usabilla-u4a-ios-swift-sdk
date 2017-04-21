@@ -23,21 +23,31 @@ class MoodComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "test")
         var moodComponentViewModel: MoodComponentViewModel!
         var moodModel: MoodFieldModel!
+        var starMoodModel: MoodFieldModel!
 
         beforeSuite {
             moodModel = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"), pageModel: pageModel)
+            starMoodModel = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5, \"mode\": \"star\"}"), pageModel: pageModel)
         }
 
         describe("moodComponentViewModelTests") {
 
             context("When moodComponentViewModel is initialized with correct model") {
-
-                it("should have all values setup correctly", closure: {
+                it("should have all values setup correctly for Emoticone mode", closure: {
                     moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
                     expect(moodComponentViewModel).toNot(beNil())
-                    expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.selection))
+                    expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.emoticon))
                     expect(moodComponentViewModel.maxValue).to(equal(5))
                     expect(moodComponentViewModel.selectedImages).to(equal(theme.enabledEmoticons))
+                    expect(moodComponentViewModel.unselectedImages).to(beNil())
+                    expect(moodComponentViewModel.value).to(equal(0))
+                })
+                it("should have all values setup correctly for Star mode", closure: {
+                    moodComponentViewModel = MoodComponentViewModel(model: starMoodModel, theme: theme)
+                    expect(moodComponentViewModel).toNot(beNil())
+                    expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.star))
+                    expect(moodComponentViewModel.maxValue).to(equal(5))
+                    expect(moodComponentViewModel.selectedImages).to(beNil())
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
                 })

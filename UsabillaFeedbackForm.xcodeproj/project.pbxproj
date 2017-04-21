@@ -35,7 +35,6 @@
 		0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CA1CDCDF86004EC234 /* ParagraphFieldModel.swift */; };
 		0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */; };
 		0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CC1CDCDF86004EC234 /* RootCellView.swift */; };
-		0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */; };
 		0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */; };
 		0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA021CDCE003004EC234 /* ScreenshotModel.swift */; };
 		0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */; };
@@ -253,7 +252,6 @@
 		0483E9CA1CDCDF86004EC234 /* ParagraphFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphFieldModel.swift; sourceTree = "<group>"; };
 		0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioFieldModel.swift; sourceTree = "<group>"; };
 		0483E9CC1CDCDF86004EC234 /* RootCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootCellView.swift; path = ../../Models/RootCellView.swift; sourceTree = "<group>"; };
-		0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarFieldModel.swift; sourceTree = "<group>"; };
 		0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
 		0483EA021CDCE003004EC234 /* ScreenshotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotModel.swift; sourceTree = "<group>"; };
 		0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UsabillaFeedbackForm.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -492,7 +490,6 @@
 				0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */,
 				0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */,
 				0483EA021CDCE003004EC234 /* ScreenshotModel.swift */,
-				0483E9CE1CDCDF86004EC234 /* StarFieldModel.swift */,
 				4334E85C1E29009B00AC895C /* StringFieldModel.swift */,
 				0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */,
 				0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */,
@@ -1271,7 +1268,6 @@
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
-				0483E9E11CDCDF86004EC234 /* StarFieldModel.swift in Sources */,
 				04F54E571CD76789002F501E /* PageController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
