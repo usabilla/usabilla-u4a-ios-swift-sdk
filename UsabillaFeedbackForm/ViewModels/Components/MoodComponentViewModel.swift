@@ -35,29 +35,14 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
 
     var selectedImages: [UIImage]? {
         if model.mode == .star {
-            if let customStar = theme.fullStar {
-                var stars = [UIImage]()
-                for _ in 0...model.points {
-                    stars.append(customStar)
-                }
-                return stars
-            }
-            return nil
+            return starsArrayWith(image: theme.fullStar)
         }
-        
         return theme.emoticons(size: model.points, emoticons: theme.enabledEmoticons)
     }
 
     var unselectedImages: [UIImage]? {
         if model.mode == .star {
-            if let customStar = theme.emptyStar {
-                var stars = [UIImage]()
-                for _ in 0...model.points {
-                    stars.append(customStar)
-                }
-                return stars
-            }
-            return nil
+            return starsArrayWith(image: theme.emptyStar)
         }
         return theme.emoticons(size: model.points, emoticons: theme.disabledEmoticons)
     }
@@ -111,4 +96,14 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
         }
     }
 
+    private func starsArrayWith(image: UIImage?) -> [UIImage]? {
+        guard let image = image else {
+            return nil
+        }
+        var stars = [UIImage]()
+        for _ in 0..<model.points {
+            stars.append(image)
+        }
+        return stars
+    }
 }
