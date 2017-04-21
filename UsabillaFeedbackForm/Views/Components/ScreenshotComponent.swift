@@ -133,7 +133,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
         addIcon.setImage(Icons.imageOfAddImage(color: theme.textColor), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.titleColor, for: .normal)
-        addScreenshotLabel.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
+        addScreenshotLabel.titleLabel?.font = theme.boldFont
         addScreenshotLine.backgroundColor = theme.hintColor
         screenShotView.layer.borderColor = theme.hintColor.cgColor
     }

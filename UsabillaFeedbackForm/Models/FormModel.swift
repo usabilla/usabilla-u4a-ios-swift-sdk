@@ -8,35 +8,35 @@
 
 import Foundation
 
-class FormModel {
+class FormModel: NSObject, NSCoding {
 
     let hasScreenshot: Bool
     let version: Int
     let pages: [PageModel]
     let appId: String
     var isDefault: Bool = false
-    let formJsonString: JSON!
+    let formJsonString: JSON
     let redirectToAppStore: Bool
     let showProgressBar: Bool
-    let themeConfig: UsabillaThemeConfigurator
+    var theme: UsabillaTheme
     let copyModel: CopyModel
 
     // swiftlint:disable:next function_parameter_count
-    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, themeConfig: UsabillaThemeConfigurator, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {
+    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
         self.pages = pages
         self.appId = appId
         self.formJsonString = jsonString
-        self.themeConfig = themeConfig
+        self.theme = UsabillaFeedbackForm.theme
         self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
         self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
 
         _ = pages.map { $0.copy = copyModel }
     }
 
-    init(json: JSON, id: String, themeConfig: UsabillaThemeConfigurator, screenshot: UIImage?) {
+    init(json: JSON, id: String, screenshot: UIImage?) {
         let data = json["data"]
         self.copyModel = CopyModel(json: json)
         self.hasScreenshot = data["screenshot"].boolValue
@@ -45,13 +45,12 @@ class FormModel {
         self.showProgressBar = data["progressBar"].bool ?? true
         self.appId = id
         self.formJsonString = json
-        self.themeConfig = themeConfig
-        themeConfig.updateConfig(json: json["colors"])
+        self.theme = UsabillaTheme()
 
         var newPages: [PageModel] = []
 
         for (index, subJson): (String, JSON) in json["form"]["pages"] {
-            let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!, themeConfig: themeConfig)
+            let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!)
             page.errorMessage = copyModel.errorMessage
             page.copy = copyModel
             newPages.append(page)
@@ -108,4 +107,24 @@ class FormModel {
         return FeedbackResult(rating: ratingValue, abandonedPageIndex: nil)
     }
 
+    func updateTheme() {
+        self.theme.updateConfig(json: formJsonString["colors"])
+    }
+
+    // MARK: NScoding protocols
+
+    // swiftlint:disable force_cast
+    public required convenience init?(coder aDecoder: NSCoder) {
+        let appId = aDecoder.decodeObject(forKey: "appId") as! String
+        let rawJson = aDecoder.decodeObject(forKey: "formJsonString")
+        let formJsonString = JSON(rawJson!)
+
+        self.init(json: formJsonString, id: appId, screenshot: nil)
+    }
+
+    // swiftlint:enable force_cast
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(appId, forKey: "appId")
+        aCoder.encode(formJsonString.rawValue, forKey: "formJsonString")
+    }
 }

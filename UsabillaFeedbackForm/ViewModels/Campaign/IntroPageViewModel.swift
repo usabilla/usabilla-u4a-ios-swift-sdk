@@ -12,6 +12,7 @@ class IntroPageViewModel {
 
     private let introPage: IntroPageModel
     private let field: BaseFieldModel?
+    private let theme: UsabillaTheme
 
     let componentViewModel: ComponentViewModel?
 
@@ -36,50 +37,45 @@ class IntroPageViewModel {
     }
 
     var backgroundColor: UIColor {
-        return introPage.themeConfig.backgroundColor
+        return theme.backgroundColor
     }
 
     var titleColor: UIColor {
-        return introPage.themeConfig.titleColor
+        return theme.titleColor
     }
 
     var hintColor: UIColor {
-        return introPage.themeConfig.hintColor
+        return theme.hintColor
     }
 
-    var buttonsColor: UIColor {
-        return .blue // TO DO update color
+    var buttonColor: UIColor {
+        return theme.accentColor
     }
 
-    var cancelButtonFont: UIFont {
-        if let custom = introPage.themeConfig.customFont {
-            return custom.withSize(17)
-        }
-        return UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
+    var font: UIFont {
+        return theme.font
     }
 
-    var continueButtonFont: UIFont {
-        if let custom = introPage.themeConfig.customFontBold {
-            return custom.withSize(17)
-        }
-        return UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
+    var boldFont: UIFont {
+        return theme.boldFont
     }
 
     // TO DO add customization attributes
 
-    init(introPage: IntroPageModel) {
+    init(introPage: IntroPageModel, theme: UsabillaTheme) {
         self.introPage = introPage
+        self.theme = theme
         field = introPage.fields.first
         if let field = field {
 
             // skip component view model creation if it is an header with an empty content
-            if let headerContent = (field as? HeaderFieldModel)?.fieldValue, !headerContent.isEmpty {
+            if let headerContent = (field as? HeaderFieldModel)?.fieldValue, headerContent.isEmpty {
                 componentViewModel = nil
                 return
             }
 
             // create component view model
-            componentViewModel = ComponentViewModelFactory.component(field: field)
+            componentViewModel = ComponentViewModelFactory.component(field: field, theme: theme)
             if displayMode == .alert, var cvm = componentViewModel as? Centerable {
                 cvm.isCentered = true
             }

@@ -11,10 +11,10 @@ import Foundation
 class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSource, UIPickerViewDelegate {
 
     var picker = UIPickerView()
-    var pickerButton = UIButton()
+    var pickerButton = UIButton(type: .custom)
     var topBorder = UIView()
     var bottomBorder = UIView()
-    var pickerDismissConstraint: NSLayoutConstraint!
+    var pickerHeightConstraint: NSLayoutConstraint!
 
     override func build() {
 
@@ -38,7 +38,6 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         pickerButton.topAnchor.constraint(equalTo: topBorder.bottomAnchor).withId("ChoiceComponent button top constraint").activate()
         pickerButton.trailingAnchor.constraint(equalTo: trailingAnchor).withId("ChoiceComponent button right constraint").activate()
         pickerButton.leadingAnchor.constraint(equalTo: leadingAnchor).withId("ChoiceComponent button left constraint").activate()
-
         pickerButton.setTitle("hello", for: .normal)
         // bottom border
         bottomBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).withId("ChoiceComponent bottom border top constraint").activate()
@@ -56,18 +55,17 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         picker.trailingAnchor.constraint(equalTo: trailingAnchor).withId("ChoiceComponent picker right constraint").activate()
         picker.leadingAnchor.constraint(equalTo: leadingAnchor).withId("ChoiceComponent picker left constraint").activate()
 
-        pickerDismissConstraint = picker.heightAnchor.constraint(equalToConstant: 0)
+        pickerHeightConstraint = picker.heightAnchor.constraint(equalToConstant: 0).activate()
+        updateHeightConstraint()
 
         // configuration
-        pickerDismissConstraint.isActive = !viewModel.expanded
-        picker.isHidden = false
         pickerButton.addTarget(self, action: #selector(ChoiceComponent.pickerButtonClicked), for: .touchUpInside)
 
         // customization
 
         let theme = viewModel.theme
         pickerButton.setTitleColor(theme.textColor, for: .normal)
-        pickerButton.titleLabel?.font = theme.font.withSize(theme.titleFontSize)
+        pickerButton.titleLabel?.font = theme.boldFont
 
         picker.backgroundColor = theme.backgroundColor
         picker.tintColor = theme.textColor
@@ -96,19 +94,17 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
                 picker.selectRow(index, inComponent: 0, animated: false)
             }
         }
-
-        if viewModel.options.count < 5 {
-            picker.heightAnchor.constraint(equalToConstant: 100).prioritize(750).activate()
-        }
-
     }
 
     func pickerButtonClicked() {
         viewModel.expanded = !viewModel.expanded
-        pickerDismissConstraint.isActive = !viewModel.expanded
+        updateHeightConstraint()
         SwiftEventBus.postToMainThread("updateMySize")
     }
 
+    func updateHeightConstraint() {
+        pickerHeightConstraint.constant = !viewModel.expanded ? 0 : 100
+    }
     // Delegate
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

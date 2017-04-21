@@ -8,13 +8,19 @@
 
 import Foundation
 
-class PageViewModel {
+protocol UBPageViewModel {
+    init(page: PageModel, theme: UsabillaTheme)
+}
+
+class PageViewModel: UBPageViewModel {
+
+    var shouldAddMarginToContentSize: Bool = true
 
     var cellViewModels: [CellViewModel] = []
     private let model: PageModel
     var dynamicFields: [Int] = []
 
-    let theme: UsabillaThemeConfigurator
+    let theme: UsabillaTheme
     let copy: CopyModel
     let errorMessage: String?
     var name: String? {
@@ -24,14 +30,20 @@ class PageViewModel {
         return cellViewModels.count
     }
 
-    init(page: PageModel) {
+    var isCorrectlyFilled: Bool {
+        return model.fields.filter {
+            !$0.isValid()
+        }.count == 0
+    }
+
+    required init(page: PageModel, theme: UsabillaTheme) {
         self.model = page
-        self.theme = page.themeConfig
+        self.theme = theme
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 
         for (index, fieldModel) in page.fields.enumerated() {
-            cellViewModels.append(CellViewModel(model: fieldModel))
+            cellViewModels.append(CellViewModel(model: fieldModel, theme: theme))
             if fieldModel.rule != nil {
                 dynamicFields.append(index)
             }

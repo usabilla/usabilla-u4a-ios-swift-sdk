@@ -41,7 +41,7 @@ class Performance: XCTestCase {
     func testJSONParserPerformance() {
         // This is an example of a performance test case.
         self.measure {
-            _ = FormModel(json: self.jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+            _ = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
         }
     }
 
@@ -52,7 +52,7 @@ class Performance: XCTestCase {
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: data as Data)
-                formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
             }
@@ -62,12 +62,9 @@ class Performance: XCTestCase {
                 let viewController = base.childViewControllers[0] as? FormViewController else {
                     return
             }
-            viewController.initWithFormModel(formModel!)
-            viewController.loadView()
 
-            // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
-//            viewController.beginAppearanceTransition(true, animated: false)
-//            viewController.endAppearanceTransition()
+            viewController.viewModel = UBFormViewModel(formModel: formModel!)
+            viewController.loadView()
         }
     }
 

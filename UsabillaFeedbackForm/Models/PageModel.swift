@@ -30,10 +30,9 @@ class PageModel {
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?
     var errorMessage: String?
-    let themeConfig: UsabillaThemeConfigurator
     weak var copy: CopyModel?
 
-    required init(pageNumber: Int, pageName: String, themeConfig: UsabillaThemeConfigurator) {
+    required init(pageNumber: Int, pageName: String) {
         self.pageNumber = pageNumber
         self.pageName = pageName
         errorMessage = nil
@@ -42,6 +41,5 @@ class PageModel {
         isLastPage = nil
         jumpRuleList = nil
         defaultJumpTo = nil
-        self.themeConfig = themeConfig
     }
 }

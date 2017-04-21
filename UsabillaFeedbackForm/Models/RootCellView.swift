@@ -62,7 +62,7 @@ class RootCellView: UITableViewCell {
 
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
 
         errorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         errorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
@@ -70,8 +70,8 @@ class RootCellView: UITableViewCell {
 
         rootCellContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         rootCellContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: verticalMargin * 2 / 3).isActive = true
-        rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).isActive = true
+        rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: verticalMargin * 2 / 3).prioritize(UILayoutPriorityDefaultHigh).isActive = true
+        rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -115,16 +115,10 @@ class RootCellView: UITableViewCell {
         let theme = cellViewModel.theme
         let copy = cellViewModel.copy
         titleLabel.textColor = theme.titleColor
-        titleLabel.font = theme.font.withSize(theme.titleFontSize)
+        titleLabel.font = theme.boldFont
         errorLabel.font = theme.font.withSize(theme.miniFontSize)
         errorLabel.textColor = theme.errorColor
         errorLabel.text = copy.requiredFieldError
-        if theme.setTitlesInBold {
-            if let boldVersion = titleLabel.font.withTraits(.traitBold) {
-                titleLabel.font = boldVersion
-            }
-        }
-
         backgroundColor = theme.backgroundColor
     }
 

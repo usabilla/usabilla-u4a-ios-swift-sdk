@@ -17,11 +17,11 @@ class BaseImageComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseImageComponentViewModel<ScreenshotModel>!
         var model: ScreenshotModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
             model = ScreenshotModel(json: JSON.parse("{\"name\":\"image\"}"), pageModel: pageModel)
-            viewModel = BaseImageComponentViewModel<ScreenshotModel>(model: model)
+            viewModel = BaseImageComponentViewModel<ScreenshotModel>(model: model, theme: UsabillaTheme())
         }
 
         describe("BaseImageComponentViewModelTests") {

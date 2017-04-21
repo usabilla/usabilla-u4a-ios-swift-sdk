@@ -9,10 +9,11 @@
 import Foundation
 
 class MoodFieldModel: IntFieldModel {
-    let points: Int
+    var points: Int = 5
     override init(json: JSON, pageModel: PageModel) {
-        points = json["points"].int ?? 5
+        if json["points"].exists() {
+            points =  json["points"].intValue
+        }
         super.init(json: json, pageModel: pageModel)
     }
-
 }

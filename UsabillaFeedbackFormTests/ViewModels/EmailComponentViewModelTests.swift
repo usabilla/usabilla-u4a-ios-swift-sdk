@@ -17,11 +17,11 @@ class EmailComponentViewModelTests: QuickSpec {
 
         var viewModel: EmailComponentViewModel!
         var model: EmailFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
             model = EmailFieldModel(json: JSON.parse("{\"name\":\"email\"}"), pageModel: pageModel)
-            viewModel = EmailComponentViewModel(model: model)
+            viewModel = EmailComponentViewModel(model: model, theme: UsabillaTheme())
         }
 
         describe("EmailComponentViewModelTests") {

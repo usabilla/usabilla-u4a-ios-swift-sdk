@@ -17,35 +17,52 @@ open class UsabillaFeedbackForm {
     open static var hideGiveMoreFeedback: Bool = true
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
+    open static var theme: UsabillaTheme = UsabillaTheme()
+    open static var canDisplayCampaigns: Bool = true
 
+    static var appIdentifier: String?
     static var defaultLocalisationFile = true
+
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
             defaultLocalisationFile = false
         }
     }
 
+    open class func sendEvent(event: String) {
+        CampaignManager.sendEvent(event: event)
+    }
+
     /**
-       Initialize the **Usabilla SDK**
+    Initialize the **Usabilla SDK**
      
-       This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
+    This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
      
-       The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
+    The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
+    It also allows to fetch the campaigns associated to the **appId**.
+     
+    - parameter appId: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
-    open class func load() {
+    open class func load(appId: String) {
         _ = SubmissionManager.shared // init the singleton to send persisted feedback
+        guard NSUUID(uuidString: appId) != nil else {
+            Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
+            return
+        }
+        appIdentifier = appId
+        CampaignManager.start(appId: appId) // init the campaigns manager, fetching the latest version
     }
 
     open class func removeCachedForms() {
-        CacheManager.shared.removeAllCachedForms()
+        UBFormDAO.shared.deleteAll()
     }
 
-    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
+    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
 
-        FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then { form in
+        FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, theme: theme).then { form in
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
         }.catch { _ in
-            if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig) {
+            if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, theme: theme) {
                 UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
             }
         }
@@ -58,7 +75,7 @@ open class UsabillaFeedbackForm {
                 return
         }
         formController.delegate = PassiveFormController()
-        formController.initWithFormModel(form)
+        formController.viewModel = UBFormViewModel(formModel: form)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {
@@ -77,7 +94,7 @@ open class UsabillaFeedbackForm {
 
     open class func showCampaign(formJson: JSON) {
         let campaign = CampaignModel(id: "", json: JSON.parse(""))
-        let formModel = FormModel(json: formJson, id: "", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
+        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
         campaign.form = formModel
         CampaignWindow.shared.showCampaign(campaign)
     }

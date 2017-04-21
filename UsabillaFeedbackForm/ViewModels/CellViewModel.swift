@@ -12,7 +12,7 @@ class CellViewModel {
 
     let model: BaseFieldModel
     let title: String
-    let theme: UsabillaThemeConfigurator
+    let theme: UsabillaTheme
     let copy: CopyModel
     let required: Bool
     var componentViewModel: ComponentViewModel?
@@ -29,13 +29,13 @@ class CellViewModel {
             }
         }
     }
-    init(model: BaseFieldModel) {
+    init(model: BaseFieldModel, theme: UsabillaTheme) {
         self.model = model
         self.title = model.fieldTitle
-        self.theme = model.themeConfig
+        self.theme = theme
         self.copy = model.pageModel.copy!
         self.required = model.required
-        componentViewModel = ComponentViewModelFactory.component(field: model)
+        componentViewModel = ComponentViewModelFactory.component(field: model, theme: theme)
     }
 
     var shouldAppear: Bool {

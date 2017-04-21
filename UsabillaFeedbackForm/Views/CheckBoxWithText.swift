@@ -14,7 +14,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     weak var delegate: SwiftCheckBoxDelegate?
     var label: UILabel!
     var height: NSLayoutConstraint!
-    var themeConfig: UsabillaThemeConfigurator? {
+    var theme: UsabillaTheme? {
         didSet {
             applyCustomisation()
         }
@@ -23,6 +23,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     override init(frame: CGRect) {
 
         super.init(frame: frame)
+
         checkBox = SwiftCheckBox(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,11 +47,11 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     }
 
     func applyCustomisation() {
-        let color = themeConfig!.accentColor
+        let color = theme!.accentColor
         checkBox.tintColor = color
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
-        label.font = themeConfig?.font.withSize(themeConfig!.textFontSize)
+        label.font = theme?.font
     }
 
     required init?(coder aDecoder: NSCoder) {

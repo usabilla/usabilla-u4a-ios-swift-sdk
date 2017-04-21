@@ -17,11 +17,11 @@ class BaseOptionsComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseOptionsComponentViewModel<OptionsFieldModel>!
         var model: OptionsFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
             model = OptionsFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
-            viewModel = BaseOptionsComponentViewModel<OptionsFieldModel>(model: model)
+            viewModel = BaseOptionsComponentViewModel<OptionsFieldModel>(model: model, theme: UsabillaTheme())
         }
 
         describe("BaseOptionsComponentViewModelTests") {

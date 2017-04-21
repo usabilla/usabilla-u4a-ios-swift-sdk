@@ -14,7 +14,7 @@ import Nimble
 class BaseFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test", themeConfig: UsabillaThemeConfigurator())
+        let pageModel = PageModel(pageNumber: 0, pageName: "test")
         var base: BaseFieldModel?
 
         describe("BaseFieldModel") {

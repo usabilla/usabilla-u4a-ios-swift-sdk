@@ -22,21 +22,13 @@ class PageControllerTest: QuickSpec {
         var moodCell: RootCellView!
 
         beforeSuite {
-            let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
-            do {
-                let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                let jsonObj: JSON = JSON(data: data as Data)
-                formModel = FormModel(json: jsonObj, id: "a", themeConfig: UsabillaThemeConfigurator(), screenshot: nil)
-
-            } catch let error as NSError {
-                Swift.debugPrint(error.localizedDescription)
-            }
+            formModel = UBMock.formMock()
 
             let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
 
             viewController = storyboard.instantiateViewController(withIdentifier: "page") as! PageController
 
-            let pageViewModel = PageViewModel(page: formModel.pages.first!)
+            let pageViewModel = PageViewModel(page: formModel.pages.first!, theme: UsabillaTheme())
             viewController.initWithViewModel(pageViewModel)
 
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
@@ -46,7 +38,6 @@ class PageControllerTest: QuickSpec {
             viewController.beginAppearanceTransition(true, animated: false)
             viewController.endAppearanceTransition()
             moodCell = viewController.tableView.visibleCells.first as? RootCellView
-
         }
 
         beforeEach {
@@ -84,36 +75,14 @@ class PageControllerTest: QuickSpec {
         }
 
         describe("turns the page only on valid data") {
-
             beforeEach {
                 let field = viewController.pageViewModel.cellViewModels.first?.componentViewModel as? MoodComponentViewModel
                 field?.value = nil
             }
 
-            it("returns false if not correctly filled") {
-                expect(viewController.isCorrectlyFilled()).to(beFalse())
-            }
-
             it("shows an error message on the mood field") {
                 expect(moodCell?.errorLabel.isHidden).to(beFalse())
             }
-
-            it("returns true if correctly filled") {
-                let field = viewController.pageViewModel.cellViewModels.first?.componentViewModel as? MoodComponentViewModel
-                field?.value = 2
-                expect(viewController.isCorrectlyFilled()).to(beTrue())
-            }
-        }
-
-        describe("jumping to the next page") {
-
-            it("should be correct") {
-                expect(viewController.whereShouldIJump()).to(equal("Third"))
-                let npsModel = viewController.pageViewModel.cellViewModels[2].componentViewModel as! SliderComponentViewModel
-                npsModel.value = 2
-                expect(viewController.whereShouldIJump()).to(equal("second"))
-            }
-
         }
 
         describe(".viewWillDisappear()") {

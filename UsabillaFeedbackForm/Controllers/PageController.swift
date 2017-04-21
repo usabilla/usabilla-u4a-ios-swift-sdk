@@ -14,6 +14,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     var pageViewModel: PageViewModel!
     var requiredLabel: UILabel!
+    var addMarginWhenKeyboardIsShown: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +36,10 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func keyboardWillShow(notification: NSNotification) {
-        guard var userInfo = notification.userInfo else {
-            return
-        }
-        guard var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
+        guard addMarginWhenKeyboardIsShown,
+            var userInfo = notification.userInfo,
+            var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+                return
         }
 
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -129,19 +129,13 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         UIView.setAnimationsEnabled(true)
     }
 
-    func isCorrectlyFilled() -> Bool {
+    func gotToNextErrorField() {
         pageViewModel.verifyFields()
         if let index = pageViewModel.indexOfInvalidField() {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             tableView.reloadData()
-            return false
         }
-        return true
-    }
-
-    func whereShouldIJump() -> String? {
-        return pageViewModel.nextPageName()
     }
 
     //Image handling stuff
@@ -175,7 +169,7 @@ extension PageController: UITableViewDataSource {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
             if let cell = cell as? FooterTableViewCell {
-                cell.footerView = ViewUtils.generateFooter(themeConfig: pageViewModel.theme)
+                cell.footerView = ViewUtils.generateFooter(theme: pageViewModel.theme)
             }
             cell.backgroundColor = pageViewModel.theme.backgroundColor
             return cell
