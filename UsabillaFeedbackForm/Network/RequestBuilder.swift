@@ -82,6 +82,7 @@ class RequestBuilder {
         return request
     }
 
+    // NSMark: Public methods
     class func buildGetCampaignForm(withFormId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignForm, withURLParam: id)
         return buildBaseGet(withURL: url) as URLRequest

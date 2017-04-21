@@ -8,10 +8,10 @@
 
 class CampaignService {
 
-    class func getCampaignForm(withId id: String) -> Promise<FormModel> {
-        let request = RequestBuilder.buildGetCampaignForm(withFormId: id)
+    class func getCampaignForm(withId id: String, requestBuilder: RequestBuilder.Type = RequestBuilder.self, httpClient: HTTPClient.Type =  HTTPClient.self) -> Promise<FormModel> {
+        let request = requestBuilder.buildGetCampaignForm(withFormId: id)
         return Promise { fulfill, reject in
-            HTTPClient.request(request: request as URLRequest, completion: { response in
+            httpClient.request(request: request as URLRequest, completion: { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: "a", screenshot: nil))
                 }
