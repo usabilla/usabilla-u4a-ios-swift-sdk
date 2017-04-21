@@ -43,10 +43,12 @@ class FieldFactoryTest: QuickSpec {
             it("text type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"mood\"}"), pagemodel: pageModel)
                 expect(field is MoodFieldModel).to(beTrue())
+                expect((field as? MoodFieldModel)?.mode).to(equal(RatingMode.emoticon))
             }
             it("text type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"mood\", \"mode\":\"star\"}"), pagemodel: pageModel)
-                expect(field is StarFieldModel).to(beTrue())
+                expect(field is MoodFieldModel).to(beTrue())
+                expect((field as? MoodFieldModel)?.mode).to(equal(RatingMode.star))
             }
             it("text type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"rating\"}"), pagemodel: pageModel)

@@ -97,7 +97,7 @@ class FormModel: NSObject, NSCoding {
     */
     func toFeedbackResult(latestPageIndex: Int) -> FeedbackResult {
         let rating = pages.first?.fields.first {
-            type(of: $0) == StarFieldModel.self || type(of: $0) == MoodFieldModel.self
+            type(of: $0) == MoodFieldModel.self
         } as? IntFieldModel
         let ratingValue = rating?.fieldValue
 

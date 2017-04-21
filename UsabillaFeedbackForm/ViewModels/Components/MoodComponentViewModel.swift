@@ -26,7 +26,7 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
     }
 
     var ratingMode: RatingMode {
-        return .selection
+        return model.mode
     }
 
     var maxValue: Int {
@@ -34,10 +34,31 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
     }
 
     var selectedImages: [UIImage]? {
+        if model.mode == .star {
+            if let customStar = theme.fullStar {
+                var stars = [UIImage]()
+                for _ in 0...model.points {
+                    stars.append(customStar)
+                }
+                return stars
+            }
+            return nil
+        }
+        
         return theme.emoticons(size: model.points, emoticons: theme.enabledEmoticons)
     }
 
     var unselectedImages: [UIImage]? {
+        if model.mode == .star {
+            if let customStar = theme.emptyStar {
+                var stars = [UIImage]()
+                for _ in 0...model.points {
+                    stars.append(customStar)
+                }
+                return stars
+            }
+            return nil
+        }
         return theme.emoticons(size: model.points, emoticons: theme.disabledEmoticons)
     }
 

@@ -35,7 +35,7 @@ class MoodComponentViewModelTests: QuickSpec {
                 it("should have all values setup correctly", closure: {
                     moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
                     expect(moodComponentViewModel).toNot(beNil())
-                    expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.selection))
+                    expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.emoticon))
                     expect(moodComponentViewModel.maxValue).to(equal(5))
                     expect(moodComponentViewModel.selectedImages).to(equal(theme.enabledEmoticons))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())

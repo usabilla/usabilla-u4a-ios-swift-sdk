@@ -51,11 +51,7 @@ class FieldFactory {
         case .nps:
             return RatingFieldModel(json: json, pageModel: pagemodel, isNPS: true)
         case .mood:
-            if json["mode"].exists() && json["mode"].stringValue == "star" {
-                return StarFieldModel(json: json, pageModel: pagemodel)
-            } else {
-                return MoodFieldModel(json: json, pageModel: pagemodel)
-            }
+            return MoodFieldModel(json: json, pageModel: pagemodel)
         case .rating:
             return RatingFieldModel(json: json, pageModel: pagemodel, isNPS: false)
         case .radio:

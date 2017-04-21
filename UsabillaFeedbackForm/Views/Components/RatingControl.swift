@@ -9,8 +9,8 @@
 import UIKit
 
 enum RatingMode {
-    case rating
-    case selection
+    case emoticon
+    case star
 }
 
 class RatingControl: UIControl {
@@ -38,7 +38,7 @@ class RatingControl: UIControl {
         }
     }
 
-    var mode: RatingMode = .rating {
+    var mode: RatingMode = .star {
         didSet {
             reload()
         }
@@ -95,7 +95,7 @@ class RatingControl: UIControl {
     }
 
     private func imageForButton(_ index: Int, selected: Bool) -> UIImage? {
-        if mode == .rating {
+        if mode == .star {
             if selected {
                 return selectedImages?.first ?? getStar()
             } else {
@@ -158,7 +158,7 @@ class RatingControl: UIControl {
 
     private func refreshSelection() {
         for (index, s) in contentView.arrangedSubviews.enumerated() {
-            (s as? UIButton)?.isSelected = (mode == RatingMode.rating) ? index <= selectedIndex: index == selectedIndex
+            (s as? UIButton)?.isSelected = (mode == RatingMode.star) ? index <= selectedIndex: index == selectedIndex
         }
     }
 
