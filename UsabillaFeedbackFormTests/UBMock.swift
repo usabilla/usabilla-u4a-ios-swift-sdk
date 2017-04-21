@@ -22,3 +22,15 @@ class UBMock {
     }
 
 }
+
+class UBHTTPMockFail: HTTPClientProtocol {
+    static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
+        completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+    }
+}
+
+class UBHTTPMockSuccess: HTTPClientProtocol {
+    static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
+        completion(HTTPClientResponse(data: [], error: nil, success: true))
+    }
+}

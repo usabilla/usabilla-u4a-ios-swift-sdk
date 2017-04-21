@@ -50,11 +50,11 @@ class JSONEncoding: ParameterEncoding {
     }
 }
 
-class HTTPClient {
+class HTTPClient: HTTPClientProtocol {
 
-    class func request(request: URLRequest,
-                       responseQueue: DispatchQueue? = nil,
-                       completion: @escaping (HTTPClientResponse) -> Void) {
+    static func request(request: URLRequest,
+                        responseQueue: DispatchQueue? = nil,
+                        completion: @escaping (HTTPClientResponse) -> Void) {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             (responseQueue ?? DispatchQueue.main).async {
                 PLog(response)
