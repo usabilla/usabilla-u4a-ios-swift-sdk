@@ -13,6 +13,12 @@ import Nimble
 
 class ChoiceComponentViewModelTests: QuickSpec {
 
+    func getJSONFromFile(named name: String) -> JSON {
+        let path = Bundle(for: ChoiceComponentViewModelTests.self).path(forResource: name, ofType: "json")!
+        let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+        return JSON(data: (data as Data?)!)
+    }
+
     override func spec() {
 
         var viewModelEmpty: ChoiceComponentViewModel!
@@ -27,21 +33,15 @@ class ChoiceComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeEach {
-            var path = Bundle(for: ChoiceComponentViewModelTests.self).path(forResource: "PickerWithEmpty", ofType: "json")!
-            var data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            var jsonObj: JSON = JSON(data: (data as Data?)!)
+            var jsonObj = self.getJSONFromFile(named: "PickerWithEmpty")
             modelEmpty = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModelEmpty = ChoiceComponentViewModel(model: modelEmpty, theme: UsabillaTheme())
 
-            path = Bundle(for: ChoiceComponentViewModelTests.self).path(forResource: "PickerWithDefault", ofType: "json")!
-            data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            jsonObj = JSON(data: (data as Data?)!)
+            jsonObj = self.getJSONFromFile(named: "PickerWithDefault")
             modelDefault = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModelDefault = ChoiceComponentViewModel(model: modelDefault, theme: UsabillaTheme())
 
-            path = Bundle(for: ChoiceComponentViewModelTests.self).path(forResource: "Picker", ofType: "json")!
-            data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            jsonObj = JSON(data: (data as Data?)!)
+            jsonObj = self.getJSONFromFile(named: "Picker")
             model = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModel = ChoiceComponentViewModel(model: model, theme: UsabillaTheme())
 
@@ -65,7 +65,7 @@ class ChoiceComponentViewModelTests: QuickSpec {
             }
 
             context("when retrieving the picker Button") {
-                it("should return the correct picket button title when a value is selected") {
+                it("should return the correct picker button title when a value is selected") {
                     modelEmpty.fieldValue = ["Option_1"]
                     modelDefault.fieldValue = ["Option_1"]
                     model.fieldValue = ["Option_1"]
@@ -73,11 +73,11 @@ class ChoiceComponentViewModelTests: QuickSpec {
                     expect(viewModel.pickerButtonTitle).to(equal("Option 1"))
                     expect(viewModelEmpty.pickerButtonTitle).to(equal("Option 1"))
                 }
-                it("should return the correct picket button title with no value selected and empty button") {
+                it("should return the correct picker button title with no value selected and empty button") {
                     modelEmpty.fieldValue = []
                     expect(viewModelEmpty.pickerButtonTitle).to(equal("Empty"))
                 }
-                it("should return the correct picket button title with no value selected and no empty button") {
+                it("should return the correct picker button title with no value selected and no empty button") {
                     modelDefault.fieldValue = []
                     model.fieldValue = []
                     expect(viewModelDefault.pickerButtonTitle).to(beNil())
