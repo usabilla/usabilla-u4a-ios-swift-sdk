@@ -14,7 +14,7 @@ class ChoiceFieldModel: OptionsFieldModel {
     var expanded: Bool = false
 
     override init(json: JSON, pageModel: PageModel) {
-        defaultValue = json["defaultValue"].string
+        defaultValue = json["default"].string
         emptyValue = json["empty"].string
         super.init(json: json, pageModel: pageModel)
     }
