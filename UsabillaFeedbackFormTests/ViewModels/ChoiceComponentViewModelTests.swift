@@ -13,12 +13,6 @@ import Nimble
 
 class ChoiceComponentViewModelTests: QuickSpec {
 
-    func getJSONFromFile(named name: String) -> JSON {
-        let path = Bundle(for: ChoiceComponentViewModelTests.self).path(forResource: name, ofType: "json")!
-        let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-        return JSON(data: (data as Data?)!)
-    }
-
     override func spec() {
 
         var viewModelEmpty: ChoiceComponentViewModel!
@@ -33,15 +27,15 @@ class ChoiceComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeEach {
-            var jsonObj = self.getJSONFromFile(named: "PickerWithEmpty")
+            var jsonObj = UBTestHelper.getJSONFromFile(named: "PickerWithEmpty")
             modelEmpty = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModelEmpty = ChoiceComponentViewModel(model: modelEmpty, theme: UsabillaTheme())
 
-            jsonObj = self.getJSONFromFile(named: "PickerWithDefault")
+            jsonObj = UBTestHelper.getJSONFromFile(named: "PickerWithDefault")
             modelDefault = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModelDefault = ChoiceComponentViewModel(model: modelDefault, theme: UsabillaTheme())
 
-            jsonObj = self.getJSONFromFile(named: "Picker")
+            jsonObj = UBTestHelper.getJSONFromFile(named: "Picker")
             model = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModel = ChoiceComponentViewModel(model: model, theme: UsabillaTheme())
 
