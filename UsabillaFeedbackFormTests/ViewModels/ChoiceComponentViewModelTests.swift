@@ -20,7 +20,11 @@ class ChoiceComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
-            model = ChoiceFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
+            let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
+            let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)!
+            let jsonObj: JSON = JSON(data: data as Data)
+
+            model = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModel = ChoiceComponentViewModel(model: model, theme: UsabillaTheme())
         }
 
@@ -39,6 +43,14 @@ class ChoiceComponentViewModelTests: QuickSpec {
                     viewModel.value = "hi"
                     expect(viewModel.value).to(equal("hi"))
                 }
+            }
+
+            context("when retrieving values") {
+                it("should return the correct picket button title") {
+                    viewModel.value = "hello"
+                    expect(viewModel.pickerButtonTitle).to(equal("hello"))
+                }
+
             }
         }
     }

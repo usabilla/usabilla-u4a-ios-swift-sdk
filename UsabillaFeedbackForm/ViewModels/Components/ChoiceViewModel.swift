@@ -23,7 +23,7 @@ class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel>
         }
     }
 
-    func getPickerButtonTitle() -> String? {
+    var pickerButtonTitle: String? {
 
         //If it exists, select the value the user selected before
         if let tmpValue = value {
@@ -38,7 +38,7 @@ class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel>
         return nil
     }
 
-    func getIndexOfSelectedOption() -> Int? {
+    var indexOfSelectedOption: Int? {
 
         //If it exists, select the value the user selected before
         if let tmpValue = value {

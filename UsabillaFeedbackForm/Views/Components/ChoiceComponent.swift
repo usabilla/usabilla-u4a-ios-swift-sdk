@@ -77,10 +77,10 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
     }
 
     func configure() {
-        if let buttonTitle = viewModel.getPickerButtonTitle() {
+        if let buttonTitle = viewModel.pickerButtonTitle {
             pickerButton.setTitle(buttonTitle, for: .normal)
         }
-        if let selectedIndex = viewModel.getIndexOfSelectedOption() {
+        if let selectedIndex = viewModel.indexOfSelectedOption {
             picker.selectRow(selectedIndex, inComponent: 0, animated: false)
         }
     }
