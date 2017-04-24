@@ -40,6 +40,12 @@ open class UsabillaFeedbackForm {
         CacheManager.shared.removeAllCachedForms()
     }
 
+    open class func preloadForms(withIds ids: [String]) {
+        for id in ids {
+            FormStore.loadForm(id: id, screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
+        }
+    }
+
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {
         
         FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, themeConfig: themeConfig).then { form in
