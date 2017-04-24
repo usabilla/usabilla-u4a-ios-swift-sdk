@@ -38,7 +38,7 @@ class PageControllerTest: QuickSpec {
             viewController.initWithPage(formModel.pages.first!)
 
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-            let _ = viewController.view
+            _ = viewController.view
 
             // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
             viewController.beginAppearanceTransition(true, animated: false)

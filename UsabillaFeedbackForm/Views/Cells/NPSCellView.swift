@@ -18,7 +18,7 @@ class NPSCellView: RootCellView, IntFieldHandlerProtocol {
         }
     }
     var npsModel: NPSFieldModel!
-    var buttonView: NPSContentController? = nil
+    var buttonView: NPSContentController?
 
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
