@@ -1,4 +1,5 @@
-{ "type": "choice",
+{
+"type": "choice",
 "caption": "Picker",
 "autoSubmit": false,
 "forceRequired": false,
