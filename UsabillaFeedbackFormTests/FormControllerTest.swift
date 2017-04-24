@@ -24,7 +24,7 @@ class FormControllerTest: QuickSpec {
             beforeEach {
                 let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                let jsonObj: JSON = JSON(data: (data as? Data)!)
+                let jsonObj: JSON = JSON(data: data! as Data)
                 formModel = JSONFormParser.parseFormJson(jsonObj, appId: "a", screenshot: nil, themeConfig: UsabillaThemeConfigurator())
 
 
@@ -35,7 +35,7 @@ class FormControllerTest: QuickSpec {
                         viewController.initWithFormModel(formModel)
 
                         // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-                        let _ = viewController.view
+                        _ = viewController.view
 
                         // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
                         viewController.beginAppearanceTransition(true, animated: false)

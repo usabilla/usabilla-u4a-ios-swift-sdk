@@ -12,8 +12,8 @@ import UIKit
 open class UsabillaFeedbackForm {
 
     //Various init methods with many parameters\
-    open static weak var delegate: UsabillaFeedbackFormDelegate? = nil
-    open static var appStoreId: String? = nil
+    open static weak var delegate: UsabillaFeedbackFormDelegate?
+    open static var appStoreId: String?
     open static var hideGiveMoreFeedback: Bool = true
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
@@ -42,7 +42,7 @@ open class UsabillaFeedbackForm {
 
     open class func preloadForms(withIds ids: [String]) {
         for id in ids {
-            FormStore.loadForm(id: id, screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
+            _ = FormStore.loadForm(id: id, screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
         }
     }
 

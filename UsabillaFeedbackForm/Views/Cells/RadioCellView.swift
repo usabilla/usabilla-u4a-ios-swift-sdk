@@ -28,11 +28,9 @@ class RadioCellView: BaseCheckboxCellView {
 
         var values: [String] = [ ]
 
-        for (index, checkBox) in checkBoxes.enumerated() {
+        for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on {
             let option = super.model.options[index]
-            if checkBox.checkBox.on {
                 values.append(option.value)
-            }
         }
         super.model.fieldValue = values
     }

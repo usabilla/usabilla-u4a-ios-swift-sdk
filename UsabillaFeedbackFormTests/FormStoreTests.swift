@@ -32,7 +32,7 @@ class FormStoreTests: QuickSpec {
                 })
                 it("Should succeed and return cached formModel if it's cached", closure: {
                     let mockFormModel = UBMock.formMock()
-                    let _ = CacheManager.shared.cacheForm(id: mockFormModel.appId, form: mockFormModel)
+                    _ = CacheManager.shared.cacheForm(id: mockFormModel.appId, form: mockFormModel)
 
                     waitUntil(timeout: 2.0) { done in
                         let promise = FormStore.loadForm(id: mockFormModel.appId, screenshot: nil, customVariables: [:], themeConfig: UsabillaThemeConfigurator())

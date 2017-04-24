@@ -29,10 +29,10 @@ import SystemConfiguration
 import Foundation
 
 public enum ReachabilityError: Error {
-    case FailedToCreateWithAddress(sockaddr_in)
-    case FailedToCreateWithHostname(String)
-    case UnableToSetCallback
-    case UnableToSetDispatchQueue
+    case failedToCreateWithAddress(sockaddr_in)
+    case failedToCreateWithHostname(String)
+    case unableToSetCallback
+    case unableToSetDispatchQueue
 }
 
 public let reachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
@@ -150,12 +150,12 @@ public extension Reachability {
         context.info = UnsafeMutableRawPointer(Unmanaged<Reachability>.passUnretained(self).toOpaque())
         if !SCNetworkReachabilitySetCallback(reachabilityRef, callback, &context) {
             stopNotifier()
-            throw ReachabilityError.UnableToSetCallback
+            throw ReachabilityError.unableToSetCallback
         }
         
         if !SCNetworkReachabilitySetDispatchQueue(reachabilityRef, reachabilitySerialQueue) {
             stopNotifier()
-            throw ReachabilityError.UnableToSetDispatchQueue
+            throw ReachabilityError.unableToSetDispatchQueue
         }
         
         // Perform an intial check

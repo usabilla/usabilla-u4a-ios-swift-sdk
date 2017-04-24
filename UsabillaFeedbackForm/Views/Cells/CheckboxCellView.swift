@@ -22,12 +22,11 @@ class CheckboxCellView: BaseCheckboxCellView {
         //checkBox.setOn(!checkBox.on, animated: true)
         var values: [String] = [ ]
 
-        for (index, checkBox) in checkBoxes.enumerated() {
+        for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on {
             let option = super.model.options[index]
-            if checkBox.checkBox.on {
-                values.append(option.value)
-            }
+            values.append(option.value)
         }
+
         PLog("values: \(values)")
         super.model.fieldValue = values
     }
