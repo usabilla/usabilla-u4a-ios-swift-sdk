@@ -29,6 +29,8 @@ protocol Rule: NSCoding {
 
     func triggersWith(event: Event) -> Bool
     func customTriggersWith(event: Event) -> Bool
+
+    func respondsToEvent(event: Event) -> Bool
 }
 
 class ConcreteRule: NSObject, Rule {
@@ -55,6 +57,12 @@ class ConcreteRule: NSObject, Rule {
 
     func customTriggersWith(event: Event) -> Bool {
         fatalError("Abstract method not implemented")
+    }
+
+    func respondsToEvent(event: Event) -> Bool {
+        return childRules.first {
+            $0.respondsToEvent(event: event) == true
+        } != nil
     }
 
     // MARK: NSCoding

@@ -7,7 +7,6 @@
 //
 
 class LeafRule: ConcreteRule {
-
     let event: Event
 
     init(event: Event, ruleID: String = UUID().uuidString, alreadyTriggered: Bool = false) {
@@ -28,5 +27,9 @@ class LeafRule: ConcreteRule {
     public override func encode(with aCoder: NSCoder) {
         aCoder.encode(self.event, forKey: "event")
         super.encode(with: aCoder)
+    }
+
+    override func respondsToEvent(event: Event) -> Bool {
+        return self.event == event
     }
 }

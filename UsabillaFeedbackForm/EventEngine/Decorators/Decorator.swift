@@ -15,7 +15,7 @@ class Decorator: NSObject, Rule {
     var childRules: [Rule] { return rule.childRules }
     var alreadyTriggered: Bool
     var type: RuleType {
-            return rule.type
+        return rule.type
     }
     init(rule: Rule) {
         self.rule = rule
@@ -31,6 +31,12 @@ class Decorator: NSObject, Rule {
 
     func customTriggersWith(event: Event) -> Bool {
         fatalError("Abstract method not implemented")
+    }
+
+    func respondsToEvent(event: Event) -> Bool {
+        return childRules.first {
+            $0.respondsToEvent(event: event) == true
+        } != nil
     }
 
     // MARK: NSCoding

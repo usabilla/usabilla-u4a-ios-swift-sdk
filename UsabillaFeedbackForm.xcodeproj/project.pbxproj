@@ -113,6 +113,7 @@
 		4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */; };
 		433794371E8A6C0100965EC8 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433794361E8A6C0100965EC8 /* Logging.swift */; };
 		433F1EC51EADE96300E4BBFA /* CampaignManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F1EC41EADE96300E4BBFA /* CampaignManagerTests.swift */; };
+		433F1EC71EAE1F8000E4BBFA /* EventEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F1EC61EAE1F8000E4BBFA /* EventEngineTests.swift */; };
 		434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */; };
 		434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C01E36430D00B4A4B9 /* SubmissionManager.swift */; };
 		4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
@@ -348,6 +349,7 @@
 		4334E8671E290E1300AC895C /* ParagraphFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphFieldModel.swift; sourceTree = "<group>"; };
 		433794361E8A6C0100965EC8 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		433F1EC41EADE96300E4BBFA /* CampaignManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignManagerTests.swift; sourceTree = "<group>"; };
+		433F1EC61EAE1F8000E4BBFA /* EventEngineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEngineTests.swift; sourceTree = "<group>"; };
 		434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKitTest.swift; sourceTree = "<group>"; };
 		434085C01E36430D00B4A4B9 /* SubmissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManager.swift; sourceTree = "<group>"; };
 		4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IntroPageViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -637,6 +639,7 @@
 				04A0C1C31E8BBE4B00A483AC /* DecoratorTests */,
 				04DC25BE1E8BB365002962A3 /* RulesTests */,
 				433F1EC41EADE96300E4BBFA /* CampaignManagerTests.swift */,
+				433F1EC61EAE1F8000E4BBFA /* EventEngineTests.swift */,
 			);
 			name = EventEngineTest;
 			path = EventEngineTests;
@@ -1349,6 +1352,7 @@
 				431F6B081E9F9B0300D5BF17 /* UBFeedbackRequestDAOTests.swift in Sources */,
 				43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */,
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTests.swift in Sources */,
+				433F1EC71EAE1F8000E4BBFA /* EventEngineTests.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,
 				436264161E93A03200A0533C /* UBFormViewModelTests.swift in Sources */,
