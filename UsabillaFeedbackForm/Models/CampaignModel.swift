@@ -17,6 +17,9 @@ class CampaignModel: NSObject, NSCoding {
     var maximumDisplays: Int = 0
     var version: Int
     var form: FormModel?
+    var canBeDisplayed: Bool {
+        return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
+    }
 
     init(id: String, rule: Rule?, formId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, version: Int) {
         self.identifier = id

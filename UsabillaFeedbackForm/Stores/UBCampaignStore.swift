@@ -8,12 +8,17 @@
 
 import Foundation
 
-class UBCampaignStore {
+protocol UBCampaignStoreProtocol {
+    func getCampaigns(appId: String) -> Promise<[CampaignModel]>
+    @discardableResult func saveCampaign(campaign: CampaignModel) -> Bool
+}
+
+class UBCampaignStore: UBCampaignStoreProtocol {
 
     /**
      - returns: a promise of CampaignModel array
      */
-    class func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
+    func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, _ in
             // TO DO Add networking
             fulfill(UBCampaignDAO.shared.readAll())
@@ -24,7 +29,7 @@ class UBCampaignStore {
      Persist a CampaignModel object
      - returns: **true** if saving succeed or **false** if it failed
     */
-    @discardableResult class func saveCampaign(campaign: CampaignModel) -> Bool {
+    @discardableResult func saveCampaign(campaign: CampaignModel) -> Bool {
         return UBCampaignDAO.shared.create(campaign)
     }
 }

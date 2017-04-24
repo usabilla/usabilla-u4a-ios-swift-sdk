@@ -15,6 +15,7 @@ class UBCampaignStoreTests: QuickSpec {
 
     override func spec() {
         describe("UBCampaignStoreTests") {
+            let store = UBCampaignStore()
             context("When saving a campaigns") {
                 it("should persist it correctly") {
                     // Remove data
@@ -23,7 +24,7 @@ class UBCampaignStoreTests: QuickSpec {
 
                     // Create campaign
                     let campaign = UBMock.campaignMock()
-                    let isSaved = UBCampaignStore.saveCampaign(campaign: campaign)
+                    let isSaved = store.saveCampaign(campaign: campaign)
                     expect(isSaved).to(beTrue())
 
                     let allCampaigns = UBCampaignDAO.shared.readAll()
@@ -39,7 +40,7 @@ class UBCampaignStoreTests: QuickSpec {
                     expect(UBCampaignDAO.shared.readAll().count).to(equal(0))
 
                     waitUntil(timeout: 2.0) { done in
-                        let promise = UBCampaignStore.getCampaigns(appId: "")
+                        let promise = store.getCampaigns(appId: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(0))
                             done()
@@ -50,10 +51,10 @@ class UBCampaignStoreTests: QuickSpec {
 
                     // Create campaign
                     let campaign = UBMock.campaignMock()
-                    UBCampaignStore.saveCampaign(campaign: campaign)
+                    store.saveCampaign(campaign: campaign)
 
                     waitUntil(timeout: 2.0) { done in
-                        let promise = UBCampaignStore.getCampaigns(appId: "")
+                        let promise = store.getCampaigns(appId: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(1))
                             expect(campaigns.first!.identifier).to(equal(campaign.identifier))
