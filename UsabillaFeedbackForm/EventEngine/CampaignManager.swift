@@ -10,17 +10,22 @@ import Foundation
 
 class CampaignManager {
 
-    private var campaignStore: UBCampaignStoreProtocol
+    private(set) var campaignStore: UBCampaignStoreProtocol
+    private(set) var eventEngine: EventEngine
 
-    init(campaignStore: UBCampaignStoreProtocol) {
+    init(campaignStore: UBCampaignStoreProtocol, appId: String) {
         self.campaignStore = campaignStore
+        self.eventEngine = EventEngine(campaigns: [])
+
+        campaignStore.getCampaigns(appId: appId).then { campaigns in
+            self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
+        }
     }
 
-    static func sendEvent(event: String) { }
-
-    func start(appId: String) {
-        campaignStore.getCampaigns(appId: appId).then { campaigns in
-            EventEngine.campaigns = campaigns.filter { $0.canBeDisplayed }
+    func sendEvent(event: String) {
+        let (respondingCampaigns, _) = eventEngine.triggerEvent(event)
+        respondingCampaigns.forEach {
+            self.campaignStore.saveCampaign(campaign: $0)
         }
     }
 
@@ -31,9 +36,4 @@ class CampaignManager {
     class func saveCampaign(campaign: CampaignModel) {
         //Saves a single campaign in DB
     }
-
-//    class func fetchCampaigns() -> [CampaignModel] {
-//        //Retrieves campaigns from DB
-//    }
-
 }

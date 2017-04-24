@@ -38,6 +38,10 @@ class CampaignModel: NSObject, NSCoding {
         self.version = json["version"].intValue
     }
 
+    func respondToEvents(event: Event) -> Bool {
+        return rule?.respondsToEvent(event: event) ?? false
+    }
+
     func triggers(event: Event) -> Bool {
         return rule?.triggersWith(event: event) ?? false
     }
