@@ -40,6 +40,9 @@ open class UsabillaFeedbackForm {
         CacheManager.shared.removeAllCachedForms()
     }
 
+    /**
+     Preloads a list of form to make them available to the user even without network connectivity.
+     */
     open class func preloadForms(withIds ids: [String]) {
         for id in ids {
             _ = FormStore.loadForm(id: id, screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
