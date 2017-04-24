@@ -89,8 +89,9 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         //If it exist, should select default value
         if let defaultOption = viewModel.model.defaultValue {
             if let indexOfDefault = viewModel.options.index(where: { $0.value == defaultOption }) {
-                pickerButton.setTitle(viewModel.options[indexOfDefault].title, for: .normal)
-                viewModel.value = viewModel.options[indexOfDefault].value
+                let option = viewModel.options[indexOfDefault]
+                viewModel.value = option.value
+                pickerButton.setTitle(option.title, for: .normal)
                 picker.selectRow(indexOfDefault, inComponent: 0, animated: false)
             }
         }
