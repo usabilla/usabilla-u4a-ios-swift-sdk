@@ -77,30 +77,11 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
     }
 
     func configure() {
-
-        guard viewModel.options.count > 0 else {
-            return
+        if let buttonTitle = viewModel.getPickerButtonTitle() {
+            pickerButton.setTitle(buttonTitle, for: .normal)
         }
-
-        //Should first try to set the button for the empty status
-        if let emptyButtonText = viewModel.model.emptyValue {
-            pickerButton.setTitle(emptyButtonText, for: .normal)
-        }
-        //If it exist, should select default value
-        if let defaultOption = viewModel.model.defaultValue {
-            if let indexOfDefault = viewModel.options.index(where: { $0.value == defaultOption }) {
-                let option = viewModel.options[indexOfDefault]
-                viewModel.value = option.value
-                pickerButton.setTitle(option.title, for: .normal)
-                picker.selectRow(indexOfDefault, inComponent: 0, animated: false)
-            }
-        }
-        //If it exists, select the value the user selected before
-        if let tmpValue = viewModel.value {
-            for (index, option) in viewModel.options.enumerated() where option.value == tmpValue {
-                pickerButton.setTitle(option.title, for: .normal)
-                picker.selectRow(index, inComponent: 0, animated: false)
-            }
+        if let selectedIndex = viewModel.getIndexOfSelectedOption() {
+            picker.selectRow(selectedIndex, inComponent: 0, animated: false)
         }
     }
 

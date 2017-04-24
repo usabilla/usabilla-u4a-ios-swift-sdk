@@ -17,5 +17,9 @@ class ChoiceFieldModel: OptionsFieldModel {
         defaultValue = json["default"].string
         emptyValue = json["empty"].string
         super.init(json: json, pageModel: pageModel)
+
+        if let value = defaultValue {
+            fieldValue = [value]
+        }
     }
 }
