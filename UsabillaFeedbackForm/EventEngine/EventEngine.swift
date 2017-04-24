@@ -9,5 +9,5 @@
 import Foundation
 
 class EventEngine {
-
+    static var campaigns: [CampaignModel] = []
 }

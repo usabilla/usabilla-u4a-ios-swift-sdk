@@ -10,10 +10,18 @@ import Foundation
 
 class CampaignManager {
 
+    private var campaignStore: UBCampaignStoreProtocol
+
+    init(campaignStore: UBCampaignStoreProtocol) {
+        self.campaignStore = campaignStore
+    }
+
     static func sendEvent(event: String) { }
 
-    class func start(appId: String) {
-        //Fetch campaigns from BE
+    func start(appId: String) {
+        campaignStore.getCampaigns(appId: appId).then { campaigns in
+            EventEngine.campaigns = campaigns.filter { $0.canBeDisplayed }
+        }
     }
 
     class func saveCampaigns() {
