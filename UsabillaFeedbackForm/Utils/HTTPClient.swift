@@ -85,6 +85,7 @@ class HTTPClient: HTTPClientProtocol {
                        headers: HTTPHeaders? = nil,
                        responseQueue: DispatchQueue? = nil,
                        completion: @escaping (HTTPClientResponse) -> Void) {
+
         guard let url = URL(string: url) else {
             return
         }

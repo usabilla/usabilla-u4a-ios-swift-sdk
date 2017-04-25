@@ -16,6 +16,7 @@ class FormViewController: UIViewController {
     var thankYouController: ThankYouController!
     var customVars: [String: Any]?
     var delegate: FormViewControllerDelegate?
+    fileprivate var results: [FeedbackResult] = []
 
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var leftNavItem: UIBarButtonItem!

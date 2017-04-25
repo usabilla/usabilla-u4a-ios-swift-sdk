@@ -28,7 +28,7 @@ class CampaignService {
             })
         }
     }
-    
+
     func getCampaignsFor(appId id: String) -> Promise<[CampaignModel]> {
         let request = requestBuilder.requestGetCampaignsfor(appId: id)
         return Promise { fulfill, reject in

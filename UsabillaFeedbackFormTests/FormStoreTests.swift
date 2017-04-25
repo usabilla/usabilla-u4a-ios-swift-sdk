@@ -34,6 +34,7 @@ class FormStoreTests: QuickSpec {
                     let mockFormModel = UBMock.formMock()
                     let isCached = UBFormDAO.shared.create(mockFormModel)
                     expect(isCached).to(beTrue())
+
                     waitUntil(timeout: 2.0) { done in
                         let promise = FormStore.loadForm(id: mockFormModel.appId, screenshot: nil, customVariables: [:], theme: UsabillaTheme())
                         promise.then { cachedFormModel in

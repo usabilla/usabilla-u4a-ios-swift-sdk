@@ -66,6 +66,7 @@ open class UsabillaFeedbackForm {
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
         }.catch { _ in
             if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, theme: theme) {
+
                 UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
             }
         }
