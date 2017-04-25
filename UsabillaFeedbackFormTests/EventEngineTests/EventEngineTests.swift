@@ -38,7 +38,7 @@ class EventEngineTests: QuickSpec {
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     let eventEngine = EventEngine(campaigns: campaigns)
-                    let (respondCampaigns, _) = eventEngine.triggerEvent("foo")
+                    let (respondCampaigns, _) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns).to(beEmpty())
                 }
 
@@ -52,7 +52,7 @@ class EventEngineTests: QuickSpec {
                     ]
 
                     let eventEngine = EventEngine(campaigns: campaigns)
-                    let (respondCampaigns, _) = eventEngine.triggerEvent("foo")
+                    let (respondCampaigns, _) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns).to(beEmpty())
                 }
 
@@ -66,7 +66,7 @@ class EventEngineTests: QuickSpec {
                     ]
 
                     let eventEngine = EventEngine(campaigns: campaigns)
-                    let (respondCampaigns, _) = eventEngine.triggerEvent("foo")
+                    let (respondCampaigns, _) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns.count).to(equal(1))
                 }
 
@@ -81,11 +81,11 @@ class EventEngineTests: QuickSpec {
                     ]
 
                     let eventEngine = EventEngine(campaigns: campaigns)
-                    var (respondCampaigns, triggeredCampaigns) = eventEngine.triggerEvent("foo")
+                    var (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns.count).to(equal(1))
                     expect(triggeredCampaigns.count).to(equal(0))
 
-                    (respondCampaigns, triggeredCampaigns) = eventEngine.triggerEvent("bar")
+                    (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("bar")
                     expect(respondCampaigns.count).to(equal(1))
                     expect(triggeredCampaigns.count).to(equal(1))
                 }

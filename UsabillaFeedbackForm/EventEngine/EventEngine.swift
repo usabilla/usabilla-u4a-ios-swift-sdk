@@ -22,7 +22,7 @@ class EventEngine {
         - campaigns which respond to the event
         - campaigns which triggered
      */
-    func triggerEvent(_ eventName: String) -> ([CampaignModel], [CampaignModel]) {
+    func sendEvent(_ eventName: String) -> ([CampaignModel], [CampaignModel]) {
         let event = Event(name: eventName)
 
         let campaignThatResponds = campaigns.filter {
