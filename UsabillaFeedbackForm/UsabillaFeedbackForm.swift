@@ -30,7 +30,7 @@ open class UsabillaFeedbackForm {
     }
 
     // services
-    private static var campaignManager: CampaignManager = CampaignManager(campaignStore: UBCampaignStore(service: CampaignService()))
+    private static var campaignManager: CampaignManager?
 
     open class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event)
@@ -53,7 +53,7 @@ open class UsabillaFeedbackForm {
             return
         }
         appIdentifier = appId
-        campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: appId)
+        campaignManager = CampaignManager(campaignStore: UBCampaignStore(service: CampaignService()), appId: appId)
     }
 
     open class func removeCachedForms() {

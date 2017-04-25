@@ -25,7 +25,7 @@ class CampaignManager {
     func sendEvent(event: String) {
         let (respondingCampaigns, _) = eventEngine.triggerEvent(event)
         respondingCampaigns.forEach {
-            self.campaignStore.saveCampaign(campaign: $0)
+            UBCampaignDAO.shared.create($0)
         }
     }
 

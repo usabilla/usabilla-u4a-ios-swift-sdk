@@ -21,10 +21,6 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
             fulfill(self.campaigns)
         }
     }
-    func saveCampaign(campaign: CampaignModel) -> Bool {
-        onSaveCalled?(campaign)
-        return false
-    }
 }
 
 class CampaignManagerTests: QuickSpec {
@@ -61,57 +57,6 @@ class CampaignManagerTests: QuickSpec {
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(1))
                     expect(campaignManager.eventEngine.campaigns.first?.identifier).to(equal("testid2"))
-                }
-            }
-
-            context("When sending event the CampaignManager") {
-                beforeEach {
-                    storeMock.campaigns = []
-                    storeMock.onSaveCalled = nil
-                }
-
-                it("should not save campaigns when there are no responding campaigns") {
-
-                    let leaf = LeafRule(event: Event(name: "bla"))
-                    let leaf2 = LeafRule(event: Event(name: "blo"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
-                    let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-
-                    storeMock.campaigns = campaigns
-
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
-
-                    storeMock.onSaveCalled = { _ in
-                        fail("should not be called")
-                    }
-                    campaignManager.sendEvent(event: "foo")
-                }
-
-                it("should save campaigns when there are responding campaigns for the event") {
-
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
-                    let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-
-                    storeMock.campaigns = campaigns
-
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
-
-                    waitUntil(timeout: 2.0) { done in
-                        storeMock.onSaveCalled = { _ in
-                            done()
-                        }
-                        campaignManager.sendEvent(event: "foo")
-                    }
                 }
             }
         }
