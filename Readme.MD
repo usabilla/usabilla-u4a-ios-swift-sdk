@@ -3,19 +3,13 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.4.0
+## Latest changes in v3.4.1
 
 #### Added
-- Form caching. Forms loaded from our servers will be now cached locally and will be correctly displayed even when the user is offline.
+- Added the possibility to preload a form to make it available to the user even when offline. See the wiki for more informations.
 
-
-#### Updated
-
-- Updated SDK to be compatible with Swift 3.1
-
-#### Removed
-
-- Removed some unecessary logs
+#### Fixed
+- The title of the thank you page is no longer being truncateds
 
 ## Requirements
 
