@@ -23,17 +23,26 @@ class CampaignManager {
     }
 
     func sendEvent(event: String) {
-        let (respondingCampaigns, _) = eventEngine.triggerEvent(event)
+        let (respondingCampaigns, triggeredCampaigns) = eventEngine.triggerEvent(event)
+
+        // Persist all updated campaigns
         respondingCampaigns.forEach {
-            self.campaignStore.saveCampaign(campaign: $0)
+            UBCampaignDAO.shared.create($0)
+        }
+
+        // Display first triggered campaign
+        if let campaignToDisplay = triggeredCampaigns.first {
+            displayCampaign(campaignToDisplay)
         }
     }
 
-    class func saveCampaigns() {
-        //Save the status of all campaigns
-    }
-
-    class func saveCampaign(campaign: CampaignModel) {
-        //Saves a single campaign in DB
+    func displayCampaign(_ campaign: CampaignModel) {
+        guard campaign.canBeDisplayed && UsabillaFeedbackForm.canDisplayCampaigns else {
+            return
+        }
+        if CampaignWindow.shared.showCampaign(campaign) {
+            campaign.numberOfTimesTriggered += 1
+            UBCampaignDAO.shared.create(campaign)
+        }
     }
 }
