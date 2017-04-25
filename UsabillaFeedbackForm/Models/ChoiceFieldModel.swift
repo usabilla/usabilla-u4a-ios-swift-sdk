@@ -21,5 +21,8 @@ class ChoiceFieldModel: OptionsFieldModel {
         if let value = defaultValue {
             fieldValue = [value]
         }
+        if let empty = emptyValue {
+            options.insert(Options(title: empty, value: ""), at: 0)
+        }
     }
 }

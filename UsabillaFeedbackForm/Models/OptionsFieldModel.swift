@@ -18,7 +18,7 @@ class OptionsFieldModel: BaseFieldModel {
         }
     }
 
-    let options: [Options]
+    var options: [Options]
     var fieldValue: [String] = [] {
         didSet {
             pageModel.fieldValuesCollection[fieldId] = fieldValue
