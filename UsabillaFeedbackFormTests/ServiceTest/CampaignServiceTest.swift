@@ -34,15 +34,15 @@ class CampaignServiceTest: QuickSpec {
                     }
                 }
             }
-            
+
             context("When getCampaignsFor is called") {
 
                 it("should succeed if request succeeds") {
                     waitUntil(timeout: 2.0) { done in
                         CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignsFor(appId: "appid").then { _ in
                             done()
-                            }.catch { _ in
-                                fail("should not go here")
+                        }.catch { _ in
+                            fail("should not go here")
                         }
                     }
                 }
@@ -50,8 +50,8 @@ class CampaignServiceTest: QuickSpec {
                     waitUntil(timeout: 2.0) { done in
                         CampaignService(httpClient: UBHTTPMockFail.self).getCampaignsFor(appId: "appid").then { _ in
                             fail("should not go here")
-                            }.catch { _ in
-                                done()
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }
