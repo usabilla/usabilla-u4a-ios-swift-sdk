@@ -66,22 +66,6 @@ class CampaignManagerTests: QuickSpec {
                     CampaignWindow.shared.campaignDidEnd(success: false)
                     UsabillaFeedbackForm.canDisplayCampaigns = true
                 }
-
-                it("should not save campaigns when there are no responding campaigns") {
-                    let leaf = LeafRule(event: Event(name: "bla"))
-                    let leaf2 = LeafRule(event: Event(name: "blo"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
-                    let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-
-                    storeMock.campaigns = campaigns
-
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
-                    campaignManager.sendEvent(event: "foo")
-                }
                 it("should save campaigns when there are responding campaigns for the event") {
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
