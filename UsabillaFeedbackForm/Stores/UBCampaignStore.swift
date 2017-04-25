@@ -10,26 +10,38 @@ import Foundation
 
 protocol UBCampaignStoreProtocol {
     func getCampaigns(appId: String) -> Promise<[CampaignModel]>
-    @discardableResult func saveCampaign(campaign: CampaignModel) -> Bool
 }
 
 class UBCampaignStore: UBCampaignStoreProtocol {
+
+    let campaignService: CampaignService
+
+    init(service: CampaignService) {
+        self.campaignService = service
+    }
 
     /**
      - returns: a promise of CampaignModel array
      */
     func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
-        return Promise { fulfill, _ in
+        return Promise { fulfill, reject in
             // TO DO Add networking
-            fulfill(UBCampaignDAO.shared.readAll())
+            self.campaignService.getCampaignsFor(appId: appId).then(execute: { campainModelList in
+                for campaignModel in campainModelList {
+                    UBCampaignDAO.shared.create(campaignModel)
+                    PLog("campaign identifier : \(campaignModel.identifier)")
+                }
+                fulfill(campainModelList)
+                return
+            }).catch(execute: { error in
+                PLog("Error loading campaigns :\(error.localizedDescription)")
+                let cachedCampaigns = UBCampaignDAO.shared.readAll()
+                if cachedCampaigns.count > 0 {
+                    fulfill(cachedCampaigns)
+                    return
+                }
+                reject(error)
+            })
         }
-    }
-
-    /**
-     Persist a CampaignModel object
-     - returns: **true** if saving succeed or **false** if it failed
-    */
-    @discardableResult func saveCampaign(campaign: CampaignModel) -> Bool {
-        return UBCampaignDAO.shared.create(campaign)
     }
 }

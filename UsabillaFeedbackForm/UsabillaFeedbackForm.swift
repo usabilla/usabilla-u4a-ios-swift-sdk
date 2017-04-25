@@ -53,7 +53,7 @@ open class UsabillaFeedbackForm {
             return
         }
         appIdentifier = appId
-        campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: appId)
+        campaignManager = CampaignManager(campaignStore: UBCampaignStore(service: CampaignService()), appId: appId)
     }
 
     open class func removeCachedForms() {
