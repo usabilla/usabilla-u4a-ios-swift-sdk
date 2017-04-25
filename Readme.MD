@@ -9,13 +9,13 @@ Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki)
 - Added the possibility to preload a form to make it available to the user even when offline. See the wiki for more informations.
 
 #### Fixed
-- The title of the thank you page is no longer being truncateds
+- The title of the thank you page is no longer being truncated
 
 ## Requirements
 
 - iOS 9.0+
 - Xcode 8.0+
-- Swift 3.0+
+- Swift 3.1+
 
 For older versions of iOS you can use v2.3.0 of the SDK.
 
@@ -37,7 +37,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'MyApp' do
-    pod 'UsabillaFeedbackForm', '~> 3.3.1'
+    pod 'UsabillaFeedbackForm', '~> 3.4.1'
 end
 ```
 
@@ -151,6 +151,22 @@ To make sure the variables are properly displayed in the web interface it is adv
 
 Custom variables are added as a parameter when calling `UsabillaFeedbackForm.loadFeedbackForm("Form ID", screenshot: nil, customVariables: customVariables)
 `
+
+### Preloading a form
+If you know you will need to display a feedback form when the user is offline, you can preload it a cache it in the SDK to make it available at any given moment.   
+To preload a form use
+```
+UsabillaFeedbackForm.preloadForms(withIds: ["myId", "myOtherId"])
+```
+This will fetch the latest version of the form and cache it in the SDK.    
+ When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
+
+Feedback submitted while offline will be sent when connectivity is restored.
+
+If you wish, you can empty the cache using
+```
+UsabillaFeedbackForm.removeCachedForms()
+```
 
 
 ### Customising the form
