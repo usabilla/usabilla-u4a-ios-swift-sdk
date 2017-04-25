@@ -22,7 +22,23 @@ class ChoiceFieldModel: OptionsFieldModel {
             fieldValue = [value]
         }
         if let empty = emptyValue {
-            options.insert(Options(title: empty, value: ""), at: 0)
+            //I hate our backend
+            if !empty.isEmpty {
+                options.insert(Options(title: empty, value: ""), at: 0)
+            }
         }
+    }
+
+    func isChoiceValueValid() -> Bool {
+        return !fieldValue.isEmpty && !fieldValue.first!.isEmpty
+    }
+
+    override func isValid() -> Bool {
+        isModelValid = !isViewCurrentlyVisible || !required || isChoiceValueValid()
+        return isModelValid
+    }
+
+    override func convertToJSON() -> Any? {
+        return isChoiceValueValid() ? fieldValue : nil
     }
 }

@@ -41,8 +41,50 @@ class ChoiceComponentViewModelTests: QuickSpec {
 
         }
 
-        describe("ChoiceComponentviewModelEmptyTests") {
-            it("viewModelEmpty options should match model options") {
+        describe("the validation method") {
+            it("Should not validate empty string") {
+                model.required = true
+                model.isViewCurrentlyVisible = true
+                model.fieldValue = [""]
+                expect(viewModel.model.isValid()).to(beFalse())
+            }
+
+            it("Should not validate nil values") {
+                model.required = true
+                model.isViewCurrentlyVisible = true
+                model.fieldValue = []
+                expect(viewModel.model.isValid()).to(beFalse())
+            }
+
+            it("Should validate strings") {
+                model.required = true
+                model.isViewCurrentlyVisible = true
+                model.fieldValue = ["a"]
+                expect(viewModel.model.isValid()).to(beTrue())
+            }
+        }
+
+        describe("the json convertion method") {
+            it("Should not validate empty string") {
+                model.fieldValue = [""]
+                expect(viewModel.model.convertToJSON()).to(beNil())
+            }
+
+            it("Should not validate nil values") {
+                model.fieldValue = []
+                expect(viewModel.model.convertToJSON()).to(beNil())
+            }
+
+            it("Should validate strings") {
+                model.fieldValue = ["a"]
+                // swiftlint:disable force_cast
+                let json = viewModel.model.convertToJSON() as! [String]
+                expect(json).to(equal(["a"]))
+            }
+        }
+
+        describe("the ChoiceComponentviewModelTests") {
+            it("viewModel options should match model options") {
                 expect(modelEmpty.options.count).to(equal(viewModelEmpty.options.count))
             }
 
@@ -103,7 +145,7 @@ class ChoiceComponentViewModelTests: QuickSpec {
                     model.fieldValue = ["Option_1"]
                     expect(viewModelDefault.indexOfSelectedOption).to(equal(0))
                     expect(viewModel.indexOfSelectedOption).to(equal(0))
-                    expect(viewModelEmpty.indexOfSelectedOption).to(equal(0))
+                    expect(viewModelEmpty.indexOfSelectedOption).to(equal(1))
                 }
             }
         }
