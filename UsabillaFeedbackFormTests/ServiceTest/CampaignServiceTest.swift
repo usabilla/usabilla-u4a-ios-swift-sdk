@@ -13,22 +13,46 @@ import Nimble
 
 class CampaignServiceTest: QuickSpec {
     override func spec() {
-        describe("The Campaign Service") {
-            it("Handles a success callback correctly") {
-                waitUntil(timeout: 2.0) { done in
-                    CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignForm(withId: "a").then { _ in
-                        done()
-                    }.catch { _ in
-                        fail("should not go here")
+        describe("CampaignService") {
+            context("When getCampaignForm is called") {
+                it("should succeed if request succeeds") {
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignForm(withId: "a").then { _ in
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should fail if request fails") {
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMockFail.self).getCampaignForm(withId: "a").then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
                     }
                 }
             }
-            it("Handles a failing callback correctly") {
-                waitUntil(timeout: 2.0) { done in
-                    CampaignService(httpClient: UBHTTPMockFail.self).getCampaignForm(withId: "a").then { _ in
-                        fail("should not go here")
-                    }.catch { _ in
-                        done()
+
+            context("When getCampaignsFor is called") {
+
+                it("should succeed if request succeeds") {
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignsFor(appId: "appid").then { _ in
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should fail if request fails") {
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMockFail.self).getCampaignsFor(appId: "appid").then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
                     }
                 }
             }

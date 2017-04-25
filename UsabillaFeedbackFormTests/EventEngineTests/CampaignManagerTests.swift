@@ -21,10 +21,6 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
             fulfill(self.campaigns)
         }
     }
-    func saveCampaign(campaign: CampaignModel) -> Bool {
-        onSaveCalled?(campaign)
-        return false
-    }
 }
 
 class CampaignManagerTests: QuickSpec {
@@ -42,7 +38,6 @@ class CampaignManagerTests: QuickSpec {
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(0))
                 }
-
                 it("should return affect 1 campaign to the eventEngine when the campaign has not limit display") {
                     let campaignModel = CampaignModel(id: "testid", json: JSON.parse(""))
                     expect(campaignModel.maximumDisplays).to(equal(0))
@@ -51,7 +46,6 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(1))
                     expect(campaignManager.eventEngine.campaigns.first?.identifier).to(equal("testid"))
                 }
-
                 it("should return affect 1 campaigns to the eventEngine when the campaign has a display limit") {
                     let campaignModel = CampaignModel(id: "testid", json: JSON.parse(""))
                     let campaignModel2 = CampaignModel(id: "testid2", json: JSON.parse(""))
@@ -74,7 +68,6 @@ class CampaignManagerTests: QuickSpec {
                 }
 
                 it("should not save campaigns when there are no responding campaigns") {
-
                     let leaf = LeafRule(event: Event(name: "bla"))
                     let leaf2 = LeafRule(event: Event(name: "blo"))
                     let rule = AndRule(childRules: [leaf, leaf2])
@@ -89,17 +82,21 @@ class CampaignManagerTests: QuickSpec {
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     campaignManager.sendEvent(event: "foo")
                 }
-
                 it("should save campaigns when there are responding campaigns for the event") {
-
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
 
-                    UBCampaignDAO.shared.create(CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0))
-                    UBCampaignDAO.shared.create(CampaignModel(id: "b", json: JSON.parse("")))
+                    let campaigns = [
+                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "b", json: JSON.parse(""))
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
 
-                    let campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: "test")
+                    storeMock.campaigns = campaigns
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafRule
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beFalse())
@@ -108,34 +105,42 @@ class CampaignManagerTests: QuickSpec {
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beTrue())
                 }
-
                 it("should not display campaign that have not triggered") {
-
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
 
-                    UBCampaignDAO.shared.create(CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0))
-                    UBCampaignDAO.shared.create(CampaignModel(id: "b", json: JSON.parse("")))
+                    let campaigns = [
+                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "b", json: JSON.parse(""))
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
 
-                    let campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                     campaignManager.sendEvent(event: "foo")
                     campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                 }
-
                 it("should display campaign that triggered") {
-
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
 
-                    UBCampaignDAO.shared.create(CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0))
-                    UBCampaignDAO.shared.create(CampaignModel(id: "b", json: JSON.parse("")))
+                    let campaigns = [
+                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "b", json: JSON.parse(""))
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
 
-                    let campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: "test")
+                    storeMock.campaigns = campaigns
+
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                     campaignManager.sendEvent(event: "foo")
@@ -145,16 +150,21 @@ class CampaignManagerTests: QuickSpec {
                     campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(1))
                 }
-
                 it("should display only the first campaign that triggered") {
-
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
 
-                    UBCampaignDAO.shared.create(CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0))
-                    UBCampaignDAO.shared.create(CampaignModel(id: "b", rule: rule, formId: "", maximumDisplays: 0, version: 0))
-                    let campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: "test")
+                    let campaigns = [
+                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "b", rule: rule, formId: "", maximumDisplays: 0, version: 0)
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
+                    storeMock.campaigns = campaigns
+
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var campaignA = UBCampaignDAO.shared.read(id: "a")
                     var campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
@@ -170,14 +180,21 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignA?.numberOfTimesTriggered).to(equal(1))
                     expect(campaignB?.numberOfTimesTriggered).to(equal(0))
                 }
-
                 it("should display campaign if the semaphore allow it and the campaign can be displayed again") {
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
 
-                    UBCampaignDAO.shared.create(CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0))
-                    let campaignManager = CampaignManager(campaignStore: UBCampaignStore(), appId: "test")
+                    let campaigns = [
+                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0)
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
+
+                    storeMock.campaigns = campaigns
+
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
 
