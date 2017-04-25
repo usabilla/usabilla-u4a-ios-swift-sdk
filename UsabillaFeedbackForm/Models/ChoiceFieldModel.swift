@@ -21,11 +21,9 @@ class ChoiceFieldModel: OptionsFieldModel {
         if let value = defaultValue {
             fieldValue = [value]
         }
-        if let empty = emptyValue {
+        if let empty = emptyValue, !empty.isEmpty {
             //I hate our backend
-            if !empty.isEmpty {
-                options.insert(Options(title: empty, value: ""), at: 0)
-            }
+            options.insert(Options(title: empty, value: ""), at: 0)
         }
     }
 
