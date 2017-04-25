@@ -30,7 +30,9 @@ class UBHTTPMockFail: HTTPClientProtocol {
 }
 
 class UBHTTPMockSuccess: HTTPClientProtocol {
+    // inject your expected result to be tested
+    static var result: [AnyObject]!
     static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
-        completion(HTTPClientResponse(data: [], error: nil, success: true))
+        completion(HTTPClientResponse(data: result, error: nil, success: true))
     }
 }

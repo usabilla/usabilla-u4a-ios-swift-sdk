@@ -30,7 +30,7 @@ open class UsabillaFeedbackForm {
     }
 
     // services
-    private static var campaignManager: CampaignManager?
+    private static var campaignManager: CampaignManager = CampaignManager(campaignStore: UBCampaignStore(service: CampaignService()))
 
     open class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event)

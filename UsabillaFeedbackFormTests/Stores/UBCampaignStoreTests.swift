@@ -15,30 +15,23 @@ class UBCampaignStoreTests: QuickSpec {
 
     override func spec() {
         describe("UBCampaignStoreTests") {
-            let store = UBCampaignStore()
-            context("When saving a campaigns") {
-                it("should persist it correctly") {
-                    // Remove data
-                    UBCampaignDAO.shared.deleteAll()
-                    expect(UBCampaignDAO.shared.readAll().count).to(equal(0))
+            var store: UBCampaignStore!
+            var fakeSucceedCampaignService: CampaignService!
+            var fakeFailCampaignService: CampaignService!
 
-                    // Create campaign
-                    let campaign = UBMock.campaignMock()
-                    let isSaved = store.saveCampaign(campaign: campaign)
-                    expect(isSaved).to(beTrue())
-
-                    let allCampaigns = UBCampaignDAO.shared.readAll()
-                    expect(allCampaigns.count).to(equal(1))
-                    expect(allCampaigns.first!.identifier).to(equal(campaign.identifier))
-                }
+            beforeSuite {
+                UBHTTPMockSuccess.self.result = []
+                fakeSucceedCampaignService = CampaignService(httpClient: UBHTTPMockSuccess.self)
+                fakeFailCampaignService = CampaignService(httpClient: UBHTTPMockFail.self)
             }
 
             context("When fetching campaigns") {
-                it("should return the correct data") {
-                    // Remove data
-                    UBCampaignDAO.shared.deleteAll()
-                    expect(UBCampaignDAO.shared.readAll().count).to(equal(0))
 
+                beforeEach {
+                    store = UBCampaignStore(service: fakeSucceedCampaignService)
+                }
+
+                it("should return the correct data") {
                     waitUntil(timeout: 2.0) { done in
                         let promise = store.getCampaigns(appId: "")
                         promise.then { campaigns in
@@ -48,19 +41,33 @@ class UBCampaignStoreTests: QuickSpec {
                             fail("should not go here")
                         }
                     }
+                }
 
-                    // Create campaign
-                    let campaign = UBMock.campaignMock()
-                    store.saveCampaign(campaign: campaign)
-
+                it("should return the correct data when result contains one Campain") {
+                    UBHTTPMockSuccess.self.result = [CampaignModel(id: "", json: JSON(""))]
                     waitUntil(timeout: 2.0) { done in
                         let promise = store.getCampaigns(appId: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(1))
-                            expect(campaigns.first!.identifier).to(equal(campaign.identifier))
                             done()
                         }.catch { _ in
                             fail("should not go here")
+                        }
+                    }
+                }
+            }
+
+            context("When fetching campaigns with error") {
+                beforeEach {
+                    store = UBCampaignStore(service: fakeFailCampaignService)
+                }
+                it("should return an error") {
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(appId: "")
+                        promise.then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }
