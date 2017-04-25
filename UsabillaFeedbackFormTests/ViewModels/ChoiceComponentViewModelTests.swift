@@ -12,7 +12,7 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class ChoiceComponentViewModelTests: QuickSpec {
-
+    // swiftlint:disable function_body_length
     override func spec() {
 
         var viewModelEmpty: ChoiceComponentViewModel!
