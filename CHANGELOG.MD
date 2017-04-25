@@ -1,3 +1,11 @@
+## 3.4.1
+
+#### Added
+- Added the possibility to preload a form to make it available to the user even when offline. See the wiki for more informations.
+
+#### Fixed
+- The title of the thank you page is no longer being truncateds
+
 ## 3.4.0
 
 #### Added
