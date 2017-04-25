@@ -38,7 +38,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         pickerButton.topAnchor.constraint(equalTo: topBorder.bottomAnchor).withId("ChoiceComponent button top constraint").activate()
         pickerButton.trailingAnchor.constraint(equalTo: trailingAnchor).withId("ChoiceComponent button right constraint").activate()
         pickerButton.leadingAnchor.constraint(equalTo: leadingAnchor).withId("ChoiceComponent button left constraint").activate()
-        pickerButton.setTitle("hello", for: .normal)
+
         // bottom border
         bottomBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).withId("ChoiceComponent bottom border top constraint").activate()
         bottomBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withId("ChoiceComponent bottom border right constraint").activate()
@@ -77,22 +77,11 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
     }
 
     func configure() {
-
-        guard viewModel.options.count > 0 else {
-            return
+        if let buttonTitle = viewModel.pickerButtonTitle {
+            pickerButton.setTitle(buttonTitle, for: .normal)
         }
-        guard let tmpValue = viewModel.value else {
-            return
-        }
-
-        if tmpValue.isEmpty {
-            pickerButton.setTitle(viewModel.options[0].title, for: .normal)
-            picker.selectRow(0, inComponent: 0, animated: true)
-        } else {
-            for (index, option) in viewModel.options.enumerated() where option.value == tmpValue {
-                pickerButton.setTitle(option.title, for: .normal)
-                picker.selectRow(index, inComponent: 0, animated: false)
-            }
+        if let selectedIndex = viewModel.indexOfSelectedOption {
+            picker.selectRow(selectedIndex, inComponent: 0, animated: false)
         }
     }
 
@@ -105,7 +94,8 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
     func updateHeightConstraint() {
         pickerHeightConstraint.constant = !viewModel.expanded ? 0 : 100
     }
-    // Delegate
+
+    // MARK: Delegate
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let item = viewModel.options[row]
@@ -114,7 +104,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         valueChanged()
     }
 
-    // Datasource
+    // MARK: Datasource
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

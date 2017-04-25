@@ -1,0 +1,30 @@
+{
+"type": "choice",
+"caption": "Picker",
+"autoSubmit": false,
+"forceRequired": false,
+"fixed": false,
+"interactive": true,
+"showHideRule": [
+
+],
+"validationText": "This field is required",
+"title": "Click to edit question",
+"required": false,
+"options": [
+{
+"title": "Option 1",
+"value": "Option_1"
+},
+{
+"title": "Option 2",
+"value": "Option_2"
+},
+{
+"title": "Option 3",
+"value": "Option_3"
+}
+],
+"name": "choice1",
+"empty": "Empty"
+}

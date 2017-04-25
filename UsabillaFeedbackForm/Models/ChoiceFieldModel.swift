@@ -14,8 +14,28 @@ class ChoiceFieldModel: OptionsFieldModel {
     var expanded: Bool = false
 
     override init(json: JSON, pageModel: PageModel) {
-        defaultValue = json["defaultValue"].string
+        defaultValue = json["default"].string
         emptyValue = json["empty"].string
         super.init(json: json, pageModel: pageModel)
+
+        if let value = defaultValue {
+            fieldValue = [value]
+        }
+        if let empty = emptyValue, !empty.isEmpty {
+            options.insert(Options(title: empty, value: ""), at: 0)
+        }
+    }
+
+    func isChoiceValueValid() -> Bool {
+        return !fieldValue.isEmpty && !fieldValue.first!.isEmpty
+    }
+
+    override func isValid() -> Bool {
+        isModelValid = !isViewCurrentlyVisible || !required || isChoiceValueValid()
+        return isModelValid
+    }
+
+    override func convertToJSON() -> Any? {
+        return isChoiceValueValid() ? fieldValue : nil
     }
 }
