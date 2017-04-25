@@ -15,7 +15,7 @@ class FormViewController: UIViewController {
     var reachability: Reachability!
     var pageController: PageController!
     var thankYouController: ThankYouController!
-    var customVars: [String: Any]? = nil
+    var customVars: [String: Any]?
 
     fileprivate var results: [FeedbackResult] = []
 
@@ -163,10 +163,8 @@ class FormViewController: UIViewController {
     func selectNewPage() -> Int {
         var newPageIndex = -1
         if let pageToJump = pageController.whereShouldIJump() {
-            for (index, page) in formModel.pages.enumerated() {
-                if page.pageName == pageToJump {
+            for (index, page) in formModel.pages.enumerated() where page.pageName == pageToJump {
                     newPageIndex = index
-                }
             }
         }
 

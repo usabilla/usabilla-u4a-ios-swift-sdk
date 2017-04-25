@@ -12,8 +12,8 @@ import UIKit
 open class UsabillaFeedbackForm {
 
     //Various init methods with many parameters\
-    open static weak var delegate: UsabillaFeedbackFormDelegate? = nil
-    open static var appStoreId: String? = nil
+    open static weak var delegate: UsabillaFeedbackFormDelegate?
+    open static var appStoreId: String?
     open static var hideGiveMoreFeedback: Bool = true
     open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
@@ -38,6 +38,15 @@ open class UsabillaFeedbackForm {
     
     open class func removeCachedForms() {
         CacheManager.shared.removeAllCachedForms()
+    }
+
+    /**
+     Preloads a list of form to make them available to the user even without network connectivity.
+     */
+    open class func preloadForms(withIds ids: [String]) {
+        for id in ids {
+            _ = FormStore.loadForm(id: id, screenshot: nil, customVariables: nil, themeConfig: UsabillaThemeConfigurator())
+        }
     }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, themeConfig: UsabillaThemeConfigurator = UsabillaThemeConfigurator()) {

@@ -80,12 +80,12 @@ class HTTPClient {
     }
 
     class func request( _ url: String,
-                       method: HTTPMethod = .get,
-                       parameters: Parameters? = nil,
-                       encoding: ParameterEncoding = JSONEncoding.default,
-                       headers: HTTPHeaders? = nil,
-                       responseQueue: DispatchQueue? = nil,
-                       completion: @escaping (HTTPClientResponse) -> Void) {
+                        method: HTTPMethod = .get,
+                        parameters: Parameters? = nil,
+                        encoding: ParameterEncoding = JSONEncoding.default,
+                        headers: HTTPHeaders? = nil,
+                        responseQueue: DispatchQueue? = nil,
+                        completion: @escaping (HTTPClientResponse) -> Void) {
         guard let url = URL(string: url) else {
             return
         }

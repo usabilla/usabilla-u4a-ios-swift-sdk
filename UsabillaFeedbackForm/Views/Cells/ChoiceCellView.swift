@@ -107,11 +107,9 @@ class ChoiceCellView: RootCellView {
             pickerButton.setTitle(model.options[0].title, for: .normal)
             picker.selectRow(0, inComponent: 0, animated: true)
         } else {
-            for (index, option) in model.options.enumerated() {
-                if option.value == model.fieldValue[0] {
-                    pickerButton.setTitle(option.title, for: .normal)
-                    picker.selectRow(index, inComponent: 0, animated: false)
-                }
+            for (index, option) in model.options.enumerated() where option.value == model.fieldValue[0] {
+                pickerButton.setTitle(option.title, for: .normal)
+                picker.selectRow(index, inComponent: 0, animated: false)
             }
         }
 
