@@ -60,7 +60,9 @@ class CampaignService {
                     let json = JSON(jsonData).dictionary
                     PLog("targeting for campaign id : \(id) :\n \(String(describing: json))")
                     fulfill(ConcreteRule(type: RuleType.leaf, childRules: [])) // TO DO: parse the targetting here
+                    return
                 }
+                reject(response.error!)
             })
         }
     }

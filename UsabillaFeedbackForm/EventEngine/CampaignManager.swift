@@ -18,7 +18,17 @@ class CampaignManager {
         self.eventEngine = EventEngine(campaigns: [])
 
         campaignStore.getCampaigns(appId: appId).then { campaigns in
-            self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
+            var count = 0
+            for campaign in campaigns {
+                campaignStore.getTargetingForCampaign(id: campaign.identifier).then(execute: { rule in
+                    campaign.rule = rule
+                    UBCampaignDAO.shared.create(campaign)
+                    count += 1
+                    if count == campaigns.count {
+                        self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
+                    }
+                })
+            }
         }
     }
 

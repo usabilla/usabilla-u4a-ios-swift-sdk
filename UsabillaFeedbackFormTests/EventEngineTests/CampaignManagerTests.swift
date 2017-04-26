@@ -21,6 +21,16 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
             fulfill(self.campaigns)
         }
     }
+
+    func getTargetingForCampaign(id: String) -> Promise<Rule> {
+        return Promise { fulfill, _ in
+            let leaf = LeafRule(event: Event(name: "foo"))
+            let leaf2 = LeafRule(event: Event(name: "bar"))
+            let rule = AndRule(childRules: [leaf, leaf2])
+
+            fulfill(rule)
+        }
+    }
 }
 
 class CampaignManagerTests: QuickSpec {

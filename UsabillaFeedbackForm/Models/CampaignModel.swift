@@ -11,7 +11,7 @@ import Foundation
 class CampaignModel: NSObject, NSCoding {
 
     let identifier: String
-    let rule: Rule?
+    var rule: Rule?
     let formId: String
     var numberOfTimesTriggered: Int = 0
     var maximumDisplays: Int = 0

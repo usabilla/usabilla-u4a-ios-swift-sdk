@@ -26,7 +26,6 @@ class UBCampaignStore: UBCampaignStoreProtocol {
      */
     func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
-            // TO DO Add networking
             self.campaignService.getCampaignsFor(appId: appId).then(execute: { campainModelList in
                 for campaignModel in campainModelList {
                     UBCampaignDAO.shared.create(campaignModel)
@@ -45,9 +44,9 @@ class UBCampaignStore: UBCampaignStoreProtocol {
             })
         }
     }
-    
+
     func getTargetingForCampaign(id: String) -> Promise<Rule> {
-        return self.campaignService.getTargetingForCampaign(id: "campId").then(execute: { rule in
+        return campaignService.getTargetingForCampaign(id: id).then(execute: { rule in
             PLog(rule.ruleID)
         })
     }
