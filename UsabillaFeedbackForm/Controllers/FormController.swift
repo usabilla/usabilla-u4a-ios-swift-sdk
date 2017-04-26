@@ -10,6 +10,7 @@ import UIKit
 
 class FormViewController: UIViewController {
 
+    var previousStatusBarColor: UIStatusBarStyle?
     var currentPage = 0
     var formModel: FormModel!
     var reachability: Reachability!
@@ -46,6 +47,7 @@ class FormViewController: UIViewController {
         }
         updateProgressBar()
         updateRightButton()
+        previousStatusBarColor = UIApplication.shared.statusBarStyle
         UIApplication.shared.statusBarStyle = formModel.themeConfig.statusBarColor
 
         if let headerColor = formModel.themeConfig.headerColor {
@@ -55,11 +57,13 @@ class FormViewController: UIViewController {
         }
         self.navigationController?.navigationBar.tintColor = formModel.themeConfig.textOnAccentColor
 
-
         setUpLeftButton()
     }
 
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = previousStatusBarColor ?? .default
+    }
 
     func setUpLeftButton() {
         leftNavItem.title = formModel.copyModel.cancelButton
