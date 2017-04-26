@@ -31,9 +31,26 @@ class ParagraphCellView: BaseTextAreaCellView {
         }
         let text = item.immutableParagraphValue
         if item.html != nil && item.html! {
-            textView.text = text?.htmlToString
+            textView.attributedText = attributedStringParse(htmlText: text!, font: themeConfig.font.withSize(themeConfig.textFontSize))
         } else {
             textView.text = text
         }
     }
+
+    func attributedStringParse(htmlText: String, font: UIFont) -> NSAttributedString {
+        let modifiedFont = NSString(format:"<span style=\"font-family: '\(font.fontName)'; font-size: \(font.pointSize)\">%@</span>" as NSString, htmlText) as String
+        
+        // swiftlint:disable force_try
+        let attrStr = try! NSAttributedString(
+            data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
+            options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+        return attrStr
+    }
+    
+    override func applyCustomisations() {
+        super.applyCustomisations()
+        setFeedbackItem(item)
+    }
+    
 }

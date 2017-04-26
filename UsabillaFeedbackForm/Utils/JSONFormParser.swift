@@ -36,7 +36,7 @@ class JSONFormParser {
         var screenshotJson: [String: Any] = [:]
         screenshotJson["type"] = "screenshot"
         screenshotJson["name"] = "screenshot"
-        screenshotJson["title"] = "Screenshot"
+        screenshotJson["title"] = copyModel.screenshotTitle
         screenshotJson["required"] = false
 
         let pageModel = pages.first
