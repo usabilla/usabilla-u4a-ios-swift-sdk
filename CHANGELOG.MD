@@ -1,3 +1,10 @@
+## 3.4.2
+
+#### Fixed
+- The screenshot title set in the web interface is now correctly applied in the SDK
+- Fixed a bug that would not restore the status bar to it's original color
+- HTML in paragraph is now correctly rendered
+
 ## 3.4.1
 
 #### Added
