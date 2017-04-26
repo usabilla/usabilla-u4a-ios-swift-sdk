@@ -11,6 +11,7 @@ import UIKit
 class FormViewController: UIViewController {
 
     var viewModel: UBFormViewModel
+    var previousStatusBarColor: UIStatusBarStyle?
     var reachability: Reachability!
     var pageController: PageController!
     var thankYouController: ThankYouController!
@@ -112,6 +113,7 @@ class FormViewController: UIViewController {
     }
 
     func customizeView() {
+        previousStatusBarColor = UIApplication.shared.statusBarStyle
         UIApplication.shared.statusBarStyle = viewModel.statusBarColor
 
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
@@ -124,6 +126,11 @@ class FormViewController: UIViewController {
             progressBar.progressTintColor = viewModel.accentColor
             progressBar.trackTintColor = viewModel.backgrounColor
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = previousStatusBarColor ?? .default
     }
 
     func setUpLeftButton() {
