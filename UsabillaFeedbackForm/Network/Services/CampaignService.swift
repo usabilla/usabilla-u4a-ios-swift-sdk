@@ -51,4 +51,17 @@ class CampaignService {
             })
         }
     }
+
+    func getTargetingForCampaign(id: String) -> Promise<Rule> {
+        let request = requestBuilder.requestGetTargetingFor(campaignId: id)
+        return Promise { fulfill, reject in
+            self.httpClient.request(request: request, responseQueue: nil, completion: { response in
+                if let jsonData = response.data {
+                    let json = JSON(jsonData).dictionary
+                    PLog("targeting for campaign id : \(id) :\n \(String(describing: json))")
+                    fulfill(ConcreteRule(type: RuleType.leaf, childRules: [])) // TO DO: parse the targetting here
+                }
+            })
+        }
+    }
 }

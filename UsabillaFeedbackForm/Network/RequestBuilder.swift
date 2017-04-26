@@ -14,6 +14,7 @@ class RequestBuilder {
         case campaignForm = "/v2/sdk/forms/"
         case passiveForm = "/live/mobile/app/forms/"
         case campaignsForAppId = "endpoint-here" // TO DO: change this when right end point is ready
+        case targetingForCampaignId = "targeting-endpoint-here" // TO DO: change this when right end point is ready
     }
 
     static let bundle = Bundle(for: NetworkManager.self)
@@ -92,5 +93,10 @@ class RequestBuilder {
     class func requestGetCampaignsfor(appId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignsForAppId, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
+    }
+    
+    class func requestGetTargetingFor(campaignId id: String) -> URLRequest {
+        let url = UBMockUrls.targetingsUrlString //buildURL(withEndpoint: .targetingForCampaignId, withURLParam: id)
+        return requestForGet(withURL: url!) as URLRequest
     }
 }

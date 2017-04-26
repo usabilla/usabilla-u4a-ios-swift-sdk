@@ -11,4 +11,5 @@ import Foundation
 class UBMockUrls {
     // returns a list of fake campaign models json
     static var campaignsUrlString = URL(string: "https://api.myjson.com/bins/w2aqb")
+    static var targetingsUrlString = URL(string: "https://api.myjson.com/bins/1bjm03")
 }
