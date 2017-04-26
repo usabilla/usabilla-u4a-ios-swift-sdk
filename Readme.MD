@@ -3,13 +3,12 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.4.1
-
-#### Added
-- Added the possibility to preload a form to make it available to the user even when offline. See the wiki for more informations.
+## Latest changes in v3.4.2
 
 #### Fixed
-- The title of the thank you page is no longer being truncated
+- The screenshot title set in the web interface is now correctly applied in the SDK
+- Fixed a bug that would not restore the status bar to it's original color
+- HTML in paragraph is now correctly rendered
 
 ## Requirements
 
