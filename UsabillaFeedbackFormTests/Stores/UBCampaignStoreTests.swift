@@ -72,23 +72,6 @@ class UBCampaignStoreTests: QuickSpec {
                     }
                 }
             }
-
-            context("When fetching triggers") {
-                beforeEach {
-                    store = UBCampaignStore(service: fakeSucceedCampaignService)
-                }
-
-                it("should ") {
-                    waitUntil(timeout: 2.0) { done in
-                        let promise = store.getTargeting(withId: "")
-                        promise.then { _ in
-                            done()
-                        }.catch { _ in
-                            fail("should not go here")
-                        }
-                    }
-                }
-            }
         }
     }
 }

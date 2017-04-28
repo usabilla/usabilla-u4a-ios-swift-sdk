@@ -6,6 +6,15 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+class Cachable<T> {
+    let value: T
+    let hasChanged: Bool
+    init(value: T, hasChanged: Bool) {
+        self.value = value
+        self.hasChanged = hasChanged
+    }
+}
+
 class CampaignService {
 
     let requestBuilder: RequestBuilder.Type
@@ -52,14 +61,16 @@ class CampaignService {
         }
     }
 
-    func getTargeting(withId id: String) -> Promise<Rule> {
+    func getTargetingForCampaign(id: String) -> Promise<Cachable<Rule>> {
         let request = requestBuilder.requestGetTargeting(withId: id)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, completion: { response in
                 if let jsonData = response.data {
                     let json = JSON(jsonData).dictionary
                     PLog("targeting for campaign id : \(id) :\n \(String(describing: json))")
-                    fulfill(ConcreteRule(type: RuleType.leaf, childRules: [])) // TO DO: parse the targetting here
+                    let rule = ConcreteRule(type: RuleType.leaf, childRules: [])
+                    let cachable: Cachable<Rule> = Cachable(value: rule, hasChanged: response.isChanged)
+                    fulfill(cachable) // TO DO: parse the targetting here
                     return
                 }
                 reject(response.error!)

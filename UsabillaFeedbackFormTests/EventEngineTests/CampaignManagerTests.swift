@@ -21,21 +21,6 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
             fulfill(self.campaigns)
         }
     }
-
-    func getTargeting(withId id: String) -> Promise<Rule> {
-        return Promise { fulfill, reject in
-            let searchCampaignTargeting = self.campaigns.first {
-                $0.targetingId == id
-            }
-            if let campaign = searchCampaignTargeting {
-                if let rule = campaign.rule {
-                    return fulfill(rule)
-                }
-                return fulfill(LeafRule(event: Event(name: "test")))
-            }
-            reject(NSError(domain: "not found", code: 0, userInfo: nil))
-        }
-    }
 }
 
 class CampaignManagerTests: QuickSpec {

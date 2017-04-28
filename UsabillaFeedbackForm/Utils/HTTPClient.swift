@@ -17,6 +17,14 @@ struct HTTPClientResponse {
     let data: Any?
     let error: NSError?
     let success: Bool
+    let isChanged: Bool
+    
+    init(data: Any?, error: NSError?, success: Bool = false, isChanged: Bool = false) {
+        self.data = data
+        self.error = error
+        self.success = success
+        self.isChanged = isChanged
+    }
 }
 
 typealias Parameters = [String: Any]
@@ -58,12 +66,13 @@ class HTTPClient: HTTPClientProtocol {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             (responseQueue ?? DispatchQueue.main).async {
                 PLog(response)
+
                 guard error == nil else {
-                    completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil), success: false))
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil)))
                     return
                 }
                 guard let data = data else {
-                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil), success: false))
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil)))
                     return
                 }
                 do {
@@ -71,7 +80,7 @@ class HTTPClient: HTTPClientProtocol {
                     PLog(json)
                     completion(HTTPClientResponse(data: json, error: nil, success: true))
                 } catch {
-                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+                    completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil)))
                 }
             }
         }

@@ -10,7 +10,6 @@ import Foundation
 
 protocol UBCampaignStoreProtocol {
     func getCampaigns(appId: String) -> Promise<[CampaignModel]>
-    func getTargeting(withId id: String) -> Promise<Rule>
 }
 
 class UBCampaignStore: UBCampaignStoreProtocol {
@@ -27,12 +26,31 @@ class UBCampaignStore: UBCampaignStoreProtocol {
     func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
             self.campaignService.getCampaignsFor(appId: appId).then(execute: { campainModelList in
-                for campaignModel in campainModelList {
-                    UBCampaignDAO.shared.create(campaignModel)
-                    PLog("campaign identifier : \(campaignModel.identifier)")
+                if campainModelList.count == 0 {
+                    return fulfill(campainModelList)
                 }
-                fulfill(campainModelList)
-                return
+                var count = 0
+                for campaignModel in campainModelList {
+                    // load targetings
+                    self.campaignService.getTargetingForCampaign(id: campaignModel.identifier).then(execute: { result in
+                        if result.hasChanged {
+                            campaignModel.rule = result.value
+                        }
+                        // persist campaign even if targetting hasn't changed
+                        UBCampaignDAO.shared.create(campaignModel)
+                        count += 1
+                        if count == campainModelList.count {
+                            fulfill(campainModelList)
+                            return
+                        }
+                    }).catch(execute: { _ in
+                        count += 1
+                        if count == campainModelList.count {
+                            fulfill(campainModelList)
+                            return
+                        }
+                    })
+                }
             }).catch(execute: { error in
                 PLog("Error loading campaigns :\(error.localizedDescription)")
                 let cachedCampaigns = UBCampaignDAO.shared.readAll()
@@ -43,11 +61,5 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 reject(error)
             })
         }
-    }
-
-    func getTargeting(withId id: String) -> Promise<Rule> {
-        return campaignService.getTargeting(withId: id).then(execute: { rule in
-            PLog(rule.ruleID)
-        })
     }
 }
