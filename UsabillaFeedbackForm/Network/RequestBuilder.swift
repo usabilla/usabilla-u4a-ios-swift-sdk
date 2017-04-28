@@ -90,12 +90,12 @@ class RequestBuilder {
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestGetCampaignsfor(appId id: String) -> URLRequest {
+    class func requestGetCampaignsFor(appId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignsForAppId, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestGetTargetingFor(campaignId id: String) -> URLRequest {
+    class func requestGetTargeting(withId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .targetingForCampaignId, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
     }
