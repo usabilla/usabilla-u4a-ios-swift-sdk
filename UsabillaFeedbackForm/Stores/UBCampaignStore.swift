@@ -10,7 +10,7 @@ import Foundation
 
 protocol UBCampaignStoreProtocol {
     func getCampaigns(appId: String) -> Promise<[CampaignModel]>
-    func getTargetingForCampaign(id: String) -> Promise<Rule>
+    func getTargeting(withId id: String) -> Promise<Rule>
 }
 
 class UBCampaignStore: UBCampaignStoreProtocol {
@@ -45,8 +45,8 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         }
     }
 
-    func getTargetingForCampaign(id: String) -> Promise<Rule> {
-        return campaignService.getTargetingForCampaign(id: id).then(execute: { rule in
+    func getTargeting(withId id: String) -> Promise<Rule> {
+        return campaignService.getTargeting(withId: id).then(execute: { rule in
             PLog(rule.ruleID)
         })
     }

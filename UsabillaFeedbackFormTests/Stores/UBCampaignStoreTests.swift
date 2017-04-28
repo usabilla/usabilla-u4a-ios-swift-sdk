@@ -80,7 +80,7 @@ class UBCampaignStoreTests: QuickSpec {
 
                 it("should ") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getTargetingForCampaign(id: "")
+                        let promise = store.getTargeting(withId: "")
                         promise.then { _ in
                             done()
                         }.catch { _ in

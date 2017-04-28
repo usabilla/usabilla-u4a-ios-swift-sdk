@@ -47,7 +47,7 @@ class EventEngineTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
 
@@ -61,7 +61,7 @@ class EventEngineTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
 
@@ -76,7 +76,7 @@ class EventEngineTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
 

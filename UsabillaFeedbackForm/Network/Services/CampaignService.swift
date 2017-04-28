@@ -52,7 +52,7 @@ class CampaignService {
         }
     }
 
-    func getTargetingForCampaign(id: String) -> Promise<Rule> {
+    func getTargeting(withId id: String) -> Promise<Rule> {
         let request = requestBuilder.requestGetTargetingFor(campaignId: id)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, completion: { response in

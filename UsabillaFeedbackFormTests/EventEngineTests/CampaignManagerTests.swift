@@ -22,12 +22,12 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
         }
     }
 
-    func getTargetingForCampaign(id: String) -> Promise<Rule> {
+    func getTargeting(withId id: String) -> Promise<Rule> {
         return Promise { fulfill, reject in
-            let searchCampaign = self.campaigns.first {
-                $0.identifier == id
+            let searchCampaignTargeting = self.campaigns.first {
+                $0.targetingId == id
             }
-            if let campaign = searchCampaign {
+            if let campaign = searchCampaignTargeting {
                 if let rule = campaign.rule {
                     return fulfill(rule)
                 }
@@ -54,7 +54,7 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(0))
                 }
                 it("should return affect 1 campaign to the eventEngine when the campaign has not limit display") {
-                    let campaignModel = CampaignModel(id: "testid", json: JSON.parse(""))
+                    let campaignModel = CampaignModel(id: "testid", json: JSON.parse("{\"targeting_options_id\" : \"tid\"}"))
                     expect(campaignModel.maximumDisplays).to(equal(0))
                     storeMock.campaigns = [campaignModel]
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
@@ -87,7 +87,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     campaigns.forEach {
@@ -110,7 +110,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     campaigns.forEach {
@@ -130,7 +130,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     campaigns.forEach {
@@ -155,8 +155,8 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", rule: rule, formId: "", maximumDisplays: 0, version: 0)
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
+                        CampaignModel(id: "b", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0)
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
@@ -185,7 +185,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", maximumDisplays: 0, version: 0)
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0)
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)

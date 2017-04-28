@@ -20,7 +20,7 @@ class CampaignManager {
         campaignStore.getCampaigns(appId: appId).then { campaigns in
             var count = 0
             for campaign in campaigns {
-                campaignStore.getTargetingForCampaign(id: campaign.identifier).then(execute: { rule in
+                campaignStore.getTargeting(withId: campaign.targetingId).then(execute: { rule in
                     campaign.rule = rule
                     UBCampaignDAO.shared.create(campaign)
                     count += 1
