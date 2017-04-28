@@ -23,12 +23,17 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
     }
 
     func getTargetingForCampaign(id: String) -> Promise<Rule> {
-        return Promise { fulfill, _ in
-            let leaf = LeafRule(event: Event(name: "foo"))
-            let leaf2 = LeafRule(event: Event(name: "bar"))
-            let rule = AndRule(childRules: [leaf, leaf2])
-
-            fulfill(rule)
+        return Promise { fulfill, reject in
+            let searchCampaign = self.campaigns.first {
+                $0.identifier == id
+            }
+            if let campaign = searchCampaign {
+                if let rule = campaign.rule {
+                    return fulfill(rule)
+                }
+                return fulfill(LeafRule(event: Event(name: "test")))
+            }
+            reject(NSError(domain: "not found", code: 0, userInfo: nil))
         }
     }
 }
