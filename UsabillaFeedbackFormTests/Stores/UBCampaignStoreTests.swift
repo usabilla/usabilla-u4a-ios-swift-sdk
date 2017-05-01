@@ -33,7 +33,7 @@ class UBCampaignStoreTests: QuickSpec {
 
                 it("should return the correct data") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaigns(appId: "")
+                        let promise = store.getCampaigns(withAppId: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(0))
                             done()
@@ -46,7 +46,7 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return the correct data when result contains one Campain") {
                     UBHTTPMockSuccess.self.result = [CampaignModel(id: "", json: JSON(""))]
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaigns(appId: "")
+                        let promise = store.getCampaigns(withAppId: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(1))
                             done()
@@ -63,7 +63,7 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should return an error") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaigns(appId: "")
+                        let promise = store.getCampaigns(withAppId: "")
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { _ in

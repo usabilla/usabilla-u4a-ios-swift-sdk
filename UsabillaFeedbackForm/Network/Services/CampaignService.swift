@@ -67,7 +67,7 @@ class CampaignService {
             self.httpClient.request(request: request, responseQueue: nil, completion: { response in
                 if let jsonData = response.data {
                     let json = JSON(jsonData).dictionary
-                    PLog("targeting for campaign id : \(id) :\n \(String(describing: json))")
+                    PLog("targeting for id : \(id) :\n \(String(describing: json))")
                     let rule = ConcreteRule(type: RuleType.leaf, childRules: [])
                     let cachable: Cachable<Rule> = Cachable(value: rule, hasChanged: response.isChanged)
                     fulfill(cachable) // TO DO: parse the targetting here

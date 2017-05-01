@@ -16,7 +16,7 @@ import Nimble
 class CampaignStoreMock: UBCampaignStoreProtocol {
     var campaigns = [CampaignModel]()
     var onSaveCalled: ((CampaignModel) -> Void)?
-    func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
+    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, _ in
             fulfill(self.campaigns)
         }

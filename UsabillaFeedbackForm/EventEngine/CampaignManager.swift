@@ -17,7 +17,7 @@ class CampaignManager {
         self.campaignStore = campaignStore
         self.eventEngine = EventEngine(campaigns: [])
 
-        campaignStore.getCampaigns(appId: appId).then { campaigns in
+        campaignStore.getCampaigns(withAppId: appId).then { campaigns in
             self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
         }
     }

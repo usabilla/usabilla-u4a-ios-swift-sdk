@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UBCampaignStoreProtocol {
-    func getCampaigns(appId: String) -> Promise<[CampaignModel]>
+    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]>
 }
 
 class UBCampaignStore: UBCampaignStoreProtocol {
@@ -23,7 +23,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
     /**
      - returns: a promise of CampaignModel array
      */
-    func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
+    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
             self.campaignService.getCampaigns(withAppId: appId).then(execute: { campainModelList in
                 if campainModelList.count == 0 {
