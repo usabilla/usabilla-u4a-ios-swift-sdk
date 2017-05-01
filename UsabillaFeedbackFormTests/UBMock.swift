@@ -36,3 +36,11 @@ class UBHTTPMockSuccess: HTTPClientProtocol {
         completion(HTTPClientResponse(data: result, error: nil, success: true))
     }
 }
+
+class UBHTTPMock: HTTPClientProtocol {
+    // inject your expected response to be tested
+    static var response: HTTPClientResponse!
+    static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
+        completion(response)
+    }
+}
