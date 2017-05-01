@@ -8,7 +8,7 @@
 
 class Cachable<T> {
     let value: T
-    let hasChanged: Bool
+    let hasChanged: Bool // if etag is different set to true
     init(value: T, hasChanged: Bool) {
         self.value = value
         self.hasChanged = hasChanged
