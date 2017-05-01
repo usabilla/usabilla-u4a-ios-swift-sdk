@@ -38,8 +38,8 @@ class CampaignService {
         }
     }
 
-    func getCampaignsFor(appId id: String) -> Promise<[CampaignModel]> {
-        let request = requestBuilder.requestGetCampaignsFor(appId: id)
+    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
+        let request = requestBuilder.requestGetCampaigns(withAppId: appId)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
                 if let json = response.data {
@@ -61,7 +61,7 @@ class CampaignService {
         }
     }
 
-    func getTargetingForCampaign(id: String) -> Promise<Cachable<Rule>> {
+    func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
         let request = requestBuilder.requestGetTargeting(withId: id)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, completion: { response in

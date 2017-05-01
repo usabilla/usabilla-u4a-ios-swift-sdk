@@ -25,14 +25,14 @@ class UBCampaignStore: UBCampaignStoreProtocol {
      */
     func getCampaigns(appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
-            self.campaignService.getCampaignsFor(appId: appId).then(execute: { campainModelList in
+            self.campaignService.getCampaigns(withAppId: appId).then(execute: { campainModelList in
                 if campainModelList.count == 0 {
                     return fulfill(campainModelList)
                 }
                 var count = 0
                 for campaignModel in campainModelList {
                     // load targetings
-                    self.campaignService.getTargetingForCampaign(id: campaignModel.identifier).then(execute: { result in
+                    self.campaignService.getTargeting(withId: campaignModel.identifier).then(execute: { result in
                         if result.hasChanged {
                             campaignModel.rule = result.value
                         }

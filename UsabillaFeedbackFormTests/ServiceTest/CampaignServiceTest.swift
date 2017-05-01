@@ -35,10 +35,10 @@ class CampaignServiceTest: QuickSpec {
                 }
             }
 
-            context("When getCampaignsFor is called") {
+            context("When getCampaigns is called") {
                 it("should succeed if request succeeds") {
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignsFor(appId: "appid").then { _ in
+                        CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaigns(withAppId: "appid").then { _ in
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -47,7 +47,7 @@ class CampaignServiceTest: QuickSpec {
                 }
                 it("should fail if request fails") {
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockFail.self).getCampaignsFor(appId: "appid").then { _ in
+                        CampaignService(httpClient: UBHTTPMockFail.self).getCampaigns(withAppId: "appid").then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()
@@ -56,10 +56,10 @@ class CampaignServiceTest: QuickSpec {
                 }
             }
 
-            context("When getTargetingForCampaign is called") {
+            context("When getTargeting is called") {
                 it("should succeed if request succeeds") {
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockSuccess.self).getTargetingForCampaign(id: "campId").then { _ in
+                        CampaignService(httpClient: UBHTTPMockSuccess.self).getTargeting(withId: "tid").then { _ in
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -68,7 +68,7 @@ class CampaignServiceTest: QuickSpec {
                 }
                 it("should fail if request fails") {
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockFail.self).getTargetingForCampaign(id: "campId").then { _ in
+                        CampaignService(httpClient: UBHTTPMockFail.self).getTargeting(withId: "tid").then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()

@@ -90,8 +90,8 @@ class RequestBuilder {
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestGetCampaignsFor(appId id: String) -> URLRequest {
-        let url = buildURL(withEndpoint: .campaignsForAppId, withURLParam: id)
+    class func requestGetCampaigns(withAppId appId: String) -> URLRequest {
+        let url = buildURL(withEndpoint: .campaignsForAppId, withURLParam: appId)
         return requestForGet(withURL: url) as URLRequest
     }
 
