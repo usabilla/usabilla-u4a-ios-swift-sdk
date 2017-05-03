@@ -18,7 +18,7 @@ struct HTTPClientResponse {
     let error: NSError?
     let success: Bool
     let isChanged: Bool
-    
+
     init(data: Any?, error: NSError?, success: Bool = false, isChanged: Bool = false) {
         self.data = data
         self.error = error

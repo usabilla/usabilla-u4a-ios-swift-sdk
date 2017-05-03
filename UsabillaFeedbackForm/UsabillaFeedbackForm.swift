@@ -97,7 +97,7 @@ open class UsabillaFeedbackForm {
     }
 
     open class func showCampaign(formJson: JSON) {
-        let campaign = CampaignModel(id: "", json: JSON.parse(""))
+        let campaign = CampaignModel(id: "", json: JSON.init(parseJSON: ""))
         let formModel = FormModel(json: formJson, id: "", screenshot: nil)
         campaign.form = formModel
         CampaignWindow.shared.showCampaign(campaign)
