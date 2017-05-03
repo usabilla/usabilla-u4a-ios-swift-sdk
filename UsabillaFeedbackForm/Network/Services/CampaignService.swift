@@ -38,7 +38,7 @@ class CampaignService {
         }
     }
 
-    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
+    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>> {
         let request = requestBuilder.requestGetCampaigns(withAppId: appId)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
@@ -53,7 +53,8 @@ class CampaignService {
                             campaigns.append(model)
                         }
                     }
-                    fulfill(campaigns)
+                    let cachabelResult: Cachable<[CampaignModel]> = Cachable(value: campaigns, hasChanged: response.isChanged)
+                    fulfill(cachabelResult)
                     return
                 }
                 reject(response.error!)
