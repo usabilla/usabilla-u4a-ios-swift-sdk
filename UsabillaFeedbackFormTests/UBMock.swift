@@ -44,3 +44,40 @@ class UBHTTPMock: HTTPClientProtocol {
         completion(response)
     }
 }
+
+class UBCampaignServiceMock: CampaignServiceProtocol {
+
+    var campaignsResponse: Cachable<[CampaignModel]>?
+    var targetingResponse: Cachable<Rule>?
+
+    let requestBuilder: RequestBuilder.Type
+    let httpClient: HTTPClientProtocol.Type
+
+    init(requestBuilder: RequestBuilder.Type = RequestBuilder.self, httpClient: HTTPClientProtocol.Type = HTTPClient.self) {
+        self.requestBuilder = requestBuilder
+        self.httpClient = httpClient
+    }
+
+    func getCampaignForm(withId id: String) -> Promise<FormModel> {
+        return Promise { _, _ in
+        }
+    }
+
+    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>> {
+        return Promise { fulfill, reject in
+            if campaignsResponse != nil {
+                return fulfill(campaignsResponse!)
+            }
+            reject(NSError(domain: "", code: 500, userInfo: nil))
+        }
+    }
+
+    func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
+        return Promise { fulfill, reject in
+            if targetingResponse != nil {
+                return fulfill(targetingResponse!)
+            }
+            reject(NSError(domain: "", code: 500, userInfo: nil))
+        }
+    }
+}
