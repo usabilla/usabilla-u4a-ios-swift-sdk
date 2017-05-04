@@ -12,7 +12,7 @@
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044204E11DD07A3B004FA09F /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		044204E21DD07A68004FA09F /* UsabillaFeedbackForm.swift in Headers */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		0445F87B1EA8BD86007704D5 /* CampaignServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445F87A1EA8BD86007704D5 /* CampaignServiceTest.swift */; };
+		0445F87B1EA8BD86007704D5 /* CampaignServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */; };
 		0445F87F1EA8C97C007704D5 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */; };
 		044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E68161DD3777A00CE75E1 /* PerformanceTest.swift */; };
 		044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044E68191DD37FA200CE75E1 /* testAssets.xcassets */; };
@@ -235,7 +235,7 @@
 /* Begin PBXFileReference section */
 		040C97DC1EA6527200A59C95 /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
-		0445F87A1EA8BD86007704D5 /* CampaignServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTest.swift; sourceTree = "<group>"; };
+		0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTests.swift; sourceTree = "<group>"; };
 		0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
 		044E68161DD3777A00CE75E1 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
@@ -514,7 +514,7 @@
 		0445F8791EA8BD5D007704D5 /* ServiceTest */ = {
 			isa = PBXGroup;
 			children = (
-				0445F87A1EA8BD86007704D5 /* CampaignServiceTest.swift */,
+				0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */,
 			);
 			path = ServiceTest;
 			sourceTree = "<group>";
@@ -1414,7 +1414,7 @@
 				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
-				0445F87B1EA8BD86007704D5 /* CampaignServiceTest.swift in Sources */,
+				0445F87B1EA8BD86007704D5 /* CampaignServiceTests.swift in Sources */,
 				431F6B001E9E4BCD00D5BF17 /* UBFileStorageDAOTests.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,
