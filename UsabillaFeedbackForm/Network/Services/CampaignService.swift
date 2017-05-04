@@ -15,7 +15,16 @@ class Cachable<T> {
     }
 }
 
-class CampaignService {
+protocol CampaignServiceProtocol {
+    var requestBuilder: RequestBuilder.Type { get }
+    var httpClient: HTTPClientProtocol.Type { get }
+
+    func getCampaignForm(withId id: String) -> Promise<FormModel>
+    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>>
+    func getTargeting(withId id: String) -> Promise<Cachable<Rule>>
+}
+
+class CampaignService: CampaignServiceProtocol {
 
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
@@ -48,7 +57,7 @@ class CampaignService {
                     // loop through and create CampaignModels
                     if let campaignsArray = JSON(json).array {
                         for campaignJson in campaignsArray {
-                            let id = campaignJson["campId"].stringValue // TO DO: update this property when json is ready
+                            let id = campaignJson["identifier"].stringValue // TO DO: update this property when json is ready
                             let model = CampaignModel(id: id, json: campaignJson)
                             campaigns.append(model)
                         }

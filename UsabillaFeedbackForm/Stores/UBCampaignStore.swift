@@ -14,9 +14,9 @@ protocol UBCampaignStoreProtocol {
 
 class UBCampaignStore: UBCampaignStoreProtocol {
 
-    let campaignService: CampaignService
+    let campaignService: CampaignServiceProtocol
 
-    init(service: CampaignService) {
+    init(service: CampaignServiceProtocol) {
         self.campaignService = service
     }
 
@@ -31,20 +31,20 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 let cachedCampaignsList = UBCampaignDAO.shared.readAll()
 
                 // nothing has changed, return the cached campaigns list
-                if !hasChanged {
-                    return fulfill(cachedCampaignsList)
+                if !hasChanged {//
+                    return fulfill(cachedCampaignsList)//
                 }
 
-                let campainModelList = cachableCampainModels.value
-                if campainModelList.count == 0 {
+                let campaignModelList = cachableCampainModels.value
+                if campaignModelList.count == 0 {//
                     UBCampaignDAO.shared.deleteAll()
-                    return fulfill(campainModelList)
+                    return fulfill(campaignModelList)//
                 }
                 // if something has changed
                 // loop over Cached campaigns and delete ones that does not exist in new list
                 for cachedCampaign in cachedCampaignsList {
                     var found = false
-                    for newCampaign in campainModelList where cachedCampaign.identifier == newCampaign.identifier {
+                    for newCampaign in campaignModelList where cachedCampaign.identifier == newCampaign.identifier {
                         found = true
                     }
                     if !found {
@@ -55,7 +55,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 // counter of how many trigger requests are done.
                 // fulfill only if count == campaignModelList.count
                 var count = 0
-                for campaignModel in campainModelList {
+                for campaignModel in campaignModelList {
                     // load targetings
                     self.campaignService.getTargeting(withId: campaignModel.targetingId).then(execute: { result in
                         if result.hasChanged {
@@ -68,8 +68,8 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                         UBCampaignDAO.shared.create(campaignModel)
                         // increment counter and fulfill if all requests are done
                         count += 1
-                        if count == campainModelList.count {
-                            fulfill(campainModelList)
+                        if count == campaignModelList.count {
+                            fulfill(campaignModelList)
                             return
                         }
                     }).catch(execute: { _ in
@@ -78,9 +78,8 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                         UBCampaignDAO.shared.create(campaignModel)
 
                         count += 1
-                        if count == campainModelList.count {
-                            fulfill(campainModelList)
-                            return
+                        if count == campaignModelList.count {
+                            fulfill(campaignModelList)
                         }
                     })
                 }
