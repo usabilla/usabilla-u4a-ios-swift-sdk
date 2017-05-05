@@ -31,8 +31,7 @@ class ChoiceFieldModel: OptionsFieldModel {
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || isChoiceValueValid()
-        return isModelValid
+        return !required || isChoiceValueValid()
     }
 
     override func convertToJSON() -> Any? {

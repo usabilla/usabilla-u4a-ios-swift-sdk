@@ -17,24 +17,13 @@ class RootCellView: UITableViewCell {
 
     var cellViewModel: CellViewModel! {
         didSet {
-            let visible = cellViewModel.shouldAppear
+            let visible = cellViewModel.isViewCurrentlyVisible
             isHidden = !visible
             isUserInteractionEnabled = visible
-            isCurrentlyDisplayed = visible
             updateView()
             applyCustomisations()
             updateValidStatus()
         }
-    }
-
-    var isCurrentlyDisplayed = false {
-        didSet {
-            isCurrentlyDisplayedChanged()
-        }
-    }
-
-    func isCurrentlyDisplayedChanged() {
-        cellViewModel.isViewCurrentlyVisible = isCurrentlyDisplayed
     }
 
     let errorLabelHeightConstraint: NSLayoutConstraint

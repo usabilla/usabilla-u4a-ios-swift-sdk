@@ -217,20 +217,16 @@ extension PageController: UITableViewDataSource {
 extension PageController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && !viewModel.viewModelForCellAt(index: indexPath.row)!.shouldAppear {
-            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
-                cell.isCurrentlyDisplayed = false
-            }
-            return 0
-        } else if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            let cellViewModel = viewModel.viewModelForCellAt(index: indexPath.row)
+            cellViewModel?.updateVisibility()
+            return cellViewModel?.isViewCurrentlyVisible == false ? 0 : UITableViewAutomaticDimension
+        }
+        if indexPath.section == 1 {
             let emptySpace = tableViewContentHeight()
             return emptySpace < footerHeight ? footerHeight : emptySpace
-        } else {
-            if let cell = tableView.cellForRow(at: indexPath) as? RootCellView {
-                cell.isCurrentlyDisplayed = true
-            }
-            return UITableViewAutomaticDimension
         }
+        return UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

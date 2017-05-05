@@ -23,37 +23,17 @@ class IntFieldModelTest: QuickSpec {
                 expect(model).toNot(beNil())
             }
 
-            it("IntFieldModel isViewCurrentlyVisible") {
-                model?.fieldValue = 13
-
-                model?.isViewCurrentlyVisible = true
-                expect(model?.fieldValue).to(equal(13))
-
-                model?.isViewCurrentlyVisible = false
-                expect(model?.fieldValue).to(beNil())
-            }
-
             it("IntFieldModel fieldValue") {
-                model?.isViewCurrentlyVisible = true
                 model?.fieldValue = 15
                 expect(pageModel.fieldValuesCollection["myField"]?.first).to(equal("15"))
             }
 
             it("StringField isValid") {
                 model?.fieldValue = nil
-
-                model?.isViewCurrentlyVisible = false
-                model?.required = true
-                expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = true
                 expect(model?.isValid()).to(beFalse())
-
                 model?.fieldValue = 15
                 expect(model?.isValid()).to(beTrue())
             }

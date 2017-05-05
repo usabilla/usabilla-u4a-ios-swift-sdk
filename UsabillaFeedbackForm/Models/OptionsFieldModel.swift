@@ -10,18 +10,14 @@ import Foundation
 
 class OptionsFieldModel: BaseFieldModel {
 
-    override var isViewCurrentlyVisible: Bool {
-        didSet {
-            if isViewCurrentlyVisible == false {
-                fieldValue = []
-            }
-        }
-    }
-
     var options: [Options]
     var fieldValue: [String] = [] {
         didSet {
-            pageModel.fieldValuesCollection[fieldId] = fieldValue
+            if fieldValue.count > 0 {
+                pageModel.fieldValuesCollection[fieldId] = fieldValue
+                return
+            }
+            pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
         }
     }
 
@@ -35,11 +31,14 @@ class OptionsFieldModel: BaseFieldModel {
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || fieldValue.count > 0
-        return isModelValid
+        return !required || fieldValue.count > 0
     }
 
     override func convertToJSON() -> Any? {
         return fieldValue.count > 0 ? fieldValue : nil
+    }
+
+    override func reset() {
+        fieldValue = []
     }
 }

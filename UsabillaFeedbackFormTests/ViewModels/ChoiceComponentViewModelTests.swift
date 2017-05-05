@@ -6,13 +6,14 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
 @testable import UsabillaFeedbackForm
 
 class ChoiceComponentViewModelTests: QuickSpec {
-    // swiftlint:disable function_body_length
     override func spec() {
 
         var viewModelEmpty: ChoiceComponentViewModel!
@@ -42,23 +43,25 @@ class ChoiceComponentViewModelTests: QuickSpec {
         }
 
         describe("the validation method") {
+            it("Should validate if not required") {
+                model.required = false
+                model.fieldValue = []
+                expect(viewModel.model.isValid()).to(beTrue())
+            }
             it("Should not validate empty string") {
                 model.required = true
-                model.isViewCurrentlyVisible = true
                 model.fieldValue = [""]
                 expect(viewModel.model.isValid()).to(beFalse())
             }
 
             it("Should not validate nil values") {
                 model.required = true
-                model.isViewCurrentlyVisible = true
                 model.fieldValue = []
                 expect(viewModel.model.isValid()).to(beFalse())
             }
 
             it("Should validate strings") {
                 model.required = true
-                model.isViewCurrentlyVisible = true
                 model.fieldValue = ["a"]
                 expect(viewModel.model.isValid()).to(beTrue())
             }

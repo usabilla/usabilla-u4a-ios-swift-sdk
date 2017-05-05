@@ -17,8 +17,7 @@ class EmailFieldModel: StringFieldModel, EditableStringComponentModel {
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || (fieldValue != nil && fieldValue!.characters.count > 0 && isValidEmail(testStr: fieldValue!))
-        return isModelValid
+        return !required || (fieldValue != nil && fieldValue!.characters.count > 0 && isValidEmail(testStr: fieldValue!))
     }
 
     func isValidEmail(testStr: String) -> Bool {
@@ -26,5 +25,4 @@ class EmailFieldModel: StringFieldModel, EditableStringComponentModel {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
-
 }

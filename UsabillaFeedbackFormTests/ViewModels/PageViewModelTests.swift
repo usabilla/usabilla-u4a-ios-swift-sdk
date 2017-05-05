@@ -36,7 +36,7 @@ class PageViewModelTests: QuickSpec {
                     expect(viewModel.errorMessage).to(equal(pageModel.errorMessage))
                     expect(viewModel.numberOfCells).to(equal(6))
                     expect(viewModel.name).to(equal("start"))
-                    expect(viewModel.indexOfInvalidField()).to(beNil())
+                    expect(viewModel.indexOfInvalidField()).to(equal(0))
                 }
             }
 

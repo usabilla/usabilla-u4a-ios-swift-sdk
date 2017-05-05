@@ -10,12 +10,10 @@ import Foundation
 
 class BaseFieldModel: FieldModelProtocol, ComponentModel {
 
-    var isViewCurrentlyVisible = false
     unowned var pageModel: PageModel
     var fieldId: String
     var fieldTitle: String
     var required: Bool
-    var isModelValid: Bool = true
     var type: String
     var rule: ShowHideRule?
 
@@ -32,8 +30,14 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
         return nil
     }
 
+    /**
+    Reset the model value to a nil or empty value
+    */
+    func reset() {
+        fatalError("reset has not been implemented")
+    }
+
     func isValid() -> Bool {
-        isModelValid = false
         return false
     }
 

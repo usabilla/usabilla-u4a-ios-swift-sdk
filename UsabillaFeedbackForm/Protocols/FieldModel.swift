@@ -9,8 +9,6 @@
 import Foundation
 
 protocol FieldModelProtocol {
-
-    var isViewCurrentlyVisible: Bool {set get}
     unowned var pageModel: PageModel {set get}
     var fieldId: String {set get}
     var fieldTitle: String {set get}
@@ -18,10 +16,10 @@ protocol FieldModelProtocol {
 
     var type: String {set get}
     var rule: ShowHideRule? {set get}
-    var isModelValid: Bool {set get}
 
     func isValid() -> Bool
     func convertToJSON() -> Any?
+    func reset()
 }
 
 struct Options {

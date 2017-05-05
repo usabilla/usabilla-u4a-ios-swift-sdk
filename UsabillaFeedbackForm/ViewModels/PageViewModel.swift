@@ -31,8 +31,8 @@ class PageViewModel: UBPageViewModel {
     }
 
     var isCorrectlyFilled: Bool {
-        return model.fields.filter {
-            !$0.isValid()
+        return cellViewModels.filter {
+            !$0.isValid
         }.count == 0
     }
 

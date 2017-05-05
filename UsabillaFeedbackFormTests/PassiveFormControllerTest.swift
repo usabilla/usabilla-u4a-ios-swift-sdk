@@ -48,8 +48,30 @@ class PassiveFormControllerTest: QuickSpec {
 
         context("When canceling the form at the end page") {
             it("should create a feedback result") {
+
+                let vm = viewController.viewModel.currentPageViewModel
+                expect(vm.isCorrectlyFilled).to(beFalse())
+                let moodVM = vm.cellViewModels.first {
+                    $0.componentViewModel is MoodComponentViewModel
+                }?.componentViewModel as? MoodComponentViewModel
+
+                moodVM?.value = 2
+
+                let npsVM = vm.cellViewModels.first {
+                    $0.componentViewModel is SliderComponentViewModel
+                }?.componentViewModel as? SliderComponentViewModel
+
+                npsVM?.value = 2
+                expect(viewController.viewModel.currentPageIndex).to(equal(0))
+                expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                expect(viewController.viewModel.currentPageIndex).to(equal(1))
+                expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                expect(viewController.viewModel.currentPageIndex).to(equal(2))
+                expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
+                viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                expect(viewController.viewModel.currentPageIndex).to(equal(3))
                 expect(viewController.thankYouController).toNot(beNil())
 
                 UsabillaFeedbackForm.delegate = self

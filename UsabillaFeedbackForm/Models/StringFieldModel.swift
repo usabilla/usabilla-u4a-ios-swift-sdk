@@ -10,19 +10,13 @@ import Foundation
 
 class StringFieldModel: BaseFieldModel, StringComponentModel {
 
-    override var isViewCurrentlyVisible: Bool {
-        didSet {
-            if isViewCurrentlyVisible == false {
-                fieldValue = nil
-            }
-        }
-    }
-
     var fieldValue: String? {
         didSet {
-            if fieldValue != nil {
-                pageModel.fieldValuesCollection[fieldId] = [fieldValue!]
+            if let value = fieldValue {
+                pageModel.fieldValuesCollection[fieldId] = [value]
+                return
             }
+            pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
         }
     }
 
@@ -32,11 +26,14 @@ class StringFieldModel: BaseFieldModel, StringComponentModel {
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || (fieldValue != nil && fieldValue!.characters.count > 0)
-        return isModelValid
+        return !required || (fieldValue != nil && fieldValue!.characters.count > 0)
     }
 
     override func convertToJSON() -> Any? {
         return fieldValue
+    }
+
+    override func reset() {
+        fieldValue = nil
     }
 }

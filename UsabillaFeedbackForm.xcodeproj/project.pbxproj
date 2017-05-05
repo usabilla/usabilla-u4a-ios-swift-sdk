@@ -147,6 +147,7 @@
 		4390C0F61E97BEFC00092977 /* UBCampaignDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */; };
 		43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */; };
 		43A838DC1E2E137A00110916 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */; };
+		43A916E01ED868EA000A8873 /* CellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A916DF1ED868EA000A8873 /* CellViewModelTests.swift */; };
 		43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
 		43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
 		43AE0AEA1E82B9A500B1441C /* CampaignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */; };
@@ -388,6 +389,7 @@
 		4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignDAO.swift; sourceTree = "<group>"; };
 		43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaThemeConfiguratorTest.swift; sourceTree = "<group>"; };
 		43A838DB1E2E137A00110916 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
+		43A916DF1ED868EA000A8873 /* CellViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModelTests.swift; sourceTree = "<group>"; };
 		43AC10B01E1D095C0064D758 /* PathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		43AC10B21E1D09880064D758 /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewModel.swift; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 				C59C823F1E8914C200840D4E /* CampaignViewModelTests.swift */,
 				436264151E93A03200A0533C /* UBFormViewModelTests.swift */,
 				436264171E93F06E00A0533C /* UBEndPageViewModelTests.swift */,
+				43A916DF1ED868EA000A8873 /* CellViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1375,6 +1378,7 @@
 				433F1EC71EAE1F8000E4BBFA /* EventEngineTests.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
 				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,
+				43A916E01ED868EA000A8873 /* CellViewModelTests.swift in Sources */,
 				436264161E93A03200A0533C /* UBFormViewModelTests.swift in Sources */,
 				436264181E93F06E00A0533C /* UBEndPageViewModelTests.swift in Sources */,
 				434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */,

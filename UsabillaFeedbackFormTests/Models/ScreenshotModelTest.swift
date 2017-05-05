@@ -43,24 +43,10 @@ class ScreenshotModelTest: QuickSpec {
 
             it("StringField isValid") {
                 model?.image = nil
-
-                model?.isViewCurrentlyVisible = false
-                model?.required = true
-                expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = true
                 expect(model?.isValid()).to(beFalse())
-
-                expect(model?.isValid()).to(beFalse())
-
-                model?.image = nil
-                expect(model?.isValid()).to(beFalse())
-
                 model?.image = UIImage()
                 expect(model?.isValid()).to(beTrue())
             }

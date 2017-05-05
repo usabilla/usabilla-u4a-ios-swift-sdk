@@ -25,7 +25,10 @@ class ScreenshotModel: BaseFieldModel, ImageComponentModel {
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || image != nil
-        return isModelValid
+        return !required || image != nil
+    }
+
+    override func reset() {
+        image = nil
     }
 }

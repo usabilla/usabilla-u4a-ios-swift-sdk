@@ -40,7 +40,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.textOnAccentColor))
                     expect(formViewModel.cancelButtonTitle).to(beNil())
                     expect(formViewModel.showCancelButton).to(beFalse())
-                    expect(formViewModel.isCurrentPageValid).to(beTrue()) // should be false but this needs refactoring isViewCurrentlyVisible
+                    expect(formViewModel.isCurrentPageValid).to(beFalse())
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))
                     expect(formViewModel.endPageViewModel).to(beNil())
@@ -124,7 +124,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
                     expect(formViewModel.cancelButtonTitle).to(beNil())
                     expect(formViewModel.showCancelButton).to(beFalse())
-                    expect(formViewModel.isCurrentPageValid).to(beTrue()) // should be false but this needs refactoring isViewCurrentlyVisible
+                    expect(formViewModel.isCurrentPageValid).to(beFalse())
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))
                     expect(formViewModel.endPageViewModel).to(beNil())

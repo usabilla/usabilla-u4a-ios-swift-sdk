@@ -10,19 +10,13 @@ import Foundation
 
 class IntFieldModel: BaseFieldModel {
 
-    override var isViewCurrentlyVisible: Bool {
-        didSet {
-            if isViewCurrentlyVisible == false {
-                fieldValue = nil
-            }
-        }
-    }
-
     var fieldValue: Int? {
         didSet {
             if let value = fieldValue {
                 pageModel.fieldValuesCollection[fieldId] = [String(value)]
+                return
             }
+            pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
         }
     }
 
@@ -32,12 +26,14 @@ class IntFieldModel: BaseFieldModel {
     }
 
     override func isValid() -> Bool {
-        isModelValid = !isViewCurrentlyVisible || !required || fieldValue != nil
-        return isModelValid
+        return !required || fieldValue != nil
     }
 
     override func convertToJSON() -> Any? {
         return fieldValue
     }
 
+    override func reset() {
+        fieldValue = nil
+    }
 }

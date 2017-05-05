@@ -23,18 +23,7 @@ class OptionsFieldModelTest: QuickSpec {
                 expect(model).toNot(beNil())
             }
 
-            it("OptionsFieldModel isViewCurrentlyVisible") {
-                model?.fieldValue = ["test1", "test2"]
-
-                model?.isViewCurrentlyVisible = true
-                expect(model?.fieldValue).to(equal(["test1", "test2"]))
-
-                model?.isViewCurrentlyVisible = false
-                expect(model?.fieldValue).to(beEmpty())
-            }
-
             it("OptionsFieldModel fieldValue") {
-                model?.isViewCurrentlyVisible = true
                 model?.fieldValue = ["test1", "test2"]
                 expect(pageModel.fieldValuesCollection["myField"]).to(equal(["test1", "test2"]))
             }
@@ -42,18 +31,10 @@ class OptionsFieldModelTest: QuickSpec {
             it("OptionsFieldModel isValid") {
                 model?.fieldValue = []
 
-                model?.isViewCurrentlyVisible = false
-                model?.required = true
-                expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = true
                 expect(model?.isValid()).to(beFalse())
-
                 model?.fieldValue = ["hello"]
                 expect(model?.isValid()).to(beTrue())
             }

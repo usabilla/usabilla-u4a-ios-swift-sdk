@@ -18,6 +18,9 @@ class EmailFieldModelTest: QuickSpec {
         var model: EmailFieldModel?
 
         describe("EmailFieldModel") {
+            beforeEach {
+                model = EmailFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+            }
             it("init EmailFieldModel") {
                 model = EmailFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
                 expect(model).toNot(beNil())
@@ -33,24 +36,12 @@ class EmailFieldModelTest: QuickSpec {
 
             it("EmailFieldModel isValid") {
                 model?.fieldValue = nil
-
-                model?.isViewCurrentlyVisible = false
-                model?.required = true
-                expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
-
-                model?.isViewCurrentlyVisible = true
                 model?.required = true
                 expect(model?.isValid()).to(beFalse())
-
-                expect(model?.isValid()).to(beFalse())
-
                 model?.fieldValue = "test"
                 expect(model?.isValid()).to(beFalse())
-
                 model?.fieldValue = "test@test.com"
                 expect(model?.isValid()).to(beTrue())
             }

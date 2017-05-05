@@ -18,17 +18,8 @@ class CellViewModel {
     var componentViewModel: ComponentViewModel?
     var showErrorLabel: Bool = false
 
-    var isViewCurrentlyVisible: Bool {
-        get {
-            return model.isViewCurrentlyVisible
-        }
+    private(set) var isViewCurrentlyVisible = true
 
-        set {
-            if model.isViewCurrentlyVisible != newValue {
-                model.isViewCurrentlyVisible = newValue
-            }
-        }
-    }
     init(model: BaseFieldModel, theme: UsabillaTheme) {
         self.model = model
         self.title = model.fieldTitle
@@ -38,10 +29,27 @@ class CellViewModel {
         componentViewModel = ComponentViewModelFactory.component(field: model, theme: theme)
     }
 
+    func updateVisibility() {
+        let newIsViewCurrentlyVisible = model.shouldAppear()
+        if newIsViewCurrentlyVisible != isViewCurrentlyVisible {
+            isViewCurrentlyVisible = newIsViewCurrentlyVisible
+            if newIsViewCurrentlyVisible == false {
+                PLog("reset")
+                model.reset()
+            }
+        }
+    }
+
     var shouldAppear: Bool {
         return model.shouldAppear()
     }
 
+    var isValid: Bool {
+        if isViewCurrentlyVisible {
+            return model.isValid()
+        }
+        return true
+    }
     func updateErrorLabel() {
         showErrorLabel = required && !model.isValid()
     }
