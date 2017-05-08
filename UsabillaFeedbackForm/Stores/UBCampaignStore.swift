@@ -26,35 +26,35 @@ class UBCampaignStore: UBCampaignStoreProtocol {
     func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
             self.campaignService.getCampaigns(withAppId: appId).then(execute: { cachableCampainModels in
-
-                let hasChanged = cachableCampainModels.hasChanged
                 let cachedCampaignsList = UBCampaignDAO.shared.readAll()
-
-                // nothing has changed, return the cached campaigns list
-                if !hasChanged {//
-                    return fulfill(cachedCampaignsList)//
+                if !cachableCampainModels.hasChanged {
+                    return fulfill(cachedCampaignsList)
                 }
 
                 let campaignModelList = cachableCampainModels.value
-                if campaignModelList.count == 0 {//
+                if campaignModelList.count == 0 {
                     UBCampaignDAO.shared.deleteAll()
-                    return fulfill(campaignModelList)//
+                    return fulfill(campaignModelList)
                 }
-                // if something has changed
-                // loop over Cached campaigns and delete ones that does not exist in new list
+
                 for cachedCampaign in cachedCampaignsList {
-                    var found = false
-                    for newCampaign in campaignModelList where cachedCampaign.identifier == newCampaign.identifier {
-                        found = true
+                    let shouldDeleteCampaign = !campaignModelList.contains {
+                        $0.identifier == cachedCampaign.identifier
                     }
-                    if !found {
+                    if shouldDeleteCampaign {
                         UBCampaignDAO.shared.delete(cachedCampaign)
                     }
                 }
 
-                // counter of how many trigger requests are done.
-                // fulfill only if count == campaignModelList.count
                 var count = 0
+                let doneFetchingTargeting: (_ campaign: CampaignModel) -> Void = { campaign in
+                    UBCampaignDAO.shared.create(campaign)
+                    count += 1
+                    if count == campaignModelList.count {
+                        fulfill(campaignModelList)
+                        return
+                    }
+                }
                 for campaignModel in campaignModelList {
                     // load targetings
                     self.campaignService.getTargeting(withId: campaignModel.targetingId).then(execute: { result in
@@ -64,23 +64,11 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                             let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
                             campaignModel.rule = cachedRule
                         }
-                        // persist campaign even if targetting hasn't changed
-                        UBCampaignDAO.shared.create(campaignModel)
-                        // increment counter and fulfill if all requests are done
-                        count += 1
-                        if count == campaignModelList.count {
-                            fulfill(campaignModelList)
-                            return
-                        }
+                        doneFetchingTargeting(campaignModel)
                     }).catch(execute: { _ in
                         let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
                         campaignModel.rule = cachedRule
-                        UBCampaignDAO.shared.create(campaignModel)
-
-                        count += 1
-                        if count == campaignModelList.count {
-                            fulfill(campaignModelList)
-                        }
+                        doneFetchingTargeting(campaignModel)
                     })
                 }
             }).catch(execute: { error in
