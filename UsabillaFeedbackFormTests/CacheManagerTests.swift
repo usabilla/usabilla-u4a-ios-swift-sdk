@@ -40,13 +40,13 @@ class CacheManagerTests: QuickSpec {
                     let succeeded = CacheManager.shared.cacheForm(id: self.formId, form: self.formModel)
                     expect(succeeded).to(beTrue())
 
-                    let form = CacheManager.shared.getForm(id: self.formId)
+                    let form = CacheManager.shared.getForm(id: self.formId, theme: UsabillaThemeConfigurator())
                     expect(form).toNot(beNil())
                     expect(form?.appId).to(equal(self.formModel.appId))
                     expect(form?.formJsonString).to(equal(self.formModel.formJsonString))
                 })
                 it("should return nil getting a form that does not exist", closure: {
-                    let form = CacheManager.shared.getForm(id: "nonExistingFormID")
+                    let form = CacheManager.shared.getForm(id: "nonExistingFormID", theme: UsabillaThemeConfigurator())
                     expect(form).to(beNil())
                 })
             })
@@ -62,11 +62,11 @@ class CacheManagerTests: QuickSpec {
                     expect(resultRemove).to(beTrue())
 
                     // Should not be able to get it
-                    let form = CacheManager.shared.getForm(id: "formIdToBeRemoved")
+                    let form = CacheManager.shared.getForm(id: "formIdToBeRemoved", theme: UsabillaThemeConfigurator())
                     expect(form).to(beNil())
                 })
                 it("should fail if form is not found in cache", closure: {
-                    let form = CacheManager.shared.getForm(id: "NonExistingformIdToBeRemoved")
+                    let form = CacheManager.shared.getForm(id: "NonExistingformIdToBeRemoved", theme: UsabillaThemeConfigurator())
                     expect(form).to(beNil())
 
                     let resultRemove = CacheManager.shared.removeCachedForm(id: "NonExistingformIdToBeRemoved")
@@ -87,8 +87,8 @@ class CacheManagerTests: QuickSpec {
                     expect(resultRemoving).to(beTrue())
 
                     // Should not be able to get it
-                    expect(CacheManager.shared.getForm(id: "formId1")).to(beNil())
-                    expect(CacheManager.shared.getForm(id: "formId2")).to(beNil())
+                    expect(CacheManager.shared.getForm(id: "formId1", theme: UsabillaThemeConfigurator())).to(beNil())
+                    expect(CacheManager.shared.getForm(id: "formId2", theme: UsabillaThemeConfigurator())).to(beNil())
                 })
                 it("should fail when there is no cached forms", closure: {
                     let resultRemoving = CacheManager.shared.removeAllCachedForms()

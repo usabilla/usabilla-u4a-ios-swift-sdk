@@ -44,11 +44,11 @@ class RootCellView: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         rootCellContainerView = UIView()
         errorLabel = UILabel()
-        
+
         errorLabelHeightConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
         errorLabelHeightConstraint.isActive = true
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         titleLabel = createTitleLabel()
 
         contentView.addSubview(titleLabel)
@@ -61,7 +61,9 @@ class RootCellView: UITableViewCell {
 
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).isActive = true
+        let topConstraint = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin)
+        topConstraint.priority = UILayoutPriorityDefaultHigh
+        topConstraint.isActive = true
 
         errorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         errorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
@@ -69,8 +71,13 @@ class RootCellView: UITableViewCell {
 
         rootCellContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         rootCellContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: verticalMargin * 2 / 3).isActive = true
-        rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).isActive = true
+        let topRootContstraint = rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: verticalMargin * 2 / 3)
+        topRootContstraint.priority = UILayoutPriorityDefaultHigh
+        topRootContstraint.isActive = true
+
+        let bottomRootConstraint = rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin)
+        bottomRootConstraint.priority = UILayoutPriorityDefaultHigh
+        bottomRootConstraint.isActive = true
     }
 
     func addConstraintToFillContainerView(view: UIView, withMargin: CGFloat = 0) {

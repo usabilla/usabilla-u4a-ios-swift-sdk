@@ -21,7 +21,7 @@ class FormStore {
                 PLog("FormModel is loaded successfully")
                 fulfill(form)
             }).catch(execute: { error in
-                if let cachedForm = CacheManager.shared.getForm(id: id) {
+                if let cachedForm = CacheManager.shared.getForm(id: id, theme: themeConfig) {
                     fulfill(cachedForm)
                 } else {
                     reject(error)

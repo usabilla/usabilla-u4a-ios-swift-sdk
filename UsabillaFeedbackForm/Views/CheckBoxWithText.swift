@@ -13,7 +13,9 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     var checkBox: SwiftCheckBox!
     weak var delegate: SwiftCheckBoxDelegate?
     var label: UILabel!
-    var height: NSLayoutConstraint!
+    var labelTopConstraint: NSLayoutConstraint!
+    let checkboxSize: CGFloat = 25
+    
     var themeConfig: UsabillaThemeConfigurator? {
         didSet {
             applyCustomisation()
@@ -23,29 +25,30 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     override init(frame: CGRect) {
 
         super.init(frame: frame)
-        checkBox = SwiftCheckBox(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        checkBox = SwiftCheckBox()
         label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        checkBox.translatesAutoresizingMaskIntoConstraints = false
+        checkBox.widthAnchor.constraint(equalToConstant: checkboxSize).isActive = true
+        checkBox.heightAnchor.constraint(equalToConstant: checkboxSize).isActive = true
         self.isUserInteractionEnabled = true
         checkBox.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(CheckboxWithText.touchEvent))
 
         self.addGestureRecognizer(gesture)
-
-        height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 25)
-        height.identifier = "CheckBox Height"
-
-
+        
         self.addSubview(checkBox)
         self.addSubview(label)
-
-        NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: checkBox, attribute: .height, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: checkBox, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
-        NSLayoutConstraint(item: label, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
-        NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: checkBox, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-
-
+        
+        checkBox.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        checkBox.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 8).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        labelTopConstraint = label.topAnchor.constraint(equalTo: checkBox.topAnchor)
+        labelTopConstraint.isActive = true
+        label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
     }
 
     func applyCustomisation() {
@@ -55,6 +58,9 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
         label.font = themeConfig?.font.withSize(themeConfig!.textFontSize)
+        label.textColor = themeConfig?.textColor
+        let spaceAvailable = (checkboxSize - label.font.lineHeight)
+        labelTopConstraint.constant = spaceAvailable/2
     }
 
     required init?(coder aDecoder: NSCoder) {
