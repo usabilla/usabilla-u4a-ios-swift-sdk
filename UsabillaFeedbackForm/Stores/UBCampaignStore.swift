@@ -20,7 +20,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         self.campaignService = service
     }
 
-    private func deleteCachedCampaigns(notIn campaigns: [CampaignModel]) {
+    private func deleteCachedCampaigns(notInCampaigns campaigns: [CampaignModel]) {
         let cachedCampaignsList = UBCampaignDAO.shared.readAll()
         for cachedCampaign in cachedCampaignsList {
             let shouldDeleteCampaign = !campaigns.contains {
@@ -32,7 +32,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         }
     }
 
-    private func updateTargeting(campaigns: [CampaignModel], completion: (([CampaignModel]) -> Void)?) {
+    private func updateTargeting(forCampaigns campaigns: [CampaignModel], completion: (([CampaignModel]) -> Void)?) {
         var count = 0
         let doneFetchingTargeting: (_ campaign: CampaignModel) -> Void = { campaign in
             UBCampaignDAO.shared.create(campaign)
@@ -43,7 +43,6 @@ class UBCampaignStore: UBCampaignStoreProtocol {
             }
         }
         for campaignModel in campaigns {
-            // load targetings
             self.campaignService.getTargeting(withId: campaignModel.targetingId).then { result in
                 if result.hasChanged {
                     campaignModel.rule = result.value
@@ -76,9 +75,9 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     UBCampaignDAO.shared.deleteAll()
                     return fulfill(campaignModelList)
                 }
-                self.deleteCachedCampaigns(notIn: campaignModelList)
+                self.deleteCachedCampaigns(notInCampaigns: campaignModelList)
 
-                self.updateTargeting(campaigns: campaignModelList) { campaigns in
+                self.updateTargeting(forCampaigns: campaignModelList) { campaigns in
                     fulfill(campaigns)
                 }
             }.catch { error in
