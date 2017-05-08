@@ -20,6 +20,46 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         self.campaignService = service
     }
 
+    private func deleteCachedCampaigns(notIn campaigns: [CampaignModel]) {
+        let cachedCampaignsList = UBCampaignDAO.shared.readAll()
+        for cachedCampaign in cachedCampaignsList {
+            let shouldDeleteCampaign = !campaigns.contains {
+                $0.identifier == cachedCampaign.identifier
+            }
+            if shouldDeleteCampaign {
+                UBCampaignDAO.shared.delete(cachedCampaign)
+            }
+        }
+    }
+
+    private func updateTargeting(campaigns: [CampaignModel], completion: (([CampaignModel]) -> Void)?) {
+        var count = 0
+        let doneFetchingTargeting: (_ campaign: CampaignModel) -> Void = { campaign in
+            UBCampaignDAO.shared.create(campaign)
+            count += 1
+            if count == campaigns.count {
+                completion?(campaigns)
+                return
+            }
+        }
+        for campaignModel in campaigns {
+            // load targetings
+            self.campaignService.getTargeting(withId: campaignModel.targetingId).then(execute: { result in
+                if result.hasChanged {
+                    campaignModel.rule = result.value
+                } else {
+                    let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
+                    campaignModel.rule = cachedRule
+                }
+                doneFetchingTargeting(campaignModel)
+            }).catch(execute: { _ in
+                let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
+                campaignModel.rule = cachedRule
+                doneFetchingTargeting(campaignModel)
+            })
+        }
+    }
+
     /**
      - returns: a promise of CampaignModel array
      */
@@ -36,40 +76,10 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     UBCampaignDAO.shared.deleteAll()
                     return fulfill(campaignModelList)
                 }
+                self.deleteCachedCampaigns(notIn: campaignModelList)
 
-                for cachedCampaign in cachedCampaignsList {
-                    let shouldDeleteCampaign = !campaignModelList.contains {
-                        $0.identifier == cachedCampaign.identifier
-                    }
-                    if shouldDeleteCampaign {
-                        UBCampaignDAO.shared.delete(cachedCampaign)
-                    }
-                }
-
-                var count = 0
-                let doneFetchingTargeting: (_ campaign: CampaignModel) -> Void = { campaign in
-                    UBCampaignDAO.shared.create(campaign)
-                    count += 1
-                    if count == campaignModelList.count {
-                        fulfill(campaignModelList)
-                        return
-                    }
-                }
-                for campaignModel in campaignModelList {
-                    // load targetings
-                    self.campaignService.getTargeting(withId: campaignModel.targetingId).then(execute: { result in
-                        if result.hasChanged {
-                            campaignModel.rule = result.value
-                        } else {
-                            let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
-                            campaignModel.rule = cachedRule
-                        }
-                        doneFetchingTargeting(campaignModel)
-                    }).catch(execute: { _ in
-                        let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
-                        campaignModel.rule = cachedRule
-                        doneFetchingTargeting(campaignModel)
-                    })
+                self.updateTargeting(campaigns: campaignModelList) { campaigns in
+                    fulfill(campaigns)
                 }
             }).catch(execute: { error in
                 PLog("Error loading campaigns :\(error.localizedDescription)")
