@@ -10,14 +10,6 @@ import Foundation
 
 class OptionsFieldModel: BaseFieldModel {
 
-    override var isViewCurrentlyVisible: Bool {
-        didSet {
-            if isViewCurrentlyVisible == false {
-                fieldValue = []
-            }
-        }
-    }
-
     let options: [Options]
     var fieldValue: [String] = [] {
         didSet {
@@ -41,5 +33,9 @@ class OptionsFieldModel: BaseFieldModel {
 
     override func convertToJSON() -> Any? {
         return fieldValue.count > 0 ? fieldValue : nil
+    }
+
+    override func reset() {
+        fieldValue = []
     }
 }

@@ -10,7 +10,14 @@ import Foundation
 
 class BaseFieldModel: FieldModelProtocol {
 
-    var isViewCurrentlyVisible = false
+    var isViewCurrentlyVisible = false {
+        didSet {
+            if !isViewCurrentlyVisible {
+                self.reset()
+            }
+        }
+    }
+    
     unowned var pageModel: PageModel
     unowned var themeConfig: UsabillaThemeConfigurator
     var fieldId: String
@@ -45,6 +52,10 @@ class BaseFieldModel: FieldModelProtocol {
         }
         let satisfied = rule!.isSatisfied()
         return satisfied && rule!.showIfRuleIsSatisfied || !satisfied && !rule!.showIfRuleIsSatisfied
+    }
+    
+    func reset() {
+        fatalError("reset has not been implemented")
     }
 
 }

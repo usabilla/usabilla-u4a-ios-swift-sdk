@@ -23,6 +23,7 @@ protocol FieldModelProtocol {
 
     func isValid() -> Bool
     func convertToJSON() -> Any?
+    func reset()
 }
 
 struct Options {

@@ -10,18 +10,12 @@ import Foundation
 
 class StringFieldModel: BaseFieldModel {
 
-    override var isViewCurrentlyVisible: Bool {
-        didSet {
-            if isViewCurrentlyVisible == false {
-                fieldValue = nil
-            }
-        }
-    }
-
     var fieldValue: String? {
         didSet {
-            if fieldValue != nil {
-                pageModel.fieldValuesCollection[fieldId] = [fieldValue!]
+            if let value = fieldValue {
+                pageModel.fieldValuesCollection[fieldId] = [value]
+            } else {
+                pageModel.fieldValuesCollection[fieldId] = nil
             }
         }
     }
@@ -39,5 +33,9 @@ class StringFieldModel: BaseFieldModel {
 
     override func convertToJSON() -> Any? {
         return fieldValue
+    }
+
+    override func reset() {
+        fieldValue = nil
     }
 }

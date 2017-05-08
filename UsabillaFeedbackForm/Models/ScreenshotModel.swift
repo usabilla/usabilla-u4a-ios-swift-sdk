@@ -29,4 +29,8 @@ class ScreenshotModel: BaseFieldModel {
         isModelValid = !isViewCurrentlyVisible || !required || screenshot != nil
         return isModelValid
     }
+
+    override func reset() {
+        screenshot = nil
+    }
 }
