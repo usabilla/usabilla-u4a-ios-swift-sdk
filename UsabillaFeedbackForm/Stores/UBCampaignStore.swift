@@ -44,7 +44,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         }
         for campaignModel in campaigns {
             // load targetings
-            self.campaignService.getTargeting(withId: campaignModel.targetingId).then(execute: { result in
+            self.campaignService.getTargeting(withId: campaignModel.targetingId).then { result in
                 if result.hasChanged {
                     campaignModel.rule = result.value
                 } else {
@@ -52,11 +52,11 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     campaignModel.rule = cachedRule
                 }
                 doneFetchingTargeting(campaignModel)
-            }).catch(execute: { _ in
+            }.catch { _ in
                 let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
                 campaignModel.rule = cachedRule
                 doneFetchingTargeting(campaignModel)
-            })
+            }
         }
     }
 
@@ -65,7 +65,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
      */
     func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
-            self.campaignService.getCampaigns(withAppId: appId).then(execute: { cachableCampainModels in
+            self.campaignService.getCampaigns(withAppId: appId).then { cachableCampainModels in
                 let cachedCampaignsList = UBCampaignDAO.shared.readAll()
                 if !cachableCampainModels.hasChanged {
                     return fulfill(cachedCampaignsList)
@@ -81,7 +81,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 self.updateTargeting(campaigns: campaignModelList) { campaigns in
                     fulfill(campaigns)
                 }
-            }).catch(execute: { error in
+            }.catch { error in
                 PLog("Error loading campaigns :\(error.localizedDescription)")
                 let cachedCampaigns = UBCampaignDAO.shared.readAll()
                 if cachedCampaigns.count > 0 {
@@ -89,7 +89,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     return
                 }
                 reject(error)
-            })
+            }
         }
     }
 }
