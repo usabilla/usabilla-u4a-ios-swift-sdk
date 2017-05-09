@@ -54,8 +54,6 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
                 checkBox.checkBox.on = true
             }
             checkBoxes.append(checkBox)
-
-            checkBox.height.isActive = true
             stackView.addArrangedSubview(checkBox)
         }
         stackView.layoutIfNeeded()
