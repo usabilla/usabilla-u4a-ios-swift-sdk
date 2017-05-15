@@ -106,70 +106,12 @@
             </objects>
             <point key="canvasLocation" x="4401" y="1476"/>
         </scene>
-        <!--Thank You Controller-->
-        <scene sceneID="NQA-iZ-PPH">
-            <objects>
-                <viewController restorationIdentifier="thankYou" storyboardIdentifier="thankYou" id="Wkv-42-66I" customClass="ThankYouController" customModule="UsabillaFeedbackForm" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Z5g-H8-y9T"/>
-                        <viewControllerLayoutGuide type="bottom" id="sv8-1B-nFV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pNJ-qN-bEC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eva-8s-CXs">
-                                <rect key="frame" x="16" y="50" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pru-GS-JSd">
-                                <rect key="frame" x="16" y="91" width="343" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZx-0E-Van">
-                                <rect key="frame" x="164.5" y="141" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-WL-LbX">
-                                <rect key="frame" x="164.5" y="201" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="BTD-Ex-S2x"/>
-                            <constraint firstItem="QZx-0E-Van" firstAttribute="top" secondItem="pru-GS-JSd" secondAttribute="bottom" constant="30" id="EmQ-sf-VSq"/>
-                            <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pNJ-qN-bEC" secondAttribute="leadingMargin" id="HoF-rF-ULw"/>
-                            <constraint firstItem="eva-8s-CXs" firstAttribute="top" secondItem="Z5g-H8-y9T" secondAttribute="bottom" constant="30" id="HzT-1z-6Kr"/>
-                            <constraint firstItem="eva-8s-CXs" firstAttribute="trailing" secondItem="pNJ-qN-bEC" secondAttribute="trailingMargin" id="I6u-bI-eEs"/>
-                            <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pru-GS-JSd" secondAttribute="leading" id="VGF-yC-DHh"/>
-                            <constraint firstItem="pru-GS-JSd" firstAttribute="top" secondItem="eva-8s-CXs" secondAttribute="bottom" constant="20" id="YMa-X6-Oe3"/>
-                            <constraint firstItem="QZx-0E-Van" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="ZTS-qT-PEC"/>
-                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="top" secondItem="QZx-0E-Van" secondAttribute="bottom" constant="30" id="gLo-li-XCm"/>
-                            <constraint firstItem="eva-8s-CXs" firstAttribute="trailing" secondItem="pru-GS-JSd" secondAttribute="trailing" id="ycU-Lk-w9D"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="distanceBetweenButtons" destination="gLo-li-XCm" id="LOn-wb-2i1"/>
-                        <outlet property="messageLabel" destination="pru-GS-JSd" id="bsy-ii-duw"/>
-                        <outlet property="moreFeedbackButton" destination="3Ot-WL-LbX" id="L84-FA-HSg"/>
-                        <outlet property="rateButton" destination="QZx-0E-Van" id="tOa-fL-UMF"/>
-                        <outlet property="titleLabel" destination="eva-8s-CXs" id="YzX-nY-V8t"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K0a-Xm-43O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6112.8000000000002" y="635.53223388305855"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="a5A-qm-dgR">
             <objects>
                 <navigationController restorationIdentifier="base" storyboardIdentifier="base" automaticallyAdjustsScrollViewInsets="NO" id="IRd-Rl-9zB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sdg-ud-ge7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sdg-ud-ge7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
