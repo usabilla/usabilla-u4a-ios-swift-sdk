@@ -120,10 +120,8 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(0.25))
                     expect(formViewModel.accentColor).to(equal(self.model.theme.accentColor))
-                    expect(formViewModel.backgrounColor).to(equal(self.model.theme.backgroundColor))
                     expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
                     expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
-                    expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.textOnAccentColor))
                     expect(formViewModel.cancelButtonTitle).to(beNil())
                     expect(formViewModel.showCancelButton).to(beFalse())
                     expect(formViewModel.isCurrentPageValid).to(beTrue()) // should be false but this needs refactoring isViewCurrentlyVisible
