@@ -87,8 +87,7 @@ class FormViewController: UIViewController {
         leftNavItem.title = viewModel.cancelButtonTitle
         leftNavItem.isEnabled = true
 
-        let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-        thankYouController = storyboard.instantiateViewController(withIdentifier: "thankYou") as? ThankYouController
+        thankYouController = ThankYouController()
         thankYouController.viewModel = endPageViewModel
         pageController.willMove(toParentViewController: nil)
         addChildViewController(thankYouController)
