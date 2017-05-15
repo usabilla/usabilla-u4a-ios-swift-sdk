@@ -10,6 +10,7 @@ import UIKit
 
 class ThankYouController: UIViewController {
 
+    var viewModel: UBEndPageViewModel!
     let sideMargin: CGFloat = 16.0
     let verticalMargin: CGFloat = 20.0
 
@@ -19,25 +20,20 @@ class ThankYouController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-
     var messageLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
     }()
-
     var rateButton: UIButton = {
-        let bt = UIButton()
+        let bt = UIButton(type: UIButtonType.system)
         return bt
     }()
-
     var moreFeedBackButton: UIButton = {
-        let bt = UIButton()
+        let bt = UIButton(type: UIButtonType.system)
         return bt
     }()
-
-    var viewModel: UBEndPageViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +53,7 @@ class ThankYouController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: verticalMargin).isActive = true
 
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
@@ -72,6 +68,7 @@ class ThankYouController: UIViewController {
             rateButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
             rateButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
             rateButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: verticalMargin).isActive = true
+
             rateButton.setTitle(viewModel.appStoreRedirectText, for: UIControlState())
             rateButton.addTarget(self, action: #selector(openAppStore), for: .touchUpInside)
             topConstraint = rateButton.bottomAnchor
@@ -85,29 +82,29 @@ class ThankYouController: UIViewController {
             moreFeedBackButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
             moreFeedBackButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
             moreFeedBackButton.topAnchor.constraint(equalTo: topConstraint, constant: verticalMargin).isActive = true
+
             moreFeedBackButton.setTitle(viewModel.moreFeedbackText, for: UIControlState())
             moreFeedBackButton.addTarget(self, action: #selector(reloadForm), for: .touchUpInside)
         }
     }
-    
+
     func customizeView() {
         if let configuration = viewModel?.theme {
-            
             view.backgroundColor = viewModel?.theme.backgroundColor
-            
             titleLabel.textColor = configuration.titleColor
             titleLabel.font = configuration.boldFont
-            
+
             let font = configuration.font
-            
-            rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
-            rateButton.titleLabel?.font = font
-            
-            moreFeedBackButton.setTitleColor(configuration.accentColor, for: UIControlState())
-            moreFeedBackButton.titleLabel?.font = font
-            
             messageLabel.textColor = configuration.textColor
             messageLabel.font = font
+            if viewModel.canRedirectToAppStore {
+                rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
+                rateButton.titleLabel?.font = font
+            }
+            if viewModel.canGiveMoreFeedback {
+                moreFeedBackButton.setTitleColor(configuration.accentColor, for: UIControlState())
+                moreFeedBackButton.titleLabel?.font = font
+            }
         }
     }
 
