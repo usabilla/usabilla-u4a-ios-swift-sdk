@@ -29,9 +29,6 @@
                             </progressView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQa-Ed-WL9">
                                 <rect key="frame" x="0.0" y="66" width="375" height="601"/>
-                                <connections>
-                                    <segue destination="lXN-7Y-gbD" kind="embed" identifier="embedSegue" id="3pw-gi-Eix"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -69,49 +66,12 @@
             </objects>
             <point key="canvasLocation" x="4400.8000000000002" y="759.67016491754134"/>
         </scene>
-        <!--Page Controller-->
-        <scene sceneID="KCG-fz-mhC">
-            <objects>
-                <viewController restorationIdentifier="page" storyboardIdentifier="page" id="lXN-7Y-gbD" customClass="PageController" customModule="UsabillaFeedbackForm" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="809-5G-gJ4"/>
-                        <viewControllerLayoutGuide type="bottom" id="wF2-Lj-Gsl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xfl-ca-kbX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5es-z2-ZDd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="lXN-7Y-gbD" id="bUv-v4-YXm"/>
-                                    <outlet property="delegate" destination="lXN-7Y-gbD" id="fJy-8g-9fh"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5es-z2-ZDd" secondAttribute="trailing" id="14L-lD-9tF"/>
-                            <constraint firstItem="5es-z2-ZDd" firstAttribute="top" secondItem="809-5G-gJ4" secondAttribute="bottom" id="DEB-il-LXO"/>
-                            <constraint firstItem="5es-z2-ZDd" firstAttribute="leading" secondItem="Xfl-ca-kbX" secondAttribute="leading" id="XeH-RH-HAt"/>
-                            <constraint firstItem="wF2-Lj-Gsl" firstAttribute="top" secondItem="5es-z2-ZDd" secondAttribute="bottom" id="ZaN-ni-ntV"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="5es-z2-ZDd" id="l4a-MV-bCe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CGc-tj-1I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4401" y="1476"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="a5A-qm-dgR">
             <objects>
                 <navigationController restorationIdentifier="base" storyboardIdentifier="base" automaticallyAdjustsScrollViewInsets="NO" id="IRd-Rl-9zB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sdg-ud-ge7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sdg-ud-ge7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

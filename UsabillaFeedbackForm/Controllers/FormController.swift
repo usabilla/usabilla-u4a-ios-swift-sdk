@@ -43,6 +43,12 @@ class FormViewController: UIViewController {
             progressBar.trackTintColor = viewModel.backgrounColor
         }
 
+        pageController = PageController(viewModel: viewModel.currentPageViewModel)
+        addChildViewController(pageController)
+        containerView.addSubview(pageController.view)
+        pageController.view.frame = containerView.bounds
+        pageController.didMove(toParentViewController: self)
+
         updateProgressBar()
         updateRightButton()
         setUpLeftButton()
@@ -55,14 +61,6 @@ class FormViewController: UIViewController {
     func setUpLeftButton() {
         leftNavItem.title = viewModel.cancelButtonTitle
         leftNavItem.isEnabled = viewModel.showCancelButton
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? PageController, segue.identifier == "embedSegue" {
-            pageController = vc
-            pageController.addMarginWhenKeyboardIsShown = viewModel.shouldAddMarginWhenKeyboardIsShown
-            swipeToPage(viewModel.currentPageViewModel)
-        }
     }
 
     @IBAction func rightBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -145,5 +143,4 @@ class FormViewController: UIViewController {
         updateProgressBar()
         updateRightButton()
     }
-
 }
