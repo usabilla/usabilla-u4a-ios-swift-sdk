@@ -97,7 +97,7 @@ class ThankYouController: UIViewController {
 
     func customizeView() {
         if let configuration = viewModel?.theme {
-            view.backgroundColor = viewModel?.theme.backgroundColor
+            view.backgroundColor = configuration.backgroundColor
             titleLabel.textColor = configuration.titleColor
             titleLabel.font = configuration.boldFont
 
