@@ -147,8 +147,8 @@ class UBFormViewModel {
     func reset() {
         let theme = model.theme
         self.model = FormModel(json: model.formJsonString, id: model.appId, screenshot: nil)
-        model.theme = theme
-        model.updateTheme()
+        self.model.theme = theme
+        self.model.updateTheme()
         self.currentPageIndex = 0
         self.pageViewModels = []
 

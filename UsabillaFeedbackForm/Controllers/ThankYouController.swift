@@ -27,12 +27,10 @@ class ThankYouController: UIViewController {
         return label
     }()
     var rateButton: UIButton = {
-        let bt = UIButton(type: UIButtonType.system)
-        return bt
+        return UIButton(type: UIButtonType.system)
     }()
     var moreFeedBackButton: UIButton = {
-        let bt = UIButton(type: UIButtonType.system)
-        return bt
+        return UIButton(type: UIButtonType.system)
     }()
 
     override func viewDidLoad() {
@@ -40,6 +38,15 @@ class ThankYouController: UIViewController {
 
         setUpView()
         customizeView()
+    }
+
+    init(viewModel: UBEndPageViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func setUpView() {
@@ -69,7 +76,7 @@ class ThankYouController: UIViewController {
             rateButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
             rateButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: verticalMargin).isActive = true
 
-            rateButton.setTitle(viewModel.appStoreRedirectText, for: UIControlState())
+            rateButton.setTitle(viewModel.appStoreRedirectText, for: .normal)
             rateButton.addTarget(self, action: #selector(openAppStore), for: .touchUpInside)
             topConstraint = rateButton.bottomAnchor
         } else {
@@ -83,7 +90,7 @@ class ThankYouController: UIViewController {
             moreFeedBackButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
             moreFeedBackButton.topAnchor.constraint(equalTo: topConstraint, constant: verticalMargin).isActive = true
 
-            moreFeedBackButton.setTitle(viewModel.moreFeedbackText, for: UIControlState())
+            moreFeedBackButton.setTitle(viewModel.moreFeedbackText, for: .normal)
             moreFeedBackButton.addTarget(self, action: #selector(reloadForm), for: .touchUpInside)
         }
     }
@@ -98,11 +105,11 @@ class ThankYouController: UIViewController {
             messageLabel.textColor = configuration.textColor
             messageLabel.font = font
             if viewModel.canRedirectToAppStore {
-                rateButton.setTitleColor(configuration.accentColor, for: UIControlState())
+                rateButton.setTitleColor(configuration.accentColor, for: .normal)
                 rateButton.titleLabel?.font = font
             }
             if viewModel.canGiveMoreFeedback {
-                moreFeedBackButton.setTitleColor(configuration.accentColor, for: UIControlState())
+                moreFeedBackButton.setTitleColor(configuration.accentColor, for: .normal)
                 moreFeedBackButton.titleLabel?.font = font
             }
         }

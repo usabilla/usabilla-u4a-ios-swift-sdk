@@ -87,8 +87,7 @@ class FormViewController: UIViewController {
         leftNavItem.title = viewModel.cancelButtonTitle
         leftNavItem.isEnabled = true
 
-        thankYouController = ThankYouController()
-        thankYouController.viewModel = endPageViewModel
+        thankYouController = ThankYouController(viewModel: endPageViewModel)
         pageController.willMove(toParentViewController: nil)
         addChildViewController(thankYouController)
         thankYouController.view.frame = containerView.bounds
