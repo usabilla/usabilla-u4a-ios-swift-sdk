@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -131,25 +131,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZx-0E-Van">
-                                <rect key="frame" x="164.5" y="141" width="46" height="30"/>
+                                <rect key="frame" x="32" y="141" width="311" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-WL-LbX">
-                                <rect key="frame" x="164.5" y="201" width="46" height="30"/>
+                                <rect key="frame" x="32" y="201" width="311" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="3Ot-WL-LbX" firstAttribute="leading" secondItem="pNJ-qN-bEC" secondAttribute="leadingMargin" constant="16" id="8nO-E1-zAq"/>
                             <constraint firstItem="3Ot-WL-LbX" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="BTD-Ex-S2x"/>
+                            <constraint firstItem="QZx-0E-Van" firstAttribute="leading" secondItem="pNJ-qN-bEC" secondAttribute="leadingMargin" constant="16" id="DEE-NX-Pua"/>
                             <constraint firstItem="QZx-0E-Van" firstAttribute="top" secondItem="pru-GS-JSd" secondAttribute="bottom" constant="30" id="EmQ-sf-VSq"/>
                             <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pNJ-qN-bEC" secondAttribute="leadingMargin" id="HoF-rF-ULw"/>
                             <constraint firstItem="eva-8s-CXs" firstAttribute="top" secondItem="Z5g-H8-y9T" secondAttribute="bottom" constant="30" id="HzT-1z-6Kr"/>
                             <constraint firstItem="eva-8s-CXs" firstAttribute="trailing" secondItem="pNJ-qN-bEC" secondAttribute="trailingMargin" id="I6u-bI-eEs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3Ot-WL-LbX" secondAttribute="trailing" constant="16" id="Seh-ge-nPE"/>
                             <constraint firstItem="eva-8s-CXs" firstAttribute="leading" secondItem="pru-GS-JSd" secondAttribute="leading" id="VGF-yC-DHh"/>
                             <constraint firstItem="pru-GS-JSd" firstAttribute="top" secondItem="eva-8s-CXs" secondAttribute="bottom" constant="20" id="YMa-X6-Oe3"/>
                             <constraint firstItem="QZx-0E-Van" firstAttribute="centerX" secondItem="pNJ-qN-bEC" secondAttribute="centerX" id="ZTS-qT-PEC"/>
                             <constraint firstItem="3Ot-WL-LbX" firstAttribute="top" secondItem="QZx-0E-Van" secondAttribute="bottom" constant="30" id="gLo-li-XCm"/>
                             <constraint firstItem="eva-8s-CXs" firstAttribute="trailing" secondItem="pru-GS-JSd" secondAttribute="trailing" id="ycU-Lk-w9D"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QZx-0E-Van" secondAttribute="trailing" constant="16" id="zNe-45-yNf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -169,7 +173,7 @@
             <objects>
                 <navigationController restorationIdentifier="base" storyboardIdentifier="base" automaticallyAdjustsScrollViewInsets="NO" id="IRd-Rl-9zB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sdg-ud-ge7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sdg-ud-ge7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
