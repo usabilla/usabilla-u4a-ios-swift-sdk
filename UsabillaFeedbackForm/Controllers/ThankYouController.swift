@@ -72,8 +72,8 @@ class ThankYouController: UIViewController {
         if viewModel.canRedirectToAppStore {
             view.addSubview(rateButton)
             rateButton.translatesAutoresizingMaskIntoConstraints = false
-            rateButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
-            rateButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
+            rateButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2 * sideMargin).isActive = true
+            rateButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -(2 * sideMargin)).isActive = true
             rateButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: verticalMargin).isActive = true
 
             rateButton.setTitle(viewModel.appStoreRedirectText, for: .normal)
@@ -86,8 +86,8 @@ class ThankYouController: UIViewController {
         if viewModel.canGiveMoreFeedback {
             view.addSubview(moreFeedBackButton)
             moreFeedBackButton.translatesAutoresizingMaskIntoConstraints = false
-            moreFeedBackButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
-            moreFeedBackButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
+            moreFeedBackButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2 * sideMargin).isActive = true
+            moreFeedBackButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -(2 * sideMargin)).isActive = true
             moreFeedBackButton.topAnchor.constraint(equalTo: topConstraint, constant: verticalMargin).isActive = true
 
             moreFeedBackButton.setTitle(viewModel.moreFeedbackText, for: .normal)
