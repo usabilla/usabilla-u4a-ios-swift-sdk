@@ -73,17 +73,14 @@ open class UsabillaFeedbackForm {
     }
 
     private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
-        let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-        guard let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
-            let formController = base.childViewControllers[0] as? FormViewController else {
-                return
-        }
+        let formController = FormViewController()
+        let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController()
         formController.viewModel = UBFormViewModel(formModel: form)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {
-            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(base, active: true)
+            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController, active: true)
         }
     }
 
