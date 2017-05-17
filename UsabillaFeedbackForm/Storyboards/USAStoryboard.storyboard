@@ -42,24 +42,11 @@
                             <constraint firstItem="vlS-5i-RUy" firstAttribute="top" secondItem="xS0-4Q-tDd" secondAttribute="bottom" id="xyA-bG-r76"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rF0-S1-UZ8">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="uPA-5l-BME">
-                            <connections>
-                                <action selector="leftBarButtonPressed:" destination="JPb-dH-keS" id="9I4-d1-tnI"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="4mV-aS-O6N">
-                            <connections>
-                                <action selector="rightBarButtonPressed:" destination="JPb-dH-keS" id="4pN-wF-enb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="rF0-S1-UZ8"/>
                     <connections>
                         <outlet property="containerView" destination="iQa-Ed-WL9" id="Lm3-uF-Qyj"/>
-                        <outlet property="leftNavItem" destination="uPA-5l-BME" id="5WG-wo-kdg"/>
                         <outlet property="progressBar" destination="vlS-5i-RUy" id="WfP-N7-EWY"/>
                         <outlet property="progressBarHeight" destination="B9r-fa-qzF" id="01V-Ng-Xpr"/>
-                        <outlet property="rightNavItem" destination="4mV-aS-O6N" id="S6B-d2-OMR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FxS-2n-LGS" userLabel="First Responder" sceneMemberID="firstResponder"/>

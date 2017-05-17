@@ -18,9 +18,14 @@ class FormViewController: UIViewController {
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
 
+    lazy var leftNavItem: UIBarButtonItem = {
+        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonPressed(_:)))
+    }()
+    lazy var rightNavItem: UIBarButtonItem = {
+        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonPressed(_:)))
+    }()
+
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var leftNavItem: UIBarButtonItem!
-    @IBOutlet weak var rightNavItem: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var progressBarHeight: NSLayoutConstraint!
 
@@ -34,7 +39,9 @@ class FormViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        setUpView()
+
         if viewModel.shouldHideProgressBar {
             progressBar.isHidden = true
             progressBarHeight.constant = 0
@@ -58,21 +65,14 @@ class FormViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
     }
 
+    func setUpView() {
+        self.navigationItem.leftBarButtonItem = leftNavItem
+        self.navigationItem.rightBarButtonItem = rightNavItem
+    }
+
     func setUpLeftButton() {
         leftNavItem.title = viewModel.cancelButtonTitle
         leftNavItem.isEnabled = viewModel.showCancelButton
-    }
-
-    @IBAction func rightBarButtonPressed(_ sender: UIBarButtonItem) {
-        defer {
-            delegate?.rightBarButtonTapped(self)
-        }
-        if viewModel.isCurrentPageValid {
-            goToNextPage()
-            return
-        }
-        pageController.gotToNextErrorField()
-
     }
 
     func showThankYouPage() {
@@ -115,8 +115,20 @@ class FormViewController: UIViewController {
         progressBar.setProgress(viewModel.progress, animated: true)
     }
 
-    @IBAction func leftBarButtonPressed(_ sender: UIBarButtonItem) {
+    func leftBarButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.leftBarButtonTapped(self)
+    }
+
+    func rightBarButtonPressed(_ sender: UIBarButtonItem) {
+        defer {
+            delegate?.rightBarButtonTapped(self)
+        }
+        if viewModel.isCurrentPageValid {
+            goToNextPage()
+            return
+        }
+        pageController.gotToNextErrorField()
+
     }
 
     func deinitForm() {
