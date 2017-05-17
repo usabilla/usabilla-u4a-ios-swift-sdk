@@ -24,12 +24,9 @@ class PageControllerTest: QuickSpec {
         beforeSuite {
             formModel = UBMock.formMock()
 
-            let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-
-            viewController = storyboard.instantiateViewController(withIdentifier: "page") as! PageController
 
             let pageViewModel = PageViewModel(page: formModel.pages.first!, theme: UsabillaTheme())
-            viewController.initWithViewModel(pageViewModel)
+            viewController = PageController(viewModel: pageViewModel)
 
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
             _ = viewController.view
@@ -51,37 +48,28 @@ class PageControllerTest: QuickSpec {
             it("sets the background color") {
                 // Since the label is only initialized when the view is loaded, this
                 // would fail if we didn't access the view in the `beforeEach` above.
-                expect(viewController.view.backgroundColor).to(equal(viewController.pageViewModel.theme.backgroundColor))
-                expect(viewController.tableView.backgroundColor).to(equal(viewController.pageViewModel.theme.backgroundColor))
+                expect(viewController.view.backgroundColor).to(equal(viewController.viewModel.theme.backgroundColor))
+                expect(viewController.tableView.backgroundColor).to(equal(viewController.viewModel.theme.backgroundColor))
             }
 
             it("sets up the header") {
                 let header = viewController.tableView.tableHeaderView as? UILabel
                 expect(header).toNot(beNil())
-                expect(header?.text).to(equal(viewController.pageViewModel.copy.errorMessage))
-                expect(header?.textColor).to(equal(viewController.pageViewModel.theme.textColor))
-                expect(header?.font).to(equal(viewController.pageViewModel.theme.font.withSize(viewController.pageViewModel.theme.miniFontSize)))
-                expect(header?.backgroundColor).to(equal(viewController.pageViewModel.theme.backgroundColor))
+                expect(header?.text).to(equal(viewController.viewModel.copy.errorMessage))
+                expect(header?.textColor).to(equal(viewController.viewModel.theme.textColor))
+                expect(header?.font).to(equal(viewController.viewModel.theme.font.withSize(viewController.viewModel.theme.miniFontSize)))
+                expect(header?.backgroundColor).to(equal(viewController.viewModel.theme.backgroundColor))
             }
 
             it("sets up the variables") {
-                expect(viewController.pageViewModel.dynamicFields).to(equal([1, 2]))
-            }
-
-            it("sets up the tableview") {
-                expect(viewController.tableView.visibleCells.count).to(equal(7))
-                //expect(viewController.showErrorMessages).to(equal(false))
+                expect(viewController.viewModel.dynamicFields).to(equal([1, 2]))
             }
         }
 
         describe("turns the page only on valid data") {
             beforeEach {
-                let field = viewController.pageViewModel.cellViewModels.first?.componentViewModel as? MoodComponentViewModel
+                let field = viewController.viewModel.cellViewModels.first?.componentViewModel as? MoodComponentViewModel
                 field?.value = nil
-            }
-
-            it("shows an error message on the mood field") {
-                expect(moodCell?.errorLabel.isHidden).to(beFalse())
             }
         }
 
@@ -90,7 +78,6 @@ class PageControllerTest: QuickSpec {
                 // Method #3: Directly call the lifecycle event.
                 viewController.viewWillDisappear(false)
             }
-
         }
     }
 }

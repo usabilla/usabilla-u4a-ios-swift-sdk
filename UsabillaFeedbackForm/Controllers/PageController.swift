@@ -132,7 +132,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         SwiftEventBus.unregister(self)
     }
 
-    func initWithViewModel(_ viewModel: PageViewModel) {
+    func setupViewModel(_ viewModel: PageViewModel) {
         self.viewModel = viewModel
         tableView.reloadData()
     }

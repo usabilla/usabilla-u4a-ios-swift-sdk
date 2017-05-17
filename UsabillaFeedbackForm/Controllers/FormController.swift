@@ -126,7 +126,7 @@ class FormViewController: UIViewController {
     }
 
     func swipeToPage(_ pageViewModel: PageViewModel) {
-        pageController.initWithViewModel(pageViewModel)
+        pageController.setupViewModel(pageViewModel)
         viewModel.currentPageViewModel = pageViewModel
 
         updateProgressBar()
@@ -139,7 +139,7 @@ class FormViewController: UIViewController {
             showThankYouPage()
             return
         }
-        pageController.initWithViewModel(viewModel.currentPageViewModel)
+        pageController.setupViewModel(viewModel.currentPageViewModel)
         updateProgressBar()
         updateRightButton()
     }
