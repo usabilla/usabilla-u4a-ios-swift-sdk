@@ -24,11 +24,20 @@ class FormViewController: UIViewController {
     lazy var rightNavItem: UIBarButtonItem = {
         return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonPressed(_:)))
     }()
+    var progressBar: UIProgressView = {
+        let progressBar = UIProgressView(progressViewStyle: .default)
+        progressBar.progress = 0.5
+        progressBar.trackTintColor = UIColor.clear
+        progressBar.tintColor = UIColor.clear
+        progressBar.backgroundColor = UIColor.clear
+        progressBar.contentMode = .scaleToFill
+        return progressBar
+    }()
+    var containerView: UIView = {
+        return UIView()
+    }()
 
-    @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var progressBarHeight: NSLayoutConstraint!
-
+    // MARK: ViewController cycle
     override func loadView() {
         super.loadView()
 
@@ -41,38 +50,77 @@ class FormViewController: UIViewController {
         super.viewDidLoad()
 
         setUpView()
+        customizeView()
 
-        if viewModel.shouldHideProgressBar {
-            progressBar.isHidden = true
-            progressBarHeight.constant = 0
-        } else {
-            progressBar.progressTintColor = viewModel.accentColor
-            progressBar.trackTintColor = viewModel.backgrounColor
+        updateProgressBar()
+        updateRightButton()
+        setUpLeftButton()
+    }
+
+    func deinitForm() {
+        SwiftEventBus.postToMainThread("kill")
+        SwiftEventBus.unregister(self)
+        pageController.deinitPageController()
+    }
+
+    // MARK: View setup
+    func setUpView() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationItem.leftBarButtonItem = leftNavItem
+        self.navigationItem.rightBarButtonItem = rightNavItem
+
+        var containerTopConstraint: NSLayoutYAxisAnchor = view.topAnchor
+
+        if !viewModel.shouldHideProgressBar {
+            view.addSubview(progressBar)
+            progressBar.translatesAutoresizingMaskIntoConstraints = false
+            progressBar.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
+            progressBar.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
+            progressBar.heightAnchor.constraint(equalToConstant: 2.0).activate()
+            progressBar.topAnchor.constraint(equalTo: view.topAnchor).activate()
+            containerTopConstraint = progressBar.bottomAnchor
         }
 
+        view.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
+        containerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
+        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
+        containerView.topAnchor.constraint(equalTo: containerTopConstraint).activate()
+
+        // Add PageController
         pageController = PageController(viewModel: viewModel.currentPageViewModel)
         addChildViewController(pageController)
         containerView.addSubview(pageController.view)
         pageController.view.frame = containerView.bounds
         pageController.didMove(toParentViewController: self)
-
-        updateProgressBar()
-        updateRightButton()
-        setUpLeftButton()
-
-        UIApplication.shared.statusBarStyle = viewModel.statusBarColor
-        self.navigationController?.navigationBar.barTintColor = viewModel.headerColor
-        self.navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
     }
 
-    func setUpView() {
-        self.navigationItem.leftBarButtonItem = leftNavItem
-        self.navigationItem.rightBarButtonItem = rightNavItem
+    func customizeView() {
+        UIApplication.shared.statusBarStyle = viewModel.statusBarColor
+
+        self.navigationController?.navigationBar.barTintColor = viewModel.headerColor
+        self.navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
+
+        if !viewModel.shouldHideProgressBar {
+            progressBar.progressTintColor = viewModel.accentColor
+            progressBar.trackTintColor = viewModel.backgrounColor
+        }
     }
 
     func setUpLeftButton() {
         leftNavItem.title = viewModel.cancelButtonTitle
         leftNavItem.isEnabled = viewModel.showCancelButton
+    }
+
+    // MARK: Actions
+    func updateRightButton() {
+        rightNavItem.isEnabled = true
+        rightNavItem.title = viewModel.rightBarButtonTitle
+    }
+
+    func updateProgressBar() {
+        progressBar.setProgress(viewModel.progress, animated: true)
     }
 
     func showThankYouPage() {
@@ -106,15 +154,6 @@ class FormViewController: UIViewController {
         setUpLeftButton()
     }
 
-    func updateRightButton() {
-        rightNavItem.isEnabled = true
-        rightNavItem.title = viewModel.rightBarButtonTitle
-    }
-
-    func updateProgressBar() {
-        progressBar.setProgress(viewModel.progress, animated: true)
-    }
-
     func leftBarButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.leftBarButtonTapped(self)
     }
@@ -128,13 +167,6 @@ class FormViewController: UIViewController {
             return
         }
         pageController.gotToNextErrorField()
-
-    }
-
-    func deinitForm() {
-        SwiftEventBus.postToMainThread("kill")
-        SwiftEventBus.unregister(self)
-        pageController.deinitPageController()
     }
 
     func swipeToPage(_ pageViewModel: PageViewModel) {
