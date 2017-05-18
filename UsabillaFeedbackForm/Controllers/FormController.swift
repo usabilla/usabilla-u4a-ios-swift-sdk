@@ -57,6 +57,10 @@ class FormViewController: UIViewController {
         setUpLeftButton()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        deinitForm()
+    }
+
     func deinitForm() {
         SwiftEventBus.postToMainThread("kill")
         SwiftEventBus.unregister(self)

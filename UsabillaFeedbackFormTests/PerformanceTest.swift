@@ -57,15 +57,9 @@ class Performance: XCTestCase {
                 Swift.debugPrint(error.localizedDescription)
             }
 
-            let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-            guard let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
-                let viewController = base.childViewControllers[0] as? FormViewController else {
-                    return
-            }
-
+            let viewController = FormViewController()
             viewController.viewModel = UBFormViewModel(formModel: formModel!)
             viewController.loadView()
         }
     }
-
 }

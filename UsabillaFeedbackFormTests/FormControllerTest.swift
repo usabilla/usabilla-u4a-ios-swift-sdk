@@ -29,20 +29,16 @@ class FormControllerTest: QuickSpec {
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
                 formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
 
-                let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-                if let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
-                    let vc = base.childViewControllers[0] as? FormViewController {
-                        viewController = vc
-                        viewController.viewModel = UBFormViewModel(formModel: formModel)
-                        viewController.delegate = self
+                viewController = FormViewController()
+                viewController.viewModel = UBFormViewModel(formModel: formModel)
+                viewController.delegate = self
 
-                        // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
-                        _ = viewController.view
+                // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
+                _ = viewController.view
 
-                        // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
-                        viewController.beginAppearanceTransition(true, animated: false)
-                        viewController.endAppearanceTransition()
-                }
+                // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
+                viewController.beginAppearanceTransition(true, animated: false)
+                viewController.endAppearanceTransition()
             }
             describe("basics") {
                 describe("viewDidLoad") {
