@@ -7,9 +7,14 @@
 //
 
 import UIKit
+
 let footerHeight: CGFloat = 80.0
 
 class PageController: UIViewController, UINavigationControllerDelegate {
+
+    var viewModel: PageViewModel!
+    var addMarginWhenKeyboardIsShown: Bool = false
+    var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
 
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -21,9 +26,6 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         label.textAlignment = .left
         return label
     }()
-
-    var viewModel: PageViewModel!
-    var addMarginWhenKeyboardIsShown: Bool = false
 
     init(viewModel: PageViewModel) {
         self.viewModel = viewModel
@@ -115,8 +117,12 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         }
 
         SwiftEventBus.onMainThread(self, name: "updateMySize") { _ in
+            let lastScrollOffset = self.tableView.contentOffset
+            UIView.setAnimationsEnabled(false)
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
+            UIView.setAnimationsEnabled(true)
+            self.tableView.setContentOffset(lastScrollOffset, animated: false)
         }
     }
 
@@ -145,7 +151,10 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
     func setupViewModel(_ viewModel: PageViewModel) {
         self.viewModel = viewModel
+        cellHeights = [:]
+
         tableView.reloadData()
+
     }
 
     func reloadTableWithAnimation() {
@@ -226,6 +235,10 @@ extension PageController: UITableViewDataSource {
 
 extension PageController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellHeights[indexPath] = cell.frame.size.height
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             let cellViewModel = viewModel.viewModelForCellAt(index: indexPath.row)
@@ -243,7 +256,7 @@ extension PageController: UITableViewDelegate {
         if indexPath.section == 0 && !viewModel.viewModelForCellAt(index: indexPath.row)!.shouldAppear {
             return 0
         } else {
-            return UITableViewAutomaticDimension
+            return cellHeights[indexPath] ?? UITableViewAutomaticDimension
         }
     }
 }
