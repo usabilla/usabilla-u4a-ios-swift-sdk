@@ -114,12 +114,8 @@ class CampaignViewController: UIViewController {
     }
 
     func showModalForm() {
-
-        let storyboard = UIStoryboard(name: "USAStoryboard", bundle: Bundle(identifier: "com.usabilla.UsabillaFeedbackForm"))
-        guard let base = storyboard.instantiateViewController(withIdentifier: "base") as? UINavigationController,
-            let formController = base.childViewControllers[0] as? FormViewController else {
-                return
-        }
+        let formController = FormViewController()
+        let base = UINavigationController(rootViewController: formController)
         formController.delegate = self
         formController.viewModel = viewModel.formViewModel
         formNavigationController = base

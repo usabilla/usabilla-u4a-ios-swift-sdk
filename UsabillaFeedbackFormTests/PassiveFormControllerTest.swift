@@ -24,7 +24,7 @@ class PassiveFormControllerTest: QuickSpec {
             let formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
 
             viewController = FormViewController()
-            let navController = UINavigationController(rootViewController: viewController)
+            _ = UINavigationController(rootViewController: viewController)
 
             viewController.viewModel = UBFormViewModel(formModel: formModel)
             viewController.delegate = PassiveFormController()
