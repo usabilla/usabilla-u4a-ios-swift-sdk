@@ -1,3 +1,13 @@
+## 3.4.3
+
+#### Fixed
+- Nested visibility rule [#44](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/issues/44)
+- Checkbox control multiple line display [#42](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/issues/42)
+- Scrolling issue when typing within a title [#46](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/issues/46)
+
+#### Updated
+- Button text in Thank You Page are now limited to one line.
+
 ## 3.4.2
 
 #### Fixed

@@ -3,12 +3,16 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.4.2
+## Latest changes in v3.4.3
 
 #### Fixed
-- The screenshot title set in the web interface is now correctly applied in the SDK
-- Fixed a bug that would not restore the status bar to it's original color
-- HTML in paragraph is now correctly rendered
+- Nested visibility rule [#44](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/issues/44)
+- Checkbox control multiple line display [#42](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/issues/42)
+- Scrolling issue when typing within a title [#46](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/issues/46)
+
+#### Updated
+- Button text in Thank You Page are now limited to one line.
+
 
 ## Requirements
 
@@ -36,7 +40,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'MyApp' do
-    pod 'UsabillaFeedbackForm', '~> 3.4.1'
+    pod 'UsabillaFeedbackForm', '~> 3.4.3'
 end
 ```
 
