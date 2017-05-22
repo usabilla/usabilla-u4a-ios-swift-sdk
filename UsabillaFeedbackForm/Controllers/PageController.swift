@@ -12,7 +12,9 @@ let footerHeight: CGFloat = 80.0
 class PageController: UIViewController, UINavigationControllerDelegate {
 
     var tableView: UITableView = {
-        return UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        return tableView
     }()
     var requiredLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
@@ -50,8 +52,8 @@ class PageController: UIViewController, UINavigationControllerDelegate {
 
     func setUpView() {
         view.addSubview(tableView)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()

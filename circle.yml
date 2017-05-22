@@ -23,8 +23,21 @@ test:
           -workspace UsabillaFeedbackForm.xcworkspace
           -scheme "UsabillaFeedbackForm"
           test |
-        tee $CIRCLE_ARTIFACTS/xcode_raw.log |
-        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
+        tee $CIRCLE_ARTIFACTS/xcode_raw_ut.log |
+        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ut_ios_9_0_iPhone_6.xml
+
+      - set -o pipefail &&
+        xcodebuild
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGN_IDENTITY=
+          PROVISIONING_PROFILE=
+          -sdk iphonesimulator
+          -destination 'platform=iOS Simulator,OS=10.3,name=iPhone 7'
+          -workspace UsabillaFeedbackForm.xcworkspace
+          -scheme "UsabillaFeedbackForm"
+          test |
+        tee $CIRCLE_ARTIFACTS/xcode_raw_ut.log |
+        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ut_ios_10_3_iPhone_7.xml
 
       - set -o pipefail &&
         xcodebuild
@@ -36,5 +49,5 @@ test:
           -workspace UsabillaFeedbackForm.xcworkspace
           -scheme "UsabillaFeedbackFormUITestApp"
           test |
-        tee $CIRCLE_ARTIFACTS/xcode_raw.log |
-        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
+        tee $CIRCLE_ARTIFACTS/xcode_raw_ui.log |
+        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ui.xml

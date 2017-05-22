@@ -26,16 +26,14 @@ class FormViewController: UIViewController {
     }()
     var progressBar: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .default)
-        progressBar.progress = 0.5
+        progressBar.progress = 0.0
         progressBar.trackTintColor = UIColor.clear
         progressBar.tintColor = UIColor.clear
         progressBar.backgroundColor = UIColor.clear
         progressBar.contentMode = .scaleToFill
         return progressBar
     }()
-    var containerView: UIView = {
-        return UIView()
-    }()
+    var containerView = UIView()
 
     init(viewModel: UBFormViewModel) {
         self.viewModel = viewModel
@@ -78,11 +76,11 @@ class FormViewController: UIViewController {
 
     // MARK: View setup
     func setUpView() {
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.leftBarButtonItem = leftNavItem
-        self.navigationItem.rightBarButtonItem = rightNavItem
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.leftBarButtonItem = leftNavItem
+        navigationItem.rightBarButtonItem = rightNavItem
 
-        var containerTopConstraint: NSLayoutYAxisAnchor = view.topAnchor
+        var containerTopAnchor: NSLayoutYAxisAnchor = view.topAnchor
 
         if !viewModel.shouldHideProgressBar {
             view.addSubview(progressBar)
@@ -91,7 +89,7 @@ class FormViewController: UIViewController {
             progressBar.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
             progressBar.heightAnchor.constraint(equalToConstant: 2.0).activate()
             progressBar.topAnchor.constraint(equalTo: view.topAnchor).activate()
-            containerTopConstraint = progressBar.bottomAnchor
+            containerTopAnchor = progressBar.bottomAnchor
         }
 
         view.addSubview(containerView)
@@ -99,7 +97,7 @@ class FormViewController: UIViewController {
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
         containerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
-        containerView.topAnchor.constraint(equalTo: containerTopConstraint).activate()
+        containerView.topAnchor.constraint(equalTo: containerTopAnchor).activate()
 
         // Add PageController
         pageController = PageController(viewModel: viewModel.currentPageViewModel)
@@ -112,8 +110,8 @@ class FormViewController: UIViewController {
     func customizeView() {
         UIApplication.shared.statusBarStyle = viewModel.statusBarColor
 
-        self.navigationController?.navigationBar.barTintColor = viewModel.headerColor
-        self.navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
+        navigationController?.navigationBar.barTintColor = viewModel.headerColor
+        navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
 
         if !viewModel.shouldHideProgressBar {
             progressBar.progressTintColor = viewModel.accentColor

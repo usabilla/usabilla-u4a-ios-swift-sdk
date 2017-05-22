@@ -16,16 +16,12 @@ class PassiveFormControllerTest: QuickSpec {
 
     override func spec() {
         var viewController: FormViewController!
-
+        var navigationController: UINavigationController!
         beforeEach {
-            let path = Bundle(for: PassiveFormControllerTest.self).path(forResource: "test", ofType: "json")!
-            let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            let jsonObj: JSON = JSON(data: (data as Data?)!)
-            let formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
-
+            let formModel = UBMock.formMock()
             viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel))
-            _ = UINavigationController(rootViewController: viewController)
-
+            navigationController = UINavigationController(rootViewController: viewController)
+            _ = navigationController // remove xcode warning
             viewController.delegate = PassiveFormController()
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
             _ = viewController.view
