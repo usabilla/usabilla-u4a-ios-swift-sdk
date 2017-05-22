@@ -114,10 +114,9 @@ class CampaignViewController: UIViewController {
     }
 
     func showModalForm() {
-        let formController = FormViewController()
+        let formController = FormViewController(viewModel: viewModel.formViewModel!)
         let base = UINavigationController(rootViewController: formController)
         formController.delegate = self
-        formController.viewModel = viewModel.formViewModel
         formNavigationController = base
 
         addChildViewController(base)

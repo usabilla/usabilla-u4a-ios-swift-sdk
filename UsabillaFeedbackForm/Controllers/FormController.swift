@@ -10,7 +10,7 @@ import UIKit
 
 class FormViewController: UIViewController {
 
-    var viewModel: UBFormViewModel!
+    var viewModel: UBFormViewModel
     var reachability: Reachability!
     var pageController: PageController!
     var thankYouController: ThankYouController!
@@ -36,6 +36,15 @@ class FormViewController: UIViewController {
     var containerView: UIView = {
         return UIView()
     }()
+
+    init(viewModel: UBFormViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: ViewController cycle
     override func loadView() {

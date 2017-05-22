@@ -73,10 +73,9 @@ open class UsabillaFeedbackForm {
     }
 
     private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
-        let formController = FormViewController()
+        let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController()
-        formController.viewModel = UBFormViewModel(formModel: form)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {

@@ -23,10 +23,9 @@ class PassiveFormControllerTest: QuickSpec {
             let jsonObj: JSON = JSON(data: (data as Data?)!)
             let formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
 
-            viewController = FormViewController()
+            viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel))
             _ = UINavigationController(rootViewController: viewController)
 
-            viewController.viewModel = UBFormViewModel(formModel: formModel)
             viewController.delegate = PassiveFormController()
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
             _ = viewController.view

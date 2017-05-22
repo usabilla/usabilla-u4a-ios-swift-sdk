@@ -57,8 +57,7 @@ class Performance: XCTestCase {
                 Swift.debugPrint(error.localizedDescription)
             }
 
-            let viewController = FormViewController()
-            viewController.viewModel = UBFormViewModel(formModel: formModel!)
+            let viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel!))
             viewController.loadView()
         }
     }

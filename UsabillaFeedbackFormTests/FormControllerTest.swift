@@ -29,8 +29,7 @@ class FormControllerTest: QuickSpec {
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
                 formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
 
-                viewController = FormViewController()
-                viewController.viewModel = UBFormViewModel(formModel: formModel)
+                viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel))
                 viewController.delegate = self
 
                 // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
