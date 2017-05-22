@@ -19,7 +19,7 @@ The following is a summary of all the steps you need to follow. A more detailed 
 
 ### Step list
 1. Documentation update
-   1. [Open a release branch](#open-a-release-branch)
+   1. [Open a release branch in the public repository](#open-a-release-branch-in-the-public-repository)
    2. [Update the changelog.md file](#updating-changelog)
    3. [Update the readme.md file](#updating-the-readme)
    4. [Update the public wiki](#updating-the-wiki)
@@ -40,21 +40,21 @@ The following is a summary of all the steps you need to follow. A more detailed 
 
 ### Documentation Update
 
-#### Open a release branch
-During the release process, we will modify many files contained in the public repository, such as documentation and example projects.
-Before starting this process a release branch must be created.
-In the public repository, create a new branch from **`master`** called **`release/vX.Y.Z`**.    
-All file modifications will be done on this branch which will be rebased on **master** after the release process is finished.
+#### Open a release branch in the public repository
+During the release process, we will modify many files contained in the public repository, such as documentation and example projects.    
+Before starting this process a release branch must be created.   
+In the **public repository**, create a new branch from **`master`** called **`release/vX.Y.Z`**.       
+All file modifications will be done on this branch which will be rebased on **master** after the release process is finished.    
 
 #### Updating the podspec file
 The podspec file holds the configuration of the pod published on CocoaPods.
 
-To release a new version, it is sufficient to change the `s.version` line to the new version.
+To release a new version, it is sufficient to change the `s.version` line to the new version.   
 The new version includes just the digits, in the `X.Y.Z` format.
 
 #### Updating changelog
 
-The changelog is a file containing all and only the changes relevant to an external SDK user. It is not a file used for documenting internal changes.    
+The changelog is a file containing all and only the changes relevant to an external SDK user. It is not a file used for documenting internal changes.       
 The changelog must have the following structure:
 
 ```
@@ -75,8 +75,8 @@ The changelog must have the following structure:
 
 #### Updating the readme
 
-The readme file is the first and most read SDK documentation. It is of primary importance that the file is kept updated, readable and understandable.
-The readme always contains the latest changes, so it must be updated after the changelog.
+The readme file is the first and most read SDK documentation. It is of primary importance that the file is kept updated, readable and understandable.    
+The readme always contains the latest changes, so it must be updated after the changelog.   
 
 To update the readme:
 1. Copy the latest changes from the changelog and mirror them in the readme.
@@ -117,7 +117,11 @@ To update the **master** branch, open a PR from **develop** to **master**.
 This PR should not contain anything more than all the changes included in the release.    
 Once the PR is accepted, the last commit on **master** should be `vX.Y.Z`.    
 
-Tag the commit in **master** with `vX.Y.Z` as well and push the tag to the remote repository.
+In the [release page of Github](https://github.com/usabilla/usabilla-u4a-ios-swift/releases):
+
+1. Select `Draft a new release`.
+2. Select the latest commit on **master** and name the release `vX.Y.Z`.
+3. Publish the new release.
 
 ### External Release
 
@@ -154,9 +158,7 @@ At this point remember to:
 #### Update the public master branch
 
 At this point, all files should have been updated correctly.
-Commit all changes with `release vX.Y.Z` as commit message and push the branch to the remote.
-
-Rebase all changes in **master** and tag the commit with `vX.Y.Z`, pushing the tag to the remote as well.
+Commit all changes with `release vX.Y.Z` as commit message and push the branch to the remote and rebase all changes on **master**.
 
 #### Create a release on Github
 
