@@ -39,7 +39,7 @@ class CampaignService: CampaignServiceProtocol {
         return Promise { fulfill, reject in
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
                 if let json = response.data {
-                    fulfill(FormModel(json: JSON(json), id: "a", screenshot: nil))
+                    fulfill(FormModel(json: JSON(json), id: id, screenshot: nil))
                     return
                 }
                 reject(response.error!)

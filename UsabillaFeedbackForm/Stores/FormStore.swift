@@ -9,6 +9,12 @@
 import Foundation
 
 class FormStore {
+    
+    let formService: FormServiceProtocol
+    
+    init(service: FormServiceProtocol) {
+        self.formService = service
+    }
 
     // Entry to laod a form from Network or try getting it from Cache
     class func loadForm(id: String, screenshot: UIImage?, customVariables: [String: Any]?, theme: UsabillaTheme) -> Promise<FormModel> {

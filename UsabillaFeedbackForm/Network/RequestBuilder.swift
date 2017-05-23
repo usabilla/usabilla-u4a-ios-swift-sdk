@@ -85,6 +85,11 @@ class RequestBuilder {
     }
 
     // MARK: Public methods
+    class func requestGetPassiveForm(withId id: String) -> URLRequest {
+        let url = buildURL(withEndpoint: .passiveForm, withURLParam: id)
+        return requestForGet(withURL: url) as URLRequest
+    }
+
     class func requestGetCampaignForm(withId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignForm, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
