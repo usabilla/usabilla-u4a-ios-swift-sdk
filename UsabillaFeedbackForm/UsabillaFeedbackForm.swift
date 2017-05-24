@@ -33,6 +33,7 @@ open class UsabillaFeedbackForm {
 
     // services
     private static var campaignManager: CampaignManager?
+    private static var formStore: FormStore!
 
     open class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event)
@@ -56,6 +57,7 @@ open class UsabillaFeedbackForm {
         }
         appIdentifier = appId
         campaignManager = CampaignManager(campaignStore: campaignStore, appId: appId)
+        formStore = FormStore(service: FormService())
     }
 
     open class func removeCachedForms() {
@@ -63,8 +65,11 @@ open class UsabillaFeedbackForm {
     }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
+        if formStore == nil {
+            formStore = FormStore(service: FormService())
+        }
 
-        FormStore.loadForm(id: appId, screenshot: screenshot, customVariables: customVariables, theme: theme).then { form in
+        formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
         }.catch { _ in
             if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, theme: theme) {

@@ -9,11 +9,32 @@
 import Foundation
 
 class FormStore {
-    
+
     let formService: FormServiceProtocol
-    
+
     init(service: FormServiceProtocol) {
         self.formService = service
+    }
+
+    func loadForm(id: String, screenshot: UIImage?, theme: UsabillaTheme) -> Promise<FormModel> {
+        return Promise { fulfill, reject in
+            self.formService.getForm(withId: id, screenShot: screenshot).then(execute: { form in
+                UBFormDAO.shared.create(form)
+                form.theme = theme
+                form.updateTheme()
+                PLog("  FormModel is loaded successfully")
+                fulfill(form)
+            }).catch(execute: { error in
+                if let cachedForm = UBFormDAO.shared.read(id: id) {
+                    cachedForm.theme = theme
+                    cachedForm.updateTheme()
+                    PLog("FormModel is loaded successfully")
+                    fulfill(cachedForm)
+                } else {
+                    reject(error)
+                }
+            })
+        }
     }
 
     // Entry to laod a form from Network or try getting it from Cache
