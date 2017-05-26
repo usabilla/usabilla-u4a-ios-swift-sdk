@@ -40,9 +40,20 @@ class CampaignManager {
         guard campaign.canBeDisplayed && UsabillaFeedbackForm.canDisplayCampaigns else {
             return
         }
-        if CampaignWindow.shared.showCampaign(campaign) {
-            campaign.numberOfTimesTriggered += 1
-            UBCampaignDAO.shared.create(campaign)
+        campaignStore.getCampaignForm(withFormId: campaign.formId, theme: UsabillaFeedbackForm.theme).then { form in
+            if self.displayCampaignForm(form) {
+                campaign.numberOfTimesTriggered += 1
+                UBCampaignDAO.shared.create(campaign)
+                return
+            }
+            PLog("A campaign is already displayed")
+        }.catch { error in
+            PLog(error)
         }
+    }
+
+    @discardableResult func displayCampaignForm(_ form: FormModel) -> Bool {
+        let campaignViewModel = CampaignViewModel(form: form)
+        return CampaignWindow.shared.showCampaign(campaignViewModel)
     }
 }

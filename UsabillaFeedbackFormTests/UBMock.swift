@@ -21,6 +21,12 @@ class UBMock {
         return CampaignModel(id: "campaignid", json: JSON.parse(""))
     }
 
+    class func campaignMockWithRules(id: String = "a") -> CampaignModel {
+        let leaf = LeafRule(event: Event(name: "foo"))
+        let leaf2 = LeafRule(event: Event(name: "bar"))
+        let rule = AndRule(childRules: [leaf, leaf2])
+        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0)
+    }
 }
 
 class UBHTTPMockFail: HTTPClientProtocol {
@@ -49,6 +55,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
 
     var campaignsResponse: Cachable<[CampaignModel]>?
     var targetingResponse: Cachable<Rule>?
+    var campaignForm: FormModel?
 
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
@@ -59,7 +66,11 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
     }
 
     func getCampaignForm(withId id: String) -> Promise<FormModel> {
-        return Promise { _, _ in
+        return Promise { fulfill, reject in
+            if campaignForm != nil {
+                return fulfill(campaignForm!)
+            }
+            reject(NSError(domain: "", code: 500, userInfo: nil))
         }
     }
 

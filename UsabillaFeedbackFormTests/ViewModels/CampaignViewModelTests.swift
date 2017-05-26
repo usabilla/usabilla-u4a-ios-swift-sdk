@@ -30,7 +30,7 @@ class CampaingViewModelTests: QuickSpec {
                     campaign.form = formModel
 
                     expect(campaign).toNot(beNil())
-                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    let campainViewModel = CampaignViewModel(form: formModel)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).to(beNil())
                     expect(campainViewModel.introPresenter).to(beNil())
@@ -47,7 +47,7 @@ class CampaingViewModelTests: QuickSpec {
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
-                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    let campainViewModel = CampaignViewModel(form: formModel)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).toNot(beNil())
                     expect(campainViewModel.introPresenter).toNot(beNil())
@@ -67,7 +67,7 @@ class CampaingViewModelTests: QuickSpec {
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     campaign.form = formModel
                     expect(campaign).toNot(beNil())
-                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    let campainViewModel = CampaignViewModel(form: formModel)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).toNot(beNil())
                     expect(campainViewModel.introPresenter is UBAlertPresenter).to(beTrue())
@@ -79,19 +79,12 @@ class CampaingViewModelTests: QuickSpec {
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
                     campaign.form = formModel
-                    let campainViewModel = CampaignViewModel(campaign: campaign)
+                    let campainViewModel = CampaignViewModel(form: formModel)
                     let formViewModel = campainViewModel.formViewModel
 
                     expect(formViewModel).toNot(beNil())
                     expect(formViewModel?.currentPageViewModel.name).to(equal("Third"))
                     expect(formViewModel?.shouldAddMarginWhenKeyboardIsShown).to(beFalse())
-                })
-
-                it("should return nil when the campaign has no form", closure: {
-                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-                    let campainViewModel = CampaignViewModel(campaign: campaign)
-                    let formViewModel = campainViewModel.formViewModel
-                    expect(formViewModel).to(beNil())
                 })
             })
         }

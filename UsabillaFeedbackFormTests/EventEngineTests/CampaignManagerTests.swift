@@ -16,9 +16,21 @@ import Nimble
 class CampaignStoreMock: UBCampaignStoreProtocol {
     var campaigns = [CampaignModel]()
     var onSaveCalled: ((CampaignModel) -> Void)?
+    var form: FormModel?
+    var getCampaignFormHasBeenCalled: Bool = false
     func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, _ in
             fulfill(self.campaigns)
+        }
+    }
+
+    func getCampaignForm(withFormId formId: String, theme: UsabillaTheme) -> Promise<FormModel> {
+        return Promise { fulfill, reject in
+            getCampaignFormHasBeenCalled = true
+            if let form = self.form {
+                return fulfill(form)
+            }
+            reject(NSError(domain: "", code: 0, userInfo: nil))
         }
     }
 }
@@ -67,12 +79,8 @@ class CampaignManagerTests: QuickSpec {
                     UsabillaFeedbackForm.canDisplayCampaigns = true
                 }
                 it("should save campaigns when there are responding campaigns for the event") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
+                        UBMock.campaignMockWithRules(id: "a"),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     campaigns.forEach {
@@ -90,12 +98,8 @@ class CampaignManagerTests: QuickSpec {
                     expect(triggeredRule?.alreadyTriggered).to(beTrue())
                 }
                 it("should not display campaign that have not triggered") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
+                        UBMock.campaignMockWithRules(id: "a"),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     campaigns.forEach {
@@ -110,12 +114,8 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                 }
                 it("should display campaign that triggered") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
+                        UBMock.campaignMockWithRules(id: "a"),
                         CampaignModel(id: "b", json: JSON.parse(""))
                     ]
                     campaigns.forEach {
@@ -123,7 +123,7 @@ class CampaignManagerTests: QuickSpec {
                     }
 
                     storeMock.campaigns = campaigns
-
+                    storeMock.form = UBMock.formMock()
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
@@ -135,13 +135,9 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaign?.numberOfTimesTriggered).to(equal(1))
                 }
                 it("should display only the first campaign that triggered") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
-                    let rule = AndRule(childRules: [leaf, leaf2])
-
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0)
+                        UBMock.campaignMockWithRules(id: "a"),
+                        UBMock.campaignMockWithRules(id: "b")
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
@@ -177,7 +173,7 @@ class CampaignManagerTests: QuickSpec {
                     }
 
                     storeMock.campaigns = campaigns
-
+                    storeMock.form = UBMock.formMock()
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
                     var campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
@@ -198,6 +194,64 @@ class CampaignManagerTests: QuickSpec {
                     campaignManager.displayCampaign(campaignA!)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(1))
+                }
+            }
+
+            context("when displaying a campaign form : displayCampaignForm") {
+                beforeEach {
+                    CampaignWindow.shared.campaignDidEnd(success: false)
+                }
+                it("should display the form") {
+                    let form = UBMock.formMock()
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "")
+                    expect(campaignManager.displayCampaignForm(form)).to(beTrue())
+                }
+                it("should not display the form when campaign is already displayed") {
+                    let form = UBMock.formMock()
+                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "")
+                    expect(campaignManager.displayCampaignForm(form)).to(beTrue())
+                    expect(campaignManager.displayCampaignForm(form)).to(beFalse())
+                }
+            }
+
+            context("when displaying a campaign: displayCampaign") {
+                var campaignManager: CampaignManager!
+                var campaign: CampaignModel!
+                beforeEach {
+                    CampaignWindow.shared.campaignDidEnd(success: false)
+                    storeMock.getCampaignFormHasBeenCalled = false
+                    storeMock.form = nil
+                    UsabillaFeedbackForm.canDisplayCampaigns = true
+                    campaign = UBMock.campaignMockWithRules()
+                    campaignManager = CampaignManager(campaignStore: storeMock, appId: "")
+
+                }
+                it("should not display the campaign if it cannot be displayed") {
+                    UsabillaFeedbackForm.canDisplayCampaigns = false
+
+                    expect(campaign.canBeDisplayed).to(beTrue())
+                    expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
+                    campaignManager.displayCampaign(campaign)
+                    expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
+                }
+                it("should diplay the campaign form") {
+                    storeMock.form = UBMock.formMock()
+                    let formMock = UBMock.formMock()
+
+                    expect(campaign.canBeDisplayed).to(beTrue())
+                    expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
+                    campaignManager.displayCampaign(campaign)
+                    expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
+                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock))).to(beFalse())
+                }
+                it("should not diplay the campaign form when the form does not exist") {
+                    let formMock = UBMock.formMock()
+
+                    expect(campaign.canBeDisplayed).to(beTrue())
+                    expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
+                    campaignManager.displayCampaign(campaign)
+                    expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
+                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock))).to(beTrue())
                 }
             }
         }

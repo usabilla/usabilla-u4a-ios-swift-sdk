@@ -173,6 +173,53 @@ class UBCampaignStoreTests: QuickSpec {
                     }
                 }
             }
+
+            context("When fetching campaign form") {
+                it("should return an error when an error is sent from the campaignService") {
+                    let campaignService = UBCampaignServiceMock()
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaignForm(withFormId: "test", theme: UsabillaTheme())
+                        promise.then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should return a form") {
+                    let campaignService = UBCampaignServiceMock()
+                    let form = UBMock.formMock()
+                    campaignService.campaignForm = form
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaignForm(withFormId: "test", theme: UsabillaTheme())
+                        promise.then { formResponse in
+                            expect(formResponse).to(equal(form))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should update the theme when returning a form") {
+                    let campaignService = UBCampaignServiceMock()
+                    let form = UBMock.formMock()
+                    campaignService.campaignForm = form
+                    store = UBCampaignStore(service: campaignService)
+                    var theme = UsabillaTheme()
+                    theme.headerColor = UIColor.purple
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaignForm(withFormId: "test", theme: theme)
+                        promise.then { formResponse in
+                            expect(formResponse.theme.headerColor).to(equal(UIColor.purple))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+            }
         }
     }
 }

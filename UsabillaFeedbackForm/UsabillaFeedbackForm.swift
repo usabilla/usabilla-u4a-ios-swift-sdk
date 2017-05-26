@@ -22,6 +22,8 @@ open class UsabillaFeedbackForm {
 
     static var appIdentifier: String?
     static var defaultLocalisationFile = true
+    static let campaignService = CampaignService()
+    static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: UsabillaFeedbackForm.campaignService)
 
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
@@ -53,7 +55,7 @@ open class UsabillaFeedbackForm {
             return
         }
         appIdentifier = appId
-        campaignManager = CampaignManager(campaignStore: UBCampaignStore(service: CampaignService()), appId: appId)
+        campaignManager = CampaignManager(campaignStore: campaignStore, appId: appId)
     }
 
     open class func removeCachedForms() {
@@ -69,6 +71,24 @@ open class UsabillaFeedbackForm {
 
                 UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
             }
+        }
+    }
+
+    open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = UsabillaTheme()) {
+        guard let campaignManager = campaignManager else {
+            let error = NSError(domain: "SDK not initialized", code: 0, userInfo: nil)
+            delegate?.campaignFormDidDisplay(formId: formId, error: error)
+            return
+        }
+        campaignStore.getCampaignForm(withFormId: formId, theme: theme).then { form in
+            if campaignManager.displayCampaignForm(form) {
+                delegate?.campaignFormDidDisplay(formId: formId, error: nil)
+                return
+            }
+            let error = NSError(domain: "A campaign form is already displayed", code: 0, userInfo: nil)
+            delegate?.campaignFormDidDisplay(formId: formId, error: error)
+        }.catch { error in
+            delegate?.campaignFormDidDisplay(formId: formId, error: error)
         }
     }
 
@@ -92,11 +112,9 @@ open class UsabillaFeedbackForm {
         return image
     }
 
-    open class func showCampaign(formJson: JSON) {
-        let campaign = CampaignModel(id: "", json: JSON.init(parseJSON: ""))
+    open class func showCampaignForm(formJson: JSON) {
         let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-        campaign.form = formModel
-        CampaignWindow.shared.showCampaign(campaign)
+        campaignManager?.displayCampaignForm(formModel)
     }
 }
 
@@ -127,9 +145,17 @@ public protocol UsabillaFeedbackFormDelegate: class {
     */
     func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
 
+    /**
+     This method will be called after calling **displayCampaignForm** and allows to know if the form has been displayed or not
+     - Parameter formId: String representing the identifier of the form
+     - Parameter error: optional error when fetching or displaying the form
+
+     The form has been successfully displayed if the **error** is nil
+     */
+    func campaignFormDidDisplay(formId: String, error: Error?)
 }
 
 public extension UsabillaFeedbackFormDelegate {
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
-    }
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) { }
+    func campaignFormDidDisplay(formId: String, error: Error?) { }
 }

@@ -19,12 +19,9 @@ class PageControllerTest: QuickSpec {
     override func spec() {
         var viewController: PageController!
         var formModel: FormModel!
-        var moodCell: RootCellView!
 
         beforeSuite {
             formModel = UBMock.formMock()
-
-
             let pageViewModel = PageViewModel(page: formModel.pages.first!, theme: UsabillaTheme())
             viewController = PageController(viewModel: pageViewModel)
 
@@ -34,7 +31,6 @@ class PageControllerTest: QuickSpec {
             // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
             viewController.beginAppearanceTransition(true, animated: false)
             viewController.endAppearanceTransition()
-            moodCell = viewController.tableView.visibleCells.first as? RootCellView
         }
 
         beforeEach {
