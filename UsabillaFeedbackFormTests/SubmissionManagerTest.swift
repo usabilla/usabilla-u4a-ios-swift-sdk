@@ -48,15 +48,15 @@ class SubmissionManagerTest: QuickSpec {
                 //initialization code not in a before suite to not overlap with DataStore unit tests
                 UBFeedbackRequestDAO.shared.deleteAll()
                 formModel = UBMock.formMock()
-                sm = SubmissionManager(reachability: reachabilityMock)
+                sm = SubmissionManager(formService: UBFormServiceMock())
             }
 
             it("SubmissionManager should work online and offline") {
                 //set offline
                 reachabilityMock.reachable = false
-                SubmissionManager.submit(sm)(form: formModel!, customVars: nil)
+                sm.submit(form: formModel!, customVars: nil)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
-                SubmissionManager.submit(sm)(form: formModel!, customVars: nil)
+                sm.submit(form: formModel!, customVars: nil)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(2))
 
                 //set online
@@ -66,7 +66,7 @@ class SubmissionManagerTest: QuickSpec {
             }
 
             it("SubmissionManager submit with reachability") {
-                SubmissionManager.submit(sm)(form: formModel!, customVars: nil)
+                sm.submit(form: formModel!, customVars: nil)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
                 expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
             }
@@ -76,7 +76,7 @@ class SubmissionManagerTest: QuickSpec {
                 screenshost.image = Icons.imageOfPoweredBy(color: .blue)
                 formModel?.pages.first?.fields.append(screenshost)
                 formModel?.isDefault = true
-                SubmissionManager.submit(sm)(form: formModel!, customVars: ["test": "test"])
+                sm.submit(form: formModel!, customVars: ["test": "test"])
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
                 expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
             }

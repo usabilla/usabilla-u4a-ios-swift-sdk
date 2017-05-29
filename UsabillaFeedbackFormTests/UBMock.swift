@@ -29,6 +29,21 @@ class UBMock {
     }
 }
 
+class UBFormServiceMock: FormServiceProtocol {
+
+    var requestBuilder: RequestBuilder.Type = RequestBuilder.self
+    var httpClient: HTTPClientProtocol.Type = HTTPClient.self
+
+    func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel> {
+        return Promise { _, _ in
+        }
+    }
+    func submitFormToUsabilla(payload: [String: Any], screenshot: String?) -> Promise<Bool> {
+        return Promise { _, _ in
+        }
+    }
+}
+
 class UBHTTPMockFail: HTTPClientProtocol {
     static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
         completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))

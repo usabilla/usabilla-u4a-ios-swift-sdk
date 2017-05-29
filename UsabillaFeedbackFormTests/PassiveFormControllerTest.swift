@@ -17,12 +17,15 @@ class PassiveFormControllerTest: QuickSpec {
     override func spec() {
         var viewController: FormViewController!
         var navigationController: UINavigationController!
+        var submissionManager: SubmissionManager!
+
         beforeEach {
+            submissionManager = SubmissionManager(formService: UBFormServiceMock())
             let formModel = UBMock.formMock()
             viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel))
             navigationController = UINavigationController(rootViewController: viewController)
             _ = navigationController // remove xcode warning
-            viewController.delegate = PassiveFormController()
+            viewController.delegate = PassiveFormController(submissionManager: submissionManager)
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
             _ = viewController.view
 

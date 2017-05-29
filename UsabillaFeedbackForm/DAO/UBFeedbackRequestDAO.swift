@@ -13,7 +13,7 @@ class UBFeedbackRequestDAO: UBFileStorageDAO<UBFeedbackRequest> {
     static let shared = UBFeedbackRequestDAO()
 
     internal required init() {
-        super.init(directoryName: UBFormDAO.directoryName)
+        super.init(directoryName: UBFeedbackRequestDAO.directoryName)
     }
 
     override func id(forObj: UBFeedbackRequest) -> String {

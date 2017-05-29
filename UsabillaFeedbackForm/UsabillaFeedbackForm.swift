@@ -33,7 +33,9 @@ open class UsabillaFeedbackForm {
 
     // services
     private static var campaignManager: CampaignManager?
-    private static var formStore: FormStore!
+    private static var formService: FormService = FormService()
+    private static var formStore: FormStore = FormStore(service: formService)
+    private static var submissionManager: SubmissionManager = SubmissionManager(formService: formService)
 
     open class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event)
@@ -50,7 +52,6 @@ open class UsabillaFeedbackForm {
     - parameter appId: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
     open class func load(appId: String) {
-        _ = SubmissionManager.shared // init the singleton to send persisted feedback
         guard NSUUID(uuidString: appId) != nil else {
             Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
             return
@@ -65,14 +66,11 @@ open class UsabillaFeedbackForm {
     }
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
-        if formStore == nil {
-            formStore = FormStore(service: FormService())
-        }
 
         formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
         }.catch { _ in
-            if let defaulForm = FormStore.loadDefaultForm(appId, screenshot: screenshot, customVariables: customVariables, theme: theme) {
+            if let defaulForm = formStore.loadDefaultForm(appId, screenshot: screenshot, theme: theme) {
 
                 UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
             }
@@ -100,7 +98,7 @@ open class UsabillaFeedbackForm {
     private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
-        formController.delegate = PassiveFormController()
+        formController.delegate = PassiveFormController(submissionManager: submissionManager)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {

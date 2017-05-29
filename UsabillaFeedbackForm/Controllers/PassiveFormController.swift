@@ -11,6 +11,11 @@ import Foundation
 class PassiveFormController: FormViewControllerDelegate {
 
     private var results: [FeedbackResult] = []
+    private var submissionManager: SubmissionManager!
+
+    init(submissionManager: SubmissionManager) {
+        self.submissionManager = submissionManager
+    }
 
     func leftBarButtonTapped(_ formViewController: FormViewController) {
         if !formViewController.viewModel.isItTheEnd {
@@ -29,6 +34,6 @@ class PassiveFormController: FormViewControllerDelegate {
             return
         }
         results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
-        SubmissionManager.shared.submit(form: formViewController.viewModel.model, customVars: formViewController.customVars)
+        submissionManager.submit(form: formViewController.viewModel.model, customVars: formViewController.customVars)
     }
 }
