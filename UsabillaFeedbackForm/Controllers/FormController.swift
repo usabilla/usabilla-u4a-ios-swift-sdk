@@ -159,6 +159,7 @@ class FormViewController: UIViewController {
         leftNavItem.isEnabled = true
 
         thankYouController = ThankYouController(viewModel: endPageViewModel)
+
         pageController.willMove(toParentViewController: nil)
         addChildViewController(thankYouController)
         thankYouController.view.frame = containerView.bounds
