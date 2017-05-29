@@ -35,11 +35,15 @@ class UBFormServiceMock: FormServiceProtocol {
     var httpClient: HTTPClientProtocol.Type = HTTPClient.self
 
     func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel> {
-        return Promise { _, _ in
+        return Promise { fulfill, _ in
+            let formModel = FormModel(json: "", id: "a", screenshot: nil)
+            fulfill(formModel)
         }
     }
-    func submitFormToUsabilla(payload: [String: Any], screenshot: String?) -> Promise<Bool> {
-        return Promise { _, _ in
+    func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool> {
+        return Promise { fulfill, _ in
+            sleep(1)
+            fulfill(true)
         }
     }
 }
@@ -47,6 +51,9 @@ class UBFormServiceMock: FormServiceProtocol {
 class UBHTTPMockFail: HTTPClientProtocol {
     static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
         completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil), success: false))
+    }
+
+    static func request(_ url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
     }
 }
 
@@ -56,6 +63,9 @@ class UBHTTPMockSuccess: HTTPClientProtocol {
     static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
         completion(HTTPClientResponse(data: result, error: nil, success: true))
     }
+
+    static func request(_ url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
+    }
 }
 
 class UBHTTPMock: HTTPClientProtocol {
@@ -63,6 +73,9 @@ class UBHTTPMock: HTTPClientProtocol {
     static var response: HTTPClientResponse!
     static func request(request: URLRequest, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
         completion(response)
+    }
+
+    static func request(_ url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, responseQueue: DispatchQueue?, completion: @escaping (HTTPClientResponse) -> Void) {
     }
 }
 

@@ -17,7 +17,7 @@ class RequestBuilder {
         case targetingForCampaignId = "targeting-endpoint-here" // TO DO: change this when right end point is ready
     }
 
-    static let bundle = Bundle(for: NetworkManager.self)
+    static let bundle = Bundle(for: RequestBuilder.self)
     static let apiUrl: String = bundle.infoDictionary!["USABILLA_API_URL"] as! String
     static let submitUrl: String = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
 

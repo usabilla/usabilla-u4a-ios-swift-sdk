@@ -11,7 +11,7 @@ import Foundation
 class PassiveFormController: FormViewControllerDelegate {
 
     private var results: [FeedbackResult] = []
-    private var submissionManager: SubmissionManager!
+    private var submissionManager: SubmissionManager
 
     init(submissionManager: SubmissionManager) {
         self.submissionManager = submissionManager

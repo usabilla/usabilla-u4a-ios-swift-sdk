@@ -87,13 +87,13 @@ class HTTPClient: HTTPClientProtocol {
         task.resume()
     }
 
-    class func request(_ url: String,
-                       method: HTTPMethod = .get,
-                       parameters: Parameters? = nil,
-                       encoding: ParameterEncoding = JSONEncoding.default,
-                       headers: HTTPHeaders? = nil,
-                       responseQueue: DispatchQueue? = nil,
-                       completion: @escaping (HTTPClientResponse) -> Void) {
+    static func request(_ url: String,
+                        method: HTTPMethod = .get,
+                        parameters: Parameters? = nil,
+                        encoding: ParameterEncoding = JSONEncoding.default,
+                        headers: HTTPHeaders? = nil,
+                        responseQueue: DispatchQueue? = nil,
+                        completion: @escaping (HTTPClientResponse) -> Void) {
 
         guard let url = URL(string: url) else {
             return
@@ -115,5 +115,4 @@ class HTTPClient: HTTPClientProtocol {
         }
         HTTPClient.request(request: request as URLRequest, responseQueue: responseQueue, completion: completion)
     }
-
 }

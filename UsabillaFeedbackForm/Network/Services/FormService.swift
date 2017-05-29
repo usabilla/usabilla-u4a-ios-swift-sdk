@@ -13,7 +13,7 @@ protocol FormServiceProtocol {
     var httpClient: HTTPClientProtocol.Type { get }
 
     func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel>
-    func submitFormToUsabilla(payload: [String: Any], screenshot: String?) -> Promise<Bool>
+    func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool>
 }
 
 class FormService: FormServiceProtocol {
@@ -28,17 +28,17 @@ class FormService: FormServiceProtocol {
     func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withId: id)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
+            self.httpClient.request(request: request as URLRequest, responseQueue: nil) { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: screenShot))
                     return
                 }
                 reject(response.error!)
-            })
+            }
         }
     }
 
-    func submitFormToUsabilla(payload: [String: Any], screenshot: String?) -> Promise<Bool> {
+    func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool> {
         return Promise { fulfill, reject in
             submitFeedbackSmallData(payload: payload).then { response -> Void in
                 guard let data = response.data else {
@@ -82,20 +82,20 @@ class FormService: FormServiceProtocol {
             var promisedSucceeded = 0
 
             for (index, chunk) in stringChunks.enumerated() {
-                createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk).then(execute: { _ in
+                createPromise(id: id, signature: signature, v: index + 1, screenshot: chunk).then { _ in
                     promisedSucceeded += 1
                     if promisedSucceeded == stringChunks.count {
-                        self.closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then(execute: { _ in
+                        self.closeTheDeal(id: id, signature: signature, v: stringChunks.count + 1).then { _ in
                             PLog("Deal closed")
                             fulfill(true)
-                        }).catch { err in
+                        }.catch { err in
                             reject(err)
                             PLog(err)
                         }
                     }
-                }).catch(execute: { err in
+                }.catch { err in
                     PLog(err)
-                })
+                }
             }
         }
     }
@@ -115,7 +115,7 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            HTTPClient.request(RequestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -140,7 +140,7 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            HTTPClient.request(RequestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+            HTTPClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -157,7 +157,7 @@ class FormService: FormServiceProtocol {
     /// - Returns: Promise containig the responde data from the widget server
     func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-            HTTPClient.request(RequestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil ) { response in
                 if response.success {
                     fulfill(response)
                     return
@@ -166,5 +166,4 @@ class FormService: FormServiceProtocol {
             }
         }
     }
-
 }

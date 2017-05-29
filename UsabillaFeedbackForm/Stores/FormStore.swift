@@ -19,13 +19,13 @@ class FormStore {
     // Entry to laod a form from Network or try getting it from Cache
     func loadForm(id: String, screenshot: UIImage?, theme: UsabillaTheme) -> Promise<FormModel> {
         return Promise { fulfill, reject in
-            self.formService.getForm(withId: id, screenShot: screenshot).then(execute: { form in
+            self.formService.getForm(withId: id, screenShot: screenshot).then { form in
                 UBFormDAO.shared.create(form)
                 form.theme = theme
                 form.updateTheme()
                 PLog("  FormModel is loaded successfully")
                 fulfill(form)
-            }).catch(execute: { error in
+            }.catch { error in
                 if let cachedForm = UBFormDAO.shared.read(id: id) {
                     cachedForm.theme = theme
                     cachedForm.updateTheme()
@@ -34,7 +34,7 @@ class FormStore {
                 } else {
                     reject(error)
                 }
-            })
+            }
         }
     }
 

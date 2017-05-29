@@ -20,7 +20,7 @@ extension Reachability: Reachable { }
 class SubmissionManager {
 
     private var reachability: Reachable
-    private var formService: FormServiceProtocol!
+    private var formService: FormServiceProtocol
 
     fileprivate let submissionSerialQueue = DispatchQueue(label: "com.usabilla.u4a.submissionmanager")
     fileprivate let semaphore = DispatchSemaphore(value: 0)
@@ -33,7 +33,7 @@ class SubmissionManager {
             guard let feedbackRequest = UBFeedbackRequestDAO.shared.readAll().first else {
                 return
             }
-            self.formService.submitFormToUsabilla(payload: feedbackRequest.payload, screenshot: feedbackRequest.screenshot).then { _ in
+            self.formService.submitForm(payload: feedbackRequest.payload, screenshot: feedbackRequest.screenshot).then { _ in
                 UBFeedbackRequestDAO.shared.delete(feedbackRequest)
                 self.trySendData()
                 self.semaphore.signal()

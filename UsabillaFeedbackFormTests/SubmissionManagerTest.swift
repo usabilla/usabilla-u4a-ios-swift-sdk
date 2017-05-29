@@ -46,9 +46,8 @@ class SubmissionManagerTest: QuickSpec {
         describe("SubmissionManager test") {
             it("SubmissionManager init") {
                 //initialization code not in a before suite to not overlap with DataStore unit tests
-                UBFeedbackRequestDAO.shared.deleteAll()
                 formModel = UBMock.formMock()
-                sm = SubmissionManager(formService: UBFormServiceMock())
+                sm = SubmissionManager(formService: UBFormServiceMock(), reachability: reachabilityMock)
             }
 
             it("SubmissionManager should work online and offline") {
@@ -80,7 +79,6 @@ class SubmissionManagerTest: QuickSpec {
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
                 expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
             }
-
         }
     }
 }
