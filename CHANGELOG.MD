@@ -1,3 +1,8 @@
+## 3.4.4
+
+#### Fixed
+- Crash when dealing with multiple end pages and jump rules
+
 ## 3.4.3
 
 #### Fixed
