@@ -16,6 +16,7 @@ class ViewUtils {
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.addTarget(PageController.self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
         logo.setImage(Icons.imageOfPoweredBy(color: theme.textColor.withAlphaComponent(0.5)), for: UIControlState())
+        logo.accessibilityIdentifier = "powered-by-id"
         view.backgroundColor = theme.backgroundColor
         view.addSubview(logo)
 

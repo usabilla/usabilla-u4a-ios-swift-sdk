@@ -15,6 +15,7 @@
 		437B96E61E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96E51E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift */; };
 		437C60DA1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; };
 		437C60DB1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C555E9A01EE0120900F84B51 /* FormAppearanceScenarioTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E99F1EE0120900F84B51 /* FormAppearanceScenarioTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		437B96E51E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaFeedbackFormUITestAppUITests.swift; sourceTree = "<group>"; };
 		437B96E71E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C555E99F1EE0120900F84B51 /* FormAppearanceScenarioTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormAppearanceScenarioTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				437B96E51E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift */,
+				C555E99F1EE0120900F84B51 /* FormAppearanceScenarioTest.swift */,
 				437B96E71E266A8F00AA0A25 /* Info.plist */,
 			);
 			path = UsabillaFeedbackFormUITestAppUITests;
@@ -237,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C555E9A01EE0120900F84B51 /* FormAppearanceScenarioTest.swift in Sources */,
 				437B96E61E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

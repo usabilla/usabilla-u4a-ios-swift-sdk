@@ -19,10 +19,14 @@ class FormViewController: UIViewController {
     fileprivate var results: [FeedbackResult] = []
 
     lazy var leftNavItem: UIBarButtonItem = {
-        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonPressed(_:)))
+        let navLeft = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonPressed(_:)))
+        navLeft.accessibilityIdentifier = "Cancel"
+        return navLeft
     }()
     lazy var rightNavItem: UIBarButtonItem = {
-        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonPressed(_:)))
+        let navRight = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonPressed(_:)))
+        navRight.accessibilityIdentifier = "Next"
+        return navRight
     }()
     var progressBar: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .default)
