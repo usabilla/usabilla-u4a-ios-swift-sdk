@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
 
@@ -26,8 +28,8 @@ class FormModelTests: QuickSpec {
                 self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
             }
 
-            context("When initialized", {
-                it("Should set all properties successfully", closure: {
+            context("When initialized") {
+                it("Should set all properties successfully") {
                     expect(self.formModel).toNot(beNil())
                     expect(self.formModel.hasScreenshot).to(beTrue())
                     expect(self.formModel.version).to(equal(6))
@@ -43,8 +45,28 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel.showProgressBar).to(beFalse())
                     expect(self.formModel.theme).toNot(beNil())
                     expect(self.formModel.copyModel).toNot(beNil())
-                })
-            })
+                }
+
+                it("Should set all properties successfully when it is a campaign form model") {
+                    let path = Bundle(for: FormModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
+                    let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                    self.jsonObj = JSON(data: (data as Data?)!)
+                    self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
+
+                    expect(self.formModel).toNot(beNil())
+                    expect(self.formModel.hasScreenshot).to(beFalse())
+                    expect(self.formModel.version).to(equal(3))
+                    expect(self.formModel.appId).to(equal("a"))
+                    expect(self.formModel.pages.count).to(equal(2))
+                    expect(self.formModel.pages[0].type).to(equal(PageType.banner))
+                    expect(self.formModel.pages[1].type).to(equal(PageType.toast))
+                    expect(self.formModel.isDefault).to(beFalse())
+                    expect(self.formModel.formJsonString).to(equal(self.jsonObj))
+                    expect(self.formModel.theme).toNot(beNil())
+                    expect(self.formModel.copyModel).toNot(beNil())
+                }
+
+            }
 
             context("When calling toFeedbackResult", {
                 it("form model toFeedbackResult should be empty") {

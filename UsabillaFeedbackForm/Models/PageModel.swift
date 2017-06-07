@@ -9,9 +9,11 @@
 import Foundation
 
 enum PageType: String {
+    case banner
     case start
     case form
     case end
+    case toast
 }
 
 class PageModel {

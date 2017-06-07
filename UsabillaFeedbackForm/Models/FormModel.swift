@@ -48,8 +48,9 @@ class FormModel: NSObject, NSCoding {
         self.theme = UsabillaTheme()
 
         var newPages: [PageModel] = []
-
-        for (index, subJson): (String, JSON) in json["form"]["pages"] {
+        let structure: [String: JSON] = json["form"].dictionary ?? json["structure"].dictionary ?? [String: JSON]()
+        let pages: JSON = JSON(structure)["pages"]
+        for (index, subJson): (String, JSON) in pages {
             let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!)
             page.errorMessage = copyModel.errorMessage
             page.copy = copyModel

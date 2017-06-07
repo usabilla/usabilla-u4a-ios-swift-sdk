@@ -18,11 +18,13 @@ class JSONFormParser {
         var pageModelClass: PageModel.Type
 
         switch type {
-        case .start:
+        case .start,
+             .banner:
             pageModelClass = IntroPageModel.self
         case .form:
             pageModelClass = PageModel.self
-        case .end:
+        case .end,
+             .toast:
             pageModelClass = UBEndPageModel.self
         }
         let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName)

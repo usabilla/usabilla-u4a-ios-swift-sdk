@@ -201,6 +201,7 @@
 		43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
 		43CCD47A1E7A855000B3E4FE /* BaseImageComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */; };
 		43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */; };
+		43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */ = {isa = PBXBuildFile; fileRef = 43DA99BA1EE8396F00FB6862 /* CampaignForm.json */; };
 		43E883E41E37575B00A97F1D /* UBFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */; };
 		43E883E91E37B5B800A97F1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
 		43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
@@ -429,6 +430,7 @@
 		43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponent.swift; sourceTree = "<group>"; };
 		43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseImageComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponentViewModel.swift; sourceTree = "<group>"; };
+		43DA99BA1EE8396F00FB6862 /* CampaignForm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignForm.json; sourceTree = "<group>"; };
 		43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFeedbackRequest.swift; sourceTree = "<group>"; };
 		43E883E81E37B5B800A97F1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		43E883EA1E37B5C000A97F1D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 		047125D91EAE20CB003DB0BB /* JSON Files */ = {
 			isa = PBXGroup;
 			children = (
+				43DA99BA1EE8396F00FB6862 /* CampaignForm.json */,
 				047125DA1EAE20EB003DB0BB /* PickerWithEmpty.json */,
 				047125DC1EAE24D9003DB0BB /* PickerWithDefault.json */,
 				047125DE1EAE24EF003DB0BB /* Picker.json */,
@@ -1162,6 +1165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047125DF1EAE24EF003DB0BB /* Picker.json in Resources */,
+				43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */,
 				047125DD1EAE24D9003DB0BB /* PickerWithDefault.json in Resources */,
 				047125DB1EAE20EB003DB0BB /* PickerWithEmpty.json in Resources */,
 				044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */,
