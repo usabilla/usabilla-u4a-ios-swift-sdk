@@ -28,6 +28,7 @@ struct HTTPClientResponse {
 }
 
 typealias Parameters = [String: Any]
+typealias Payload = Parameters
 typealias HTTPHeaders = [String: String]
 
 protocol ParameterEncoding {
