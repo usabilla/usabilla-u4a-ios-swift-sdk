@@ -13,6 +13,7 @@ class FieldFactory {
     enum FieldType: String {
         case header
         case paragraph
+        case titleParagraph
         case text
         case choice
         case email
@@ -36,7 +37,7 @@ class FieldFactory {
         switch fieldType {
         case .header:
             return HeaderFieldModel(json: json, pageModel: pagemodel)
-        case .paragraph:
+        case .paragraph, .titleParagraph:
             return ParagraphFieldModel(json: json, pageModel: pagemodel)
         case .text:
             return TextFieldModel(json: json, pageModel: pagemodel)

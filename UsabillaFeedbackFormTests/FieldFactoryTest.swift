@@ -20,6 +20,10 @@ class FieldFactoryTest: QuickSpec {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"paragraph\"}"), pagemodel: pageModel)
                 expect(field is ParagraphFieldModel).to(beTrue())
             }
+            it("titleParagraph type") {
+                let field = FieldFactory.createField(JSON.parse("{\"type\":\"titleParagraph\"}"), pagemodel: pageModel)
+                expect(field is ParagraphFieldModel).to(beTrue())
+            }
             it("text type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"text\"}"), pagemodel: pageModel)
                 expect(field is TextFieldModel).to(beTrue())
