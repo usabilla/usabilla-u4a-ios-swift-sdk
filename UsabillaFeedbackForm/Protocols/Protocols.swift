@@ -56,3 +56,10 @@ protocol EditableStringComponentModel: StringComponentModel {
 protocol ImageComponentModel: ComponentModel {
     var image: UIImage? { get set }
 }
+
+protocol Reachable {
+    func startNotifier() throws
+    var whenReachable: ((Reachability) -> Void)? { get set }
+    var isReachable: Bool { get }
+    var currentReachabilityStatus: Reachability.NetworkStatus { get }
+}

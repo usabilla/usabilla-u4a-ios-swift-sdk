@@ -6,15 +6,6 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-import Foundation
-
-protocol Reachable {
-    func startNotifier() throws
-    var whenReachable: ((Reachability) -> Void)? { get set }
-    var isReachable: Bool { get }
-    var currentReachabilityStatus: Reachability.NetworkStatus { get }
-}
-
 extension Reachability: Reachable { }
 
 class SubmissionManager {
