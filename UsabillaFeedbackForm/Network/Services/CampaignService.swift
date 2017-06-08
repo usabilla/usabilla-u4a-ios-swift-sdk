@@ -22,6 +22,8 @@ protocol CampaignServiceProtocol {
     func getCampaignForm(withId id: String) -> Promise<FormModel>
     func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>>
     func getTargeting(withId id: String) -> Promise<Cachable<Rule>>
+
+    func submitCampaignResult(withRequest request: URLRequest) -> Promise<String>
 }
 
 class CampaignService: CampaignServiceProtocol {
@@ -84,6 +86,22 @@ class CampaignService: CampaignServiceProtocol {
                     return
                 }
                 reject(response.error!)
+            })
+        }
+    }
+
+    func submitCampaignResult(withRequest request: URLRequest) -> Promise<String> {
+        return Promise { fulfill, reject in
+            httpClient.request(request: request, responseQueue: nil, completion: { response in
+                if let jsonData = response.data {
+                    let json = JSON(jsonData).dictionary
+                    PLog(json)
+                    if let location = response.headers?["Location"] as? String {
+                        fulfill(location)
+                    }
+                }
+                reject(response.error!)
+
             })
         }
     }

@@ -18,8 +18,10 @@ struct HTTPClientResponse {
     let error: NSError?
     let success: Bool
     let isChanged: Bool
+    let headers: [AnyHashable: Any]?
 
-    init(data: Any?, error: NSError?, success: Bool = false, isChanged: Bool = false) {
+    init(data: Any?, headers: [AnyHashable: Any]? = nil, error: NSError?, success: Bool = false, isChanged: Bool = false) {
+        self.headers = headers
         self.data = data
         self.error = error
         self.success = success
@@ -67,7 +69,7 @@ class HTTPClient: HTTPClientProtocol {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             (responseQueue ?? DispatchQueue.main).async {
                 PLog(response)
-
+                let headers = (response as? HTTPURLResponse)?.allHeaderFields
                 guard error == nil else {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil)))
                     return
@@ -79,7 +81,7 @@ class HTTPClient: HTTPClientProtocol {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     PLog(json)
-                    completion(HTTPClientResponse(data: json, error: nil, success: true))
+                    completion(HTTPClientResponse(data: json, headers: headers, error: nil, success: true))
                 } catch {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil)))
                 }

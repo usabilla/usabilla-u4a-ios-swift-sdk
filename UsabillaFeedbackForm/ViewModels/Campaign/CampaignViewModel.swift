@@ -12,16 +12,19 @@ class CampaignViewModel {
     var form: FormModel
     var introPageViewModel: IntroPageViewModel?
     var introPresenter: UBIntroOutroPresenter?
+    weak var delegate: CampaignSubmissionManagerDelegate?
+
 
     var formViewModel: UBFormViewModel
 
-    init(form: FormModel) {
+    init(form: FormModel, delegate: CampaignSubmissionManagerDelegate?) {
         self.form = form
-        
         self.formViewModel = UBFormViewModel(formModel: form)
         self.formViewModel.currentPageViewModel = self.formViewModel.nextPageViewModel!
         self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
         self.formViewModel.isCampaignForm = true
+        self.delegate = delegate
+        
         // disable giveMoreFeedback for end pages
         form.pages.forEach {
             ($0 as? UBEndPageModel)?.giveMoreFeedback = false
@@ -41,5 +44,9 @@ class CampaignViewModel {
                 introPresenter = UBBannerPresenter()
             }
         }
+    }
+
+    func pageDidTurn(pageIndex: Int) {
+        delegate?.pageTurned(model: form.pages[pageIndex])
     }
 }

@@ -8,14 +8,21 @@
 
 import Foundation
 
+protocol CampaignSubmissionManagerDelegate: class {
+    func pageTurned(model: PageModel)
+}
+
 class CampaignManager {
 
     private(set) var campaignStore: UBCampaignStoreProtocol
     private(set) var eventEngine: EventEngine
+    private(set) var appId: String
+    private(set) var submissionManager: CampaignSubmissionManager?
 
     init(campaignStore: UBCampaignStoreProtocol, appId: String) {
         self.campaignStore = campaignStore
         self.eventEngine = EventEngine(campaigns: [])
+        self.appId = appId
 
         campaignStore.getCampaigns(withAppId: appId).then { campaigns in
             self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
@@ -41,6 +48,7 @@ class CampaignManager {
             return
         }
         campaignStore.getCampaignForm(withFormId: campaign.formId, theme: UsabillaFeedbackForm.theme).then { form in
+            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, customVars: nil, campaignService: CampaignService())
             if self.displayCampaignForm(form) {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
@@ -53,7 +61,13 @@ class CampaignManager {
     }
 
     @discardableResult func displayCampaignForm(_ form: FormModel) -> Bool {
-        let campaignViewModel = CampaignViewModel(form: form)
+        let campaignViewModel = CampaignViewModel(form: form, delegate: self)
         return CampaignWindow.shared.showCampaign(campaignViewModel)
+    }
+}
+
+extension CampaignManager: CampaignSubmissionManagerDelegate {
+    func pageTurned(model: PageModel) {
+        submissionManager?.submitPage(page: model)
     }
 }

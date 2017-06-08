@@ -146,6 +146,26 @@ class CampaignViewController: UIViewController {
             self.introView?.removeFromSuperview()
         })
     }
+
+    func removeFormController(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            self.formNavigationController?.view.alpha = 0
+            self.backgroundLayer?.alpha = 0
+        }) { _ in
+            self.formNavigationController?.view.removeFromSuperview()
+            self.formNavigationController?.removeFromParentViewController()
+            completion?()
+        }
+    }
+
+    func showToast() {
+        let thankYoutext = viewModel.formViewModel.endPageViewModel?.thankyouText
+        let toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
+        toast.show {
+            self.delegate?.campaignDidEnd(success: false)
+        }
+    }
 }
 
 extension CampaignViewController: UBIntroOutroViewDelegate {
@@ -179,30 +199,13 @@ extension CampaignViewController: FormViewControllerDelegate {
     }
 
     func rightBarButtonTapped(_ formViewController: FormViewController) {
+        let index = formViewController.viewModel.currentPageIndex
+        viewModel.pageDidTurn(pageIndex: index)
+
         if formViewController.viewModel.isItTheEnd {
             removeFormController {
                 self.showToast()
             }
-        }
-    }
-
-    func removeFormController(completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-            self.formNavigationController?.view.alpha = 0
-            self.backgroundLayer?.alpha = 0
-        }) { _ in
-            self.formNavigationController?.view.removeFromSuperview()
-            self.formNavigationController?.removeFromParentViewController()
-            completion?()
-        }
-    }
-
-    func showToast() {
-        let thankYoutext = viewModel.formViewModel.endPageViewModel?.thankyouText
-        let toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
-        toast.show {
-            self.delegate?.campaignDidEnd(success: false)
         }
     }
 }
