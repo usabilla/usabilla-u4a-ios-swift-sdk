@@ -13,8 +13,9 @@ class RequestBuilder {
     enum Endpoints: String {
         case campaignForm = "/v2/sdk/forms/"
         case passiveForm = "/live/mobile/app/forms/"
-        case campaignsForAppId = "endpoint-here" // TO DO: change this when right end point is ready
-        case targetingForCampaignId = "targeting-endpoint-here" // TO DO: change this when right end point is ready
+        case campaignsList = "/v2/sdk/campaigns"
+        case targetingOptions = "/v2/sdk/targeting-options/"
+        case campaignSubmission = "/v2/sdk/campaigns/campaign_id/feedback/"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -45,6 +46,22 @@ class RequestBuilder {
     }
 
     /**
+     Creates a URL
+
+     - Parameter endpoint: the endpoint of the URL
+
+     - Parameter param: parameter to add at the end of the URL
+
+     - Return: and URL with endpoint and parameter
+     */
+    private class func buildURL(withString endpoint: String, withURLParam param: String? = nil) -> URL {
+        if let param = param {
+            return URL(string: apiUrl.appending(endpoint).appending(param))!
+        }
+        return URL(string: apiUrl.appending(endpoint))!
+    }
+
+    /**
      Creates a basic GET request
      
      - Parameter url: the url to use for the GET request
@@ -69,14 +86,14 @@ class RequestBuilder {
 
      - Return: the basic POST request
      */
-    private class func requestForPost(withURL url: URL, parameters: Parameters) -> NSMutableURLRequest {
+    private class func requestForPost(withURL url: URL, payload: Parameters) -> NSMutableURLRequest {
         var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = HTTPMethod.post.rawValue
         request.allHTTPHeaderFields = headers
 
         do {
-            request = try JSONEncoding.default.encode(request, with: parameters)
+            request = try JSONEncoding.default.encode(request, with: payload)
         } catch {
             //Do intelligent stuff with error
         }
@@ -96,12 +113,19 @@ class RequestBuilder {
     }
 
     class func requestGetCampaigns(withAppId appId: String) -> URLRequest {
-        let url = buildURL(withEndpoint: .campaignsForAppId, withURLParam: appId)
+        let url = buildURL(withEndpoint: .campaignsList, withURLParam: appId)
         return requestForGet(withURL: url) as URLRequest
     }
 
     class func requestGetTargeting(withId id: String) -> URLRequest {
-        let url = buildURL(withEndpoint: .targetingForCampaignId, withURLParam: id)
+        let url = buildURL(withEndpoint: .targetingOptions, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
+    }
+
+    class func requestCampaignFeedbackSubmission(forCampaignId campaignId: String, withPayload payload: Payload, withSessionToken token: String?) -> URLRequest {
+        let endPoint = Endpoints.campaignSubmission.rawValue
+        let newEndPoint =  endPoint.replacingOccurrences(of: "campaign_id", with: campaignId)
+        let url = buildURL(withString: newEndPoint, withURLParam: token)
+        return requestForPost(withURL: url, payload: payload) as URLRequest
     }
 }
