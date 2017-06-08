@@ -18,6 +18,8 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isScrollEnabled = false
+        textView.textContainer.lineFragmentPadding = 0
+        textView.textContainerInset = .zero
 
         addSubview(textView)
 
