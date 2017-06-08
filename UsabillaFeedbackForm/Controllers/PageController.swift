@@ -17,7 +17,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         return tableView
     }()
     var requiredLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
+        let label = UILabel()
         label.textAlignment = .left
         return label
     }()
@@ -63,10 +63,19 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
         requiredLabel.text = viewModel.errorMessage
-        tableView.tableHeaderView = requiredLabel
+
+        let header = UIView()
+        header.translatesAutoresizingMaskIntoConstraints = false
         requiredLabel.translatesAutoresizingMaskIntoConstraints = false
-        requiredLabel.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10).isActive = true
-        requiredLabel.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 16).isActive = true
+        header.addSubview(requiredLabel)
+        requiredLabel.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 16).isActive = true
+        requiredLabel.rightAnchor.constraint(equalTo: header.rightAnchor).isActive = true
+        requiredLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 10).isActive = true
+        header.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        tableView.tableHeaderView = header
+        header.leftAnchor.constraint(equalTo: tableView.leftAnchor).isActive = true
+        header.rightAnchor.constraint(equalTo: tableView.rightAnchor).isActive = true
+        tableView.tableHeaderView?.layoutIfNeeded()
     }
 
     func customizeView() {
@@ -236,6 +245,7 @@ extension PageController: UITableViewDelegate {
             return UITableViewAutomaticDimension
         }
     }
+
 
 }
 
