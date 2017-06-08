@@ -245,8 +245,6 @@ extension PageController: UITableViewDelegate {
             return UITableViewAutomaticDimension
         }
     }
-
-
 }
 
 extension PageController: UIImagePickerControllerDelegate {

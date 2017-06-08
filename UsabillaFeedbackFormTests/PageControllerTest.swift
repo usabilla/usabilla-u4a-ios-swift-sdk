@@ -49,7 +49,8 @@ class PageControllerTest: QuickSpec {
             }
 
             it("sets up the header") {
-                let header = viewController.tableView.tableHeaderView as? UILabel
+                let headerWrapper = viewController.tableView.tableHeaderView
+                let header = headerWrapper?.subviews.first as? UILabel
                 expect(header).toNot(beNil())
                 expect(header?.text).to(equal(viewController.viewModel.copy.errorMessage))
                 expect(header?.textColor).to(equal(viewController.viewModel.theme.textColor))

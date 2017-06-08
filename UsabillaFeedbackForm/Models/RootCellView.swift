@@ -11,8 +11,13 @@ import UIKit
 class RootCellView: UITableViewCell {
 
     var rootCellContainerView: UIView
-    var titleLabel: UILabel!
-    var errorLabel: UILabel!
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
+        return label
+    }()
+    var errorLabel: UILabel = UILabel()
     var component: UIControl?
 
     var cellViewModel: CellViewModel! {
@@ -26,21 +31,24 @@ class RootCellView: UITableViewCell {
         }
     }
 
-    let errorLabelHeightConstraint: NSLayoutConstraint
+    let errorLabelDismissConstraint: NSLayoutConstraint
+    let titleLabelDismissConstraint: NSLayoutConstraint
+    var errorLabelTopConstraint: NSLayoutConstraint!
+    var containerTopConstraint: NSLayoutConstraint!
 
     //Layout config
     let sideMargin: CGFloat = 16
     let verticalMargin: CGFloat = 20
+    let errorLabelTopMargin: CGFloat = 5
+    let containerTopMargin: CGFloat = 13
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         rootCellContainerView = UIView()
-        errorLabel = UILabel()
+        errorLabelDismissConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
+        errorLabelDismissConstraint.isActive = true
 
-        errorLabelHeightConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
-        errorLabelHeightConstraint.isActive = true
+        titleLabelDismissConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 0)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        titleLabel = createTitleLabel()
 
         contentView.addSubview(titleLabel)
         contentView.addSubview(errorLabel)
@@ -51,15 +59,15 @@ class RootCellView: UITableViewCell {
 
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriorityDefaultHigh).activate()
 
         errorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         errorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        errorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        errorLabelTopConstraint = errorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).activate()
 
         rootCellContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
         rootCellContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: verticalMargin * 2 / 3).prioritize(UILayoutPriorityDefaultHigh).isActive = true
+        containerTopConstraint = rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor).prioritize(UILayoutPriorityDefaultHigh).activate()
         rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
     }
 
@@ -85,16 +93,20 @@ class RootCellView: UITableViewCell {
         titleLabel.numberOfLines = 5
         titleLabel.sizeToFit()
 
+        let isTitleDefined = !cellViewModel.title.isEmpty
+        titleLabelDismissConstraint.isActive = !isTitleDefined
+        errorLabelTopConstraint.constant = isTitleDefined ? errorLabelTopMargin : 0
+        containerTopConstraint.constant = isTitleDefined ? containerTopMargin : 0
+
         if cellViewModel.required {
             titleLabel.text = String(format: "%@ *", cellViewModel.title) as String
 
-            let text = NSMutableAttributedString(attributedString: (self.titleLabel?.attributedText)!)
+            let text = NSMutableAttributedString(attributedString: (self.titleLabel.attributedText)!)
 
             text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.hintColor,
-                              range: NSRange.init(location: (self.titleLabel?.text?.characters.count)! - 1, length: 1))
+                              range: NSRange.init(location: (self.titleLabel.text?.characters.count)! - 1, length: 1))
 
             titleLabel.attributedText = text
-
         } else {
             self.titleLabel.text = cellViewModel.title
         }
@@ -111,16 +123,9 @@ class RootCellView: UITableViewCell {
         backgroundColor = theme.backgroundColor
     }
 
-    func createTitleLabel() -> UILabel {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.numberOfLines = 3
-        return titleLabel
-    }
-
     @discardableResult func updateValidStatus() -> Bool {
-        if !cellViewModel.showErrorLabel != errorLabelHeightConstraint.isActive {
-            errorLabelHeightConstraint.isActive = !cellViewModel.showErrorLabel
+        if !cellViewModel.showErrorLabel != errorLabelDismissConstraint.isActive {
+            errorLabelDismissConstraint.isActive = !cellViewModel.showErrorLabel
             return true
         }
         return false
