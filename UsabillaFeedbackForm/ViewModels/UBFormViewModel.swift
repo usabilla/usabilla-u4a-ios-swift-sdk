@@ -56,6 +56,10 @@ class UBFormViewModel {
         return showCancelButton ? model.copyModel.cancelButton : nil
     }
 
+    var navBarItemsFont: UIFont {
+        return model.theme.boldFont
+    }
+
     var showCancelButton: Bool {
         return UsabillaFeedbackForm.showCancelButton // TO DO inject
     }

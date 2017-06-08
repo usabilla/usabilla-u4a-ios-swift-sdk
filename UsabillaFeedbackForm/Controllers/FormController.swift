@@ -117,6 +117,9 @@ class FormViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
         navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
 
+        let fontAttributes = [NSFontAttributeName: viewModel.navBarItemsFont]
+        rightNavItem.setTitleTextAttributes(fontAttributes, for: .normal)
+
         if !viewModel.shouldHideProgressBar {
             progressBar.progressTintColor = viewModel.accentColor
             progressBar.trackTintColor = viewModel.backgrounColor

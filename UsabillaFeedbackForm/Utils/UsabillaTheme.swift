@@ -47,7 +47,7 @@ public struct UsabillaTheme {
         if let font = customFont {
             return font.withSize(titleFontSize)
         }
-        return UIFont.systemFont(ofSize: titleFontSize)
+        return UIFont.systemFont(ofSize: titleFontSize, weight: UIFontWeightSemibold)
     }
 
     // MARK: Custom images
