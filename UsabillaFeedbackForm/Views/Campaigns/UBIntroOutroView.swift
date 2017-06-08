@@ -87,13 +87,13 @@ class UBIntroOutroView: UIView {
         buttonsStackView.axis = .horizontal
         buttonsStackView.distribution = .fillEqually
 
-        cancelButton = UIButton(type: .custom)
+        cancelButton = UIButton(type: .system)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
 
         buttonsStackView.addArrangedSubview(cancelButton)
 
         if viewModel.hasContinueButton {
-            continueButton = UIButton()
+            continueButton = UIButton(type: .system)
             buttonsStackView.addArrangedSubview(continueButton!)
             continueButton!.setTitle(viewModel.continueLabelText, for: .normal)
             continueButton!.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
