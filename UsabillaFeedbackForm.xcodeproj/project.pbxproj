@@ -215,6 +215,7 @@
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
 		C54ACF571EAF4DA700C0C86F /* UBMockUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54ACF561EAF4DA700C0C86F /* UBMockUrls.swift */; };
 		C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
+		C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
 		C564D1911E799A190004705A /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
 		C595798C1EDEB28A00840C02 /* FormServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595798B1EDEB28A00840C02 /* FormServiceTests.swift */; };
 		C59C820A1E8133F000840D4E /* FormStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C82091E8133F000840D4E /* FormStoreTests.swift */; };
@@ -444,6 +445,7 @@
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
 		C54ACF561EAF4DA700C0C86F /* UBMockUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBMockUrls.swift; sourceTree = "<group>"; };
 		C54AD6D01EC9A98E007BE846 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		C555E9A51EE9A41500F84B51 /* UBToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBToast.swift; sourceTree = "<group>"; };
 		C564D1901E799A190004705A /* FormStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormStore.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C595798B1EDEB28A00840C02 /* FormServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormServiceTests.swift; path = ../NetworkTest/FormServiceTests.swift; sourceTree = "<group>"; };
 		C59C82091E8133F000840D4E /* FormStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormStoreTests.swift; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 				436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */,
 				436C2B831E8518E600741E10 /* UBAlertDisplay.swift */,
 				436C2B851E851EF300741E10 /* UBAlertPresenter.swift */,
+				C555E9A51EE9A41500F84B51 /* UBToast.swift */,
 			);
 			path = Campaigns;
 			sourceTree = "<group>";
@@ -1257,6 +1260,7 @@
 				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
 				04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */,
 				430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */,
+				C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */,
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
