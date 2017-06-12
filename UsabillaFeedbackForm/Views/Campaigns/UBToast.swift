@@ -10,12 +10,24 @@ import Foundation
 
 class UBToast: UIView {
 
-    let margin: CGFloat = 18
+    internal let opacity: CGFloat = 0.6
+    internal let margin: CGFloat = 18
+    var duration: Int = 2
 
     var label: UILabel!
     var text: String! {
         didSet {
             label.text = text
+        }
+    }
+    var toastBackgroundColor: UIColor = UIColor.black {
+        didSet {
+            backgroundColor = toastBackgroundColor.withAlphaComponent(opacity)
+        }
+    }
+    var toastTextColor: UIColor = UIColor.white {
+        didSet {
+            label.textColor = toastTextColor
         }
     }
 
@@ -25,46 +37,57 @@ class UBToast: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(delegate: UIViewController) {
+    init(delegate: UIViewController, text: String? = nil, duration: Int = 2) {
         super.init(frame: .zero)
         self.delegate = delegate
+        self.duration = duration
+        self.text = text
+
         label = UILabel()
         label.text = text
-        label.textColor = .white
+        label.textColor = toastTextColor
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
 
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: topAnchor, constant: margin).activate()
         label.leftAnchor.constraint(equalTo: leftAnchor, constant: margin).activate()
         label.rightAnchor.constraint(equalTo: rightAnchor, constant: -margin).activate()
         label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -margin).activate()
 
-        backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        backgroundColor = toastBackgroundColor.withAlphaComponent(opacity)
         layer.cornerRadius = 14
         layer.masksToBounds = true
     }
 
-    @discardableResult func show() -> UBToast {
-
+    func show(completion: (() -> Void)?) {
         delegate.view.addSubview(self)
-        // setup toast layout in parent view
+        self.alpha = 0
         translatesAutoresizingMaskIntoConstraints = false
-        leftAnchor.constraint(equalTo: delegate.view.leftAnchor, constant: margin).activate()
-        rightAnchor.constraint(equalTo: delegate.view.rightAnchor, constant: -margin).activate()
+        centerXAnchor.constraint(equalTo: delegate.view.centerXAnchor).activate()
+        widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor, constant: margin).activate()
         bottomAnchor.constraint(equalTo: delegate.view.bottomAnchor, constant: -margin).activate()
 
-        return self
+        UIView.animate(withDuration: 0.33, delay: 0.5, options: .curveEaseOut, animations: {
+            self.alpha = 1
+        }, completion: nil)
+        
+        self.dismiss(completion: completion)
     }
 
-    func dismiss(delay: Int = 2, completion: (() -> Void)?) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.removeFromSuperview()
-            if completion != nil {
-                completion!()
-            }
+    private func dismiss(completion: (() -> Void)?) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(self.duration)) {
+            UIView.animate(withDuration: 0.8, animations: {
+                self.alpha = 0
+            }, completion: { _ in
+                self.removeFromSuperview()
+                if completion != nil {
+                    completion!()
+                }
+            })
         }
     }
 }
