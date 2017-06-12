@@ -173,15 +173,16 @@ class FormViewController: UIViewController {
     }
 
     func leftBarButtonPressed(_ sender: UIBarButtonItem) {
-        delegate?.leftBarButtonTapped(self)
+        delegate?.formWillClose(self)
     }
 
     func rightBarButtonPressed(_ sender: UIBarButtonItem) {
-        defer {
-            delegate?.rightBarButtonTapped(self)
-        }
         if viewModel.isCurrentPageValid {
-            goToNextPage()
+            let index = viewModel.nextPageIndex
+            let oldPageModel = viewModel.currentPageViewModel.model
+            let oldIndex = viewModel.currentPageIndex
+            goToPage(ofIndex: index)
+            delegate?.pageDidTurn(oldPageModel: oldPageModel, oldPageIndex: oldIndex, newPageIndex: index, newPageType: viewModel.currentPageViewModel.model.type!, formViewController: self)
             return
         }
         pageController.gotToNextErrorField()
@@ -195,8 +196,8 @@ class FormViewController: UIViewController {
         updateRightButton()
     }
 
-    func goToNextPage() {
-        viewModel.currentPageViewModel = viewModel.nextPageViewModel!
+    func goToPage(ofIndex index: Int) {
+        viewModel.currentPageViewModel = viewModel.getViewModel(forIndex: index)!
         if viewModel.isItTheEnd {
             if !viewModel.isCampaignForm {
                 showThankYouPage()

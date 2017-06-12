@@ -242,7 +242,7 @@ class CampaignManagerTests: QuickSpec {
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
                     campaignManager.displayCampaign(campaign)
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
-                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock))).to(beFalse())
+                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, delegate: nil))).to(beFalse())
                 }
                 it("should not diplay the campaign form when the form does not exist") {
                     let formMock = UBMock.formMock()
@@ -251,7 +251,7 @@ class CampaignManagerTests: QuickSpec {
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
                     campaignManager.displayCampaign(campaign)
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
-                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock))).to(beTrue())
+                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, delegate: nil))).to(beTrue())
                 }
             }
         }

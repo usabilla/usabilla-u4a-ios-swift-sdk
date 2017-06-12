@@ -24,17 +24,15 @@ class UBCampaignFeedbackRequest {
 
 class CampaignSubmissionManager {
 
-    let appId: String
-    let campaignId: String
-    let formVersion: Int
-    let reachability: Reachable
-    let customVars: [String: Any]?
-    let submissionService: CampaignServiceProtocol
-    var feedbackId: String?
-
-    fileprivate let tokenQueue: DispatchQueue
-
-    var requestQueue: [UBCampaignFeedbackRequest]
+    private let appId: String
+    private let campaignId: String
+    private let formVersion: Int
+    private let reachability: Reachable
+    private let customVars: [String: Any]?
+    private let submissionService: CampaignServiceProtocol
+    private let feedbackId: UUID
+    private var isFirst: Bool
+    private var queue = DispatchQueue(label: "your.queue.identifier")
 
     init(appId: String, campaignId: String, formVersion: Int, customVars: [String: Any]?, campaignService: CampaignServiceProtocol, reachability: Reachable = Reachability()!) {
         self.appId = appId
@@ -44,78 +42,42 @@ class CampaignSubmissionManager {
         self.submissionService = campaignService
         self.reachability = reachability
         try? reachability.startNotifier()
-        tokenQueue = DispatchQueue(label: "com.usabilla.u4a.campaignsubmissionmanager.token")
-        requestQueue = []
+        feedbackId = UUID.init()
+        isFirst = true
     }
 
-    func submitPage(page: PageModel) {
+    func submitPage(page: PageModelProtocol, newPageType: PageType) {
+        var payload: [String: Any] = ["data": page.toJSONDictionary()]
 
         if page.type == .start {
-            submitMetadata(page: page)
-            return
+            payload = addMetadataPayload(payload: payload)
+            payload["id"] = feedbackId.uuidString
         }
 
-        if page.type == .end {
-            submitClose(page: page)
-            return
+        if newPageType == .end {
+            payload["complete"] = true
         }
 
-        submitSinglePage(page: page)
-    }
-
-
-    private func submitMetadata(page: PageModel) {
-        var payload: [String: Any] = ["data": page.toJSONDictionary()]
-        payload = addMetadataPayload(payload: payload)
         let request = buildRequest(withPayload: payload)
-        submitToService(withRequest: request, type: .metadata)
+        submitToService(withRequest: request)
     }
 
-    private func submitSinglePage(page: PageModel) {
-        let payload: [String: Any] = ["data": page.toJSONDictionary()]
-        let request = buildRequest(withPayload: payload)
-        submitOrCache(withRequest: request, type: .page)
-    }
-
-    private func submitClose(page: PageModel) {
-        var payload: [String: Any] = ["data": page.toJSONDictionary()]
-        payload["complete"] = true
-        let request = buildRequest(withPayload: payload)
-        submitOrCache(withRequest: request, type: .close)
-    }
-
-    private func submitOrCache(withRequest request: URLRequest, type: RequestType) {
-        tokenQueue.sync {
-            if feedbackId != nil {
-                submitToService(withRequest: request, type: type)
-            } else {
-                requestQueue.append(UBCampaignFeedbackRequest(request: request, type: type))
-            }
-        }
-    }
-
-    private func submitToService(withRequest request: URLRequest, type: RequestType) {
-        submissionService.submitCampaignResult(withRequest: request).then { token in
-            self.tokenQueue.sync {
-                if self.feedbackId == nil {
-                    self.feedbackId = token
-                    self.submitQueue()
-                }
-            }
-        }.catch { _ in
-            self.requestQueue.append(UBCampaignFeedbackRequest(request: request, type: type))
-        }
-    }
-
-    private func submitQueue() {
-        for request in requestQueue {
-            submitToService(withRequest: request.request, type: request.type)
-        }
-        requestQueue = []
+    private func submitToService(withRequest request: URLRequest) {
+        print("submitting page to BE with request \(request)")
+        _ = submissionService.submitCampaignResult(withRequest: request)
     }
 
     private func buildRequest(withPayload payload: Payload) -> URLRequest {
-        return RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: campaignId, withPayload: payload, withSessionToken: feedbackId) as URLRequest
+        var req: URLRequest!
+        queue.sync {
+            if isFirst {
+                isFirst = false
+                req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: campaignId, withPayload: payload, withSessionToken: nil) as URLRequest
+            } else {
+                req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: campaignId, withPayload: payload, withSessionToken: feedbackId.uuidString) as URLRequest
+            }
+        }
+        return req
     }
 
     private func addMetadataPayload(payload: [String: Any]) -> [String: Any] {
@@ -126,7 +88,7 @@ class CampaignSubmissionManager {
         UIDevice.current.isBatteryMonitoringEnabled = true
 
         payload["app_id"] = appId
-        payload["version"] = formVersion
+        payload["form_version"] = formVersion
         payload["complete"] = false
 
         metadata["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]

@@ -13,8 +13,8 @@ protocol IntFieldHandlerProtocol: class {
 }
 
 protocol FormViewControllerDelegate: class {
-    func rightBarButtonTapped(_ formViewController: FormViewController)
-    func leftBarButtonTapped(_ formViewController: FormViewController)
+    func formWillClose(_ formViewController: FormViewController)
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController)
 }
 
 protocol ComponentViewModel {
@@ -62,4 +62,11 @@ protocol Reachable {
     var whenReachable: ((Reachability) -> Void)? { get set }
     var isReachable: Bool { get }
     var currentReachabilityStatus: Reachability.NetworkStatus { get }
+}
+
+protocol PageModelProtocol {
+    func toJSONDictionary() -> [String: Any]
+    var fields: [BaseFieldModel] { get }
+    var fieldValuesCollection: [String: [String]] { get }
+    var type: PageType? {get set}
 }

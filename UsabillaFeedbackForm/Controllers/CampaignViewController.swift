@@ -192,15 +192,14 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 
 extension CampaignViewController: FormViewControllerDelegate {
 
-    func leftBarButtonTapped(_ formViewController: FormViewController) {
+    func formWillClose(_ formViewController: FormViewController) {
         removeFormController {
             self.delegate?.campaignDidEnd(success: false)
         }
     }
 
-    func rightBarButtonTapped(_ formViewController: FormViewController) {
-        let index = formViewController.viewModel.currentPageIndex
-        viewModel.pageDidTurn(pageIndex: index)
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController) {
+        viewModel.pageDidTurn(pageIndex: oldPageIndex, pageModel: oldPageModel, nextPageType: newPageType)
 
         if formViewController.viewModel.isItTheEnd {
             removeFormController {

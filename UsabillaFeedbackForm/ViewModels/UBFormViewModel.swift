@@ -112,7 +112,7 @@ class UBFormViewModel {
         return endPageViewModel
     }
 
-    private var nextPageIndex: Int {
+    var nextPageIndex: Int {
         var newPageIndex = -1
         if let pageToJump = pageViewModels[currentPageIndex].nextPageName() {
             for (index, page) in model.pages.enumerated() where page.pageName == pageToJump {
@@ -126,12 +126,11 @@ class UBFormViewModel {
         return newPageIndex
     }
 
-    var nextPageViewModel: PageViewModel? {
+    func getViewModel(forIndex: Int) -> PageViewModel? {
         let nextIndex = nextPageIndex
         guard nextIndex < pageViewModels.count else {
             return nil
         }
-
         return pageViewModels[nextIndex]
     }
 

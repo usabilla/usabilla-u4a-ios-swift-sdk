@@ -17,7 +17,7 @@ class PassiveFormController: FormViewControllerDelegate {
         self.submissionManager = submissionManager
     }
 
-    func leftBarButtonTapped(_ formViewController: FormViewController) {
+    func formWillClose(_ formViewController: FormViewController) {
         if !formViewController.viewModel.isItTheEnd {
             results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         }
@@ -29,11 +29,13 @@ class PassiveFormController: FormViewControllerDelegate {
         }
     }
 
-    func rightBarButtonTapped(_ formViewController: FormViewController) {
-        guard formViewController.viewModel.isItTheEnd else {
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController) {
+        guard newPageType == .end else {
             return
         }
         results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         submissionManager.submit(form: formViewController.viewModel.model, customVars: formViewController.customVars)
+
     }
+
 }

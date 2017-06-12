@@ -13,14 +13,12 @@ class CampaignViewModel {
     var introPageViewModel: IntroPageViewModel?
     var introPresenter: UBIntroOutroPresenter?
     weak var delegate: CampaignSubmissionManagerDelegate?
-
-
     var formViewModel: UBFormViewModel
 
     init(form: FormModel, delegate: CampaignSubmissionManagerDelegate?) {
         self.form = form
         self.formViewModel = UBFormViewModel(formModel: form)
-        self.formViewModel.currentPageViewModel = self.formViewModel.nextPageViewModel!
+        self.formViewModel.currentPageViewModel = self.formViewModel.getViewModel(forIndex: formViewModel.nextPageIndex)!
         self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
         self.formViewModel.isCampaignForm = true
         self.delegate = delegate
@@ -46,7 +44,7 @@ class CampaignViewModel {
         }
     }
 
-    func pageDidTurn(pageIndex: Int) {
-        delegate?.pageTurned(model: form.pages[pageIndex])
+    func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
+        delegate?.pageDidTurn(pageIndex: pageIndex, pageModel: pageModel, nextPageType: nextPageType)
     }
 }

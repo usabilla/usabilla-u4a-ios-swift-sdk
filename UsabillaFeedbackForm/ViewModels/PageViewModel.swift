@@ -17,7 +17,7 @@ class PageViewModel: UBPageViewModel {
     var shouldAddMarginToContentSize: Bool = true
 
     var cellViewModels: [CellViewModel] = []
-    private let model: PageModel
+    let model: PageModel
     var dynamicFields: [Int] = []
 
     let theme: UsabillaTheme

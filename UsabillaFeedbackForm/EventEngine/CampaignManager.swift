@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CampaignSubmissionManagerDelegate: class {
-    func pageTurned(model: PageModel)
+    func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType)
 }
 
 class CampaignManager {
@@ -67,7 +67,7 @@ class CampaignManager {
 }
 
 extension CampaignManager: CampaignSubmissionManagerDelegate {
-    func pageTurned(model: PageModel) {
-        submissionManager?.submitPage(page: model)
+    func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
+        submissionManager?.submitPage(page: pageModel, newPageType: nextPageType)
     }
 }

@@ -66,14 +66,6 @@ class FormControllerTest: QuickSpec {
         }
 
         describe("delegate methods test") {
-            it("tap on right button should notify delegate") {
-                waitUntil(timeout: 5.0) { done in
-                    self.doneRight = {
-                        done()
-                    }
-                    viewController.rightBarButtonPressed(UIBarButtonItem())
-                }
-            }
 
             it("tap on left button should notify delegate") {
                 waitUntil(timeout: 5.0) { done in
@@ -89,11 +81,11 @@ class FormControllerTest: QuickSpec {
 }
 
 extension FormControllerTest: FormViewControllerDelegate {
-    func rightBarButtonTapped(_ formViewController: FormViewController) {
-        doneRight?()
-    }
 
-    func leftBarButtonTapped(_ formViewController: FormViewController) {
+    func formWillClose(_ formViewController: FormViewController) {
         doneLeft?()
+    }
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController) {
+        doneRight?()
     }
 }

@@ -119,4 +119,29 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
             reject(NSError(domain: "", code: 500, userInfo: nil))
         }
     }
+
+    func submitCampaignResult(withRequest request: URLRequest) -> Promise<String> {
+        return Promise { fulfill, reject in
+            if targetingResponse != nil {
+                return fulfill("feedbackId")
+            }
+            reject(NSError(domain: "", code: 500, userInfo: nil))
+        }
+    }
+}
+
+class UBPageModelMock: PageModelProtocol {
+    func toJSONDictionary() -> [String : Any] {
+        var dict = ["one": ["one"]]
+        dict["two"] = ["two", "two"]
+        return dict
+    }
+    var type: PageType?
+    var fields: [BaseFieldModel]
+    var fieldValuesCollection: [String : [String]]
+
+    init() {
+        fields = []
+        fieldValuesCollection = [:]
+    }
 }

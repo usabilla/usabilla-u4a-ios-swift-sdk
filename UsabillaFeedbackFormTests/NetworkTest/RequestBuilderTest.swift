@@ -53,6 +53,22 @@ class RequestBuilderTest: QuickSpec {
                 expect(get.httpMethod).to(equal(self.correctGet.httpMethod))
                 expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
             }
+
+            it("Builds the campaign submission request without token correctly") {
+                let req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: "c", withPayload: ["p": "p"], withSessionToken: nil)
+                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/"))
+                expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
+                expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
+                expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
+            }
+
+            it("Builds the campaign submission request with token correctly") {
+                let req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: "c", withPayload: ["p": "p"], withSessionToken: "t")
+                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/t"))
+                expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
+                expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
+                expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
+            }
         }
 
     }

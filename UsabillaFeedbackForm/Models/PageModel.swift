@@ -16,7 +16,7 @@ enum PageType: String {
     case toast
 }
 
-class PageModel {
+class PageModel: PageModelProtocol {
 
     var fields: [BaseFieldModel]
     var fieldValuesCollection: [String: [String]] = [:] {
