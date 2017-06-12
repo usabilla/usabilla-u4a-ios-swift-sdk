@@ -117,6 +117,7 @@ class CampaignViewController: UIViewController {
         let formController = FormViewController(viewModel: viewModel.formViewModel!)
         let base = UINavigationController(rootViewController: formController)
         formController.delegate = self
+        formController.isCampaignForm = true
         formNavigationController = base
 
         addChildViewController(base)
@@ -173,18 +174,35 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 extension CampaignViewController: FormViewControllerDelegate {
 
     func leftBarButtonTapped(_ formViewController: FormViewController) {
-        UIView.animate(withDuration: 0.20, animations: {
+        removeFormController {
+            self.delegate?.campaignDidEnd(success: false)
+        }
+    }
+
+    func rightBarButtonTapped(_ formViewController: FormViewController) {
+        if formViewController.viewModel.isItTheEnd {
+            removeFormController {
+                self.showToast()
+            }
+        }
+    }
+
+    func removeFormController(completion: (() -> Void)?) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.formNavigationController?.view.alpha = 0
             self.backgroundLayer?.alpha = 0
         }) { _ in
             self.formNavigationController?.view.removeFromSuperview()
             self.formNavigationController?.removeFromParentViewController()
-            self.delegate?.campaignDidEnd(success: false)
+            completion!()
         }
     }
 
-    func rightBarButtonTapped(_ formViewController: FormViewController) {
-        // TO DO dismiss modal and show end page
+    func showToast() {
+        let toast = UBToast(delegate: self, text: "Thanks", duration: 2)
+        toast.show {
+            self.delegate?.campaignDidEnd(success: false)
+        }
     }
 }
