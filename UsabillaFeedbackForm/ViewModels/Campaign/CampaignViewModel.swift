@@ -13,15 +13,14 @@ class CampaignViewModel {
     var introPageViewModel: IntroPageViewModel?
     var introPresenter: UBIntroOutroPresenter?
 
-    var formViewModel: UBFormViewModel? {
-        let formViewModel = UBFormViewModel(formModel: form)
-        formViewModel.currentPageViewModel = formViewModel.nextPageViewModel!
-        formViewModel.shouldAddMarginWhenKeyboardIsShown = false
-        return formViewModel
-    }
+    var formViewModel: UBFormViewModel
 
     init(form: FormModel) {
         self.form = form
+        
+        self.formViewModel = UBFormViewModel(formModel: form)
+        self.formViewModel.currentPageViewModel = self.formViewModel.nextPageViewModel!
+        self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
         // disable giveMoreFeedback for end pages
         form.pages.forEach {
             ($0 as? UBEndPageModel)?.giveMoreFeedback = false

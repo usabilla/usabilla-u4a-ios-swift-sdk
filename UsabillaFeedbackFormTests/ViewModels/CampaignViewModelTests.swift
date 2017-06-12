@@ -83,8 +83,8 @@ class CampaingViewModelTests: QuickSpec {
                     let formViewModel = campainViewModel.formViewModel
 
                     expect(formViewModel).toNot(beNil())
-                    expect(formViewModel?.currentPageViewModel.name).to(equal("Third"))
-                    expect(formViewModel?.shouldAddMarginWhenKeyboardIsShown).to(beFalse())
+                    expect(formViewModel.currentPageViewModel.name).to(equal("Third"))
+                    expect(formViewModel.shouldAddMarginWhenKeyboardIsShown).to(beFalse())
                 })
             })
         }
