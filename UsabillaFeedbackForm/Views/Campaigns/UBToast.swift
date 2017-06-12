@@ -10,8 +10,8 @@ import Foundation
 
 class UBToast: UIView {
 
-    internal let opacity: CGFloat = 0.6
-    internal let margin: CGFloat = 18
+    private let opacity: CGFloat = 0.6
+    private let margin: CGFloat = 18
     var duration: Int = 2
 
     var label: UILabel!
@@ -65,17 +65,17 @@ class UBToast: UIView {
 
     func show(completion: (() -> Void)?) {
         delegate.view.addSubview(self)
-        self.alpha = 0
+        alpha = 0
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: delegate.view.centerXAnchor).activate()
-        widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor, constant: margin).activate()
+        widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor, constant: -2 * margin).activate()
         bottomAnchor.constraint(equalTo: delegate.view.bottomAnchor, constant: -margin).activate()
 
         UIView.animate(withDuration: 0.33, delay: 0.5, options: .curveEaseOut, animations: {
             self.alpha = 1
         }, completion: nil)
-        
-        self.dismiss(completion: completion)
+
+        dismiss(completion: completion)
     }
 
     private func dismiss(completion: (() -> Void)?) {

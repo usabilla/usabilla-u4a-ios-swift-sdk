@@ -17,7 +17,6 @@ class FormViewController: UIViewController {
     var customVars: [String: Any]?
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
-    var isCampaignForm: Bool = false
 
     lazy var leftNavItem: UIBarButtonItem = {
         let navLeft = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonPressed(_:)))
@@ -199,12 +198,9 @@ class FormViewController: UIViewController {
     func goToNextPage() {
         viewModel.currentPageViewModel = viewModel.nextPageViewModel!
         if viewModel.isItTheEnd {
-            if !isCampaignForm {
+            if !viewModel.isCampaignForm {
                 showThankYouPage()
-            } else {
-                delegate?.rightBarButtonTapped(self)
             }
-
             return
         }
         pageController.setupViewModel(viewModel.currentPageViewModel)

@@ -21,6 +21,7 @@ class CampaignViewModel {
         self.formViewModel = UBFormViewModel(formModel: form)
         self.formViewModel.currentPageViewModel = self.formViewModel.nextPageViewModel!
         self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
+        self.formViewModel.isCampaignForm = true
         // disable giveMoreFeedback for end pages
         form.pages.forEach {
             ($0 as? UBEndPageModel)?.giveMoreFeedback = false

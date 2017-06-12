@@ -13,6 +13,7 @@ class UBFormViewModel {
     private(set) var model: FormModel
     private(set) var currentPageIndex: Int
     private var pageViewModels: [PageViewModel]
+    var isCampaignForm: Bool = false
 
     var shouldAddMarginWhenKeyboardIsShown: Bool = true
 

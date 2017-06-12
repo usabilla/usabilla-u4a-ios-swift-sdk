@@ -114,10 +114,9 @@ class CampaignViewController: UIViewController {
     }
 
     func showModalForm() {
-        let formController = FormViewController(viewModel: viewModel.formViewModel!)
+        let formController = FormViewController(viewModel: viewModel.formViewModel)
         let base = UINavigationController(rootViewController: formController)
         formController.delegate = self
-        formController.isCampaignForm = true
         formNavigationController = base
 
         addChildViewController(base)
@@ -195,12 +194,13 @@ extension CampaignViewController: FormViewControllerDelegate {
         }) { _ in
             self.formNavigationController?.view.removeFromSuperview()
             self.formNavigationController?.removeFromParentViewController()
-            completion!()
+            completion?()
         }
     }
 
     func showToast() {
-        let toast = UBToast(delegate: self, text: "Thanks", duration: 2)
+        let thankYoutext = viewModel.formViewModel.endPageViewModel?.thankyouText
+        let toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
         toast.show {
             self.delegate?.campaignDidEnd(success: false)
         }
