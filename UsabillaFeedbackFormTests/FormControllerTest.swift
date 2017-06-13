@@ -85,7 +85,7 @@ extension FormControllerTest: FormViewControllerDelegate {
     func formWillClose(_ formViewController: FormViewController) {
         doneLeft?()
     }
-    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController) {
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, nextPageType: PageType, formViewController: FormViewController) {
         doneRight?()
     }
 }

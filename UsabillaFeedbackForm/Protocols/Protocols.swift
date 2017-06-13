@@ -14,7 +14,7 @@ protocol IntFieldHandlerProtocol: class {
 
 protocol FormViewControllerDelegate: class {
     func formWillClose(_ formViewController: FormViewController)
-    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController)
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, nextPageType: PageType, formViewController: FormViewController)
 }
 
 protocol ComponentViewModel {

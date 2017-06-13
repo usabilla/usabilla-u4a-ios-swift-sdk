@@ -1,5 +1,5 @@
 //
-//  SubmissionManagerTest.swift
+//  SubmissionManagerTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Benjamin Grima on 26/01/2017.
@@ -36,7 +36,7 @@ class ReachabilityMock: Reachable {
     }
 }
 
-class SubmissionManagerTest: QuickSpec {
+class SubmissionManagerTests: QuickSpec {
 
     override func spec() {
         var formModel: FormModel?

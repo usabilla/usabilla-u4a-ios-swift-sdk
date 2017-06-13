@@ -181,8 +181,8 @@ class FormViewController: UIViewController {
             let index = viewModel.nextPageIndex
             let oldPageModel = viewModel.currentPageViewModel.model
             let oldIndex = viewModel.currentPageIndex
-            goToPage(ofIndex: index)
-            delegate?.pageDidTurn(oldPageModel: oldPageModel, oldPageIndex: oldIndex, newPageIndex: index, newPageType: viewModel.currentPageViewModel.model.type!, formViewController: self)
+            goToPage(atIndex: index)
+            delegate?.pageDidTurn(oldPageModel: oldPageModel, oldPageIndex: oldIndex, newPageIndex: index, nextPageType: viewModel.currentPageViewModel.model.type!, formViewController: self)
             return
         }
         pageController.gotToNextErrorField()
@@ -196,8 +196,8 @@ class FormViewController: UIViewController {
         updateRightButton()
     }
 
-    func goToPage(ofIndex index: Int) {
-        viewModel.currentPageViewModel = viewModel.getViewModel(forIndex: index)!
+    func goToPage(atIndex index: Int) {
+        viewModel.currentPageViewModel = viewModel.pageViewModel(atIndex: index)!
         if viewModel.isItTheEnd {
             if !viewModel.isCampaignForm {
                 showThankYouPage()

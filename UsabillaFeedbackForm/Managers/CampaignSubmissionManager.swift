@@ -32,7 +32,7 @@ class CampaignSubmissionManager {
     private let submissionService: CampaignServiceProtocol
     private let feedbackId: UUID
     private var isFirst: Bool
-    private var queue = DispatchQueue(label: "your.queue.identifier")
+    private var queue: DispatchQueue
 
     init(appId: String, campaignId: String, formVersion: Int, customVars: [String: Any]?, campaignService: CampaignServiceProtocol, reachability: Reachable = Reachability()!) {
         self.appId = appId
@@ -42,19 +42,20 @@ class CampaignSubmissionManager {
         self.submissionService = campaignService
         self.reachability = reachability
         try? reachability.startNotifier()
-        feedbackId = UUID.init()
-        isFirst = true
+        self.feedbackId = UUID.init()
+        self.isFirst = true
+        self.queue = DispatchQueue(label: "com.usabilla.u4a.isFristQueue")
     }
 
-    func submitPage(page: PageModelProtocol, newPageType: PageType) {
+    func submitPage(page: PageModelProtocol, nextPageType: PageType) {
         var payload: [String: Any] = ["data": page.toJSONDictionary()]
 
-        if page.type == .start {
+        if page.type == .start || page.type == .banner {
             payload = addMetadataPayload(payload: payload)
             payload["id"] = feedbackId.uuidString
         }
 
-        if newPageType == .end {
+        if nextPageType == .end || nextPageType == .toast {
             payload["complete"] = true
         }
 
@@ -63,8 +64,7 @@ class CampaignSubmissionManager {
     }
 
     private func submitToService(withRequest request: URLRequest) {
-        print("submitting page to BE with request \(request)")
-        _ = submissionService.submitCampaignResult(withRequest: request)
+        submissionService.submitCampaignResult(withRequest: request)
     }
 
     private func buildRequest(withPayload payload: Payload) -> URLRequest {

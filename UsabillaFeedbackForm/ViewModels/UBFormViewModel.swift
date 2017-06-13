@@ -126,7 +126,7 @@ class UBFormViewModel {
         return newPageIndex
     }
 
-    func getViewModel(forIndex: Int) -> PageViewModel? {
+    func pageViewModel(atIndex: Int) -> PageViewModel? {
         let nextIndex = nextPageIndex
         guard nextIndex < pageViewModels.count else {
             return nil

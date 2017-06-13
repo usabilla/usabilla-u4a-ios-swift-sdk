@@ -29,8 +29,8 @@ class PassiveFormController: FormViewControllerDelegate {
         }
     }
 
-    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController) {
-        guard newPageType == .end else {
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, nextPageType: PageType, formViewController: FormViewController) {
+        guard nextPageType == .end else {
             return
         }
         results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))

@@ -46,14 +46,14 @@ class PageModel: PageModelProtocol {
     }
 
     func toJSONDictionary() -> [String: Any] {
-        var formDictionary: [String: Any] = [:]
+        var pageDictionary: [String: Any] = [:]
         for field in fields {
             if let converted = field.convertToJSON() {
                 if field.fieldId.characters.count > 0 {
-                    formDictionary[field.fieldId] = converted
+                    pageDictionary[field.fieldId] = converted
                 }
             }
         }
-        return formDictionary
+        return pageDictionary
     }
 }

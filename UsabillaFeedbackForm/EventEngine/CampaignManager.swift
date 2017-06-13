@@ -61,6 +61,11 @@ class CampaignManager {
     }
 
     @discardableResult func displayCampaignForm(_ form: FormModel) -> Bool {
+        if self.submissionManager == nil {
+            //TODO REMOVE ME FOR GOD'S SAKE I'M HERE JUST FOR DEV PURPOSES
+            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: "removemeplz", formVersion: form.version, customVars: nil, campaignService: CampaignService())
+        }
+
         let campaignViewModel = CampaignViewModel(form: form, delegate: self)
         return CampaignWindow.shared.showCampaign(campaignViewModel)
     }
@@ -68,6 +73,6 @@ class CampaignManager {
 
 extension CampaignManager: CampaignSubmissionManagerDelegate {
     func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
-        submissionManager?.submitPage(page: pageModel, newPageType: nextPageType)
+        submissionManager?.submitPage(page: pageModel, nextPageType: nextPageType)
     }
 }

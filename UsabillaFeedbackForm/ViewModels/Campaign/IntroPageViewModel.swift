@@ -10,7 +10,7 @@ import Foundation
 
 class IntroPageViewModel {
 
-    private let introPage: IntroPageModel
+    let introPage: IntroPageModel
     private let field: BaseFieldModel?
     private let theme: UsabillaTheme
 

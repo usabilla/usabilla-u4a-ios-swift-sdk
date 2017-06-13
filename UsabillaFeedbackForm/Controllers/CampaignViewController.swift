@@ -170,7 +170,7 @@ class CampaignViewController: UIViewController {
 
 extension CampaignViewController: UBIntroOutroViewDelegate {
 
-    internal func introViewDidCancel(introView: UBIntroOutroView) {
+    func introViewDidCancel(introView: UBIntroOutroView) {
         var animations: (() -> Void)?
         if viewModel.introPageViewModel?.displayMode == .alert {
             animations = {
@@ -185,7 +185,10 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         }
     }
 
-    internal func introViewDidContinue(introView: UBIntroOutroView) {
+    func introViewDidContinue(introView: UBIntroOutroView) {
+        let index = viewModel.formViewModel.nextPageIndex
+        let type = viewModel.formViewModel.model.pages[index].type!
+        viewModel.pageDidTurn(pageIndex: 0, pageModel: viewModel.introPageViewModel!.introPage, nextPageType: type)
         showModalForm()
     }
 }
@@ -198,8 +201,8 @@ extension CampaignViewController: FormViewControllerDelegate {
         }
     }
 
-    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, newPageType: PageType, formViewController: FormViewController) {
-        viewModel.pageDidTurn(pageIndex: oldPageIndex, pageModel: oldPageModel, nextPageType: newPageType)
+    func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, nextPageType: PageType, formViewController: FormViewController) {
+        viewModel.pageDidTurn(pageIndex: oldPageIndex, pageModel: oldPageModel, nextPageType: nextPageType)
 
         if formViewController.viewModel.isItTheEnd {
             removeFormController {

@@ -15,14 +15,14 @@ class CampaignViewModel {
     weak var delegate: CampaignSubmissionManagerDelegate?
     var formViewModel: UBFormViewModel
 
-    init(form: FormModel, delegate: CampaignSubmissionManagerDelegate?) {
+    init(form: FormModel, delegate: CampaignSubmissionManagerDelegate? = nil) {
         self.form = form
         self.formViewModel = UBFormViewModel(formModel: form)
-        self.formViewModel.currentPageViewModel = self.formViewModel.getViewModel(forIndex: formViewModel.nextPageIndex)!
+        self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
         self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
         self.formViewModel.isCampaignForm = true
         self.delegate = delegate
-        
+
         // disable giveMoreFeedback for end pages
         form.pages.forEach {
             ($0 as? UBEndPageModel)?.giveMoreFeedback = false
