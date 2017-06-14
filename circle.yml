@@ -11,7 +11,8 @@ dependencies:
 test:
     post:
     - slather coverage --verbose
-    - bash <(curl -s https://codecov.io/bash) -f xml_report/cobertura.xml -X coveragepy -X gcov -X xcode -t $CODE_COV_TOKEN
+    - slather coverage --html --output-directory $CIRCLE_ARTIFACTS/coverage
+    - swift codecov.swift
     override:
       - set -o pipefail &&
         xcodebuild
