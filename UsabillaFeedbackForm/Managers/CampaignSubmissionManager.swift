@@ -6,20 +6,10 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-enum RequestType {
+enum RequestType: String {
     case close
     case page
-    case metadata
-}
-
-class UBCampaignFeedbackRequest {
-    let request: URLRequest
-    let type: RequestType
-
-    init(request: URLRequest, type: RequestType) {
-        self.request = request
-        self.type = type
-    }
+    case start
 }
 
 class CampaignSubmissionManager {
@@ -33,6 +23,7 @@ class CampaignSubmissionManager {
     private let feedbackId: UUID
     private var isFirst: Bool
     private var queue: DispatchQueue
+    private var onlineMode: Bool
 
     init(appId: String, campaignId: String, formVersion: Int, customVars: [String: Any]?, campaignService: CampaignServiceProtocol, reachability: Reachable = Reachability()!) {
         self.appId = appId
@@ -45,26 +36,42 @@ class CampaignSubmissionManager {
         self.feedbackId = UUID.init()
         self.isFirst = true
         self.queue = DispatchQueue(label: "com.usabilla.u4a.isFristQueue")
+        self.onlineMode = true
     }
 
     func submitPage(page: PageModelProtocol, nextPageType: PageType) {
         var payload: [String: Any] = ["data": page.toJSONDictionary()]
-
+        var type: RequestType = .page
         if page.type == .start || page.type == .banner {
             payload = addMetadataPayload(payload: payload)
             payload["id"] = feedbackId.uuidString
+            type = .start
         }
 
         if nextPageType == .end || nextPageType == .toast {
             payload["complete"] = true
+            type = .close
         }
 
         let request = buildRequest(withPayload: payload)
-        submitToService(withRequest: request)
+        submitToService(withRequest: request, type: type)
     }
 
-    private func submitToService(withRequest request: URLRequest) {
-        submissionService.submitCampaignResult(withRequest: request)
+    private func submitToService(withRequest request: URLRequest, type: RequestType) {
+        if shouldSubmitToService() {
+            submissionService.submitCampaignResult(withRequest: request)
+        } else {
+            let toSave = UBCampaignFeedbackRequest(request: request, feedbackId: feedbackId.uuidString, type: type)
+            UBCampaignFeedbackRequestDAO.shared.create(toSave)
+        }
+    }
+
+    private func shouldSubmitToService() -> Bool {
+        if reachability.isReachable && onlineMode {
+            return true
+        }
+        onlineMode = false
+        return false
     }
 
     private func buildRequest(withPayload payload: Payload) -> URLRequest {
