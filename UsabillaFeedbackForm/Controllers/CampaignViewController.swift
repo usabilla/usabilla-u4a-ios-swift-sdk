@@ -186,7 +186,7 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {
-        let index = viewModel.formViewModel.nextPageIndex
+        let index = viewModel.formViewModel.currentPageIndex
         let type = viewModel.formViewModel.model.pages[index].type!
         viewModel.pageDidTurn(pageIndex: 0, pageModel: viewModel.introPageViewModel!.introPage, nextPageType: type)
         showModalForm()
