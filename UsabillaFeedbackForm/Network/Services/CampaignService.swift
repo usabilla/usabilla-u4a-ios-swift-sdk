@@ -104,6 +104,7 @@ class CampaignService: CampaignServiceProtocol {
                     PLog(json)
                     if let location = response.headers?["Location"] as? String {
                         fulfill(location)
+                        return
                     }
                 }
                 reject(response.error!)
