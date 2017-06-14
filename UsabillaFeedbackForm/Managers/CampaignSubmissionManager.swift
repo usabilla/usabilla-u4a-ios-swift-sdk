@@ -72,9 +72,9 @@ class CampaignSubmissionManager {
         queue.sync {
             if isFirst {
                 isFirst = false
-                req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: campaignId, withPayload: payload, withSessionToken: nil) as URLRequest
+                req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignId: campaignId, withPayload: payload) as URLRequest
             } else {
-                req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: campaignId, withPayload: payload, withSessionToken: feedbackId.uuidString) as URLRequest
+                req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignId: campaignId, withPayload: payload, withSessionToken: feedbackId.uuidString) as URLRequest
             }
         }
         return req
@@ -102,7 +102,7 @@ class CampaignSubmissionManager {
         metadata["sdk_version"] = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         metadata["system"] = "ios"
         metadata["timestamp"] = Date().timeIntervalSince1970.description
-        metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
+        //metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
 
         if customVars != nil {
             metadata["custom_variables"] = customVars
