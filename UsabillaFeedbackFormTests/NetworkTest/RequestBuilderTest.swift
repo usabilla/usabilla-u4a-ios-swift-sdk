@@ -17,6 +17,7 @@ class RequestBuilderTest: QuickSpec {
     var correctUrlWithParameter: URL!
     var correctGet: URLRequest!
     var correctPost: URLRequest!
+    var correctPatch: URLRequest!
     var headers: [String: String]!
 
     override func spec() {
@@ -43,6 +44,15 @@ class RequestBuilderTest: QuickSpec {
             post.allHTTPHeaderFields?["Content-Type"] = "application/json"
 
             self.correctPost = post as URLRequest
+
+            let patch = NSMutableURLRequest(url: self.correctUrlWithParameter)
+            post.cachePolicy = .useProtocolCachePolicy
+            post.httpMethod = "PATCH"
+            post.allHTTPHeaderFields = self.headers
+            post.allHTTPHeaderFields?["Content-Type"] = "application/json"
+
+            self.correctPatch = patch as URLRequest
+
         }
 
         describe("The Request builder") {
@@ -54,19 +64,19 @@ class RequestBuilderTest: QuickSpec {
                 expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
             }
 
-            it("Builds the campaign submission request without token correctly") {
-                let req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: "c", withPayload: ["p": "p"], withSessionToken: nil)
-                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/"))
+            it("Builds the campaign feedback item creation request correctly") {
+                let req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignId: "campaignID", withPayload: ["p": "p"])
+                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/campaignID/feedback"))
                 expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
                 expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
                 expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
             }
 
-            it("Builds the campaign submission request with token correctly") {
-                let req = RequestBuilder.requestCampaignFeedbackSubmission(forCampaignId: "c", withPayload: ["p": "p"], withSessionToken: "t")
+            it("Builds the campaign feedback item patch request correctly") {
+                let req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignId: "c", withPayload: ["p": "p"], withSessionToken: "t")
                 expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/t"))
-                expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
-                expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
+                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                expect(req.httpMethod).to(equal("PATCH"))
                 expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
             }
         }

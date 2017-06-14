@@ -101,6 +101,31 @@ class RequestBuilder {
         return request
     }
 
+    /**
+     Creates a basic PATCH request
+
+     - Parameter url: the url to use for the PATCH request
+
+     - Parameter parameters: the parameters to use for the PATCH
+
+     - Return: the basic PATCH request
+     */
+    private class func requestForPatch(withURL url: URL, payload: Parameters) -> NSMutableURLRequest {
+        var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
+        request.cachePolicy = .useProtocolCachePolicy
+        request.httpMethod = HTTPMethod.patch.rawValue
+        request.allHTTPHeaderFields = headers
+
+        do {
+            request = try JSONEncoding.default.encode(request, with: payload)
+        } catch {
+            //Do intelligent stuff with error
+        }
+
+        return request
+    }
+
+
     // MARK: Public methods
     class func requestGetPassiveForm(withId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .passiveForm, withURLParam: id)
@@ -122,10 +147,17 @@ class RequestBuilder {
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestCampaignFeedbackSubmission(forCampaignId campaignId: String, withPayload payload: Payload, withSessionToken token: String?) -> URLRequest {
+    class func requestCampaignFeedbackItemCreation(forCampaignId campaignId: String, withPayload payload: Payload) -> URLRequest {
+        let endPoint = Endpoints.campaignSubmission.rawValue
+        let newEndPoint =  endPoint.replacingOccurrences(of: "campaign_id", with: campaignId)
+        let url = buildURL(withString: newEndPoint)
+        return requestForPost(withURL: url, payload: payload) as URLRequest
+    }
+
+    class func requestCampaignFeedbackItemPatch(forCampaignId campaignId: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
         let newEndPoint =  endPoint.replacingOccurrences(of: "campaign_id", with: campaignId)
         let url = buildURL(withString: newEndPoint, withURLParam: token)
-        return requestForPost(withURL: url, payload: payload) as URLRequest
+        return requestForPatch(withURL: url, payload: payload) as URLRequest
     }
 }
