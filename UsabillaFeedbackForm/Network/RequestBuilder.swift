@@ -11,11 +11,11 @@
 class RequestBuilder {
 
     enum Endpoints: String {
-        case campaignForm = "/v2/sdk/forms/"
-        case passiveForm = "/live/mobile/app/forms/"
+        case campaignForm = "/v2/sdk/forms"
+        case passiveForm = "/live/mobile/app/forms"
         case campaignsList = "/v2/sdk/campaigns"
-        case targetingOptions = "/v2/sdk/targeting-options/"
-        case campaignSubmission = "/v2/sdk/campaigns/campaign_id/feedback/"
+        case targetingOptions = "/v2/sdk/targeting-options"
+        case campaignSubmission = "/v2/sdk/campaigns/campaign_id/feedback"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -40,7 +40,7 @@ class RequestBuilder {
      */
     private class func buildURL(withEndpoint endpoint: Endpoints, withURLParam param: String? = nil) -> URL {
         if let param = param {
-            return URL(string: apiUrl.appending(endpoint.rawValue).appending(param))!
+            return URL(string: apiUrl.appending(endpoint.rawValue).appending("/").appending(param))!
         }
         return URL(string: apiUrl.appending(endpoint.rawValue))!
     }
@@ -56,7 +56,7 @@ class RequestBuilder {
      */
     private class func buildURL(withString endpoint: String, withURLParam param: String? = nil) -> URL {
         if let param = param {
-            return URL(string: apiUrl.appending(endpoint).appending(param))!
+            return URL(string: apiUrl.appending(endpoint).appending("/").appending(param))!
         }
         return URL(string: apiUrl.appending(endpoint))!
     }

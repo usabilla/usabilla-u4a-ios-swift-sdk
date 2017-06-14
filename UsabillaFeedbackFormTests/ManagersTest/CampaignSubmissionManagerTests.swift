@@ -90,7 +90,7 @@ class CampaignSubmissionManagerTests: QuickSpec {
 
             it("Sends the id payload only on the first call") {
                 let manager = CampaignSubmissionManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignService: campaignService, reachability: reachabilityMock)
-                let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignId/feedback/"
+                let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignId/feedback"
                 let page = UBPageModelMock()
                 page.type = .form
                 manager.submitPage(page: page, nextPageType: .form)
