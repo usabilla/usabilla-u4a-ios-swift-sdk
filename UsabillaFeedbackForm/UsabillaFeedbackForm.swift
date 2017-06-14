@@ -115,9 +115,9 @@ open class UsabillaFeedbackForm {
         return image
     }
 
-    open class func showCampaignForm(formJson: JSON) {
+    open class func showCampaignForm(formJson: JSON, campaignId: String = "id") {
         let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-        campaignManager?.displayCampaignForm(formModel)
+        campaignManager?.displayCampaignForm(formModel, campaignId: campaignId)
     }
 }
 
