@@ -21,11 +21,13 @@ class CampaignSubmissionManager {
     private let customVars: [String: Any]?
     private let submissionService: CampaignServiceProtocol
     private let feedbackId: UUID
-    private var isFirst: Bool
-    private var queue: DispatchQueue
-    private var onlineMode: Bool
+    private let queue: DispatchQueue
+    private let store: UBCampaignFeedbackRequestStoreProtocol
 
-    init(appId: String, campaignId: String, formVersion: Int, customVars: [String: Any]?, campaignService: CampaignServiceProtocol, reachability: Reachable = Reachability()!) {
+    private var onlineMode: Bool
+    private var isFirst: Bool
+
+    init(appId: String, campaignId: String, formVersion: Int, customVars: [String: Any]?, campaignService: CampaignServiceProtocol, campaignRequestStore: UBCampaignFeedbackRequestStoreProtocol, reachability: Reachable = Reachability()!) {
         self.appId = appId
         self.formVersion = formVersion
         self.customVars = customVars
@@ -37,11 +39,13 @@ class CampaignSubmissionManager {
         self.isFirst = true
         self.queue = DispatchQueue(label: "com.usabilla.u4a.isFristQueue")
         self.onlineMode = true
+        self.store = campaignRequestStore
     }
 
     func submitPage(page: PageModelProtocol, nextPageType: PageType) {
         var payload: [String: Any] = ["data": page.toJSONDictionary()]
         var type: RequestType = .page
+
         if page.type == .start || page.type == .banner {
             payload = addMetadataPayload(payload: payload)
             payload["id"] = feedbackId.uuidString
@@ -61,8 +65,8 @@ class CampaignSubmissionManager {
         if shouldSubmitToService() {
             submissionService.submitCampaignResult(withRequest: request)
         } else {
-            let toSave = UBCampaignFeedbackRequest(request: request, feedbackId: feedbackId.uuidString, type: type)
-            UBCampaignFeedbackRequestDAO.shared.create(toSave)
+            let toSave = UBCampaignFeedbackRequestItem(request: request, feedbackId: feedbackId.uuidString, type: type)
+            store.save(feedbackRequest: toSave)
         }
     }
 

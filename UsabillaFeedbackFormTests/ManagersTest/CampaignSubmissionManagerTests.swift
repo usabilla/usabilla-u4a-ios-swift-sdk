@@ -70,16 +70,34 @@ class SubmitServiceMock: CampaignServiceProtocol {
 
 }
 
+class UBCampaignFeedbackRequestStoreMock: UBCampaignFeedbackRequestStoreProtocol {
+
+    var saved: Int = 0
+
+    func getAll() -> [UBCampaignFeedbackRequest] {
+        return []
+    }
+
+    func getRequest(withFeedbackId id: String) -> UBCampaignFeedbackRequest? {
+        return nil
+    }
+
+    func save(feedbackRequest request: UBCampaignFeedbackRequestItem) {
+        saved += 1
+    }
+}
+
 class CampaignSubmissionManagerTests: QuickSpec {
 
     override func spec() {
         let reachabilityMock = ReachabilityMock()
         var campaignService: SubmitServiceMock!
         var campaignSubmissionManager: CampaignSubmissionManager!
+        let storeMock = UBCampaignFeedbackRequestStoreMock()
 
         beforeSuite {
             campaignService = SubmitServiceMock()
-            campaignSubmissionManager = CampaignSubmissionManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignService: campaignService, reachability: reachabilityMock)
+            campaignSubmissionManager = CampaignSubmissionManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignService: campaignService, campaignRequestStore: storeMock, reachability: reachabilityMock)
         }
 
         beforeEach {
@@ -88,53 +106,76 @@ class CampaignSubmissionManagerTests: QuickSpec {
 
         describe("the CampaignSubmissionManager") {
 
-            it("Sends the id payload only on the first call") {
-                let manager = CampaignSubmissionManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignService: campaignService, reachability: reachabilityMock)
-                let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignId/feedback"
-                let page = UBPageModelMock()
-                page.type = .form
-                manager.submitPage(page: page, nextPageType: .form)
+            describe("the online mode") {
 
-                //This checks that the feedbackID has not been added to the URL as a parameter, should only happen on the first call
-                let firstCallURL = campaignService.lastRequest?.url?.absoluteString
-                expect(firstCallURL).to(equal(expectedURL))
-                manager.submitPage(page: page, nextPageType: .form)
+                beforeEach {
+                    reachabilityMock.reachable = true
+                }
 
-                //This checks that the feedbackID has been added to the URL as a parameter, as it should be for every call after the first
-                let secondCallURL = campaignService.lastRequest?.url?.absoluteString
-                expect(secondCallURL!.characters.count).to(beGreaterThan(expectedURL.characters.count))
+                it("Sends the id payload only on the first call") {
+                    let manager = CampaignSubmissionManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignService: campaignService, campaignRequestStore: UBCampaignFeedbackRequestStoreMock(), reachability: reachabilityMock)
+                    let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignId/feedback"
+                    let page = UBPageModelMock()
+                    page.type = .form
+                    manager.submitPage(page: page, nextPageType: .form)
+
+                    //This checks that the feedbackID has not been added to the URL as a parameter, should only happen on the first call
+                    let firstCallURL = campaignService.lastRequest?.url?.absoluteString
+                    expect(firstCallURL).to(equal(expectedURL))
+                    manager.submitPage(page: page, nextPageType: .form)
+
+                    //This checks that the feedbackID has been added to the URL as a parameter, as it should be for every call after the first
+                    let secondCallURL = campaignService.lastRequest?.url?.absoluteString
+                    expect(secondCallURL!.characters.count).to(beGreaterThan(expectedURL.characters.count))
+                }
+
+                it("Sends a single page correctly") {
+                    let page = UBPageModelMock()
+                    page.type = .form
+                    campaignSubmissionManager.submitPage(page: page, nextPageType: .form)
+                    let json = campaignService.requestJSON!
+                    expect(json["metadata"].exists()).to(beFalse())
+                    expect(json["data"]["one"]).to(equal(["one"]))
+                }
+
+                it("Sends the start or banner page correctly") {
+                    let page = UBPageModelMock()
+                    page.type = .start
+                    campaignSubmissionManager.submitPage(page: page, nextPageType: .form)
+                    let json = campaignService.requestJSON!
+                    expect(json["data"]["one"]).to(equal(["one"]))
+                    expect(json["app_id"]).to(equal("appId"))
+                    expect(json["form_version"]).to(equal(0))
+                    expect(json["metadata"]).toNot(beNil())
+                    expect(json["metadata"]["system"]).to(equal("ios"))
+                    expect(json["id"].exists()).to(beTrue())
+                }
+
+                it("Sends the closing page correctly") {
+                    let page = UBPageModelMock()
+                    page.type = .form
+                    campaignSubmissionManager.submitPage(page: page, nextPageType: .end)
+                    let json = campaignService.requestJSON!
+                    expect(json["data"]["one"]).to(equal(["one"]))
+                    expect(json["metadata"].exists()).to(beFalse())
+                    expect(json["complete"]).to(equal(true))
+                }
             }
 
-            it("Sends a single page correctly") {
-                let page = UBPageModelMock()
-                page.type = .form
-                campaignSubmissionManager.submitPage(page: page, nextPageType: .form)
-                let json = campaignService.requestJSON!
-                expect(json["metadata"].exists()).to(beFalse())
-                expect(json["data"]["one"]).to(equal(["one"]))
-            }
+            describe("when in offline mode") {
 
-            it("Sends the start or banner page correctly") {
-                let page = UBPageModelMock()
-                page.type = .start
-                campaignSubmissionManager.submitPage(page: page, nextPageType: .form)
-                let json = campaignService.requestJSON!
-                expect(json["data"]["one"]).to(equal(["one"]))
-                expect(json["app_id"]).to(equal("appId"))
-                expect(json["form_version"]).to(equal(0))
-                expect(json["metadata"]).toNot(beNil())
-                expect(json["metadata"]["system"]).to(equal("ios"))
-                expect(json["id"].exists()).to(beTrue())
-            }
+                beforeEach {
+                    reachabilityMock.reachable = false
+                }
 
-            it("Sends the closing page correctly") {
-                let page = UBPageModelMock()
-                page.type = .form
-                campaignSubmissionManager.submitPage(page: page, nextPageType: .end)
-                let json = campaignService.requestJSON!
-                expect(json["data"]["one"]).to(equal(["one"]))
-                expect(json["metadata"].exists()).to(beFalse())
-                expect(json["complete"]).to(equal(true))
+                it("sends the request to the store") {
+                    campaignService.counter = 0
+                    let page = UBPageModelMock()
+                    page.type = .form
+                    campaignSubmissionManager.submitPage(page: page, nextPageType: .form)
+                    expect(campaignService.counter).to(equal(0))
+                    expect(storeMock.saved).to(equal(1))
+                }
             }
         }
     }

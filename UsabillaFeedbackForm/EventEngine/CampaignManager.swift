@@ -48,7 +48,7 @@ class CampaignManager {
             return
         }
         campaignStore.getCampaignForm(withFormId: campaign.formId, theme: UsabillaFeedbackForm.theme).then { form in
-            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, customVars: nil, campaignService: CampaignService())
+            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, customVars: nil, campaignService: CampaignService(), campaignRequestStore: UBCampaignFeedbackRequestStore(campaignDAO: UBCampaignFeedbackRequestDAO()))
             if self.displayCampaignForm(form) {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
