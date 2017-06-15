@@ -1,8 +1,8 @@
 //
-//  UBFeedbackRequestDAOTests.swift
+//  UBCampaignFeedbackRequestDAOTests.swift
 //  UsabillaFeedbackForm
 //
-//  Created by Benjamin Grima on 13/04/2017.
+//  Created by Giacomo Pinato on 15/06/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
@@ -11,15 +11,15 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class UBFeedbackRequestDAOTests: QuickSpec {
+class UBCampaignFeedbackRequestDAOTests: QuickSpec {
 
     override func spec() {
 
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let rootUrl = documentsDirectory.appendingPathComponent("UBSDK")
-        let directoryUrl = rootUrl.appendingPathComponent(UBFeedbackRequestDAO.directoryName)
+        let directoryUrl = rootUrl.appendingPathComponent(UBCampaignFeedbackRequestDAO.directoryName)
 
-        describe("UBFeedbackRequestDAO") {
+        describe("UBCampaignFeedbackRequestDAO") {
             context("when directory is created") {
                 it("should have created the directory") {
                     try? FileManager.default.removeItem(at: directoryUrl)
@@ -30,14 +30,14 @@ class UBFeedbackRequestDAOTests: QuickSpec {
 
                     exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                     expect(exist).to(beTrue())
-                    expect(directoryUrl.lastPathComponent).to(equal("FeedbackRequests"))
+                    expect(directoryUrl.lastPathComponent).to(equal("UBCampaignFeedbackRequest"))
                 }
             }
 
             context("when requesting an id") {
                 it("should return the correct id") {
-                    let feedbackRequest = UBFeedbackRequest(payload: ["foo": "bar"], screenshot: nil)
-                    let id = UBFeedbackRequestDAO.shared.id(forObj: feedbackRequest)
+                    let feedbackRequest = UBCampaignFeedbackRequest(id: "id", items: [])
+                    let id = UBCampaignFeedbackRequestDAO.shared.id(forObj: feedbackRequest)
                     expect(id).to(equal(feedbackRequest.id))
                 }
             }

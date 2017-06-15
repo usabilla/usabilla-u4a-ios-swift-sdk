@@ -7,6 +7,28 @@
 //
 
 class UBCampaignFeedbackRequest: NSObject, NSCoding {
+    var items: [UBCampaignFeedbackRequestItem]
+    let id: String
+
+    init(id: String, items: [UBCampaignFeedbackRequestItem] = []) {
+        self.id = id
+        self.items = items
+    }
+
+    // MARK: NSCoding
+    required init?(coder aDecoder: NSCoder) {
+        self.id = (aDecoder.decodeObject(forKey: "id") as? String)!
+        self.items = (aDecoder.decodeObject(forKey: "items") as? [UBCampaignFeedbackRequestItem])!
+        // swiftlint:disable:next force_cast
+    }
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(items, forKey: "items")
+    }
+}
+
+class UBCampaignFeedbackRequestItem: NSObject, NSCoding {
     let request: URLRequest
     let feedbackId: String
     let type: RequestType
@@ -33,7 +55,7 @@ class UBCampaignFeedbackRequest: NSObject, NSCoding {
 }
 
 class UBCampaignFeedbackRequestDAO: UBFileStorageDAO<UBCampaignFeedbackRequest> {
-    static let directoryName = "CampaignFeedbackRequests"
+    static let directoryName = "UBCampaignFeedbackRequest"
     static let shared = UBCampaignFeedbackRequestDAO()
 
     internal required init() {
@@ -41,6 +63,6 @@ class UBCampaignFeedbackRequestDAO: UBFileStorageDAO<UBCampaignFeedbackRequest> 
     }
 
     override func id(forObj: UBCampaignFeedbackRequest) -> String {
-        return forObj.feedbackId
+        return forObj.id
     }
 }
