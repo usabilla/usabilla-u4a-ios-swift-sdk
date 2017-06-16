@@ -12,7 +12,7 @@ class UBFeedbackRequestDAO: UBFileStorageDAO<UBFeedbackRequest> {
     static let directoryName = "FeedbackRequests"
     static let shared = UBFeedbackRequestDAO()
 
-    internal required init() {
+    required init() {
         super.init(directoryName: UBFeedbackRequestDAO.directoryName)
     }
 

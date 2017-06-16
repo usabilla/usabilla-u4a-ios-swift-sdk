@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040325061EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */; };
-		040325081EF17B8600A2AE48 /* UBCampaignFeedbackRequestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325071EF17B8600A2AE48 /* UBCampaignFeedbackRequestStore.swift */; };
 		0403250A1EF2CD8200A2AE48 /* UBCampaignFeedbackRequestDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325091EF2CD8200A2AE48 /* UBCampaignFeedbackRequestDAOTests.swift */; };
-		0403250C1EF2CE9800A2AE48 /* UBCampaignFeedbackRequestStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403250B1EF2CE9800A2AE48 /* UBCampaignFeedbackRequestStoreTests.swift */; };
 		040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
@@ -33,6 +31,7 @@
 		0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */; };
 		047B7FE31EFBC39B00AD43C1 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */; };
 		047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */ = {isa = PBXBuildFile; fileRef = 047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */; };
+		047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */; };
 		0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
 		0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
 		0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
@@ -60,9 +59,11 @@
 		04A0C1C81E8BD59500A483AC /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C71E8BD59500A483AC /* EventTests.swift */; };
 		04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */; };
 		04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */; };
+		04A368461EF41CB100B88279 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
 		04B12F091E9FC8B400E65BE5 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
 		04C6BEEA1E9521440078F6FC /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
 		04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */; };
+		04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */; };
 		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
 		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
 		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
@@ -77,6 +78,7 @@
 		04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */; };
 		04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
+		04ECD31A1EF9206C0024D24A /* UBCampaignFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */; };
 		04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F149DE1CE0B8D000D56B29 /* Reachability.swift */; };
 		04F54DD31CD75A3F002F501E /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F54DC81CD75A3F002F501E /* UsabillaFeedbackForm.framework */; };
 		04F54DF41CD766EC002F501E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
@@ -93,7 +95,7 @@
 		04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F54E611CD76A21002F501E /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
-		04F94A011EE69D4C00180B0F /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionManager.swift */; };
+		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
 		41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */; };
 		4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */; };
 		4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0431E3A09AE007C8796 /* SubmissionManagerTests.swift */; };
@@ -250,9 +252,7 @@
 
 /* Begin PBXFileReference section */
 		040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestDAO.swift; sourceTree = "<group>"; };
-		040325071EF17B8600A2AE48 /* UBCampaignFeedbackRequestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestStore.swift; sourceTree = "<group>"; };
 		040325091EF2CD8200A2AE48 /* UBCampaignFeedbackRequestDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestDAOTests.swift; sourceTree = "<group>"; };
-		0403250B1EF2CE9800A2AE48 /* UBCampaignFeedbackRequestStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestStoreTests.swift; sourceTree = "<group>"; };
 		040C97DC1EA6527200A59C95 /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTests.swift; sourceTree = "<group>"; };
@@ -273,6 +273,7 @@
 		0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignSubmissionManagerTests.swift; path = ManagersTest/CampaignSubmissionManagerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OneButtonCampaign.json; sourceTree = "<group>"; };
+		047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestTests.swift; sourceTree = "<group>"; };
 		0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModel.swift; sourceTree = "<group>"; };
 		0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CheckBoxWithText.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxFieldModel.swift; sourceTree = "<group>"; };
@@ -299,9 +300,11 @@
 		04A0C1C71E8BD59500A483AC /* EventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratorTests.swift; sourceTree = "<group>"; };
 		04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageTest.swift; sourceTree = "<group>"; };
+		04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignSubmissionManager.swift; sourceTree = "<group>"; };
 		04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		04C6BEE91E9521440078F6FC /* EventEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEngine.swift; sourceTree = "<group>"; };
 		04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignManager.swift; path = ../EventEngine/CampaignManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampaignSubmissionRequestManagerTests.swift; path = ManagersTest/CampaignSubmissionRequestManagerTests.swift; sourceTree = "<group>"; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
 		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 		04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftCheckBox.swift; sourceTree = "<group>"; };
 		04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalisationHandler.swift; sourceTree = "<group>"; };
+		04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequest.swift; sourceTree = "<group>"; };
 		04F149DE1CE0B8D000D56B29 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../Utils/Reachability.swift; sourceTree = "<group>"; };
 		04F54DC81CD75A3F002F501E /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsabillaFeedbackForm.h; sourceTree = "<group>"; };
@@ -336,7 +340,7 @@
 		04F54E5A1CD76A21002F501E /* usa_localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = usa_localizable.strings; sourceTree = "<group>"; };
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F54E5C1CD76A21002F501E /* defaultJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultJson.json; sourceTree = "<group>"; };
-		04F94A001EE69D4C00180B0F /* CampaignSubmissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModelTest.swift; sourceTree = "<group>"; };
 		4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoTest.swift; sourceTree = "<group>"; };
 		4304B0431E3A09AE007C8796 /* SubmissionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManagerTests.swift; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 				4304B0431E3A09AE007C8796 /* SubmissionManagerTests.swift */,
 				C59C82091E8133F000840D4E /* FormStoreTests.swift */,
 				0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */,
+				04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -785,6 +790,7 @@
 				0483E9C91CDCDF86004EC234 /* PageModel.swift */,
 				4342CBA21E82C02000601F3D /* IntroPageModel.swift */,
 				436264131E92867A00A0533C /* UBEndPageModel.swift */,
+				04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -922,6 +928,7 @@
 				C59C820F1E8574E100840D4E /* CopyModelTests.swift */,
 				43B9AF9C1E890288009EC83A /* CampaignModelTests.swift */,
 				C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */,
+				047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -930,8 +937,9 @@
 			isa = PBXGroup;
 			children = (
 				04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */,
-				04F94A001EE69D4C00180B0F /* CampaignSubmissionManager.swift */,
+				04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */,
 				434085C01E36430D00B4A4B9 /* SubmissionManager.swift */,
+				04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1008,7 +1016,6 @@
 			isa = PBXGroup;
 			children = (
 				43B0EE721EA0F5C400241D44 /* UBCampaignStoreTests.swift */,
-				0403250B1EF2CE9800A2AE48 /* UBCampaignFeedbackRequestStoreTests.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -1082,7 +1089,6 @@
 			children = (
 				C564D1901E799A190004705A /* FormStore.swift */,
 				43B0EE6F1EA0E6AF00241D44 /* UBCampaignStore.swift */,
-				040325071EF17B8600A2AE48 /* UBCampaignFeedbackRequestStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -1292,7 +1298,7 @@
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
-				04F94A011EE69D4C00180B0F /* CampaignSubmissionManager.swift in Sources */,
+				04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
 				431CC0171E92565100205D9D /* UBFormViewModel.swift in Sources */,
 				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
@@ -1302,6 +1308,7 @@
 				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
 				04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */,
 				430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */,
+				04ECD31A1EF9206C0024D24A /* UBCampaignFeedbackRequest.swift in Sources */,
 				C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */,
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
@@ -1336,8 +1343,8 @@
 				433794371E8A6C0100965EC8 /* Logging.swift in Sources */,
 				04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */,
 				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,
-				040325081EF17B8600A2AE48 /* UBCampaignFeedbackRequestStore.swift in Sources */,
 				0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */,
+				04A368461EF41CB100B88279 /* CampaignSubmissionManager.swift in Sources */,
 				04DC25B51E8BB347002962A3 /* RepetitionDecorator.swift in Sources */,
 				0483EA051CDCE01A004EC234 /* UsabillaFeedbackForm.swift in Sources */,
 				04DC25AC1E8BB33E002962A3 /* OrRule.swift in Sources */,
@@ -1445,6 +1452,7 @@
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
 				04A0C1C51E8BBE7200A483AC /* RepetitionTests.swift in Sources */,
 				04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */,
+				047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */,
 				43B0EE741EA0F64400241D44 /* UBCampaignStoreTests.swift in Sources */,
 				431F6B021E9E803900D5BF17 /* UBFormDAOTests.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
@@ -1465,7 +1473,7 @@
 				04A0C1BE1E8BB86E00A483AC /* OrRuleTests.swift in Sources */,
 				04A0C1C21E8BBD0400A483AC /* LeafRuleTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
-				0403250C1EF2CE9800A2AE48 /* UBCampaignFeedbackRequestStoreTests.swift in Sources */,
+				04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */,
 				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
 				0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,

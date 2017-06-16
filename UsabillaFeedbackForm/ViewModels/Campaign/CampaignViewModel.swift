@@ -12,16 +12,16 @@ class CampaignViewModel {
     var form: FormModel
     var introPageViewModel: IntroPageViewModel?
     var introPresenter: UBIntroOutroPresenter?
-    weak var delegate: CampaignSubmissionManagerDelegate?
+    let manager: CampaignSubmissionRequestManagerProtocol
     var formViewModel: UBFormViewModel
 
-    init(form: FormModel, delegate: CampaignSubmissionManagerDelegate? = nil) {
+    init(form: FormModel, manager: CampaignSubmissionRequestManagerProtocol) {
         self.form = form
         self.formViewModel = UBFormViewModel(formModel: form)
         self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
         self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
         self.formViewModel.isCampaignForm = true
-        self.delegate = delegate
+        self.manager = manager
 
         // disable giveMoreFeedback for end pages
         form.pages.forEach {
@@ -52,6 +52,6 @@ class CampaignViewModel {
     }
 
     func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
-        delegate?.pageDidTurn(pageIndex: pageIndex, pageModel: pageModel, nextPageType: nextPageType)
+        manager.savePage(page: pageModel, nextPageType: nextPageType)
     }
 }

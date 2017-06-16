@@ -145,3 +145,21 @@ class UBPageModelMock: PageModelProtocol {
         fieldValuesCollection = [:]
     }
 }
+
+class CampaignSubmissionRequestManagerMock: CampaignSubmissionRequestManagerProtocol {
+    func savePage(page: PageModelProtocol, nextPageType: PageType) {
+    }
+}
+
+class CampaignSubmissionManagerMock: CampaignSubmissionManagerProtocol {
+    var lastRequest: UBCampaignFeedbackRequest!
+    var requestJSON: JSON? {
+        if let request = lastRequest {
+            return JSON(request.request.httpBody as Any)
+        }
+        return nil
+    }
+    func handle(request: UBCampaignFeedbackRequest) {
+        lastRequest = request
+    }
+}

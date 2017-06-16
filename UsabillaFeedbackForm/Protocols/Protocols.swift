@@ -70,3 +70,7 @@ protocol PageModelProtocol {
     var fieldValuesCollection: [String: [String]] { get }
     var type: PageType? {get set}
 }
+
+protocol CampaignSubmissionManagerProtocol {
+    func handle(request: UBCampaignFeedbackRequest)
+}

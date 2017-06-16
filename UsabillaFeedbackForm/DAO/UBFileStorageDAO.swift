@@ -96,9 +96,8 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     }
 
     // MARK: Utility methods
-    @discardableResult func saveToFile(id: String, data: DataType) -> Bool {
+    @discardableResult private func saveToFile(id: String, data: DataType) -> Bool {
         let filePath = fileURLFor(id: id).path
-
         var didSave = false
         fileStorageSerialQueue.sync {
             didSave = NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
@@ -116,6 +115,6 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     }
 
     func id(forObj: DataType) -> String {
-        return ""
+        fatalError("func id(forObj: DataType) must be overridden")
     }
 }

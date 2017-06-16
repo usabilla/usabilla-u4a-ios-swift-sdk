@@ -8,22 +8,19 @@
 
 import Foundation
 
-protocol CampaignSubmissionManagerDelegate: class {
-    func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType)
-}
-
 class CampaignManager {
 
     private(set) var campaignStore: UBCampaignStoreProtocol
     private(set) var eventEngine: EventEngine
     private(set) var appId: String
-    private(set) var submissionManager: CampaignSubmissionManager?
+
+    private let submissionManager: CampaignSubmissionManager
 
     init(campaignStore: UBCampaignStoreProtocol, appId: String) {
         self.campaignStore = campaignStore
         self.eventEngine = EventEngine(campaigns: [])
         self.appId = appId
-
+        self.submissionManager = CampaignSubmissionManager(campaignDAO: UBCampaignFeedbackRequestDAO.shared)
         campaignStore.getCampaigns(withAppId: appId).then { campaigns in
             self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
         }
@@ -48,8 +45,8 @@ class CampaignManager {
             return
         }
         campaignStore.getCampaignForm(withFormId: campaign.formId, theme: UsabillaFeedbackForm.theme).then { form in
-            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, customVars: nil, campaignService: CampaignService(), campaignRequestStore: UBCampaignFeedbackRequestStore(campaignDAO: UBCampaignFeedbackRequestDAO()))
-            if self.displayCampaignForm(form) {
+            let submissionManager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, customVars: nil, campaignSubmissionManager: self.submissionManager)
+            if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
                 return
@@ -60,19 +57,14 @@ class CampaignManager {
         }
     }
 
-    @discardableResult func displayCampaignForm(_ form: FormModel, campaignId: String = "id") -> Bool {
-        if self.submissionManager == nil {
+    @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignId: String = "id") -> Bool {
+        var manager = manager
+        if manager == nil {
             //TODO REMOVE ME FOR GOD'S SAKE I'M HERE JUST FOR DEV PURPOSES
-            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignService: CampaignService(), campaignRequestStore: UBCampaignFeedbackRequestStore(campaignDAO: UBCampaignFeedbackRequestDAO()))
+            manager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignSubmissionManager: self.submissionManager)
         }
 
-        let campaignViewModel = CampaignViewModel(form: form, delegate: self)
+        let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
         return CampaignWindow.shared.showCampaign(campaignViewModel)
-    }
-}
-
-extension CampaignManager: CampaignSubmissionManagerDelegate {
-    func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
-        submissionManager?.submitPage(page: pageModel, nextPageType: nextPageType)
     }
 }
