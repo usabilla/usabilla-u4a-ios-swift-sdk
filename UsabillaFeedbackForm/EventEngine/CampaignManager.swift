@@ -63,7 +63,7 @@ class CampaignManager {
     @discardableResult func displayCampaignForm(_ form: FormModel, campaignId: String = "id") -> Bool {
         if self.submissionManager == nil {
             //TODO REMOVE ME FOR GOD'S SAKE I'M HERE JUST FOR DEV PURPOSES
-            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignService: CampaignService())
+            self.submissionManager = CampaignSubmissionManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignService: CampaignService(), campaignRequestStore: UBCampaignFeedbackRequestStore(campaignDAO: UBCampaignFeedbackRequestDAO()))
         }
 
         let campaignViewModel = CampaignViewModel(form: form, delegate: self)

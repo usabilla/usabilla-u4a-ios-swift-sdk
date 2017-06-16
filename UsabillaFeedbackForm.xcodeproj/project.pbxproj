@@ -301,7 +301,7 @@
 		04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageTest.swift; sourceTree = "<group>"; };
 		04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		04C6BEE91E9521440078F6FC /* EventEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEngine.swift; sourceTree = "<group>"; };
-		04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignManager.swift; path = ../EventEngine/CampaignManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
 		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
@@ -658,7 +658,6 @@
 				04DC25971E8B9D6D002962A3 /* Leaves */,
 				04DC25961E8B9D5E002962A3 /* Decorators */,
 				04C6BEE91E9521440078F6FC /* EventEngine.swift */,
-				04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */,
 			);
 			path = EventEngine;
 			sourceTree = "<group>";
@@ -930,6 +929,7 @@
 		434085BF1E3642FB00B4A4B9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */,
 				04F94A001EE69D4C00180B0F /* CampaignSubmissionManager.swift */,
 				434085C01E36430D00B4A4B9 /* SubmissionManager.swift */,
 			);
