@@ -761,14 +761,14 @@
 		04F54DE31CD75ACB002F501E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04F54DE81CD75BCB002F501E /* Rules */,
+				044204DE1DCC89ED004FA09F /* FieldModels */,
 				436F55491E8178EF00E91E58 /* CampaignModel.swift */,
 				044204DF1DCC94C1004FA09F /* CopyModel.swift */,
 				43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */,
 				0483E9C31CDCDF86004EC234 /* FieldFactory.swift */,
-				044204DE1DCC89ED004FA09F /* FieldModels */,
 				0483E9C51CDCDF86004EC234 /* FormModel.swift */,
 				0483E9C91CDCDF86004EC234 /* PageModel.swift */,
-				04F54DE81CD75BCB002F501E /* Rules */,
 				4342CBA21E82C02000601F3D /* IntroPageModel.swift */,
 				436264131E92867A00A0533C /* UBEndPageModel.swift */,
 			);

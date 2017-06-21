@@ -47,5 +47,20 @@ class CopyModel {
         self.navigationNext = loc["navigationNext"].string ?? self.navigationNext
         self.introCancelButton = loc["introCancelButton"].string ?? self.introCancelButton
         self.introContinueButton = loc["introContinueButton"].string ?? self.introContinueButton
+
+        let banner = json["structure"]["pages"].first {
+            $0.1["type"].stringValue == "banner"
+        }
+        let continueField = banner?.1["fields"].first {
+            $0.1["type"].stringValue == "continue"
+            }?.1
+
+        if let continuetitle = continueField?["title"].string {
+            self.introContinueButton = continuetitle
+        }
+
+        if let cancelTitle = continueField?["cancel"].string {
+            self.introCancelButton = cancelTitle
+        }
     }
 }
