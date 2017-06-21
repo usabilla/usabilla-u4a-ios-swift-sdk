@@ -10,6 +10,17 @@ import Foundation
 
 class JSONFormParser {
 
+    static func getPageHolder(inJSON json: JSON) -> JSON {
+        return json["structure"].exists() ? json["structure"] : json["form"]
+    }
+
+    class func checkForContinueButton(pageJson: JSON) -> Bool {
+        for (_, subJson): (String, JSON) in pageJson["fields"] where subJson["type"].stringValue == "continue" && subJson["title"].string != nil {
+            return true
+        }
+        return false
+    }
+
     class func parsePage(_ pageJson: JSON, pageNum: Int) -> PageModel {
 
         let pageName = pageJson["name"].stringValue
@@ -33,7 +44,9 @@ class JSONFormParser {
 
         // specific intro page parsing
         if let introPage = currentPage as? IntroPageModel {
-            introPage.hasContinueButton = pageJson["hasContinueButton"].boolValue
+            //look for continue field
+
+            introPage.hasContinueButton = checkForContinueButton(pageJson: pageJson)
             if let displayMode = IntroPageDisplayMode(rawValue: pageJson["display"].stringValue) {
                 introPage.displayMode = displayMode
             }
@@ -46,12 +59,27 @@ class JSONFormParser {
         var fields: [BaseFieldModel] = []
 
         for (_, subJson): (String, JSON) in pageJson["fields"] {
-            //print("parsing field \(index) of page \(pageNum)")
+            if subJson["type"].stringValue == "titleParagraph" {
+                let headerTitle = subJson["title"].string
+                let paragraphText = subJson["text"].string
+
+                if let headerTitle = headerTitle {
+                    let model = HeaderFieldModel(json: JSON.init(parseJSON: "{\"title\":\"\(headerTitle)\"}"), pageModel: currentPage)
+                    fields.append(model)
+                }
+
+                if let paragraphText = paragraphText {
+                    let model = ParagraphFieldModel(json: JSON.init(parseJSON: "{\"title\":\"\(paragraphText)\"}"), pageModel: currentPage)
+                    fields.append(model)
+                }
+
+                continue
+            }
             if let newField = parseFieldModel(subJson, pagemodel: currentPage) {
                 fields.append(newField)
             }
-            //print("fields now has \(fields.count) elements")
         }
+
         currentPage.fields = fields
 
         if pageJson["jumpRules"].exists() {

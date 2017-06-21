@@ -1,0 +1,86 @@
+{
+"id": "2a93c63f-92b2-481b-b0b5-33c8aba485b3",
+"version": 1,
+"structure": {
+"pages": [
+{
+"type": "banner",
+"fields": [
+{
+"type": "mood",
+"caption": "Mood",
+"autoSubmit": false,
+"forceRequired": false,
+"fixed": false,
+"interactive": true,
+"showHideRule": [],
+"validationText": "This field is required",
+"name": "mood",
+"title": "Click to edit question",
+"points": 5,
+"options": [
+{
+"title": "Hate",
+"value": "1"
+},
+{
+"title": "Dislike",
+"value": "2"
+},
+{
+"title": "Neutral",
+"value": "3"
+},
+{
+"title": "Like",
+"value": "4"
+},
+{
+"title": "Love",
+"value": "5"
+}
+]
+},
+{
+"type": "continue",
+"caption": "Continue Button",
+"autoSubmit": false,
+"forceRequired": false,
+"fixed": "continue",
+"interactive": true,
+"showHideRule": [],
+"validationText": "This field is required",
+"title": "Continue"
+}
+],
+"jumpRules": [],
+"autoSubmit": true,
+"name": "Banner"
+},
+{
+"type": "toast",
+"fields": [
+{
+"type": "paragraph",
+"caption": "Paragraph",
+"autoSubmit": false,
+"forceRequired": false,
+"fixed": false,
+"interactive": true,
+"showHideRule": [],
+"validationText": "This field is required",
+"text": "Thanks!"
+}
+],
+"jumpRules": [],
+"autoSubmit": false,
+"name": "Toast"
+}
+],
+"allowedPageTypes": [
+"banner",
+"form",
+"toast"
+]
+}
+}

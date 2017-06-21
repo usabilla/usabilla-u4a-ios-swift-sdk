@@ -21,9 +21,10 @@ class JSONParserTest: QuickSpec {
 
         var formModel: FormModel!
         var jsonObj: JSON!
+        var oneButtonCampaign: JSON!
 
         beforeSuite {
-            let path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
+            var path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 jsonObj = JSON(data: data as Data)
@@ -33,9 +34,24 @@ class JSONParserTest: QuickSpec {
                 Swift.debugPrint(error.localizedDescription)
             }
 
+            path = Bundle(for: JSONParserTest.self).path(forResource: "OneButtonCampaign", ofType: "json")!
+            do {
+                let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                oneButtonCampaign = JSON(data: data as Data)
+
+            } catch let error as NSError {
+                Swift.debugPrint(error.localizedDescription)
+            }
+
         }
 
         describe("the JSON parser") {
+
+            it("returns the correct page holder") {
+                expect(JSONFormParser.getPageHolder(inJSON: oneButtonCampaign)).to(equal(oneButtonCampaign["structure"]))
+                expect(JSONFormParser.getPageHolder(inJSON: jsonObj)).to(equal(jsonObj["form"]))
+            }
+
             context("with a valid form") {
                 beforeEach {
                     //Only for this describe
@@ -49,6 +65,11 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.appId).to(equal("a"))
                     expect(formModel.isDefault).to(equal(false))
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
+                }
+
+                it("checks for the continue button correctly") {
+                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][0])).to(beTrue())
+                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][1])).to(beFalse())
                 }
 
                 describe("the colors group") {
