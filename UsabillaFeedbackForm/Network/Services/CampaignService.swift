@@ -80,9 +80,14 @@ class CampaignService: CampaignServiceProtocol {
                 if let jsonData = response.data {
                     let json = JSON(jsonData).dictionary
                     PLog("targeting for id : \(id) :\n \(String(describing: json))")
-                    let rule = ConcreteRule(type: RuleType.leaf, childRules: [])
+
+                    guard let targeting = json?["options"], let rule = TargetingParser.targeting(fromJson: targeting) else {
+                        reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
+                        return
+                    }
+
                     let cachable: Cachable<Rule> = Cachable(value: rule, hasChanged: response.isChanged)
-                    fulfill(cachable) // TO DO: parse the targetting here
+                    fulfill(cachable)
                     return
                 }
                 reject(response.error!)

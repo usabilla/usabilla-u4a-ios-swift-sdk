@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+// swiftlint:disable force_try
 import Quick
 import Nimble
 
@@ -13,7 +15,15 @@ import Nimble
 
 class CampaignServiceTests: QuickSpec {
     override func spec() {
+        var targetingData: Data!
+        beforeEach {
+            let path = Bundle(for: CampaignServiceTests.self).path(forResource: "CampaignTargeting", ofType: "json")!
+            let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+            let targetingJson = JSON(data: (data as Data?)!)
+            targetingData = try! targetingJson.rawData()
+        }
         describe("CampaignService") {
+
             context("When getCampaignForm is called") {
                 it("should succeed if request succeeds") {
                     UBHTTPMockSuccess.self.result = []
@@ -62,10 +72,22 @@ class CampaignServiceTests: QuickSpec {
             context("When getTargeting is called") {
                 it("should succeed if request succeeds") {
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockSuccess.self).getTargeting(withId: "tid").then { _ in
+                        UBHTTPMock.response = HTTPClientResponse(data: targetingData, headers: nil, error: nil, success: true, isChanged: true)
+                        CampaignService(httpClient: UBHTTPMock.self).getTargeting(withId: "tid").then { _ in
                             done()
                         }.catch { _ in
                             fail("should not go here")
+                        }
+                    }
+                }
+                it("should fail if request succeeds and json is invalid") {
+                    let data =  try! JSON.parse("{\"hello\":\"you\"}").rawData()
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: data, headers: nil, error: nil, success: true, isChanged: true)
+                        CampaignService(httpClient: UBHTTPMock.self).getTargeting(withId: "tid").then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }

@@ -1,0 +1,21 @@
+{
+    "id": "f56384fa-31b6-4492-9bf0-11f1bfa887c8",
+    "options": {
+        "rule": {
+            "type": "percentage",
+            "percentage": 77,
+            "children": [
+                         {
+                         "type": "repetition",
+                         "repetition": 13,
+                         "children": [
+                                      {
+                                      "type": "event",
+                                      "name": "purchaseOrder"
+                                      }
+                                      ]
+                         }
+                         ]
+        }
+    }
+}
