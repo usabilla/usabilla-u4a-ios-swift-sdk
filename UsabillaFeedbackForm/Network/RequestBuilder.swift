@@ -13,9 +13,9 @@ class RequestBuilder {
     enum Endpoints: String {
         case campaignForm = "/v2/sdk/forms"
         case passiveForm = "/live/mobile/app/forms"
-        case campaignsList = "/v2/sdk/campaigns"
+        case campaignsList = "/v2/sdk/campaigns?app_id={app_id}"
         case targetingOptions = "/v2/sdk/targeting-options"
-        case campaignSubmission = "/v2/sdk/campaigns/campaign_id/feedback"
+        case campaignSubmission = "/v2/sdk/campaigns/{campaign_id}/feedback"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -125,7 +125,6 @@ class RequestBuilder {
         return request
     }
 
-
     // MARK: Public methods
     class func requestGetPassiveForm(withId id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .passiveForm, withURLParam: id)
@@ -138,7 +137,8 @@ class RequestBuilder {
     }
 
     class func requestGetCampaigns(withAppId appId: String) -> URLRequest {
-        let url = buildURL(withEndpoint: .campaignsList, withURLParam: appId)
+        let endPoint = Endpoints.campaignsList.rawValue.replacingOccurrences(of: "{app_id}", with: appId)
+        let url = buildURL(withString: endPoint)
         return requestForGet(withURL: url) as URLRequest
     }
 
@@ -149,14 +149,14 @@ class RequestBuilder {
 
     class func requestCampaignFeedbackItemCreation(forCampaignId campaignId: String, withPayload payload: Payload) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
-        let newEndPoint =  endPoint.replacingOccurrences(of: "campaign_id", with: campaignId)
+        let newEndPoint =  endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
         let url = buildURL(withString: newEndPoint)
         return requestForPost(withURL: url, payload: payload) as URLRequest
     }
 
     class func requestCampaignFeedbackItemPatch(forCampaignId campaignId: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
-        let newEndPoint =  endPoint.replacingOccurrences(of: "campaign_id", with: campaignId)
+        let newEndPoint =  endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
         let url = buildURL(withString: newEndPoint, withURLParam: token)
         return requestForPatch(withURL: url, payload: payload) as URLRequest
     }
