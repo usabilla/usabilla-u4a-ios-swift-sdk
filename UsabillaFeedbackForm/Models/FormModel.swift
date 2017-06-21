@@ -48,14 +48,15 @@ class FormModel: NSObject, NSCoding {
         self.theme = UsabillaTheme()
 
         var newPages: [PageModel] = []
-        let structure: [String: JSON] = json["form"].dictionary ?? json["structure"].dictionary ?? [String: JSON]()
-        let pages: JSON = JSON(structure)["pages"]
-        for (index, subJson): (String, JSON) in pages {
+        let pageHolder = json["structure"].exists() ? json["structure"] : json["form"]
+
+        for (index, subJson): (String, JSON) in pageHolder["pages"] {
             let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!)
             page.errorMessage = copyModel.errorMessage
             page.copy = copyModel
             newPages.append(page)
         }
+
         newPages.last?.isLastPage = true
         var screenshotJson: [String: Any] = [:]
         screenshotJson["type"] = "screenshot"
