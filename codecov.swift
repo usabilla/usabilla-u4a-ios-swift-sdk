@@ -40,7 +40,7 @@ class CodeCoverage {
 
         let results = regex.matches(in: content,
                                     options: [],
-                                    range: NSMakeRange(0, content.characters.count)
+                                    range: NSRange(location: 0, length: content.characters.count)
         )
 
         let coveragePercentage = (content as NSString).substring(with: results.first!.rangeAt(1))
@@ -92,7 +92,8 @@ class CodeCoverage {
 
         var data: Data? = nil
 
-        URLSession.shared.dataTask(with: request) { (responseData, response, error) -> Void in
+        URLSession.shared.dataTask(with: request) { (responseData, _, error) -> Void in
+            assert(error == nil, String(describing: error))
             data = responseData
             semaphore.signal()
         }.resume()
@@ -105,4 +106,3 @@ class CodeCoverage {
 }
 
 CodeCoverage().main()
-
