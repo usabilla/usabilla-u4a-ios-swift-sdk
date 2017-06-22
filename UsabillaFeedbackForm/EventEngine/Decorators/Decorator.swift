@@ -12,7 +12,7 @@ class Decorator: NSObject, Rule {
 
     var rule: Rule
     var ruleID: String { return rule.ruleID }
-    var childRules: [Rule] { return rule.childRules }
+    var childRules: [Rule] { return [rule] }
     var alreadyTriggered: Bool
     var type: RuleType {
         return rule.type

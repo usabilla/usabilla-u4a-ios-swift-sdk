@@ -25,16 +25,17 @@ class DecoratorTests: QuickSpec {
 
         describe("The base Decorator") {
 
-            context("When creating an object", {
+            context("When creating an object") {
                 it("should initialise correctly") {
                     let decorator = Decorator(rule: self.leafRule1)
                     expect(decorator.type).to(equal(RuleType.leaf))
                     expect(decorator.ruleID).to(equal("id1"))
                     expect(decorator.rule).to(be(self.leafRule1))
                     expect(decorator.alreadyTriggered).to(beFalse())
-
+                    expect(decorator.childRules.count).to(equal(1))
+                    expect(decorator.childRules.first!).to(be(self.leafRule1))
                 }
-            })
+            }
 
             it("should serialize correctly") {
                 let decorator = Decorator(rule: self.leafRule1)
@@ -49,9 +50,23 @@ class DecoratorTests: QuickSpec {
                 expect(unserialised.rule).to(beAKindOf(LeafRule.self))
                 expect(unserialised.rule.ruleID).to(equal("id1"))
                 expect(unserialised.alreadyTriggered).to(beFalse())
-
+                expect(decorator.childRules.count).to(equal(1))
+                expect(decorator.childRules.first!).to(be(self.leafRule1))
             }
 
+            context("When calling responds to event") {
+                it ("Should succeed when the rule responds to the event") {
+                    let decorator = Decorator(rule: self.leafRule1)
+                    let event = Event(name: "event1")
+                    expect(decorator.respondsToEvent(event: event)).to(beTrue())
+                }
+
+                it ("Should fail when the rule does not respond to the event") {
+                    let decorator = Decorator(rule: self.leafRule1)
+                    let event = Event(name: "event2")
+                    expect(decorator.respondsToEvent(event: event)).to(beFalse())
+                }
+            }
         }
     }
 }
