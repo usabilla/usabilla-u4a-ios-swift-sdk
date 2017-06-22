@@ -160,7 +160,7 @@ class CampaignViewController: UIViewController {
     }
 
     func showToast() {
-        let thankYoutext = viewModel.formViewModel.endPageViewModel?.thankyouText
+        let thankYoutext = viewModel.toastPageViewModel?.text
         let toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
         toast.show {
             self.delegate?.campaignDidEnd(success: false)

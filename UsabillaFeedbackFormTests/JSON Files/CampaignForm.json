@@ -62,8 +62,8 @@
                   "type": "toast",
                   "fields": [
                              {
-                             "type": "titleParagraph",
-                             "caption": "Title and Paragraph",
+                             "type": "paragraph",
+                             "caption": "Paragraph",
                              "autoSubmit": false,
                              "forceRequired": false,
                              "fixed": false,
@@ -72,18 +72,18 @@
                              "validationText": "This field is required",
                              "title": "Click to edit title",
                              "text": "Thanks!",
-                             "name": "titleParagraph"
+                             "name": "paragraph"
                              }
                              ],
                   "jumpRules": [],
                   "autoSubmit": false,
-                  "name": "Outro"
+                  "name": "Toast"
                   }
                   ],
         "allowedPageTypes": [
                              "banner",
                              "form",
-                             "outro"
+                             "toast"
                              ]
     }
 }

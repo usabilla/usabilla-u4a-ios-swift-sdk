@@ -44,6 +44,13 @@ class CampaignViewModel {
         }
     }
 
+    var toastPageViewModel: UBToastPageViewModel? {
+        guard let endPageModel = form.pages[formViewModel.currentPageIndex] as? UBEndPageModel else {
+            return nil
+        }
+        return UBToastPageViewModel(model: endPageModel)
+    }
+
     func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
         delegate?.pageDidTurn(pageIndex: pageIndex, pageModel: pageModel, nextPageType: nextPageType)
     }

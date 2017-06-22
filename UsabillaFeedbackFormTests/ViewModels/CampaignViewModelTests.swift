@@ -87,6 +87,24 @@ class CampaingViewModelTests: QuickSpec {
                     expect(formViewModel.shouldAddMarginWhenKeyboardIsShown).to(beFalse())
                 })
             })
+
+            context("When accessing toastViewModel", {
+                it("should return a toastViewModel with the right data", closure: {
+
+                    let path = Bundle(for: CampaingViewModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
+                    let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                    let json = JSON(data: (data as Data?)!)
+
+                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
+                    let formModel = FormModel(json: json, id: "", screenshot: nil)
+                    campaign.form = formModel
+                    let campainViewModel = CampaignViewModel(form: formModel)
+                    let toastViewModel = campainViewModel.toastPageViewModel
+
+                    expect(toastViewModel!).toNot(beNil())
+                    expect(toastViewModel!.text).to(equal("Thanks!"))
+                })
+            })
         }
     }
 }
