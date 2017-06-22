@@ -27,6 +27,7 @@
 		047125DF1EAE24EF003DB0BB /* Picker.json in Resources */ = {isa = PBXBuildFile; fileRef = 047125DE1EAE24EF003DB0BB /* Picker.json */; };
 		047125E11EAE3F28003DB0BB /* UBTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047125E01EAE3F28003DB0BB /* UBTestHelper.swift */; };
 		0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */; };
+		047B7FE31EFBC39B00AD43C1 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */; };
 		0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
 		0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
 		0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
@@ -259,6 +260,7 @@
 		047125DE1EAE24EF003DB0BB /* Picker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Picker.json; sourceTree = "<group>"; };
 		047125E01EAE3F28003DB0BB /* UBTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBTestHelper.swift; sourceTree = "<group>"; };
 		0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignSubmissionManagerTests.swift; path = ManagersTest/CampaignSubmissionManagerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModel.swift; sourceTree = "<group>"; };
 		0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CheckBoxWithText.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxFieldModel.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */,
+				047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */,
 			);
 			path = NetworkTest;
 			sourceTree = "<group>";
@@ -1424,6 +1427,7 @@
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,
 				0445F87F1EA8C97C007704D5 /* RequestBuilderTest.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */,
+				047B7FE31EFBC39B00AD43C1 /* HTTPClientTests.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				43B0EE6E1EA0BAF000241D44 /* UBCampaignDAOTests.swift in Sources */,
 				4306698E1E7692690078E3B3 /* FeedbackResultTest.swift in Sources */,

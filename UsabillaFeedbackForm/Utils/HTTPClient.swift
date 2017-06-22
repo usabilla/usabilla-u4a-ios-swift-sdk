@@ -64,13 +64,33 @@ class JSONEncoding: ParameterEncoding {
 
 class HTTPClient: HTTPClientProtocol {
 
+    static private func getEtag(forRequest request: URLRequest) -> String? {
+        guard let cached = URLCache.shared.cachedResponse(for: request),
+            let rep = cached.response as? HTTPURLResponse,
+            let etag = rep.allHeaderFields["Etag"] as? String else {
+                return nil
+        }
+        return etag
+    }
+
+    static func hasChanged(oldEtag: String?, newEtag: String?) -> Bool {
+        guard oldEtag != nil || newEtag != nil else {
+            return true
+        }
+        return oldEtag != newEtag
+    }
+
     static func request(request: URLRequest,
                         responseQueue: DispatchQueue? = nil,
                         completion: @escaping (HTTPClientResponse) -> Void) {
+        let oldEtag = getEtag(forRequest: request)
+
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             (responseQueue ?? DispatchQueue.main).async {
                 PLog(response)
                 let headers = (response as? HTTPURLResponse)?.allHeaderFields
+                let isChanged = hasChanged(oldEtag: oldEtag, newEtag: headers?["Etag"] as? String)
+
                 guard error == nil else {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil)))
                     return
@@ -82,7 +102,7 @@ class HTTPClient: HTTPClientProtocol {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     PLog(json)
-                    completion(HTTPClientResponse(data: json, headers: headers, error: nil, success: true))
+                    completion(HTTPClientResponse(data: json, headers: headers, error: nil, success: true, isChanged: isChanged))
                 } catch {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: "Invalid JSON", code: 2, userInfo: nil)))
                 }
