@@ -43,8 +43,9 @@ class FormAppearanceScenarioTest: XCTestCase {
         app.buttons["scenario-1-button"].tap()
 
         // first cell is mood control
-        let firstCell = app.tables.cells.containing(.staticText, identifier: "Click to edit question *").children(matching: .button)
-        XCTAssert(firstCell.element.exists, "mood exists")
+        let firstCell = app.tables.cells.containing(.staticText, identifier: "Click to edit question *")
+        let cellContent = firstCell.children(matching: .button)
+        XCTAssert(cellContent.count == 5, "5 buttons are presents")
 
         let nav = app.navigationBars["UsabillaFeedbackForm.FormView"]
 
