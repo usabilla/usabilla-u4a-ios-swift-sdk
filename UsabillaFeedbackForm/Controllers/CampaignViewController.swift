@@ -189,6 +189,12 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         let index = viewModel.formViewModel.currentPageIndex
         let type = viewModel.formViewModel.model.pages[index].type!
         viewModel.pageDidTurn(pageIndex: 0, pageModel: viewModel.introPageViewModel!.introPage, nextPageType: type)
+        if type == .toast {
+            viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: {
+                self.showToast()
+            })
+            return
+        }
         showModalForm()
     }
 }
