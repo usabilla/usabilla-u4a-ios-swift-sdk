@@ -135,7 +135,8 @@ class UBFormViewModel {
     }
 
     var isItTheEnd: Bool {
-        return model.pages[currentPageIndex].type == .end
+        let pageType = model.pages[currentPageIndex].type
+        return pageType == .end || pageType == .toast
     }
 
     init(formModel: FormModel) {

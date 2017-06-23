@@ -133,6 +133,29 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.isItTheEnd).to(beFalse())
                 }
             }
+            describe("isItTheEnd") {
+                context("When formViewModel is a campaign") {
+                    var formViewModel: UBFormViewModel!
+                    beforeEach {
+                        let path = Bundle(for: UBFormViewModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
+                        let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                        let json = JSON(data: (data as Data?)!)
+                        let formModel = FormModel(json: json, id: "", screenshot: nil)
+                        formViewModel = UBFormViewModel(formModel: formModel)
+
+                    }
+                    it("Should be false when current page is not a toast and not an end page") {
+                        expect(formViewModel.currentPageViewModel.model.type).to(equal(PageType.banner))
+                        expect(formViewModel.isItTheEnd).to(beFalse())
+                    }
+
+                    it("Should be true when current page is a toast") {
+                        formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+                        expect(formViewModel.currentPageViewModel.model.type).to(equal(PageType.toast))
+                        expect(formViewModel.isItTheEnd).to(beTrue())
+                    }
+                }
+            }
         }
     }
 }
