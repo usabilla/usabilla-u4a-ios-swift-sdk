@@ -100,7 +100,7 @@ class CampaingViewModelTests: QuickSpec {
                     let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: json, id: "", screenshot: nil)
                     campaign.form = formModel
-                    let campainViewModel = CampaignViewModel(form: formModel)
+                    let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
                     let toastViewModel = campainViewModel.toastPageViewModel
 
                     expect(toastViewModel!).toNot(beNil())

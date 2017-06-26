@@ -52,7 +52,7 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
 
             it("Sends the start or banner page correctly") {
                 let page = UBPageModelMock()
-                page.type = .start
+                page.type = .banner
                 campaignSubmissionManager.savePage(page: page, nextPageType: .form)
                 let json = manager.requestJSON!
                 expect(json["data"]["one"]).to(equal(["one"]))
@@ -66,7 +66,7 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
             it("Sends the closing page correctly") {
                 let page = UBPageModelMock()
                 page.type = .form
-                campaignSubmissionManager.savePage(page: page, nextPageType: .end)
+                campaignSubmissionManager.savePage(page: page, nextPageType: .toast)
                 let json = manager.requestJSON!
                 expect(json["data"]["one"]).to(equal(["one"]))
                 expect(json["metadata"].exists()).to(beFalse())
