@@ -10,14 +10,14 @@ import UIKit
 
 class RootCellView: UITableViewCell {
 
-    var rootCellContainerView: UIView
-    var titleLabel: UILabel = {
+    let rootCellContainerView: UIView
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
         return label
     }()
-    var errorLabel: UILabel = UILabel()
+    let errorLabel: UILabel = UILabel()
     var component: UIControl?
 
     var cellViewModel: CellViewModel! {

@@ -32,9 +32,10 @@ class ParagraphComponentViewModelTests: QuickSpec {
 
             context("when paragraph is not html") {
                 it("should return a normal string") {
-                    model = ParagraphFieldModel(json: JSON.parse("{\"name\":\"paragraph\", \"html\": 0, \"text\": \"hello\"}"), pageModel: pageModel)
+                    model = ParagraphFieldModel(json: JSON.parse("{\"name\":\"paragraph\", \"html\": false, \"text\": \"hello\"}"), pageModel: pageModel)
                     viewModel = ParagraphComponentViewModel(model: model, theme: theme)
                     expect(viewModel.value).to(equal("hello"))
+                    expect(viewModel.attributedValue?.string).to(equal("hello"))
                 }
             }
 
@@ -42,7 +43,7 @@ class ParagraphComponentViewModelTests: QuickSpec {
                 it("should return a attributed string") {
                     model = ParagraphFieldModel(json: JSON.parse("{\"name\":\"paragraph\", \"html\": true, \"text\": \"hello<b> you</b>\"}"), pageModel: pageModel)
                     viewModel = ParagraphComponentViewModel(model: model, theme: theme)
-                    expect(viewModel.value).to(equal("hello you"))
+                    expect(viewModel.attributedValue?.string).to(equal("hello you"))
                 }
             }
         }

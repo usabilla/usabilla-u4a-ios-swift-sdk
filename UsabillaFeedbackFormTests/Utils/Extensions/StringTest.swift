@@ -47,14 +47,11 @@ class StringTest: QuickSpec {
         }
 
         describe("String htmlToString") {
-            let htmlString = "<center>Here is some <b>HTML</b></center>"
             it("htmlToAttributedString") {
-                let t = htmlString.htmlToAttributedString
-                expect(t).toNot(beNil())
-            }
-
-            it("htmlToString") {
-                expect(htmlString.htmlToString).to(equal("Here is some HTML\n"))
+                let htmlString = "Here is <i>some</i> <b>HTML</b>"
+                let attributed = htmlString.parseHTMLString(font: UIFont.systemFont(ofSize: UIFont.systemFontSize))
+                expect(attributed).toNot(beNil())
+                expect(attributed.string).to(equal("Here is some HTML"))
             }
         }
     }

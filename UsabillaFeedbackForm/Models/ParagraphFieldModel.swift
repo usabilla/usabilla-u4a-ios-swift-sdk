@@ -10,11 +10,11 @@ import Foundation
 
 class ParagraphFieldModel: StringFieldModel {
 
-    let html: Bool?
+    let isHTML: Bool
     let immutableParagraphValue: String?
 
     override init(json: JSON, pageModel: PageModel) {
-        html = json["html"].bool
+        isHTML = json["html"].boolValue
         immutableParagraphValue = json["text"].string
         super.init(json: json, pageModel: pageModel)
         fieldValue = json["text"].string

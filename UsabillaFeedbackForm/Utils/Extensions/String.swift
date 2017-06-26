@@ -33,16 +33,14 @@ extension String {
         return arrayToReturn
     }
 
-    var htmlToAttributedString: NSAttributedString? {
-        guard let data = data(using: .utf8) else { return nil }
-        do {
-            return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
-        } catch let error as NSError {
-            PLog(error.localizedDescription)
-            return nil
-        }
-    }
-    var htmlToString: String {
-        return htmlToAttributedString?.string ?? ""
+    func parseHTMLString(font: UIFont) -> NSAttributedString {
+        let modifiedFont = NSString(format:"<span style=\"font-family: '\(font.fontName)'; font-size: \(font.pointSize)\">%@</span>" as NSString, self) as String
+
+        // swiftlint:disable force_try
+        let attrStr = try! NSAttributedString(
+            data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
+            options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+        return attrStr
     }
 }

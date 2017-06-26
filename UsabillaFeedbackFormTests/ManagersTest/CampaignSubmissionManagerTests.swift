@@ -70,20 +70,16 @@ class SubmitServiceMock: CampaignServiceProtocol {
 
 }
 
-
 class CampaignSubmissionManagerTests: QuickSpec {
 
     override func spec() {
 
         let reachabilityMock = ReachabilityMock()
-        var campaignService = SubmitServiceMock()
         var csm: CampaignSubmissionManager!
         let dao = UBCampaignFeedbackRequestDAO.shared
 
         let item1 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389940")
         let item2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389960")
-        let item3 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389970")
-        let item4 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389980")
         let item5 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389990")
 
         beforeSuite {

@@ -16,6 +16,11 @@ class ParagraphComponent: BaseTextAreaComponent<ParagraphComponentViewModel> {
         textView.isEditable = false
         textView.dataDetectorTypes = [.link, .phoneNumber]
         textView.isScrollEnabled = false
-        textView.text = viewModel.value
+
+        if viewModel.model.isHTML {
+            textView.attributedText = viewModel.attributedValue
+        } else {
+            textView.text = viewModel.value
+        }
     }
 }
