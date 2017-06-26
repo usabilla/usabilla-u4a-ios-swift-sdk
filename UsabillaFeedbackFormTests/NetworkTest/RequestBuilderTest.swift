@@ -82,7 +82,7 @@ class RequestBuilderTest: QuickSpec {
 
             it("Builds the campaign list request correctly") {
                 let req = RequestBuilder.requestGetCampaigns(withAppId: "myAppId")
-                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns?app_id=myAppId"))
+                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns?app_id=myAppId&status=active"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("GET"))
             }
