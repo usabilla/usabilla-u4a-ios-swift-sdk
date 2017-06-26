@@ -104,22 +104,26 @@ open class UsabillaFeedbackForm {
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
 
         formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
-            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
+            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables, success: true)
         }.catch { _ in
             if let defaulForm = formStore.loadDefaultForm(appId, screenshot: screenshot, theme: theme) {
-
-                UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
+                UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables, success: false)
             }
         }
     }
 
-    private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
+    private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil, success: Bool) {
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {
+            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController, active: true)
+            if !success {
+                UsabillaFeedbackForm.delegate?.formFailedLoading(navigationController)
+                return
+            }
             UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController, active: true)
         }
     }
