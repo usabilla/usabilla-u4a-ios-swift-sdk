@@ -8,7 +8,6 @@
 
 //Default usabilla english localisation
 "usa_more_feedback" = "Give more feedback";
-"usa_invite_rate_app_store" = "Rate on the App Store";
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";

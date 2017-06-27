@@ -26,12 +26,10 @@ class ThankYouController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    var rateButton: UIButton = {
-        return UIButton(type: UIButtonType.system)
-    }()
     var moreFeedBackButton: UIButton = {
         return UIButton(type: UIButtonType.system)
     }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,27 +66,12 @@ class ThankYouController: UIViewController {
         messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalMargin).isActive = true
 
         // buttons
-        var topConstraint: NSLayoutYAxisAnchor!
-        if viewModel.canRedirectToAppStore {
-            view.addSubview(rateButton)
-            rateButton.translatesAutoresizingMaskIntoConstraints = false
-            rateButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2 * sideMargin).isActive = true
-            rateButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -(2 * sideMargin)).isActive = true
-            rateButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: verticalMargin).isActive = true
-
-            rateButton.setTitle(viewModel.appStoreRedirectText, for: .normal)
-            rateButton.addTarget(self, action: #selector(openAppStore), for: .touchUpInside)
-            topConstraint = rateButton.bottomAnchor
-        } else {
-            topConstraint = messageLabel.bottomAnchor
-        }
-
         if viewModel.canGiveMoreFeedback {
             view.addSubview(moreFeedBackButton)
             moreFeedBackButton.translatesAutoresizingMaskIntoConstraints = false
             moreFeedBackButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2 * sideMargin).isActive = true
             moreFeedBackButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -(2 * sideMargin)).isActive = true
-            moreFeedBackButton.topAnchor.constraint(equalTo: topConstraint, constant: verticalMargin).isActive = true
+            moreFeedBackButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: verticalMargin).isActive = true
 
             moreFeedBackButton.setTitle(viewModel.moreFeedbackText, for: .normal)
             moreFeedBackButton.addTarget(self, action: #selector(reloadForm), for: .touchUpInside)
@@ -104,22 +87,11 @@ class ThankYouController: UIViewController {
             let font = configuration.font
             messageLabel.textColor = configuration.textColor
             messageLabel.font = font
-            if viewModel.canRedirectToAppStore {
-                rateButton.setTitleColor(configuration.accentColor, for: .normal)
-                rateButton.titleLabel?.font = font
-            }
+
             if viewModel.canGiveMoreFeedback {
                 moreFeedBackButton.setTitleColor(configuration.accentColor, for: .normal)
                 moreFeedBackButton.titleLabel?.font = font
             }
-        }
-    }
-
-    func openAppStore() {
-        if let appStore = UsabillaFeedbackForm.appStoreId {
-            let url = String(format: "http://itunes.apple.com/app/id%@", appStore)
-            // swiftlint:disable force_unwrapping
-            UIApplication.shared.openURL(URL(string: url)!)
         }
     }
 

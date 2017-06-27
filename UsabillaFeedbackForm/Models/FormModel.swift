@@ -17,13 +17,14 @@ class FormModel: NSObject, NSCoding {
     let appId: String
     var isDefault: Bool = false
     let formJsonString: JSON
-    let redirectToAppStore: Bool
+
     let showProgressBar: Bool
     var theme: UsabillaTheme
     let copyModel: CopyModel
 
     // swiftlint:disable:next function_parameter_count
-    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool?, showProgressBar: Bool?, copyModel: CopyModel) {
+    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, showProgressBar: Bool?, copyModel: CopyModel) {
+
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
@@ -31,9 +32,8 @@ class FormModel: NSObject, NSCoding {
         self.appId = appId
         self.formJsonString = jsonString
         self.theme = UsabillaFeedbackForm.theme
-        self.redirectToAppStore = redirectToAppStore ?? false
         self.showProgressBar = showProgressBar ?? true
-
+        
         _ = pages.map { $0.copy = copyModel }
     }
 
@@ -46,7 +46,6 @@ class FormModel: NSObject, NSCoding {
         self.copyModel = CopyModel(json: jsonHolder)
         self.hasScreenshot = data["screenshot"].boolValue
         self.version = json["version"].intValue
-        self.redirectToAppStore = data["appStoreRedirect"].boolValue
         self.showProgressBar = data["progressBar"].bool ?? true
         self.appId = id
         self.formJsonString = json

@@ -100,7 +100,6 @@ class UBFormViewModel {
         guard let endPageModel = model.pages[currentPageIndex] as? UBEndPageModel else {
             return nil
         }
-        endPageModel.redirectToAppStore = model.redirectToAppStore
         let moodValue = model.pages.first?.fields[0] as? IntFieldModel
 
         let endPageViewModel = UBEndPageViewModel(model: endPageModel, theme: model.theme)

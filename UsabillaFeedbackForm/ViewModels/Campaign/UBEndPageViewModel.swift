@@ -15,16 +15,8 @@ class UBEndPageViewModel {
 
     var formRating: Int = 0
 
-    var canRedirectToAppStore: Bool {
-        return model.redirectToAppStore && formRating > 3 && UsabillaFeedbackForm.appStoreId != nil
-    }
-
     var canGiveMoreFeedback: Bool {
         return model.giveMoreFeedback
-    }
-
-    var appStoreRedirectText: String? {
-        return model.copy?.appStore
     }
 
     var moreFeedbackText: String? {
