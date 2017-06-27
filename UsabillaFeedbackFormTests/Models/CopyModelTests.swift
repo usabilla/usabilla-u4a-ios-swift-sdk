@@ -37,7 +37,6 @@ class CopyModelTests: QuickSpec {
                     expect(copyModel.screenshotTitle).to(equal("Screenshot"))
                     expect(copyModel.moreFeedback).to(equal("Give more feedback"))
                     expect(copyModel.cancelButton).to(equal("Cancel"))
-                    expect(copyModel.appStore).to(equal("Go to the app store"))
                     expect(copyModel.introCancelButton).to(equal("Cancel"))
                     expect(copyModel.introContinueButton).to(equal("Continue"))
 

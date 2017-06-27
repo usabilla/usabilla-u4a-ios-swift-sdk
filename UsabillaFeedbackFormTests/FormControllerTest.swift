@@ -40,6 +40,7 @@ class FormControllerTest: QuickSpec {
                 viewController.endAppearanceTransition()
             }
             describe("basics") {
+
                 describe("viewDidLoad") {
 
                     it("sets the progress bar") {
@@ -77,7 +78,6 @@ class FormControllerTest: QuickSpec {
             }
         }
     }
-
 }
 
 extension FormControllerTest: FormViewControllerDelegate {

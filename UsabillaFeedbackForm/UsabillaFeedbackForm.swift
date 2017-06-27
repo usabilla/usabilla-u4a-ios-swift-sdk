@@ -77,20 +77,8 @@ open class UsabillaFeedbackForm {
         }
 
         open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = UsabillaTheme()) {
-            guard let campaignManager = campaignManager else {
-                let error = NSError(domain: "SDK not initialized", code: 0, userInfo: nil)
-                delegate?.campaignFormDidDisplay(formId: formId, error: error)
-                return
-            }
             campaignStore.getCampaignForm(withFormId: formId, theme: theme).then { form in
-                if campaignManager.displayCampaignForm(form) {
-                    delegate?.campaignFormDidDisplay(formId: formId, error: nil)
-                    return
-                }
-                let error = NSError(domain: "A campaign form is already displayed", code: 0, userInfo: nil)
-                delegate?.campaignFormDidDisplay(formId: formId, error: error)
-            }.catch { error in
-                delegate?.campaignFormDidDisplay(formId: formId, error: error)
+                campaignManager?.displayCampaignForm(form)
             }
         }
 
@@ -159,22 +147,24 @@ public protocol UsabillaFeedbackFormDelegate: class {
      
         If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
         Otherwise the feedbackResults can contains between 1 and n FeedbackResult
-     
-        This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
     */
     func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
 
     /**
-     This method will be called after calling **displayCampaignForm** and allows to know if the form has been displayed or not
-     - Parameter formId: String representing the identifier of the form
-     - Parameter error: optional error when fetching or displaying the form
 
-     The form has been successfully displayed if the **error** is nil
+     This method is called before the form is closed
+
+     - Parameter form: UINavigationcontroller which is being dismissed
+     - Parameter formID: String representing the ID of the form
+
+     This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
      */
-    func campaignFormDidDisplay(formId: String, error: Error?)
+    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
 }
 
 public extension UsabillaFeedbackFormDelegate {
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) { }
-    func campaignFormDidDisplay(formId: String, error: Error?) { }
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    }
+    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    }
 }

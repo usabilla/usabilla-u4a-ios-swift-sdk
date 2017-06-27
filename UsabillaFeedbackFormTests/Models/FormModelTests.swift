@@ -41,7 +41,6 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel.pages[3].type).to(equal(PageType.end))
                     expect(self.formModel.isDefault).to(beFalse())
                     expect(self.formModel.formJsonString).to(equal(self.jsonObj))
-                    expect(self.formModel.redirectToAppStore).to(beFalse())
                     expect(self.formModel.showProgressBar).to(beFalse())
                     expect(self.formModel.theme).toNot(beNil())
                     expect(self.formModel.copyModel).toNot(beNil())

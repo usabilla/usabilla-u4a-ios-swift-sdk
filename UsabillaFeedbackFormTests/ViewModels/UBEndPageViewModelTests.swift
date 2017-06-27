@@ -32,47 +32,10 @@ class UBEndPageViewModelTests: QuickSpec {
                     expect(viewModel.headerText).to(equal(headerFieldModel?.fieldValue))
                     expect(viewModel.thankyouText).to(equal(stringFieldModel?.fieldValue))
                     expect(viewModel.moreFeedbackText).to(equal(self.endPageModel.copy?.moreFeedback))
-                    expect(viewModel.appStoreRedirectText).to(equal(self.endPageModel.copy?.appStore))
                     expect(viewModel.canGiveMoreFeedback).to(beFalse())
-                    expect(viewModel.canRedirectToAppStore).to(beFalse())
                     expect(viewModel.theme).toNot(beNil())
                 }
             }
-            // formRating value should be greater Than 3 to be concidered as true
-            context("When redirect to app store property coditions are changed", {
-                it("Should return correct value", closure: {
-                    let viewModel = UBEndPageViewModel(model: self.endPageModel, theme: self.theme)
-                    self.endPageModel.redirectToAppStore = false
-                    viewModel.formRating = 4
-                    UsabillaFeedbackForm.appStoreId = "test"
-
-                    expect(viewModel.canRedirectToAppStore).to(beFalse())
-                })
-                it("Should return correct value", closure: {
-                    let viewModel = UBEndPageViewModel(model: self.endPageModel, theme: self.theme)
-                    self.endPageModel.redirectToAppStore = true
-                    viewModel.formRating = 3
-                    UsabillaFeedbackForm.appStoreId = "test"
-
-                    expect(viewModel.canRedirectToAppStore).to(beFalse())
-                })
-                it("Should return correct value", closure: {
-                    let viewModel = UBEndPageViewModel(model: self.endPageModel, theme: self.theme)
-                    self.endPageModel.redirectToAppStore = true
-                    viewModel.formRating = 4
-                    UsabillaFeedbackForm.appStoreId = nil
-
-                    expect(viewModel.canRedirectToAppStore).to(beFalse())
-                })
-                it("Should return correct value", closure: {
-                    let viewModel = UBEndPageViewModel(model: self.endPageModel, theme: self.theme)
-                    self.endPageModel.redirectToAppStore = true
-                    viewModel.formRating = 4
-                    UsabillaFeedbackForm.appStoreId = "test"
-
-                    expect(viewModel.canRedirectToAppStore).to(beTrue())
-                })
-            })
         }
     }
 }
