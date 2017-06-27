@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable force_try
+
 import UIKit
 import UsabillaFeedbackForm
 @UIApplicationMain
@@ -16,6 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UsabillaFeedbackForm.load(appId: "")
+        UsabillaFeedbackForm.showCancelButton = true
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        var controller: UIViewController!
+
+        if let scenario = ProcessInfo.processInfo.environment["scenario"] {
+            let path = Bundle(for: AppDelegate.self).path(forResource: scenario, ofType: "json")!
+            let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+            let json: JSON = JSON(data: data as Data)
+            controller = UsabillaFeedbackForm.formViewController(forFormJson: json)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            controller = storyboard.instantiateInitialViewController()
+        }
+
+        self.window?.rootViewController = controller
+        self.window?.makeKeyAndVisible()
         return true
     }
 

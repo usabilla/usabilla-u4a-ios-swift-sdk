@@ -5,7 +5,7 @@
 //  Created by Benjamin Grima on 11/01/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
-
+// swiftlint:disable force_try
 import UIKit
 import UsabillaFeedbackForm
 
@@ -19,8 +19,14 @@ class ViewController: UIViewController {
         UsabillaFeedbackForm.dismissAutomatically = false
     }
 
-    @IBAction func scenario1ButtonTap(_ sender: Any) {
-        UsabillaFeedbackForm.loadFeedbackForm("583c0d8ea935028022c145f4")
+    @IBAction func scenarioAction(_ sender: UIButton) {
+        let scenarioName = sender.accessibilityIdentifier!
+
+        let path = Bundle(for: ViewController.self).path(forResource: scenarioName, ofType: "json")!
+        let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+        let json: JSON = JSON(data: data as Data)
+
+        self.present(UsabillaFeedbackForm.formViewController(forFormJson: json), animated: true)
     }
 }
 

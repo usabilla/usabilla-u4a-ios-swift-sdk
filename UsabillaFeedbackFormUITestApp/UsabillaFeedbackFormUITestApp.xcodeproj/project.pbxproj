@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */ = {isa = PBXBuildFile; fileRef = 43120C9D1F027E5800802141 /* 01_FormAppearance.json */; };
 		437B96D11E266A8F00AA0A25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96D01E266A8F00AA0A25 /* AppDelegate.swift */; };
 		437B96D31E266A8F00AA0A25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96D21E266A8F00AA0A25 /* ViewController.swift */; };
 		437B96D61E266A8F00AA0A25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D41E266A8F00AA0A25 /* Main.storyboard */; };
@@ -14,7 +15,13 @@
 		437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D91E266A8F00AA0A25 /* LaunchScreen.storyboard */; };
 		437C60DA1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; };
 		437C60DB1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C555E9A01EE0120900F84B51 /* FormAppearanceScenarioTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E99F1EE0120900F84B51 /* FormAppearanceScenarioTest.swift */; };
+		43F9516E1F01116500FE23F8 /* 02_JumpRulesOneControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */; };
+		43F9516F1F01116500FE23F8 /* 03_JumpRulesManyControls.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */; };
+		43F951701F01116500FE23F8 /* 04_VisibilityControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951661F01116500FE23F8 /* 04_VisibilityControl.json */; };
+		43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F951761F0111F000FE23F8 /* 02_JumpRulesOneControl.swift */; };
+		43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9517C1F01633300FE23F8 /* 03_JumpRulesManyControls.swift */; };
+		43F9517F1F024EAF00FE23F8 /* 04_VisibilityControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9517E1F024EAF00FE23F8 /* 04_VisibilityControl.swift */; };
+		C555E9A01EE0120900F84B51 /* 01_FormAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E99F1EE0120900F84B51 /* 01_FormAppearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
 		437B96CD1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaFeedbackFormUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96D01E266A8F00AA0A25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		437B96D21E266A8F00AA0A25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +60,13 @@
 		437B96E11E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaFeedbackFormUITestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96E71E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C555E99F1EE0120900F84B51 /* FormAppearanceScenarioTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormAppearanceScenarioTest.swift; sourceTree = "<group>"; };
+		43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 02_JumpRulesOneControl.json; sourceTree = "<group>"; };
+		43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 03_JumpRulesManyControls.json; sourceTree = "<group>"; };
+		43F951661F01116500FE23F8 /* 04_VisibilityControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 04_VisibilityControl.json; sourceTree = "<group>"; };
+		43F951761F0111F000FE23F8 /* 02_JumpRulesOneControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 02_JumpRulesOneControl.swift; sourceTree = "<group>"; };
+		43F9517C1F01633300FE23F8 /* 03_JumpRulesManyControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 03_JumpRulesManyControls.swift; sourceTree = "<group>"; };
+		43F9517E1F024EAF00FE23F8 /* 04_VisibilityControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 04_VisibilityControl.swift; sourceTree = "<group>"; };
+		C555E99F1EE0120900F84B51 /* 01_FormAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 01_FormAppearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,7 @@
 		437B96C41E266A8F00AA0A25 = {
 			isa = PBXGroup;
 			children = (
+				43F951611F01116500FE23F8 /* SDK-UI-Scenarios */,
 				437B96CF1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */,
 				437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */,
 				437B96CE1E266A8F00AA0A25 /* Products */,
@@ -109,10 +124,32 @@
 		437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C555E99F1EE0120900F84B51 /* FormAppearanceScenarioTest.swift */,
+				C555E99F1EE0120900F84B51 /* 01_FormAppearance.swift */,
+				43F951761F0111F000FE23F8 /* 02_JumpRulesOneControl.swift */,
+				43F9517C1F01633300FE23F8 /* 03_JumpRulesManyControls.swift */,
+				43F9517E1F024EAF00FE23F8 /* 04_VisibilityControl.swift */,
 				437B96E71E266A8F00AA0A25 /* Info.plist */,
 			);
 			path = UsabillaFeedbackFormUITestAppUITests;
+			sourceTree = "<group>";
+		};
+		43F951611F01116500FE23F8 /* SDK-UI-Scenarios */ = {
+			isa = PBXGroup;
+			children = (
+				43F951621F01116500FE23F8 /* JSON */,
+			);
+			path = "SDK-UI-Scenarios";
+			sourceTree = "<group>";
+		};
+		43F951621F01116500FE23F8 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				43120C9D1F027E5800802141 /* 01_FormAppearance.json */,
+				43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */,
+				43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */,
+				43F951661F01116500FE23F8 /* 04_VisibilityControl.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		9B799909DBB261666DE0010F /* Frameworks */ = {
@@ -208,9 +245,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F951701F01116500FE23F8 /* 04_VisibilityControl.json in Resources */,
+				43F9516F1F01116500FE23F8 /* 03_JumpRulesManyControls.json in Resources */,
 				437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */,
+				43F9516E1F01116500FE23F8 /* 02_JumpRulesOneControl.json in Resources */,
 				437B96D81E266A8F00AA0A25 /* Assets.xcassets in Resources */,
 				437B96D61E266A8F00AA0A25 /* Main.storyboard in Resources */,
+				43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +278,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C555E9A01EE0120900F84B51 /* FormAppearanceScenarioTest.swift in Sources */,
+				43F9517F1F024EAF00FE23F8 /* 04_VisibilityControl.swift in Sources */,
+				C555E9A01EE0120900F84B51 /* 01_FormAppearance.swift in Sources */,
+				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
+				43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

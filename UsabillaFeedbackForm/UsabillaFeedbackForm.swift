@@ -64,7 +64,15 @@ open class UsabillaFeedbackForm {
     open class func removeCachedForms() {
         UBFormDAO.shared.deleteAll()
     }
-
+    #if DEBUG
+    open class func formViewController(forFormJson json: JSON) -> UINavigationController {
+        let form = FormModel(json: json, id: "", screenshot: nil)
+        let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
+        let navigationController = UINavigationController(rootViewController: formController)
+        formController.delegate = PassiveFormController(submissionManager: submissionManager)
+        return navigationController
+    }
+    #endif
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
 
         formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
