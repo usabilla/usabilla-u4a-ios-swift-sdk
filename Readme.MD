@@ -3,10 +3,20 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.4.4
+## Latest changes in v3.5.0
+
+#### Added
+- New delegate method called `formWillClose`, that will be called when the form needs to be dismissed (see documentation for more info)
+
+#### Updated
+- Delegate method `formDidClose` will now be called only after the form has actually been closed
+
+#### Removed
+- The redirect to the app store feature has been removed to be in accordance with Apple's new guidelines on rating and reviews
 
 #### Fixed
-- Crash when dealing with multiple end pages and jump rules
+- Wrong delegate method being called when a form failed loading
+- Error label being incorrectly placed behind the slider
 
 ## Requirements
 
@@ -34,7 +44,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'MyApp' do
-    pod 'UsabillaFeedbackForm', '~> 3.4.4'
+    pod 'UsabillaFeedbackForm', '~> 3.5.0'
 end
 ```
 
@@ -54,7 +64,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.4.4"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.5.0"
 ```
 
 ### Manual
@@ -82,7 +92,7 @@ Add the following line to the **didFinishLaunchingWithOptions**:
 ```swift
 UsabillaFeedbackForm.load()
 ```
-The **load** method is here in order to init the caching feature : submit the previously submitted feedback.
+The **load** method is here in order to init the caching feature, that will submit any previously unsubmitted feedback.
 
 #### Using forms
 
@@ -173,6 +183,8 @@ For a more in depth guide on customisation see the [Wiki page](https://github.co
 
 
 ### App Store rating
+ ** This feature has been removed in version 3.5.0**
+You can still retrieve the information about the feedback the user submitted, and decide wether to prompt for a review or not, by reading the [Submission callback](#submission-callback)
 
 It is possible to invite the user to leave a review of your application in the App Store once he has submitted the form.
 
@@ -238,15 +250,15 @@ Set the automatic UsabillaFeedbackForm dismissal attribute to false:
 UsabillaFeedbackForm.dismissAutomatically = false
 ```
 
-and implement the **formDidClose** delegate method:
+and implement the **formWillClose** delegate method:
 
 ```swift
-func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
     // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
 }
 ```
 
-**Warning**: by doing this the form will not dismiss by itself and you will be the only one  responsible for its correct behaviour.
+**Warning**: by doing this the form will not dismiss by itself and you will be the only one responsible for its correct behaviour. Also, the delegate method `formDidClose` will not be called.
 
 
 ## Integration with Obj-C applications
