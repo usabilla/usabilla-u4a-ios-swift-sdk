@@ -1,3 +1,17 @@
+## 3.5.0
+#### Added
+- New delegate method called `formWillClose`, that will be called when the form needs to be dismissed (see documentation for more info)
+
+#### Updated
+- Delegate method `formDidClose` will now be called only after the form has actually been closed
+
+#### Removed
+- The redirect to the app store feature has been removed to be in accordance with Apple's new guidelines on rating and reviews
+
+#### Fixed
+- Wrong delegate method being called when a form failed loading
+- Error label being incorrectly placed behind the slider
+
 ## 3.4.4
 
 #### Fixed
