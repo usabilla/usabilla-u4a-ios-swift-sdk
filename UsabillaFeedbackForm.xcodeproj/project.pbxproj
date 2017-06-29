@@ -30,6 +30,7 @@
 		047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */; };
 		047B7FE31EFBC39B00AD43C1 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */; };
 		047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */ = {isa = PBXBuildFile; fileRef = 047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */; };
+		0468D1431F04FFAE00616D82 /* redirectEnabled.json in Resources */ = {isa = PBXBuildFile; fileRef = 0468D1421F04FFAE00616D82 /* redirectEnabled.json */; };
 		0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
 		0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
 		0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
@@ -413,6 +414,7 @@
 		047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestTests.swift; sourceTree = "<group>"; };
 		047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OneButtonCampaign.json; sourceTree = "<group>"; };
+		0468D1421F04FFAE00616D82 /* redirectEnabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = redirectEnabled.json; sourceTree = "<group>"; };
 		0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModel.swift; sourceTree = "<group>"; };
 		0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CheckBoxWithText.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxFieldModel.swift; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 				4306698D1E7692690078E3B3 /* FeedbackResultTest.swift */,
 				C59C820B1E813F9E00840D4E /* UBMock.swift */,
 				047125E01EAE3F28003DB0BB /* UBTestHelper.swift */,
+				0468D1421F04FFAE00616D82 /* redirectEnabled.json */,
 			);
 			name = UsabillaFeedbackFormTest;
 			path = UsabillaFeedbackFormTests;
@@ -1390,6 +1393,7 @@
 			files = (
 				C5F813D41F25E43700F994F9 /* Mock.json in Resources */,
 				43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */,
+				0468D1431F04FFAE00616D82 /* redirectEnabled.json in Resources */,
 				044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */,
 				04575B791D99799C001E0EC3 /* test.json in Resources */,
 				047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */,

@@ -212,7 +212,6 @@ class FormViewController: UIViewController {
                 showThankYouPage()
             }
             return
-
         }
         pageController.setupViewModel(viewModel.currentPageViewModel)
         updateProgressBar()
