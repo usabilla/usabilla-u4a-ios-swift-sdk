@@ -1,12 +1,15 @@
+## 3.6.0
+
+#### Updated
+- Delegate methods `formWillClose` and `formDidClose` now have an extra parameter, called `isRedirectToAppStoreEnabled`, that will reflect the ratings prompt toggle present in the web interface
+
 ## 3.5.0
 #### Added
 - New delegate method called `formWillClose`, that will be called when the form needs to be dismissed (see documentation for more info)
 
 #### Updated
 - Delegate method `formDidClose` will now be called only after the form has actually been closed
-
-#### Removed
-- The redirect to the app store feature has been removed to be in accordance with Apple's new guidelines on rating and reviews
+- The redirect to the app store feature has been updated to be in accordance with [Apple's new guidelines on rating and reviews](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk#app-store-rating)
 
 #### Fixed
 - Wrong delegate method being called when a form failed loading

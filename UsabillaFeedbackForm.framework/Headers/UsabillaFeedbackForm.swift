@@ -112,7 +112,7 @@ public protocol UsabillaFeedbackFormDelegate: class {
         If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
         Otherwise the feedbackResults can contains between 1 and n FeedbackResult
     */
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
     /**
      This method is called before the form is closed
@@ -122,12 +122,12 @@ public protocol UsabillaFeedbackFormDelegate: class {
 
      This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
      */
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult])
+    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 }
 
 public extension UsabillaFeedbackFormDelegate {
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     }
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     }
 }
