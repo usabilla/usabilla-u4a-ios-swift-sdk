@@ -3,13 +3,14 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.5.0
+## Latest changes in v3.6.0
 
 #### Added
 - New delegate method called `formWillClose`, that will be called when the form needs to be dismissed (see documentation for more info)
 
 #### Updated
 - Delegate method `formDidClose` will now be called only after the form has actually been closed
+- Delegate methods `formWillClose` and `formDidClose` now have an extra parameter, called `isRedirectToAppStoreEnabled`, that will reflect the app store redirection toggle present in the web interface
 
 #### Removed
 - The redirect to the app store feature has been removed to be in accordance with Apple's new guidelines on rating and reviews
@@ -44,7 +45,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'MyApp' do
-    pod 'UsabillaFeedbackForm', '~> 3.5.0'
+    pod 'UsabillaFeedbackForm', '~> 3.6.0'
 end
 ```
 
@@ -64,7 +65,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.5.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.6.0"
 ```
 
 ### Manual
@@ -183,17 +184,12 @@ For a more in depth guide on customisation see the [Wiki page](https://github.co
 
 
 ### App Store rating
-**This feature has been removed in version 3.5.0 in order to be in accordance with Apple's new rating guidelines**
-You can still retrieve the information about the feedback the user submitted, and decide whether to prompt for a review or not, by reading the [Submission callback](#submission-callback)
+ **The original implementation has been removed in version 3.5.0 in order to follow Apple's new rating guidelines.    
+From version 3.5.0 onwards we offer support for using [Apple's own rating API](https://developer.apple.com/app-store/ratings-and-reviews/)**    
 
-It is possible to invite the user to leave a review of your application in the App Store once he has submitted the form.
+To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#submission-callback)
 
-This invitation will only be showed if:
-* The user gave a positive rating (4-5 / 5) in the feedback form.
-* You have set `UsabillaFeedbackForm.appStoreId = "id"` with the app store id of your application.
-* You have enabled the feature in the Usabilla web interface, in the advanced edit settings of the form (default is disabled)  
-
-You have to specify the app id omitting the initial "id", leaving only the numerical part.
+In the Usabilla web interface it is possible to define whether a specific feedback form should prompt the user for a rating.
 
 ### Submission callback
 
@@ -220,7 +216,7 @@ The **abandonedPageIndex** is only set if the user cancels the form before submi
 Here is a sample implementation :
 
 ```swift
-func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]){
+func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool){
      guard let feedback = feedbackResults.first else {
          return
      }
@@ -232,9 +228,8 @@ func formDidClose(_ form: UINavigationController, formID: String, with feedbackR
      }
 
      if let rating = feedback.rating {
-         if rating >= 4 {
-             // thanks the user with a nice Emoji 🙏
-             // or give the user a coupon code
+         if rating >= 4 && isRedirectToAppStoreEnabled {
+             // Prompt the user for rating and review
          }
      }
  }
@@ -253,7 +248,7 @@ UsabillaFeedbackForm.dismissAutomatically = false
 and implement the **formWillClose** delegate method:
 
 ```swift
-func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
 }
 ```
