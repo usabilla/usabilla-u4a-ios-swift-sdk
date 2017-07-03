@@ -7,4 +7,5 @@ framework module UsabillaFeedbackForm {
 
 module UsabillaFeedbackForm.Swift {
     header "UsabillaFeedbackForm-Swift.h"
+    requires objc
 }
