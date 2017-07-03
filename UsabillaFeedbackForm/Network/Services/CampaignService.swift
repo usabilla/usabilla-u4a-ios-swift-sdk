@@ -39,7 +39,7 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaignForm(withId id: String) -> Promise<FormModel> {
         let request = requestBuilder.requestGetCampaignForm(withId: id)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
+            self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: nil))
                     return
@@ -52,7 +52,7 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>> {
         let request = requestBuilder.requestGetCampaigns(withAppId: appId)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
+            self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
                     let campaignsArray = JSON(json).array else {
                         reject(response.error!)
@@ -68,7 +68,7 @@ class CampaignService: CampaignServiceProtocol {
     func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
         let request = requestBuilder.requestGetTargeting(withId: id)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request, responseQueue: nil, completion: { response in
+            self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let jsonData = response.data {
                     let json = JSON(jsonData).dictionary
                     PLog("targeting for id : \(id) :\n \(String(describing: json))")
@@ -95,16 +95,12 @@ class CampaignService: CampaignServiceProtocol {
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
     func submitCampaignResult(withRequest request: URLRequest) -> Promise<String> {
         return Promise { fulfill, reject in
-            httpClient.request(request: request, responseQueue: nil, completion: { response in
-                if let jsonData = response.data {
-                    let json = JSON(jsonData).dictionary
-                    PLog(json)
-                    if let location = response.headers?["Location"] as? String {
-                        fulfill(location)
-                        return
-                    }
+            httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
+                if let location = response.headers?["Location"] as? String {
+                    fulfill(location)
+                    return
                 }
-                reject(response.error!)
+                reject(NSError(domain: "API says no", code: 1, userInfo: nil))
             })
         }
     }

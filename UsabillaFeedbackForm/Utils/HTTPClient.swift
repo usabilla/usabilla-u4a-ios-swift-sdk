@@ -82,6 +82,7 @@ class HTTPClient: HTTPClientProtocol {
 
     static func request(request: URLRequest,
                         responseQueue: DispatchQueue? = nil,
+                        allowNilData: Bool = false,
                         completion: @escaping (HTTPClientResponse) -> Void) {
         let oldEtag = getEtag(forRequest: request)
 
@@ -95,12 +96,16 @@ class HTTPClient: HTTPClientProtocol {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil)))
                     return
                 }
-                guard let data = data else {
+                guard data != nil && data!.count > 0 else {
+                    if allowNilData {
+                        completion(HTTPClientResponse(data: nil, headers: headers, error: nil, success: true, isChanged: isChanged))
+                        return
+                    }
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: "No reponse Data", code: 1, userInfo: nil)))
                     return
                 }
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
                     PLog(json)
                     completion(HTTPClientResponse(data: json, headers: headers, error: nil, success: true, isChanged: isChanged))
                 } catch {
@@ -117,6 +122,7 @@ class HTTPClient: HTTPClientProtocol {
                         encoding: ParameterEncoding = JSONEncoding.default,
                         headers: HTTPHeaders? = nil,
                         responseQueue: DispatchQueue? = nil,
+                        allowNilData: Bool = false,
                         completion: @escaping (HTTPClientResponse) -> Void) {
 
         guard let url = URL(string: url) else {

@@ -28,7 +28,7 @@ class FormService: FormServiceProtocol {
     func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withId: id)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request as URLRequest, responseQueue: nil) { response in
+            httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: screenShot))
                     return
@@ -115,7 +115,7 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil) { response in
+            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -157,7 +157,7 @@ class FormService: FormServiceProtocol {
     /// - Returns: Promise containig the responde data from the widget server
     func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil ) { response in
+            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(response)
                     return
