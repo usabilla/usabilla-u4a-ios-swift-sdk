@@ -17,15 +17,15 @@ class UBMock {
         return FormModel(json: jsonObj, id: "mockFormId", screenshot: nil)
     }
 
-    class func campaignMock() -> CampaignModel {
-        return CampaignModel(id: "campaignid", json: JSON.parse(""))
+    class func campaignMock(withId id: String = "") -> CampaignModel {
+        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0)
     }
 
     class func campaignMockWithRules(id: String = "a") -> CampaignModel {
         let leaf = LeafRule(event: Event(name: "foo"))
         let leaf2 = LeafRule(event: Event(name: "bar"))
         let rule = AndRule(childRules: [leaf, leaf2])
-        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0)
+        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0)
     }
 }
 

@@ -14,30 +14,32 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class EventEngineTests: QuickSpec {
+    func campaignMock(forId id: String) -> CampaignModel {
+        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0)
+    }
+    var campaigns: [CampaignModel] = []
 
     override func spec() {
 
         describe("EventEngineTests") {
+            beforeEach {
+                self.campaigns = [
+                    self.campaignMock(forId: "a"),
+                    self.campaignMock(forId: "b")
+                ]
+            }
             context("When instantiating eventengine") {
                 it("should set the correct attributes") {
                     var eventEngine = EventEngine(campaigns: [])
                     expect(eventEngine.campaigns).to(beEmpty())
-
-                    let campaigns = [
-                        CampaignModel(id: "a", json: JSON.parse("")),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-                    eventEngine = EventEngine(campaigns: campaigns)
+                    eventEngine = EventEngine(campaigns: self.campaigns)
                     expect(eventEngine.campaigns.count).to(equal(2))
                 }
             }
+
             context("When triggering an event") {
                 it("should return no responding campaigns when they don't have event") {
-                    let campaigns = [
-                        CampaignModel(id: "a", json: JSON.parse("")),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-                    let eventEngine = EventEngine(campaigns: campaigns)
+                    let eventEngine = EventEngine(campaigns: self.campaigns)
                     let (respondCampaigns, _) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns).to(beEmpty())
                 }
@@ -45,13 +47,8 @@ class EventEngineTests: QuickSpec {
                 it("should return no responding campaigns when they don't match the event") {
                     let leaf = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf])
-
-                    let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-
-                    let eventEngine = EventEngine(campaigns: campaigns)
+                    self.campaigns[0].rule = rule
+                    let eventEngine = EventEngine(campaigns: self.campaigns)
                     let (respondCampaigns, _) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns).to(beEmpty())
                 }
@@ -59,13 +56,8 @@ class EventEngineTests: QuickSpec {
                 it("should return the responding campaigns when they match the event") {
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let rule = AndRule(childRules: [leaf])
-
-                    let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-
-                    let eventEngine = EventEngine(campaigns: campaigns)
+                    self.campaigns[0].rule = rule
+                    let eventEngine = EventEngine(campaigns: self.campaigns)
                     let (respondCampaigns, _) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns.count).to(equal(1))
                 }
@@ -74,13 +66,8 @@ class EventEngineTests: QuickSpec {
                     let leaf = LeafRule(event: Event(name: "foo"))
                     let leaf2 = LeafRule(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
-
-                    let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0),
-                        CampaignModel(id: "b", json: JSON.parse(""))
-                    ]
-
-                    let eventEngine = EventEngine(campaigns: campaigns)
+                    self.campaigns[0].rule = rule
+                    let eventEngine = EventEngine(campaigns: self.campaigns)
                     var (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("foo")
                     expect(respondCampaigns.count).to(equal(1))
                     expect(triggeredCampaigns.count).to(equal(0))

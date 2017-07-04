@@ -22,8 +22,8 @@ class UBCampaignStoreTests: QuickSpec {
             var store: UBCampaignStore!
 
             beforeEach {
-                self.campaign1 = CampaignModel(id: "cmp1", json: JSON(""))
-                self.campaign2 = CampaignModel(id: "cmp2", json: JSON(""))
+                self.campaign1 = UBMock.campaignMock(withId: "cmp1")
+                self.campaign2 = UBMock.campaignMock(withId: "cmp2")
                 UBCampaignDAO.shared.deleteAll()
             }
 

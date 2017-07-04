@@ -51,7 +51,7 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(0))
                 }
                 it("should return affect 1 campaign to the eventEngine when the campaign has not limit display") {
-                    let campaignModel = CampaignModel(id: "testid", json: JSON.parse("{\"targeting_options_id\" : \"tid\"}"))
+                    let campaignModel = UBMock.campaignMock(withId: "testid")
                     expect(campaignModel.maximumDisplays).to(equal(0))
                     storeMock.campaigns = [campaignModel]
                     let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
@@ -59,8 +59,8 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignManager.eventEngine.campaigns.first?.identifier).to(equal("testid"))
                 }
                 it("should return affect 1 campaigns to the eventEngine when the campaign has a display limit") {
-                    let campaignModel = CampaignModel(id: "testid", json: JSON.parse(""))
-                    let campaignModel2 = CampaignModel(id: "testid2", json: JSON.parse(""))
+                    let campaignModel = UBMock.campaignMock(withId: "testid")
+                    let campaignModel2 = UBMock.campaignMock(withId: "testid2")
                     campaignModel.maximumDisplays = 1
                     campaignModel.numberOfTimesTriggered = 1
                     storeMock.campaigns = [campaignModel, campaignModel2]
@@ -81,7 +81,7 @@ class CampaignManagerTests: QuickSpec {
                 it("should save campaigns when there are responding campaigns for the event") {
                     let campaigns = [
                         UBMock.campaignMockWithRules(id: "a"),
-                        CampaignModel(id: "b", json: JSON.parse(""))
+                        UBMock.campaignMock(withId: "b")
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
@@ -100,7 +100,7 @@ class CampaignManagerTests: QuickSpec {
                 it("should not display campaign that have not triggered") {
                     let campaigns = [
                         UBMock.campaignMockWithRules(id: "a"),
-                        CampaignModel(id: "b", json: JSON.parse(""))
+                        UBMock.campaignMock(withId: "b")
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
@@ -116,7 +116,7 @@ class CampaignManagerTests: QuickSpec {
                 it("should display campaign that triggered") {
                     let campaigns = [
                         UBMock.campaignMockWithRules(id: "a"),
-                        CampaignModel(id: "b", json: JSON.parse(""))
+                        UBMock.campaignMock(withId: "b")
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
@@ -166,7 +166,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, version: 0)
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0)
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)

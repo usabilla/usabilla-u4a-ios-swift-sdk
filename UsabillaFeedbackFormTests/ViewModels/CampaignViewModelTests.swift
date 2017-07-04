@@ -16,6 +16,7 @@ import Nimble
 class CampaingViewModelTests: QuickSpec {
     var formJson: JSON!
     var manager: CampaignSubmissionRequestManagerProtocol!
+    var campaignModel: CampaignModel!
 
     override func spec() {
         describe("CampainViewModelTests") {
@@ -25,13 +26,16 @@ class CampaingViewModelTests: QuickSpec {
                 self.manager = CampaignSubmissionRequestManagerMock()
             }
 
+            beforeEach {
+                self.campaignModel = CampaignModel(id: "", rule: nil, formId: "", targetingId: "", maximumDisplays: 0)
+            }
+
             context("When initilized CampainViewModel", {
                 it("should not set introPageViewModel & introPresenter when json does not conatin start page", closure: {
-                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
-                    campaign.form = formModel
+                    self.campaignModel.form = formModel
 
-                    expect(campaign).toNot(beNil())
+                    expect(self.self.campaignModel).toNot(beNil())
                     let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).to(beNil())
@@ -44,11 +48,9 @@ class CampaingViewModelTests: QuickSpec {
                     startDict["type"] = "start"
                     dict["form"]!["pages"].arrayObject!.append(startDict)
 
-                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
-
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
-                    campaign.form = formModel
-                    expect(campaign).toNot(beNil())
+                    self.campaignModel.form = formModel
+                    expect(self.campaignModel).toNot(beNil())
                     let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).toNot(beNil())
@@ -65,10 +67,9 @@ class CampaingViewModelTests: QuickSpec {
                     startDict["display"] = "alert"
                     dict["form"]!["pages"].arrayObject!.append(startDict)
 
-                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
-                    campaign.form = formModel
-                    expect(campaign).toNot(beNil())
+                    self.campaignModel.form = formModel
+                    expect(self.campaignModel).toNot(beNil())
                     let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
                     expect(campainViewModel).toNot(beNil())
                     expect(campainViewModel.introPageViewModel).toNot(beNil())
@@ -78,9 +79,8 @@ class CampaingViewModelTests: QuickSpec {
 
             context("When accessing formViewModel", {
                 it("should return a formViewModel with the right data", closure: {
-                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
-                    campaign.form = formModel
+                    self.campaignModel.form = formModel
                     let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
                     let formViewModel = campainViewModel.formViewModel
 
@@ -97,9 +97,8 @@ class CampaingViewModelTests: QuickSpec {
                     let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                     let json = JSON(data: (data as Data?)!)
 
-                    let campaign = CampaignModel(id: "id", json: JSON.parse(""))
                     let formModel = FormModel(json: json, id: "", screenshot: nil)
-                    campaign.form = formModel
+                    self.campaignModel.form = formModel
                     let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
                     let toastViewModel = campainViewModel.toastPageViewModel
 

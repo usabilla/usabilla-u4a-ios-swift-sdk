@@ -48,7 +48,7 @@ class CampaignServiceTests: QuickSpec {
 
             context("When getCampaigns is called") {
                 it("should succeed if request succeeds") {
-                    UBHTTPMockSuccess.self.result = [Cachable<[CampaignModel]>(value: [CampaignModel(id: "campIDTest", json: JSON(""))], hasChanged: true)]
+                    UBHTTPMockSuccess.self.result = [Cachable<[CampaignModel]>(value: [UBMock.campaignMock(withId: "campIDTest")], hasChanged: true)]
                     waitUntil(timeout: 2.0) { done in
                         CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaigns(withAppId: "appid").then { result in
                             expect(result.hasChanged).to(beFalse())

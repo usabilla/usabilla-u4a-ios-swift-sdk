@@ -53,22 +53,14 @@ class CampaignService: CampaignServiceProtocol {
         let request = requestBuilder.requestGetCampaigns(withAppId: appId)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, completion: { response in
-                if let json = response.data {
-                    // init the return array of campaigns
-                    var campaigns = [CampaignModel]()
-                    // loop through and create CampaignModels
-                    if let campaignsArray = JSON(json).array {
-                        for campaignJson in campaignsArray {
-                            let id = campaignJson["identifier"].stringValue // TO DO: update this property when json is ready
-                            let model = CampaignModel(id: id, json: campaignJson)
-                            campaigns.append(model)
-                        }
-                    }
-                    let cachabelResult: Cachable<[CampaignModel]> = Cachable(value: campaigns, hasChanged: response.isChanged)
-                    fulfill(cachabelResult)
-                    return
+                guard let json = response.data,
+                    let campaignsArray = JSON(json).array else {
+                        reject(response.error!)
+                        return
                 }
-                reject(response.error!)
+                let campaigns = campaignsArray.flatMap { CampaignModel(json: $0) }
+                let cachabelResult: Cachable<[CampaignModel]> = Cachable(value: campaigns, hasChanged: response.isChanged)
+                fulfill(cachabelResult)
             })
         }
     }
