@@ -51,14 +51,14 @@ open class UsabillaFeedbackForm {
      
     - parameter appId: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
-    open class func load(appId: String) {
+    open class func load(appId: String) -> Bool {
         guard NSUUID(uuidString: appId) != nil else {
             Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
-            return
+            return false
         }
         appIdentifier = appId
         campaignManager = CampaignManager(campaignStore: campaignStore, appId: appId)
-        formStore = FormStore(service: FormService())
+        return true
     }
 
     open class func removeCachedForms() {
@@ -71,18 +71,6 @@ open class UsabillaFeedbackForm {
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         return navigationController
-    }
-    #endif
-    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
-
-        formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
-            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
-        }.catch { _ in
-            if let defaulForm = formStore.loadDefaultForm(appId, screenshot: screenshot, theme: theme) {
-
-                UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
-            }
-        }
     }
 
     open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = UsabillaTheme()) {
@@ -98,8 +86,26 @@ open class UsabillaFeedbackForm {
             }
             let error = NSError(domain: "A campaign form is already displayed", code: 0, userInfo: nil)
             delegate?.campaignFormDidDisplay(formId: formId, error: error)
-        }.catch { error in
-            delegate?.campaignFormDidDisplay(formId: formId, error: error)
+            }.catch { error in
+                delegate?.campaignFormDidDisplay(formId: formId, error: error)
+        }
+    }
+
+    open class func showCampaignForm(formJson: JSON, campaignId: String = "id") {
+        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
+        campaignManager?.displayCampaignForm(formModel, campaignId: campaignId)
+    }
+    #endif
+
+    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
+
+        formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
+            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
+        }.catch { _ in
+            if let defaulForm = formStore.loadDefaultForm(appId, screenshot: screenshot, theme: theme) {
+
+                UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables)
+            }
         }
     }
 
@@ -121,11 +127,6 @@ open class UsabillaFeedbackForm {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
-    }
-
-    open class func showCampaignForm(formJson: JSON, campaignId: String = "id") {
-        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-        campaignManager?.displayCampaignForm(formModel, campaignId: campaignId)
     }
 }
 
