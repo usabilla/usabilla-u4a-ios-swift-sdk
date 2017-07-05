@@ -68,8 +68,9 @@ class JSONParserTest: QuickSpec {
                 }
 
                 it("checks for the continue button correctly") {
-                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][0])).to(beTrue())
-                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][1])).to(beFalse())
+                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][0])).to(beFalse())
+
+                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][1])).to(beTrue())
                 }
 
                 describe("the colors group") {

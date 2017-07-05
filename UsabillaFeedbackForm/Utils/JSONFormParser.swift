@@ -15,10 +15,11 @@ class JSONFormParser {
     }
 
     class func checkForContinueButton(pageJson: JSON) -> Bool {
-        for (_, subJson): (String, JSON) in pageJson["fields"] where subJson["type"].stringValue == "continue" && subJson["title"].string != nil {
-            return true
+        let continueField = pageJson["fields"].arrayValue.first { $0["type"].stringValue == "continue" }
+        guard let field = continueField, !field["title"].stringValue.isEmpty else {
+            return false
         }
-        return false
+        return true
     }
 
     class func parsePage(_ pageJson: JSON, pageNum: Int) -> PageModel {
@@ -29,13 +30,11 @@ class JSONFormParser {
         var pageModelClass: PageModel.Type
 
         switch type {
-        case .start,
-             .banner:
+        case .start, .banner:
             pageModelClass = IntroPageModel.self
         case .form:
             pageModelClass = PageModel.self
-        case .end,
-             .toast:
+        case .end, .toast:
             pageModelClass = UBEndPageModel.self
         }
         let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName)
