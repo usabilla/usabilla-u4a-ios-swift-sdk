@@ -28,6 +28,10 @@ class IntroPageViewModel {
         return introPage.copy!.introContinueButton
     }
 
+    var canContinue: Bool {
+        return introPage.fields.first?.isValid() ?? false
+    }
+
     var title: String? {
         return field?.fieldTitle
     }

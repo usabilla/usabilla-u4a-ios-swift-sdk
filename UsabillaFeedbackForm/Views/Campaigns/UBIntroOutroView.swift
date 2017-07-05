@@ -62,9 +62,20 @@ class UBIntroOutroView: UIView {
 
         setupCustomizations()
 
+        SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
+            self.updateContinueButton()
+        }
+
         display.build(view: self)
     }
 
+    deinit {
+        SwiftEventBus.unregister(self)
+    }
+
+    private func updateContinueButton() {
+        continueButton?.isEnabled = viewModel.canContinue
+    }
     private func setupTitle() {
         titleLabel = UILabel()
         titleLabel.text = viewModel.title
@@ -100,6 +111,7 @@ class UBIntroOutroView: UIView {
 
         }
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
+        updateContinueButton()
     }
 
     private func setupComponent() {
@@ -122,6 +134,8 @@ class UBIntroOutroView: UIView {
         backgroundColor = viewModel.backgroundColor
         cancelButton.setTitleColor(viewModel.buttonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
+        continueButton?.setTitleColor(viewModel.hintColor, for: .disabled)
+
         cancelButton.titleLabel?.font = viewModel.font
         continueButton?.titleLabel?.font = viewModel.boldFont
 

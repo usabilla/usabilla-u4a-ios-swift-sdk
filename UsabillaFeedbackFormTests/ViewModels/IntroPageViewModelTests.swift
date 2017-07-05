@@ -23,7 +23,7 @@ class IntroPageViewModelTests: QuickSpec {
 
         let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
         let copyModel = CopyModel()
-        beforeSuite {
+        beforeEach {
             let moodField = MoodFieldModel(json: JSON.parse("{\"title\":\"Hello\"}"), pageModel: introPage)
             introPage.fields = [moodField]
             introPage.copy = copyModel
@@ -93,6 +93,39 @@ class IntroPageViewModelTests: QuickSpec {
                     introPage.fields = []
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
                     expect(introPageViewModel.componentViewModel).to(beNil())
+                }
+            }
+
+            context("when there is a mood component that is required") {
+                beforeEach {
+                    introPage.fields.first?.required = true
+                }
+                it("viewModel canContinue property should be false") {
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    expect(introPageViewModel.canContinue).to(beFalse())
+                }
+
+                it("viewModel canContinue property should be true when mood value is set") {
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    // swiftlint:disable force_cast
+                    (introPage.fields.first as! MoodFieldModel).fieldValue = 2
+                    expect(introPageViewModel.canContinue).to(beTrue())
+                }
+            }
+
+            context("when there is a mood component that is not required") {
+                beforeEach {
+                    introPage.fields.first?.required = false
+                }
+                it("viewModel canContinue property should be true") {
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    expect(introPageViewModel.canContinue).to(beTrue())
+                }
+                it("viewModel canContinue property should be true when mood value is set") {
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    // swiftlint:disable force_cast
+                    (introPage.fields.first as! MoodFieldModel).fieldValue = 2
+                    expect(introPageViewModel.canContinue).to(beTrue())
                 }
             }
         }
