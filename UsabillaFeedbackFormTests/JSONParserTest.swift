@@ -14,6 +14,7 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 // swiftlint:disable force_cast
+// swiftlint:disable force_try
 
 class JSONParserTest: QuickSpec {
 
@@ -22,27 +23,22 @@ class JSONParserTest: QuickSpec {
         var formModel: FormModel!
         var jsonObj: JSON!
         var oneButtonCampaign: JSON!
+        var paragraphCampaign: JSON!
 
         beforeSuite {
             var path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
-            do {
-                let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                jsonObj = JSON(data: data as Data)
-                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
-
-            } catch let error as NSError {
-                Swift.debugPrint(error.localizedDescription)
-            }
-
+            // read test.json
+            var data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+            jsonObj = JSON(data: data as Data)
+            formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+            // read OneButtonCampaign.json
             path = Bundle(for: JSONParserTest.self).path(forResource: "OneButtonCampaign", ofType: "json")!
-            do {
-                let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                oneButtonCampaign = JSON(data: data as Data)
-
-            } catch let error as NSError {
-                Swift.debugPrint(error.localizedDescription)
-            }
-
+            data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+            oneButtonCampaign = JSON(data: data as Data)
+            // read CampaignBannerParagraph.json
+            path = Bundle(for: JSONParserTest.self).path(forResource: "CampaignBannerParagraph", ofType: "json")!
+            data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+            paragraphCampaign = JSON(data: data as Data)
         }
 
         describe("the JSON parser") {
@@ -191,6 +187,23 @@ class JSONParserTest: QuickSpec {
                         expect(pageModel.jumpRuleList?[0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
                     }
                 }
+            }
+        }
+
+        context("When parsePage is called") {
+            it("should parse correctly the paragraph") {
+                let firstPage = paragraphCampaign["structure"]["pages"].array?.first
+                let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                let firstField = firstPageModel.fields.first
+                expect(firstField is ParagraphFieldModel).to(beTrue())
+                expect(firstField?.fieldTitle).toNot(beNil())
+            }
+            it("should parse correctly the mood model") {
+                let firstPage = oneButtonCampaign["structure"]["pages"].array?.first
+                let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                let firstField = firstPageModel.fields.first
+                expect(firstField is MoodFieldModel).to(beTrue())
+                expect(firstField?.fieldTitle).toNot(beNil())
             }
         }
     }

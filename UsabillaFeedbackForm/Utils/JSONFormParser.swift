@@ -58,22 +58,6 @@ class JSONFormParser {
         var fields: [BaseFieldModel] = []
 
         for (_, subJson): (String, JSON) in pageJson["fields"] {
-            if subJson["type"].stringValue == "titleParagraph" {
-                let headerTitle = subJson["title"].string
-                let paragraphText = subJson["text"].string
-
-                if let headerTitle = headerTitle {
-                    let model = HeaderFieldModel(json: JSON.init(parseJSON: "{\"title\":\"\(headerTitle)\"}"), pageModel: currentPage)
-                    fields.append(model)
-                }
-
-                if let paragraphText = paragraphText {
-                    let model = ParagraphFieldModel(json: JSON.init(parseJSON: "{\"title\":\"\(paragraphText)\"}"), pageModel: currentPage)
-                    fields.append(model)
-                }
-
-                continue
-            }
             if let newField = parseFieldModel(subJson, pagemodel: currentPage) {
                 fields.append(newField)
             }

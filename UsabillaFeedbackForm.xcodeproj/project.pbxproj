@@ -29,9 +29,9 @@
 		047125DF1EAE24EF003DB0BB /* Picker.json in Resources */ = {isa = PBXBuildFile; fileRef = 047125DE1EAE24EF003DB0BB /* Picker.json */; };
 		047125E11EAE3F28003DB0BB /* UBTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047125E01EAE3F28003DB0BB /* UBTestHelper.swift */; };
 		0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */; };
+		047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */; };
 		047B7FE31EFBC39B00AD43C1 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */; };
 		047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */ = {isa = PBXBuildFile; fileRef = 047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */; };
-		047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */; };
 		0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
 		0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
 		0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
@@ -216,6 +216,8 @@
 		43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
 		43CCD47A1E7A855000B3E4FE /* BaseImageComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */; };
 		43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */; };
+		43D203551F0D315A00834E30 /* CampaignBannerParagraph.json in Resources */ = {isa = PBXBuildFile; fileRef = 43D203541F0D315A00834E30 /* CampaignBannerParagraph.json */; };
+		43D203561F0D35D900834E30 /* CampaignBannerParagraph.json in Resources */ = {isa = PBXBuildFile; fileRef = 43D203541F0D315A00834E30 /* CampaignBannerParagraph.json */; };
 		43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */ = {isa = PBXBuildFile; fileRef = 43DA99BA1EE8396F00FB6862 /* CampaignForm.json */; };
 		43E883E41E37575B00A97F1D /* UBFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */; };
 		43E883E91E37B5B800A97F1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
@@ -271,9 +273,9 @@
 		047125DE1EAE24EF003DB0BB /* Picker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Picker.json; sourceTree = "<group>"; };
 		047125E01EAE3F28003DB0BB /* UBTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBTestHelper.swift; sourceTree = "<group>"; };
 		0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignSubmissionManagerTests.swift; path = ManagersTest/CampaignSubmissionManagerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestTests.swift; sourceTree = "<group>"; };
 		047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OneButtonCampaign.json; sourceTree = "<group>"; };
-		047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestTests.swift; sourceTree = "<group>"; };
 		0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModel.swift; sourceTree = "<group>"; };
 		0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CheckBoxWithText.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxFieldModel.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 		43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponent.swift; sourceTree = "<group>"; };
 		43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseImageComponentViewModel.swift; sourceTree = "<group>"; };
 		43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotComponentViewModel.swift; sourceTree = "<group>"; };
+		43D203541F0D315A00834E30 /* CampaignBannerParagraph.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignBannerParagraph.json; sourceTree = "<group>"; };
 		43DA99BA1EE8396F00FB6862 /* CampaignForm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignForm.json; sourceTree = "<group>"; };
 		43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFeedbackRequest.swift; sourceTree = "<group>"; };
 		43E883E81E37B5B800A97F1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -614,6 +617,7 @@
 		047125D91EAE20CB003DB0BB /* JSON Files */ = {
 			isa = PBXGroup;
 			children = (
+				43D203541F0D315A00834E30 /* CampaignBannerParagraph.json */,
 				43DA99BA1EE8396F00FB6862 /* CampaignForm.json */,
 				047125DA1EAE20EB003DB0BB /* PickerWithEmpty.json */,
 				047125DC1EAE24D9003DB0BB /* PickerWithDefault.json */,
@@ -1202,6 +1206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D203551F0D315A00834E30 /* CampaignBannerParagraph.json in Resources */,
 				04F54E611CD76A21002F501E /* defaultJson.json in Resources */,
 				04F54E601CD76A21002F501E /* Assets.xcassets in Resources */,
 				04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */,
@@ -1216,6 +1221,7 @@
 				43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */,
 				047125DD1EAE24D9003DB0BB /* PickerWithDefault.json in Resources */,
 				047125DB1EAE20EB003DB0BB /* PickerWithEmpty.json in Resources */,
+				43D203561F0D35D900834E30 /* CampaignBannerParagraph.json in Resources */,
 				044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */,
 				4370841E1EFB1FEC00200368 /* CampaignTargeting.json in Resources */,
 				04575B791D99799C001E0EC3 /* test.json in Resources */,

@@ -1,0 +1,28 @@
+{
+  "id": "2a93c63f-92b2-481b-b0b5-33c8aba485b3",
+  "version": 1,
+  "structure": {
+    "pages": [{
+      "type": "banner",
+      "fields": [{
+        "autoSubmit": 0,
+        "caption": "Paragraph",
+        "fixed": 0,
+        "forceRequired": 0,
+        "interactive": 1,
+        "showHideRule": {},
+        "text": "Thanks!",
+        "type": "paragraph",
+        "validationText": "This field is required"
+      }],
+      "jumpRules": [],
+      "autoSubmit": true,
+      "name": "Banner"
+    }],
+    "allowedPageTypes": [
+      "banner",
+      "form",
+      "toast"
+    ]
+  }
+}
