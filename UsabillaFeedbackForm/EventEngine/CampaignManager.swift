@@ -20,7 +20,7 @@ class CampaignManager {
         self.campaignStore = campaignStore
         self.eventEngine = EventEngine(campaigns: [])
         self.appId = appId
-        self.submissionManager = CampaignSubmissionManager(campaignDAO: UBCampaignFeedbackRequestDAO.shared)
+        self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared)
         campaignStore.getCampaigns(withAppId: appId).then { campaigns in
             self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
         }

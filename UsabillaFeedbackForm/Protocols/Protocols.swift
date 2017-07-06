@@ -74,3 +74,7 @@ protocol PageModelProtocol {
 protocol CampaignSubmissionManagerProtocol {
     func handle(request: UBCampaignFeedbackRequest)
 }
+
+protocol SubmissionServiceProtocol {
+    @discardableResult func submit(withRequest request: URLRequest) -> Promise<String>
+}

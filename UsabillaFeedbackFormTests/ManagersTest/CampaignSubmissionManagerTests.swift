@@ -21,7 +21,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         return nil
     }
     var counter = 0
-    func submitCampaignResult(withRequest request: URLRequest) -> Promise<String> {
+    func submit(withRequest request: URLRequest) -> Promise<String> {
         lastRequest = request
         counter += 1
         return Promise { fulfill, _ in
@@ -83,7 +83,7 @@ class CampaignSubmissionManagerTests: QuickSpec {
         let item5 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389990")
 
         beforeSuite {
-            csm = CampaignSubmissionManager(campaignDAO: dao, campaignService: SubmitServiceMock(), reachability: reachabilityMock)
+            csm = CampaignSubmissionManager(DAO: dao, service: SubmitServiceMock(), reachability: reachabilityMock)
         }
 
         describe("the CampaignSubmissionManager") {
