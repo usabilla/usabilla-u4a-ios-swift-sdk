@@ -70,6 +70,14 @@ class ConcreteRuleTests: QuickSpec {
 
                 }
 
+                it("should reset correctly") {
+                    let and = ConcreteRule(type: .and, childRules: self.allPositive, ruleID: "id", alreadyTriggered: true)
+                    and.reset()
+                    expect(and.alreadyTriggered).to(beFalse())
+                    expect(and.childRules[0].alreadyTriggered).to(beFalse())
+                    expect(and.childRules[1].alreadyTriggered).to(beFalse())
+                }
+
             })
 
         }

@@ -29,8 +29,8 @@ protocol Rule: NSCoding {
 
     func triggersWith(event: Event) -> Bool
     func customTriggersWith(event: Event) -> Bool
-
     func respondsToEvent(event: Event) -> Bool
+    func reset()
 }
 
 class ConcreteRule: NSObject, Rule {
@@ -63,6 +63,13 @@ class ConcreteRule: NSObject, Rule {
         return childRules.first {
             $0.respondsToEvent(event: event) == true
         } != nil
+    }
+
+    func reset() {
+        alreadyTriggered = false
+        for rule in childRules {
+            rule.reset()
+        }
     }
 
     // MARK: NSCoding

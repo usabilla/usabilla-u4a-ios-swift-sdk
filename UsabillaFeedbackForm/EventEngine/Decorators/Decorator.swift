@@ -39,6 +39,13 @@ class Decorator: NSObject, Rule {
         } != nil
     }
 
+    func reset() {
+        alreadyTriggered = false
+        for child in childRules {
+            child.reset()
+        }
+    }
+
     // MARK: NSCoding
     public required init?(coder aDecoder: NSCoder) {
         let rule = aDecoder.decodeObject(forKey: "rule") as? Rule
