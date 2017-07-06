@@ -11,31 +11,43 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
     private var reachability: Reachable
     private let submissionSerialQueue = DispatchQueue(label: "com.usabilla.u4a.campaignsubmissionmanager")
     private let semaphore = DispatchSemaphore(value: 0)
-    private let service: CampaignServiceProtocol
-    private let campaignDAO: UBCampaignFeedbackRequestDAO
+    private let service: SubmissionServiceProtocol
+    private let DAO: UBCampaignFeedbackRequestDAO
 
-    init(campaignDAO: UBCampaignFeedbackRequestDAO, campaignService: CampaignServiceProtocol = CampaignService(), reachability: Reachable = Reachability()!) {
-        self.service = campaignService
-        self.campaignDAO = campaignDAO
+    init(DAO: UBCampaignFeedbackRequestDAO, service: SubmissionServiceProtocol = CampaignService(), reachability: Reachable = Reachability()!) {
+        self.service = service
+        self.DAO = DAO
         self.reachability = reachability
         try? reachability.startNotifier()
         self.reachability.whenReachable = { reachability in
             if self.reachability.isReachable {
-                self.trySendData()
+                self.submitNextItem()
             }
         }
     }
 
-    private func trySendData() {
+    private func submitNextItem() {
+        guard let item = nextStoreItem(), reachability.isReachable else { return }
+        if item.numberOfTries > 3 {
+            DAO.delete(item)
+            return
+        }
+        sendToService(request: item)
+    }
+
+    private func nextStoreItem() -> UBCampaignFeedbackRequest? {
+        return self.DAO.readAll().first
+    }
+
+    private func sendToService(request: UBCampaignFeedbackRequest) {
         submissionSerialQueue.async {
-            guard let request = self.campaignDAO.readAll().first else {
-                return
-            }
-            self.service.submitCampaignResult(withRequest: request.request).then { _ in
-                self.campaignDAO.delete(request)
-                self.trySendData()
+            self.service.submit(withRequest: request.request).then { _ in
+                self.DAO.delete(request)
+                self.submitNextItem()
                 self.semaphore.signal()
                 }.catch { _ in
+                    request.numberOfTries += 1
+                    self.DAO.create(request)
                     self.semaphore.signal()
             }
             self.semaphore.wait()
@@ -43,9 +55,7 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
     }
 
     func handle(request: UBCampaignFeedbackRequest) {
-        campaignDAO.create(request)
-        if reachability.isReachable {
-            trySendData()
-        }
+        DAO.create(request)
+        submitNextItem()
     }
 }

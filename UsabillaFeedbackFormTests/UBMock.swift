@@ -120,7 +120,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func submitCampaignResult(withRequest request: URLRequest) -> Promise<String> {
+    func submit(withRequest request: URLRequest) -> Promise<String> {
         return Promise { fulfill, reject in
             if targetingResponse != nil {
                 return fulfill("feedbackId")

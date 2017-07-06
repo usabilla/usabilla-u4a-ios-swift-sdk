@@ -15,7 +15,7 @@ class Cachable<T> {
     }
 }
 
-protocol CampaignServiceProtocol {
+protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
@@ -23,7 +23,7 @@ protocol CampaignServiceProtocol {
     func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>>
     func getTargeting(withId id: String) -> Promise<Cachable<Rule>>
 
-    @discardableResult func submitCampaignResult(withRequest request: URLRequest) -> Promise<String>
+    @discardableResult func submit(withRequest request: URLRequest) -> Promise<String>
 }
 
 class CampaignService: CampaignServiceProtocol {
@@ -93,7 +93,7 @@ class CampaignService: CampaignServiceProtocol {
     ///   - request: the URL request with the feedback data
     ///
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
-    func submitCampaignResult(withRequest request: URLRequest) -> Promise<String> {
+    func submit(withRequest request: URLRequest) -> Promise<String> {
         return Promise { fulfill, reject in
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
                 if let location = response.headers?["Location"] as? String {
