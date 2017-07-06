@@ -55,7 +55,7 @@
                   "name": "Banner"
                   },
                   {
-                  "type": "page2",
+                  "type": "banner",
                   "fields": [{
                              "type": "mood",
                              "caption": "Mood",

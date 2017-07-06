@@ -26,33 +26,31 @@ class JSONParserTest: QuickSpec {
         var paragraphCampaign: JSON!
 
         beforeSuite {
-            var path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             // read test.json
+            var path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             var data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             jsonObj = JSON(data: data as Data)
             formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+
             // read OneButtonCampaign.json
             path = Bundle(for: JSONParserTest.self).path(forResource: "OneButtonCampaign", ofType: "json")!
             data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             oneButtonCampaign = JSON(data: data as Data)
+
             // read CampaignBannerParagraph.json
             path = Bundle(for: JSONParserTest.self).path(forResource: "CampaignBannerParagraph", ofType: "json")!
             data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             paragraphCampaign = JSON(data: data as Data)
         }
 
-        describe("the JSON parser") {
+        describe("JSONFormParser") {
 
             it("returns the correct page holder") {
                 expect(JSONFormParser.getPageHolder(inJSON: oneButtonCampaign)).to(equal(oneButtonCampaign["structure"]))
                 expect(JSONFormParser.getPageHolder(inJSON: jsonObj)).to(equal(jsonObj["form"]))
             }
 
-            context("with a valid form") {
-                beforeEach {
-                    //Only for this describe
-                }
-
+            context("When initilized with a valid Json") {
                 it("should correctly extract the form settings") {
                     expect(formModel.copyModel.appTitle).to(equal("FeedbackTest"))
                     expect(formModel.copyModel.navigationSubmit).to(equal("TestSubmit"))
@@ -62,148 +60,132 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.isDefault).to(equal(false))
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
-
                 it("checks for the continue button correctly") {
                     expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][0])).to(beFalse())
-
                     expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][1])).to(beTrue())
                 }
-
-                describe("the colors group") {
-                    it("should have been correctly parsed") {
-                        expect(formModel.theme.titleColor.hexString(false)).to(equal("#41474C"))
-                        expect(formModel.theme.accentColor.hexString(false)).to(equal("#00A5C9"))
-                        expect(formModel.theme.textColor.hexString(false)).to(equal("#59636B"))
-                        expect(formModel.theme.errorColor.hexString(false)).to(equal("#F4606E"))
-                        expect(formModel.theme.backgroundColor.hexString(false)).to(equal("#FFFFFF"))
-                        expect(formModel.theme.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
-                    }
+                it("should correctly extract the colors") {
+                    expect(formModel.theme.titleColor.hexString(false)).to(equal("#41474C"))
+                    expect(formModel.theme.accentColor.hexString(false)).to(equal("#00A5C9"))
+                    expect(formModel.theme.textColor.hexString(false)).to(equal("#59636B"))
+                    expect(formModel.theme.errorColor.hexString(false)).to(equal("#F4606E"))
+                    expect(formModel.theme.backgroundColor.hexString(false)).to(equal("#FFFFFF"))
+                    expect(formModel.theme.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
                 }
-                describe("the pages array") {
-
-                    it("should have been correctly parsed") {
-                        let pages = formModel.pages
-                        expect(pages.count).to(equal(4))
-                    }
-
-                    describe("the second page") {
-
-                        it("should contain valid data") {
-                            let page = formModel.pages[1]
-                            expect(page.pageName).to(equal("second"))
-                        }
-
-                        it("should have the correct jump rule") {
-                            let page = formModel.pages[0]
-                            expect(page.defaultJumpTo).to(equal("Third"))
-                            expect(page.jumpRuleList?.count).to(equal(1))
-                            expect(page.jumpRuleList![0].jumpTo).to(equal("second"))
-                            expect(page.jumpRuleList![0].dependsOnID).to(equal("nps"))
-                            expect(page.jumpRuleList![0].targetValues.count).to(equal(5))
-                            expect(page.jumpRuleList![0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
-
-                        }
-
-                        describe("the field array") {
-
-                            it("should have the correct properties") {
-                                let fields = formModel.pages[0].fields
-                                expect(fields.count).to(equal(6))
-                            }
-
-                            it("should containt a valid first field") {
-                                let field: MoodFieldModel = (formModel.pages[0].fields[0]) as! MoodFieldModel
-                                expect(field.fieldId).to(equal("mood"))
-                                expect(field.fieldTitle).to(equal("Click to edit question"))
-                                expect(field.type).to(equal("mood"))
-                                expect(field.required).to(beTrue())
-                                expect(field.fieldId).to(equal("mood"))
-                                expect(field.fieldId).to(equal("mood"))
-                                expect(field.rule).to(beNil())
-                            }
-
-                            it("should containt a valid second field") {
-                                let field: ParagraphFieldModel = formModel.pages[0].fields[1] as! ParagraphFieldModel
-                                expect(field.fieldTitle).to(beEmpty())
-                                expect(field.fieldId).to(beEmpty())
-                                expect(field.type).to(equal("paragraph"))
-                                expect(field.required).to(beFalse())
-                                expect(field.fieldValue).to(equal("I am a paragraph"))
-                                expect(field.shouldAppear()).to(beFalse())
-                                expect(field.rule?.showIfRuleIsSatisfied).to(beTrue())
-                                expect(field.rule?.targetValues).to(equal(["1", "2"]))
-                                expect(field.rule?.dependsOnID).to(equal("mood"))
-                            }
-
-                            it("should containt a valid third field") {
-                                let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
-                                expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
-                                expect(field.fieldId).to(equal("nps"))
-                                expect(field.type).to(equal("rating"))
-                                expect(field.required).to(beTrue())
-                                expect(field.fieldValue).to(beNil())
-                                expect(field.shouldAppear()).to(beFalse())
-                                expect(field.rule?.showIfRuleIsSatisfied).to(beTrue())
-                                expect(field.rule?.targetValues).to(equal(["4", "5"]))
-                                expect(field.rule?.dependsOnID).to(equal("mood"))
-                                expect(field.high).to(equal("very likely"))
-                                expect(field.low).to(equal("not at all"))
-                                expect(field.shouldAppear()).to(beFalse())
-                            }
-
-                            it("should containt a valid fourth field") {
-                                let field: TextFieldModel = formModel.pages[0].fields[3] as! TextFieldModel
-                                expect(field.fieldTitle).to(equal("Click to edit"))
-                                expect(field.fieldId).to(equal("text"))
-                                expect(field.type).to(equal("text"))
-                                expect(field.required).to(beFalse())
-                                expect(field.fieldValue).to(beNil())
-                                expect(field.placeHolder).to(equal("I am a placeholder"))
-                                expect(field.shouldAppear()).to(beTrue())
-                            }
-
-                            it("should containt a valid fifth field") {
-                                let field: CheckboxFieldModel = formModel.pages[0].fields[4] as! CheckboxFieldModel
-                                expect(field.fieldTitle).to(equal("Checkboxah"))
-                                expect(field.fieldId).to(equal("Checkboxah"))
-                                expect(field.type).to(equal("checkbox"))
-                                expect(field.required).to(beFalse())
-                                expect(field.fieldValue).to(equal([]))
-                                expect(field.shouldAppear()).to(beTrue())
-                            }
-
-                        }
-                    }
-                }
-
-                describe("the page model") {
-
-                    it("should have the correct jump rule") {
-                        let pageModel = formModel.pages[0]
-                        expect(pageModel.defaultJumpTo).to(equal("Third"))
-                        expect(pageModel.jumpRuleList?.count).to(equal(1))
-                        expect(pageModel.jumpRuleList?[0].jumpTo).to(equal("second"))
-                        expect(pageModel.jumpRuleList?[0].dependsOnID).to(equal("nps"))
-                        expect(pageModel.jumpRuleList?[0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
-                    }
+                it("should correctly parse the pages") {
+                    let pages = formModel.pages
+                    expect(pages.count).to(equal(4))
+                    expect(pages[0].pageName).to(equal("start"))
+                    expect(pages[1].pageName).to(equal("second"))
+                    expect(pages[2].pageName).to(equal("Third"))
+                    expect(pages[3].pageName).to(equal("end"))
                 }
             }
-        }
 
-        context("When parsePage is called") {
-            it("should parse correctly the paragraph") {
-                let firstPage = paragraphCampaign["structure"]["pages"].array?.first
-                let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
-                let firstField = firstPageModel.fields.first
-                expect(firstField is ParagraphFieldModel).to(beTrue())
-                expect(firstField?.fieldTitle).toNot(beNil())
+            context("when pages are parsed") {
+                it("should extract the correct jump rules for first page") {
+                    let page = formModel.pages[0]
+                    expect(page.defaultJumpTo).to(equal("Third"))
+                    expect(page.jumpRuleList?.count).to(equal(1))
+                    expect(page.jumpRuleList![0].jumpTo).to(equal("second"))
+                    expect(page.jumpRuleList![0].dependsOnID).to(equal("nps"))
+                    expect(page.jumpRuleList![0].targetValues.count).to(equal(5))
+                    expect(page.jumpRuleList![0].targetValues).to(equal(["0", "1", "2", "3", "4"]))
+                }
+                it("should extract fields correctly for first page") {
+                    let fields = formModel.pages[0].fields
+                    expect(fields.count).to(equal(6))
+                }
             }
-            it("should parse correctly the mood model") {
-                let firstPage = oneButtonCampaign["structure"]["pages"].array?.first
-                let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
-                let firstField = firstPageModel.fields.first
-                expect(firstField is MoodFieldModel).to(beTrue())
-                expect(firstField?.fieldTitle).toNot(beNil())
+
+            context("when fields are parsed") {
+                it("should set correct values for field 1") {
+                    let field: MoodFieldModel = (formModel.pages[0].fields[0]) as! MoodFieldModel
+                    expect(field.fieldId).to(equal("mood"))
+                    expect(field.fieldTitle).to(equal("Click to edit question"))
+                    expect(field.type).to(equal("mood"))
+                    expect(field.required).to(beTrue())
+                    expect(field.fieldId).to(equal("mood"))
+                    expect(field.fieldId).to(equal("mood"))
+                    expect(field.rule).to(beNil())
+                }
+                it("should set correct values for field 2") {
+                    let field: ParagraphFieldModel = formModel.pages[0].fields[1] as! ParagraphFieldModel
+                    expect(field.fieldTitle).to(beEmpty())
+                    expect(field.fieldId).to(beEmpty())
+                    expect(field.type).to(equal("paragraph"))
+                    expect(field.required).to(beFalse())
+                    expect(field.fieldValue).to(equal("I am a paragraph"))
+                    expect(field.shouldAppear()).to(beFalse())
+                    expect(field.rule?.showIfRuleIsSatisfied).to(beTrue())
+                    expect(field.rule?.targetValues).to(equal(["1", "2"]))
+                    expect(field.rule?.dependsOnID).to(equal("mood"))
+                }
+                it("should set correct values for field 3") {
+                    let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
+                    expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
+                    expect(field.fieldId).to(equal("nps"))
+                    expect(field.type).to(equal("rating"))
+                    expect(field.required).to(beTrue())
+                    expect(field.fieldValue).to(beNil())
+                    expect(field.shouldAppear()).to(beFalse())
+                    expect(field.rule?.showIfRuleIsSatisfied).to(beTrue())
+                    expect(field.rule?.targetValues).to(equal(["4", "5"]))
+                    expect(field.rule?.dependsOnID).to(equal("mood"))
+                    expect(field.high).to(equal("very likely"))
+                    expect(field.low).to(equal("not at all"))
+                    expect(field.shouldAppear()).to(beFalse())
+                }
+                it("should set correct values for field 4") {
+                    let field: TextFieldModel = formModel.pages[0].fields[3] as! TextFieldModel
+                    expect(field.fieldTitle).to(equal("Click to edit"))
+                    expect(field.fieldId).to(equal("text"))
+                    expect(field.type).to(equal("text"))
+                    expect(field.required).to(beFalse())
+                    expect(field.fieldValue).to(beNil())
+                    expect(field.placeHolder).to(equal("I am a placeholder"))
+                    expect(field.shouldAppear()).to(beTrue())
+                }
+                it("should set correct values for field 5") {
+                    let field: CheckboxFieldModel = formModel.pages[0].fields[4] as! CheckboxFieldModel
+                    expect(field.fieldTitle).to(equal("Checkboxah"))
+                    expect(field.fieldId).to(equal("Checkboxah"))
+                    expect(field.type).to(equal("checkbox"))
+                    expect(field.required).to(beFalse())
+                    expect(field.fieldValue).to(equal([]))
+                    expect(field.shouldAppear()).to(beTrue())
+                }
+            }
+
+            context("When parsePage is called") {
+                it("should parse correctly page properties") {
+                    let firstPage = oneButtonCampaign["structure"]["pages"].array?.first
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    expect(firstPageModel.pageName).to(equal("Banner"))
+                    expect(firstPageModel.type).to(equal(PageType.banner))
+                    expect(firstPageModel.fields.count).to(equal(1))
+                }
+                it("should parse correctly the paragraph") {
+                    let firstPage = paragraphCampaign["structure"]["pages"].array?.first
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstField = firstPageModel.fields.first
+                    expect(firstField is ParagraphFieldModel).to(beTrue())
+                    expect(firstField?.fieldTitle).toNot(beNil())
+                }
+                it("should parse correctly the paragraph") {
+                    let firstPage = paragraphCampaign["structure"]["pages"].array?.first
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstField = firstPageModel.fields.first
+                    expect(firstField is ParagraphFieldModel).to(beTrue())
+                    expect(firstField?.fieldTitle).toNot(beNil())
+                }
+                it("should parse correctly the mood model") {
+                    let firstPage = oneButtonCampaign["structure"]["pages"].array?.first
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstField = firstPageModel.fields.first
+                    expect(firstField is MoodFieldModel).to(beTrue())
+                    expect(firstField?.fieldTitle).toNot(beNil())
+                }
             }
         }
     }

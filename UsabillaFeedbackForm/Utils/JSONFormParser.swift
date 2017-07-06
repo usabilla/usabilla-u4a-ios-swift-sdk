@@ -44,7 +44,6 @@ class JSONFormParser {
         // specific intro page parsing
         if let introPage = currentPage as? IntroPageModel {
             //look for continue field
-
             introPage.hasContinueButton = checkForContinueButton(pageJson: pageJson)
             if let displayMode = IntroPageDisplayMode(rawValue: pageJson["display"].stringValue) {
                 introPage.displayMode = displayMode
