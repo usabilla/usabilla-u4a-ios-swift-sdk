@@ -37,6 +37,11 @@ class CampaignWindow: UIWindow {
         isHidden = false
         currentCampaignViewModel = campaignViewModel
         rootViewController = CampaignViewController(viewModel: campaignViewModel, delegate: self)
+        rootViewController?.view.translatesAutoresizingMaskIntoConstraints = false
+        rootViewController?.view.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+        rootViewController?.view.topAnchor.constraint(equalTo: topAnchor).activate()
+        rootViewController?.view.leftAnchor.constraint(equalTo: leftAnchor).activate()
+        rootViewController?.view.rightAnchor.constraint(equalTo: rightAnchor).activate()
         return true
     }
 
