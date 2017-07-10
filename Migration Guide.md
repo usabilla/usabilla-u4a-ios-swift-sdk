@@ -18,8 +18,8 @@ The most important aspect of running a mobile campaign are 'Events'. Events are 
 
 - Target specific App(s), it is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App)
 - Target a specific event (e.g. purchase complete)
-- Target the frequency of that event occuring (e.g. 3 times)
-- Specify the percentage of users for which the campaign should be triggered (e.g. 10%)
+- Target the frequency of that event occurring (e.g. 3 times)
+- Specify the percentage of users for whom the campaign should be triggered (e.g. 10%)
 
 Note: A campaign will never be triggered for the same user more than once.
 
@@ -27,9 +27,9 @@ Note: A campaign will never be triggered for the same user more than once.
 
 After you create a new campaign in the Usabilla for Apps [Campaign Editor](https://app.usabilla.com/member/live/apps/campaigns/add) you can start collecting results. By default, new campaigns are marked as inactive. From the Usabilla web interface, on the Usabilla for Apps [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/) you can activate a campaign. Once you have received a satisfying amount of responses you can deactivate it.
 
-At any time you can update the survey content of your campaign (e.g. questions). Keep in mind that the changes you make to an existing campaign might affect the integrety of the data you collect (different responses before and after a change).
+At any time you can update the survey content of your campaign (e.g. questions). Keep in mind that the changes you make to an existing campaign might affect the integrity of the data you collect (different responses before and after a change).
 
-Furthermore it is possible to change the targeting options of a while it is active or inactive campaign. Updating the targeting options of an active campaign will reset the progression made on your users' device towards it.
+Furthermore, you can also change the targeting options of a campaign. Keep in mind that updating the targeting options of an active campaign will reset any progression previously made on the user's device.
 
 ### Campaign results 
 
