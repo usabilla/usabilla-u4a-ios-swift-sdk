@@ -25,7 +25,7 @@ Note: A campaign will never be triggered for the same user more than once.
 
 ### Managing an existing campaign
 
-After you create a new campaign in the Usabilla for Apps [Campaign Editor](https://app.usabilla.com/member/live/apps/campaigns/add) you can start collecting results. By default, new campaigns are marked as inactive. From the Usabilla web interface, on the Usabilla for Apps [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/) you can activate a campaign. Once you have received a satisfying amount of responses you can deactivate it.
+After you create a new campaign in the Usabilla for Apps [Campaign Editor](https://app.usabilla.com/member/live/apps/campaigns/add) you can start collecting results. By default, new campaigns are marked as inactive. From the Usabilla web interface, on the Usabilla for Apps [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/), you can activate a campaign. Once you have received a satisfying amount of responses you can deactivate it.
 
 At any time you can update the survey content of your campaign (e.g. questions). Keep in mind that the changes you make to an existing campaign might affect the integrity of the data you collect (different responses before and after a change).
 
