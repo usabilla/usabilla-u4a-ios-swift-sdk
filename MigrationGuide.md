@@ -6,7 +6,7 @@ This guide describes the Campaigns feature and all the steps necessary to work w
 
 In the Usabilla for Apps Platform, we define a campaign as a proactive survey targeted to a specific set of users.
 
-Being able to run campaigns in your mobile app is great because it allows you to collect more specific insights from your targeted users. What is even better is that creating new and managing existing campaigns can be done without the need for a new release of your app. Everything can be managed from the Usabilla web interface. 
+Being able to run campaigns in your mobile app is great because it allows you to collect more specific insights from your targeted users. What is even better is that creating new and managing existing campaigns can be done without the need for a new release of your app. Everything can be managed from the Usabilla web interface.
 
 You can run as many campaigns as you like and target them to be triggered when a specific set of targeting options is met. The survey that is displayed to the user can be configured just like you are used to with the existing feedback forms in your app.
 
@@ -31,7 +31,7 @@ At any time you can update the survey content of your campaign (e.g. questions).
 
 Furthermore, you can also change the targeting options of a campaign. Keep in mind that updating the targeting options of an active campaign will reset any progression previously made on the user's device.
 
-### Campaign results 
+### Campaign results
 
 Aggregated campaign results are available for download from the [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/). Here you download the results per campaign, in the CSV format.
 
@@ -48,7 +48,7 @@ Once this method is called, all **active** campaigns associated with the `appId`
 
 The method returns a boolean that specifies whether or not the initialization was successful.
 
-**The method only checks if the appId passed as a parameter is a valid UUID. It does not check whether or not that it actually exists in the Usabilla database.**
+**To reduce the network usage the method only checks if the appId passed as a parameter is a valid UUID. It does not check whether or not that it actually exists in the Usabilla database.**
 
 ### Targeting - Sending events to the SDK
 
@@ -66,6 +66,6 @@ To make sure no campaigns trigger at an inappropriate moment, you can set the bo
 Setting it to `true` will allow the SDK to display any campaign when it triggers.
 Setting it to `false` will prevent any campaign from being displayed.
 
-**If a campaign triggers while `canDisplayCampaigns` is `false`, it won't be displayed nor delayed: That instance will be lost.**
+**If a campaign triggers while `canDisplayCampaigns` is `false`, it won't be displayed nor delayed: That event instance will be lost.**
 
 By default, `canDisplayCampaigns` is set to `true`.
