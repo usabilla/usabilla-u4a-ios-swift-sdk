@@ -19,7 +19,9 @@ open class UsabillaFeedbackForm {
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
-
+    #if DEBUG
+        open static var allowUnlimitedCampaignDisplay: Bool = false
+    #endif
     static var appIdentifier: String?
     static var defaultLocalisationFile = true
     static let campaignService = CampaignService()
@@ -65,36 +67,36 @@ open class UsabillaFeedbackForm {
         UBFormDAO.shared.deleteAll()
     }
     #if DEBUG
-    open class func formViewController(forFormJson json: JSON) -> UINavigationController {
-        let form = FormModel(json: json, id: "", screenshot: nil)
-        let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
-        let navigationController = UINavigationController(rootViewController: formController)
-        formController.delegate = PassiveFormController(submissionManager: submissionManager)
-        return navigationController
-    }
-
-    open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = UsabillaTheme()) {
-        guard let campaignManager = campaignManager else {
-            let error = NSError(domain: "SDK not initialized", code: 0, userInfo: nil)
-            delegate?.campaignFormDidDisplay(formId: formId, error: error)
-            return
+        open class func formViewController(forFormJson json: JSON) -> UINavigationController {
+            let form = FormModel(json: json, id: "", screenshot: nil)
+            let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
+            let navigationController = UINavigationController(rootViewController: formController)
+            formController.delegate = PassiveFormController(submissionManager: submissionManager)
+            return navigationController
         }
-        campaignStore.getCampaignForm(withFormId: formId, theme: theme).then { form in
-            if campaignManager.displayCampaignForm(form) {
-                delegate?.campaignFormDidDisplay(formId: formId, error: nil)
+
+        open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = UsabillaTheme()) {
+            guard let campaignManager = campaignManager else {
+                let error = NSError(domain: "SDK not initialized", code: 0, userInfo: nil)
+                delegate?.campaignFormDidDisplay(formId: formId, error: error)
                 return
             }
-            let error = NSError(domain: "A campaign form is already displayed", code: 0, userInfo: nil)
-            delegate?.campaignFormDidDisplay(formId: formId, error: error)
+            campaignStore.getCampaignForm(withFormId: formId, theme: theme).then { form in
+                if campaignManager.displayCampaignForm(form) {
+                    delegate?.campaignFormDidDisplay(formId: formId, error: nil)
+                    return
+                }
+                let error = NSError(domain: "A campaign form is already displayed", code: 0, userInfo: nil)
+                delegate?.campaignFormDidDisplay(formId: formId, error: error)
             }.catch { error in
                 delegate?.campaignFormDidDisplay(formId: formId, error: error)
+            }
         }
-    }
 
-    open class func showCampaignForm(formJson: JSON, campaignId: String = "id") {
-        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-        campaignManager?.displayCampaignForm(formModel, campaignId: campaignId)
-    }
+        open class func showCampaignForm(formJson: JSON, campaignId: String = "id") {
+            let formModel = FormModel(json: formJson, id: "", screenshot: nil)
+            campaignManager?.displayCampaignForm(formModel, campaignId: campaignId)
+        }
     #endif
 
     open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {

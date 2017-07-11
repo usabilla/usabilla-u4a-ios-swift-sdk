@@ -15,10 +15,15 @@ class CampaignModel: NSObject, NSCoding {
     let formId: String
     let targetingId: String
     var numberOfTimesTriggered: Int = 0
-    var maximumDisplays: Int = 0
+    var maximumDisplays: Int
 
     var form: FormModel?
     var canBeDisplayed: Bool {
+        #if DEBUG
+            guard UsabillaFeedbackForm.allowUnlimitedCampaignDisplay == false else {
+                return true
+            }
+        #endif
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 
@@ -31,17 +36,14 @@ class CampaignModel: NSObject, NSCoding {
         self.maximumDisplays = maximumDisplays
     }
 
-    init?(json: JSON) {
+    convenience init?(json: JSON) {
         guard let identifier = json["id"].string,
             let formId = json["form_id"].string,
             let targetingId = json["targeting_options_id"].string else {
                 return nil
         }
-        self.rule = nil
-        self.identifier = identifier
-        self.formId = formId
-        self.targetingId = targetingId
-        self.maximumDisplays = json["maximumDisplays"].intValue
+
+        self.init(id: identifier, rule: nil, formId: formId, targetingId: targetingId, maximumDisplays: json["maximumDisplays"].int ?? 1)
     }
 
     func respondToEvents(event: Event) -> Bool {
