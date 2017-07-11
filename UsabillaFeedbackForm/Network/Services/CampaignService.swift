@@ -22,8 +22,6 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     func getCampaignForm(withId id: String) -> Promise<FormModel>
     func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>>
     func getTargeting(withId id: String) -> Promise<Cachable<Rule>>
-
-    @discardableResult func submit(withRequest request: URLRequest) -> Promise<String>
 }
 
 class CampaignService: CampaignServiceProtocol {
@@ -93,6 +91,8 @@ class CampaignService: CampaignServiceProtocol {
     ///   - request: the URL request with the feedback data
     ///
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
+    
+    
     func submit(withRequest request: URLRequest) -> Promise<String> {
         return Promise { fulfill, reject in
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
