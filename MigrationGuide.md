@@ -35,6 +35,14 @@ Furthermore, you can also change the targeting options of a campaign. Keep in mi
 
 Aggregated campaign results are available for download from the [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/). Here you download the results per campaign, in the CSV format.
 
+Campaign results will always contain metadata from the device. Besides the metadata, it will also contain the answers that your user provided. The campaign feature collects campaign results page by page. When a user navigates to a new page, then the results of the previous page are submitted to Usabilla. 
+
+As for campaign results. Please note that editing the form of an existing campaign will affect the aggregated campaign results:
+
+- Adding new questions to a form will add an additional column to the CSV file
+- Removing questions from an existing form will keep the column in the CSV file and it displays previously collected results
+- Replacing the question type with a different question is also possible. When you give the same 'name' in the Usabilla for Apps Campaign Editor, then results are represented in the same column. 
+
 ## Setting up the SDK
 
 ### Initialize the SDK
@@ -69,3 +77,5 @@ Setting it to `false` will prevent any campaign from being displayed.
 **If a campaign triggers while `canDisplayCampaigns` is `false`, it won't be displayed nor delayed: That event instance will be lost.**
 
 By default, `canDisplayCampaigns` is set to `true`.
+
+There is an important reason why a campaign is not delayed for display if the `canDisplayCampaigns` was `false` when the campaign is triggered and later changes to `true`. The reasoning is that displaying a campaign should happen when the targeted event occurs. We can assume that the events configured in your application are also an proper time to display it to the user. We think it is crucial not to trigger a campaign to the user at an inappropriate time.
