@@ -27,18 +27,17 @@ class RepetitionRuleTests: QuickSpec {
 
         describe("The Repetition Decorator") {
 
-            context("When creating an object", {
+            context("When creating an object") {
                 it("should initialise correctly") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.type).to(equal(RuleType.leaf))
                     expect(rep.ruleID).to(equal("id1"))
                     expect(rep.rule).to(be(self.leafRule1))
                     expect(rep.alreadyTriggered).to(beFalse())
-
                 }
-            })
+            }
 
-            context("When checking for validity", {
+            context("When checking for validity") {
                 it("should trigger only after the correct number of repetition") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.alreadyTriggered).to(beFalse())
@@ -48,9 +47,7 @@ class RepetitionRuleTests: QuickSpec {
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
                     expect(rep.alreadyTriggered).to(beTrue())
-
                 }
-
                 it("should trigger even when the number of occurrences surpasses the threshold") {
                     let rep = RepetitionDecorator(occurrences: 2, rule: self.leafRule1)
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
@@ -60,9 +57,7 @@ class RepetitionRuleTests: QuickSpec {
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
                     expect(rep.alreadyTriggered).to(beTrue())
-
                 }
-
                 it("should serialize correctly") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
@@ -85,9 +80,7 @@ class RepetitionRuleTests: QuickSpec {
                     expect(unserialised.triggersWith(event: self.event1)).to(beFalse())
                     expect(unserialised.triggersWith(event: self.event1)).to(beFalse())
                     expect(unserialised.triggersWith(event: self.event1)).to(beTrue())
-
                 }
-
                 it("should trigger only after the correct number of repetition") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
@@ -95,9 +88,17 @@ class RepetitionRuleTests: QuickSpec {
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beFalse())
                     expect(rep.triggersWith(event: self.event1)).to(beTrue())
-
                 }
-            })
+            }
+
+            context("When Decorator is custom triggered") {
+                it("should reset correctly the rule") {
+                    let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
+                    expect(rep.rule.alreadyTriggered).to(beTrue())
+                    expect(rep.customTriggersWith(event: self.event1)).to(beFalse())
+                    expect(rep.rule.alreadyTriggered).to(beFalse())
+                }
+            }
         }
     }
 }
