@@ -78,4 +78,4 @@ Setting it to `false` will prevent any campaign from being displayed.
 
 By default, `canDisplayCampaigns` is set to `true`.
 
-There is an important reason why a campaign is not delayed for display if the `canDisplayCampaigns` was `false` when the campaign is triggered and later changes to `true`. The reasoning is that displaying a campaign should happen when the targeted event occurs. We can assume that the events configured in your application are also an proper time to display it to the user. We think it is crucial not to trigger a campaign to the user at an inappropriate time.
+There is an important reason why a campaign is not delayed for display if the `canDisplayCampaigns` was `false` when the campaign is triggered and later changes to `true`. The reasoning is that displaying a campaign should happen when the targeted event occurs. We can assume that the events configured in your application are also triggered at a proper time in order to display it to your users.
