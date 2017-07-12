@@ -13,7 +13,7 @@ class RequestBuilder {
     enum Endpoints: String {
         case campaignForm = "/v2/sdk/forms"
         case passiveForm = "/live/mobile/app/forms"
-        case campaignsList = "/v2/sdk/campaigns?app_id={app_id}&status=active"
+        case campaignsList = "/v2/sdk/campaigns?app_id={app_id}"
         case targetingOptions = "/v2/sdk/targeting-options"
         case campaignSubmission = "/v2/sdk/campaigns/{campaign_id}/feedback"
         case campaignViews = "/v2/sdk/campaigns/{campaign_id}/views"

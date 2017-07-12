@@ -10,12 +10,19 @@ import Foundation
 
 class CampaignModel: NSObject, NSCoding {
 
+    public enum Status: String {
+        case active
+        case inactive
+        case invalid
+    }
+
     let identifier: String
     var rule: Rule?
     let formId: String
     let targetingId: String
     var numberOfTimesTriggered: Int = 0
     var maximumDisplays: Int
+    var status: Status
 
     var form: FormModel?
     var canBeDisplayed: Bool {
@@ -27,23 +34,24 @@ class CampaignModel: NSObject, NSCoding {
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 
-    init(id: String, rule: Rule?, formId: String, targetingId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0) {
+    init(id: String, rule: Rule?, formId: String, targetingId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, status: Status = .active) {
         self.identifier = id
         self.rule = rule
         self.formId = formId
         self.targetingId = targetingId
         self.numberOfTimesTriggered = numberOfTimesTriggered
         self.maximumDisplays = maximumDisplays
+        self.status = status
     }
 
     convenience init?(json: JSON) {
         guard let identifier = json["id"].string,
             let formId = json["form_id"].string,
-            let targetingId = json["targeting_options_id"].string else {
+            let targetingId = json["targeting_options_id"].string, let status = Status(rawValue: json["status"].stringValue) else {
                 return nil
         }
 
-        self.init(id: identifier, rule: nil, formId: formId, targetingId: targetingId, maximumDisplays: json["maximumDisplays"].int ?? 1)
+        self.init(id: identifier, rule: nil, formId: formId, targetingId: targetingId, maximumDisplays: json["maximumDisplays"].int ?? 1, status: status)
     }
 
     func respondToEvents(event: Event) -> Bool {

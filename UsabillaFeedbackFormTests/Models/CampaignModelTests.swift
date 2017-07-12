@@ -60,22 +60,32 @@ class CampaignModelTests: QuickSpec {
                     let maxDisplays = 0
                     let numberOfTimesTriggered = 0
 
-                    let json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays)}"
+                    var json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"active\"}"
+                    var campaign = CampaignModel(json: JSON.parse(json))
 
-                    let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).toNot(beNil())
-
                     expect(campaign!.identifier).to(equal(campaignId))
                     expect(campaign!.formId).to(equal(formId))
                     expect(campaign!.targetingId).to(equal(targetingId))
                     expect(campaign!.maximumDisplays).to(equal(maxDisplays))
                     expect(campaign!.numberOfTimesTriggered).to(equal(numberOfTimesTriggered))
+                    expect(campaign!.status).to(equal(CampaignModel.Status.active))
+
+                    json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"inactive\"}"
+                    campaign = CampaignModel(json: JSON.parse(json))
+                    expect(campaign!.status).to(equal(CampaignModel.Status.inactive))
+
+                    json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"invalid\"}"
+                    campaign = CampaignModel(json: JSON.parse(json))
+                    expect(campaign!.status).to(equal(CampaignModel.Status.invalid))
                 }
+
                 it("Should fail when id property is missing") {
                     let targetingId = "targetingId"
                     let formId = "formId"
                     let maxDisplays = 0
-                    let json = "{\"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays)}"
+                    let status = "active"
+                    let json = "{\"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\"}}"
 
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())
@@ -84,7 +94,8 @@ class CampaignModelTests: QuickSpec {
                     let campaignId = "campaignId"
                     let targetingId = "targetingId"
                     let maxDisplays = 0
-                    let json = "{\"id\": \"\(campaignId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays)}"
+                    let status = "active"
+                    let json = "{\"id\": \"\(campaignId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\"}}"
 
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())
@@ -93,7 +104,18 @@ class CampaignModelTests: QuickSpec {
                     let campaignId = "campaignId"
                     let formId = "formId"
                     let maxDisplays = 0
-                    let json = "{\"id\": \"\(campaignId)\",\"form_id\": \"\(formId)\", \"maximumDisplays\": \(maxDisplays)}"
+                    let status = "active"
+                    let json = "{\"id\": \"\(campaignId)\",\"form_id\": \"\(formId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\"}}"
+
+                    let campaign = CampaignModel(json: JSON.parse(json))
+                    expect(campaign).to(beNil())
+                }
+                it("Should fail when status property is missing") {
+                    let campaignId = "campaignId"
+                    let formId = "formId"
+                    let targetingId = "targetingId"
+                    let maxDisplays = 0
+                    let json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays)}"
 
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())

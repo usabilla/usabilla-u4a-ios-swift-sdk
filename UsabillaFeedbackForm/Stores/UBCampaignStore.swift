@@ -71,14 +71,16 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     return fulfill(cachedCampaignsList)
                 }
 
-                let campaignModelList = cachableCampainModels.value
+                let campaignModelList = cachableCampainModels.value.filter { $0.status != .invalid }
                 if campaignModelList.count == 0 {
                     UBCampaignDAO.shared.deleteAll()
-                    return fulfill(campaignModelList)
+                    return fulfill([])
                 }
                 self.deleteCachedCampaigns(notInCampaigns: campaignModelList)
 
-                self.updateTargeting(forCampaigns: campaignModelList) { campaigns in
+                let activeCampaigns = campaignModelList.filter { $0.status == .active }
+
+                self.updateTargeting(forCampaigns: activeCampaigns) { campaigns in
                     fulfill(campaigns)
                 }
             }.catch { error in
