@@ -40,21 +40,23 @@ class CampaignManagerTests: QuickSpec {
     override func spec() {
         let storeMock = CampaignStoreMock()
         let manager = CampaignSubmissionRequestManagerMock()
+        var campaignServiceMock: UBCampaignServiceMock!
         describe("CampaignManagerTests") {
             context("When starting the CampaignManager") {
                 beforeEach {
                     storeMock.campaigns = []
+                    campaignServiceMock = UBCampaignServiceMock()
                 }
 
                 it("should return affect 0 campaigns to the eventEngine when no campaigns") {
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(0))
                 }
                 it("should return affect 1 campaign to the eventEngine when the campaign has not limit display") {
                     let campaignModel = UBMock.campaignMock(withId: "testid")
                     expect(campaignModel.maximumDisplays).to(equal(0))
                     storeMock.campaigns = [campaignModel]
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(1))
                     expect(campaignManager.eventEngine.campaigns.first?.identifier).to(equal("testid"))
                 }
@@ -64,7 +66,7 @@ class CampaignManagerTests: QuickSpec {
                     campaignModel.maximumDisplays = 1
                     campaignModel.numberOfTimesTriggered = 1
                     storeMock.campaigns = [campaignModel, campaignModel2]
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(1))
                     expect(campaignManager.eventEngine.campaigns.first?.identifier).to(equal("testid2"))
                 }
@@ -88,7 +90,7 @@ class CampaignManagerTests: QuickSpec {
                     }
 
                     storeMock.campaigns = campaigns
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafRule
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beFalse())
@@ -106,7 +108,7 @@ class CampaignManagerTests: QuickSpec {
                         UBCampaignDAO.shared.create($0)
                     }
 
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                     campaignManager.sendEvent(event: "foo")
@@ -124,7 +126,7 @@ class CampaignManagerTests: QuickSpec {
 
                     storeMock.campaigns = campaigns
                     storeMock.form = UBMock.formMock()
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                     campaignManager.sendEvent(event: "foo")
@@ -144,7 +146,7 @@ class CampaignManagerTests: QuickSpec {
                     }
                     storeMock.campaigns = campaigns
 
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var campaignA = UBCampaignDAO.shared.read(id: "a")
                     var campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
@@ -174,7 +176,7 @@ class CampaignManagerTests: QuickSpec {
 
                     storeMock.campaigns = campaigns
                     storeMock.form = UBMock.formMock()
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "test")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
 
@@ -203,12 +205,12 @@ class CampaignManagerTests: QuickSpec {
                 }
                 it("should display the form") {
                     let form = UBMock.formMock()
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "")
                     expect(campaignManager.displayCampaignForm(form)).to(beTrue())
                 }
                 it("should not display the form when campaign is already displayed") {
                     let form = UBMock.formMock()
-                    let campaignManager = CampaignManager(campaignStore: storeMock, appId: "")
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "")
                     expect(campaignManager.displayCampaignForm(form)).to(beTrue())
                     expect(campaignManager.displayCampaignForm(form)).to(beFalse())
                 }
@@ -223,8 +225,8 @@ class CampaignManagerTests: QuickSpec {
                     storeMock.form = nil
                     UsabillaFeedbackForm.canDisplayCampaigns = true
                     campaign = UBMock.campaignMockWithRules()
-                    campaignManager = CampaignManager(campaignStore: storeMock, appId: "")
-
+                    campaignServiceMock = UBCampaignServiceMock()
+                    campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "")
                 }
                 it("should not display the campaign if it cannot be displayed") {
                     UsabillaFeedbackForm.canDisplayCampaigns = false
@@ -252,6 +254,32 @@ class CampaignManagerTests: QuickSpec {
                     campaignManager.displayCampaign(campaign)
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
                     expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, manager: manager))).to(beTrue())
+                }
+
+                it("should increment the number of views when it is displayed") {
+                    storeMock.form = UBMock.formMock()
+                    campaignServiceMock.incrementCampaignSucceed = true
+                    expect(campaign.canBeDisplayed).to(beTrue())
+
+                    waitUntil(timeout: 2) { done in
+                        campaignServiceMock.onIncrementCampaign = { campaignId, viewCount in
+                            expect(campaignId).to(equal(campaign.identifier))
+                            expect(viewCount).to(equal(1))
+                            done()
+                        }
+                        campaignManager.displayCampaign(campaign)
+                    }
+                }
+
+                it("should increment the number of views when it is not displayed") {
+                    storeMock.form = UBMock.formMock()
+                    campaignServiceMock.incrementCampaignSucceed = true
+                    expect(campaign.canBeDisplayed).to(beTrue())
+                    UsabillaFeedbackForm.canDisplayCampaigns = false
+                    campaignServiceMock.onIncrementCampaign = { campaignId, viewCount in
+                        fail("should not be called")
+                    }
+                    campaignManager.displayCampaign(campaign)
                 }
             }
         }

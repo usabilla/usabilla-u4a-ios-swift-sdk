@@ -16,6 +16,7 @@ class RequestBuilder {
         case campaignsList = "/v2/sdk/campaigns?app_id={app_id}&status=active"
         case targetingOptions = "/v2/sdk/targeting-options"
         case campaignSubmission = "/v2/sdk/campaigns/{campaign_id}/feedback"
+        case campaignViews = "/v2/sdk/campaigns/{campaign_id}/views"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -149,15 +150,22 @@ class RequestBuilder {
 
     class func requestCampaignFeedbackItemCreation(forCampaignId campaignId: String, withPayload payload: Payload) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
-        let newEndPoint =  endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
+        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
         let url = buildURL(withString: newEndPoint)
         return requestForPost(withURL: url, payload: payload) as URLRequest
     }
 
     class func requestCampaignFeedbackItemPatch(forCampaignId campaignId: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
-        let newEndPoint =  endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
+        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
         let url = buildURL(withString: newEndPoint, withURLParam: token)
         return requestForPatch(withURL: url, payload: payload) as URLRequest
+    }
+
+    class func requestPatchCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> URLRequest {
+        let endPoint = Endpoints.campaignViews.rawValue
+        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
+        let url = buildURL(withString: newEndPoint)
+        return requestForPatch(withURL: url, payload: ["view": viewCount]) as URLRequest
     }
 }

@@ -84,7 +84,8 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
     var campaignsResponse: Cachable<[CampaignModel]>?
     var targetingResponse: Cachable<Rule>?
     var campaignForm: FormModel?
-
+    var onIncrementCampaign: ((String, Int) -> Void)?
+    var incrementCampaignSucceed = true
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
 
@@ -128,17 +129,27 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
             reject(NSError(domain: "", code: 500, userInfo: nil))
         }
     }
+
+    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool> {
+        return Promise { fulfill, reject in
+            onIncrementCampaign?(campaignId, viewCount)
+            if incrementCampaignSucceed == true {
+                return fulfill(true)
+            }
+            return reject(NSError(domain: "", code: 0, userInfo: nil))
+        }
+    }
 }
 
 class UBPageModelMock: PageModelProtocol {
-    func toJSONDictionary() -> [String : Any] {
+    func toJSONDictionary() -> [String: Any] {
         var dict = ["one": ["one"]]
         dict["two"] = ["two", "two"]
         return dict
     }
     var type: PageType?
     var fields: [BaseFieldModel]
-    var fieldValuesCollection: [String : [String]]
+    var fieldValuesCollection: [String: [String]]
 
     init() {
         fields = []

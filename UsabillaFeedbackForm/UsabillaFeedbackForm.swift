@@ -59,7 +59,7 @@ open class UsabillaFeedbackForm {
             return false
         }
         appIdentifier = appId
-        campaignManager = CampaignManager(campaignStore: campaignStore, appId: appId)
+        campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appId: appId)
         return true
     }
 

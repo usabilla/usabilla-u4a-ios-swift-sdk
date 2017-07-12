@@ -6,9 +6,10 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+// swiftlint:disable function_body_length
+
 import Quick
 import Nimble
-
 @testable import UsabillaFeedbackForm
 
 class RequestBuilderTest: QuickSpec {
@@ -86,7 +87,13 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("GET"))
             }
-        }
 
+            it("Builds the increment campaign view request correctly") {
+                let req = RequestBuilder.requestPatchCampaignViews(forCampaignId: "1234", viewCount: 2)
+                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/1234/views"))
+                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                expect(req.httpMethod).to(equal("PATCH"))
+            }
+        }
     }
 }

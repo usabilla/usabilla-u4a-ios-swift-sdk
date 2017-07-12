@@ -11,13 +11,15 @@ import Foundation
 class CampaignManager {
 
     private(set) var campaignStore: UBCampaignStoreProtocol
+    private(set) var campaignService: CampaignServiceProtocol
     private(set) var eventEngine: EventEngine
     private(set) var appId: String
 
     private let submissionManager: CampaignSubmissionManager
 
-    init(campaignStore: UBCampaignStoreProtocol, appId: String) {
+    init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appId: String) {
         self.campaignStore = campaignStore
+        self.campaignService = campaignService
         self.eventEngine = EventEngine(campaigns: [])
         self.appId = appId
         self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared)
@@ -49,6 +51,7 @@ class CampaignManager {
             if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
+                self.incrementViews(forCampaign: campaign)
                 return
             }
             PLog("A campaign is already displayed")
@@ -66,5 +69,13 @@ class CampaignManager {
 
         let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
         return CampaignWindow.shared.showCampaign(campaignViewModel)
+    }
+
+    private func incrementViews(forCampaign campaign: CampaignModel) {
+        self.campaignService.incrementCampaignViews(forCampaignId: campaign.identifier, viewCount: 1).then { _ in
+            PLog("View count increment for campaign id \(campaign.identifier)")
+        }.catch { _ in
+            PLog("Error incrementing view count for campaign id \(campaign.identifier)")
+        }
     }
 }

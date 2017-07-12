@@ -22,6 +22,7 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     func getCampaignForm(withId id: String) -> Promise<FormModel>
     func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>>
     func getTargeting(withId id: String) -> Promise<Cachable<Rule>>
+    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool>
 }
 
 class CampaignService: CampaignServiceProtocol {
@@ -91,8 +92,7 @@ class CampaignService: CampaignServiceProtocol {
     ///   - request: the URL request with the feedback data
     ///
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
-    
-    
+
     func submit(withRequest request: URLRequest) -> Promise<String> {
         return Promise { fulfill, reject in
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
@@ -101,6 +101,27 @@ class CampaignService: CampaignServiceProtocol {
                     return
                 }
                 reject(NSError(domain: "API says no", code: 1, userInfo: nil))
+            })
+        }
+    }
+
+    /// Increase a campaign number of views
+    ///
+    /// - Parameters:
+    ///   - campaignId: the id of the campaign to increment the number of views
+    ///   - viewCount: the number of views to increment with
+    ///
+    /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
+
+    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool> {
+        let request = requestBuilder.requestPatchCampaignViews(forCampaignId: campaignId, viewCount: viewCount)
+        return Promise { fulfill, reject in
+            httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
+                if response.success {
+                    fulfill(true)
+                    return
+                }
+                reject(response.error ?? NSError(domain: "Impossible to increment campaign views", code: 0, userInfo: nil))
             })
         }
     }

@@ -74,6 +74,11 @@ class SubmitServiceMock: CampaignServiceProtocol {
             reject(NSError(domain: "", code: 0, userInfo: nil))
         }
     }
+    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool> {
+        return Promise { fulfill, reject in
+            fulfill(true)
+        }
+    }
 }
 
 class CampaignSubmissionManagerTests: QuickSpec {

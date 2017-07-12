@@ -81,7 +81,7 @@ class CampaignServiceTests: QuickSpec {
                     }
                 }
                 it("should fail if request succeeds and json is invalid") {
-                    let data =  try! JSON.parse("{\"hello\":\"you\"}").rawData()
+                    let data = try! JSON.parse("{\"hello\":\"you\"}").rawData()
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: data, headers: nil, error: nil, success: true, isChanged: true)
                         CampaignService(httpClient: UBHTTPMock.self).getTargeting(withId: "tid").then { _ in
@@ -101,6 +101,30 @@ class CampaignServiceTests: QuickSpec {
                     }
                 }
             }
+
+            context("When incrementCampaignViews is called") {
+                it("should succeed if request succeeds") {
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                        CampaignService(httpClient: UBHTTPMock.self).incrementCampaignViews(forCampaignId: "1234", viewCount: 1).then { _ in
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should fail if request fails") {
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: false, isChanged: true)
+                        CampaignService(httpClient: UBHTTPMock.self).incrementCampaignViews(forCampaignId: "1234", viewCount: 1).then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
