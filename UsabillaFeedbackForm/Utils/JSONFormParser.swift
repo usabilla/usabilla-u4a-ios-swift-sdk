@@ -10,8 +10,8 @@ import Foundation
 
 class JSONFormParser {
 
-    static func getPageHolder(inJSON json: JSON) -> JSON {
-        return json["structure"].exists() ? json["structure"] : json["form"]
+    static func getStructureHolder(inJSON json: JSON) -> JSON {
+        return json["structure"].exists() ? json["structure"] : json
     }
 
     class func checkForContinueButton(pageJson: JSON) -> Bool {

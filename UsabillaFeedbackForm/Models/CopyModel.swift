@@ -48,12 +48,12 @@ class CopyModel {
         self.introCancelButton = loc["introCancelButton"].string ?? self.introCancelButton
         self.introContinueButton = loc["introContinueButton"].string ?? self.introContinueButton
 
-        let banner = json["structure"]["pages"].first {
+        let banner = json["form"]["pages"].first {
             $0.1["type"].stringValue == "banner"
         }
         let continueField = banner?.1["fields"].first {
             $0.1["type"].stringValue == "continue"
-            }?.1
+        }?.1
 
         if let continuetitle = continueField?["title"].string {
             self.introContinueButton = continuetitle

@@ -37,8 +37,12 @@ class FormModel: NSObject, NSCoding {
     }
 
     init(json: JSON, id: String, screenshot: UIImage?) {
-        let data = json["data"]
-        self.copyModel = CopyModel(json: json)
+
+        let jsonHolder = JSONFormParser.getStructureHolder(inJSON: json)
+
+        let data = jsonHolder["data"]
+        let form = jsonHolder["form"]
+        self.copyModel = CopyModel(json: jsonHolder)
         self.hasScreenshot = data["screenshot"].boolValue
         self.version = json["version"].intValue
         self.redirectToAppStore = data["appStoreRedirect"].boolValue
@@ -48,8 +52,8 @@ class FormModel: NSObject, NSCoding {
         self.theme = UsabillaTheme()
 
         var newPages: [PageModel] = []
-        let pageHolder = JSONFormParser.getPageHolder(inJSON: json)
-        for (index, subJson): (String, JSON) in pageHolder["pages"] {
+
+        for (index, subJson): (String, JSON) in form["pages"] {
             let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!)
             page.errorMessage = copyModel.errorMessage
             page.copy = copyModel

@@ -45,9 +45,9 @@ class JSONParserTest: QuickSpec {
 
         describe("JSONFormParser") {
 
-            it("returns the correct page holder") {
-                expect(JSONFormParser.getPageHolder(inJSON: oneButtonCampaign)).to(equal(oneButtonCampaign["structure"]))
-                expect(JSONFormParser.getPageHolder(inJSON: jsonObj)).to(equal(jsonObj["form"]))
+            it("returns the correct structure holder") {
+                expect(JSONFormParser.getStructureHolder(inJSON: oneButtonCampaign)).to(equal(oneButtonCampaign["structure"]))
+                expect(JSONFormParser.getStructureHolder(inJSON: jsonObj)).to(equal(jsonObj))
             }
 
             context("When initilized with a valid Json") {
@@ -61,8 +61,8 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
                 it("checks for the continue button correctly") {
-                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][0])).to(beFalse())
-                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["pages"][1])).to(beTrue())
+                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["form"]["pages"][0])).to(beFalse())
+                    expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["form"]["pages"][1])).to(beTrue())
                 }
                 it("should correctly extract the colors") {
                     expect(formModel.theme.titleColor.hexString(false)).to(equal("#41474C"))
@@ -159,28 +159,28 @@ class JSONParserTest: QuickSpec {
 
             context("When parsePage is called") {
                 it("should parse correctly page properties") {
-                    let firstPage = oneButtonCampaign["structure"]["pages"].array?.first
+                    let firstPage = oneButtonCampaign["structure"]["form"]["pages"].array?.first
                     let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
                     expect(firstPageModel.pageName).to(equal("Banner"))
                     expect(firstPageModel.type).to(equal(PageType.banner))
                     expect(firstPageModel.fields.count).to(equal(1))
                 }
                 it("should parse correctly the paragraph") {
-                    let firstPage = paragraphCampaign["structure"]["pages"].array?.first
+                    let firstPage = paragraphCampaign["structure"]["form"]["pages"].array?.first
                     let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
                     let firstField = firstPageModel.fields.first
                     expect(firstField is ParagraphFieldModel).to(beTrue())
                     expect(firstField?.fieldTitle).toNot(beNil())
                 }
                 it("should parse correctly the paragraph") {
-                    let firstPage = paragraphCampaign["structure"]["pages"].array?.first
+                    let firstPage = paragraphCampaign["structure"]["form"]["pages"].array?.first
                     let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
                     let firstField = firstPageModel.fields.first
                     expect(firstField is ParagraphFieldModel).to(beTrue())
                     expect(firstField?.fieldTitle).toNot(beNil())
                 }
                 it("should parse correctly the mood model") {
-                    let firstPage = oneButtonCampaign["structure"]["pages"].array?.first
+                    let firstPage = oneButtonCampaign["structure"]["form"]["pages"].array?.first
                     let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
                     let firstField = firstPageModel.fields.first
                     expect(firstField is MoodFieldModel).to(beTrue())
