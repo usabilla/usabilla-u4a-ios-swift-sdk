@@ -16,10 +16,10 @@ The most important aspect of running a mobile campaign are 'Events'. Events are 
 
 ### Targeting options
 
-- Target specific App(s), it is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App)
-- Target a specific event (e.g. purchase complete)
-- Target the frequency of that event occurring (e.g. 3 times)
-- Specify the percentage of users for whom the campaign should be triggered (e.g. 10%)
+- Target specific App(s), it is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App).
+- Target a specific event (e.g. purchase complete).
+- Target the frequency of that event occurring (e.g. 3 times).
+- Specify the percentage of users for whom the campaign should be triggered (e.g. 10%).
 
 Note: A campaign will never be triggered for the same user more than once.
 
@@ -39,8 +39,8 @@ Campaign results will contain the answers that your users provided. The campaign
 
 As for campaign results. Please note that editing the form of an existing campaign will affect the aggregated campaign results:
 
-- Adding new questions to a form will add an additional column to the CSV file
-- Removing questions from an existing form will keep the column in the CSV file and it displays previously collected results
+- Adding new questions to a form will add an additional column to the CSV file.
+- Removing questions from an existing form will keep the column in the CSV file and it displays previously collected results.
 - Replacing the question type with a different question is also possible. When you give the same 'name' in the Usabilla for Apps Campaign Editor, then results are represented in the same column. 
 
 ## Setting up the SDK
