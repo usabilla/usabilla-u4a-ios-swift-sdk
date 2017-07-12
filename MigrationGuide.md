@@ -35,7 +35,7 @@ Furthermore, you can also change the targeting options of a campaign. Keep in mi
 
 Aggregated campaign results are available for download from the [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/). Here you download the results per campaign, in the CSV format.
 
-Campaign results will always contain metadata from the device. Besides the metadata, it will also contain the answers that your user provided. The campaign feature collects campaign results page by page. When a user navigates to a new page, then the results of the previous page are submitted to Usabilla. 
+Campaign results will contain the answers that your users provided. The campaign feature collects campaign results page by page. This means that even if the user abandons the campaign halfway through, you will still collect valuable insights. When a user navigates to a new page, then the results of the previous page are submitted to Usabilla. Besides the results showing the answers to your questions, campaigns will always contain metadata from the device. 
 
 As for campaign results. Please note that editing the form of an existing campaign will affect the aggregated campaign results:
 
