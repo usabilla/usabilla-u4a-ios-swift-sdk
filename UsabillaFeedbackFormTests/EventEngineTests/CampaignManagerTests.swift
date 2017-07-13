@@ -168,7 +168,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0)
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)

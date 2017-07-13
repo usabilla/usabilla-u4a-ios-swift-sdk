@@ -15,7 +15,7 @@ import Nimble
 
 class EventEngineTests: QuickSpec {
     func campaignMock(forId id: String) -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0)
+        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
     }
     var campaigns: [CampaignModel] = []
 

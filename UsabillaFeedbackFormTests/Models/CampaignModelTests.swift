@@ -37,7 +37,7 @@ class CampaignModelTests: QuickSpec {
                     let maxDisplays = 0
                     let numberOfTimesTriggered = 0
 
-                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered)
+                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: .active)
                     let formModel = FormModel(json: formJson, id: "", screenshot: nil)
                     campaign.form = formModel
 
@@ -49,6 +49,35 @@ class CampaignModelTests: QuickSpec {
                     expect(campaign.maximumDisplays).to(equal(maxDisplays))
                     expect(campaign.numberOfTimesTriggered).to(equal(numberOfTimesTriggered))
                     expect(campaign.form?.pages.count).to(equal(4))
+                }
+            }
+
+            context("When CampaignModel is archived") {
+                it("Should have right values when unarchived") {
+                    let campaignId = "campaignId"
+                    let event = Event(name: "myEvent")
+                    let rule = LeafRule(event: event)
+                    let formId = "formId"
+                    let targetingId = "targetingId"
+                    let maxDisplays = 0
+                    let numberOfTimesTriggered = 0
+                    let status = CampaignModel.Status.invalid
+
+                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status)
+                    let data = NSKeyedArchiver.archivedData(withRootObject: campaign)
+
+                    expect(data).toNot(beNil())
+                    // swiftlint:disable force_cast
+                    let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! CampaignModel
+
+                    expect(campaign.identifier).to(equal(campaignId))
+                    // swiftlint:disable force_cast
+                    expect((unserialised.rule as! LeafRule).event.name).to(equal(event.name))
+                    expect(unserialised.formId).to(equal(formId))
+                    expect(unserialised.targetingId).to(equal(targetingId))
+                    expect(unserialised.maximumDisplays).to(equal(maxDisplays))
+                    expect(unserialised.numberOfTimesTriggered).to(equal(numberOfTimesTriggered))
+                    expect(unserialised.status).to(equal(CampaignModel.Status.invalid))
                 }
             }
 

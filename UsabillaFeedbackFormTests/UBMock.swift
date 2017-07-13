@@ -18,14 +18,14 @@ class UBMock {
     }
 
     class func campaignMock(withId id: String = "") -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0)
+        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
     }
 
     class func campaignMockWithRules(id: String = "a") -> CampaignModel {
         let leaf = LeafRule(event: Event(name: "foo"))
         let leaf2 = LeafRule(event: Event(name: "bar"))
         let rule = AndRule(childRules: [leaf, leaf2])
-        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0)
+        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
     }
 }
 
@@ -85,6 +85,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
     var targetingResponse: Cachable<Rule>?
     var campaignForm: FormModel?
     var onIncrementCampaign: ((String, Int) -> Void)?
+    var onGetTargeting: ((String) -> Void)?
     var incrementCampaignSucceed = true
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
@@ -114,6 +115,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
 
     func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
         return Promise { fulfill, reject in
+            onGetTargeting?(id)
             if targetingResponse != nil {
                 return fulfill(targetingResponse!)
             }

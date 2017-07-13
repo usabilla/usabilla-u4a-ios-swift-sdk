@@ -34,7 +34,7 @@ class CampaignModel: NSObject, NSCoding {
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 
-    init(id: String, rule: Rule?, formId: String, targetingId: String, maximumDisplays: Int, numberOfTimesTriggered: Int = 0, status: Status = .active) {
+    init(id: String, rule: Rule?, formId: String, targetingId: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status) {
         self.identifier = id
         self.rule = rule
         self.formId = formId
@@ -51,7 +51,7 @@ class CampaignModel: NSObject, NSCoding {
                 return nil
         }
 
-        self.init(id: identifier, rule: nil, formId: formId, targetingId: targetingId, maximumDisplays: json["maximumDisplays"].int ?? 1, status: status)
+        self.init(id: identifier, rule: nil, formId: formId, targetingId: targetingId, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status)
     }
 
     func respondToEvents(event: Event) -> Bool {
@@ -72,8 +72,11 @@ class CampaignModel: NSObject, NSCoding {
         let targetingId = aDecoder.decodeObject(forKey: "targetingId") as! String
         let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: "numberOfTimesTriggered")
         let maximumDisplays = aDecoder.decodeInteger(forKey: "maximumDisplays")
+        let statusStr = aDecoder.decodeObject(forKey: "status") as! String
 
-        self.init(id: identifier, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered)
+        let status = Status(rawValue: statusStr)!
+
+        self.init(id: identifier, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status)
     }
     // swiftlint:enable force_cast
 
@@ -84,5 +87,6 @@ class CampaignModel: NSObject, NSCoding {
         aCoder.encode(self.targetingId, forKey: "targetingId")
         aCoder.encode(self.numberOfTimesTriggered, forKey: "numberOfTimesTriggered")
         aCoder.encode(self.maximumDisplays, forKey: "maximumDisplays")
+        aCoder.encode(self.status.rawValue, forKey: "status")
     }
 }

@@ -7,6 +7,7 @@
 //
 
 // swiftlint:disable function_body_length
+// swiftlint:disable type_body_length
 
 import Quick
 import Nimble
@@ -69,6 +70,106 @@ class UBCampaignStoreTests: QuickSpec {
                         }.catch { _ in
                             fail("should not go here")
                         }
+                    }
+                }
+                it("should filter out invalid campaigns") {
+                    let campaignService = UBCampaignServiceMock()
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2], hasChanged: true)
+
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(withAppId: "")
+                        promise.then { campaigns in
+                            expect(campaigns.count).to(equal(0))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should filter out invalid campaigns when there are in/active ones") {
+                    let campaignService = UBCampaignServiceMock()
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
+                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
+
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(withAppId: "")
+                        promise.then { campaigns in
+                            expect(campaigns.count).to(equal(1))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should return an empty list of campaigns if there are no ACTIVE ones") {
+                    let campaignService = UBCampaignServiceMock()
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
+
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(withAppId: "")
+                        promise.then { campaigns in
+                            expect(campaigns.count).to(equal(0))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should update inactive campaigns in cache") {
+                    let campaignService = UBCampaignServiceMock()
+                    let cmp1 = UBMock.campaignMockWithRules(id: "cmp1")
+                    UBCampaignDAO.shared.create(cmp1)
+                    let cmpInactive = UBMock.campaignMockWithRules(id: "cmp1")
+                    cmpInactive.status = .inactive
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmpInactive], hasChanged: true)
+
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(withAppId: "")
+                        promise.then { _ in
+                            expect(UBCampaignDAO.shared.readAll().count).to(equal(1))
+                            var campaign = UBCampaignDAO.shared.readAll().first!
+                            expect(campaign.rule).toNot(beNil())
+                            expect(campaign.rule?.type).to(equal(RuleType.and))
+                            expect(campaign.rule?.childRules.count).to(equal(2))
+                            campaign = UBCampaignDAO.shared.readAll().first!
+                            expect(campaign.status).to(equal(CampaignModel.Status.inactive))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should update targeting only for active campaigns") {
+                    let campaignService = UBCampaignServiceMock()
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "t1", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "t2", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "t3", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
+                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "t4", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
+
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        campaignService.onGetTargeting = { id in
+                            expect(id).to(equal(cmp3.targetingId))
+                            done()
+                        }
+                        store.getCampaigns(withAppId: "")
                     }
                 }
             }
