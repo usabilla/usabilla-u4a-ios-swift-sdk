@@ -40,7 +40,7 @@ Campaign results will contain the answers that your users provided. The campaign
 As for campaign results. Please note that editing the form of an existing campaign will affect the aggregated campaign results:
 
 - Adding new questions to a form will add an additional column to the CSV file.
-- Removing questions from an existing form will keep the column in the CSV file and it displays previously collected results.
+- Removing questions from an existing form will not affect the previously collected results. The associated column and its data will still be in the CSV file.
 - Replacing the question type with a different question is also possible. When you give the same 'name' in the Usabilla for Apps Campaign Editor, then results are represented in the same column. 
 
 ## Setting up the SDK
