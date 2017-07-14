@@ -65,7 +65,27 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel.theme).toNot(beNil())
                     expect(self.formModel.copyModel).toNot(beNil())
                 }
+            }
 
+            context("When calling update theme") {
+                it("should get the right theme from json with Structure") {
+                    let json = "{\"structure\" : {\"pages\":\"test\", \"allowedPageTypes\":\"test\", \"data\":\"test\", \"colors\": {\"group1\": {\"hash\": \"#41474C\" }, \"group5\": {\"hash\": \"#FFFFFF\" }} ,\"localization\":\"test\"}}"
+                    let formModel = FormModel(json: JSON.parse(json), id: "id", screenshot: nil)
+                    let previousTheme = formModel.theme
+                    expect(previousTheme).toNot(beNil())
+                    formModel.updateTheme()
+                    expect(formModel.theme).toNot(beNil())
+                    expect(formModel.theme.backgroundColor).toNot(equal(previousTheme.backgroundColor))
+                }
+                it("should get the right theme from json without Structure") {
+                    let json = "{\"pages\":\"test\", \"allowedPageTypes\":\"test\", \"data\":\"test\", \"colors\": {\"group1\": {\"hash\": \"#41474C\" }, \"group5\": {\"hash\": \"#FFFFFF\" }} ,\"localization\":\"test\"}"
+                    let formModel = FormModel(json: JSON.parse(json), id: "id", screenshot: nil)
+                    let previousTheme = formModel.theme
+                    expect(previousTheme).toNot(beNil())
+                    formModel.updateTheme()
+                    expect(formModel.theme).toNot(beNil())
+                    expect(formModel.theme.backgroundColor).toNot(equal(previousTheme.backgroundColor))
+                }
             }
 
             context("When calling toFeedbackResult", {

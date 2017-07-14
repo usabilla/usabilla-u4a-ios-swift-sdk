@@ -113,7 +113,8 @@ class FormModel: NSObject, NSCoding {
     }
 
     func updateTheme() {
-        self.theme.updateConfig(json: formJsonString["colors"])
+        let jsonHolder = JSONFormParser.getStructureHolder(inJSON: formJsonString)
+        self.theme.updateConfig(json: jsonHolder["colors"])
     }
 
     // MARK: NScoding protocols
