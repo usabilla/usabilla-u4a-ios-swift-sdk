@@ -99,7 +99,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         metadata["sdk_version"] = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         metadata["system"] = "ios"
         metadata["timestamp"] = Date().timeIntervalSince1970.description
-        //metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
+        metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
 
         if customVars != nil {
             metadata["custom_variables"] = customVars
