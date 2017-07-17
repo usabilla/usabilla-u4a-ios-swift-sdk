@@ -132,6 +132,7 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should update inactive campaigns in cache") {
                     let campaignService = UBCampaignServiceMock()
                     let cmp1 = UBMock.campaignMockWithRules(id: "cmp1")
+                    cmp1.numberOfTimesTriggered = 17
                     UBCampaignDAO.shared.create(cmp1)
                     let cmpInactive = UBMock.campaignMockWithRules(id: "cmp1")
                     cmpInactive.status = .inactive
@@ -148,6 +149,7 @@ class UBCampaignStoreTests: QuickSpec {
                             expect(campaign.rule?.childRules.count).to(equal(2))
                             campaign = UBCampaignDAO.shared.readAll().first!
                             expect(campaign.status).to(equal(CampaignModel.Status.inactive))
+                            expect(campaign.numberOfTimesTriggered).to(equal(17))
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -170,6 +172,28 @@ class UBCampaignStoreTests: QuickSpec {
                             done()
                         }
                         store.getCampaigns(withAppId: "")
+                    }
+                }
+
+                it("should keep the persisted property numberOfTimesTriggered") {
+                    let campaignService = UBCampaignServiceMock()
+                    let cmp1 = UBMock.campaignMockWithRules(id: "cmp1")
+                    cmp1.numberOfTimesTriggered = 18
+                    UBCampaignDAO.shared.create(cmp1)
+                    let cmpActive = UBMock.campaignMockWithRules(id: "cmp1")
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmpActive], hasChanged: true)
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(withAppId: "")
+                        promise.then { _ in
+                            expect(UBCampaignDAO.shared.readAll().count).to(equal(1))
+                            var campaign = UBCampaignDAO.shared.readAll().first!
+                            campaign = UBCampaignDAO.shared.readAll().first!
+                            expect(campaign.numberOfTimesTriggered).to(equal(18))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
                     }
                 }
             }

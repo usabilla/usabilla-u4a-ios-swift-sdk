@@ -79,6 +79,16 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 }
                 self.deleteCachedCampaigns(notInCampaigns: activeInactiveCampaigns)
 
+                // update number of times triggered
+                activeInactiveCampaigns
+                    .forEach {
+                        let campaignIdentifier = $0.identifier
+                        let cachedCampaign = cachedCampaignsList.first(where: { model in
+                            model.identifier == campaignIdentifier
+                        })
+                        $0.numberOfTimesTriggered = cachedCampaign?.numberOfTimesTriggered ?? 0
+                }
+
                 // update inactive campaigns in cache
                 activeInactiveCampaigns
                     .filter { $0.status == .inactive }
