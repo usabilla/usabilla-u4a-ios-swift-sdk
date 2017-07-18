@@ -7,6 +7,7 @@
 //
 
 // swiftlint:disable function_body_length
+// swiftlint:disable force_cast
 
 import Quick
 import Nimble
@@ -32,6 +33,26 @@ class IntroPageViewModelTests: QuickSpec {
         }
 
         describe("IntroPageViewModel") {
+            context("when initialized with a page a paragraph field") {
+                it("should not set the component view model when the paragraph is empty") {
+                    let paragraphField = ParagraphFieldModel(json: JSON.parse("{\"text\":\"\"}"), pageModel: introPage)
+                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
+                    introPage.fields = [paragraphField]
+
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+
+                    expect(introPageViewModel.componentViewModel).to(beNil())
+                }
+                it("should set the component view model when the paragraph has a text") {
+                    let paragraphField = ParagraphFieldModel(json: JSON.parse("{\"text\":\"hello\"}"), pageModel: introPage)
+                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
+                    introPage.fields = [paragraphField]
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    expect(introPageViewModel.componentViewModel).toNot(beNil())
+                    let viewModel = introPageViewModel.componentViewModel as! ParagraphComponentViewModel
+                    expect(viewModel.value).to(equal("hello"))
+                }
+            }
             context("when using default font") {
                 it("customization should match") {
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)

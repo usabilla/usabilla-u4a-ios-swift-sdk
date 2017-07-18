@@ -60,11 +60,10 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(1))
                     expect(campaignManager.eventEngine.campaigns.first?.identifier).to(equal("testid"))
                 }
-                it("should return affect 1 campaigns to the eventEngine when the campaign has a display limit") {
+                it("should return affect 1 campaigns to the eventEngine when the campaign is not active") {
                     let campaignModel = UBMock.campaignMock(withId: "testid")
                     let campaignModel2 = UBMock.campaignMock(withId: "testid2")
-                    campaignModel.maximumDisplays = 1
-                    campaignModel.numberOfTimesTriggered = 1
+                    campaignModel.status = .inactive
                     storeMock.campaigns = [campaignModel, campaignModel2]
                     let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     expect(campaignManager.eventEngine.campaigns.count).to(equal(1))
@@ -161,6 +160,32 @@ class CampaignManagerTests: QuickSpec {
                     campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(1))
                     expect(campaignB?.numberOfTimesTriggered).to(equal(0))
+                }
+                it("should display only the first campaign that triggered and that can be displayed") {
+                    var campaignA = UBMock.campaignMockWithRules(id: "a")
+                    var campaignB = UBMock.campaignMockWithRules(id: "b")
+                    campaignA.numberOfTimesTriggered = 1
+                    campaignA.maximumDisplays = 1
+                    let campaigns = [campaignA, campaignB]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
+                    storeMock.campaigns = campaigns
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
+                    campaignA = UBCampaignDAO.shared.read(id: "a")!
+                    campaignB = UBCampaignDAO.shared.read(id: "b")!
+                    expect(campaignA.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignB.numberOfTimesTriggered).to(equal(0))
+                    campaignManager.sendEvent(event: "foo")
+                    campaignA = UBCampaignDAO.shared.read(id: "a")!
+                    campaignB = UBCampaignDAO.shared.read(id: "b")!
+                    expect(campaignA.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignB.numberOfTimesTriggered).to(equal(0))
+                    campaignManager.sendEvent(event: "bar")
+                    campaignA = UBCampaignDAO.shared.read(id: "a")!
+                    campaignB = UBCampaignDAO.shared.read(id: "b")!
+                    expect(campaignA.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignB.numberOfTimesTriggered).to(equal(1))
                 }
                 it("should display campaign if the semaphore allow it and the campaign can be displayed again") {
                     let leaf = LeafRule(event: Event(name: "foo"))

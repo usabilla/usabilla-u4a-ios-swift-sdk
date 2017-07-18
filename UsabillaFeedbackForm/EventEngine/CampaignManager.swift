@@ -24,7 +24,7 @@ class CampaignManager {
         self.appId = appId
         self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared)
         campaignStore.getCampaigns(withAppId: appId).then { campaigns in
-            self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.canBeDisplayed })
+            self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.status == .active })
         }
     }
 
@@ -36,10 +36,14 @@ class CampaignManager {
             UBCampaignDAO.shared.create($0)
         }
 
-        // Display first triggered campaign
-        if let campaignToDisplay = triggeredCampaigns.first {
-            displayCampaign(campaignToDisplay)
+        // Display first triggered campaign that can be displayed
+        let displayableCampaign = triggeredCampaigns.first {
+            $0.canBeDisplayed == true
         }
+        guard let campaignToDisplay = displayableCampaign else {
+            return
+        }
+        displayCampaign(campaignToDisplay)
     }
 
     func displayCampaign(_ campaign: CampaignModel) {
