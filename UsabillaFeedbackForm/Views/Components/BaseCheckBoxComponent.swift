@@ -46,9 +46,7 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
             checkBox.delegate = self
             checkBox.checkBox.delegate = self
             checkBox.label.text = option.title
-            checkBox.label.textColor = viewModel.theme.textColor
             checkBox.isUserInteractionEnabled = true
-            checkBox.label.textColor = .black
 
             if let val = viewModel.value, val.contains(option.value) {
                 checkBox.checkBox.on = true
