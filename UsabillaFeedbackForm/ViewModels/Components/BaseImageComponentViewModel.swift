@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class BaseImageComponentViewModel<T: ImageComponentModel>: BaseComponentViewModel<UIImage, T> {
     override var value: UIImage? {

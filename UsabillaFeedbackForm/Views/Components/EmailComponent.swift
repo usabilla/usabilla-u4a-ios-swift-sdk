@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class EmailComponent: BaseTextFieldComponent<EmailComponentViewModel> {
     override func build() {

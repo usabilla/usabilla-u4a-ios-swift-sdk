@@ -19,7 +19,7 @@ open class UsabillaFeedbackForm {
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
-    #if DEBUG
+    #if INTERNAL_USE
         open static var allowUnlimitedCampaignDisplay: Bool = false
     #endif
     static var appIdentifier: String?
@@ -66,7 +66,7 @@ open class UsabillaFeedbackForm {
     open class func removeCachedForms() {
         UBFormDAO.shared.deleteAll()
     }
-    #if DEBUG
+    #if INTERNAL_USE || DEBUG
         open class func formViewController(forFormJson json: JSON) -> UINavigationController {
             let form = FormModel(json: json, id: "", screenshot: nil)
             let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))

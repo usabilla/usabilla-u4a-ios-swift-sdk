@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"

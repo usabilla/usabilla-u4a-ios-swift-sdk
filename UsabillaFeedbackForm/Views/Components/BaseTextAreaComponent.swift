@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UITextViewDelegate {
 

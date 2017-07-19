@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSource, UIPickerViewDelegate {
 

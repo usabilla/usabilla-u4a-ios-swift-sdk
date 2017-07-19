@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+import Foundation
+
 class Cachable<T> {
     let value: T
     let hasChanged: Bool // if etag is different set to true

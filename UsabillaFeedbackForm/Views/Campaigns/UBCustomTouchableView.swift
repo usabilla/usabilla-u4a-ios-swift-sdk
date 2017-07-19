@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UBCustomTouchableView: UIView {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

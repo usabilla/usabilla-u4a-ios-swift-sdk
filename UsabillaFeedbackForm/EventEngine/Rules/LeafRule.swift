@@ -6,6 +6,8 @@
 //  Copyright © 2017 usabilla. All rights reserved.
 //
 
+import Foundation
+
 class LeafRule: ConcreteRule {
     let event: Event
 

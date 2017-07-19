@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UBComponent<CVM: ComponentViewModel>: UIControl {
     internal var viewModel: CVM!

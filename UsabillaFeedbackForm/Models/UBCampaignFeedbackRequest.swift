@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+import Foundation
+
 class UBCampaignFeedbackRequest: NSObject, NSCoding {
     let request: URLRequest
     let id: String

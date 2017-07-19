@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FormServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol UBIntroOutroViewDelegate: class {
     func introViewDidCancel(introView: UBIntroOutroView)

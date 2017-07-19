@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T>, UITextFieldDelegate {
 

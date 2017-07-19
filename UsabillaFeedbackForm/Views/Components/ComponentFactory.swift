@@ -9,6 +9,7 @@
 // swiftlint:disable cyclomatic_complexity
 
 import Foundation
+import UIKit
 
 class ComponentFactory {
 

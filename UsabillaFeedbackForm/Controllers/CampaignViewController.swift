@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CampaignViewControllerDelegate: class {
     func campaignDidEnd(success: Bool)

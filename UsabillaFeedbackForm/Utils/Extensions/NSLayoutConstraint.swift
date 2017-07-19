@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension NSLayoutConstraint {
     func withId(_ identifier: String?) -> NSLayoutConstraint {

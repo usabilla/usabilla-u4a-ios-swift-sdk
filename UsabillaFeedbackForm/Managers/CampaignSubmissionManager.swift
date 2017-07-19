@@ -6,6 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+import Foundation
+
 class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
 
     private var reachability: Reachable

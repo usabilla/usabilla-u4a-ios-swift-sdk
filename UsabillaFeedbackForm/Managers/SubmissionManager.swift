@@ -6,6 +6,9 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
+import Foundation
+import UIKit
+
 extension Reachability: Reachable { }
 
 class SubmissionManager {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centerable {
 

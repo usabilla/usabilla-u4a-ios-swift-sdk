@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IntFieldHandlerProtocol: class {
     var fieldValue: Int { set get }

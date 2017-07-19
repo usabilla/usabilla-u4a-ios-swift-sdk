@@ -8,6 +8,8 @@
 
 // swiftlint:disable force_cast
 
+import Foundation
+
 class RequestBuilder {
 
     enum Endpoints: String {

@@ -26,7 +26,7 @@ class CampaignModel: NSObject, NSCoding {
 
     var form: FormModel?
     var canBeDisplayed: Bool {
-        #if DEBUG
+        #if INTERNAL_USE
             guard UsabillaFeedbackForm.allowUnlimitedCampaignDisplay == false else {
                 return true
             }
