@@ -3,7 +3,7 @@ machine:
     version: 8.3.2
 dependencies:
   pre: 
-    - gem install slather
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
   override:
     - bin/bootstrap-if-needed
   cache_directories:
@@ -13,9 +13,10 @@ checkout:
     - git submodule update --init --recursive  
 test:
     post:
-    - slather coverage --verbose
-    - slather coverage --html --output-directory $CIRCLE_ARTIFACTS/coverage
+    - bundle exec slather coverage --verbose
+    - bundle exec slather coverage --html --output-directory $CIRCLE_ARTIFACTS/coverage
     - swift codecov.swift
+    - bundle exec danger
     override:
       - set -o pipefail &&
         xcodebuild
