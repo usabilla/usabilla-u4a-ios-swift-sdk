@@ -58,6 +58,27 @@ class UBCampaignStoreTests: QuickSpec {
                         }
                     }
                 }
+                it("should return result rule if targeting has not changed and not found in cache") {
+                    let campaignService = UBCampaignServiceMock()
+                    campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [self.campaign1], hasChanged: true)
+                    campaignService.targetingResponse = Cachable<Rule>(value: ConcreteRule(type: RuleType.and, childRules: []), hasChanged: false)
+                    store = UBCampaignStore(service: campaignService)
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = store.getCampaigns(withAppId: "")
+                        promise.then { campaigns in
+                            expect(campaigns.count).to(equal(1))
+                            let campaign = campaigns.first
+                            let campaignModel = UBCampaignDAO.shared.read(id: (campaign?.identifier)!)
+                            UBCampaignDAO.shared.delete(campaignModel!)
+                            expect(campaign?.rule).toNot(beNil())
+                            expect(campaign?.rule?.childRules.count).to(equal(0))
+                            expect(campaign?.rule?.type).to(equal(RuleType.and))
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
                 it("should return the correct data when result has changed") {
                     let campaignService = UBCampaignServiceMock()
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [], hasChanged: true)

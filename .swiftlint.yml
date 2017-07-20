@@ -30,7 +30,7 @@ identifier_name:
     - id
     - URL
     - _
-    - on
+    - !str on
     - v
 
 

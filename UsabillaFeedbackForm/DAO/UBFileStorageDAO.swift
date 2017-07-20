@@ -85,7 +85,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
     @discardableResult func deleteAll() -> Bool {
         var isDeleted = false
         fileStorageSerialQueue.sync {
-            do { 
+            do {
                 try FileManager.default.removeItem(at: directoryUrl)
                 isDeleted = true
             } catch {
