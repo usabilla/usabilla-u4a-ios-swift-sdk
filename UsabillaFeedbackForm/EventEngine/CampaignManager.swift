@@ -82,4 +82,13 @@ class CampaignManager {
             PLog("Error incrementing view count for campaign id \(campaign.identifier)")
         }
     }
+    #if INTERNAL_USE
+        func resetData(completion: (() -> Void)?) {
+            UBCampaignDAO.shared.deleteAll()
+            campaignStore.getCampaigns(withAppId: appId).then { campaigns in
+                self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
+                completion?()
+            }
+        }
+    #endif
 }

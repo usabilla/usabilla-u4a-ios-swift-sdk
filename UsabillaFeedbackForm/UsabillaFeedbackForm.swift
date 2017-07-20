@@ -67,6 +67,10 @@ open class UsabillaFeedbackForm {
         UBFormDAO.shared.deleteAll()
     }
     #if INTERNAL_USE || DEBUG
+        open class func resetData(completion: (() -> Void)?) {
+            campaignManager?.resetData(completion: completion)
+        }
+
         open class func formViewController(forFormJson json: JSON) -> UINavigationController {
             let form = FormModel(json: json, id: "", screenshot: nil)
             let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))

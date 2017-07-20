@@ -49,7 +49,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     campaignModel.rule = result.value
                 } else {
                     let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
-                    campaignModel.rule = cachedRule
+                    campaignModel.rule = cachedRule ?? result.value
                 }
                 doneFetchingTargeting(campaignModel)
             }.catch { _ in
