@@ -1,38 +1,34 @@
 //
-//  TargetingParserTests.swift
+//  TargetingFactoryTests.swift
 //  UsabillaFeedbackForm
 //
-//  Created by Benjamin Grima on 21/06/2017.
+//  Created by Adil Bougamza on 21/07/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-// swiftlint:disable force_cast
+//swiftlint:disable force_cast
 
 import Quick
 import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class TargetingParserTests: QuickSpec {
+class TargetingFactoryTests: QuickSpec {
     override func spec() {
         var targetingJson: JSON!
+
         beforeEach {
-            let path = Bundle(for: TargetingParserTests.self).path(forResource: "CampaignTargeting", ofType: "json")!
+            let path = Bundle(for: TargetingFactoryTests.self).path(forResource: "CampaignTargeting", ofType: "json")!
             let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            targetingJson = JSON(data: (data as Data?)!)["options"]
+            targetingJson = JSON(data: (data as Data?)!)["options"]["rule"]
         }
-        describe("CampaignService") {
 
-            context("When parsing a targeting") {
-                it("should succeed if the json has the right format") {
-                    let targeting = TargetingParser.targeting(fromJson: targetingJson)
-                    expect(targeting).toNot(beNil())
-                    expect(targeting is PercentageDecorator).to(beTrue())
-
-                    let percentageDecorator = targeting as! PercentageDecorator
-
+        describe("TargetingFactory") {
+            context("When parsing tageting json") {
+                it("shoud return right components") {
+                    let percentageDecorator = TargetingFactory.createRule(targetingJson) as! PercentageDecorator
+                    expect(percentageDecorator).toNot(beNil())
                     expect(percentageDecorator.percentage).to(equal(77))
-                    expect(percentageDecorator.rule is RepetitionDecorator).to(beTrue())
 
                     let repetitionDecorator = percentageDecorator.rule as! RepetitionDecorator
 
@@ -40,15 +36,14 @@ class TargetingParserTests: QuickSpec {
                     expect(repetitionDecorator.rule is LeafRule).to(beTrue())
 
                     let leafRule = repetitionDecorator.rule as! LeafRule
-
                     expect(leafRule.event.name).to(equal("purchaseOrder"))
                 }
-
                 it("should return nil when the json is invalid") {
                     let json = JSON.parse("{\"hello\":\"you\"}")
-                    let targeting = TargetingParser.targeting(fromJson: json)
+                    let targeting = TargetingFactory.createRule(json)
                     expect(targeting).to(beNil())
                 }
+
             }
         }
     }

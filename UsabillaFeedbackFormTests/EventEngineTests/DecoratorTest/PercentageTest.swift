@@ -32,6 +32,13 @@ class PercentageDecoratorTests: QuickSpec {
                     expect(decorator.rule).to(be(self.leafRule1))
                     expect(decorator.percentage).to(equal(50))
                 }
+                it("should initialise correctly with json") {
+                    let decorator = PercentageDecorator(percentage: 50, rule: self.leafRule1)
+                    expect(decorator.type).to(equal(RuleType.leaf))
+                    expect(decorator.ruleID).to(equal("id1"))
+                    expect(decorator.rule).to(be(self.leafRule1))
+                    expect(decorator.percentage).to(equal(50))
+                }
             })
 
             context("When throwing a dice", {

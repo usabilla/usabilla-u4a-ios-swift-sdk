@@ -16,6 +16,14 @@ class LeafRule: ConcreteRule {
         super.init(type: .leaf, childRules: [], ruleID: ruleID, alreadyTriggered: alreadyTriggered)
     }
 
+    convenience init?(json: JSON) {
+        guard let name = json["name"].string else {
+            return nil
+        }
+
+        self.init(event: Event(name: name))
+    }
+
     override func customTriggersWith(event: Event) -> Bool {
         return self.event == event
     }

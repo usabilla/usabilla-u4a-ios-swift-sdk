@@ -10,13 +10,23 @@ import Foundation
 
 class RepetitionDecorator: Decorator {
 
-    let occurrences: Int
+    var occurrences: Int
     var currentCount: Int
 
     init(occurrences: Int, rule: Rule) {
         self.occurrences = occurrences
         currentCount = 0
         super.init(rule: rule)
+    }
+
+    required init?(json: JSON) {
+        guard let occurences = json["repetition"].int else {
+            return nil
+        }
+
+        self.occurrences = occurences
+        self.currentCount = 0
+        super.init(json: json)
     }
 
     override func customTriggersWith(event: Event) -> Bool {

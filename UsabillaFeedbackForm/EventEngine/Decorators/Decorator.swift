@@ -22,6 +22,15 @@ class Decorator: NSObject, Rule {
         self.alreadyTriggered = false
     }
 
+    required init?(json: JSON) {
+        guard let childRuleJson = json["children"].array?.first,
+            let childRule = TargetingFactory.createRule(childRuleJson) else {
+                return nil
+        }
+        self.rule = childRule
+        self.alreadyTriggered = false
+    }
+
     func triggersWith(event: Event) -> Bool {
         if !alreadyTriggered {
             alreadyTriggered = customTriggersWith(event: event)

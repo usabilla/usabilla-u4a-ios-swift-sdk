@@ -17,6 +17,14 @@ class PercentageDecorator: Decorator {
         super.init(rule: rule)
     }
 
+    required init?(json: JSON) {
+        guard let percentage = json["percentage"].int else {
+            return nil
+        }
+        self.percentage = percentage
+        super.init(json: json)
+    }
+
     override func customTriggersWith(event: Event) -> Bool {
         let triggered = rule.triggersWith(event: event)
         let diceRoll = Int(arc4random_uniform(100) + 1)

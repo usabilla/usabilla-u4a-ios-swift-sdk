@@ -85,8 +85,8 @@ class CampaignService: CampaignServiceProtocol {
                     let json = JSON(jsonData).dictionary
                     PLog("targeting for id : \(id) :\n \(String(describing: json))")
 
-                    guard let targeting = json?["options"],
-                        let rule = TargetingParser.targeting(fromJson: targeting) else {
+                    guard let targetingJson = json?["options"],
+                        let rule = TargetingFactory.createRule(targetingJson["rule"]) else {
                             reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
                             return
                     }
