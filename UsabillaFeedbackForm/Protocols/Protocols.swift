@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol IntFieldHandlerProtocol: class {
-    var fieldValue: Int { set get }
+    var fieldValue: Int {get set}
 }
 
 protocol FormViewControllerDelegate: class {

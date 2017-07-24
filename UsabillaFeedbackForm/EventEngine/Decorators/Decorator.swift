@@ -48,10 +48,13 @@ class Decorator: NSObject, Rule {
 
     // MARK: NSCoding
     public required init?(coder aDecoder: NSCoder) {
-        let rule = aDecoder.decodeObject(forKey: "rule") as? Rule
+        guard let rule = aDecoder.decodeObject(forKey: "rule") as? Rule else {
+            PLog("❌ impossible to decode Decorator")
+            return nil
+        }
         let alreadyTriggered = aDecoder.decodeBool(forKey: "alreadyTriggered")
 
-        self.rule = rule!
+        self.rule = rule
         self.alreadyTriggered = alreadyTriggered
     }
 

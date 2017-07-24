@@ -13,7 +13,5 @@ class HeaderFieldModel: StringFieldModel {
     override init(json: JSON, pageModel: PageModel) {
         super.init(json: json, pageModel: pageModel)
         fieldValue = json["text"].string
-
     }
-
 }

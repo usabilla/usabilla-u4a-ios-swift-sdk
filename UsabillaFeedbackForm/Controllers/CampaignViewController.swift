@@ -38,7 +38,7 @@ class CampaignViewController: UIViewController {
             if viewModel.introPageViewModel?.displayMode == .alert {
                 createBackgroundLayer()
                 animations = {
-                    self.backgroundLayer!.alpha = 1
+                    self.backgroundLayer?.alpha = 1
                 }
             }
             view.addSubview(introView!)
@@ -100,15 +100,17 @@ class CampaignViewController: UIViewController {
         guard backgroundLayer == nil else {
             return
         }
-        backgroundLayer = UIView()
-        backgroundLayer!.alpha = 0.0
-        backgroundLayer!.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        backgroundLayer!.translatesAutoresizingMaskIntoConstraints = false
+        let backgroundView = UIView()
+        backgroundView.alpha = 0.0
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundLayer = backgroundView
+        // swiftlint:disable:next force_unwrapping
         view.insertSubview(backgroundLayer!, at: 0)
-        backgroundLayer!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundLayer!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        backgroundLayer!.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundLayer!.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -138,6 +140,7 @@ class CampaignViewController: UIViewController {
         base.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
 
         view.layoutIfNeeded()
+        // swiftlint:disable:next force_unwrapping
         viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
             base.view.alpha = 1
             self.backgroundLayer?.alpha = 1
@@ -175,7 +178,7 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         var animations: (() -> Void)?
         if viewModel.introPageViewModel?.displayMode == .alert {
             animations = {
-                self.backgroundLayer!.alpha = 0.0
+                self.backgroundLayer?.alpha = 0.0
             }
         }
 
@@ -188,7 +191,9 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 
     func introViewDidContinue(introView: UBIntroOutroView) {
         let index = viewModel.formViewModel.currentPageIndex
+        // swiftlint:disable:next force_unwrapping
         let type = viewModel.formViewModel.model.pages[index].type!
+        // swiftlint:disable:next force_unwrapping
         viewModel.pageDidTurn(pageIndex: 0, pageModel: viewModel.introPageViewModel!.introPage, nextPageType: type)
         if type == .toast {
             viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: {

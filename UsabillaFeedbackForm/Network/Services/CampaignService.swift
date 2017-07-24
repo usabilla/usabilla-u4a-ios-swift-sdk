@@ -45,7 +45,13 @@ class CampaignService: CampaignServiceProtocol {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: nil))
                     return
                 }
-                reject(response.error!)
+
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             })
         }
     }
@@ -56,7 +62,12 @@ class CampaignService: CampaignServiceProtocol {
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
                     let campaignsArray = JSON(json).array else {
-                        reject(response.error!)
+                        guard let error = response.error else {
+                            PLog("❌ error missing from response")
+                            reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                            return
+                        }
+                        reject(error)
                         return
                 }
                 let campaigns = campaignsArray.flatMap { CampaignModel(json: $0) }
@@ -74,16 +85,22 @@ class CampaignService: CampaignServiceProtocol {
                     let json = JSON(jsonData).dictionary
                     PLog("targeting for id : \(id) :\n \(String(describing: json))")
 
-                    guard let targeting = json?["options"], let rule = TargetingParser.targeting(fromJson: targeting) else {
-                        reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
-                        return
+                    guard let targeting = json?["options"],
+                        let rule = TargetingParser.targeting(fromJson: targeting) else {
+                            reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
+                            return
                     }
 
                     let cachable: Cachable<Rule> = Cachable(value: rule, hasChanged: response.isChanged)
                     fulfill(cachable)
                     return
                 }
-                reject(response.error!)
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             })
         }
     }

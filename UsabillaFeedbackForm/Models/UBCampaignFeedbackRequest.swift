@@ -21,8 +21,13 @@ class UBCampaignFeedbackRequest: NSObject, NSCoding {
 
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        self.request = (aDecoder.decodeObject(forKey: "request") as? URLRequest)!
-        self.id = (aDecoder.decodeObject(forKey: "id") as? String)!
+        guard let request = aDecoder.decodeObject(forKey: "request") as? URLRequest,
+            let id = aDecoder.decodeObject(forKey: "id") as? String else {
+                PLog("❌ impossible to decode UBCampaignFeedbackRequest")
+                return nil
+        }
+        self.request = request
+        self.id = id
         self.numberOfSubmissionAttempts = aDecoder.decodeInteger(forKey: "numberOfTries")
     }
 

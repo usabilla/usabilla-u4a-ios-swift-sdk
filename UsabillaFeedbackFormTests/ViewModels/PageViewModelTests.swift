@@ -43,10 +43,10 @@ class PageViewModelTests: QuickSpec {
             context("when viewModelForCellAt is called ") {
                 it("should return the correct viewModel when called with right index") {
                     var cellViewModel = viewModel.viewModelForCellAt(index: 0)
-                    expect(cellViewModel?.model is MoodFieldModel).to(beTrue())
+                    expect(cellViewModel!.model is MoodFieldModel).to(beTrue())
 
                     cellViewModel = viewModel.viewModelForCellAt(index: 1)
-                    expect(cellViewModel?.model is ParagraphFieldModel).to(beTrue())
+                    expect(cellViewModel!.model is ParagraphFieldModel).to(beTrue())
                 }
                 it("should return nil when called with wrong index") {
                     var cellViewModel = viewModel.viewModelForCellAt(index: -1)

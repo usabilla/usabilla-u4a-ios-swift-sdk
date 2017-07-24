@@ -6,10 +6,8 @@
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
-// swiftlint:disable force_cast
-
 import Foundation
-
+// swiftlint:disable force_unwrapping
 class RequestBuilder {
 
     enum Endpoints: String {
@@ -22,9 +20,10 @@ class RequestBuilder {
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
+    // swiftlint:disable force_cast
     static let apiUrl: String = bundle.infoDictionary!["USABILLA_API_URL"] as! String
     static let submitUrl: String = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
-
+    // swiftlint:enable force_cast
     static let headers: [String: String] = [
         "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
         "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",

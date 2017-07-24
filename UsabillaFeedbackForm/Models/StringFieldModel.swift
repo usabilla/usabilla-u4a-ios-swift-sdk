@@ -26,7 +26,10 @@ class StringFieldModel: BaseFieldModel, StringComponentModel {
     }
 
     override func isValid() -> Bool {
-        return !required || (fieldValue != nil && fieldValue!.characters.count > 0)
+        guard let value = fieldValue else {
+            return !required
+        }
+        return !required || !value.isEmpty
     }
 
     override func convertToJSON() -> Any? {

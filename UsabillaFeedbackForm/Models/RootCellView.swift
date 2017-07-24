@@ -99,17 +99,17 @@ class RootCellView: UITableViewCell {
         containerTopConstraint.constant = isTitleDefined ? containerTopMargin : 0
 
         if cellViewModel.required {
-            titleLabel.text = String(format: "%@ *", cellViewModel.title) as String
-
-            let text = NSMutableAttributedString(attributedString: (self.titleLabel.attributedText)!)
-
-            text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.hintColor,
-                              range: NSRange.init(location: (self.titleLabel.text?.characters.count)! - 1, length: 1))
-
-            titleLabel.attributedText = text
-        } else {
-            self.titleLabel.text = cellViewModel.title
+            let requiredTitle = String(format: "%@ *", cellViewModel.title) as String
+            titleLabel.text = requiredTitle
+            if let attributedText = self.titleLabel.attributedText {
+                let text = NSMutableAttributedString(attributedString: attributedText)
+                text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.hintColor,
+                                  range: NSRange.init(location: requiredTitle.characters.count - 1, length: 1))
+                titleLabel.attributedText = text
+            }
+            return
         }
+        self.titleLabel.text = cellViewModel.title
     }
 
     private func applyCustomisations() {

@@ -127,12 +127,8 @@ class UBFormViewModel {
         return newPageIndex
     }
 
-    func pageViewModel(atIndex: Int) -> PageViewModel? {
-        let nextIndex = nextPageIndex
-        guard nextIndex < pageViewModels.count else {
-            return nil
-        }
-        return pageViewModels[nextIndex]
+    func pageViewModel(atIndex: Int) -> PageViewModel {
+        return pageViewModels[atIndex]
     }
 
     var isItTheEnd: Bool {

@@ -39,6 +39,7 @@ class PageViewModel: UBPageViewModel {
     required init(page: PageModel, theme: UsabillaTheme) {
         self.model = page
         self.theme = theme
+        // swiftlint:disable:next force_unwrapping
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
 

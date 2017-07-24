@@ -190,6 +190,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     static func openUsabilla() {
+        // swiftlint:disable:next force_unwrapping
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
     }
 }
@@ -213,7 +214,7 @@ extension PageController: UITableViewDataSource {
             return cell
         }
 
-        let cellViewModel = viewModel.viewModelForCellAt(index: indexPath.row)!
+        let cellViewModel = viewModel.viewModelForCellAt(index: indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "root", for: indexPath)
         if let cell = cell as? RootCellView {
             cell.selectionStyle = UITableViewCellSelectionStyle.none

@@ -31,8 +31,8 @@ class FormModel: NSObject, NSCoding {
         self.appId = appId
         self.formJsonString = jsonString
         self.theme = UsabillaFeedbackForm.theme
-        self.redirectToAppStore = redirectToAppStore != nil ? redirectToAppStore! : false
-        self.showProgressBar = showProgressBar != nil ? showProgressBar! : true
+        self.redirectToAppStore = redirectToAppStore ?? false
+        self.showProgressBar = showProgressBar ?? true
 
         _ = pages.map { $0.copy = copyModel }
     }
@@ -55,10 +55,12 @@ class FormModel: NSObject, NSCoding {
         var newPages: [PageModel] = []
 
         for (index, subJson): (String, JSON) in form["pages"] {
-            let page = JSONFormParser.parsePage(subJson, pageNum: Int(index)!)
-            page.errorMessage = copyModel.errorMessage
-            page.copy = copyModel
-            newPages.append(page)
+            if let index = Int(index) {
+                let page = JSONFormParser.parsePage(subJson, pageNum: index)
+                page.errorMessage = copyModel.errorMessage
+                page.copy = copyModel
+                newPages.append(page)
+            }
         }
 
         newPages.last?.isLastPage = true
@@ -68,9 +70,8 @@ class FormModel: NSObject, NSCoding {
         screenshotJson["title"] = "Screenshot"
         screenshotJson["required"] = false
 
-        let pageModel = newPages.first
-        if hasScreenshot {
-            newPages.first?.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: pageModel!, screenShot: screenshot))
+        if let firstPageModel = newPages.first, hasScreenshot {
+            firstPageModel.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: firstPageModel, screenShot: screenshot))
         }
 
         self.pages = newPages
@@ -120,16 +121,14 @@ class FormModel: NSObject, NSCoding {
 
     // MARK: NScoding protocols
 
-    // swiftlint:disable force_cast
     public required convenience init?(coder aDecoder: NSCoder) {
-        let appId = aDecoder.decodeObject(forKey: "appId") as! String
-        let rawJson = aDecoder.decodeObject(forKey: "formJsonString")
-        let formJsonString = JSON(rawJson!)
-
-        self.init(json: formJsonString, id: appId, screenshot: nil)
+        guard let appId = aDecoder.decodeObject(forKey: "appId") as? String,
+            let rawJson = aDecoder.decodeObject(forKey: "formJsonString") else {
+                return nil
+        }
+        self.init(json: JSON(rawJson), id: appId, screenshot: nil)
     }
 
-    // swiftlint:enable force_cast
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(appId, forKey: "appId")
         aCoder.encode(formJsonString.rawValue, forKey: "formJsonString")

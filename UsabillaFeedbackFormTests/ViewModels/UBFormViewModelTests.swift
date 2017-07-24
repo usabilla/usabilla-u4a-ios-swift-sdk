@@ -45,7 +45,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))
                     expect(formViewModel.endPageViewModel).to(beNil())
                     expect(formViewModel.nextPageIndex).to(equal(2))
-                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!.name).to(equal("Third"))
+                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex).name).to(equal("Third"))
                     expect(formViewModel.isItTheEnd).to(beFalse())
                 }
                 it("should have correct values if we change default") {
@@ -67,7 +67,7 @@ class UBFormViewModelTests: QuickSpec {
             context("When going to next pages") {
                 it("should have correct data if it's a form page") {
                     let formViewModel = UBFormViewModel(formModel: self.model)
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
                     expect(formViewModel.currentPageIndex).to(equal(2))
                     expect(formViewModel.currentPageViewModel.name).to(equal("Third"))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
@@ -77,13 +77,13 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.isCurrentPageValid).to(beTrue())
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationSubmit))
                     expect(formViewModel.endPageViewModel).to(beNil())
-                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!.name).to(equal("end"))
+                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex).name).to(equal("end"))
                     expect(formViewModel.isItTheEnd).to(beFalse())
                 }
                 it("should have correct data if it's an end page") {
                     let formViewModel = UBFormViewModel(formModel: self.model)
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
                     expect(formViewModel.currentPageIndex).to(equal(3))
                     expect(formViewModel.currentPageViewModel.name).to(equal("end"))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
@@ -93,13 +93,12 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.isCurrentPageValid).to(beTrue())
                     expect(formViewModel.rightBarButtonTitle).to(beNil())
                     expect(formViewModel.endPageViewModel).toNot(beNil())
-                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)).to(beNil())
                     expect(formViewModel.isItTheEnd).to(beTrue())
                 }
                 it("Should have correct rating in end page") {
                     let formViewModel = UBFormViewModel(formModel: self.model)
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
 
                     (self.model.pages.first?.fields.first as? MoodFieldModel)?.fieldValue = 4
                     expect(formViewModel.endPageViewModel?.formRating).to(equal(4))
@@ -109,8 +108,8 @@ class UBFormViewModelTests: QuickSpec {
             context("When formViewModel is reset") {
                 it("Should have correct initial data") {
                     let formViewModel = UBFormViewModel(formModel: self.model)
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
-                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
+                    formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
                     formViewModel.reset()
 
                     expect(formViewModel).toNot(beNil())
@@ -129,7 +128,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))
                     expect(formViewModel.endPageViewModel).to(beNil())
-                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!.name).to(equal("Third"))
+                    expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex).name).to(equal("Third"))
                     expect(formViewModel.isItTheEnd).to(beFalse())
                 }
             }
@@ -150,7 +149,7 @@ class UBFormViewModelTests: QuickSpec {
                     }
 
                     it("Should be true when current page is a toast") {
-                        formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+                        formViewModel.currentPageViewModel = formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
                         expect(formViewModel.currentPageViewModel.model.type).to(equal(PageType.toast))
                         expect(formViewModel.isItTheEnd).to(beTrue())
                     }

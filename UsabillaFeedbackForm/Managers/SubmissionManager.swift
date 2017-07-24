@@ -63,7 +63,12 @@ class SubmissionManager {
         var contentDictionary: [String: Any] = [:]
         contentDictionary["app_id"] = formModel.appId //String
         contentDictionary["version"] = formModel.version //String
-        contentDictionary["SDK_version"] = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+
+        if let SDKVersion = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
+            contentDictionary["SDK_version"] = SDKVersion
+        } else {
+            PLog("❌ impossible to get SDK version")
+        }
 
         contentDictionary["data"] = formModel.toDictionnary()
 
@@ -87,8 +92,17 @@ class SubmissionManager {
         let screenBounds = UIScreen.main.bounds
         contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
 
-        contentDictionary["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]
-        contentDictionary["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleVersion"] {
+            contentDictionary["app_version"] = appVersion
+        } else {
+            PLog("❌ impossible to get host app version")
+        }
+
+        if let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] {
+            contentDictionary["app_name"] = appName
+        } else {
+            PLog("❌ impossible to get host app name")
+        }
 
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {

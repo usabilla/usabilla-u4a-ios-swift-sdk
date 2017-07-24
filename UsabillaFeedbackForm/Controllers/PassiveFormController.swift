@@ -21,7 +21,7 @@ class PassiveFormController: FormViewControllerDelegate {
         if !formViewController.viewModel.isItTheEnd {
             results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         }
-
+        // swiftlint:disable:next force_unwrapping
         UsabillaFeedbackForm.delegate?.formDidClose(formViewController.navigationController!, formID: formViewController.viewModel.id, with: results)
 
         if UsabillaFeedbackForm.dismissAutomatically {

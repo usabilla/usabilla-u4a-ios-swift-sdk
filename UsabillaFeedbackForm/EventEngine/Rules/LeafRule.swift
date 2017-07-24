@@ -21,8 +21,11 @@ class LeafRule: ConcreteRule {
     }
 
     public required init?(coder aDecoder: NSCoder) {
-        let event = aDecoder.decodeObject(forKey: "event") as? Event
-        self.event = event!
+        guard let event = aDecoder.decodeObject(forKey: "event") as? Event else {
+            PLog("❌ impossible to decode leafRule")
+            return nil
+        }
+        self.event = event
         super.init(coder: aDecoder)
     }
 

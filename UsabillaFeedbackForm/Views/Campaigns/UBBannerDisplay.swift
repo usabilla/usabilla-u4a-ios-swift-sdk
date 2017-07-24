@@ -62,7 +62,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         view.cancelButton.contentHorizontalAlignment = .left
         view.cancelButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
 
-        view.continueButton!.contentHorizontalAlignment = .right
-        view.continueButton!.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        view.continueButton?.contentHorizontalAlignment = .right
+        view.continueButton?.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }

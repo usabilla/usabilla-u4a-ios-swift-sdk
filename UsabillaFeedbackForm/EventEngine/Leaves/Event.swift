@@ -21,13 +21,15 @@ class Event: NSObject, NSCoding {
     }
 
     public required convenience init?(coder aDecoder: NSCoder) {
-        let name = aDecoder.decodeObject(forKey: "name") as? String
-        self.init(name: name!)
+        guard let name = aDecoder.decodeObject(forKey: "name") as? String else {
+            PLog("❌ impossible to decode leafRule")
+            return nil
+        }
+        self.init(name: name)
     }
 
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.name, forKey: "name")
-
     }
 }
 

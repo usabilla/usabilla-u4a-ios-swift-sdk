@@ -55,8 +55,8 @@ class UBIntroOutroView: UIView {
         setupComponent()
         setupButtons()
 
-        if componentView != nil {
-            buttonsStackView?.topAnchor.constraint(equalTo: componentView!.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+        if let componentView = componentView {
+            buttonsStackView?.topAnchor.constraint(equalTo: componentView.bottomAnchor, constant: outsideVerticalMargin).isActive = true
         } else {
             buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: outsideVerticalMargin).isActive = true
         }
@@ -91,6 +91,7 @@ class UBIntroOutroView: UIView {
     private func setupButtons() {
         buttonsStackView = UIStackView()
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        //swiftlint:disable:next force_unwrapping
         addSubview(buttonsStackView!)
         buttonsStackView.leftAnchor.constraint(equalTo: leftAnchor).activate()
         buttonsStackView.rightAnchor.constraint(equalTo: rightAnchor).activate()
@@ -106,9 +107,10 @@ class UBIntroOutroView: UIView {
 
         if viewModel.hasContinueButton {
             continueButton = UIButton(type: .system)
+            //swiftlint:disable:next force_unwrapping
             buttonsStackView.addArrangedSubview(continueButton!)
-            continueButton!.setTitle(viewModel.continueLabelText, for: .normal)
-            continueButton!.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
+            continueButton?.setTitle(viewModel.continueLabelText, for: .normal)
+            continueButton?.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
 
         }
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
@@ -122,7 +124,7 @@ class UBIntroOutroView: UIView {
             if !viewModel.hasContinueButton {
                 componentView?.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
             }
-
+            //swiftlint:disable:next force_unwrapping
             addSubview(componentView!)
             componentView?.translatesAutoresizingMaskIntoConstraints = false
             componentView?.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).isActive = true

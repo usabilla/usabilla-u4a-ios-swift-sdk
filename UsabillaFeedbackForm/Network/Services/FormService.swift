@@ -34,7 +34,12 @@ class FormService: FormServiceProtocol {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: screenShot))
                     return
                 }
-                reject(response.error!)
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             }
         }
     }
@@ -121,7 +126,12 @@ class FormService: FormServiceProtocol {
                     fulfill(true)
                     return
                 }
-                reject(response.error!)
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             }
         }
     }
@@ -146,7 +156,12 @@ class FormService: FormServiceProtocol {
                     fulfill(true)
                     return
                 }
-                reject(response.error!)
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             }
         }
 
@@ -163,7 +178,12 @@ class FormService: FormServiceProtocol {
                     fulfill(response)
                     return
                 }
-                reject(response.error!)
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             }
         }
     }

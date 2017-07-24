@@ -18,7 +18,7 @@ class CampaignViewModel {
     init(form: FormModel, manager: CampaignSubmissionRequestManagerProtocol) {
         self.form = form
         self.formViewModel = UBFormViewModel(formModel: form)
-        self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)!
+        self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
         self.formViewModel.shouldAddMarginWhenKeyboardIsShown = false
         self.formViewModel.isCampaignForm = true
         self.manager = manager

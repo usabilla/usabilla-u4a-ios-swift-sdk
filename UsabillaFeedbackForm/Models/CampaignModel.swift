@@ -61,15 +61,17 @@ class CampaignModel: NSObject, NSCoding {
 
     // swiftlint:disable force_cast
     public required convenience init?(coder aDecoder: NSCoder) {
-        let identifier = aDecoder.decodeObject(forKey: "identifier") as! String
-        let rule = aDecoder.decodeObject(forKey: "rule") as? Rule
-        let formId = aDecoder.decodeObject(forKey: "formId") as! String
-        let targetingId = aDecoder.decodeObject(forKey: "targetingId") as! String
-        let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: "numberOfTimesTriggered")
-        let maximumDisplays = aDecoder.decodeInteger(forKey: "maximumDisplays")
-        let statusStr = aDecoder.decodeObject(forKey: "status") as! String
+        guard let identifier = aDecoder.decodeObject(forKey: "identifier") as? String,
+            let formId = aDecoder.decodeObject(forKey: "formId") as? String,
+            let targetingId = aDecoder.decodeObject(forKey: "targetingId") as? String,
+            let statusStr = aDecoder.decodeObject(forKey: "status") as? String,
+            let status = Status(rawValue: statusStr) else {
+                return nil
+        }
 
-        let status = Status(rawValue: statusStr)!
+        let rule = aDecoder.decodeObject(forKey: "rule") as? Rule
+        let maximumDisplays = aDecoder.decodeInteger(forKey: "maximumDisplays")
+        let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: "numberOfTimesTriggered")
 
         self.init(id: identifier, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status)
     }

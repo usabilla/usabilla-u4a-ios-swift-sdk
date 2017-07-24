@@ -27,7 +27,10 @@ class ChoiceFieldModel: OptionsFieldModel {
     }
 
     func isChoiceValueValid() -> Bool {
-        return !fieldValue.isEmpty && !fieldValue.first!.isEmpty
+        guard let first = fieldValue.first else {
+            return false
+        }
+        return !fieldValue.isEmpty && !first.isEmpty
     }
 
     override func isValid() -> Bool {

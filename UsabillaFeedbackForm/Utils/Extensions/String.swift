@@ -35,13 +35,16 @@ extension String {
     }
 
     func parseHTMLString(font: UIFont) -> NSAttributedString {
-        let modifiedFont = NSString(format:"<span style=\"font-family: '\(font.fontName)'; font-size: \(font.pointSize)\">%@</span>" as NSString, self) as String
+        let modifiedFont = NSString(format: "<span style=\"font-family: '\(font.fontName)'; font-size: \(font.pointSize)\">%@</span>" as NSString, self) as String
 
-        // swiftlint:disable force_try
-        let attrStr = try! NSAttributedString(
-            data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
-            options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
-            documentAttributes: nil)
-        return attrStr
+        do {
+            let attrStr = try NSAttributedString(
+                            data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
+                            options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
+                            documentAttributes: nil)
+            return attrStr
+        } catch {
+            return NSAttributedString(string: self)
+        }
     }
 }

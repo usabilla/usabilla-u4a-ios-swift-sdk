@@ -96,7 +96,7 @@ class HTTPClient: HTTPClientProtocol {
                     completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil)))
                     return
                 }
-                guard data != nil && data!.count > 0 else {
+                guard let data = data, data.count > 0 else {
                     if allowNilData {
                         completion(HTTPClientResponse(data: nil, headers: headers, error: nil, success: true, isChanged: isChanged))
                         return
@@ -105,7 +105,7 @@ class HTTPClient: HTTPClientProtocol {
                     return
                 }
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
                     PLog(json)
                     completion(HTTPClientResponse(data: json, headers: headers, error: nil, success: true, isChanged: isChanged))
                 } catch {

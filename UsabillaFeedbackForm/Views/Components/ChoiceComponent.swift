@@ -127,6 +127,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         }
 
         pickerLabel?.text = viewModel.options[row].title
+        //swiftlint:disable:next force_unwrapping
         return pickerLabel!
     }
 }

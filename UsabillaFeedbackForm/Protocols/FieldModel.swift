@@ -9,13 +9,13 @@
 import Foundation
 
 protocol FieldModelProtocol {
-    unowned var pageModel: PageModel {set get}
-    var fieldId: String {set get}
-    var fieldTitle: String {set get}
-    var required: Bool {set get}
+    unowned var pageModel: PageModel {get set}
+    var fieldId: String {get set}
+    var fieldTitle: String {get set}
+    var required: Bool {get set}
 
-    var type: String {set get}
-    var rule: ShowHideRule? {set get}
+    var type: String {get set}
+    var rule: ShowHideRule? {get set}
 
     func isValid() -> Bool
     func convertToJSON() -> Any?

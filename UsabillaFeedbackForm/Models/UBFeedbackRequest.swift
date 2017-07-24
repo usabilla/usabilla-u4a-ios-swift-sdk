@@ -21,8 +21,12 @@ class UBFeedbackRequest: NSObject, NSCoding {
 
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        self.id = (aDecoder.decodeObject(forKey: "id") as? String)!
-        self.payload = (aDecoder.decodeObject(forKey: "payload") as? [String: Any])!
+        guard let id = aDecoder.decodeObject(forKey: "id") as? String,
+            let payload = aDecoder.decodeObject(forKey: "payload") as? [String: Any] else {
+                return nil
+        }
+        self.id = id
+        self.payload = payload
         self.screenshot = aDecoder.decodeObject(forKey: "screenshot") as? String
     }
 

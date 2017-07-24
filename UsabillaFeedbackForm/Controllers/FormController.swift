@@ -160,6 +160,7 @@ class FormViewController: UIViewController {
 
     func restoreFeedbackFormController() {
         viewModel.reset()
+        // swiftlint:disable:next force_unwrapping
         swipeToPage(viewModel.firstPageViewModel!)
         thankYouController.willMove(toParentViewController: nil)
         addChildViewController(pageController)
@@ -197,7 +198,7 @@ class FormViewController: UIViewController {
     }
 
     func goToPage(atIndex index: Int) {
-        viewModel.currentPageViewModel = viewModel.pageViewModel(atIndex: index)!
+        viewModel.currentPageViewModel = viewModel.pageViewModel(atIndex: index)
         if viewModel.isItTheEnd {
             if !viewModel.isCampaignForm {
                 showThankYouPage()

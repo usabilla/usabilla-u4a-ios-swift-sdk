@@ -42,11 +42,10 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
     }
 
     func shouldAppear() -> Bool {
-        if rule == nil {
-            return true
+        if let rule = rule {
+            let satisfied = rule.isSatisfied()
+            return satisfied && rule.showIfRuleIsSatisfied || !satisfied && !rule.showIfRuleIsSatisfied
         }
-        let satisfied = rule!.isSatisfied()
-        return satisfied && rule!.showIfRuleIsSatisfied || !satisfied && !rule!.showIfRuleIsSatisfied
+        return true
     }
-
 }

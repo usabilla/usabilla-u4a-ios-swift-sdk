@@ -85,9 +85,7 @@ class UBToast: UIView {
                 self.alpha = 0
             }, completion: { _ in
                 self.removeFromSuperview()
-                if completion != nil {
-                    completion!()
-                }
+                completion?()
             })
         }
     }

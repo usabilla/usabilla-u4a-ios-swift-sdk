@@ -118,6 +118,7 @@ class ThankYouController: UIViewController {
     func openAppStore() {
         if let appStore = UsabillaFeedbackForm.appStoreId {
             let url = String(format: "http://itunes.apple.com/app/id%@", appStore)
+            // swiftlint:disable force_unwrapping
             UIApplication.shared.openURL(URL(string: url)!)
         }
     }

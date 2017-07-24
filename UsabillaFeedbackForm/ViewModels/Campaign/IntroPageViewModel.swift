@@ -18,6 +18,7 @@ class IntroPageViewModel {
     let componentViewModel: ComponentViewModel?
 
     var cancelLabelText: String? {
+        // swiftlint:disable:next force_unwrapping
         return introPage.copy!.introCancelButton
     }
 
@@ -26,6 +27,7 @@ class IntroPageViewModel {
     }
 
     var continueLabelText: String? {
+        // swiftlint:disable:next force_unwrapping
         return introPage.copy!.introContinueButton
     }
 

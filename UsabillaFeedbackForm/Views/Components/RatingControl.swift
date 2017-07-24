@@ -186,12 +186,12 @@ class RatingControl: UIControl {
 
         clipPath.usesEvenOddFillRule = true
 
-        UIGraphicsGetCurrentContext()!.saveGState()
+        UIGraphicsGetCurrentContext()?.saveGState()
         clipPath.addClip()
         tintColor.setFill()
         starShapePath.fill()
 
-        UIGraphicsGetCurrentContext()!.restoreGState()
+        UIGraphicsGetCurrentContext()?.restoreGState()
 
         tintColor.setStroke()
         starShapePath.lineWidth = 1
@@ -201,6 +201,7 @@ class RatingControl: UIControl {
 
         UIGraphicsEndImageContext()
 
+        //swiftlint:disable:next force_unwrapping
         return image!
     }
 

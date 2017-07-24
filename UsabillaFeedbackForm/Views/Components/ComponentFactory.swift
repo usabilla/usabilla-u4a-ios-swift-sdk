@@ -7,6 +7,7 @@
 //
 
 // swiftlint:disable cyclomatic_complexity
+// swiftlint:disable force_unwrapping
 
 import Foundation
 import UIKit

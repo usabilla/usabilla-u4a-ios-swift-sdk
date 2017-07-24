@@ -75,17 +75,18 @@ class ConcreteRule: NSObject, Rule {
     // MARK: NSCoding
 
     public required init?(coder aDecoder: NSCoder) {
-        // swiftlint:disable force_cast
-        let ruleID = aDecoder.decodeObject(forKey: "ruleID") as! String
-        let type = RuleType(rawValue: (aDecoder.decodeObject(forKey: "type") as! String))!
-        let childRules = aDecoder.decodeObject(forKey: "childRules") as! [Rule]
-        let alreadyTriggered = aDecoder.decodeBool(forKey: "alreadyTriggered")
-        // swiftlint:enable force_cast
+        guard let ruleID = aDecoder.decodeObject(forKey: "ruleID") as? String,
+            let ruleType = aDecoder.decodeObject(forKey: "type") as? String,
+            let type = RuleType(rawValue: ruleType),
+            let childRules = aDecoder.decodeObject(forKey: "childRules") as? [Rule] else {
+                PLog("❌ impossible to decode rule")
+                return nil
+        }
 
         self.type = type
         self.ruleID = ruleID
         self.childRules = childRules
-        self.alreadyTriggered = alreadyTriggered
+        self.alreadyTriggered = aDecoder.decodeBool(forKey: "alreadyTriggered")
     }
 
     public func encode(with aCoder: NSCoder) {
