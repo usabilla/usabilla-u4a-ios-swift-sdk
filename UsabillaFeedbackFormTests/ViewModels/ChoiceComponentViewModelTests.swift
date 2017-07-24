@@ -28,18 +28,17 @@ class ChoiceComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeEach {
-            var jsonObj = UBTestHelper.getJSONFromFile(named: "PickerWithEmpty")
+            var jsonObj = UBMock.json("PickerWithEmpty")!
             modelEmpty = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModelEmpty = ChoiceComponentViewModel(model: modelEmpty, theme: UsabillaTheme())
 
-            jsonObj = UBTestHelper.getJSONFromFile(named: "PickerWithDefault")
+            jsonObj = UBMock.json("PickerWithDefault")!
             modelDefault = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModelDefault = ChoiceComponentViewModel(model: modelDefault, theme: UsabillaTheme())
 
-            jsonObj = UBTestHelper.getJSONFromFile(named: "Picker")
+            jsonObj = UBMock.json("Picker")!
             model = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
             viewModel = ChoiceComponentViewModel(model: model, theme: UsabillaTheme())
-
         }
 
         describe("the validation method") {

@@ -17,10 +17,7 @@ class CampaignServiceTests: QuickSpec {
     override func spec() {
         var targetingData: Data!
         beforeEach {
-            let path = Bundle(for: CampaignServiceTests.self).path(forResource: "CampaignTargeting", ofType: "json")!
-            let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            let targetingJson = JSON(data: (data as Data?)!)
-            targetingData = try! targetingJson.rawData()
+            targetingData = try! UBMock.json("CampaignTargeting")?.rawData()
         }
         describe("CampaignService") {
 

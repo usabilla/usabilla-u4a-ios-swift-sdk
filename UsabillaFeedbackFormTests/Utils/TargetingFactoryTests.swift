@@ -18,9 +18,7 @@ class TargetingFactoryTests: QuickSpec {
         var targetingJson: JSON!
 
         beforeEach {
-            let path = Bundle(for: TargetingFactoryTests.self).path(forResource: "CampaignTargeting", ofType: "json")!
-            let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            targetingJson = JSON(data: (data as Data?)!)["options"]["rule"]
+            targetingJson = UBMock.json("CampaignTargeting")?["options"]["rule"]
         }
 
         describe("TargetingFactory") {

@@ -38,9 +38,7 @@ class JSONParserTest: QuickSpec {
             oneButtonCampaign = JSON(data: data as Data)
 
             // read CampaignBannerParagraph.json
-            path = Bundle(for: JSONParserTest.self).path(forResource: "CampaignBannerParagraph", ofType: "json")!
-            data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            paragraphCampaign = JSON(data: data as Data)
+            paragraphCampaign = UBMock.json("CampaignBannerParagraph")
         }
 
         describe("JSONFormParser") {

@@ -11,7 +11,7 @@ import Foundation
 
 class UBTestHelper {
     class func getJSONFromFile(named name: String) -> JSON {
-        let path = Bundle(for: ChoiceComponentViewModelTests.self).path(forResource: name, ofType: "json")!
+        let path = Bundle(for: UBTestHelper.self).path(forResource: name, ofType: "json")!
         let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
         return JSON(data: (data as Data?)!)
     }
