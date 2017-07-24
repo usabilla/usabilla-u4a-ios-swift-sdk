@@ -10,7 +10,7 @@ import Foundation
 
 class RepetitionDecorator: Decorator {
 
-    var occurrences: Int
+    let occurrences: Int
     var currentCount: Int
 
     init(occurrences: Int, rule: Rule) {

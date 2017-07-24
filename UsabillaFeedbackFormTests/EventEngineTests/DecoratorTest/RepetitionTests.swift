@@ -37,6 +37,26 @@ class RepetitionRuleTests: QuickSpec {
                 }
             }
 
+            context("When initilized from JSON") {
+                it("should fail if it does not have any children") {
+                    let percentageJsonNoChilderen = UBMock.json("RepetitionDecoratorNoChildren")?["rule"]
+                    let decorator = RepetitionDecorator(json: percentageJsonNoChilderen!)
+                    expect(decorator).to(beNil())
+                }
+                it("should fail if it does not have repetition") {
+                    let repetitionJsonNoRepetition = UBMock.json("RepetitionDecoratorNoRepetition")?["rule"]
+                    let decorator = RepetitionDecorator(json: repetitionJsonNoRepetition!)
+                    expect(decorator).to(beNil())
+                }
+                it("should succeed if json is correct") {
+                    let percentageJsonCorrect = UBMock.json("RepetitionDecoratorCorrect")?["rule"]
+                    let decorator = RepetitionDecorator(json: percentageJsonCorrect!)
+                    expect(decorator).toNot(beNil())
+                    expect(decorator?.currentCount).to(equal(0))
+                    expect(decorator?.occurrences).to(equal(13))
+                }
+            }
+
             context("When checking for validity") {
                 it("should trigger only after the correct number of repetition") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)

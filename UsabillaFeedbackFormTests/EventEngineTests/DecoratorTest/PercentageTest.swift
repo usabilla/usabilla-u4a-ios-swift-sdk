@@ -32,14 +32,27 @@ class PercentageDecoratorTests: QuickSpec {
                     expect(decorator.rule).to(be(self.leafRule1))
                     expect(decorator.percentage).to(equal(50))
                 }
-                it("should initialise correctly with json") {
-                    let decorator = PercentageDecorator(percentage: 50, rule: self.leafRule1)
-                    expect(decorator.type).to(equal(RuleType.leaf))
-                    expect(decorator.ruleID).to(equal("id1"))
-                    expect(decorator.rule).to(be(self.leafRule1))
-                    expect(decorator.percentage).to(equal(50))
-                }
             })
+
+            context("When initilized from JSON") {
+                it("should fail if it does not have any childern") {
+                    let percentageJsonNoChilderen = UBMock.json("PercentageDecoratorNoChilderen")?["rule"]
+                    let decorator = PercentageDecorator(json: percentageJsonNoChilderen!)
+                    expect(decorator).to(beNil())
+                }
+                it("should fail if it does not have percentage") {
+                    let percentageJsonNoChilderen = UBMock.json("PercentageDecoratorNoPercentage")?["rule"]
+                    let decorator = PercentageDecorator(json: percentageJsonNoChilderen!)
+                    expect(decorator).to(beNil())
+                }
+                it("should succeed if json is correct") {
+                    let percentageJsonNoChilderen = UBMock.json("CampaignsTargetingWithCustomVariable")?["rule"]
+                    let decorator = PercentageDecorator(json: percentageJsonNoChilderen!)
+                    expect(decorator).toNot(beNil())
+                    expect(decorator?.type).to(equal(RuleType.leaf))
+                    expect(decorator?.percentage).to(equal(20))
+                }
+            }
 
             context("When throwing a dice", {
                 it("should trigger if the dice is bigger than the chance") {

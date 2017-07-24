@@ -28,6 +28,22 @@ class LeafRuleTests: QuickSpec {
                 }
             })
 
+            context("When initilized from JSON") {
+                it("should fail if it does not have name") {
+                    let leafEventJson = UBMock.json("LeafRuleNoEventName")
+                    let decorator = LeafRule(json: leafEventJson!)
+                    expect(decorator).to(beNil())
+                }
+                it("should succeed if json is correct") {
+                    let leafEventJson = UBMock.json("LeafRuleCorrect")
+                    let rule = LeafRule(json: leafEventJson!)
+                    expect(rule).toNot(beNil())
+                    expect(rule?.type).to(equal(RuleType.leaf))
+                    let event = Event(name: "purchaseComplete")
+                    expect(rule?.triggersWith(event: event)).to(beTrue())
+                }
+            }
+
             context("When checking for validity", {
                 it("should trigger if the event matched") {
                     let leaf = LeafRule(event: self.event1, ruleID: "id", alreadyTriggered: false)
