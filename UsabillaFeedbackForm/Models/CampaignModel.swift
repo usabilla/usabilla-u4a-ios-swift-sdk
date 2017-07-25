@@ -26,11 +26,6 @@ class CampaignModel: NSObject, NSCoding {
 
     var form: FormModel?
     var canBeDisplayed: Bool {
-        #if INTERNAL_USE
-            guard UsabillaFeedbackForm.allowUnlimitedCampaignDisplay == false else {
-                return true
-            }
-        #endif
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 

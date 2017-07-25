@@ -19,9 +19,7 @@ open class UsabillaFeedbackForm {
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
-    #if INTERNAL_USE
-        open static var allowUnlimitedCampaignDisplay: Bool = false
-    #endif
+
     static var appIdentifier: String?
     static var defaultLocalisationFile = true
     static let campaignService = CampaignService()
