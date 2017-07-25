@@ -112,14 +112,19 @@ class CampaignService: CampaignServiceProtocol {
     ///
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
 
-    func submit(withRequest request: URLRequest) -> Promise<String> {
+    func submit(withRequest request: URLRequest) -> Promise<Bool> {
         return Promise { fulfill, reject in
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
-                if let location = response.headers?["Location"] as? String {
-                    fulfill(location)
+                if response.success {
+                    fulfill(true)
                     return
                 }
-                reject(NSError(domain: "API says no", code: 1, userInfo: nil))
+                guard let error = response.error else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
+                reject(error)
             })
         }
     }

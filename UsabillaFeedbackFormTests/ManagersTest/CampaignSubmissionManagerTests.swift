@@ -62,13 +62,13 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func submit(withRequest request: URLRequest) -> Promise<String> {
+    func submit(withRequest request: URLRequest) -> Promise<Bool> {
         lastRequest = request
         counter += 1
         return Promise { fulfill, reject in
 
             if self.submissionSucceed {
-                fulfill("/v2/sdk/feedback/452DEE0D-D2C2-4B87-8DA9-BCF8D946C183")
+                fulfill(true)
                 return
             }
             reject(NSError(domain: "", code: 0, userInfo: nil))

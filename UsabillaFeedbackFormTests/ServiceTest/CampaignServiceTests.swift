@@ -122,6 +122,32 @@ class CampaignServiceTests: QuickSpec {
                 }
             }
 
+            context("When submiting campaign result") {
+                it("should succeed if request succeeds") {
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                        let request = URLRequest(url: URL(string: "http://test.com")!)
+                        CampaignService(httpClient: UBHTTPMock.self).submit(withRequest: request).then { succeed in
+                            expect(succeed).to(beTrue())
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+                it("should fail if request fails") {
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: false, isChanged: true)
+                        let request = URLRequest(url: URL(string: "http://test.com")!)
+                        CampaignService(httpClient: UBHTTPMock.self).submit(withRequest: request).then { succeed in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
