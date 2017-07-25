@@ -64,17 +64,6 @@ class CampaignManager {
         }
     }
 
-    @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignId: String = "id") -> Bool {
-        var manager = manager
-        if manager == nil {
-            //TODO REMOVE ME FOR GOD'S SAKE I'M HERE JUST FOR DEV PURPOSES
-            manager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignSubmissionManager: self.submissionManager)
-        }
-
-        let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
-        return CampaignWindow.shared.showCampaign(campaignViewModel)
-    }
-
     private func incrementViews(forCampaign campaign: CampaignModel) {
         self.campaignService.incrementCampaignViews(forCampaignId: campaign.identifier, viewCount: 1).then { _ in
             PLog("View count increment for campaign id \(campaign.identifier)")
@@ -82,13 +71,29 @@ class CampaignManager {
             PLog("Error incrementing view count for campaign id \(campaign.identifier)")
         }
     }
+
     #if INTERNAL_USE || DEBUG
+        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignId: String = "id") -> Bool {
+            var manager = manager
+            if manager == nil {
+                manager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignSubmissionManager: self.submissionManager)
+            }
+            //swiftlint:disable:next force_unwrapping
+            let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
+            return CampaignWindow.shared.showCampaign(campaignViewModel)
+        }
+
         func resetData(completion: (() -> Void)?) {
             UBCampaignDAO.shared.deleteAll()
             campaignStore.getCampaigns(withAppId: appId).then { campaigns in
                 self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
                 completion?()
             }
+        }
+    #else
+        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager, campaignId: String = "id") -> Bool {
+            let campaignViewModel = CampaignViewModel(form: form, manager: manager)
+            return CampaignWindow.shared.showCampaign(campaignViewModel)
         }
     #endif
 }
