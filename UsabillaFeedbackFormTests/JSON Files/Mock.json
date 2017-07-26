@@ -1,5 +1,33 @@
 {
     "node": {
+        "TargetingCustomVariable":{
+            "rule": {
+                "type": "percentage",
+                "percentage": 77,
+                "children": [
+                             {
+                             "type": "repetition",
+                             "repetition": 13,
+                             "children": [
+                                          {
+                                          "type": "and",
+                                          "children": [
+                                                       {
+                                                       "type": "event",
+                                                       "name": "purchaseOrder"
+                                                       },
+                                                       {
+                                                       "type": "customVariable",
+                                                       "name": "membership",
+                                                       "value": "premium"
+                                                       }
+                                                       ]
+                                          }
+                                          ]
+                             }
+                             ]
+            }
+        },
         "LeafRuleCorrect": {
             "type": "event",
             "name": "purchaseComplete"

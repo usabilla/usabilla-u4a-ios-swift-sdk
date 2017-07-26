@@ -18,6 +18,7 @@ open class UsabillaFeedbackForm {
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
+    open static var customVariables: [String: String] = [:]
 
     static var appIdentifier: String?
     static var defaultLocalisationFile = true
@@ -38,6 +39,11 @@ open class UsabillaFeedbackForm {
 
     open class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event)
+    }
+
+    open class func setCustomVariable(value: String, forKey key: String) {
+        customVariables[key] = value
+        PLog(customVariables)
     }
 
     /**

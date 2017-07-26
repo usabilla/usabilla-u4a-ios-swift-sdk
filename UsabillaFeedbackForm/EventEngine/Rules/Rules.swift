@@ -17,10 +17,11 @@ enum RuleType: String {
     case timer
     case percentage
     case repetition
+    case customeVariable
 }
 // swiftlint:enable identifier_name
 
-protocol Rule: NSCoding {
+protocol Rule: AbstractRule {
 
     var ruleID: String { get }
     var alreadyTriggered: Bool { get set }
@@ -31,6 +32,10 @@ protocol Rule: NSCoding {
     func customTriggersWith(event: Event) -> Bool
     func respondsToEvent(event: Event) -> Bool
     func reset()
+}
+
+protocol AbstractRule: NSCoding {
+    var type: RuleType { get }
 }
 
 class ConcreteRule: NSObject, Rule {
