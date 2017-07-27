@@ -13,7 +13,7 @@ let footerHeight: CGFloat = 80.0
 class PageController: UIViewController, UINavigationControllerDelegate {
 
     var viewModel: PageViewModel!
-    var addMarginWhenKeyboardIsShown: Bool = false
+  
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
 
     var tableView: UITableView = {
@@ -91,7 +91,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 
     func keyboardWillShow(notification: NSNotification) {
-        guard addMarginWhenKeyboardIsShown,
+        guard viewModel.shouldAddMarginWhenKeyboardIsShown,
             var userInfo = notification.userInfo,
             var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
                 return

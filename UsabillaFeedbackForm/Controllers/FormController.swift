@@ -76,7 +76,7 @@ class FormViewController: UIViewController {
     func deinitForm() {
         SwiftEventBus.postToMainThread("kill")
         SwiftEventBus.unregister(self)
-        pageController.deinitPageController()
+        pageController?.deinitPageController()
     }
 
     // MARK: View setup

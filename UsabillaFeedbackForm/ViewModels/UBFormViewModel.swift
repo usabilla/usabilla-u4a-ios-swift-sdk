@@ -16,7 +16,7 @@ class UBFormViewModel {
     private var pageViewModels: [PageViewModel]
     var isCampaignForm: Bool = false
 
-    var shouldAddMarginWhenKeyboardIsShown: Bool = true
+    let shouldAddMarginWhenKeyboardIsShown: Bool
 
     var id: String {
         return model.appId
@@ -135,13 +135,14 @@ class UBFormViewModel {
         return pageType == .end || pageType == .toast
     }
 
-    init(formModel: FormModel) {
+    init(formModel: FormModel, shouldAddMarginWhenKeyboardIsShown: Bool = true) {
         self.model = formModel
         self.currentPageIndex = 0
         self.pageViewModels = []
-
+        self.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
         model.pages.forEach {
             let vm = PageViewModel(page: $0, theme: model.theme)
+            vm.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
             self.pageViewModels.append(vm)
         }
     }
@@ -156,6 +157,7 @@ class UBFormViewModel {
 
         model.pages.forEach {
             let vm = PageViewModel(page: $0, theme: model.theme)
+            vm.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
             self.pageViewModels.append(vm)
         }
     }

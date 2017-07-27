@@ -14,12 +14,10 @@ protocol UBPageViewModel {
 
 class PageViewModel: UBPageViewModel {
 
-    var shouldAddMarginToContentSize: Bool = true
-
     var cellViewModels: [CellViewModel] = []
     let model: PageModel
     var dynamicFields: [Int] = []
-
+    var shouldAddMarginWhenKeyboardIsShown: Bool = true
     let theme: UsabillaTheme
     let copy: CopyModel
     let errorMessage: String?
@@ -42,7 +40,6 @@ class PageViewModel: UBPageViewModel {
         // swiftlint:disable:next force_unwrapping
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
-
         for (index, fieldModel) in page.fields.enumerated() {
             cellViewModels.append(CellViewModel(model: fieldModel, theme: theme))
             if fieldModel.rule != nil {
