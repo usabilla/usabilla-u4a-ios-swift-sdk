@@ -9,7 +9,6 @@
 import Foundation
 
 class StringFieldModel: BaseFieldModel, StringComponentModel {
-
     var fieldValue: String? {
         didSet {
             if let value = fieldValue {
