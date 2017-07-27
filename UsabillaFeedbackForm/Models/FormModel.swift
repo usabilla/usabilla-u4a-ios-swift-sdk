@@ -67,7 +67,7 @@ class FormModel: NSObject, NSCoding {
         var screenshotJson: [String: Any] = [:]
         screenshotJson["type"] = "screenshot"
         screenshotJson["name"] = "screenshot"
-        screenshotJson["title"] = "Screenshot"
+        screenshotJson["title"] = copyModel.screenshotTitle
         screenshotJson["required"] = false
 
         if let firstPageModel = newPages.first, hasScreenshot {
