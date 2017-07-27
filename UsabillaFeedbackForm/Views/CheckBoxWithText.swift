@@ -16,7 +16,6 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
     var label: UILabel!
     var labelTopConstraint: NSLayoutConstraint!
     let checkboxSize: CGFloat = 25
-
     var theme: UsabillaTheme? {
         didSet {
             applyCustomisation()
@@ -39,7 +38,6 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(CheckboxWithText.touchEvent))
 
         self.addGestureRecognizer(gesture)
-
         self.addSubview(checkBox)
         self.addSubview(label)
 
@@ -64,6 +62,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         label.textColor = theme.textColor
         let spaceAvailable = (checkboxSize - label.font.lineHeight)
         labelTopConstraint.constant = spaceAvailable / 2
+
     }
 
     required init?(coder aDecoder: NSCoder) {

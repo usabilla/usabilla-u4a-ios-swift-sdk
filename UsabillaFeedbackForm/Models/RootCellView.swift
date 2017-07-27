@@ -50,6 +50,7 @@ class RootCellView: UITableViewCell {
         titleLabelDismissConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 0)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+
         contentView.addSubview(titleLabel)
         contentView.addSubview(errorLabel)
         contentView.addSubview(rootCellContainerView)
