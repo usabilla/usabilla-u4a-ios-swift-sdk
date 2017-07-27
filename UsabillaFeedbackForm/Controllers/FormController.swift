@@ -69,7 +69,7 @@ class FormViewController: UIViewController {
         setUpLeftButton()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         deinitForm()
     }
 
