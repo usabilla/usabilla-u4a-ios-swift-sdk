@@ -64,6 +64,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
         tableView.register(RootCellView.self, forCellReuseIdentifier: "root")
         tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
 
+        tableView.canCancelContentTouches = false
         requiredLabel.text = viewModel.errorMessage
 
         let header = UIView()
