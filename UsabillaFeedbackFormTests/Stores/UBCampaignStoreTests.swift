@@ -192,7 +192,7 @@ class UBCampaignStoreTests: QuickSpec {
                             expect(id).to(equal(cmp3.targetingId))
                             done()
                         }
-                        store.getCampaigns(withAppId: "")
+                        _ = store.getCampaigns(withAppId: "")
                     }
                 }
 

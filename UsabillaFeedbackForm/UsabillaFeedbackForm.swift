@@ -106,7 +106,6 @@ open class UsabillaFeedbackForm {
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {
-            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController, active: true)
             if !success {
                 UsabillaFeedbackForm.delegate?.formFailedLoading(navigationController)
                 return

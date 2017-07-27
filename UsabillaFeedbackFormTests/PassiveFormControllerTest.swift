@@ -100,8 +100,8 @@ extension PassiveFormControllerTest: UsabillaFeedbackFormDelegate {
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
 
     }
-
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    
+    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
         closed!(feedbackResults)
     }
 }
