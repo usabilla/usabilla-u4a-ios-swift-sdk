@@ -13,7 +13,8 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class PassiveFormControllerTest: QuickSpec {
-    fileprivate var closed: (([FeedbackResult]) -> Void)?
+    fileprivate var onDidClose: (([FeedbackResult], Bool) -> Void)?
+    fileprivate var onWillClose: (([FeedbackResult], Bool) -> Void)?
 
     override func spec() {
         var viewController: FormViewController!
@@ -33,17 +34,76 @@ class PassiveFormControllerTest: QuickSpec {
             // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
             viewController.beginAppearanceTransition(true, animated: false)
             viewController.endAppearanceTransition()
+            self.onDidClose = nil
+            self.onWillClose = nil
+            UsabillaFeedbackForm.dismissAutomatically = true
+            UsabillaFeedbackForm.delegate = self
         }
 
         context("When canceling the form before the end page") {
             it("should create a feedback result") {
-                UsabillaFeedbackForm.delegate = self
                 waitUntil(timeout: 5.0) { done in
-                    self.closed = { feedbackResults in
+                    self.onDidClose = { feedbackResults, _ in
                         expect(feedbackResults.count).to(equal(1))
                         expect(feedbackResults.first?.sent).to(beFalse())
                         done()
 
+                    }
+                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                }
+            }
+
+            it("should call the willClose delegate method with the right appStoreRedirect Value") {
+                let path = Bundle(for: PassiveFormControllerTest.self).path(forResource: "redirectEnabled", ofType: "json")!
+                let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
+                let jsonObj = JSON(data: (data as Data?)!)
+                let formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+
+
+                viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel))
+                navigationController = UINavigationController(rootViewController: viewController)
+                _ = navigationController
+                viewController.delegate = PassiveFormController(submissionManager: submissionManager)
+                _ = viewController.view
+                viewController.beginAppearanceTransition(true, animated: false)
+                viewController.endAppearanceTransition()
+
+                waitUntil(timeout: 5.0) { done in
+                    self.onWillClose = { feedbackResults, redirectToAppStore in
+                        expect(redirectToAppStore).to(beTrue())
+                        done()
+                    }
+                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                }
+            }
+
+            it("should call the willClose delegate method") {
+                waitUntil(timeout: 5.0) { done in
+                    self.onWillClose = { feedbackResults, redirectToAppStore in
+                        expect(redirectToAppStore).to(beFalse())
+                        done()
+                    }
+                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                }
+            }
+
+            it("should call the didClose delegate method when dismissAutomatically is true") {
+                waitUntil(timeout: 5.0) { done in
+                    self.onDidClose = { feedbackResults, redirectToAppStore in
+                        done()
+                    }
+                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                }
+            }
+
+            it("should not call the didClose delegate method when dismissAutomatically is false") {
+                UsabillaFeedbackForm.dismissAutomatically = false
+                waitUntil(timeout: 5.0) { done in
+                    self.onDidClose = { feedbackResults, redirectToAppStore in
+                        fail()
+                    }
+                    self.onWillClose = { feedbackResults, redirectToAppStore in
+                        done()
                     }
                     viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
@@ -78,9 +138,8 @@ class PassiveFormControllerTest: QuickSpec {
                 expect(viewController.viewModel.currentPageIndex).to(equal(3))
                 expect(viewController.thankYouController).toNot(beNil())
 
-                UsabillaFeedbackForm.delegate = self
                 waitUntil(timeout: 5.0) { done in
-                    self.closed = { feedbackResults in
+                    self.onDidClose = { feedbackResults, redirectToAppStore in
                         expect(feedbackResults.count).to(equal(1))
                         expect(feedbackResults.first?.sent).to(beTrue())
                         done()
@@ -100,8 +159,11 @@ extension PassiveFormControllerTest: UsabillaFeedbackFormDelegate {
     func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
 
     }
-    
+
+    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+        onWillClose?(feedbackResults, isRedirectToAppStoreEnabled)
+    }
     func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-        closed!(feedbackResults)
+        onDidClose?(feedbackResults, isRedirectToAppStoreEnabled)
     }
 }
