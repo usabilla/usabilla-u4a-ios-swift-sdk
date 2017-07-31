@@ -60,6 +60,7 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
                 expect(json["form_version"]).to(equal(0))
                 expect(json["metadata"]).toNot(beNil())
                 expect(json["metadata"]["system"]).to(equal("ios"))
+                expect(json["metadata"]["battery"]).to(equal(1))
                 expect(json["id"].exists()).to(beTrue())
             }
 

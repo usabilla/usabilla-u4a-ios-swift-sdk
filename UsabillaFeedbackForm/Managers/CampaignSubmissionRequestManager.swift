@@ -92,7 +92,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         payload["complete"] = false
 
         metadata["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]
-        metadata["battery"] = UIDevice.current.batteryLevel
+        metadata["battery"] = abs(UIDevice.current.batteryLevel)
         metadata["network_connection"] = reachability.currentReachabilityStatus.description
         metadata["device"] = uiDevice.modelName
         metadata["language"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)
