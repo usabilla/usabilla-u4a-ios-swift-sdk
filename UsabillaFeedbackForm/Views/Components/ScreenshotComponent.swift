@@ -53,7 +53,9 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
         addScreenshotLabel = UIButton(type: UIButtonType.system)
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
+        addScreenshotLabel.contentHorizontalAlignment = .left
         addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
+        addScreenshotLabel.setTitle(viewModel.model.pageModel.copy?.screenshotPlaceholder, for: .normal)
 
         addSubview(screenShotView)
         addSubview(addIcon)
@@ -110,7 +112,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
         addScreenshotLabel.centerYAnchor.constraint(equalTo: addIcon.centerYAnchor).isActive = true
-        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 4).isActive = true
+        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 8).isActive = true
+        addScreenshotLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).activate()
 
         addScreenshotLine.topAnchor.constraint(equalTo: addScreenshotLabel.bottomAnchor, constant: 3).isActive = true
         addScreenshotLine.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -134,7 +137,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
         addIcon.setImage(Icons.imageOfAddImage(color: theme.textColor), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.titleColor, for: .normal)
-        addScreenshotLabel.titleLabel?.font = theme.boldFont
+        addScreenshotLabel.titleLabel?.font = theme.font
         addScreenshotLine.backgroundColor = theme.hintColor
         screenShotView.layer.borderColor = theme.hintColor.cgColor
     }
