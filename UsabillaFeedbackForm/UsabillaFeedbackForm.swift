@@ -76,7 +76,7 @@ open class UsabillaFeedbackForm {
             return navigationController
         }
 
-        open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = UsabillaTheme()) {
+        open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = theme) {
             campaignStore.getCampaignForm(withFormId: formId, theme: theme).then { form in
                 campaignManager?.displayCampaignForm(form)
             }
@@ -88,7 +88,7 @@ open class UsabillaFeedbackForm {
         }
     #endif
 
-    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = UsabillaTheme()) {
+    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = theme) {
 
         formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables, success: true)
