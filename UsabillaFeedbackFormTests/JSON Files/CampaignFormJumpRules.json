@@ -1,0 +1,163 @@
+{
+    "id": "cc6fe887-8df9-43c8-a9b4-945d07ad9ef0",
+    "version": 3,
+    "structure": {
+        "colors": {
+            "group1": {"hash": "#41474C"},
+            "group2": {"hash": "#00A5C9"},
+            "group3": {"hash": "#59636B"},
+            "group4": {"hash": "#F4606E"},
+            "group5": {"hash": "#FFFFFF"},
+            "group6": {"hash": "#FFFFFF"}
+        },
+        "data": {
+            "appStoreRedirect": false,
+            "appSubmit": "Submit",
+            "appTitle": "Feedback",
+            "errorMessage": "Please check the fields marked with *",
+            "progressbar": false,
+            "screenshot": false,
+            "store_ip": false
+        },
+        "form": {
+            "pages": [
+                      {
+                      "type": "banner",
+                      "fields": [
+                                 {
+                                 "type": "mood",
+                                 "caption": "Mood",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": false,
+                                 "interactive": true,
+                                 "showHideRule": [],
+                                 "validationText": "This field is required",
+                                 "name": "mood",
+                                 "title": "How did you experience the checkout process?",
+                                 "points": "2",
+                                 "options": [
+                                             {"title": "Hate", "value": "1"},
+                                             {"title": "Love", "value": "5"}
+                                             ],
+                                 "mode": "emoticon",
+                                 "required": true
+                                 },
+                                 {
+                                 "type": "continue",
+                                 "caption": "Continue Button",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": "continue",
+                                 "interactive": true,
+                                 "showHideRule": [],
+                                 "validationText": "This field is required",
+                                 "title": "Continue"
+                                 }
+                                 ],
+                      "jumpRules": [
+                                    {"control": "mood", "value": ["5"], "jump": "end"},
+                                    {"control": "mood", "value": ["1"], "jump": "Negative"}
+                                    ],
+                      "autoSubmit": true,
+                      "name": "start"
+                      },
+                      {
+                      "type": "form",
+                      "fields": [
+                                 {
+                                 "type": "header",
+                                 "caption": "Header",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": false,
+                                 "interactive": true,
+                                 "showHideRule": {
+                                 "control": "mood",
+                                 "value": ["1"],
+                                 "action": "show"
+                                 },
+                                 "validationText": "This field is required",
+                                 "text": "To bad you don't like it"
+                                 },
+                                 {
+                                 "type": "textArea",
+                                 "caption": "Text Area",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": false,
+                                 "interactive": true,
+                                 "showHideRule": [],
+                                 "validationText": "This field is required",
+                                 "title": "How can we improve?",
+                                 "name": "How_can_we_impro",
+                                 "default": "Ideas, suggestions, tips",
+                                 "required": true
+                                 },
+                                 {
+                                 "type": "continue",
+                                 "caption": "Continue Button",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": "continue",
+                                 "interactive": true,
+                                 "showHideRule": [],
+                                 "validationText": "This field is required",
+                                 "title": "Continue"
+                                 }
+                                 ],
+                      "jump": "End2",
+                      "jumpRules": [],
+                      "autoSubmit": true,
+                      "name": "Negative"
+                      },
+                      {
+                      "type": "toast",
+                      "fields": [
+                                 {
+                                 "type": "paragraph",
+                                 "caption": "Paragraph",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": false,
+                                 "interactive": true,
+                                 "showHideRule": [],
+                                 "validationText": "This field is required",
+                                 "text": "Thanks! Glad you like it! staging"
+                                 }
+                                 ],
+                      "jumpRules": [],
+                      "autoSubmit": false,
+                      "name": "end"
+                      },
+                      {
+                      "type": "toast",
+                      "fields": [
+                                 {
+                                 "type": "paragraph",
+                                 "caption": "Paragraph",
+                                 "autoSubmit": false,
+                                 "forceRequired": false,
+                                 "fixed": false,
+                                 "interactive": true,
+                                 "showHideRule": [],
+                                 "validationText": "This field is required",
+                                 "text": "Thanks for your input!"
+                                 }
+                                 ],
+                      "jumpRules": [],
+                      "autoSubmit": false,
+                      "name": "End2"
+                      }
+                      ],
+            "allowedPageTypes": ["banner", "form", "toast"]
+        },
+        "localization": {
+            "appStore": "Go to the app store",
+            "cancelButton": "Cancel",
+            "moreFeedback": "Give more feedback",
+            "navigationNext": "Next",
+            "screenshotTitle": "Screenshot"
+        }
+    }
+}

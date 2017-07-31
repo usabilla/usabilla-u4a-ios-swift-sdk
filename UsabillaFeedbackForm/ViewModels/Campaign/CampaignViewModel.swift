@@ -18,7 +18,7 @@ class CampaignViewModel {
     init(form: FormModel, manager: CampaignSubmissionRequestManagerProtocol) {
         self.form = form
         self.formViewModel = UBFormViewModel(formModel: form, shouldAddMarginWhenKeyboardIsShown: false)
-        self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex)
+        self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: 0)
         self.formViewModel.isCampaignForm = true
         self.manager = manager
 
@@ -43,6 +43,10 @@ class CampaignViewModel {
         }
     }
 
+    var currentPageType: PageType? {
+        return formViewModel.currentPageViewModel.model.type
+    }
+
     var toastPageViewModel: UBToastPageViewModel? {
         guard let endPageModel = form.pages[formViewModel.currentPageIndex] as? UBEndPageModel else {
             return nil
@@ -50,7 +54,21 @@ class CampaignViewModel {
         return UBToastPageViewModel(model: endPageModel)
     }
 
+    func introViewDidContinue() {
+        let nextIndex = formViewModel.nextPageIndex
+        let nextPageViewModel = pageViewModel(atIndex: nextIndex)
+        formViewModel.currentPageViewModel = nextPageViewModel
+        // swiftlint:disable:next force_unwrapping
+        let type = nextPageViewModel.model.type!
+        // swiftlint:disable:next force_unwrapping
+        pageDidTurn(pageIndex: 0, pageModel: introPageViewModel!.introPage, nextPageType: type)
+    }
+
     func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {
         manager.savePage(page: pageModel, nextPageType: nextPageType)
+    }
+
+    func pageViewModel(atIndex index: Int) -> PageViewModel {
+        return formViewModel.pageViewModel(atIndex: index)
     }
 }

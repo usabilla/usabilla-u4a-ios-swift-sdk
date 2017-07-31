@@ -1,5 +1,5 @@
 //
-//  CampainViewModelTests.swift
+//  CampaignViewModelTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Adil Bougamza on 27/03/2017.
@@ -13,13 +13,15 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class CampaingViewModelTests: QuickSpec {
+class CampaignViewModelTests: QuickSpec {
     var formJson: JSON!
     var manager: CampaignSubmissionRequestManagerProtocol!
     var campaignModel: CampaignModel!
 
     override func spec() {
-        describe("CampainViewModelTests") {
+        var campaignViewModel: CampaignViewModel!
+
+        describe("campaignViewModelTests") {
 
             beforeSuite {
                 self.formJson = UBMock.formMock().formJsonString
@@ -30,18 +32,18 @@ class CampaingViewModelTests: QuickSpec {
                 self.campaignModel = CampaignModel(id: "", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
             }
 
-            context("When initilized CampainViewModel", {
-                it("should not set introPageViewModel & introPresenter when json does not conatin start page", closure: {
+            context("When initilized campaignViewModel") {
+                it("should not set introPageViewModel & introPresenter when json does not contain start page") {
                     let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
                     self.campaignModel.form = formModel
 
                     expect(self.self.campaignModel).toNot(beNil())
-                    let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
-                    expect(campainViewModel).toNot(beNil())
-                    expect(campainViewModel.introPageViewModel).to(beNil())
-                    expect(campainViewModel.introPresenter).to(beNil())
-                })
-                it("should set introPageViewModel & introPresenter when json contains start page", closure: {
+                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    expect(campaignViewModel).toNot(beNil())
+                    expect(campaignViewModel.introPageViewModel).to(beNil())
+                    expect(campaignViewModel.introPresenter).to(beNil())
+                }
+                it("should set introPageViewModel & introPresenter when json contains start page") {
                     // add start page to json form
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
@@ -51,14 +53,13 @@ class CampaingViewModelTests: QuickSpec {
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     self.campaignModel.form = formModel
                     expect(self.campaignModel).toNot(beNil())
-                    let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
-                    expect(campainViewModel).toNot(beNil())
-                    expect(campainViewModel.introPageViewModel).toNot(beNil())
-                    expect(campainViewModel.introPresenter).toNot(beNil())
-                    expect(campainViewModel.introPresenter is UBBannerPresenter).to(beTrue())
-
-                })
-                it("should set introPageViewModel & introPresenter when json contains start page and is an alert", closure: {
+                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    expect(campaignViewModel).toNot(beNil())
+                    expect(campaignViewModel.introPageViewModel).toNot(beNil())
+                    expect(campaignViewModel.introPresenter).toNot(beNil())
+                    expect(campaignViewModel.introPresenter is UBBannerPresenter).to(beTrue())
+                }
+                it("should set introPageViewModel & introPresenter when json contains start page and is an alert") {
                     // add start page to json form
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
@@ -70,42 +71,80 @@ class CampaingViewModelTests: QuickSpec {
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     self.campaignModel.form = formModel
                     expect(self.campaignModel).toNot(beNil())
-                    let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
-                    expect(campainViewModel).toNot(beNil())
-                    expect(campainViewModel.introPageViewModel).toNot(beNil())
-                    expect(campainViewModel.introPresenter is UBAlertPresenter).to(beTrue())
-                })
-            })
+                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    expect(campaignViewModel).toNot(beNil())
+                    expect(campaignViewModel.introPageViewModel).toNot(beNil())
+                    expect(campaignViewModel.introPresenter is UBAlertPresenter).to(beTrue())
+                }
+            }
 
-            context("When accessing formViewModel", {
-                it("should return a formViewModel with the right data", closure: {
+            context("When accessing formViewModel") {
+                it("should return a formViewModel with the right data") {
                     let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
                     self.campaignModel.form = formModel
-                    let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
-                    let formViewModel = campainViewModel.formViewModel
+                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    let formViewModel = campaignViewModel.formViewModel
 
                     expect(formViewModel).toNot(beNil())
-                    expect(formViewModel.currentPageViewModel.name).to(equal("Third"))
+                    expect(formViewModel.currentPageViewModel.name).to(equal("start"))
                     expect(formViewModel.shouldAddMarginWhenKeyboardIsShown).to(beFalse())
-                })
-            })
+                }
+            }
 
-            context("When accessing toastViewModel", {
-                it("should return a toastViewModel with the right data", closure: {
-
-                    let path = Bundle(for: CampaingViewModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
-                    let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                    let json = JSON(data: (data as Data?)!)
-
+            context("When accessing toastViewModel") {
+                beforeEach {
+                    let json = UBTestHelper.getJSONFromFile(named: "CampaignForm")
                     let formModel = FormModel(json: json, id: "", screenshot: nil)
                     self.campaignModel.form = formModel
-                    let campainViewModel = CampaignViewModel(form: formModel, manager: self.manager)
-                    let toastViewModel = campainViewModel.toastPageViewModel
+                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    
+                }
+                it("should return a toastViewModel with the right data") {
+                    var toastViewModel = campaignViewModel.toastPageViewModel
+                    expect(toastViewModel).to(beNil())
 
+                    campaignViewModel.introViewDidContinue()
+                    toastViewModel = campaignViewModel.toastPageViewModel
+                    
                     expect(toastViewModel!).toNot(beNil())
                     expect(toastViewModel!.text).to(equal("Thanks!"))
-                })
-            })
+                }
+            }
+
+            context("When there are jump rules in a campaign") {
+                beforeEach {
+                    let json = UBTestHelper.getJSONFromFile(named: "CampaignFormJumpRules")
+                    let formModel = FormModel(json: json, id: "", screenshot: nil)
+                    self.campaignModel.form = formModel
+                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+
+                }
+                it("should go to the correct page when the mood is 1") {
+                    expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(0))
+                    let moodField = campaignViewModel.formViewModel.model.pages[0].fields.first as! MoodFieldModel
+                    moodField.fieldValue = 1
+                    expect(campaignViewModel.currentPageType).to(equal(PageType.banner))
+                    campaignViewModel.introViewDidContinue()
+                    expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(1))
+                    expect(campaignViewModel.formViewModel.currentPageViewModel.name).to(equal("Negative"))
+                    expect(campaignViewModel.currentPageType).to(equal(PageType.form))
+                    campaignViewModel.formViewModel.currentPageViewModel = campaignViewModel.pageViewModel(atIndex: campaignViewModel.formViewModel.nextPageIndex)
+                    expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(3))
+                    expect(campaignViewModel.formViewModel.currentPageViewModel.name).to(equal("End2"))
+                    expect(campaignViewModel.currentPageType).to(equal(PageType.toast))
+
+                }
+                it("should go to the correct page when the mood is 5") {
+                    expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(0))
+                    let moodField = campaignViewModel.formViewModel.model.pages[0].fields.first as! MoodFieldModel
+                    moodField.fieldValue = 5
+                    expect(campaignViewModel.currentPageType).to(equal(PageType.banner))
+                    campaignViewModel.introViewDidContinue()
+                    expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(2))
+                    expect(campaignViewModel.formViewModel.currentPageViewModel.name).to(equal("end"))
+                    expect(campaignViewModel.currentPageType).to(equal(PageType.toast))
+                }
+            }
         }
     }
 }

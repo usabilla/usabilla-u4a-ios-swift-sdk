@@ -190,12 +190,8 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {
-        let index = viewModel.formViewModel.currentPageIndex
-        // swiftlint:disable:next force_unwrapping
-        let type = viewModel.formViewModel.model.pages[index].type!
-        // swiftlint:disable:next force_unwrapping
-        viewModel.pageDidTurn(pageIndex: 0, pageModel: viewModel.introPageViewModel!.introPage, nextPageType: type)
-        if type == .toast {
+        viewModel.introViewDidContinue()
+        if viewModel.currentPageType == .toast {
             viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: {
                 self.showToast()
             })
