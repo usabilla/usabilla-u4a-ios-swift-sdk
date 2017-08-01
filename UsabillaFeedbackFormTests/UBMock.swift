@@ -11,7 +11,8 @@
 class UBMock {
 
     static var mockJson: JSON?
-
+    static var formJson: JSON?
+    
     class func json(_ key: String) -> JSON? {
         if mockJson == nil {
             mockJson = UBTestHelper.getJSONFromFile(named: "Mock")["node"]
@@ -21,7 +22,10 @@ class UBMock {
     }
 
     class func formMock () -> FormModel {
-        return FormModel(json: UBTestHelper.getJSONFromFile(named: "test"), id: "mockFormId", screenshot: nil)
+        if formJson == nil {
+            formJson = UBTestHelper.getJSONFromFile(named: "test")
+        }
+        return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)
     }
 
     class func campaignMock(withId id: String = "") -> CampaignModel {
