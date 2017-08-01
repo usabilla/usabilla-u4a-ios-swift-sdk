@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol IntFieldHandlerProtocol: class {
-    var fieldValue: Int {get set}
+    var fieldValue: Int { get set }
 }
 
 protocol FormViewControllerDelegate: class {
@@ -66,10 +66,10 @@ protocol Reachable {
 }
 
 protocol PageModelProtocol {
-    func toJSONDictionary() -> [String: Any]
+    func toDictionary() -> [String: Any?]
     var fields: [BaseFieldModel] { get }
     var fieldValuesCollection: [String: [String]] { get }
-    var type: PageType? {get set}
+    var type: PageType? { get set }
 }
 
 protocol CampaignSubmissionManagerProtocol {
@@ -78,4 +78,8 @@ protocol CampaignSubmissionManagerProtocol {
 
 protocol SubmissionServiceProtocol {
     @discardableResult func submit(withRequest request: URLRequest) -> Promise<Bool>
+}
+
+protocol Exportable {
+    var exportableValue: Any? { get }
 }

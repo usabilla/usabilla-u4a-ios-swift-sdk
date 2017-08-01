@@ -18,8 +18,10 @@ class IntFieldModelTest: QuickSpec {
         var model: IntFieldModel?
 
         describe("IntFieldModel") {
-            it("init IntFieldModel") {
+            beforeEach {
                 model = IntFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+            }
+            it("init IntFieldModel") {
                 expect(model).toNot(beNil())
             }
 
@@ -37,12 +39,13 @@ class IntFieldModelTest: QuickSpec {
                 model?.fieldValue = 15
                 expect(model?.isValid()).to(beTrue())
             }
-
-            it("StringField convertToJson") {
+            it("should export the value correctly") {
+                model?.fieldValue = nil
+                expect(model?.exportableValue).to(beNil())
                 model?.fieldValue = 17
-                expect(model?.convertToJSON() as? Int).to(equal(17))
+                let value = model!.exportableValue as! Int
+                expect(value).to(equal(17))
             }
-
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class OptionsFieldModel: BaseFieldModel {
+class OptionsFieldModel: BaseFieldModel, Exportable {
 
     var options: [Options]
     var fieldValue: [String] = [] {
@@ -19,6 +19,10 @@ class OptionsFieldModel: BaseFieldModel {
             }
             pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
         }
+    }
+
+    var exportableValue: Any? {
+        return fieldValue.count > 0 ? fieldValue : nil
     }
 
     override init(json: JSON, pageModel: PageModel) {
@@ -32,10 +36,6 @@ class OptionsFieldModel: BaseFieldModel {
 
     override func isValid() -> Bool {
         return !required || fieldValue.count > 0
-    }
-
-    override func convertToJSON() -> Any? {
-        return fieldValue.count > 0 ? fieldValue : nil
     }
 
     override func reset() {

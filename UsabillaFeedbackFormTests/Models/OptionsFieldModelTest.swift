@@ -18,16 +18,16 @@ class OptionsFieldModelTest: QuickSpec {
         var model: OptionsFieldModel?
 
         describe("OptionsFieldModel") {
-            it("init OptionsFieldModel") {
+            beforeEach {
                 model = OptionsFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+            }
+            it("init OptionsFieldModel") {
                 expect(model).toNot(beNil())
             }
-
             it("OptionsFieldModel fieldValue") {
                 model?.fieldValue = ["test1", "test2"]
                 expect(pageModel.fieldValuesCollection["myField"]).to(equal(["test1", "test2"]))
             }
-
             it("OptionsFieldModel isValid") {
                 model?.fieldValue = []
 
@@ -38,15 +38,13 @@ class OptionsFieldModelTest: QuickSpec {
                 model?.fieldValue = ["hello"]
                 expect(model?.isValid()).to(beTrue())
             }
-
-            it("StringField convertToJson") {
+            it("should export the value correctly") {
                 model?.fieldValue = []
-                expect(model?.convertToJSON()).to(beNil())
-
+                expect(model?.exportableValue).to(beNil())
                 model?.fieldValue = ["hello"]
-                expect(model?.convertToJSON() as? [String]).to(equal(["hello"]))
+                let value = model!.exportableValue as! [String]
+                expect(value).to(equal(["hello"]))
             }
-
         }
     }
 }

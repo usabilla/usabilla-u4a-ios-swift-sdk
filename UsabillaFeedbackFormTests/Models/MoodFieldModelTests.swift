@@ -19,7 +19,6 @@ class MoodFieldModelTests: QuickSpec {
         var model: MoodFieldModel?
 
         describe("MoodFieldModel") {
-
             context("When MoodFieldModel is initlized with correct json") {
                 it("should have the correct values set up with 5 emojis") {
                     model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\", \"points\": \"5\"}"), pageModel: pageModel)
@@ -46,7 +45,6 @@ class MoodFieldModelTests: QuickSpec {
                     expect(model?.mode).to(equal(RatingMode.star))
                 }
             }
-
             context("When MoodFieldModel is initlized with no points") {
                 it("should have set points to 5") {
                     model = MoodFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)

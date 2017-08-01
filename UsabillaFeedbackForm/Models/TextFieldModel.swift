@@ -8,14 +8,18 @@
 
 import Foundation
 
-class TextFieldModel: StringFieldModel, EditableStringComponentModel {
+class TextFieldModel: StringFieldModel, EditableStringComponentModel, Exportable {
+
     let placeHolder: String?
     let defaultValue: String?
+
+    var exportableValue: Any? {
+        return fieldValue
+    }
 
     override init(json: JSON, pageModel: PageModel) {
         placeHolder = json["placeholder"].string
         defaultValue = json["defaultValue"].string
         super.init(json: json, pageModel: pageModel)
     }
-
 }

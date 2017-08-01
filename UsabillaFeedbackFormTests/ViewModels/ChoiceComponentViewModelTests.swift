@@ -69,18 +69,18 @@ class ChoiceComponentViewModelTests: QuickSpec {
         describe("the json convertion method") {
             it("Should not validate empty string") {
                 model.fieldValue = [""]
-                expect(viewModel.model.convertToJSON()).to(beNil())
+                expect(viewModel.model.exportableValue).to(beNil())
             }
 
             it("Should not validate nil values") {
                 model.fieldValue = []
-                expect(viewModel.model.convertToJSON()).to(beNil())
+                expect(viewModel.model.exportableValue).to(beNil())
             }
 
             it("Should validate strings") {
                 model.fieldValue = ["a"]
                 // swiftlint:disable force_cast
-                let json = viewModel.model.convertToJSON() as! [String]
+                let json = viewModel.model.exportableValue as! [String]
                 expect(json).to(equal(["a"]))
             }
         }

@@ -13,6 +13,10 @@ class ChoiceFieldModel: OptionsFieldModel {
     let emptyValue: String?
     var expanded: Bool = false
 
+    override var exportableValue: Any? {
+        return isChoiceValueValid() ? fieldValue : nil
+    }
+
     override init(json: JSON, pageModel: PageModel) {
         defaultValue = json["default"].string
         emptyValue = json["empty"].string
@@ -35,9 +39,5 @@ class ChoiceFieldModel: OptionsFieldModel {
 
     override func isValid() -> Bool {
         return !required || isChoiceValueValid()
-    }
-
-    override func convertToJSON() -> Any? {
-        return isChoiceValueValid() ? fieldValue : nil
     }
 }

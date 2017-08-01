@@ -41,10 +41,6 @@ class FieldFactoryTest: QuickSpec {
                 expect(field is TextAreaFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON.parse("{\"type\":\"comment\"}"), pagemodel: pageModel)
-                expect(field is CommentFieldModel).to(beTrue())
-            }
-            it("text type") {
                 let field = FieldFactory.createField(JSON.parse("{\"type\":\"mood\"}"), pagemodel: pageModel)
                 expect(field is MoodFieldModel).to(beTrue())
                 expect((field as? MoodFieldModel)?.mode).to(equal(RatingMode.emoticon))

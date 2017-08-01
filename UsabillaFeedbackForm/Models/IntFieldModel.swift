@@ -8,7 +8,7 @@
 
 import Foundation
 
-class IntFieldModel: BaseFieldModel {
+class IntFieldModel: BaseFieldModel, Exportable {
 
     var fieldValue: Int? {
         didSet {
@@ -20,6 +20,10 @@ class IntFieldModel: BaseFieldModel {
         }
     }
 
+    var exportableValue: Any? {
+        return fieldValue
+    }
+
     override init(json: JSON, pageModel: PageModel) {
         fieldValue = nil
         super.init(json: json, pageModel: pageModel)
@@ -27,10 +31,6 @@ class IntFieldModel: BaseFieldModel {
 
     override func isValid() -> Bool {
         return !required || fieldValue != nil
-    }
-
-    override func convertToJSON() -> Any? {
-        return fieldValue
     }
 
     override func reset() {

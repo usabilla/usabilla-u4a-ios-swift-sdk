@@ -25,15 +25,12 @@ class EmailFieldModelTest: QuickSpec {
                 model = EmailFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
                 expect(model).toNot(beNil())
             }
-
             it("EmailFieldModel isValidEmail") {
                 expect(model?.isValidEmail(testStr: "test")).to(beFalse())
                 expect(model?.isValidEmail(testStr: "test@")).to(beFalse())
                 expect(model?.isValidEmail(testStr: "test@test")).to(beFalse())
                 expect(model?.isValidEmail(testStr: "test@test.com")).to(beTrue())
-
             }
-
             it("EmailFieldModel isValid") {
                 model?.fieldValue = nil
                 model?.required = false
@@ -45,7 +42,13 @@ class EmailFieldModelTest: QuickSpec {
                 model?.fieldValue = "test@test.com"
                 expect(model?.isValid()).to(beTrue())
             }
+            it("should export the value correctly") {
+                model?.fieldValue = nil
+                expect(model?.exportableValue).to(beNil())
+                model?.fieldValue = "test"
+                let value = model!.exportableValue as! String
+                expect(value).to(equal("test"))
+            }
         }
-
     }
 }

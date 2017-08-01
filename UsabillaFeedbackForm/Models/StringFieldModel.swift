@@ -31,10 +31,6 @@ class StringFieldModel: BaseFieldModel, StringComponentModel {
         return !required || !value.isEmpty
     }
 
-    override func convertToJSON() -> Any? {
-        return fieldValue
-    }
-
     override func reset() {
         fieldValue = nil
     }

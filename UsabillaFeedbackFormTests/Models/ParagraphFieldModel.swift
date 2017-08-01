@@ -22,11 +22,6 @@ class ParagraphFieldModelTest: QuickSpec {
                 model = ParagraphFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
                 expect(model).toNot(beNil())
             }
-
-            it("BaseFieldModel convertToJson") {
-                let res = model?.convertToJSON()
-                expect(res).to(beNil())
-            }
         }
     }
 }

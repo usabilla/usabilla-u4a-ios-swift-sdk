@@ -47,7 +47,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
     }
 
     func savePage(page: PageModelProtocol, nextPageType: PageType) {
-        var payload: [String: Any] = ["data": page.toJSONDictionary()]
+        var payload: [String: Any] = ["data": page.toDictionary()]
 
         if page.type == .banner {
             payload = addMetadataPayload(payload: payload)

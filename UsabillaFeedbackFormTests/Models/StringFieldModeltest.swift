@@ -40,10 +40,6 @@ class StringFieldModelTest: QuickSpec {
                 model?.fieldValue = "test"
                 expect(model?.isValid()).to(beTrue())
             }
-            it("StringField convertToJson") {
-                model?.fieldValue = "hello"
-                expect(model?.convertToJSON() as? String).to(equal("hello"))
-            }
         }
     }
 }

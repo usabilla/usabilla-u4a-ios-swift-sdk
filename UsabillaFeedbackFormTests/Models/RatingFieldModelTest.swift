@@ -18,16 +18,24 @@ class RatingFieldModelTest: QuickSpec {
         var model: RatingFieldModel?
 
         describe("RatingFieldModel") {
-            it("init RatingFieldModel") {
+            beforeEach {
                 model = RatingFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+            }
+            it("init RatingFieldModel") {
                 expect(model).toNot(beNil())
                 expect(model?.isNPS).to(beFalse())
             }
-
             it("init RatingFieldModel NPS") {
                 model = RatingFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel, isNPS: true)
                 expect(model).toNot(beNil())
                 expect(model?.isNPS).to(beTrue())
+            }
+            it("should export the value correctly") {
+                model?.fieldValue = nil
+                expect(model?.exportableValue).to(beNil())
+                model?.fieldValue = 17
+                let value = model!.exportableValue as! Int
+                expect(value).to(equal(17))
             }
         }
     }

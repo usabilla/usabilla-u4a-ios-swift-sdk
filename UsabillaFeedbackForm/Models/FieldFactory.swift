@@ -18,7 +18,6 @@ class FieldFactory {
         case choice
         case email
         case textArea
-        case comment
         case nps
         case mood
         case rating
@@ -47,8 +46,6 @@ class FieldFactory {
             return EmailFieldModel(json: json, pageModel: pagemodel)
         case .textArea:
             return TextAreaFieldModel(json: json, pageModel: pagemodel)
-        case .comment:
-            return CommentFieldModel(json: json, pageModel: pagemodel)
         case .nps:
             return RatingFieldModel(json: json, pageModel: pagemodel, isNPS: true)
         case .mood:

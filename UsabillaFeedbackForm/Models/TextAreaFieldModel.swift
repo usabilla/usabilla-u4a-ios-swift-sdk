@@ -8,13 +8,16 @@
 
 import Foundation
 
-class TextAreaFieldModel: StringFieldModel, EditableStringComponentModel {
+class TextAreaFieldModel: StringFieldModel, EditableStringComponentModel, Exportable {
 
     let placeHolder: String?
+
+    var exportableValue: Any? {
+        return fieldValue
+    }
 
     override init(json: JSON, pageModel: PageModel) {
         placeHolder = json["placeholder"].string
         super.init(json: json, pageModel: pageModel)
     }
-
 }

@@ -26,10 +26,6 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
         self.rule = nil
     }
 
-    func convertToJSON() -> Any? {
-        return nil
-    }
-
     /**
     Reset the model value to a nil or empty value
     */

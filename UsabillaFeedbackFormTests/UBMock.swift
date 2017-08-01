@@ -12,7 +12,7 @@ class UBMock {
 
     static var mockJson: JSON?
     static var formJson: JSON?
-    
+
     class func json(_ key: String) -> JSON? {
         if mockJson == nil {
             mockJson = UBTestHelper.getJSONFromFile(named: "Mock")["node"]
@@ -155,11 +155,12 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
 }
 
 class UBPageModelMock: PageModelProtocol {
-    func toJSONDictionary() -> [String: Any] {
+    func toDictionary() -> [String: Any?] {
         var dict = ["one": ["one"]]
         dict["two"] = ["two", "two"]
         return dict
     }
+
     var type: PageType?
     var fields: [BaseFieldModel]
     var fieldValuesCollection: [String: [String]]

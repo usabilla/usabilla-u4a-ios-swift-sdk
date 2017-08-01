@@ -19,8 +19,4 @@ class ParagraphFieldModel: StringFieldModel {
         super.init(json: json, pageModel: pageModel)
         fieldValue = json["text"].string
     }
-
-    override func convertToJSON() -> Any? {
-        return nil
-    }
 }

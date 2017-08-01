@@ -70,7 +70,7 @@ class SubmissionManager {
             PLog("❌ impossible to get SDK version")
         }
 
-        contentDictionary["data"] = formModel.toDictionnary()
+        contentDictionary["data"] = formModel.toDictionary()
 
         contentDictionary["timestamp"] = String(format: "%.0f", arguments: [Date().timeIntervalSince1970])
 

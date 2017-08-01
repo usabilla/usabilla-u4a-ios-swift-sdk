@@ -23,11 +23,6 @@ class BaseFieldModelTest: QuickSpec {
                 expect(base).toNot(beNil())
             }
 
-            it("BaseFieldModel convertToJson") {
-                let res = base?.convertToJSON()
-                expect(res).to(beNil())
-            }
-
             it("BaseFieldModel isValid") {
                 let res = base?.isValid()
                 expect(res).to(beFalse())

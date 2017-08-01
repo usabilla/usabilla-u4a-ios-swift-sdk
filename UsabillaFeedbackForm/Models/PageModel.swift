@@ -45,14 +45,11 @@ class PageModel: PageModelProtocol {
         defaultJumpTo = nil
     }
 
-    func toJSONDictionary() -> [String: Any] {
-        var pageDictionary: [String: Any] = [:]
-        for field in fields {
-            if let converted = field.convertToJSON() {
-                if field.fieldId.characters.count > 0 {
-                    pageDictionary[field.fieldId] = converted
-                }
-            }
+    func toDictionary() -> [String: Any?] {
+        var pageDictionary: [String: Any?] = [:]
+        for field in fields where field.fieldId.characters.count > 0 && field is Exportable {
+            let exportable = field as? Exportable
+            pageDictionary[field.fieldId] = exportable?.exportableValue
         }
         return pageDictionary
     }

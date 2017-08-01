@@ -76,17 +76,12 @@ class FormModel: NSObject, NSCoding {
         self.pages = newPages
     }
 
-    func toDictionnary() -> [String: Any] {
-        var formDictionary = [String: Any]()
-        let indexToStop = pages.count - 1
-        for index in 0...indexToStop - 1 {
-            let page = pages[index]
-            for field in page.fields {
-                if let converted = field.convertToJSON() {
-                    if field.fieldId.characters.count > 0 {
-                        formDictionary[field.fieldId] = converted
-                    }
-                }
+    func toDictionary() -> [String: Any?] {
+        var formDictionary = [String: Any?]()
+        for page in pages {
+            let pagePayload = page.toDictionary()
+            pagePayload.forEach {
+                formDictionary[$0.key] = $0.value
             }
         }
         return formDictionary

@@ -115,6 +115,23 @@ class FormModelTests: QuickSpec {
                     expect(feedbackResult.sent).to(beFalse())
                 }
             })
+
+            context("when exporting to json") {
+                it ("should return export all the pages to json") {
+                    let model = UBMock.formMock()
+                    expect(model.pages.count).to(equal(4))
+
+                    let dictionary = model.toDictionary()
+
+                    expect(dictionary.keys.count).to(equal(6))
+                    expect(dictionary.keys.contains("mood")).to(beTrue())
+                    expect(dictionary.keys.contains("rating")).to(beTrue())
+                    expect(dictionary.keys.contains("rating1")).to(beTrue())
+                    expect(dictionary.keys.contains("text")).to(beTrue())
+                    expect(dictionary.keys.contains("nps")).to(beTrue())
+                    expect(dictionary.keys.contains("Checkboxah")).to(beTrue())
+                }
+            }
         }
     }
 }

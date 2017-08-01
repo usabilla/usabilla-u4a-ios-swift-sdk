@@ -18,7 +18,6 @@ protocol FieldModelProtocol {
     var rule: ShowHideRule? {get set}
 
     func isValid() -> Bool
-    func convertToJSON() -> Any?
     func reset()
 }
 
