@@ -8,3 +8,8 @@ ignore:
  - UsabillaFeedbackForm/Utils/Reachability.swift
  - UsabillaFeedbackForm/Utils/SwiftyJSON.swift
  - UsabillaFeedbackFormTests/*
+ - UsabillaFeedbackForm/*ViewController.swift
+ - UsabillaFeedbackForm/*View.swift
+ - UsabillaFeedbackForm/*ViewCell.swift
+ - UsabillaFeedbackForm/*Component.swift
+
