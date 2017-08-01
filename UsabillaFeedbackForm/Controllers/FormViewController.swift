@@ -13,8 +13,8 @@ class FormViewController: UIViewController {
     var viewModel: UBFormViewModel
     var previousStatusBarColor: UIStatusBarStyle?
     var reachability: Reachability!
-    var pageController: PageController!
-    var thankYouController: ThankYouController!
+    var pageViewController: PageViewController!
+    var thankYouViewController: ThankYouViewController!
     var customVars: [String: Any]?
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
@@ -76,7 +76,7 @@ class FormViewController: UIViewController {
     func deinitForm() {
         SwiftEventBus.postToMainThread("kill")
         SwiftEventBus.unregister(self)
-        pageController?.deinitPageController()
+        pageViewController?.deinitPageController()
     }
 
     // MARK: View setup
@@ -105,11 +105,11 @@ class FormViewController: UIViewController {
         containerView.topAnchor.constraint(equalTo: containerTopAnchor).activate()
 
         // Add PageController
-        pageController = PageController(viewModel: viewModel.currentPageViewModel)
-        addChildViewController(pageController)
-        containerView.addSubview(pageController.view)
-        pageController.view.frame = containerView.bounds
-        pageController.didMove(toParentViewController: self)
+        pageViewController = PageViewController(viewModel: viewModel.currentPageViewModel)
+        addChildViewController(pageViewController)
+        containerView.addSubview(pageViewController.view)
+        pageViewController.view.frame = containerView.bounds
+        pageViewController.didMove(toParentViewController: self)
     }
 
     func customizeView() {
@@ -158,23 +158,23 @@ class FormViewController: UIViewController {
         leftNavItem.title = viewModel.cancelButtonTitle
         leftNavItem.isEnabled = true
 
-        thankYouController = ThankYouController(viewModel: endPageViewModel)
+        thankYouViewController = ThankYouViewController(viewModel: endPageViewModel)
 
-        pageController.willMove(toParentViewController: nil)
-        addChildViewController(thankYouController)
-        thankYouController.view.frame = containerView.bounds
-        transition(from: pageController, to: thankYouController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        pageViewController.willMove(toParentViewController: nil)
+        addChildViewController(thankYouViewController)
+        thankYouViewController.view.frame = containerView.bounds
+        transition(from: pageViewController, to: thankYouViewController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
 
     func restoreFeedbackFormController() {
         viewModel.reset()
         // swiftlint:disable:next force_unwrapping
         swipeToPage(viewModel.firstPageViewModel!)
-        thankYouController.willMove(toParentViewController: nil)
-        addChildViewController(pageController)
-        pageController.view.frame = containerView.bounds
-        transition(from: thankYouController, to: pageController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: { _ in
-            self.thankYouController = nil
+        thankYouViewController.willMove(toParentViewController: nil)
+        addChildViewController(pageViewController)
+        pageViewController.view.frame = containerView.bounds
+        transition(from: thankYouViewController, to: pageViewController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: { _ in
+            self.thankYouViewController = nil
         })
         updateRightButton()
         updateProgressBar()
@@ -194,11 +194,11 @@ class FormViewController: UIViewController {
             delegate?.pageDidTurn(oldPageModel: oldPageModel, oldPageIndex: oldIndex, newPageIndex: index, nextPageType: viewModel.currentPageViewModel.model.type!, formViewController: self)
             return
         }
-        pageController.gotToNextErrorField()
+        pageViewController.gotToNextErrorField()
     }
 
     func swipeToPage(_ pageViewModel: PageViewModel) {
-        pageController.setupViewModel(pageViewModel)
+        pageViewController.setupViewModel(pageViewModel)
         viewModel.currentPageViewModel = pageViewModel
 
         updateProgressBar()
@@ -213,7 +213,7 @@ class FormViewController: UIViewController {
             }
             return
         }
-        pageController.setupViewModel(viewModel.currentPageViewModel)
+        pageViewController.setupViewModel(viewModel.currentPageViewModel)
         updateProgressBar()
         updateRightButton()
     }

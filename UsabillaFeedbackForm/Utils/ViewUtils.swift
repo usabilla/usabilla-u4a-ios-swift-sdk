@@ -15,7 +15,7 @@ class ViewUtils {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
         let logo = UIButton(type: UIButtonType.custom)
         logo.translatesAutoresizingMaskIntoConstraints = false
-        logo.addTarget(PageController.self, action: #selector(PageController.openUsabilla), for: .touchUpInside)
+        logo.addTarget(PageViewController.self, action: #selector(PageViewController.openUsabilla), for: .touchUpInside)
         logo.setImage(Icons.imageOfPoweredBy(color: theme.textColor.withAlphaComponent(0.5)), for: UIControlState())
         logo.accessibilityIdentifier = "powered-by-id"
         view.backgroundColor = theme.backgroundColor

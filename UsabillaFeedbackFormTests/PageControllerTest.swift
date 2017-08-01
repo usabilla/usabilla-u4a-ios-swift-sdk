@@ -17,13 +17,13 @@ import Nimble
 class PageControllerTest: QuickSpec {
 
     override func spec() {
-        var viewController: PageController!
+        var viewController: PageViewController!
         var formModel: FormModel!
 
         beforeSuite {
             formModel = UBMock.formMock()
             let pageViewModel = PageViewModel(page: formModel.pages.first!, theme: UsabillaTheme())
-            viewController = PageController(viewModel: pageViewModel)
+            viewController = PageViewController(viewModel: pageViewModel)
 
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
             _ = viewController.view

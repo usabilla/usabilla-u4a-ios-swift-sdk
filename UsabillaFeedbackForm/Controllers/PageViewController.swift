@@ -1,5 +1,5 @@
 //
-//  PageController.swift
+//  PageViewController.swift
 //  ubform_swift
 //
 //  Created by Giacomo Pinato on 01/03/16.
@@ -10,7 +10,7 @@ import UIKit
 
 let footerHeight: CGFloat = 80.0
 
-class PageController: UIViewController, UINavigationControllerDelegate {
+class PageViewController: UIViewController, UINavigationControllerDelegate {
 
     var viewModel: PageViewModel!
   
@@ -205,7 +205,7 @@ class PageController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
-extension PageController: UITableViewDataSource {
+extension PageViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -234,7 +234,7 @@ extension PageController: UITableViewDataSource {
     }
 }
 
-extension PageController: UITableViewDelegate {
+extension PageViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeights[indexPath] = cell.frame.size.height
@@ -262,7 +262,7 @@ extension PageController: UITableViewDelegate {
     }
 }
 
-extension PageController: UIImagePickerControllerDelegate {
+extension PageViewController: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         self.dismiss(animated: true, completion: nil)

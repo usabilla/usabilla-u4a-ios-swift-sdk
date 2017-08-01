@@ -1,5 +1,5 @@
 //
-//  ThankYouController.swift
+//  ThankYouViewController.swift
 //  ubform_swift
 //
 //  Created by Giacomo Pinato on 12/04/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThankYouController: UIViewController {
+class ThankYouViewController: UIViewController {
 
     var viewModel: UBEndPageViewModel!
     let sideMargin: CGFloat = 16.0

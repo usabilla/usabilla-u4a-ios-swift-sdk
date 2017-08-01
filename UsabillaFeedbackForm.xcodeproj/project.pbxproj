@@ -83,9 +83,9 @@
 		04F54E501CD76717002F501E /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
 		04F54E511CD76717002F501E /* UBRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4E1CD76717002F501E /* UBRule.swift */; };
 		04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4F1CD76717002F501E /* ShowHideRule.swift */; };
-		04F54E561CD76789002F501E /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormController.swift */; };
-		04F54E571CD76789002F501E /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageController.swift */; };
-		04F54E581CD76789002F501E /* ThankYouController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouController.swift */; };
+		04F54E561CD76789002F501E /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormViewController.swift */; };
+		04F54E571CD76789002F501E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageViewController.swift */; };
+		04F54E581CD76789002F501E /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
 		04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F54E611CD76A21002F501E /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
@@ -172,13 +172,13 @@
 		43B04F3B1F1F7EEF0032F057 /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
 		43B04F3C1F1F7EEF0032F057 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
 		43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
-		43B04F3E1F1F7EEF0032F057 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormController.swift */; };
+		43B04F3E1F1F7EEF0032F057 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormViewController.swift */; };
 		43B04F3F1F1F7EEF0032F057 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
 		43B04F401F1F7EEF0032F057 /* UBEndPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264111E92865000A0533C /* UBEndPageViewModel.swift */; };
 		43B04F411F1F7EEF0032F057 /* MoodComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */; };
 		43B04F421F1F7EEF0032F057 /* ChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44E1E78366A00B3E4FE /* ChoiceViewModel.swift */; };
 		43B04F431F1F7EEF0032F057 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
-		43B04F441F1F7EEF0032F057 /* ThankYouController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouController.swift */; };
+		43B04F441F1F7EEF0032F057 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
 		43B04F451F1F7EEF0032F057 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
 		43B04F461F1F7EEF0032F057 /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B771E85187000741E10 /* UBBannerDisplay.swift */; };
 		43B04F471F1F7EEF0032F057 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F149DE1CE0B8D000D56B29 /* Reachability.swift */; };
@@ -253,7 +253,7 @@
 		43B04F8E1F1F7EEF0032F057 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B41E76D8EE0078E3B3 /* CellViewModel.swift */; };
 		43B04F8F1F1F7EEF0032F057 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EC1E37B5C900A97F1D /* UIColor.swift */; };
 		43B04F901F1F7EEF0032F057 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EE1E37B61000A97F1D /* UIDevice.swift */; };
-		43B04F911F1F7EEF0032F057 /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageController.swift */; };
+		43B04F911F1F7EEF0032F057 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageViewController.swift */; };
 		43B04F921F1F7EEF0032F057 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C91CDCDF86004EC234 /* PageModel.swift */; };
 		43B04F931F1F7EEF0032F057 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
 		43B04F941F1F7EEF0032F057 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
@@ -475,9 +475,9 @@
 		04F54E4D1CD76717002F501E /* JumpRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JumpRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E4E1CD76717002F501E /* UBRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UBRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E4F1CD76717002F501E /* ShowHideRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ShowHideRule.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		04F54E531CD76789002F501E /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		04F54E541CD76789002F501E /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
-		04F54E551CD76789002F501E /* ThankYouController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ThankYouController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F54E531CD76789002F501E /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04F54E541CD76789002F501E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		04F54E551CD76789002F501E /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ThankYouViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E5A1CD76A21002F501E /* usa_localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = usa_localizable.strings; sourceTree = "<group>"; };
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F54E5C1CD76A21002F501E /* defaultJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultJson.json; sourceTree = "<group>"; };
@@ -919,9 +919,9 @@
 		04F54DE21CD75A75002F501E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				04F54E531CD76789002F501E /* FormController.swift */,
-				04F54E541CD76789002F501E /* PageController.swift */,
-				04F54E551CD76789002F501E /* ThankYouController.swift */,
+				04F54E531CD76789002F501E /* FormViewController.swift */,
+				04F54E541CD76789002F501E /* PageViewController.swift */,
+				04F54E551CD76789002F501E /* ThankYouViewController.swift */,
 				43127EBF1E71B57500E3011A /* PassiveFormController.swift */,
 				436F55471E8178D500E91E58 /* CampaignViewController.swift */,
 			);
@@ -1477,13 +1477,13 @@
 				431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
-				04F54E561CD76789002F501E /* FormController.swift in Sources */,
+				04F54E561CD76789002F501E /* FormViewController.swift in Sources */,
 				040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */,
 				436264121E92865000A0533C /* UBEndPageViewModel.swift in Sources */,
 				43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */,
 				43CCD4581E78366A00B3E4FE /* ChoiceViewModel.swift in Sources */,
 				C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */,
-				04F54E581CD76789002F501E /* ThankYouController.swift in Sources */,
+				04F54E581CD76789002F501E /* ThankYouViewController.swift in Sources */,
 				436C2B801E85187000741E10 /* CampaignWindow.swift in Sources */,
 				436C2B7D1E85187000741E10 /* UBBannerDisplay.swift in Sources */,
 				04F149DF1CE0B8D000D56B29 /* Reachability.swift in Sources */,
@@ -1558,7 +1558,7 @@
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
-				04F54E571CD76789002F501E /* PageController.swift in Sources */,
+				04F54E571CD76789002F501E /* PageViewController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
 				C52550541ED43EF6005658F5 /* FormService.swift in Sources */,
@@ -1705,13 +1705,13 @@
 				43B04F3B1F1F7EEF0032F057 /* UBFileHelper.swift in Sources */,
 				43B04F3C1F1F7EEF0032F057 /* StyleKit.swift in Sources */,
 				43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */,
-				43B04F3E1F1F7EEF0032F057 /* FormController.swift in Sources */,
+				43B04F3E1F1F7EEF0032F057 /* FormViewController.swift in Sources */,
 				43B04F3F1F1F7EEF0032F057 /* CampaignService.swift in Sources */,
 				43B04F401F1F7EEF0032F057 /* UBEndPageViewModel.swift in Sources */,
 				43B04F411F1F7EEF0032F057 /* MoodComponentViewModel.swift in Sources */,
 				43B04F421F1F7EEF0032F057 /* ChoiceViewModel.swift in Sources */,
 				43B04F431F1F7EEF0032F057 /* UBFormDAO.swift in Sources */,
-				43B04F441F1F7EEF0032F057 /* ThankYouController.swift in Sources */,
+				43B04F441F1F7EEF0032F057 /* ThankYouViewController.swift in Sources */,
 				43B04F451F1F7EEF0032F057 /* CampaignWindow.swift in Sources */,
 				43B04F461F1F7EEF0032F057 /* UBBannerDisplay.swift in Sources */,
 				43B04F471F1F7EEF0032F057 /* Reachability.swift in Sources */,
@@ -1786,7 +1786,7 @@
 				43B04F8E1F1F7EEF0032F057 /* CellViewModel.swift in Sources */,
 				43B04F8F1F1F7EEF0032F057 /* UIColor.swift in Sources */,
 				43B04F901F1F7EEF0032F057 /* UIDevice.swift in Sources */,
-				43B04F911F1F7EEF0032F057 /* PageController.swift in Sources */,
+				43B04F911F1F7EEF0032F057 /* PageViewController.swift in Sources */,
 				43B04F921F1F7EEF0032F057 /* PageModel.swift in Sources */,
 				43B04F931F1F7EEF0032F057 /* UIImage.swift in Sources */,
 				43B04F941F1F7EEF0032F057 /* FormService.swift in Sources */,

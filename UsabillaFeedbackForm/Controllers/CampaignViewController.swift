@@ -77,8 +77,8 @@ class CampaignViewController: UIViewController {
         UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
             bottomConstraint.constant = offset
             self.view.layoutIfNeeded()
-            form?.pageController.tableView.beginUpdates()
-            form?.pageController.tableView.endUpdates()
+            form?.pageViewController.tableView.beginUpdates()
+            form?.pageViewController.tableView.endUpdates()
         })
     }
 

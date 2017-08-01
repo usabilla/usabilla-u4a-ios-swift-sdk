@@ -136,7 +136,7 @@ class PassiveFormControllerTest: QuickSpec {
                 expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
                 viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
                 expect(viewController.viewModel.currentPageIndex).to(equal(3))
-                expect(viewController.thankYouController).toNot(beNil())
+                expect(viewController.thankYouViewController).toNot(beNil())
 
                 waitUntil(timeout: 5.0) { done in
                     self.onDidClose = { feedbackResults, redirectToAppStore in
