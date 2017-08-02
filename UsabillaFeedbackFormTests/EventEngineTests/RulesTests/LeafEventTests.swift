@@ -1,5 +1,5 @@
 //
-//  LeafRuleTests.swift
+//  LeafEventTests.swift
 //  UsabillaFeedbackForm
 //
 //  Created by Giacomo Pinato on 29/03/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import UsabillaFeedbackForm
 
-class LeafRuleTests: QuickSpec {
+class LeafEventTests: QuickSpec {
 
     let event1 = Event(name: "event1")
     let event2 = Event(name: "event2")

@@ -1,6 +1,21 @@
 {
     "node": {
-        "TargetingCustomVariable":{
+        "LeafActiveStatus" : {
+            "WithoutName": {
+                "type": "activeStatus",
+                "value": "someValue"
+            },
+            "WithoutValue": {
+                "type": "activeStatus",
+                "name": "someName"
+            },
+            "Correct": {
+                "type": "activeStatus",
+                "name": "someName",
+                "value": "someValue"
+            }
+        },
+        "TargetingActiveStatus":{
             "rule": {
                 "type": "percentage",
                 "percentage": 77,
@@ -17,7 +32,7 @@
                                                        "name": "purchaseOrder"
                                                        },
                                                        {
-                                                       "type": "customVariable",
+                                                       "type": "activeStatus",
                                                        "name": "membership",
                                                        "value": "premium"
                                                        }
