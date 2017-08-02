@@ -41,6 +41,8 @@ class CampaignManagerTests: QuickSpec {
         let storeMock = CampaignStoreMock()
         let manager = CampaignSubmissionRequestManagerMock()
         var campaignServiceMock: UBCampaignServiceMock!
+        var activeStatuses: [String: String] = [String: String]()
+        
         describe("CampaignManagerTests") {
             context("When starting the CampaignManager") {
                 beforeEach {
@@ -93,7 +95,7 @@ class CampaignManagerTests: QuickSpec {
                     var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafRule
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beFalse())
-                    campaignManager.sendEvent(event: "foo")
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
                     triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafRule
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beTrue())
@@ -110,7 +112,7 @@ class CampaignManagerTests: QuickSpec {
                     let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "foo")
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
                     campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
                 }
@@ -128,10 +130,10 @@ class CampaignManagerTests: QuickSpec {
                     let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
                     var campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "foo")
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
                     campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "bar")
+                    campaignManager.sendEvent(event: "bar", activeStatuses: activeStatuses)
                     campaign = UBCampaignDAO.shared.read(id: "a")
                     expect(campaign?.numberOfTimesTriggered).to(equal(1))
                 }
@@ -150,12 +152,12 @@ class CampaignManagerTests: QuickSpec {
                     var campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
                     expect(campaignB?.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "foo")
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
                     expect(campaignB?.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "bar")
+                    campaignManager.sendEvent(event: "bar", activeStatuses: activeStatuses)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(1))
@@ -176,12 +178,12 @@ class CampaignManagerTests: QuickSpec {
                     campaignB = UBCampaignDAO.shared.read(id: "b")!
                     expect(campaignA.numberOfTimesTriggered).to(equal(1))
                     expect(campaignB.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "foo")
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
                     campaignA = UBCampaignDAO.shared.read(id: "a")!
                     campaignB = UBCampaignDAO.shared.read(id: "b")!
                     expect(campaignA.numberOfTimesTriggered).to(equal(1))
                     expect(campaignB.numberOfTimesTriggered).to(equal(0))
-                    campaignManager.sendEvent(event: "bar")
+                    campaignManager.sendEvent(event: "bar", activeStatuses: activeStatuses)
                     campaignA = UBCampaignDAO.shared.read(id: "a")!
                     campaignB = UBCampaignDAO.shared.read(id: "b")!
                     expect(campaignA.numberOfTimesTriggered).to(equal(1))

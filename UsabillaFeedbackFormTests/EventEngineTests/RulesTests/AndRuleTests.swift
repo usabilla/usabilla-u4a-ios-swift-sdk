@@ -22,7 +22,8 @@ class AndRuleTests: QuickSpec {
     var leafRule2: Rule!
     var leafRule3: Rule!
     var leafRule4: Rule!
-
+    var activeStatuses: [String: String] = [String: String]()
+    
     var allPositive: [Rule]!
     var allNegative: [Rule]!
     var mixed: [Rule]!
@@ -54,25 +55,25 @@ class AndRuleTests: QuickSpec {
             context("when checking for validity", {
                 it("should return true if all children is satisfied") {
                     let newAnd = AndRule(childRules: self.allPositive)
-                    expect(newAnd.triggersWith(event: self.event1)).to(beTrue())
-                    expect(newAnd.triggersWith(event: self.event4)).to(beTrue())
+                    expect(newAnd.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
+                    expect(newAnd.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
 
                     let newAnd2 = AndRule(childRules: self.mixed)
-                    expect(newAnd2.triggersWith(event: self.event3)).to(beTrue())
+                    expect(newAnd2.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beTrue())
                 }
 
                 it("should return false if even one children is not satisfied") {
 
                     let newAnd2 = AndRule(childRules: self.mixed)
-                    expect(newAnd2.triggersWith(event: self.event2)).to(beFalse())
+                    expect(newAnd2.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
                 }
 
                 it("should progress correctly") {
                     let newAnd2 = AndRule(childRules: self.allNegative)
-                    expect(newAnd2.triggersWith(event: self.event2)).to(beFalse())
-                    expect(newAnd2.triggersWith(event: self.event3)).to(beFalse())
-                    expect(newAnd2.triggersWith(event: self.event1)).to(beFalse())
-                    expect(newAnd2.triggersWith(event: self.event4)).to(beTrue())
+                    expect(newAnd2.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(newAnd2.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(newAnd2.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(newAnd2.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
 
                 }
             })

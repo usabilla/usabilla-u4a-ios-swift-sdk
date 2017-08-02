@@ -14,10 +14,12 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class EventEngineTests: QuickSpec {
+    
     func campaignMock(forId id: String) -> CampaignModel {
         return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
     }
     var campaigns: [CampaignModel] = []
+    var activeStatuses: [String: String] = [String: String]()
 
     override func spec() {
 
@@ -40,7 +42,7 @@ class EventEngineTests: QuickSpec {
             context("When triggering an event") {
                 it("should return no responding campaigns when they don't have event") {
                     let eventEngine = EventEngine(campaigns: self.campaigns)
-                    let (respondCampaigns, _) = eventEngine.sendEvent("foo")
+                    let (respondCampaigns, _) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns).to(beEmpty())
                 }
 
@@ -49,7 +51,7 @@ class EventEngineTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf])
                     self.campaigns[0].rule = rule
                     let eventEngine = EventEngine(campaigns: self.campaigns)
-                    let (respondCampaigns, _) = eventEngine.sendEvent("foo")
+                    let (respondCampaigns, _) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns).to(beEmpty())
                 }
 
@@ -58,7 +60,7 @@ class EventEngineTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf])
                     self.campaigns[0].rule = rule
                     let eventEngine = EventEngine(campaigns: self.campaigns)
-                    let (respondCampaigns, _) = eventEngine.sendEvent("foo")
+                    let (respondCampaigns, _) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns.count).to(equal(1))
                 }
 
@@ -68,11 +70,11 @@ class EventEngineTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
                     self.campaigns[0].rule = rule
                     let eventEngine = EventEngine(campaigns: self.campaigns)
-                    var (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("foo")
+                    var (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns.count).to(equal(1))
                     expect(triggeredCampaigns.count).to(equal(0))
 
-                    (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("bar")
+                    (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("bar", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns.count).to(equal(1))
                     expect(triggeredCampaigns.count).to(equal(1))
                 }

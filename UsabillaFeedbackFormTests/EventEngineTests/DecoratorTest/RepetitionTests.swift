@@ -16,8 +16,8 @@ import Nimble
 class RepetitionRuleTests: QuickSpec {
 
     let event1 = Event(name: "event1")
-
     var leafRule1: Rule!
+    var activeStatuses: [String: String] = [String: String]()
 
     override func spec() {
 
@@ -61,27 +61,27 @@ class RepetitionRuleTests: QuickSpec {
                 it("should trigger only after the correct number of repetition") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.alreadyTriggered).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beTrue())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
                     expect(rep.alreadyTriggered).to(beTrue())
                 }
                 it("should trigger even when the number of occurrences surpasses the threshold") {
                     let rep = RepetitionDecorator(occurrences: 2, rule: self.leafRule1)
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
                     expect(rep.alreadyTriggered).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beTrue())
-                    expect(rep.triggersWith(event: self.event1)).to(beTrue())
-                    expect(rep.triggersWith(event: self.event1)).to(beTrue())
-                    expect(rep.triggersWith(event: self.event1)).to(beTrue())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
                     expect(rep.alreadyTriggered).to(beTrue())
                 }
                 it("should serialize correctly") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
 
                     let data = NSKeyedArchiver.archivedData(withRootObject: rep)
 
@@ -97,17 +97,17 @@ class RepetitionRuleTests: QuickSpec {
                     expect(unserialised.currentCount).to(equal(2))
                     expect(unserialised.occurrences).to(equal(5))
 
-                    expect(unserialised.triggersWith(event: self.event1)).to(beFalse())
-                    expect(unserialised.triggersWith(event: self.event1)).to(beFalse())
-                    expect(unserialised.triggersWith(event: self.event1)).to(beTrue())
+                    expect(unserialised.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(unserialised.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(unserialised.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
                 }
                 it("should trigger only after the correct number of repetition") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beFalse())
-                    expect(rep.triggersWith(event: self.event1)).to(beTrue())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(rep.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
                 }
             }
 
@@ -115,7 +115,7 @@ class RepetitionRuleTests: QuickSpec {
                 it("should reset correctly the rule") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafRule1)
                     expect(rep.rule.alreadyTriggered).to(beTrue())
-                    expect(rep.customTriggersWith(event: self.event1)).to(beFalse())
+                    expect(rep.customTriggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
                     expect(rep.rule.alreadyTriggered).to(beFalse())
                 }
             }

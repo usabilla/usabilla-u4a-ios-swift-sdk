@@ -12,6 +12,7 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class OrRuleTests: QuickSpec {
+    var activeStatuses: [String: String] = [String: String]()
 
     let event1 = Event(name: "event1")
     let event2 = Event(name: "event2")
@@ -54,18 +55,18 @@ class OrRuleTests: QuickSpec {
             context("when checking for validity", {
                 it("should return true if any of the children is satisfied") {
                     var or = OrRule(childRules: self.allPositive)
-                    expect(or.triggersWith(event: self.event1)).to(beTrue())
+                    expect(or.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
 
                     or = OrRule(childRules: self.mixed)
-                    expect(or.triggersWith(event: self.event4)).to(beTrue())
+                    expect(or.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
 
                     or = OrRule(childRules: self.allNegative)
-                    expect(or.triggersWith(event: self.event4)).to(beTrue())
+                    expect(or.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
                 }
 
                 it("should return false if all children are not satisfied") {
                     let or = OrRule(childRules: self.allNegative)
-                    expect(or.triggersWith(event: self.event1)).to(beFalse())
+                    expect(or.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
 
                 }
             })

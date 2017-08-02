@@ -369,7 +369,6 @@
 		C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C51896CC1F2641C10083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
-		C530627A1F31C16E000BA7DE /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
 		C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
 		C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
@@ -1680,7 +1679,6 @@
 				4317189B1F2A15E900BF612E /* UBCampaignDAOTests.swift in Sources */,
 				04A0C1C21E8BBD0400A483AC /* LeafRuleTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
-				C530627A1F31C16E000BA7DE /* UBFileHelper.swift in Sources */,
 				04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */,
 				4317189A1F2A15E900BF612E /* UBFormDAOTests.swift in Sources */,
 				4317189F1F2A15EE00BF612E /* CampaignServiceTests.swift in Sources */,

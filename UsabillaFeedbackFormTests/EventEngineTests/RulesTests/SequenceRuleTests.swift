@@ -24,6 +24,8 @@ class SequenceRuleTests: QuickSpec {
     var leafRule2: Rule!
     var leafRule3: Rule!
     var leafRule4: Rule!
+    
+    var activeStatuses: [String: String] = [String: String]()
 
     var children: [Rule]!
     override func spec() {
@@ -51,62 +53,62 @@ class SequenceRuleTests: QuickSpec {
             context("when checking for validity", {
                 it("should trigger with the right sequence") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
-                    expect(sequence.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event2)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event3)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event4)).to(beTrue())
+                    expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
 
                 }
 
                 it("should trigger with the right sequence even if it is not sequential") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
-                    expect(sequence.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event3)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event4)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event3)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event2)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event3)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event2)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event4)).to(beTrue())
+                    expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
 
                 }
 
                 it("should not trigger with the wrong sequence") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
-                    expect(sequence.triggersWith(event: self.event4)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event2)).to(beFalse())
-                    expect(sequence.triggersWith(event: self.event3)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
 
                 }
 
                 it("should not trigger with the wrong sequence") {
                     let sequence2 = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
-                    expect(sequence2.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence2.triggersWith(event: self.event2)).to(beFalse())
-                    expect(sequence2.triggersWith(event: self.event4)).to(beFalse())
-                    expect(sequence2.triggersWith(event: self.event3)).to(beFalse())
+                    expect(sequence2.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence2.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence2.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence2.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
 
                 }
 
                 it("should not trigger with the wrong sequence") {
                     let sequence3 = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
-                    expect(sequence3.triggersWith(event: self.event2)).to(beFalse())
-                    expect(sequence3.triggersWith(event: self.event4)).to(beFalse())
-                    expect(sequence3.triggersWith(event: self.event1)).to(beFalse())
-                    expect(sequence3.triggersWith(event: self.event3)).to(beFalse())
-                    expect(sequence3.triggersWith(event: self.event4)).to(beFalse())
+                    expect(sequence3.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence3.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence3.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence3.triggersWith(event: self.event3, activeStatuses: self.activeStatuses)).to(beFalse())
+                    expect(sequence3.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
 
                 }
 
                 it("should only consider the first unsatisfied child") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
-                    expect(sequence.triggersWith(event: self.event4)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
                     expect(self.leafRule4.alreadyTriggered).to(beFalse())
 
-                    expect(sequence.triggersWith(event: self.event1)).to(beFalse())
+                    expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
                     expect(self.leafRule1.alreadyTriggered).to(beTrue())
 
                 }
