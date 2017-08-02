@@ -92,11 +92,11 @@ class CampaignManagerTests: QuickSpec {
 
                     storeMock.campaigns = campaigns
                     let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
-                    var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafRule
+                    var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafEvent
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beFalse())
                     campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
-                    triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafRule
+                    triggeredRule = UBCampaignDAO.shared.read(id: "a")?.rule?.childRules.first as? LeafEvent
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beTrue())
                 }
@@ -190,8 +190,8 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignB.numberOfTimesTriggered).to(equal(1))
                 }
                 it("should display campaign if the semaphore allow it and the campaign can be displayed again") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
+                    let leaf = LeafEvent(event: Event(name: "foo"))
+                    let leaf2 = LeafEvent(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [

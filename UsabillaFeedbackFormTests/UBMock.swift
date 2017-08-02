@@ -33,8 +33,8 @@ class UBMock {
     }
 
     class func campaignMockWithRules(id: String = "a") -> CampaignModel {
-        let leaf = LeafRule(event: Event(name: "foo"))
-        let leaf2 = LeafRule(event: Event(name: "bar"))
+        let leaf = LeafEvent(event: Event(name: "foo"))
+        let leaf2 = LeafEvent(event: Event(name: "bar"))
         let rule = AndRule(childRules: [leaf, leaf2])
         return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
     }

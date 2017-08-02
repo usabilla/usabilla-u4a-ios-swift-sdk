@@ -15,30 +15,30 @@ class DecoratorTests: QuickSpec {
 
     let event1 = Event(name: "event1")
 
-    var leafRule1: Rule!
+    var leafEvent1: Rule!
 
     override func spec() {
 
         beforeEach {
-            self.leafRule1 = LeafRule(event: self.event1, ruleID: "id1", alreadyTriggered: true)
+            self.leafEvent1 = LeafEvent(event: self.event1, ruleID: "id1", alreadyTriggered: true)
         }
 
         describe("The base Decorator") {
 
             context("When creating an object") {
                 it("should initialise correctly") {
-                    let decorator = Decorator(rule: self.leafRule1)
+                    let decorator = Decorator(rule: self.leafEvent1)
                     expect(decorator.type).to(equal(RuleType.leaf))
                     expect(decorator.ruleID).to(equal("id1"))
-                    expect(decorator.rule).to(be(self.leafRule1))
+                    expect(decorator.rule).to(be(self.leafEvent1))
                     expect(decorator.alreadyTriggered).to(beFalse())
                     expect(decorator.childRules.count).to(equal(1))
-                    expect(decorator.childRules.first!).to(be(self.leafRule1))
+                    expect(decorator.childRules.first!).to(be(self.leafEvent1))
                 }
             }
 
             it("should serialize correctly") {
-                let decorator = Decorator(rule: self.leafRule1)
+                let decorator = Decorator(rule: self.leafEvent1)
                 let data = NSKeyedArchiver.archivedData(withRootObject: decorator)
 
                 expect(data).toNot(beNil())
@@ -47,22 +47,22 @@ class DecoratorTests: QuickSpec {
 
                 expect(unserialised.type).to(equal(RuleType.leaf))
                 expect(unserialised.ruleID).to(equal("id1"))
-                expect(unserialised.rule).to(beAKindOf(LeafRule.self))
+                expect(unserialised.rule).to(beAKindOf(LeafEvent.self))
                 expect(unserialised.rule.ruleID).to(equal("id1"))
                 expect(unserialised.alreadyTriggered).to(beFalse())
                 expect(decorator.childRules.count).to(equal(1))
-                expect(decorator.childRules.first!).to(be(self.leafRule1))
+                expect(decorator.childRules.first!).to(be(self.leafEvent1))
             }
 
             context("When calling responds to event") {
                 it ("Should succeed when the rule responds to the event") {
-                    let decorator = Decorator(rule: self.leafRule1)
+                    let decorator = Decorator(rule: self.leafEvent1)
                     let event = Event(name: "event1")
                     expect(decorator.respondsToEvent(event: event)).to(beTrue())
                 }
 
                 it ("Should fail when the rule does not respond to the event") {
-                    let decorator = Decorator(rule: self.leafRule1)
+                    let decorator = Decorator(rule: self.leafEvent1)
                     let event = Event(name: "event2")
                     expect(decorator.respondsToEvent(event: event)).to(beFalse())
                 }

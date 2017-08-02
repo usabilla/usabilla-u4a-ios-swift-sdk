@@ -31,10 +31,10 @@ class TargetingFactoryTests: QuickSpec {
                     let repetitionDecorator = percentageDecorator.rule as! RepetitionDecorator
 
                     expect(repetitionDecorator.occurrences).to(equal(13))
-                    expect(repetitionDecorator.rule is LeafRule).to(beTrue())
+                    expect(repetitionDecorator.rule is LeafEvent).to(beTrue())
 
-                    let leafRule = repetitionDecorator.rule as! LeafRule
-                    expect(leafRule.event.name).to(equal("purchaseOrder"))
+                    let LeafEvent = repetitionDecorator.rule as! LeafEvent
+                    expect(LeafEvent.event.name).to(equal("purchaseOrder"))
                 }
                 it("should return nil when the json is invalid") {
                     let json = JSON.parse("{\"hello\":\"you\"}")

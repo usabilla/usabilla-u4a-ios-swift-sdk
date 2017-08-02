@@ -22,7 +22,7 @@ class Event: NSObject, NSCoding {
 
     public required convenience init?(coder aDecoder: NSCoder) {
         guard let name = aDecoder.decodeObject(forKey: "name") as? String else {
-            PLog("❌ impossible to decode leafRule")
+            PLog("❌ impossible to decode LeafEvent")
             return nil
         }
         self.init(name: name)

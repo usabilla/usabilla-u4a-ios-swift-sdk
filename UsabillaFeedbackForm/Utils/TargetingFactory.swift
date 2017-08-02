@@ -30,7 +30,7 @@ class TargetingFactory {
         case .repetition:
             return RepetitionDecorator(json: json)
         case .event:
-            return LeafRule(json: json)
+            return LeafEvent(json: json)
         case .activeStatus:
             return LeafActiveStatus(json: json)
         }

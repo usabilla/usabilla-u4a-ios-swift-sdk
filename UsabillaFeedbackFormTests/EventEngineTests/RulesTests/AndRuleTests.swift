@@ -18,10 +18,10 @@ class AndRuleTests: QuickSpec {
     let event3 = Event(name: "event3")
     let event4 = Event(name: "event4")
 
-    var leafRule1: Rule!
-    var leafRule2: Rule!
-    var leafRule3: Rule!
-    var leafRule4: Rule!
+    var leafEvent1: Rule!
+    var leafEvent2: Rule!
+    var leafEvent3: Rule!
+    var leafEvent4: Rule!
     var activeStatuses: [String: String] = [String: String]()
     
     var allPositive: [Rule]!
@@ -31,21 +31,21 @@ class AndRuleTests: QuickSpec {
     override func spec() {
 
         beforeEach {
-            self.leafRule1 = LeafRule(event: self.event1, ruleID: "id1", alreadyTriggered: true)
-            self.leafRule2 = LeafRule(event: self.event2, ruleID: "id2", alreadyTriggered: true)
-            self.leafRule3 = LeafRule(event: self.event3, ruleID: "id3", alreadyTriggered: false)
-            self.leafRule4 = LeafRule(event: self.event4, ruleID: "id4", alreadyTriggered: false)
+            self.leafEvent1 = LeafEvent(event: self.event1, ruleID: "id1", alreadyTriggered: true)
+            self.leafEvent2 = LeafEvent(event: self.event2, ruleID: "id2", alreadyTriggered: true)
+            self.leafEvent3 = LeafEvent(event: self.event3, ruleID: "id3", alreadyTriggered: false)
+            self.leafEvent4 = LeafEvent(event: self.event4, ruleID: "id4", alreadyTriggered: false)
 
-            self.allPositive = [self.leafRule1, self.leafRule2]
-            self.allNegative = [self.leafRule3, self.leafRule4]
-            self.mixed = [self.leafRule1, self.leafRule2, self.leafRule3]
+            self.allPositive = [self.leafEvent1, self.leafEvent2]
+            self.allNegative = [self.leafEvent3, self.leafEvent4]
+            self.mixed = [self.leafEvent1, self.leafEvent2, self.leafEvent3]
         }
 
         describe("The And Rule") {
 
             context("When creating an object", {
                 it("should initialise correctly") {
-                    let newAnd = AndRule(childRules: [self.leafRule1])
+                    let newAnd = AndRule(childRules: [self.leafEvent1])
                     expect(newAnd.type).to(equal(RuleType.and))
                     expect(newAnd.alreadyTriggered).to(beFalse())
 

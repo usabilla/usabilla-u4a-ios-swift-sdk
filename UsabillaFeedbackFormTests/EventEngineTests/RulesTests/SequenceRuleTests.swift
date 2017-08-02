@@ -20,10 +20,10 @@ class SequenceRuleTests: QuickSpec {
     let event3 = Event(name: "event3")
     let event4 = Event(name: "event4")
 
-    var leafRule1: Rule!
-    var leafRule2: Rule!
-    var leafRule3: Rule!
-    var leafRule4: Rule!
+    var leafEvent1: Rule!
+    var leafEvent2: Rule!
+    var leafEvent3: Rule!
+    var leafEvent4: Rule!
     
     var activeStatuses: [String: String] = [String: String]()
 
@@ -31,12 +31,12 @@ class SequenceRuleTests: QuickSpec {
     override func spec() {
 
         beforeEach {
-            self.leafRule1 = LeafRule(event: self.event1, ruleID: "id1", alreadyTriggered: false)
-            self.leafRule2 = LeafRule(event: self.event2, ruleID: "id2", alreadyTriggered: false)
-            self.leafRule3 = LeafRule(event: self.event3, ruleID: "id3", alreadyTriggered: false)
-            self.leafRule4 = LeafRule(event: self.event4, ruleID: "id4", alreadyTriggered: false)
+            self.leafEvent1 = LeafEvent(event: self.event1, ruleID: "id1", alreadyTriggered: false)
+            self.leafEvent2 = LeafEvent(event: self.event2, ruleID: "id2", alreadyTriggered: false)
+            self.leafEvent3 = LeafEvent(event: self.event3, ruleID: "id3", alreadyTriggered: false)
+            self.leafEvent4 = LeafEvent(event: self.event4, ruleID: "id4", alreadyTriggered: false)
 
-            self.children = [self.leafRule1, self.leafRule2, self.leafRule3, self.leafRule4]
+            self.children = [self.leafEvent1, self.leafEvent2, self.leafEvent3, self.leafEvent4]
         }
 
         describe("The Sequence Rule") {
@@ -106,10 +106,10 @@ class SequenceRuleTests: QuickSpec {
                 it("should only consider the first unsatisfied child") {
                     let sequence = SequenceRule(childRules: self.children, ruleID: "id", alreadyTriggered: false)
                     expect(sequence.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beFalse())
-                    expect(self.leafRule4.alreadyTriggered).to(beFalse())
+                    expect(self.leafEvent4.alreadyTriggered).to(beFalse())
 
                     expect(sequence.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beFalse())
-                    expect(self.leafRule1.alreadyTriggered).to(beTrue())
+                    expect(self.leafEvent1.alreadyTriggered).to(beTrue())
 
                 }
             })

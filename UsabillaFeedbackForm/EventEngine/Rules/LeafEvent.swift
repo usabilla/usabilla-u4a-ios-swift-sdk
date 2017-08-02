@@ -1,5 +1,5 @@
 //
-//  LeafRule.swift
+//  LeafEvent.swift
 //  EventEngine
 //
 //  Created by Giacomo Pinato on 24/03/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LeafRule: ConcreteRule {
+class LeafEvent: ConcreteRule {
     let event: Event
 
     init(event: Event, ruleID: String = UUID().uuidString, alreadyTriggered: Bool = false) {
@@ -30,7 +30,7 @@ class LeafRule: ConcreteRule {
 
     public required init?(coder aDecoder: NSCoder) {
         guard let event = aDecoder.decodeObject(forKey: "event") as? Event else {
-            PLog("❌ impossible to decode leafRule")
+            PLog("❌ impossible to decode LeafEvent")
             return nil
         }
         self.event = event

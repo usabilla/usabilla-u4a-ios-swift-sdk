@@ -59,7 +59,7 @@
 		04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */; };
 		04DC25A41E8BB32F002962A3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
 		04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
-		04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
+		04DC25AB1E8BB33E002962A3 /* LeafEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafEvent.swift */; };
 		04DC25AC1E8BB33E002962A3 /* OrRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A71E8BB33E002962A3 /* OrRule.swift */; };
 		04DC25AD1E8BB33E002962A3 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A81E8BB33E002962A3 /* Rules.swift */; };
 		04DC25AE1E8BB33E002962A3 /* SequenceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A91E8BB33E002962A3 /* SequenceRule.swift */; };
@@ -167,7 +167,7 @@
 		43B04F371F1F7EEF0032F057 /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		43B04F381F1F7EEF0032F057 /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
 		43B04F391F1F7EEF0032F057 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
-		43B04F3A1F1F7EEF0032F057 /* LeafRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafRule.swift */; };
+		43B04F3A1F1F7EEF0032F057 /* LeafEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafEvent.swift */; };
 		43B04F3B1F1F7EEF0032F057 /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
 		43B04F3C1F1F7EEF0032F057 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
 		43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
@@ -366,6 +366,8 @@
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
+		C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
+		C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
 		C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C51896CC1F2641C10083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
@@ -448,7 +450,7 @@
 		04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampaignSubmissionRequestManagerTests.swift; path = ManagersTest/CampaignSubmissionRequestManagerTests.swift; sourceTree = "<group>"; };
 		04DC25A31E8BB32F002962A3 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		04DC25A51E8BB33E002962A3 /* AndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndRule.swift; sourceTree = "<group>"; };
-		04DC25A61E8BB33E002962A3 /* LeafRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafRule.swift; sourceTree = "<group>"; };
+		04DC25A61E8BB33E002962A3 /* LeafEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafEvent.swift; sourceTree = "<group>"; };
 		04DC25A71E8BB33E002962A3 /* OrRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrRule.swift; sourceTree = "<group>"; };
 		04DC25A81E8BB33E002962A3 /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		04DC25A91E8BB33E002962A3 /* SequenceRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceRule.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
 		43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignFormJumpRules.json; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
+		C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatus.swift; sourceTree = "<group>"; };
 		C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveStatus.swift; sourceTree = "<group>"; };
 		C52550531ED43EF6005658F5 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
@@ -840,10 +843,11 @@
 			isa = PBXGroup;
 			children = (
 				04DC25A51E8BB33E002962A3 /* AndRule.swift */,
-				04DC25A61E8BB33E002962A3 /* LeafRule.swift */,
+				04DC25A61E8BB33E002962A3 /* LeafEvent.swift */,
 				04DC25A71E8BB33E002962A3 /* OrRule.swift */,
 				04DC25A81E8BB33E002962A3 /* Rules.swift */,
 				04DC25A91E8BB33E002962A3 /* SequenceRule.swift */,
+				C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -1476,7 +1480,7 @@
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
-				04DC25AB1E8BB33E002962A3 /* LeafRule.swift in Sources */,
+				04DC25AB1E8BB33E002962A3 /* LeafEvent.swift in Sources */,
 				431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
@@ -1599,6 +1603,7 @@
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
+				C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
 				436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */,
@@ -1705,7 +1710,7 @@
 				43B04F371F1F7EEF0032F057 /* CopyModel.swift in Sources */,
 				43B04F381F1F7EEF0032F057 /* JumpRule.swift in Sources */,
 				43B04F391F1F7EEF0032F057 /* HTTPClient.swift in Sources */,
-				43B04F3A1F1F7EEF0032F057 /* LeafRule.swift in Sources */,
+				43B04F3A1F1F7EEF0032F057 /* LeafEvent.swift in Sources */,
 				43B04F3B1F1F7EEF0032F057 /* UBFileHelper.swift in Sources */,
 				43B04F3C1F1F7EEF0032F057 /* StyleKit.swift in Sources */,
 				43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */,
@@ -1828,6 +1833,7 @@
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
 				43B04FB51F1F7EEF0032F057 /* MoodFieldModel.swift in Sources */,
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
+				C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */,
 				43B04FB71F1F7EEF0032F057 /* TextAreaFieldModel.swift in Sources */,
 				43B04FB81F1F7EEF0032F057 /* ChoiceFieldModel.swift in Sources */,
 				43B04FB91F1F7EEF0032F057 /* UBBannerPresenter.swift in Sources */,

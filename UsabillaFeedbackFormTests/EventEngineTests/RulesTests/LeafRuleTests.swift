@@ -22,7 +22,7 @@ class LeafRuleTests: QuickSpec {
 
             context("When creating an object", {
                 it("should initialise correctly") {
-                    let leaf = LeafRule(event: self.event1, ruleID: "id", alreadyTriggered: false)
+                    let leaf = LeafEvent(event: self.event1, ruleID: "id", alreadyTriggered: false)
                     expect(leaf.type).to(equal(RuleType.leaf))
                     expect(leaf.alreadyTriggered).to(beFalse())
                     expect(leaf.childRules).to(beEmpty())
@@ -32,12 +32,12 @@ class LeafRuleTests: QuickSpec {
             context("When initilized from JSON") {
                 it("should fail if it does not have name") {
                     let leafEventJson = UBMock.json("LeafRuleNoEventName")
-                    let decorator = LeafRule(json: leafEventJson!)
+                    let decorator = LeafEvent(json: leafEventJson!)
                     expect(decorator).to(beNil())
                 }
                 it("should succeed if json is correct") {
                     let leafEventJson = UBMock.json("LeafRuleCorrect")
-                    let rule = LeafRule(json: leafEventJson!)
+                    let rule = LeafEvent(json: leafEventJson!)
                     expect(rule).toNot(beNil())
                     expect(rule?.type).to(equal(RuleType.leaf))
                     let event = Event(name: "purchaseComplete")
@@ -47,14 +47,14 @@ class LeafRuleTests: QuickSpec {
 
             context("When checking for validity", {
                 it("should trigger if the event matched") {
-                    let leaf = LeafRule(event: self.event1, ruleID: "id", alreadyTriggered: false)
+                    let leaf = LeafEvent(event: self.event1, ruleID: "id", alreadyTriggered: false)
                     expect(leaf.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
                     expect(leaf.alreadyTriggered).to(beTrue())
 
                 }
 
                 it("should not trigger if the event do not match") {
-                    let leaf = LeafRule(event: self.event1, ruleID: "id", alreadyTriggered: false)
+                    let leaf = LeafEvent(event: self.event1, ruleID: "id", alreadyTriggered: false)
                     expect(leaf.triggersWith(event: self.event2, activeStatuses: self.activeStatuses)).to(beFalse())
                     expect(leaf.alreadyTriggered).to(beFalse())
 

@@ -31,7 +31,7 @@ class CampaignModelTests: QuickSpec {
                 it("Should have right values") {
                     let campaignId = "campaignId"
                     let event = Event(name: "myEvent")
-                    let rule = LeafRule(event: event)
+                    let rule = LeafEvent(event: event)
                     let formId = "formId"
                     let targetingId = "targetingId"
                     let maxDisplays = 0
@@ -43,7 +43,7 @@ class CampaignModelTests: QuickSpec {
 
                     expect(campaign.identifier).to(equal(campaignId))
                     // swiftlint:disable force_cast
-                    expect((campaign.rule as! LeafRule).event).to(equal(event))
+                    expect((campaign.rule as! LeafEvent).event).to(equal(event))
                     expect(campaign.formId).to(equal(formId))
                     expect(campaign.targetingId).to(equal(targetingId))
                     expect(campaign.maximumDisplays).to(equal(maxDisplays))
@@ -56,7 +56,7 @@ class CampaignModelTests: QuickSpec {
                 it("Should have right values when unarchived") {
                     let campaignId = "campaignId"
                     let event = Event(name: "myEvent")
-                    let rule = LeafRule(event: event)
+                    let rule = LeafEvent(event: event)
                     let formId = "formId"
                     let targetingId = "targetingId"
                     let maxDisplays = 0
@@ -72,7 +72,7 @@ class CampaignModelTests: QuickSpec {
 
                     expect(campaign.identifier).to(equal(campaignId))
                     // swiftlint:disable force_cast
-                    expect((unserialised.rule as! LeafRule).event.name).to(equal(event.name))
+                    expect((unserialised.rule as! LeafEvent).event.name).to(equal(event.name))
                     expect(unserialised.formId).to(equal(formId))
                     expect(unserialised.targetingId).to(equal(targetingId))
                     expect(unserialised.maximumDisplays).to(equal(maxDisplays))

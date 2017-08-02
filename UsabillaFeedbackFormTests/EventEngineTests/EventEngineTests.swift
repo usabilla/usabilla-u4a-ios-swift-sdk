@@ -47,7 +47,7 @@ class EventEngineTests: QuickSpec {
                 }
 
                 it("should return no responding campaigns when they don't match the event") {
-                    let leaf = LeafRule(event: Event(name: "bar"))
+                    let leaf = LeafEvent(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf])
                     self.campaigns[0].rule = rule
                     let eventEngine = EventEngine(campaigns: self.campaigns)
@@ -56,7 +56,7 @@ class EventEngineTests: QuickSpec {
                 }
 
                 it("should return the responding campaigns when they match the event") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
+                    let leaf = LeafEvent(event: Event(name: "foo"))
                     let rule = AndRule(childRules: [leaf])
                     self.campaigns[0].rule = rule
                     let eventEngine = EventEngine(campaigns: self.campaigns)
@@ -65,8 +65,8 @@ class EventEngineTests: QuickSpec {
                 }
 
                 it("should return the triggered campaigns") {
-                    let leaf = LeafRule(event: Event(name: "foo"))
-                    let leaf2 = LeafRule(event: Event(name: "bar"))
+                    let leaf = LeafEvent(event: Event(name: "foo"))
+                    let leaf2 = LeafEvent(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
                     self.campaigns[0].rule = rule
                     let eventEngine = EventEngine(campaigns: self.campaigns)
