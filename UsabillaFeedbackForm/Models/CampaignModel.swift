@@ -23,7 +23,6 @@ class CampaignModel: NSObject, NSCoding {
     var numberOfTimesTriggered: Int = 0
     var maximumDisplays: Int
     var status: Status
-    let customVariables: [CustomVaribale] = []
 
     var form: FormModel?
     var canBeDisplayed: Bool {
@@ -54,15 +53,8 @@ class CampaignModel: NSObject, NSCoding {
         return rule?.respondsToEvent(event: event) ?? false
     }
 
-    func customVariableTriggers() -> Bool {
-        // compare customvariable set in public SDK to The campaignModel custom variables.
-        return false
-    }
-
-    func triggers(event: Event) -> Bool {
-        // Only call customVariableTriggers() when campaign is trigered
-        let eventTriggers = rule?.triggersWith(event: event) ?? false
-        return eventTriggers && customVariableTriggers()
+    func triggers(event: Event, activeStatuses: [String: String]) -> Bool {
+        return rule?.triggersWith(event: event, activeStatuses: activeStatuses) ?? false
     }
 
     // MARK: NSCoding

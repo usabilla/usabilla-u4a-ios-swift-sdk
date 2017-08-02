@@ -25,8 +25,8 @@ class PercentageDecorator: Decorator {
         super.init(json: json)
     }
 
-    override func customTriggersWith(event: Event) -> Bool {
-        let triggered = rule.triggersWith(event: event)
+    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+        let triggered = rule.triggersWith(event: event, activeStatuses: activeStatuses)
         let diceRoll = Int(arc4random_uniform(100) + 1)
         return checkIfTriggers(triggered: triggered, diceRoll: diceRoll)
     }

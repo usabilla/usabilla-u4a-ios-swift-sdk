@@ -29,8 +29,8 @@ class RepetitionDecorator: Decorator {
         super.init(json: json)
     }
 
-    override func customTriggersWith(event: Event) -> Bool {
-        if rule.triggersWith(event: event) {
+    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+        if rule.triggersWith(event: event, activeStatuses: activeStatuses) {
             currentCount += 1
             rule.reset()
         }

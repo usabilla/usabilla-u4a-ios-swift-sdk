@@ -22,7 +22,7 @@ class EventEngine {
         - campaigns which respond to the event
         - campaigns which triggered
      */
-    func sendEvent(_ eventName: String) -> ([CampaignModel], [CampaignModel]) {
+    func sendEvent(_ eventName: String, activeStatuses: [String: String]) -> ([CampaignModel], [CampaignModel]) {
         let event = Event(name: eventName)
 
         let campaignThatResponds = campaigns.filter {
@@ -30,7 +30,7 @@ class EventEngine {
         }
 
         let campaignToDisplay = campaignThatResponds.filter {
-            $0.triggers(event: event) == true
+            $0.triggers(event: event, activeStatuses: activeStatuses) == true
         }
 
         return (campaignThatResponds, campaignToDisplay)

@@ -366,9 +366,10 @@
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
-		C51896CB1F2641BA0083FF86 /* CustomVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* CustomVariable.swift */; };
-		C51896CC1F2641C10083FF86 /* CustomVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* CustomVariable.swift */; };
+		C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
+		C51896CC1F2641C10083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
+		C530627A1F31C16E000BA7DE /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
 		C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
 		C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
@@ -614,7 +615,7 @@
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
 		43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignFormJumpRules.json; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
-		C51896CA1F2641BA0083FF86 /* CustomVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVariable.swift; sourceTree = "<group>"; };
+		C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveStatus.swift; sourceTree = "<group>"; };
 		C52550531ED43EF6005658F5 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
 		C54AD6D01EC9A98E007BE846 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -831,7 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				04DC25A31E8BB32F002962A3 /* Event.swift */,
-				C51896CA1F2641BA0083FF86 /* CustomVariable.swift */,
+				C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */,
 			);
 			path = Leaves;
 			sourceTree = "<group>";
@@ -1605,7 +1606,7 @@
 				04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */,
 				436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */,
 				04F54E511CD76717002F501E /* UBRule.swift in Sources */,
-				C51896CB1F2641BA0083FF86 /* CustomVariable.swift in Sources */,
+				C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */,
 				4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */,
 				0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */,
 				04F54DF41CD766EC002F501E /* Protocols.swift in Sources */,
@@ -1679,6 +1680,7 @@
 				4317189B1F2A15E900BF612E /* UBCampaignDAOTests.swift in Sources */,
 				04A0C1C21E8BBD0400A483AC /* LeafRuleTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
+				C530627A1F31C16E000BA7DE /* UBFileHelper.swift in Sources */,
 				04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */,
 				4317189A1F2A15E900BF612E /* UBFormDAOTests.swift in Sources */,
 				4317189F1F2A15EE00BF612E /* CampaignServiceTests.swift in Sources */,
@@ -1834,7 +1836,7 @@
 				43B04FBA1F1F7EEF0032F057 /* JSONFormParser.swift in Sources */,
 				43B04FBB1F1F7EEF0032F057 /* UBCustomTouchableView.swift in Sources */,
 				43B04FBC1F1F7EEF0032F057 /* UBRule.swift in Sources */,
-				C51896CC1F2641C10083FF86 /* CustomVariable.swift in Sources */,
+				C51896CC1F2641C10083FF86 /* ActiveStatus.swift in Sources */,
 				43B04FBD1F1F7EEF0032F057 /* StringFieldModel.swift in Sources */,
 				43B04FBE1F1F7EEF0032F057 /* CheckboxFieldModel.swift in Sources */,
 				43B04FBF1F1F7EEF0032F057 /* Protocols.swift in Sources */,

@@ -28,8 +28,8 @@ class CampaignManager {
         }
     }
 
-    func sendEvent(event: String) {
-        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event)
+    func sendEvent(event: String, activeStatuses: [String: String]) {
+        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: activeStatuses)
 
         // Persist all updated campaigns
         respondingCampaigns.forEach {

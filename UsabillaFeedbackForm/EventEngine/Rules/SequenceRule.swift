@@ -18,12 +18,12 @@ class SequenceRule: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    override func customTriggersWith(event: Event) -> Bool {
+    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         //TO DO reset if strict
         let indexOfFirstNotTriggered = childRules.index(where: { $0.alreadyTriggered == false })
 
         if let index = indexOfFirstNotTriggered {
-            if childRules[index].triggersWith(event: event) && index == self.childRules.count - 1 {
+            if childRules[index].triggersWith(event: event, activeStatuses: activeStatuses) && index == self.childRules.count - 1 {
                 return true
             }
         }

@@ -18,9 +18,9 @@ class OrRule: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    override func customTriggersWith(event: Event) -> Bool {
+    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         for rule in childRules {
-            if rule.triggersWith(event: event) {
+            if rule.triggersWith(event: event, activeStatuses: activeStatuses) {
                 return true
             }
         }

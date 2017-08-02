@@ -24,7 +24,7 @@ class LeafRule: ConcreteRule {
         self.init(event: Event(name: name))
     }
 
-    override func customTriggersWith(event: Event) -> Bool {
+    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         return self.event == event
     }
 

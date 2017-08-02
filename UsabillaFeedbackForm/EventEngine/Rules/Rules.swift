@@ -17,25 +17,21 @@ enum RuleType: String {
     case timer
     case percentage
     case repetition
-    case customeVariable
+    case activeStatus
 }
 // swiftlint:enable identifier_name
 
-protocol Rule: AbstractRule {
+protocol Rule: NSCoding {
 
     var ruleID: String { get }
     var alreadyTriggered: Bool { get set }
     var type: RuleType { get }
     var childRules: [Rule] { get }
 
-    func triggersWith(event: Event) -> Bool
-    func customTriggersWith(event: Event) -> Bool
+    func triggersWith(event: Event, activeStatuses: [String : String]) -> Bool
+    func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool
     func respondsToEvent(event: Event) -> Bool
     func reset()
-}
-
-protocol AbstractRule: NSCoding {
-    var type: RuleType { get }
 }
 
 class ConcreteRule: NSObject, Rule {
@@ -53,14 +49,14 @@ class ConcreteRule: NSObject, Rule {
         self.alreadyTriggered = alreadyTriggered
     }
 
-    func triggersWith(event: Event) -> Bool {
+    func triggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         if !alreadyTriggered {
-            alreadyTriggered = customTriggersWith(event: event)
+            alreadyTriggered = customTriggersWith(event: event, activeStatuses: activeStatuses)
         }
         return alreadyTriggered
     }
 
-    func customTriggersWith(event: Event) -> Bool {
+    func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         fatalError("Abstract method not implemented")
     }
 

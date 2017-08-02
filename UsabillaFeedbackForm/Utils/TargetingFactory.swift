@@ -14,6 +14,7 @@ class TargetingFactory {
         case percentage
         case repetition
         case event
+        case activeStatus
     }
 
     class func createRule(_ json: JSON) -> Rule? {
@@ -30,6 +31,8 @@ class TargetingFactory {
             return RepetitionDecorator(json: json)
         case .event:
             return LeafRule(json: json)
+        case .activeStatus:
+            return LeafActiveStatus(json: json)
         }
     }
 }
