@@ -13,6 +13,10 @@ class UBFeedbackRequest: NSObject, NSCoding {
     let payload: [String: Any]
     let screenshot: String?
 
+    private let kId = "id"
+    private let kPayload = "payload"
+    private let kScreenshot = "screenshot"
+
     init(payload: [String: Any], screenshot: String?) {
         self.id = NSUUID().uuidString
         self.payload = payload
@@ -21,18 +25,18 @@ class UBFeedbackRequest: NSObject, NSCoding {
 
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        guard let id = aDecoder.decodeObject(forKey: "id") as? String,
-            let payload = aDecoder.decodeObject(forKey: "payload") as? [String: Any] else {
+        guard let id = aDecoder.decodeObject(forKey: kId) as? String,
+            let payload = aDecoder.decodeObject(forKey: kPayload) as? [String: Any] else {
                 return nil
         }
         self.id = id
         self.payload = payload
-        self.screenshot = aDecoder.decodeObject(forKey: "screenshot") as? String
+        self.screenshot = aDecoder.decodeObject(forKey: kScreenshot) as? String
     }
 
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(id, forKey: "id")
-        aCoder.encode(payload, forKey: "payload")
-        aCoder.encode(screenshot, forKey: "screnshot")
+        aCoder.encode(id, forKey: kId)
+        aCoder.encode(payload, forKey: kPayload)
+        aCoder.encode(screenshot, forKey: kScreenshot)
     }
 }
