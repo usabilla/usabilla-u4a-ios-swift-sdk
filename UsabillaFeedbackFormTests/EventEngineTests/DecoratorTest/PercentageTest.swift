@@ -27,7 +27,7 @@ class PercentageDecoratorTests: QuickSpec {
             context("When creating an object", {
                 it("should initialise correctly") {
                     let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
-                    expect(decorator.type).to(equal(RuleType.leaf))
+                    expect(decorator.type).to(equal(RuleType.event))
                     expect(decorator.ruleID).to(equal("id1"))
                     expect(decorator.rule).to(be(self.leafEvent1))
                     expect(decorator.percentage).to(equal(50))
@@ -49,7 +49,7 @@ class PercentageDecoratorTests: QuickSpec {
                     let percentageJsonNoChilderen = UBMock.json("CampaignsTargetingWithCustomVariable")?["rule"]
                     let decorator = PercentageDecorator(json: percentageJsonNoChilderen!)
                     expect(decorator).toNot(beNil())
-                    expect(decorator?.type).to(equal(RuleType.leaf))
+                    expect(decorator?.type).to(equal(RuleType.event))
                     expect(decorator?.percentage).to(equal(20))
                 }
             }

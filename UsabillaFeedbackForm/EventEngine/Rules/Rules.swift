@@ -13,7 +13,7 @@ enum RuleType: String {
     case and
     case or
     case sequence
-    case leaf
+    case event
     case timer
     case percentage
     case repetition
@@ -28,8 +28,8 @@ protocol Rule: NSCoding {
     var type: RuleType { get }
     var childRules: [Rule] { get }
 
-    func triggersWith(event: Event, activeStatuses: [String : String]) -> Bool
-    func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool
+    func triggersWith(event: Event, activeStatuses: [String: String]) -> Bool
+    func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool
     func respondsToEvent(event: Event) -> Bool
     func reset()
 }
@@ -49,14 +49,27 @@ class ConcreteRule: NSObject, Rule {
         self.alreadyTriggered = alreadyTriggered
     }
 
-    func triggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    required init?(json: JSON) {
+        guard let typeString = json["type"].string,
+            let type = RuleType(rawValue: typeString) else {
+                return nil
+        }
+
+        let childrenJson = json["children"].arrayValue
+        self.ruleID = "Fake-rule-id"
+        self.type = type
+        self.childRules = childrenJson.flatMap { TargetingFactory.createRule($0) }
+        self.alreadyTriggered = false
+    }
+
+    func triggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         if !alreadyTriggered {
             alreadyTriggered = customTriggersWith(event: event, activeStatuses: activeStatuses)
         }
         return alreadyTriggered
     }
 
-    func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         fatalError("Abstract method not implemented")
     }
 

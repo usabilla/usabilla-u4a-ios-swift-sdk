@@ -11,6 +11,7 @@ import Foundation
 class TargetingFactory {
 
     enum TargetingType: String {
+        case and
         case percentage
         case repetition
         case event
@@ -19,7 +20,6 @@ class TargetingFactory {
 
     class func createRule(_ json: JSON) -> Rule? {
         let type = json["type"].stringValue
-
         guard let targetingType = TargetingType(rawValue: type) else {
             return nil
         }
@@ -33,6 +33,8 @@ class TargetingFactory {
             return LeafEvent(json: json)
         case .activeStatus:
             return LeafActiveStatus(json: json)
+        case .and:
+            return AndRule(json: json)
         }
     }
 }

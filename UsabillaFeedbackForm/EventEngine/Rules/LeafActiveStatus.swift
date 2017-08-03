@@ -16,19 +16,20 @@ class LeafActiveStatus: ConcreteRule {
         super.init(type: .activeStatus, childRules: [], ruleID: "ID-HERE", alreadyTriggered: false)
     }
 
-    convenience init?(json: JSON) {
+    required init?(json: JSON) {
         guard let name = json["name"].string, let value = json["value"].string else {
             return nil
         }
 
-        self.init(activeStatus: ActiveStatus(name: name, value: value))
+        self.activeStatus = ActiveStatus(name: name, value: value)
+        super.init(json: json)
     }
 
     override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         return activeStatuses[activeStatus.name] == activeStatus.value
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         guard let activeStatus = aDecoder.decodeObject(forKey: "activeStatus") as? ActiveStatus else {
             PLog("❌ impossible to decode LeafActiveStatus")
             return nil
@@ -37,7 +38,7 @@ class LeafActiveStatus: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    public override func encode(with aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         aCoder.encode(self.activeStatus, forKey: "activeStatus")
         super.encode(with: aCoder)
     }

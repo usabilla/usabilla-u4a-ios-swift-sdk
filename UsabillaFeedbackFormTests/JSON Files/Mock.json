@@ -1,5 +1,34 @@
 {
     "node": {
+        "AndRule": {
+            "WithoutType" : {
+                "children": [
+                             {
+                             "type": "event",
+                             "name": "purchaseOrder"
+                             },
+                             {
+                             "type": "activeStatus",
+                             "name": "membership",
+                             "value": "premium"
+                             }
+                             ]
+            },
+            "Correct" : {
+                "type": "and",
+                "children": [
+                             {
+                             "type": "event",
+                             "name": "purchaseOrder"
+                             },
+                             {
+                             "type": "activeStatus",
+                             "name": "membership",
+                             "value": "premium"
+                             }
+                             ]
+            }
+        },
         "LeafActiveStatus" : {
             "WithoutName": {
                 "type": "activeStatus",
@@ -15,14 +44,42 @@
                 "value": "someValue"
             }
         },
-        "TargetingActiveStatus":{
+        "TargetingActiveStatusMultipleRepetition":{
             "rule": {
                 "type": "percentage",
-                "percentage": 77,
+                "percentage": 100,
                 "children": [
                              {
                              "type": "repetition",
-                             "repetition": 13,
+                             "repetition": 3,
+                             "children": [
+                                          {
+                                          "type": "and",
+                                          "children": [
+                                                       {
+                                                       "type": "event",
+                                                       "name": "purchaseOrder"
+                                                       },
+                                                       {
+                                                       "type": "activeStatus",
+                                                       "name": "membership",
+                                                       "value": "premium"
+                                                       }
+                                                       ]
+                                          }
+                                          ]
+                             }
+                             ]
+            }
+        },
+        "TargetingActiveStatus":{
+            "rule": {
+                "type": "percentage",
+                "percentage": 100,
+                "children": [
+                             {
+                             "type": "repetition",
+                             "repetition": 1,
                              "children": [
                                           {
                                           "type": "and",

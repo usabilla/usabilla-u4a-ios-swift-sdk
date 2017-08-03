@@ -18,7 +18,11 @@ class OrRule: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    required init?(json: JSON) {
+        fatalError("init(json:) has not been implemented")
+    }
+
+    override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         for rule in childRules {
             if rule.triggersWith(event: event, activeStatuses: activeStatuses) {
                 return true

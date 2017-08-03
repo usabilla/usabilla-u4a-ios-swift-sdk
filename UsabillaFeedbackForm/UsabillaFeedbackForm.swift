@@ -41,8 +41,8 @@ open class UsabillaFeedbackForm {
         campaignManager?.sendEvent(event: event, activeStatuses: activeStatuses)
     }
 
-    open class func setActiveStatus(value: String, forKey key: String) {
-        activeStatuses[key] = value
+    open class func setActiveStatus(value: String?, forKey key: String) {
+        activeStatuses[key] = value ?? nil
         PLog(activeStatuses)
     }
 

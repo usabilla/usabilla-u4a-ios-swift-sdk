@@ -23,7 +23,7 @@ class LeafEventTests: QuickSpec {
             context("When creating an object", {
                 it("should initialise correctly") {
                     let leaf = LeafEvent(event: self.event1, ruleID: "id", alreadyTriggered: false)
-                    expect(leaf.type).to(equal(RuleType.leaf))
+                    expect(leaf.type).to(equal(RuleType.event))
                     expect(leaf.alreadyTriggered).to(beFalse())
                     expect(leaf.childRules).to(beEmpty())
                 }
@@ -39,7 +39,7 @@ class LeafEventTests: QuickSpec {
                     let leafEventJson = UBMock.json("LeafRuleCorrect")
                     let rule = LeafEvent(json: leafEventJson!)
                     expect(rule).toNot(beNil())
-                    expect(rule?.type).to(equal(RuleType.leaf))
+                    expect(rule?.type).to(equal(RuleType.event))
                     let event = Event(name: "purchaseComplete")
                     expect(rule?.triggersWith(event: event, activeStatuses: self.activeStatuses)).to(beTrue())
                 }

@@ -43,16 +43,31 @@ class AndRuleTests: QuickSpec {
 
         describe("The And Rule") {
 
-            context("When creating an object", {
+            context("When creating an object") {
                 it("should initialise correctly") {
                     let newAnd = AndRule(childRules: [self.leafEvent1])
                     expect(newAnd.type).to(equal(RuleType.and))
                     expect(newAnd.alreadyTriggered).to(beFalse())
 
                 }
-            })
+            }
+            
+            context("When initilized from JSON") {
+                it("should fail if it does not have type") {
+                    let andJson = UBMock.json("AndRule")?["WithoutType"]
+                    let rule = AndRule(json: andJson!)
+                    expect(rule).to(beNil())
+                }
+                it("should succeed if json is correct") {
+                    let andJson = UBMock.json("AndRule")?["Correct"]
+                    let rule = AndRule(json: andJson!)
+                    expect(rule).toNot(beNil())
+                    expect(rule?.type).to(equal(RuleType.and))
+                    expect(rule?.childRules.count).to(equal(2))
+                }
+            }
 
-            context("when checking for validity", {
+            context("when checking for validity") {
                 it("should return true if all children is satisfied") {
                     let newAnd = AndRule(childRules: self.allPositive)
                     expect(newAnd.triggersWith(event: self.event1, activeStatuses: self.activeStatuses)).to(beTrue())
@@ -76,7 +91,7 @@ class AndRuleTests: QuickSpec {
                     expect(newAnd2.triggersWith(event: self.event4, activeStatuses: self.activeStatuses)).to(beTrue())
 
                 }
-            })
+            }
 
         }
     }

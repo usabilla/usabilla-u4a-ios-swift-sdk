@@ -28,6 +28,18 @@ class LeafActiveStatusTests: QuickSpec {
                     expect(leaf.alreadyTriggered).to(beFalse())
                     expect(leaf.childRules).to(beEmpty())
                 }
+                it("should serialize correctly") {
+                    let activeStatus = ActiveStatus(name: "key", value: "value")
+                    let leafActiveStatus = LeafActiveStatus(activeStatus: activeStatus)
+                    let data = NSKeyedArchiver.archivedData(withRootObject: leafActiveStatus)
+                    
+                    expect(data).toNot(beNil())
+                    // swiftlint:disable force_cast
+                    let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! LeafActiveStatus
+                    expect(unserialised.activeStatus).toNot(beNil())
+                    expect(unserialised.activeStatus.name).to(equal("key"))
+                    expect(unserialised.activeStatus.value).to(equal("value"))
+                }
             })
             
             context("When initilized from JSON") {

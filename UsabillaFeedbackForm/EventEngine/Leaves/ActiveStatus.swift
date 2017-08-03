@@ -19,7 +19,7 @@ class ActiveStatus: NSObject, NSCoding {
     }
 
     // MARK: NSCoding
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         guard let name = aDecoder.decodeObject(forKey: "name") as? String,
             let value = aDecoder.decodeObject(forKey: "value") as? String else {
                 PLog("❌ impossible to decode ActiveStatus")
@@ -30,7 +30,7 @@ class ActiveStatus: NSObject, NSCoding {
         self.value = value
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.name, forKey: "name")
         aCoder.encode(self.value, forKey: "value")
     }

@@ -372,6 +372,7 @@
 		C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C51896CC1F2641C10083FF86 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
 		C5223B391F322318003CF696 /* ActiveStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5223B371F322318003CF696 /* ActiveStatusTests.swift */; };
+		C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
 		C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
@@ -622,6 +623,7 @@
 		C508684D1F320F38006CDA53 /* LeafActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatusTests.swift; sourceTree = "<group>"; };
 		C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveStatus.swift; sourceTree = "<group>"; };
 		C5223B371F322318003CF696 /* ActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveStatusTests.swift; sourceTree = "<group>"; };
+		C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingOptionsTests.swift; sourceTree = "<group>"; };
 		C52550531ED43EF6005658F5 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
 		C54AD6D01EC9A98E007BE846 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 				04DC25BE1E8BB365002962A3 /* RulesTests */,
 				433F1EC41EADE96300E4BBFA /* CampaignManagerTests.swift */,
 				433F1EC61EAE1F8000E4BBFA /* EventEngineTests.swift */,
+				C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */,
 			);
 			name = EventEngineTest;
 			path = EventEngineTests;
@@ -1696,6 +1699,7 @@
 				4317189F1F2A15EE00BF612E /* CampaignServiceTests.swift in Sources */,
 				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
 				0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */,
+				C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,

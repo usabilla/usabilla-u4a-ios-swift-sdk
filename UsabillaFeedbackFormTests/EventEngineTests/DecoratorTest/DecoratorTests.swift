@@ -28,7 +28,7 @@ class DecoratorTests: QuickSpec {
             context("When creating an object") {
                 it("should initialise correctly") {
                     let decorator = Decorator(rule: self.leafEvent1)
-                    expect(decorator.type).to(equal(RuleType.leaf))
+                    expect(decorator.type).to(equal(RuleType.event))
                     expect(decorator.ruleID).to(equal("id1"))
                     expect(decorator.rule).to(be(self.leafEvent1))
                     expect(decorator.alreadyTriggered).to(beFalse())
@@ -45,7 +45,7 @@ class DecoratorTests: QuickSpec {
                 // swiftlint:disable force_cast
                 let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! Decorator
 
-                expect(unserialised.type).to(equal(RuleType.leaf))
+                expect(unserialised.type).to(equal(RuleType.event))
                 expect(unserialised.ruleID).to(equal("id1"))
                 expect(unserialised.rule).to(beAKindOf(LeafEvent.self))
                 expect(unserialised.rule.ruleID).to(equal("id1"))

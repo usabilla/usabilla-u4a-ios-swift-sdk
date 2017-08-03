@@ -30,7 +30,7 @@ class RepetitionRuleTests: QuickSpec {
             context("When creating an object") {
                 it("should initialise correctly") {
                     let rep = RepetitionDecorator(occurrences: 5, rule: self.leafEvent1)
-                    expect(rep.type).to(equal(RuleType.leaf))
+                    expect(rep.type).to(equal(RuleType.event))
                     expect(rep.ruleID).to(equal("id1"))
                     expect(rep.rule).to(be(self.leafEvent1))
                     expect(rep.alreadyTriggered).to(beFalse())
@@ -89,7 +89,7 @@ class RepetitionRuleTests: QuickSpec {
                     // swiftlint:disable force_cast
                     let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! RepetitionDecorator
 
-                    expect(unserialised.type).to(equal(RuleType.leaf))
+                    expect(unserialised.type).to(equal(RuleType.event))
                     expect(unserialised.ruleID).to(equal("id1"))
                     expect(unserialised.rule).to(beAKindOf(LeafEvent.self))
                     expect(unserialised.rule.ruleID).to(equal("id1"))

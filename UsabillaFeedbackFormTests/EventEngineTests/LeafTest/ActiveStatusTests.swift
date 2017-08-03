@@ -22,6 +22,16 @@ class ActiveStatusTests: QuickSpec {
                     expect(activeStatus.name).to(equal("key"))
                     expect(activeStatus.value).to(equal("value"))
                 }
+                it("should serialize correctly") {
+                    let activeStatus = ActiveStatus(name: "key", value: "value")
+                    let data = NSKeyedArchiver.archivedData(withRootObject: activeStatus)
+
+                    expect(data).toNot(beNil())
+                    // swiftlint:disable force_cast
+                    let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! ActiveStatus
+                    expect(unserialised.name).to(equal("key"))
+                    expect(unserialised.value).to(equal("value"))
+                }
             }
         }
     }

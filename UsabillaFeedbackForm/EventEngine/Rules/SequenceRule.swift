@@ -18,7 +18,11 @@ class SequenceRule: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    required init?(json: JSON) {
+        fatalError("init(json:) has not been implemented")
+    }
+
+    override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         //TO DO reset if strict
         let indexOfFirstNotTriggered = childRules.index(where: { $0.alreadyTriggered == false })
 

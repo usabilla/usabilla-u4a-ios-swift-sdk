@@ -72,6 +72,22 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                     }
                 }
             }
+
+            context("When Active statuses are set") {
+                it("it should update the activeStatuses dictionary with right values") {
+                    expect(UsabillaFeedbackForm.activeStatuses).toNot(beNil())
+                    
+                    UsabillaFeedbackForm.activeStatuses = ["key1": "value1"]
+                    expect(UsabillaFeedbackForm.activeStatuses["key1"]).toNot(beNil())
+                    expect(UsabillaFeedbackForm.activeStatuses["key1"]).to(equal("value1"))
+                    
+                    UsabillaFeedbackForm.setActiveStatus(value: "value2", forKey: "key2")
+                    expect(UsabillaFeedbackForm.activeStatuses.keys.count).to(equal(2))
+                    
+                    UsabillaFeedbackForm.setActiveStatus(value: nil, forKey: "key2")
+                    expect(UsabillaFeedbackForm.activeStatuses.keys.count).to(equal(1))
+                }
+            }
         }
     }
 

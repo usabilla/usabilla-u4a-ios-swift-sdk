@@ -18,7 +18,11 @@ class AndRule: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    required init?(json: JSON) {
+        super.init(json: json)
+    }
+
+    override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         for rule in childRules {
             let triggered = rule.triggersWith(event: event, activeStatuses: activeStatuses)
             if !(triggered || rule.alreadyTriggered) {

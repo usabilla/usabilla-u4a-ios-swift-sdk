@@ -13,22 +13,23 @@ class LeafEvent: ConcreteRule {
 
     init(event: Event, ruleID: String = UUID().uuidString, alreadyTriggered: Bool = false) {
         self.event = event
-        super.init(type: .leaf, childRules: [], ruleID: ruleID, alreadyTriggered: alreadyTriggered)
+        super.init(type: .event, childRules: [], ruleID: ruleID, alreadyTriggered: alreadyTriggered)
     }
 
-    convenience init?(json: JSON) {
+    required init?(json: JSON) {
         guard let name = json["name"].string else {
             return nil
         }
 
-        self.init(event: Event(name: name))
+        self.event = Event(name: name)
+        super.init(json: json)
     }
 
     override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         return self.event == event
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         guard let event = aDecoder.decodeObject(forKey: "event") as? Event else {
             PLog("❌ impossible to decode LeafEvent")
             return nil
@@ -37,7 +38,7 @@ class LeafEvent: ConcreteRule {
         super.init(coder: aDecoder)
     }
 
-    public override func encode(with aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         aCoder.encode(self.event, forKey: "event")
         super.encode(with: aCoder)
     }

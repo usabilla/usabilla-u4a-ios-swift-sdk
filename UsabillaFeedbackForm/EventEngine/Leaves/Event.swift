@@ -20,7 +20,7 @@ class Event: NSObject, NSCoding {
         return name
     }
 
-    public required convenience init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         guard let name = aDecoder.decodeObject(forKey: "name") as? String else {
             PLog("❌ impossible to decode LeafEvent")
             return nil
@@ -28,7 +28,7 @@ class Event: NSObject, NSCoding {
         self.init(name: name)
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.name, forKey: "name")
     }
 }
