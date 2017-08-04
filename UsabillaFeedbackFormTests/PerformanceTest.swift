@@ -34,7 +34,7 @@ class Performance: XCTestCase {
     func testChunkingPerformance() {
         // This is an example of a performance test case.
         self.measure {
-            _ = self.base64image.divideInChunksOfSize(15000)
+            _ = self.base64image.components(withLength: 15000)
         }
     }
 

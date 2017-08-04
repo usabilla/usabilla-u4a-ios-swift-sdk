@@ -15,11 +15,11 @@ class StringTest: QuickSpec {
 
     override func spec() {
 
-        describe("String divideInChunksOfSize") {
+        describe("String components withLength:") {
             let stringToChunk = "abcdefghilmnopqrst"
 
             it("should correctly divide by 3") {
-                let stringChunks = stringToChunk.divideInChunksOfSize(3)
+                let stringChunks = stringToChunk.components(withLength: 3)
                 expect(stringChunks.count).to(equal(6))
                 expect(stringChunks[5].characters.count).to(equal(3))
                 expect(stringChunks[0].characters.count).to(equal(3))
@@ -28,7 +28,7 @@ class StringTest: QuickSpec {
             }
 
             it("should correctly divide by 4") {
-                let stringChunks = stringToChunk.divideInChunksOfSize(4)
+                let stringChunks = stringToChunk.components(withLength: 4)
                 expect(stringChunks.count).to(equal(5))
                 expect(stringChunks[4].characters.count).to(equal(2))
                 expect(stringChunks[0].characters.count).to(equal(4))
@@ -37,12 +37,34 @@ class StringTest: QuickSpec {
             }
 
             it("should correctly divide by 5") {
-                let stringChunks = stringToChunk.divideInChunksOfSize(5)
+                let stringChunks = stringToChunk.components(withLength: 5)
                 expect(stringChunks.count).to(equal(4))
                 expect(stringChunks[3].characters.count).to(equal(3))
                 expect(stringChunks[0].characters.count).to(equal(5))
                 expect(stringChunks[3]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abcde"))
+            }
+            
+            it("should correctly divide by 5") {
+                let stringChunks = stringToChunk.components(withLength: 5)
+                expect(stringChunks.count).to(equal(4))
+                expect(stringChunks[3].characters.count).to(equal(3))
+                expect(stringChunks[0].characters.count).to(equal(5))
+                expect(stringChunks[3]).to(equal("rst"))
+                expect(stringChunks[0]).to(equal("abcde"))
+            }
+            
+            context("When splitting chunk from a base64") {
+                it ("should correctly split the string") {
+                    let image = UIImage(named: "small-image", in: Bundle(for: UIImageTest.self), compatibleWith: nil)
+                    let data = UIImageJPEGRepresentation(image!.fixSizeAndOrientation(), 0.5)
+                    let encoded = data?.base64EncodedString()
+                    let chunks = encoded!.components(withLength: 31250)
+                    var reconstructed: String = ""
+                    for chunk in chunks {
+                        reconstructed = reconstructed.appending(chunk)
+                    }
+                }
             }
         }
 

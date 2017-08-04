@@ -11,27 +11,12 @@ import UIKit
 
 extension String {
 
-    func divideInChunksOfSize(_ chuckSize: Int) -> [String] {
-        var arrayToReturn: [String] = []
-        let screenshotCharacterCount = self.characters.count
-        let numberOfChunks = screenshotCharacterCount / chuckSize
-        let lastChunk = screenshotCharacterCount % chuckSize
-
-        if numberOfChunks > 0 {
-            for chunk in 0...numberOfChunks - 1 {
-                let start = chunk * chuckSize
-                let range = NSRange(location: start, length: chuckSize)
-                let section = (self as NSString).substring(with: range)
-                arrayToReturn.append(section)
-            }
+    func components(withLength length: Int) -> [String] {
+        return stride(from: 0, to: self.characters.count, by: length).map {
+            let start = self.index(self.startIndex, offsetBy: $0)
+            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
+            return self[start..<end]
         }
-        if lastChunk > 0 {
-            let lastRange = NSRange(location: numberOfChunks * chuckSize, length: lastChunk)
-            let section = (self as NSString).substring(with: lastRange)
-            arrayToReturn.append(section)
-        }
-
-        return arrayToReturn
     }
 
     func parseHTMLString(font: UIFont) -> NSAttributedString {
@@ -39,9 +24,9 @@ extension String {
 
         do {
             let attrStr = try NSAttributedString(
-                            data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
-                            options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
-                            documentAttributes: nil)
+                                                 data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
+                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
+                                                 documentAttributes: nil)
             return attrStr
         } catch {
             return NSAttributedString(string: self)

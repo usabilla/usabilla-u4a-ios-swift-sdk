@@ -78,9 +78,8 @@ class FormService: FormServiceProtocol {
     ///   - screenshot: base64 representation of the screenshot
     func submitFeedbackScreenshot(id: String, signature: String, screenshot: String) -> Promise<Bool> {
         return Promise { fulfill, reject in
-
-            let chuckSize = 31250
-            let stringChunks = screenshot.divideInChunksOfSize(chuckSize)
+            let chunkSize = 31250
+            let stringChunks = screenshot.components(withLength: chunkSize)
             if stringChunks.count == 0 {
                 reject(NSError(domain: "invalid screenshot", code: 0, userInfo: nil))
                 return

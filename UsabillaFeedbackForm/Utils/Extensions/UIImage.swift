@@ -45,6 +45,6 @@ extension UIImage {
 
     func toBase64() -> String? {
         let data = UIImageJPEGRepresentation(self.fixSizeAndOrientation(), 0.5)
-        return data?.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        return data?.base64EncodedString()
     }
 }
