@@ -18,6 +18,7 @@ enum RuleType: String {
     case percentage
     case repetition
     case activeStatus
+    case passiveStatus
 }
 // swiftlint:enable identifier_name
 

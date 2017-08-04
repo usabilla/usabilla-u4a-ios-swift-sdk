@@ -375,11 +375,13 @@
 		C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
+		C54593B01F34A29F000C5090 /* LeafPassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */; };
 		C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
 		C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
 		C564D1911E799A190004705A /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
 		C5780D1F1F22073B0016C519 /* TargetingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5780D1E1F22073B0016C519 /* TargetingFactory.swift */; };
 		C5780D201F2226FE0016C519 /* TargetingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5780D1E1F22073B0016C519 /* TargetingFactory.swift */; };
+		C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */; };
 		C59C820A1E8133F000840D4E /* FormStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C82091E8133F000840D4E /* FormStoreTests.swift */; };
 		C59C820C1E813F9E00840D4E /* UBMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820B1E813F9E00840D4E /* UBMock.swift */; };
 		C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820F1E8574E100840D4E /* CopyModelTests.swift */; };
@@ -626,6 +628,7 @@
 		C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingOptionsTests.swift; sourceTree = "<group>"; };
 		C52550531ED43EF6005658F5 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
+		C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafPassiveStatus.swift; sourceTree = "<group>"; };
 		C54AD6D01EC9A98E007BE846 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		C555E9A51EE9A41500F84B51 /* UBToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBToast.swift; sourceTree = "<group>"; };
 		C564D1901E799A190004705A /* FormStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormStore.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -855,6 +858,7 @@
 				04DC25A81E8BB33E002962A3 /* Rules.swift */,
 				04DC25A91E8BB33E002962A3 /* SequenceRule.swift */,
 				C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */,
+				C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -1613,6 +1617,7 @@
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
 				C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */,
+				C54593B01F34A29F000C5090 /* LeafPassiveStatus.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* ChoiceFieldModel.swift in Sources */,
 				436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */,
@@ -1846,6 +1851,7 @@
 				43B04FB51F1F7EEF0032F057 /* MoodFieldModel.swift in Sources */,
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
 				C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */,
+				C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */,
 				43B04FB71F1F7EEF0032F057 /* TextAreaFieldModel.swift in Sources */,
 				43B04FB81F1F7EEF0032F057 /* ChoiceFieldModel.swift in Sources */,
 				43B04FB91F1F7EEF0032F057 /* UBBannerPresenter.swift in Sources */,

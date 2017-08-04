@@ -16,6 +16,7 @@ class TargetingFactory {
         case repetition
         case event
         case activeStatus
+        case passiveStatus
     }
 
     class func createRule(_ json: JSON) -> Rule? {
@@ -33,6 +34,8 @@ class TargetingFactory {
             return LeafEvent(json: json)
         case .activeStatus:
             return LeafActiveStatus(json: json)
+        case .passiveStatus:
+            return LeafPassiveStatus(json: json)
         case .and:
             return AndRule(json: json)
         }
