@@ -65,14 +65,24 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         var result: DataType?
 
         fileStorageSerialQueue.sync {
-            result = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? DataType
+            do {
+                if let data = FileManager().contents(atPath: filePath) {
+                    result = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data as NSData) as? DataType
+                    if result == nil {
+                        delete(id: id)
+                    }
+                }
+            } catch let error {
+                PLog("Error ❌ during unarchiving: \(error)")
+                delete(id: id)
+            }
         }
 
         return result
     }
 
-    @discardableResult func delete(_ obj: DataType) -> Bool {
-        let url = fileURLFor(id: id(forObj: obj))
+    @discardableResult private func delete(id: String) -> Bool {
+        let url = fileURLFor(id: id)
         do {
             try FileManager.default.removeItem(at: url)
             return true
@@ -80,6 +90,10 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
             PLog("Impossible to delete file at url \(url)")
         }
         return false
+    }
+
+    @discardableResult func delete(_ obj: DataType) -> Bool {
+        return delete(id: id(forObj: obj))
     }
 
     @discardableResult func deleteAll() -> Bool {

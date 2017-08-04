@@ -17,6 +17,8 @@ let kDirectoryName = "testdata"
 
 class UBFileStorageDAOTests: QuickSpec {
     class TestData: NSObject, NSCoding {
+        static var decodingShouldFail = false
+        static var decodingShouldReturnNil = false
         var id: String
         var name: String
 
@@ -31,6 +33,12 @@ class UBFileStorageDAOTests: QuickSpec {
         }
 
         required init?(coder aDecoder: NSCoder) {
+            if TestData.decodingShouldFail {
+                aDecoder.failWithError(NSError(domain: "", code: 0, userInfo: nil))
+            }
+            if TestData.decodingShouldReturnNil {
+                return nil
+            }
             id = aDecoder.decodeObject(forKey: "id") as? String ?? ""
             name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
         }
@@ -72,6 +80,8 @@ class UBFileStorageDAOTests: QuickSpec {
                 let exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                 expect(exist).to(beFalse())
                 UBFileHelper.createDirectory(url: directoryUrl)
+                TestData.decodingShouldReturnNil = false
+                TestData.decodingShouldFail = false
             }
 
             context("When there is no data") {
@@ -105,6 +115,47 @@ class UBFileStorageDAOTests: QuickSpec {
                     let data = TestData(id: ".../..temp", name: "testname")
                     let isCreated = TestDAO.shared.create(data)
                     expect(isCreated).to(beFalse())
+                }
+            }
+
+            context("When reading a data") {
+                it("should return nil when unarchiving fails") {
+                    let data = TestData(id: "testid", name: "testname")
+                    let isCreated = TestDAO.shared.create(data)
+                    expect(isCreated).to(beTrue())
+                    var readValue = TestDAO.shared.read(id: "testid")
+                    expect(readValue).toNot(beNil())
+                    TestData.decodingShouldFail = true
+                    readValue = TestDAO.shared.read(id: "testid")
+                    expect(readValue).to(beNil())
+                }
+
+                it("should delete the data if the unarchiving fails") {
+                    let data = TestData(id: "testid", name: "testname")
+                    let isCreated = TestDAO.shared.create(data)
+                    expect(isCreated).to(beTrue())
+
+                    var readValue = TestDAO.shared.read(id: "testid")
+                    expect(readValue).toNot(beNil())
+                    expect(TestDAO.shared.readAll().count).to(equal(1))
+                    TestData.decodingShouldFail = true
+                    readValue = TestDAO.shared.read(id: "testid")
+                    expect(readValue).to(beNil())
+                    expect(TestDAO.shared.readAll().count).to(equal(0))
+                }
+                
+                it("should delete the data if the unarchiving returns nil") {
+                    let data = TestData(id: "testid", name: "testname")
+                    let isCreated = TestDAO.shared.create(data)
+                    expect(isCreated).to(beTrue())
+                    
+                    var readValue = TestDAO.shared.read(id: "testid")
+                    expect(readValue).toNot(beNil())
+                    expect(TestDAO.shared.readAll().count).to(equal(1))
+                    TestData.decodingShouldReturnNil = true
+                    readValue = TestDAO.shared.read(id: "testid")
+                    expect(readValue).to(beNil())
+                    expect(TestDAO.shared.readAll().count).to(equal(0))
                 }
             }
 
