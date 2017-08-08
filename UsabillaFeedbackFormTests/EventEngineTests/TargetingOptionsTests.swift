@@ -99,6 +99,27 @@ class TargetingOptionsTests: QuickSpec {
                     expect(triggered).to(beTrue())
                 }
             }
+            
+            context("When targeting has passiveStatuses") {
+                it("should trigger only after two times and english device language") {
+                    let jsonPassiveStatus = UBMock.json("TargetingPassiveStatus")?["Correct"]["rule"]
+                    rule = TargetingFactory.createRule(jsonPassiveStatus!)
+
+                    var triggered = rule.customTriggersWith(event: Event(name: "purchaseOrder"), activeStatuses: ["membership": "premium"])
+                    expect(triggered).to(beFalse())
+                    triggered = rule.customTriggersWith(event: Event(name: "purchaseOrder"), activeStatuses: ["membership": "premium"])
+                    expect(triggered).to(beTrue())
+                }
+                it("should not trigger when device language does not match") {
+                    let jsonPassiveStatusDifferentLanguage = UBMock.json("TargetingPassiveStatus")?["DifferentLanguage"]["rule"]
+                    rule = TargetingFactory.createRule(jsonPassiveStatusDifferentLanguage!)
+                    
+                    var triggered = rule.customTriggersWith(event: Event(name: "purchaseOrder"), activeStatuses: ["membership": "premium"])
+                    expect(triggered).to(beFalse())
+                    triggered = rule.customTriggersWith(event: Event(name: "purchaseOrder"), activeStatuses: ["membership": "premium"])
+                    expect(triggered).to(beFalse())
+                }
+            }
         }
     }
 }

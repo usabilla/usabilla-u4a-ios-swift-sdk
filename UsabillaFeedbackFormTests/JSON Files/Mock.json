@@ -1,5 +1,93 @@
 {
     "node": {
+        "TargetingPassiveStatus": {
+            "Correct" : {
+                "rule": {
+                    "type": "percentage",
+                    "percentage": 100,
+                    "children": [
+                                 {
+                                 "type": "repetition",
+                                 "repetition": 2,
+                                 "children": [
+                                              {
+                                              "type": "and",
+                                              "children": [
+                                                           {
+                                                           "type": "event",
+                                                           "name": "purchaseOrder"
+                                                           },
+                                                           {
+                                                           "type": "activeStatus",
+                                                           "name": "membership",
+                                                           "value": "premium"
+                                                           },
+                                                           {
+                                                           "type": "passiveStatus",
+                                                           "name": "language",
+                                                           "value": "en"
+                                                           }
+                                                           ]
+                                              }
+                                              ]
+                                 }
+                                 ]
+                }
+            },
+            "DifferentLanguage" : {
+                "rule": {
+                    "type": "percentage",
+                    "percentage": 100,
+                    "children": [
+                                 {
+                                 "type": "repetition",
+                                 "repetition": 2,
+                                 "children": [
+                                              {
+                                              "type": "and",
+                                              "children": [
+                                                           {
+                                                           "type": "event",
+                                                           "name": "purchaseOrder"
+                                                           },
+                                                           {
+                                                           "type": "activeStatus",
+                                                           "name": "membership",
+                                                           "value": "premium"
+                                                           },
+                                                           {
+                                                           "type": "passiveStatus",
+                                                           "name": "language",
+                                                           "value": "nl"
+                                                           }
+                                                           ]
+                                              }
+                                              ]
+                                 }
+                                 ]
+                }
+            }
+        },
+        "LeafPassiveStatus" : {
+            "WithoutName": {
+                "type": "passiveStatus",
+                "value": "someValue"
+            },
+            "WithWrongName": {
+                "type": "passiveStatus",
+                "name": "wrongName",
+                "value": "nl"
+            },
+            "WithoutValue": {
+                "type": "passiveStatus",
+                "name": "language"
+            },
+            "Correct": {
+                "type": "passiveStatus",
+                "name": "language",
+                "value": "nl"
+            }
+        },
         "AndRule": {
             "WithoutType" : {
                 "children": [

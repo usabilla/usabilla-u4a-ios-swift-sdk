@@ -375,6 +375,10 @@
 		C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
+		C536547A1F39DD1A00C51AD5 /* PassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */; };
+		C536547D1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C536547B1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift */; };
+		C536547E1F39E10000C51AD5 /* PassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */; };
+		C53654811F39EB7100C51AD5 /* PassiveStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C536547F1F39EB7100C51AD5 /* PassiveStatusTests.swift */; };
 		C54593B01F34A29F000C5090 /* LeafPassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */; };
 		C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
 		C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
@@ -628,6 +632,9 @@
 		C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingOptionsTests.swift; sourceTree = "<group>"; };
 		C52550531ED43EF6005658F5 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
+		C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveStatus.swift; sourceTree = "<group>"; };
+		C536547B1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafPassiveStatusTests.swift; sourceTree = "<group>"; };
+		C536547F1F39EB7100C51AD5 /* PassiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveStatusTests.swift; sourceTree = "<group>"; };
 		C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafPassiveStatus.swift; sourceTree = "<group>"; };
 		C54AD6D01EC9A98E007BE846 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		C555E9A51EE9A41500F84B51 /* UBToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBToast.swift; sourceTree = "<group>"; };
@@ -803,6 +810,7 @@
 			children = (
 				04A0C1C71E8BD59500A483AC /* EventTests.swift */,
 				C5223B371F322318003CF696 /* ActiveStatusTests.swift */,
+				C536547F1F39EB7100C51AD5 /* PassiveStatusTests.swift */,
 			);
 			name = LeafTests;
 			path = LeafTest;
@@ -845,6 +853,7 @@
 			children = (
 				04DC25A31E8BB32F002962A3 /* Event.swift */,
 				C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */,
+				C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */,
 			);
 			path = Leaves;
 			sourceTree = "<group>";
@@ -886,6 +895,7 @@
 				04A0C1BF1E8BB9D100A483AC /* SequenceRuleTests.swift */,
 				04A0C1C11E8BBD0400A483AC /* LeafEventTests.swift */,
 				C508684D1F320F38006CDA53 /* LeafActiveStatusTests.swift */,
+				C536547B1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift */,
 			);
 			path = RulesTests;
 			sourceTree = "<group>";
@@ -1531,6 +1541,7 @@
 				43AE0AEA1E82B9A500B1441C /* CampaignViewModel.swift in Sources */,
 				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
 				04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */,
+				C536547A1F39DD1A00C51AD5 /* PassiveStatus.swift in Sources */,
 				430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */,
 				04ECD31A1EF9206C0024D24A /* UBCampaignFeedbackRequest.swift in Sources */,
 				C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */,
@@ -1640,6 +1651,7 @@
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */,
 				4317189E1F2A15EC00BF612E /* UBCampaignStoreTests.swift in Sources */,
+				C536547D1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
 				04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,
@@ -1687,6 +1699,7 @@
 				047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */,
 				43B0A2161E2CCFC700879E5F /* ScreenshotModelTest.swift in Sources */,
 				04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */,
+				C53654811F39EB7100C51AD5 /* PassiveStatusTests.swift in Sources */,
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,
 				43BFD4291EFBE6B400AD47AE /* UBToastPageViewModelTests.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */,
@@ -1765,6 +1778,7 @@
 				43B04F5E1F1F7EEF0032F057 /* CampaignViewModel.swift in Sources */,
 				43B04F5F1F1F7EEF0032F057 /* RadioComponentViewModel.swift in Sources */,
 				43B04F601F1F7EEF0032F057 /* SwiftyJSON.swift in Sources */,
+				C536547E1F39E10000C51AD5 /* PassiveStatus.swift in Sources */,
 				43B04F611F1F7EEF0032F057 /* PageViewModel.swift in Sources */,
 				43B04F621F1F7EEF0032F057 /* UBCampaignFeedbackRequest.swift in Sources */,
 				43B04F631F1F7EEF0032F057 /* UBToast.swift in Sources */,

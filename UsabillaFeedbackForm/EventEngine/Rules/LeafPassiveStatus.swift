@@ -8,41 +8,12 @@
 
 import Foundation
 
-class PassiveStatus: NSObject, NSCoding {
-
-    enum PasstiveStatusType: String {
-        case language
-        case iosVersion
-    }
-
-    let name: PasstiveStatusType
-    let value: String
-
-    init(name: PasstiveStatusType, value: String) {
-        self.name = name
-        self.value = value
-    }
-
-    // MARK: NSCoding
-    required init?(coder aDecoder: NSCoder) {
-        guard let name = aDecoder.decodeObject(forKey: "name") as? String,
-            let nameType = PasstiveStatusType(rawValue: name),
-            let value = aDecoder.decodeObject(forKey: "value") as? String else {
-                PLog("❌ impossible to decode ActiveStatus")
-                return nil
-        }
-
-        self.name = nameType
-        self.value = value
-    }
-
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.name.rawValue, forKey: "name")
-        aCoder.encode(self.value, forKey: "value")
-    }
-}
-
 class LeafPassiveStatus: ConcreteRule {
+
+    private struct Archiving {
+        static let passiveStatus = "passiveStatus"
+    }
+
     let passiveStatus: PassiveStatus
 
     init(passiveStatus: PassiveStatus) {
@@ -65,14 +36,20 @@ class LeafPassiveStatus: ConcreteRule {
         switch passiveStatus.name {
         case .language:
             return languageMatches()
-        default:
-            return languageMatches()
         }
     }
 
+    func languageMatches() -> Bool {
+        if passiveStatus.value.contains("_") {
+            return passiveStatus.value == Locale.current.identifier
+        }
+
+        return passiveStatus.value.uppercased() == Locale.current.languageCode?.uppercased()
+    }
+
     required init?(coder aDecoder: NSCoder) {
-        guard let passiveStatus = aDecoder.decodeObject(forKey: "passiveStatus") as? PassiveStatus else {
-            PLog("❌ impossible to decode LeafActiveStatus")
+        guard let passiveStatus = aDecoder.decodeObject(forKey: Archiving.passiveStatus) as? PassiveStatus else {
+            PLog("❌ impossible to decode LeafPassiveStatus")
             return nil
         }
         self.passiveStatus = passiveStatus
@@ -80,14 +57,7 @@ class LeafPassiveStatus: ConcreteRule {
     }
 
     override func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.passiveStatus, forKey: "passiveStatus")
+        aCoder.encode(self.passiveStatus, forKey: Archiving.passiveStatus)
         super.encode(with: aCoder)
-    }
-}
-
-extension LeafPassiveStatus {
-    func languageMatches() -> Bool {
-        let identifier = Locale.current.identifier
-        return passiveStatus.value == identifier
     }
 }
