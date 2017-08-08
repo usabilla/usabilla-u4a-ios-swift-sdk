@@ -29,14 +29,14 @@ class UBMock {
     }
 
     class func campaignMock(withId id: String = "") -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
+        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
 
-    class func campaignMockWithRules(id: String = "a") -> CampaignModel {
+    class func campaignMockWithRules(id: String = "a", createdAt: Date = Date()) -> CampaignModel {
         let leaf = LeafEvent(event: Event(name: "foo"))
         let leaf2 = LeafEvent(event: Event(name: "bar"))
         let rule = AndRule(childRules: [leaf, leaf2])
-        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
+        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: createdAt)
     }
 }
 

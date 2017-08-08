@@ -44,7 +44,7 @@ class StringTest: QuickSpec {
                 expect(stringChunks[3]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abcde"))
             }
-            
+
             it("should correctly divide by 5") {
                 let stringChunks = stringToChunk.components(withLength: 5)
                 expect(stringChunks.count).to(equal(4))
@@ -53,7 +53,7 @@ class StringTest: QuickSpec {
                 expect(stringChunks[3]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abcde"))
             }
-            
+
             context("When splitting chunk from a base64") {
                 it ("should correctly split the string") {
                     let image = UIImage(named: "small-image", in: Bundle(for: UIImageTest.self), compatibleWith: nil)
@@ -74,6 +74,37 @@ class StringTest: QuickSpec {
                 let attributed = htmlString.parseHTMLString(font: UIFont.systemFont(ofSize: UIFont.systemFontSize))
                 expect(attributed).toNot(beNil())
                 expect(attributed.string).to(equal("Here is some HTML"))
+            }
+        }
+
+        context("When converting to date") {
+            it("should succeed") {
+                var dateComponents = DateComponents()
+                dateComponents.year = 2002
+                dateComponents.month = 02
+                dateComponents.day = 10
+                dateComponents.timeZone = TimeZone(secondsFromGMT: 0)
+                dateComponents.hour = 15
+                dateComponents.minute = 00
+                let userCalendar = Calendar.current
+                let someDateTime = userCalendar.date(from: dateComponents)
+                
+                expect(someDateTime).toNot(beNil())
+                
+                var date = "2002-10-02T10:00:00-05:00".dateFromRFC3339
+                expect(date).toNot(beNil())
+                
+                date = "2002-10-02T15:00:00Z".dateFromRFC3339
+                expect(date).toNot(beNil())
+                
+                date = "2002-10-02T15:00:00.955Z".dateFromRFC3339
+                expect(date).toNot(beNil())
+                expect(date?.description).to(equal("2002-10-02 15:00:00 +0000"))
+            }
+
+            it("should fail") {
+                let date = "1980".dateFromRFC3339
+                expect(date).to(beNil())
             }
         }
     }

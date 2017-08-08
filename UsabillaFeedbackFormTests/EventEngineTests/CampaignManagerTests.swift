@@ -41,7 +41,7 @@ class CampaignManagerTests: QuickSpec {
         let storeMock = CampaignStoreMock()
         let manager = CampaignSubmissionRequestManagerMock()
         var campaignServiceMock: UBCampaignServiceMock!
-        var activeStatuses: [String: String] = [String: String]()
+        let activeStatuses: [String: String] = [String: String]()
         
         describe("CampaignManagerTests") {
             context("When starting the CampaignManager") {
@@ -160,9 +160,68 @@ class CampaignManagerTests: QuickSpec {
                     campaignManager.sendEvent(event: "bar", activeStatuses: activeStatuses)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     campaignB = UBCampaignDAO.shared.read(id: "b")
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(1))
+                }
+                
+                it("should display only the first campaign that trigger sorted by most recently created") {
+                    let now = Date()
+                    
+                    let campaigns = [
+                        UBMock.campaignMockWithRules(id: "a", createdAt: now.addingTimeInterval(TimeInterval(20))),
+                        UBMock.campaignMockWithRules(id: "b", createdAt: now)
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
+                    storeMock.campaigns = campaigns
+                    
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
+                    var campaignA = UBCampaignDAO.shared.read(id: "a")
+                    var campaignB = UBCampaignDAO.shared.read(id: "b")
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
+                    campaignA = UBCampaignDAO.shared.read(id: "a")
+                    campaignB = UBCampaignDAO.shared.read(id: "b")
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
+                    campaignManager.sendEvent(event: "bar", activeStatuses: activeStatuses)
+                    campaignA = UBCampaignDAO.shared.read(id: "a")
+                    campaignB = UBCampaignDAO.shared.read(id: "b")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(1))
                     expect(campaignB?.numberOfTimesTriggered).to(equal(0))
                 }
+                
+                it("should display only the first campaign that trigger sorted by most recently created") {
+                    let now = Date()
+                    
+                    let campaigns = [
+                        UBMock.campaignMockWithRules(id: "a", createdAt: now.addingTimeInterval(TimeInterval(20))),
+                        UBMock.campaignMockWithRules(id: "b", createdAt: now.addingTimeInterval(TimeInterval(40)))
+                    ]
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
+                    storeMock.campaigns = campaigns
+                    
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
+                    var campaignA = UBCampaignDAO.shared.read(id: "a")
+                    var campaignB = UBCampaignDAO.shared.read(id: "b")
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
+                    campaignManager.sendEvent(event: "foo", activeStatuses: activeStatuses)
+                    campaignA = UBCampaignDAO.shared.read(id: "a")
+                    campaignB = UBCampaignDAO.shared.read(id: "b")
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
+                    campaignManager.sendEvent(event: "bar", activeStatuses: activeStatuses)
+                    campaignA = UBCampaignDAO.shared.read(id: "a")
+                    campaignB = UBCampaignDAO.shared.read(id: "b")
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(1))
+                }
+                
                 it("should display only the first campaign that triggered and that can be displayed") {
                     var campaignA = UBMock.campaignMockWithRules(id: "a")
                     var campaignB = UBMock.campaignMockWithRules(id: "b")
@@ -195,7 +254,7 @@ class CampaignManagerTests: QuickSpec {
                     let rule = AndRule(childRules: [leaf, leaf2])
 
                     let campaigns = [
-                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
+                        CampaignModel(id: "a", rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
                     ]
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)

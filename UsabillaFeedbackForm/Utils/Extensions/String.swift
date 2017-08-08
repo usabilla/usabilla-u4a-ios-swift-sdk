@@ -32,4 +32,8 @@ extension String {
             return NSAttributedString(string: self)
         }
     }
+
+    var dateFromRFC3339: Date? {
+        return self.contains(".") ? Date.RFC3339FractionalSecondsFormatter.date(from: self) : Date.RFC3339Formatter.date(from: self)
+    }
 }

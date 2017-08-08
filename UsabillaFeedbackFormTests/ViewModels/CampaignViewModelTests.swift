@@ -29,7 +29,7 @@ class CampaignViewModelTests: QuickSpec {
             }
 
             beforeEach {
-                self.campaignModel = CampaignModel(id: "", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
+                self.campaignModel = CampaignModel(id: "", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
             }
 
             context("When initilized campaignViewModel") {

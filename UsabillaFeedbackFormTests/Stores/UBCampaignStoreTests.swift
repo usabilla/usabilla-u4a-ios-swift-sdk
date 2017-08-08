@@ -95,8 +95,8 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should filter out invalid campaigns") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2], hasChanged: true)
 
                     store = UBCampaignStore(service: campaignService)
@@ -112,10 +112,10 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should filter out invalid campaigns when there are in/active ones") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
-                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
 
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
 
@@ -132,10 +132,10 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should return an empty list of campaigns if there are no ACTIVE ones") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
-                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
+                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
 
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
 
@@ -179,10 +179,10 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should update targeting only for active campaigns") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "t1", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "t2", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid)
-                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "t3", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active)
-                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "t4", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive)
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "t1", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "t2", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formId: "", targetingId: "t3", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formId: "", targetingId: "t4", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
 
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
 

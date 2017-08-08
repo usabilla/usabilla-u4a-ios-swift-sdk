@@ -37,7 +37,7 @@ class CampaignModelTests: QuickSpec {
                     let maxDisplays = 0
                     let numberOfTimesTriggered = 0
 
-                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: .active)
+                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: .active, createdAt: Date())
                     let formModel = FormModel(json: formJson, id: "", screenshot: nil)
                     campaign.form = formModel
 
@@ -63,7 +63,7 @@ class CampaignModelTests: QuickSpec {
                     let numberOfTimesTriggered = 0
                     let status = CampaignModel.Status.invalid
 
-                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status)
+                    let campaign = CampaignModel(id: campaignId, rule: rule, formId: formId, targetingId: targetingId, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status, createdAt: Date())
                     let data = NSKeyedArchiver.archivedData(withRootObject: campaign)
 
                     expect(data).toNot(beNil())
@@ -89,7 +89,7 @@ class CampaignModelTests: QuickSpec {
                     let maxDisplays = 0
                     let numberOfTimesTriggered = 0
 
-                    var json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"active\"}"
+                    var json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"active\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     var campaign = CampaignModel(json: JSON.parse(json))
 
                     expect(campaign).toNot(beNil())
@@ -99,12 +99,12 @@ class CampaignModelTests: QuickSpec {
                     expect(campaign!.maximumDisplays).to(equal(maxDisplays))
                     expect(campaign!.numberOfTimesTriggered).to(equal(numberOfTimesTriggered))
                     expect(campaign!.status).to(equal(CampaignModel.Status.active))
-
-                    json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"inactive\"}"
+                    expect(campaign!.createdAt.description).to(equal("2017-07-17 13:25:33 +0000"))
+                    json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"inactive\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign!.status).to(equal(CampaignModel.Status.inactive))
 
-                    json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"invalid\"}"
+                    json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"invalid\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign!.status).to(equal(CampaignModel.Status.invalid))
                 }
@@ -114,7 +114,7 @@ class CampaignModelTests: QuickSpec {
                     let formId = "formId"
                     let maxDisplays = 0
                     let status = "active"
-                    let json = "{\"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\"}}"
+                    let json = "{\"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}}"
 
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())
@@ -124,7 +124,7 @@ class CampaignModelTests: QuickSpec {
                     let targetingId = "targetingId"
                     let maxDisplays = 0
                     let status = "active"
-                    let json = "{\"id\": \"\(campaignId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\"}}"
+                    let json = "{\"id\": \"\(campaignId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}}"
 
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())
@@ -134,7 +134,7 @@ class CampaignModelTests: QuickSpec {
                     let formId = "formId"
                     let maxDisplays = 0
                     let status = "active"
-                    let json = "{\"id\": \"\(campaignId)\",\"form_id\": \"\(formId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\"}}"
+                    let json = "{\"id\": \"\(campaignId)\",\"form_id\": \"\(formId)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}}"
 
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())
@@ -144,8 +144,18 @@ class CampaignModelTests: QuickSpec {
                     let formId = "formId"
                     let targetingId = "targetingId"
                     let maxDisplays = 0
-                    let json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays)}"
+                    let json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays), \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
 
+                    let campaign = CampaignModel(json: JSON.parse(json))
+                    expect(campaign).to(beNil())
+                }
+                it("Should fail when createdAt property is missing") {
+                    let campaignId = "campaignId"
+                    let formId = "formId"
+                    let targetingId = "targetingId"
+                    let maxDisplays = 0
+                    let json = "{\"id\": \"\(campaignId)\", \"form_id\": \"\(formId)\", \"targeting_options_id\": \"\(targetingId)\", \"maximumDisplays\": \(maxDisplays)}"
+                    
                     let campaign = CampaignModel(json: JSON.parse(json))
                     expect(campaign).to(beNil())
                 }
