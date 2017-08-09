@@ -149,7 +149,8 @@ public protocol UsabillaFeedbackFormDelegate: class {
         - Parameter form: UINavigationcontroller which is being dismissed
         - Parameter formID: String representing the ID of the form
         - Parameter feedbackResults: Array of FeedbackResult
-     
+        - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
+
         If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
         Otherwise the feedbackResults can contains between 1 and n FeedbackResult
     */
@@ -161,10 +162,23 @@ public protocol UsabillaFeedbackFormDelegate: class {
 
      - Parameter form: UINavigationcontroller which is being dismissed
      - Parameter formID: String representing the ID of the form
+     - Parameter feedbackResults: Array of FeedbackResult
+     - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
 
      This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
      */
     func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
+
+    /**
+
+     This method is called once a campaign form is closed
+
+     - Parameter campaign: UIViewController which is being dismissed
+     - Parameter feedbackResult: FeedbackResult containing the campaign data submitted by the user
+     - Parameter isRedirectToAppStoreEnabled: Bool indicating whether or not the form is set to redirect to the App Store
+
+     */
+    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool)
 }
 
 public extension UsabillaFeedbackFormDelegate {
@@ -172,4 +186,5 @@ public extension UsabillaFeedbackFormDelegate {
     }
     func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     }
+    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {}
 }

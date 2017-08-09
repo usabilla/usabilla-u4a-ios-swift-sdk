@@ -78,7 +78,7 @@ class CampaignManagerTests: QuickSpec {
                     storeMock.campaigns = []
                     storeMock.onSaveCalled = nil
                     UBCampaignDAO.shared.deleteAll()
-                    CampaignWindow.shared.campaignDidEnd(success: false)
+                    CampaignWindow.shared.campaignDidEnd()
                     UsabillaFeedbackForm.canDisplayCampaigns = true
                 }
                 it("should save campaigns when there are responding campaigns for the event") {
@@ -287,7 +287,7 @@ class CampaignManagerTests: QuickSpec {
 
             context("when displaying a campaign form : displayCampaignForm") {
                 beforeEach {
-                    CampaignWindow.shared.campaignDidEnd(success: false)
+                    CampaignWindow.shared.campaignDidEnd()
                 }
                 it("should display the form") {
                     let form = UBMock.formMock()
@@ -306,7 +306,7 @@ class CampaignManagerTests: QuickSpec {
                 var campaignManager: CampaignManager!
                 var campaign: CampaignModel!
                 beforeEach {
-                    CampaignWindow.shared.campaignDidEnd(success: false)
+                    CampaignWindow.shared.campaignDidEnd()
                     storeMock.getCampaignFormHasBeenCalled = false
                     storeMock.form = nil
                     UsabillaFeedbackForm.canDisplayCampaigns = true

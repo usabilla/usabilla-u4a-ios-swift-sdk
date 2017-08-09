@@ -54,6 +54,14 @@ class CampaignViewModel {
         return UBToastPageViewModel(model: endPageModel)
     }
 
+    var ratingValueForReview: Int? {
+        let fields = form.pages.flatMap { $0.fields }
+        let rating = fields.first {
+            type(of: $0) == MoodFieldModel.self
+            } as? IntFieldModel
+        return rating?.fieldValue
+    }
+
     func introViewDidContinue() {
         let nextIndex = formViewModel.nextPageIndex
         let nextPageViewModel = pageViewModel(atIndex: nextIndex)

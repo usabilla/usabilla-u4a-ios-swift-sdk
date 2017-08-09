@@ -89,6 +89,7 @@
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F54E611CD76A21002F501E /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
 		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
+		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
 		41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */; };
 		4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */; };
 		4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304B0431E3A09AE007C8796 /* SubmissionManagerTests.swift */; };
@@ -496,6 +497,7 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F54E5C1CD76A21002F501E /* defaultJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultJson.json; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
 		41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RatingFieldModelTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4304B03C1E38F1CA007C8796 /* DeviceInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoTest.swift; sourceTree = "<group>"; };
 		4304B0431E3A09AE007C8796 /* SubmissionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionManagerTests.swift; sourceTree = "<group>"; };
@@ -754,20 +756,18 @@
 				431F6AFD1E9E4BB100D5BF17 /* DAO */,
 				04DC25BD1E8BB355002962A3 /* EventEngineTest */,
 				0409BD651E38F74E00045E44 /* Managers */,
+				04FC74F31F3C8031006C4147 /* Controllers */,
 				4334E8571E28E1A100AC895C /* FieldFactoryTest.swift */,
-				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
 				04575B611D99787F001E0EC3 /* Info.plist */,
 				04575B621D99787F001E0EC3 /* JSONParserTest.swift */,
 				43AF1B791E7C21D600BA309B /* ViewModels */,
 				4304B03E1E390E8D007C8796 /* Views */,
 				434A27891E2F6FD6002864C6 /* Utils */,
 				4334E8641E2906FE00AC895C /* Models */,
-				04575B631D99787F001E0EC3 /* PageControllerTest.swift */,
 				044E68161DD3777A00CE75E1 /* PerformanceTest.swift */,
 				044E68191DD37FA200CE75E1 /* testAssets.xcassets */,
 				04575B641D99787F001E0EC3 /* UsabillaFeedbackFormTests.swift */,
 				43A838D91E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift */,
-				43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */,
 				4306698D1E7692690078E3B3 /* FeedbackResultTest.swift */,
 				C59C820B1E813F9E00840D4E /* UBMock.swift */,
 				047125E01EAE3F28003DB0BB /* UBTestHelper.swift */,
@@ -1063,6 +1063,17 @@
 				046C3F9B1EAA14A000B0B190 /* HTTPClientProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		04FC74F31F3C8031006C4147 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04575B601D99787F001E0EC3 /* FormControllerTest.swift */,
+				04575B631D99787F001E0EC3 /* PageControllerTest.swift */,
+				43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */,
+				04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		4304B03E1E390E8D007C8796 /* Views */ = {
@@ -1716,6 +1727,7 @@
 				4306698E1E7692690078E3B3 /* FeedbackResultTest.swift in Sources */,
 				04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */,
 				C5E456FC1EA8A2480078D324 /* MoodFieldModelTests.swift in Sources */,
+				04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaFeedbackFormTests.swift in Sources */,
 				04A0C1BE1E8BB86E00A483AC /* OrRuleTests.swift in Sources */,
 				4317189B1F2A15E900BF612E /* UBCampaignDAOTests.swift in Sources */,

@@ -10,15 +10,14 @@ import Foundation
 import UIKit
 
 protocol CampaignViewControllerDelegate: class {
-    func campaignDidEnd(success: Bool)
+    func campaignDidEnd()
 }
 
 class CampaignViewController: UIViewController {
 
     let sideMargin: CGFloat = 16
     let topMargin: CGFloat = 20 + 16
-
-    fileprivate let viewModel: CampaignViewModel
+    let viewModel: CampaignViewModel
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
@@ -167,8 +166,14 @@ class CampaignViewController: UIViewController {
         let thankYoutext = viewModel.toastPageViewModel?.text
         let toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
         toast.show {
-            self.delegate?.campaignDidEnd(success: false)
+            self.closeCampaign()
         }
+    }
+
+    func closeCampaign(atPageIndex index: Int? = nil) {
+        let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
+        UsabillaFeedbackForm.delegate?.campaignDidClose(self, with: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
+        self.delegate?.campaignDidEnd()
     }
 }
 
@@ -185,7 +190,7 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         viewModel.introPresenter?.dismiss(view: introView, inView: self.view, animations: animations) {
             self.backgroundLayer?.removeFromSuperview()
             introView.removeFromSuperview()
-            self.delegate?.campaignDidEnd(success: false)
+            self.closeCampaign(atPageIndex: 0)
         }
     }
 
@@ -205,7 +210,7 @@ extension CampaignViewController: FormViewControllerDelegate {
 
     func formWillClose(_ formViewController: FormViewController) {
         removeFormController {
-            self.delegate?.campaignDidEnd(success: false)
+            self.closeCampaign(atPageIndex: formViewController.viewModel.currentPageIndex)
         }
     }
 

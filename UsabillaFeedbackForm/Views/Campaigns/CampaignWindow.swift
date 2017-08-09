@@ -58,7 +58,7 @@ class CampaignWindow: UIWindow {
 }
 
 extension CampaignWindow: CampaignViewControllerDelegate {
-    func campaignDidEnd(success: Bool) {
+    func campaignDidEnd() {
         isHidden = true
         rootViewController = nil
         currentCampaignViewModel = nil
