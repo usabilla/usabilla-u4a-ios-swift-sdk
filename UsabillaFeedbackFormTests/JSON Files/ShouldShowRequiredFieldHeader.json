@@ -1,0 +1,402 @@
+{
+    "version":3,
+    "form":{
+        "pages":[
+                 {
+                 "type":"form",
+                 "fields":[
+                           {
+                           "type":"mood",
+                           "caption":"Mood",
+                           "autoSubmit":false,
+                           "forceRequired":true,
+                           "fixed":"mood",
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"Please check the fields marked with *",
+                           "name":"mood",
+                           "title":"Click to edit question",
+                           "required":true,
+                           "points":5,
+                           "options":[
+                                      {
+                                      "title":"Hate",
+                                      "value":"1"
+                                      },
+                                      {
+                                      "title":"Dislike",
+                                      "value":"2"
+                                      },
+                                      {
+                                      "title":"Neutral",
+                                      "value":"3"
+                                      },
+                                      {
+                                      "title":"Like",
+                                      "value":"4"
+                                      },
+                                      {
+                                      "title":"Love",
+                                      "value":"5"
+                                      }
+                                      ]
+                           },
+                           {
+                           "type":"paragraph",
+                           "caption":"Paragraph",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "text":"Click to edit"
+                           },
+                           {
+                           "type":"textArea",
+                           "caption":"Comment",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit",
+                           "placeholder":"your comment here",
+                           "name":"comment",
+                           "required":true
+                           },
+                           {
+                           "type":"nps",
+                           "caption":"NPS",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "name":"nps",
+                           "title":"How likely are you to recommend our company\/product\/service to your friends and colleagues?",
+                           "low":"not at all",
+                           "high":"very likely",
+                           "hidden":true
+                           }
+                           ],
+                 "jumpRules":[
+                 
+                 ],
+                 "autoSubmit":false,
+                 "name":"start"
+                 },
+                 {
+                 "type":"form",
+                 "fields":[
+                           {
+                           "type":"paragraph",
+                           "caption":"Paragraph",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "text":"Click to edit paragraph"
+                           },
+                           {
+                           "type":"rating",
+                           "caption":"Slider",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit question",
+                           "low":"<< low",
+                           "high":"high >>",
+                           "mode":"slider",
+                           "scale":5,
+                           "modeSelect":false,
+                           "textPositioning":"below",
+                           "name":"rating"
+                           },
+                           {
+                           "type":"text",
+                           "caption":"Text Input",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit",
+                           "name":"text",
+                           "required":true
+                           },
+                           {
+                           "type":"choice",
+                           "caption":"Picker",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit question",
+                           "required":false,
+                           "options":[
+                                      {
+                                      "title":"Option 1",
+                                      "value":"Option_1"
+                                      },
+                                      {
+                                      "title":"Option 2",
+                                      "value":"Option_2"
+                                      },
+                                      {
+                                      "title":"Option 3",
+                                      "value":"Option_3"
+                                      }
+                                      ],
+                           "name":"choice"
+                           }
+                           ],
+                 "jumpRules":[
+                 
+                 ],
+                 "autoSubmit":false,
+                 "name":"page1"
+                 },
+                 {
+                 "type":"form",
+                 "fields":[
+                           {
+                           "type":"choice",
+                           "caption":"Picker",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit question",
+                           "required":false,
+                           "options":[
+                                      {
+                                      "title":"Option 1",
+                                      "value":"Option_1"
+                                      },
+                                      {
+                                      "title":"Option 2",
+                                      "value":"Option_2"
+                                      },
+                                      {
+                                      "title":"Option 3",
+                                      "value":"Option_3"
+                                      }
+                                      ],
+                           "name":"choice1"
+                           },
+                           {
+                           "type":"checkbox",
+                           "caption":"Checkboxes",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit question",
+                           "options":[
+                                      {
+                                      "title":"Option 1",
+                                      "value":"option_1"
+                                      },
+                                      {
+                                      "title":"Option 2",
+                                      "value":"option_2"
+                                      },
+                                      {
+                                      "title":"Option 3",
+                                      "value":"option_3"
+                                      }
+                                      ],
+                           "name":"checkbox"
+                           }
+                           ],
+                 "jumpRules":[
+                 
+                 ],
+                 "autoSubmit":false,
+                 "name":"page3"
+                 },
+                 {
+                 "type":"form",
+                 "fields":[
+                           {
+                           "type":"choice",
+                           "caption":"Picker",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit question",
+                           "required":false,
+                           "options":[
+                                      {
+                                      "title":"Option 1",
+                                      "value":"Option_1"
+                                      },
+                                      {
+                                      "title":"Option 2",
+                                      "value":"Option_2"
+                                      },
+                                      {
+                                      "title":"Option 3",
+                                      "value":"Option_3"
+                                      }
+                                      ],
+                           "name":"choice2"
+                           },
+                           {
+                           "type":"checkbox",
+                           "caption":"Checkboxes",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "title":"Click to edit question",
+                           "options":[
+                                      {
+                                      "title":"Option 1",
+                                      "value":"option_1"
+                                      },
+                                      {
+                                      "title":"Option 2",
+                                      "value":"option_2"
+                                      },
+                                      {
+                                      "title":"Option 3",
+                                      "value":"option_3"
+                                      }
+                                      ],
+                           "name":"checkbox1",
+                           "required":true
+                           }
+                           ],
+                 "jumpRules":[
+                 
+                 ],
+                 "autoSubmit":false,
+                 "name":"page"
+                 },
+                 {
+                 "type":"end",
+                 "fields":[
+                           {
+                           "type":"header",
+                           "caption":"Header",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "text":"Thanks!"
+                           },
+                           {
+                           "type":"paragraph",
+                           "caption":"Paragraph",
+                           "autoSubmit":false,
+                           "forceRequired":false,
+                           "fixed":false,
+                           "interactive":true,
+                           "showHideRule":[
+                           
+                           ],
+                           "validationText":"This field is required",
+                           "text":"Thank you for sharing your feedback with us."
+                           }
+                           ],
+                 "jumpRules":[
+                 
+                 ],
+                 "autoSubmit":false,
+                 "autoclose":false,
+                 "name":"end"
+                 }
+                 ],
+        "allowedPageTypes":[
+                            "form",
+                            "end"
+                            ]
+    },
+    "data":{
+        "primaryColor":"#00A9C5",
+        "secondaryColor":"#fafafa",
+        "textColor":"#6B6B6B",
+        "screenshot":true,
+        "progressBar":false,
+        "appStoreRedirect":false,
+        "appTitle":"Feedback",
+        "appSubmit":"Submit",
+        "errorMessage":"Please check the fields marked with *"
+    },
+    "colors":{
+        "group1":{
+            "hash":"#41474c"
+        },
+        "group2":{
+            "hash":"#00a5c9"
+        },
+        "group3":{
+            "hash":"#59636b"
+        },
+        "group4":{
+            "hash":"#f4606e"
+        },
+        "group5":{
+            "hash":"#ffffff"
+        },
+        "group6":{
+            "hash":"#ffffff"
+        }
+    },
+    "localization":{
+        "navigationNext":"Next",
+        "cancelButton":"Cancel",
+        "screenshotTitle":"Screenshot",
+        "moreFeedback":"Give more feedback",
+        "appStore":"Go to the app store"
+    }
+}

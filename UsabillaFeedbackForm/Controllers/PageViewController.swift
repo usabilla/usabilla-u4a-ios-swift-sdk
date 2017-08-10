@@ -13,9 +13,7 @@ let footerHeight: CGFloat = 80.0
 class PageViewController: UIViewController, UINavigationControllerDelegate {
 
     var viewModel: PageViewModel!
-  
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
-
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
@@ -23,8 +21,15 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     }()
     var requiredLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         return label
+    }()
+    lazy var headerView: UIView = {
+        let headerView = UIView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(self.requiredLabel)
+        return headerView
     }()
 
     init(viewModel: PageViewModel) {
@@ -63,22 +68,10 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
         tableView.register(RootCellView.self, forCellReuseIdentifier: "root")
         tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
-
         tableView.canCancelContentTouches = false
         requiredLabel.text = viewModel.errorMessage
 
-        let header = UIView()
-        header.translatesAutoresizingMaskIntoConstraints = false
-        requiredLabel.translatesAutoresizingMaskIntoConstraints = false
-        header.addSubview(requiredLabel)
-        requiredLabel.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 16).isActive = true
-        requiredLabel.rightAnchor.constraint(equalTo: header.rightAnchor).isActive = true
-        requiredLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 10).isActive = true
-        header.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        tableView.tableHeaderView = header
-        header.leftAnchor.constraint(equalTo: tableView.leftAnchor).isActive = true
-        header.rightAnchor.constraint(equalTo: tableView.rightAnchor).isActive = true
-        tableView.tableHeaderView?.layoutIfNeeded()
+        handleHeaderViewVisibility()
     }
 
     func customizeView() {
@@ -88,6 +81,23 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         requiredLabel.textColor = viewModel.theme.textColor
         requiredLabel.font = viewModel.theme.font.withSize(viewModel.theme.miniFontSize)
         requiredLabel.backgroundColor = viewModel.theme.backgroundColor
+    }
+
+    func handleHeaderViewVisibility() {
+        if tableView.tableHeaderView == nil {
+            tableView.tableHeaderView = headerView
+            headerView.heightAnchor.constraint(equalToConstant: 40).activate()
+            headerView.leftAnchor.constraint(equalTo: tableView.leftAnchor).activate()
+            headerView.rightAnchor.constraint(equalTo: tableView.rightAnchor).activate()
+            requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).activate()
+            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor).activate()
+            requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).activate()
+            tableView.tableHeaderView?.layoutIfNeeded()
+        }
+
+        if !viewModel.shouldShowRequiredLabel {
+            tableView.tableHeaderView = nil
+        }
     }
 
     func keyboardWillShow(notification: NSNotification) {
@@ -155,7 +165,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         cellHeights = [:]
 
         tableView.reloadData()
-
+        handleHeaderViewVisibility()
     }
 
     func reloadTableWithAnimation() {

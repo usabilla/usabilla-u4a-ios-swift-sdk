@@ -27,11 +27,11 @@ class PageViewModel: UBPageViewModel {
     var numberOfCells: Int {
         return cellViewModels.count
     }
-
     var isCorrectlyFilled: Bool {
-        return cellViewModels.filter {
-            !$0.isValid
-        }.count == 0
+        return cellViewModels.filter { !$0.isValid }.count == 0
+    }
+    var shouldShowRequiredLabel: Bool {
+        return cellViewModels.filter { $0.required }.count > 0
     }
 
     required init(page: PageModel, theme: UsabillaTheme) {

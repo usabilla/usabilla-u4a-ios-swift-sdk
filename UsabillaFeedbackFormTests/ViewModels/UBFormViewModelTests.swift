@@ -131,6 +131,24 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex).name).to(equal("Third"))
                     expect(formViewModel.isItTheEnd).to(beFalse())
                 }
+
+                context("When FormViewModel is initlialized with PageViewModels containing different required fields") {
+                    it("should have correct values for showing the requiredFiled header") {
+                        let formJson = UBTestHelper.getJSONFromFile(named: "ShouldShowRequiredFieldHeader")
+                        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
+                        let formViewModel = UBFormViewModel(formModel: formModel)
+                        expect(formViewModel).toNot(beNil())
+
+                        let pageVM0 = formViewModel.pageViewModel(atIndex: 0)
+                        expect(pageVM0.shouldShowRequiredLabel).to(beTrue())
+                        let pageVM1 = formViewModel.pageViewModel(atIndex: 1)
+                        expect(pageVM1.shouldShowRequiredLabel).to(beTrue())
+                        let pageVM2 = formViewModel.pageViewModel(atIndex: 2)
+                        expect(pageVM2.shouldShowRequiredLabel).to(beFalse())
+                        let pageVM3 = formViewModel.pageViewModel(atIndex: 3)
+                        expect(pageVM3.shouldShowRequiredLabel).to(beTrue())
+                    }
+                }
             }
             describe("isItTheEnd") {
                 context("When formViewModel is a campaign") {

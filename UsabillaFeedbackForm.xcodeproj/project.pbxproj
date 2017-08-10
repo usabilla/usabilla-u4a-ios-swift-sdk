@@ -392,6 +392,7 @@
 		C59C820C1E813F9E00840D4E /* UBMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820B1E813F9E00840D4E /* UBMock.swift */; };
 		C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C820F1E8574E100840D4E /* CopyModelTests.swift */; };
 		C59C82401E8914C200840D4E /* CampaignViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C823F1E8914C200840D4E /* CampaignViewModelTests.swift */; };
+		C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */; };
 		C5E456FC1EA8A2480078D324 /* MoodFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */; };
 		C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */; };
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
@@ -648,6 +649,7 @@
 		C59C820B1E813F9E00840D4E /* UBMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBMock.swift; sourceTree = "<group>"; };
 		C59C820F1E8574E100840D4E /* CopyModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModelTests.swift; sourceTree = "<group>"; };
 		C59C823F1E8914C200840D4E /* CampaignViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewModelTests.swift; sourceTree = "<group>"; };
+		C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShouldShowRequiredFieldHeader.json; sourceTree = "<group>"; };
 		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				431718A31F2A231D00BF612E /* redirectEnabled.json */,
 				04575B651D99787F001E0EC3 /* test.json */,
 				43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */,
+				C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */,
 			);
 			path = "JSON Files";
 			sourceTree = "<group>";
@@ -1428,6 +1431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */,
 				C5F813D41F25E43700F994F9 /* Mock.json in Resources */,
 				431718A41F2A231D00BF612E /* redirectEnabled.json in Resources */,
 				43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */,

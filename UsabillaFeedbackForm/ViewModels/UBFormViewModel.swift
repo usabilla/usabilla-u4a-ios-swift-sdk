@@ -17,31 +17,24 @@ class UBFormViewModel {
     var isCampaignForm: Bool = false
 
     let shouldAddMarginWhenKeyboardIsShown: Bool
-
     var id: String {
         return model.appId
     }
-
     var shouldHideProgressBar: Bool {
         return model.pages.count == 2 || !model.showProgressBar
     }
-
     var progress: Float {
         return Float(currentPageIndex + 1) / Float(model.pages.count)
     }
-
     var accentColor: UIColor {
         return model.theme.accentColor
     }
-
     var backgrounColor: UIColor {
         return model.theme.backgroundColor
     }
-
     var statusBarColor: UIStatusBarStyle {
         return model.theme.statusBarColor
     }
-
     var headerColor: UIColor {
         if let headerColor = model.theme.headerColor {
             return headerColor
@@ -49,31 +42,24 @@ class UBFormViewModel {
 
         return model.theme.accentColor
     }
-
     var textOnAccentColor: UIColor {
         return model.theme.textOnAccentColor
     }
-
     var cancelButtonTitle: String? {
         return showCancelButton ? model.copyModel.cancelButton : nil
     }
-
     var navBarItemsFont: UIFont {
         return model.theme.boldFont
     }
-
     var showCancelButton: Bool {
         return UsabillaFeedbackForm.showCancelButton // TO DO inject
     }
-
     var isCurrentPageValid: Bool {
         return pageViewModels[currentPageIndex].isCorrectlyFilled
     }
-
     var firstPageViewModel: PageViewModel? {
         return pageViewModels.first
     }
-
     var rightBarButtonTitle: String? {
         if currentPageIndex == model.pages.count - 2 {
             return model.copyModel.navigationSubmit
@@ -83,7 +69,6 @@ class UBFormViewModel {
 
         return model.copyModel.navigationNext
     }
-
     var currentPageViewModel: PageViewModel {
         get {
             return pageViewModels[currentPageIndex]
@@ -95,7 +80,6 @@ class UBFormViewModel {
             })!
         }
     }
-
     var endPageViewModel: UBEndPageViewModel? {
         guard let endPageModel = model.pages[currentPageIndex] as? UBEndPageModel else {
             return nil
@@ -111,7 +95,6 @@ class UBFormViewModel {
 
         return endPageViewModel
     }
-
     var nextPageIndex: Int {
         var newPageIndex = -1
         if let pageToJump = pageViewModels[currentPageIndex].nextPageName() {
@@ -125,11 +108,6 @@ class UBFormViewModel {
 
         return newPageIndex
     }
-
-    func pageViewModel(atIndex: Int) -> PageViewModel {
-        return pageViewModels[atIndex]
-    }
-
     var isItTheEnd: Bool {
         let pageType = model.pages[currentPageIndex].type
         return pageType == .end || pageType == .toast
@@ -145,6 +123,10 @@ class UBFormViewModel {
             vm.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
             self.pageViewModels.append(vm)
         }
+    }
+
+    func pageViewModel(atIndex: Int) -> PageViewModel {
+        return pageViewModels[atIndex]
     }
 
     func reset() {
