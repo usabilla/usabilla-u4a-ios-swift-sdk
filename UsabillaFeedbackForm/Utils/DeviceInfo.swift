@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 class DeviceInfo {
+
+    class func isIPad() -> Bool {
+        return UIDevice.current.userInterfaceIdiom == .pad
+    }
 
     class func isJailbroken() -> Bool {
         let str = "Jailbreak test string"
@@ -34,5 +39,4 @@ class DeviceInfo {
             return try? FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
         }
     }
-
 }

@@ -121,6 +121,19 @@ class CampaignViewController: UIViewController {
         formController.delegate = self
         formNavigationController = base
 
+        if DeviceInfo.isIPad() {
+            base.modalPresentationStyle = .formSheet
+            // swiftlint:disable:next force_unwrapping
+            viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
+                self.introView?.alpha = 0
+            }, completion: {
+                self.introView?.removeFromSuperview()
+                self.present(base, animated: true, completion: nil)
+            })
+
+            return
+        }
+
         addChildViewController(base)
         view.addSubview(base.view)
 
@@ -151,6 +164,14 @@ class CampaignViewController: UIViewController {
     }
 
     func removeFormController(completion: (() -> Void)?) {
+        if DeviceInfo.isIPad() {
+            formNavigationController?.dismiss(animated: true, completion: {
+                completion?()
+            })
+
+            return
+        }
+
         UIView.animate(withDuration: 0.2, animations: {
             self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.formNavigationController?.view.alpha = 0
