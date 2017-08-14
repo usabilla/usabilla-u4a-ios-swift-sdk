@@ -49,7 +49,6 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         // picker
         picker.dataSource = self
         picker.delegate = self
-        picker.showsSelectionIndicator = true
 
         picker.topAnchor.constraint(equalTo: bottomBorder.bottomAnchor).withId("ChoiceComponent picker top constraint").activate()
         picker.bottomAnchor.constraint(equalTo: bottomAnchor).withId("ChoiceComponent picker bottom constraint").activate()
@@ -66,7 +65,7 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
 
         let theme = viewModel.theme
         pickerButton.setTitleColor(theme.textColor, for: .normal)
-        pickerButton.titleLabel?.font = theme.boldFont
+        pickerButton.titleLabel?.font = theme.font
 
         picker.backgroundColor = theme.backgroundColor
         picker.tintColor = theme.textColor

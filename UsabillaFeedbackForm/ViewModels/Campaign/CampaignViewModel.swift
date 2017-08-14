@@ -17,7 +17,8 @@ class CampaignViewModel {
 
     init(form: FormModel, manager: CampaignSubmissionRequestManagerProtocol) {
         self.form = form
-        self.formViewModel = UBFormViewModel(formModel: form, shouldAddMarginWhenKeyboardIsShown: false)
+        let shouldAddMargins: Bool = DeviceInfo.isIPad() ? true : false
+        self.formViewModel = UBFormViewModel(formModel: form, shouldAddMarginWhenKeyboardIsShown: shouldAddMargins)
         self.formViewModel.currentPageViewModel = self.formViewModel.pageViewModel(atIndex: 0)
         self.formViewModel.isCampaignForm = true
         self.manager = manager

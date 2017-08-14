@@ -134,6 +134,10 @@ class UBIntroOutroView: UIView {
     }
 
     private func setupCustomizations() {
+        if DeviceInfo.isIPad() {
+            self.layer.cornerRadius = 8.0
+        }
+
         backgroundColor = viewModel.backgroundColor
         cancelButton.setTitleColor(viewModel.buttonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)

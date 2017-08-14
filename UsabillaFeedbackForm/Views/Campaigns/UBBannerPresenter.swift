@@ -13,8 +13,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     var topConstraint: NSLayoutConstraint!
     var bottomConstraint: NSLayoutConstraint!
-    var leftConstraint: NSLayoutConstraint!
-    var rightConstraint: NSLayoutConstraint!
+
+    private var kWidthTablet: CGFloat = 350.0
+    private var kRightOffsetTablet: CGFloat = -25.0
 
     var offset: CGFloat = 0.0
 
@@ -23,8 +24,13 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         view.translatesAutoresizingMaskIntoConstraints = false
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
         bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
-        leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
-        rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
+        if DeviceInfo.isIPad() {
+            view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
+            view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
+        } else {
+            view.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
+            view.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
+        }
         inView.layoutIfNeeded()
 
         offset = view.bounds.height
@@ -35,7 +41,6 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         topConstraint.isActive = style != .bannerBottom
         bottomConstraint.isActive = style == .bannerBottom
         inView.layoutIfNeeded()
-
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
 
         UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.40, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
