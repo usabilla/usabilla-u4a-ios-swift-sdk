@@ -28,8 +28,9 @@ class CampaignManager {
         }
     }
 
-    func sendEvent(event: String, activeStatuses: [String: String]) {
-        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: activeStatuses)
+    // customVariables sent from the public interface are the activeStatuses used inside our SDK.
+    func sendEvent(event: String, customVariables: [String: String]) {
+        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: customVariables)
 
         // Persist all updated campaigns
         respondingCampaigns.forEach {

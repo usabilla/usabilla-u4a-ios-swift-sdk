@@ -18,7 +18,7 @@ open class UsabillaFeedbackForm {
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
-    open static var activeStatuses: [String: String] = [:]
+    open static var customVariables: [String: String] = [:]
 
     static var appIdentifier: String?
     static var defaultLocalisationFile = true
@@ -38,12 +38,12 @@ open class UsabillaFeedbackForm {
     private static var submissionManager: SubmissionManager = SubmissionManager(formService: formService)
 
     open class func sendEvent(event: String) {
-        campaignManager?.sendEvent(event: event, activeStatuses: activeStatuses)
+        campaignManager?.sendEvent(event: event, customVariables: customVariables)
     }
 
-    open class func setActiveStatus(value: String?, forKey key: String) {
-        activeStatuses[key] = value ?? nil
-        PLog(activeStatuses)
+    open class func setCustomVariable(value: String?, forKey key: String) {
+        customVariables[key] = value ?? nil
+        PLog(customVariables)
     }
 
     /**
