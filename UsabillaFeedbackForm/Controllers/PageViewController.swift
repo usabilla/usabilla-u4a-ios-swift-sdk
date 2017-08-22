@@ -138,9 +138,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     func tableViewContentHeight() -> CGFloat {
-        let indexPath = IndexPath(row: viewModel.numberOfCells - 1, section: 0)
-        let lastRowFrame = tableView.rectForRow(at: indexPath)
-        let emptySpaceHeight = tableView.frame.size.height - (lastRowFrame.origin.y + lastRowFrame.size.height)
+        let sectionFrame = tableView.rect(forSection: 0)
+        let emptySpaceHeight = tableView.frame.size.height - (sectionFrame.origin.y + sectionFrame.size.height)
         return emptySpaceHeight
     }
 
