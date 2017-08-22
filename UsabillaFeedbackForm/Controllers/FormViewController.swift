@@ -206,6 +206,13 @@ class FormViewController: UIViewController {
     }
 
     func goToPage(atIndex index: Int) {
+        guard viewModel.containsIndex(index: index) else {
+            // This guard only happens to avoid the crash if the index passed is not contained in the range
+            // If this happens, we show the thank you page/ toast
+            viewModel.goToLastPageIndex()
+            showThankYouPage()
+            return
+        }
         viewModel.currentPageViewModel = viewModel.pageViewModel(atIndex: index)
         if viewModel.isItTheEnd {
             if !viewModel.isCampaignForm {

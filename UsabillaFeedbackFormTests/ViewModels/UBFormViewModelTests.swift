@@ -62,6 +62,25 @@ class UBFormViewModelTests: QuickSpec {
                     UsabillaFeedbackForm.showCancelButton = false
                     self.model.theme.headerColor = nil
                 }
+                it("should tell if an index is contained in the page view model count") {
+                    let formViewModel = UBFormViewModel(formModel: self.model)
+                    expect(formViewModel.model.pages.count).to(equal(4))
+                    var containsIndex = formViewModel.containsIndex(index: -1)
+                    expect(containsIndex).to(beFalse())
+                    containsIndex = formViewModel.containsIndex(index: 9999)
+                    expect(containsIndex).to(beFalse())
+                    containsIndex = formViewModel.containsIndex(index: 0)
+                    expect(containsIndex).to(beTrue())
+                    containsIndex = formViewModel.containsIndex(index: 3)
+                    expect(containsIndex).to(beTrue())
+                }
+                it("should go to last PageViewModel") {
+                    let formViewModel = UBFormViewModel(formModel: self.model)
+                    expect(formViewModel.model.pages.count).to(equal(4))
+                    expect(formViewModel.currentPageIndex).to(equal(0))
+                    formViewModel.goToLastPageIndex()
+                    expect(formViewModel.currentPageIndex).to(equal(3))
+                }
             }
 
             context("When going to next pages") {
@@ -150,6 +169,7 @@ class UBFormViewModelTests: QuickSpec {
                     }
                 }
             }
+
             describe("isItTheEnd") {
                 context("When formViewModel is a campaign") {
                     var formViewModel: UBFormViewModel!

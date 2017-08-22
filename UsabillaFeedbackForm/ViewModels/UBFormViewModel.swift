@@ -143,4 +143,12 @@ class UBFormViewModel {
             self.pageViewModels.append(vm)
         }
     }
+
+    func containsIndex(index: Int) -> Bool {
+        return index >= 0 && index < model.pages.count
+    }
+
+    func goToLastPageIndex() {
+        currentPageIndex = model.pages.count - 1
+    }
 }
