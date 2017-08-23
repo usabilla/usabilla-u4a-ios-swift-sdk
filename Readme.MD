@@ -3,23 +3,13 @@ Usabilla for Apps allows you to collect feedback from your user with great ease 
 
 Take a look at our [Wiki](https://github.com/usabilla/usabilla-u4a-ios-sdk/wiki) for a complete and in depth guide on how to install and customize the SDK.
 
-## Latest changes in v3.6.0
-
-#### Added
-- New delegate method called `formWillClose`, that will be called when the form needs to be dismissed (see documentation for more info)
-
-#### Updated
-- Delegate method `formDidClose` will now be called only after the form has actually been closed
-- The redirect to the app store feature has been updated to be in accordance with [Apple's new guidelines on rating and reviews](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk#app-store-rating)
-- Delegate methods `formWillClose` and `formDidClose` now have an extra parameter, called `isRedirectToAppStoreEnabled`, that will reflect the ratings prompt toggle present in the web interface
+## Latest changes in v3.6.1
 
 #### Fixed
-- Wrong delegate method being called when a form failed loading
-- Error label being incorrectly placed behind the slider
-
+- Fixed an encoding problem that would sometimes corrupt the screenshot sent to our servers
+- Fixed a crash that could occur in iOS 10 on specific forms
 
 ## Requirements
-
 - iOS 9.0+
 - Xcode 8.0+
 - Swift 3.1+

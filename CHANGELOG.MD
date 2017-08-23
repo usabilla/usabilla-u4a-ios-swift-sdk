@@ -1,3 +1,9 @@
+## 3.6.1
+
+#### Fixed
+- Fixed an encoding problem that would sometimes corrupt the screenshot sent to our servers
+- Fixed a crash that could occur in iOS 10 on specific forms
+
 ## 3.6.0
 
 #### Updated
