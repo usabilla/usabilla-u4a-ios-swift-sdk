@@ -164,6 +164,9 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         cellHeights = [:]
 
         tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         handleHeaderViewVisibility()
     }
 
