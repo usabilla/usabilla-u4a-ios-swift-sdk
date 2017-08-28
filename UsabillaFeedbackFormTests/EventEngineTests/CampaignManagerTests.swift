@@ -267,19 +267,19 @@ class CampaignManagerTests: QuickSpec {
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
 
                     UsabillaFeedbackForm.canDisplayCampaigns = false
-                    campaignManager.displayCampaign(campaignA!)
+                    campaignManager.displayCampaign(campaignA!, withUserContext: [:])
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
 
                     UsabillaFeedbackForm.canDisplayCampaigns = true
                     campaignA?.maximumDisplays = 1
                     campaignA?.numberOfTimesTriggered = 1
-                    campaignManager.displayCampaign(campaignA!)
+                    campaignManager.displayCampaign(campaignA!, withUserContext: [:])
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(0))
 
                     campaignA?.numberOfTimesTriggered = 0
-                    campaignManager.displayCampaign(campaignA!)
+                    campaignManager.displayCampaign(campaignA!, withUserContext: [:])
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     expect(campaignA?.numberOfTimesTriggered).to(equal(1))
                 }
@@ -319,7 +319,7 @@ class CampaignManagerTests: QuickSpec {
 
                     expect(campaign.canBeDisplayed).to(beTrue())
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
-                    campaignManager.displayCampaign(campaign)
+                    campaignManager.displayCampaign(campaign, withUserContext: [:])
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
                 }
                 it("should diplay the campaign form") {
@@ -328,7 +328,7 @@ class CampaignManagerTests: QuickSpec {
 
                     expect(campaign.canBeDisplayed).to(beTrue())
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
-                    campaignManager.displayCampaign(campaign)
+                    campaignManager.displayCampaign(campaign, withUserContext: [:])
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
                     expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, manager: manager))).to(beFalse())
                 }
@@ -337,7 +337,7 @@ class CampaignManagerTests: QuickSpec {
 
                     expect(campaign.canBeDisplayed).to(beTrue())
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
-                    campaignManager.displayCampaign(campaign)
+                    campaignManager.displayCampaign(campaign, withUserContext: [:])
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
                     expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, manager: manager))).to(beTrue())
                 }
@@ -353,7 +353,7 @@ class CampaignManagerTests: QuickSpec {
                             expect(viewCount).to(equal(1))
                             done()
                         }
-                        campaignManager.displayCampaign(campaign)
+                        campaignManager.displayCampaign(campaign, withUserContext: [:])
                     }
                 }
 
@@ -365,7 +365,26 @@ class CampaignManagerTests: QuickSpec {
                     campaignServiceMock.onIncrementCampaign = { campaignId, viewCount in
                         fail("should not be called")
                     }
-                    campaignManager.displayCampaign(campaign)
+                    campaignManager.displayCampaign(campaign, withUserContext: [:])
+                }
+            }
+
+            context("when filtering active statuses form a dictionary") {
+
+                it("should keep only the key:values where the value is a string") {
+                    let form = UBMock.formMock()
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "")
+                    var dictionary = [String: Any]()
+                    dictionary["string"] = "string"
+                    dictionary["integer"] = 1
+                    dictionary["float"] = 0.5
+                    dictionary["object"] = form
+                    dictionary["moreString"] = "string"
+
+                    let filtered = campaignManager.filterActiveStatuses(fromCustomVariables: dictionary)
+                    expect(filtered.count).to(equal(2))
+                    expect(filtered["string"]).to(equal("string"))
+                    expect(filtered["moreString"]).to(equal("string"))
                 }
             }
         }

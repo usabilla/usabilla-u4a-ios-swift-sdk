@@ -25,18 +25,18 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
     private let campaignId: String
     private let formVersion: Int
     private let reachability: Reachable
-    private let customVars: [String: Any]?
+    private let userContext: [String: Any]?
     private let feedbackId: String
     private let queue: DispatchQueue
     private let campaignSubmissionManager: CampaignSubmissionManagerProtocol
 
     private var isFirst: Bool
 
-    init(appId: String, campaignId: String, formVersion: Int, customVars: [String: Any]?, campaignSubmissionManager: CampaignSubmissionManagerProtocol, reachability: Reachable = Reachability()!) {
+    init(appId: String, campaignId: String, formVersion: Int, userContext: [String: Any]?, campaignSubmissionManager: CampaignSubmissionManagerProtocol, reachability: Reachable = Reachability()!) {
 
         self.appId = appId
         self.formVersion = formVersion
-        self.customVars = customVars
+        self.userContext = userContext
         self.campaignId = campaignId
         self.reachability = reachability
         try? reachability.startNotifier()
@@ -104,8 +104,8 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         metadata["timestamp"] = Date().timeIntervalSince1970.description
         metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
 
-        if customVars != nil {
-            metadata["custom_variables"] = customVars
+        if userContext != nil {
+            payload["context"] = userContext
         }
 
         payload["metadata"] = metadata

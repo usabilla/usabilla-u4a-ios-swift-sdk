@@ -14,7 +14,6 @@ class CampaignManager {
     private(set) var campaignService: CampaignServiceProtocol
     private(set) var eventEngine: EventEngine
     private(set) var appId: String
-
     private let submissionManager: CampaignSubmissionManager
 
     init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appId: String) {
@@ -29,8 +28,8 @@ class CampaignManager {
     }
 
     // customVariables sent from the public interface are the activeStatuses used inside our SDK.
-    func sendEvent(event: String, customVariables: [String: String]) {
-        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: customVariables)
+    func sendEvent(event: String, customVariables: [String: Any]) {
+        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: filterActiveStatuses(fromCustomVariables: customVariables))
 
         // Persist all updated campaigns
         respondingCampaigns.forEach {
@@ -47,15 +46,15 @@ class CampaignManager {
         guard let campaignToDisplay = displayableCampaign else {
             return
         }
-        displayCampaign(campaignToDisplay)
+        displayCampaign(campaignToDisplay, withUserContext: customVariables)
     }
 
-    func displayCampaign(_ campaign: CampaignModel) {
+    func displayCampaign(_ campaign: CampaignModel, withUserContext userContext: [String: Any]) {
         guard campaign.canBeDisplayed && UsabillaFeedbackForm.canDisplayCampaigns else {
             return
         }
         campaignStore.getCampaignForm(withFormId: campaign.formId, theme: UsabillaFeedbackForm.theme).then { form in
-            let submissionManager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, customVars: nil, campaignSubmissionManager: self.submissionManager)
+            let submissionManager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
             if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
@@ -76,11 +75,21 @@ class CampaignManager {
         }
     }
 
+    func filterActiveStatuses(fromCustomVariables variables: [String: Any]) -> [String: String] {
+        let filtered = variables.filter { type(of: $0.1) == String.self }
+        var activeStatuses = [String: String]()
+        for result in filtered {
+            //swiftlint:disable:next force_cast
+            activeStatuses[result.0] = (result.1 as! String)
+        }
+        return activeStatuses
+    }
+
     #if INTERNAL_USE || DEBUG
         @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignId: String = "id") -> Bool {
             var manager = manager
             if manager == nil {
-                manager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, customVars: nil, campaignSubmissionManager: self.submissionManager)
+                manager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, userContext: ["debug":"debug"], campaignSubmissionManager: self.submissionManager)
             }
             //swiftlint:disable:next force_unwrapping
             let campaignViewModel = CampaignViewModel(form: form, manager: manager!)

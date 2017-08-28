@@ -79,7 +79,8 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                     
                     UsabillaFeedbackForm.customVariables = ["key1": "value1"]
                     expect(UsabillaFeedbackForm.customVariables["key1"]).toNot(beNil())
-                    expect(UsabillaFeedbackForm.customVariables["key1"]).to(equal("value1"))
+                    let value = UsabillaFeedbackForm.customVariables["key1"] as? String
+                    expect(value).to(equal("value1"))
                     
                     UsabillaFeedbackForm.setCustomVariable(value: "value2", forKey: "key2")
                     expect(UsabillaFeedbackForm.customVariables.keys.count).to(equal(2))

@@ -19,22 +19,22 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
         let manager = CampaignSubmissionManagerMock()
 
         beforeSuite {
-            campaignSubmissionManager = CampaignSubmissionRequestManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignSubmissionManager: manager, reachability: reachabilityMock)
+            campaignSubmissionManager = CampaignSubmissionRequestManager(appId: "appId", campaignId: "campaignId", formVersion: 0, userContext: ["user" : "context"], campaignSubmissionManager: manager, reachability: reachabilityMock)
         }
 
         describe("the CampaignSubmissionRequestManager") {
 
             it("Sends the id payload only on the first call") {
-                let campman = CampaignSubmissionRequestManager(appId: "appId", campaignId: "campaignId", formVersion: 0, customVars: nil, campaignSubmissionManager: manager, reachability: reachabilityMock)
+                let campaignSubmissionRequestManager = CampaignSubmissionRequestManager(appId: "appId", campaignId: "campaignId", formVersion: 0, userContext: ["user" : "context"], campaignSubmissionManager: manager, reachability: reachabilityMock)
                 let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignId/feedback"
                 let page = UBPageModelMock()
                 page.type = .form
-                campman.savePage(page: page, nextPageType: .form)
+                campaignSubmissionRequestManager.savePage(page: page, nextPageType: .form)
 
                 //This checks that the feedbackID has not been added to the URL as a parameter, should only happen on the first call
                 let firstCallURL = manager.lastRequest?.request.url?.absoluteString
                 expect(firstCallURL).to(equal(expectedURL))
-                campman.savePage(page: page, nextPageType: .form)
+                campaignSubmissionRequestManager.savePage(page: page, nextPageType: .form)
 
                 //This checks that the feedbackID has been added to the URL as a parameter, as it should be for every call after the first
                 let secondCallURL = manager.lastRequest?.request.url?.absoluteString
@@ -59,6 +59,8 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
                 expect(json["app_id"]).to(equal("appId"))
                 expect(json["form_version"]).to(equal(0))
                 expect(json["metadata"]).toNot(beNil())
+                expect(json["context"]).toNot(beNil())
+                expect(json["context"]).to(equal(["user": "context"]))
                 expect(json["metadata"]["system"]).to(equal("ios"))
                 expect(json["metadata"]["battery"]).to(equal(1))
                 expect(json["id"].exists()).to(beTrue())
