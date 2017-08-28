@@ -19,7 +19,7 @@ class UBFormViewModelTests: QuickSpec {
     var model: FormModel!
     override func spec() {
         describe("UBFormViewModelTests") {
-            beforeSuite {
+            beforeEach {
                 self.model = UBMock.formMock()
             }
 
@@ -47,6 +47,12 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.nextPageIndex).to(equal(2))
                     expect(formViewModel.pageViewModel(atIndex: formViewModel.nextPageIndex).name).to(equal("Third"))
                     expect(formViewModel.isItTheEnd).to(beFalse())
+                    expect(formViewModel.navigationBarTitle).to(equal("FeedbackTest"))
+                }
+                it("should have correct value when there is no appTitle") {
+                    self.model.copyModel.appTitle = nil
+                    let formViewModel = UBFormViewModel(formModel: self.model)
+                    expect(formViewModel.navigationBarTitle).to(beNil())
                 }
                 it("should have correct values if we change default") {
                     let formViewModel = UBFormViewModel(formModel: self.model)

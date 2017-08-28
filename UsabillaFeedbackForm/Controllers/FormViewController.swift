@@ -81,6 +81,8 @@ class FormViewController: UIViewController {
 
     // MARK: View setup
     func setUpView() {
+        title = viewModel.navigationBarTitle
+
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.leftBarButtonItem = leftNavItem
         navigationItem.rightBarButtonItem = rightNavItem
@@ -119,6 +121,7 @@ class FormViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
         navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
 
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: viewModel.textOnAccentColor]
         let fontAttributes = [NSFontAttributeName: viewModel.navBarItemsFont]
         rightNavItem.setTitleTextAttributes(fontAttributes, for: .normal)
 

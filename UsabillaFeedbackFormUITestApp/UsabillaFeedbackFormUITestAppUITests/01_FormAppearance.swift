@@ -39,15 +39,19 @@ class FormAppearance: XCTestCase {
         let cellContent = firstCell.children(matching: .button)
         XCTAssert(cellContent.count == 5, "5 buttons are presents")
 
-        let nav = app.navigationBars["UsabillaFeedbackForm.FormView"]
+        let feedbackNavigationBar = app.navigationBars["Feedback"]
 
         // cancel button exists
-        let cancel = nav.buttons["Cancel"]
+        let cancel = feedbackNavigationBar.buttons["Cancel"]
         XCTAssert(cancel.exists, "Cancel button should exist")
 
         // next button exists
-        let next = nav.buttons["Next"]
+        let next = feedbackNavigationBar.buttons["Next"]
         XCTAssert(next.exists, "Next button should exist")
+
+        // form title exists
+        let navigationTitle = feedbackNavigationBar.staticTexts["Feedback"]
+        XCTAssert(navigationTitle.exists, "Navigation title should exist")
 
         // Usabilla logo is present
         let table = app.tables.element(boundBy: 0)

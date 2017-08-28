@@ -41,7 +41,7 @@ class JumpRulesManyControls: XCTestCase {
     }
 
     private func tapNext() {
-        app.navigationBars["UsabillaFeedbackForm.FormView"].buttons["Next"].tap()
+        app.navigationBars["Feedback"].buttons["Next"].tap()
     }
 
     private func getTextViewText() -> String {

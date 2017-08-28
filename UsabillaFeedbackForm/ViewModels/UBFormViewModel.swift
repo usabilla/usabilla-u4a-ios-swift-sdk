@@ -45,6 +45,9 @@ class UBFormViewModel {
     var textOnAccentColor: UIColor {
         return model.theme.textOnAccentColor
     }
+    var navigationBarTitle: String? {
+        return model.copyModel.appTitle
+    }
     var cancelButtonTitle: String? {
         return showCancelButton ? model.copyModel.cancelButton : nil
     }
