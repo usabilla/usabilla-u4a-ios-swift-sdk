@@ -14,11 +14,14 @@ import Nimble
 @testable import UsabillaFeedbackForm
 
 class CampaignStoreMock: UBCampaignStoreProtocol {
+    var getCampaignsHasBeenCalled = false
     var campaigns = [CampaignModel]()
     var onSaveCalled: ((CampaignModel) -> Void)?
     var form: FormModel?
     var getCampaignFormHasBeenCalled: Bool = false
+    
     func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
+        getCampaignsHasBeenCalled = true
         return Promise { fulfill, _ in
             fulfill(self.campaigns)
         }
@@ -385,6 +388,31 @@ class CampaignManagerTests: QuickSpec {
                     expect(filtered.count).to(equal(2))
                     expect(filtered["string"]).to(equal("string"))
                     expect(filtered["moreString"]).to(equal("string"))
+                }
+            }
+
+            context("when resetting the campaigns data") {
+                it("should reset the data correctly") {
+                    CampaignWindow.shared.campaignDidEnd()
+                    storeMock.getCampaignFormHasBeenCalled = false
+                    storeMock.form = nil
+                    UsabillaFeedbackForm.canDisplayCampaigns = true
+                    campaignServiceMock = UBCampaignServiceMock()
+
+                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let campaigns = [cmp1, cmp2]
+                    campaignServiceMock.campaignsResponse = Cachable<[CampaignModel]>(value: campaigns, hasChanged: true)
+                    campaigns.forEach {
+                        UBCampaignDAO.shared.create($0)
+                    }
+                    storeMock.campaigns = campaigns
+                    let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appId: "test")
+                    expect(UBCampaignDAO.shared.readAll()).notTo(beNil())
+                    campaignManager.resetData(completion: nil)
+                    expect(UBCampaignDAO.shared.readAll()).toEventually(beEmpty())
+                    expect(storeMock.getCampaignsHasBeenCalled).toEventually(beTrue())
+                    expect(campaignManager.eventEngine.campaigns).to(equal(campaigns))
                 }
             }
         }

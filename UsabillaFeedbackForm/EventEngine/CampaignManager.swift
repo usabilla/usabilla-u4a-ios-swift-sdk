@@ -22,9 +22,7 @@ class CampaignManager {
         self.eventEngine = EventEngine(campaigns: [])
         self.appId = appId
         self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared)
-        campaignStore.getCampaigns(withAppId: appId).then { campaigns in
-            self.eventEngine = EventEngine(campaigns: campaigns.filter { $0.status == .active })
-        }
+        fetchCampaignForEventEngine()
     }
 
     // customVariables sent from the public interface are the activeStatuses used inside our SDK.
@@ -85,6 +83,18 @@ class CampaignManager {
         return activeStatuses
     }
 
+    func resetData(completion: (() -> Void)?) {
+        UBCampaignDAO.shared.deleteAll()
+        fetchCampaignForEventEngine(completion: completion)
+    }
+
+    private func fetchCampaignForEventEngine(completion: (() -> Void)? = nil) {
+        campaignStore.getCampaigns(withAppId: appId).then { campaigns in
+            self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
+            completion?()
+        }
+    }
+
     #if INTERNAL_USE || DEBUG
         @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignId: String = "id") -> Bool {
             var manager = manager
@@ -96,14 +106,7 @@ class CampaignManager {
             return CampaignWindow.shared.showCampaign(campaignViewModel)
         }
 
-        func resetData(completion: (() -> Void)?) {
-            UBCampaignDAO.shared.deleteAll()
-            campaignStore.getCampaigns(withAppId: appId).then { campaigns in
-                self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
-                completion?()
-            }
-        }
-    #else
+        #else
         @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager, campaignId: String = "id") -> Bool {
             let campaignViewModel = CampaignViewModel(form: form, manager: manager)
             return CampaignWindow.shared.showCampaign(campaignViewModel)

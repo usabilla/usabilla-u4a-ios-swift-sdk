@@ -69,10 +69,11 @@ open class UsabillaFeedbackForm {
     open class func removeCachedForms() {
         UBFormDAO.shared.deleteAll()
     }
+
+    open class func resetCampaignData(completion: (() -> Void)?) {
+        campaignManager?.resetData(completion: completion)
+    }
     #if INTERNAL_USE || DEBUG
-        open class func resetData(completion: (() -> Void)?) {
-            campaignManager?.resetData(completion: completion)
-        }
 
         open class func formViewController(forFormJson json: JSON) -> UINavigationController {
             let form = FormModel(json: json, id: "", screenshot: nil)
