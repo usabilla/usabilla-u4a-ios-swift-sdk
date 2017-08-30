@@ -16,7 +16,7 @@ protocol CampaignViewControllerDelegate: class {
 class CampaignViewController: UIViewController {
 
     let sideMargin: CGFloat = 16
-    let topMargin: CGFloat = 20 + 16
+    let topMargin: CGFloat = 20
     let viewModel: CampaignViewModel
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
@@ -70,7 +70,7 @@ class CampaignViewController: UIViewController {
 
         let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
         let curve = UIViewAnimationOptions(rawValue: UInt(duration))
-        let offset = -topMargin - keyboardFrame.height
+        let offset = -sideMargin - keyboardFrame.height
         let form = self.formNavigationController?.childViewControllers[0] as? FormViewController
 
         UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
@@ -86,7 +86,7 @@ class CampaignViewController: UIViewController {
 
         let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
         let curve = UIViewAnimationOptions(rawValue: UInt(duration))
-        let offset = -topMargin
+        let offset = -sideMargin
 
         UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
             bottomConstraint.constant = offset
@@ -145,7 +145,7 @@ class CampaignViewController: UIViewController {
         base.view.topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin).activate()
         base.view.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).activate()
         base.view.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).activate()
-        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -topMargin).activate()
+        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -sideMargin).activate()
 
         createBackgroundLayer()
 
