@@ -213,6 +213,11 @@ class RatingControl: UIControl {
         handleStarTouches(touches: touches, withEvent: event)
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        handleStarTouches(touches: touches, withEvent: event)
+        sendActions(for: .valueChanged)
+    }
+
     private func handleStarTouches(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
             let position = touch.location(in: self)
@@ -225,7 +230,6 @@ class RatingControl: UIControl {
     }
 
     private func ratingButtonSelected(position: CGPoint) {
-
         let newIndex = contentView.arrangedSubviews.index {
             position.x >= $0.frame.minX && position.x < $0.frame.maxX
         } ?? selectedIndex
@@ -235,8 +239,6 @@ class RatingControl: UIControl {
         }
 
         selectedIndex = newIndex
-        sendActions(for: .valueChanged)
         refreshSelection()
-
     }
 }
