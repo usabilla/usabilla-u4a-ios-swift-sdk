@@ -41,14 +41,15 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(moodComponentViewModel.selectedImages).to(equal(theme.enabledEmoticons))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
+                    expect(moodComponentViewModel.tintColor).to(equal(theme.accentColor))
                 })
                 it("should have all values setup correctly for Star mode", closure: {
                     moodComponentViewModel = MoodComponentViewModel(model: starMoodModel, theme: theme)
                     expect(moodComponentViewModel).toNot(beNil())
                     expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.star))
                     expect(moodComponentViewModel.maxValue).to(equal(5))
-                    expect(moodComponentViewModel.selectedImages).to(beNil())
-                    expect(moodComponentViewModel.unselectedImages).to(beNil())
+                    expect(moodComponentViewModel.selectedImages!.count).to(equal(1))
+                    expect(moodComponentViewModel.unselectedImages!.count).to(equal(1))
                     expect(moodComponentViewModel.value).to(equal(0))
                 })
             }

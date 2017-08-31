@@ -27,12 +27,13 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl.topAnchor.constraint(equalTo: topAnchor).isActive = true
         moodControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-        // customizaiton
+        // customization
         moodControl?.backgroundColor = viewModel.backgroundColor
         moodControl?.maxValue = viewModel.maxValue
         moodControl?.selectedImages = viewModel.selectedImages
         moodControl?.unselectedImages = viewModel.unselectedImages
         moodControl?.rating = viewModel.value
+        moodControl?.tintColor = viewModel.tintColor
     }
 
     func pickMood(sender: RatingControl) {

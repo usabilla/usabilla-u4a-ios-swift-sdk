@@ -18,9 +18,10 @@ class RatingControl: UIControl {
     private let contentView = UIStackView()
     private var selectedIndex = -1
 
-    private let size: CGFloat = 60
-    private let spacing: CGFloat = 12
+    private let size: CGFloat = 44
+    private let spacing: CGFloat = 22
 
+    private var initialTouchIndex = -1
     var maxValue = 5 {
         didSet {
             reload()
@@ -95,27 +96,12 @@ class RatingControl: UIControl {
     }
 
     private func imageForButton(_ index: Int, selected: Bool) -> UIImage? {
-        if mode == .star {
-            if selected {
-                return selectedImages?.first ?? getStar()
-            } else {
-                return unselectedImages?.first ?? getEmptyStar()
-            }
-        } else {
-            if selected {
-                return selectedImages?[index]
-            } else {
-                return unselectedImages?[index]
-            }
+        switch mode {
+        case .star:
+            return selected ? selectedImages?.first : unselectedImages?.first
+        case .emoticon:
+            return selected ? selectedImages?[index] : unselectedImages?[index]
         }
-    }
-
-    private func getStar() -> UIImage {
-        return drawAccurateHalfStarShapeWithFrame(CGRect(x: 0, y: 0, width: 60, height: 60), tintColor: tintColor, progress: 1)
-    }
-
-    private func getEmptyStar() -> UIImage {
-        return drawAccurateHalfStarShapeWithFrame(CGRect(x: 0, y: 0, width: 60, height: 60), tintColor: tintColor, progress: 0)
     }
 
     override func draw(_ rect: CGRect) {
@@ -132,7 +118,10 @@ class RatingControl: UIControl {
 
             let button = UIButton()
 
+            button.contentMode = .scaleAspectFill
             button.imageView?.contentMode = .scaleAspectFit
+            button.contentHorizontalAlignment = .fill
+            button.contentVerticalAlignment = .fill
             let selected = imageForButton(i, selected: true)
             let unselected = imageForButton(i, selected: false) ?? selected?.alpha(value: 0.4)
             button.setImage(unselected, for: .normal)
@@ -157,68 +146,34 @@ class RatingControl: UIControl {
     }
 
     private func refreshSelection() {
-        for (index, s) in contentView.arrangedSubviews.enumerated() {
-            (s as? UIButton)?.isSelected = (mode == RatingMode.star) ? index <= selectedIndex: index == selectedIndex
+        for (index, subView) in contentView.arrangedSubviews.enumerated() {
+            let button = (subView as? UIButton)
+            switch mode {
+            case .star:
+                button?.isSelected = index <= selectedIndex
+            case .emoticon:
+                button?.isSelected = selectedIndex > -1 ? index == selectedIndex: true
+            }
         }
     }
 
-    private func drawAccurateHalfStarShapeWithFrame(_ frame: CGRect, tintColor: UIColor, progress: CGFloat) -> UIImage {
-        let starShapePath = UIBezierPath()
-        starShapePath.move(to: CGPoint(x: frame.minX + 0.62723 * frame.width, y: frame.minY + 0.37309 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.50000 * frame.width, y: frame.minY + 0.02500 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.37292 * frame.width, y: frame.minY + 0.37309 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.02500 * frame.width, y: frame.minY + 0.39112 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.30504 * frame.width, y: frame.minY + 0.62908 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.20642 * frame.width, y: frame.minY + 0.97500 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.50000 * frame.width, y: frame.minY + 0.78265 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.79358 * frame.width, y: frame.minY + 0.97500 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.69501 * frame.width, y: frame.minY + 0.62908 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.97500 * frame.width, y: frame.minY + 0.39112 * frame.height))
-        starShapePath.addLine(to: CGPoint(x: frame.minX + 0.62723 * frame.width, y: frame.minY + 0.37309 * frame.height))
-        starShapePath.close()
-        starShapePath.miterLimit = 4
-        UIGraphicsBeginImageContextWithOptions(frame.size, false, UIScreen.main.scale)
-
-        let frameWidth = frame.size.width
-        let rightRectOfStar = CGRect(x: frame.origin.x + progress * frameWidth, y: frame.origin.y, width: frameWidth - progress * frameWidth, height: frame.size.height)
-        let clipPath = UIBezierPath.init(rect: CGRect.infinite)// [UIBezierPath bezierPathWithRect:CGRectInfinite];
-        clipPath.append(UIBezierPath(rect: rightRectOfStar))
-
-        clipPath.usesEvenOddFillRule = true
-
-        UIGraphicsGetCurrentContext()?.saveGState()
-        clipPath.addClip()
-        tintColor.setFill()
-        starShapePath.fill()
-
-        UIGraphicsGetCurrentContext()?.restoreGState()
-
-        tintColor.setStroke()
-        starShapePath.lineWidth = 1
-        starShapePath.stroke()
-
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        //swiftlint:disable:next force_unwrapping
-        return image!
-    }
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handleStarTouches(touches: touches, withEvent: event)
+        initialTouchIndex = selectedIndex
+        handleTouches(touches: touches, withEvent: event)
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handleStarTouches(touches: touches, withEvent: event)
+        handleTouches(touches: touches, withEvent: event)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        handleStarTouches(touches: touches, withEvent: event)
-        sendActions(for: .valueChanged)
+        handleTouches(touches: touches, withEvent: event)
+        if initialTouchIndex != selectedIndex {
+            sendActions(for: .valueChanged)
+        }
     }
 
-    private func handleStarTouches(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    private func handleTouches(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
             let position = touch.location(in: self)
             let maxX = centered ? frame.width : contentView.arrangedSubviews[contentView.arrangedSubviews.count - 2].frame.maxX
@@ -237,7 +192,6 @@ class RatingControl: UIControl {
         guard newIndex != selectedIndex else {
             return
         }
-
         selectedIndex = newIndex
         refreshSelection()
     }

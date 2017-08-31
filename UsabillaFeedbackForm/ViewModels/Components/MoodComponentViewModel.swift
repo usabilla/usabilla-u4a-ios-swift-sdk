@@ -36,20 +36,24 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
 
     var selectedImages: [UIImage]? {
         if model.mode == .star {
-            return starsArrayWith(image: theme.fullStar)
+            return [theme.star]
         }
         return theme.emoticons(size: model.points, emoticons: theme.enabledEmoticons)
     }
 
     var unselectedImages: [UIImage]? {
         if model.mode == .star {
-            return starsArrayWith(image: theme.emptyStar)
+            return [theme.starOutline]
         }
         return theme.emoticons(size: model.points, emoticons: theme.disabledEmoticons)
     }
 
     var backgroundColor: UIColor {
         return theme.backgroundColor
+    }
+
+    var tintColor: UIColor {
+        return theme.accentColor
     }
 
     /**
