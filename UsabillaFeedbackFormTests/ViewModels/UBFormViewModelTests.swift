@@ -38,8 +38,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
                     expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
                     expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.textOnAccentColor))
-                    expect(formViewModel.cancelButtonTitle).to(beNil())
-                    expect(formViewModel.showCancelButton).to(beFalse())
+                    expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beFalse())
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))
@@ -60,12 +59,7 @@ class UBFormViewModelTests: QuickSpec {
                     // Change theme header Color
                     self.model.theme.headerColor = .red
                     expect(formViewModel.headerColor).to(equal(UIColor.red))
-                    // Chnage showCancelButton to be true
-                    UsabillaFeedbackForm.showCancelButton = true
-                    expect(formViewModel.showCancelButton).to(beTrue())
                     expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
-
-                    UsabillaFeedbackForm.showCancelButton = false
                     self.model.theme.headerColor = nil
                 }
                 it("should tell if an index is contained in the page view model count") {
@@ -97,8 +91,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.currentPageViewModel.name).to(equal("Third"))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(0.75))
-                    expect(formViewModel.cancelButtonTitle).to(beNil())
-                    expect(formViewModel.showCancelButton).to(beFalse())
+                    expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beTrue())
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationSubmit))
                     expect(formViewModel.endPageViewModel).to(beNil())
@@ -113,8 +106,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.currentPageViewModel.name).to(equal("end"))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(1))
-                    expect(formViewModel.cancelButtonTitle).to(beNil())
-                    expect(formViewModel.showCancelButton).to(beFalse())
+                    expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beTrue())
                     expect(formViewModel.rightBarButtonTitle).to(beNil())
                     expect(formViewModel.endPageViewModel).toNot(beNil())
@@ -147,8 +139,7 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.accentColor).to(equal(self.model.theme.accentColor))
                     expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
                     expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
-                    expect(formViewModel.cancelButtonTitle).to(beNil())
-                    expect(formViewModel.showCancelButton).to(beFalse())
+                    expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beFalse())
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))

@@ -138,7 +138,6 @@ class FormViewController: UIViewController {
 
     func setUpLeftButton() {
         leftNavItem.title = viewModel.cancelButtonTitle
-        leftNavItem.isEnabled = viewModel.showCancelButton
     }
 
     // MARK: Actions
@@ -159,8 +158,7 @@ class FormViewController: UIViewController {
         rightNavItem.title = ""
         rightNavItem.isEnabled = false
         leftNavItem.title = viewModel.cancelButtonTitle
-        leftNavItem.isEnabled = true
-
+        
         thankYouViewController = ThankYouViewController(viewModel: endPageViewModel)
 
         pageViewController.willMove(toParentViewController: nil)

@@ -49,13 +49,10 @@ class UBFormViewModel {
         return model.copyModel.appTitle
     }
     var cancelButtonTitle: String? {
-        return showCancelButton ? model.copyModel.cancelButton : nil
+        return model.copyModel.cancelButton
     }
     var navBarItemsFont: UIFont {
         return model.theme.boldFont
-    }
-    var showCancelButton: Bool {
-        return UsabillaFeedbackForm.showCancelButton // TO DO inject
     }
     var isCurrentPageValid: Bool {
         return pageViewModels[currentPageIndex].isCorrectlyFilled

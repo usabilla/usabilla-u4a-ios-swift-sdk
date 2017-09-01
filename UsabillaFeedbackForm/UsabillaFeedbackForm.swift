@@ -14,7 +14,6 @@ open class UsabillaFeedbackForm {
     //Various init methods with many parameters\
     open static weak var delegate: UsabillaFeedbackFormDelegate?
     open static var hideGiveMoreFeedback: Bool = true
-    open static var showCancelButton: Bool = false
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true

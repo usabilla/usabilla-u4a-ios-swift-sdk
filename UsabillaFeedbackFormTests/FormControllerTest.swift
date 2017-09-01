@@ -51,8 +51,8 @@ class FormControllerTest: QuickSpec {
 
                     it("sets the navigation buttons") {
                         expect(viewController.rightNavItem.title).to(equal("Next"))
-                        expect(viewController.leftNavItem.title).to(beNil())
-                        expect(viewController.leftNavItem.isEnabled).to(equal(false))
+                        expect(viewController.leftNavItem.title).to(equal(formModel.copyModel.cancelButton))
+                        expect(viewController.leftNavItem.isEnabled).to(equal(true))
                     }
                 }
 
