@@ -13,10 +13,10 @@ class IntFieldModel: BaseFieldModel, Exportable {
     var fieldValue: Int? {
         didSet {
             if let value = fieldValue {
-                pageModel.fieldValuesCollection[fieldId] = [String(value)]
+                pageModel.fieldValuesCollection[fieldID] = [String(value)]
                 return
             }
-            pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
+            pageModel.fieldValuesCollection.removeValue(forKey: fieldID)
         }
     }
 

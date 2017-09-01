@@ -11,7 +11,7 @@ import Foundation
 class BaseFieldModel: FieldModelProtocol, ComponentModel {
 
     unowned var pageModel: PageModel
-    var fieldId: String
+    var fieldID: String
     var fieldTitle: String
     var required: Bool
     var type: String
@@ -20,7 +20,7 @@ class BaseFieldModel: FieldModelProtocol, ComponentModel {
     init(json: JSON, pageModel: PageModel) {
         self.pageModel = pageModel
         self.type = json["type"].stringValue
-        self.fieldId = json["name"].stringValue
+        self.fieldID = json["name"].stringValue
         self.fieldTitle = json["title"].stringValue
         self.required = json["required"].boolValue
         self.rule = nil

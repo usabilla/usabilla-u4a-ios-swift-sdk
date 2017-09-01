@@ -28,15 +28,15 @@ class UBMock {
         return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)
     }
 
-    class func campaignMock(withId id: String = "") -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+    class func campaignMock(withID id: String = "") -> CampaignModel {
+        return CampaignModel(id: id, rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
 
     class func campaignMockWithRules(id: String = "a", createdAt: Date = Date()) -> CampaignModel {
         let leaf = LeafEvent(event: Event(name: "foo"))
         let leaf2 = LeafEvent(event: Event(name: "bar"))
         let rule = AndRule(childRules: [leaf, leaf2])
-        return CampaignModel(id: id, rule: rule, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: createdAt)
+        return CampaignModel(id: id, rule: rule, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: createdAt)
     }
 }
 
@@ -45,7 +45,7 @@ class UBFormServiceMock: FormServiceProtocol {
     var requestBuilder: RequestBuilder.Type = RequestBuilder.self
     var httpClient: HTTPClientProtocol.Type = HTTPClient.self
 
-    func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel> {
+    func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
         return Promise { fulfill, _ in
             let formModel = FormModel(json: "", id: "a", screenshot: nil)
             fulfill(formModel)
@@ -106,7 +106,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getCampaignForm(withId id: String) -> Promise<FormModel> {
+    func getCampaignForm(withID id: String) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             if campaignForm != nil {
                 return fulfill(campaignForm!)
@@ -115,7 +115,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>> {
+    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
         return Promise { fulfill, reject in
             if campaignsResponse != nil {
                 return fulfill(campaignsResponse!)
@@ -124,7 +124,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
+    func getTargeting(withID id: String) -> Promise<Cachable<Rule>> {
         return Promise { fulfill, reject in
             onGetTargeting?(id)
             if targetingResponse != nil {
@@ -143,9 +143,9 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool> {
+    func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool> {
         return Promise { fulfill, reject in
-            onIncrementCampaign?(campaignId, viewCount)
+            onIncrementCampaign?(campaignID, viewCount)
             if incrementCampaignSucceed == true {
                 return fulfill(true)
             }

@@ -26,11 +26,11 @@ class FormStoreTests: QuickSpec {
         describe("FormStoreTests") {
 
             context("When calling loadStore", {
-                it("Should succeed and return formModel from network if formId isValid", closure: {
+                it("Should succeed and return formModel from network if formID isValid", closure: {
                     waitUntil(timeout: 2.0) { done in
                         let promise = self.formStore.loadForm(id: "583c0d8ea935028022c145f4", screenshot: nil, theme: UsabillaTheme())
                         promise.then { formMdel in
-                            expect(formMdel.appId).to(equal("583c0d8ea935028022c145f4"))
+                            expect(formMdel.identifier).to(equal("583c0d8ea935028022c145f4"))
                             expect(formMdel.formJsonString).toNot(beNil())
                             done()
                         }.catch { _ in
@@ -44,9 +44,9 @@ class FormStoreTests: QuickSpec {
                     expect(isCached).to(beTrue())
 
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formStore.loadForm(id: mockFormModel.appId, screenshot: nil, theme: UsabillaTheme())
+                        let promise = self.formStore.loadForm(id: mockFormModel.identifier, screenshot: nil, theme: UsabillaTheme())
                         promise.then { cachedFormModel in
-                            expect(cachedFormModel.appId).to(equal(mockFormModel.appId))
+                            expect(cachedFormModel.identifier).to(equal(mockFormModel.identifier))
                             expect(cachedFormModel.formJsonString).toNot(beNil())
                             done()
                         }.catch { _ in

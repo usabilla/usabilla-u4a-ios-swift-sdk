@@ -51,14 +51,14 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
             }
 
             context("when loading the sdk") {
-                it("should be initialized with the correct appId") {
-                    _ = UsabillaFeedbackForm.load(appId: "")
-                    expect(UsabillaFeedbackForm.appIdentifier).to(beNil())
+                it("should be initialized with the correct appID") {
+                    UsabillaFeedbackForm.initialize(appID: "")
+                    expect(UsabillaFeedbackForm.appID).to(beNil())
                 }
 
-                it("should be initialized with no appId when it is not a UUID") {
-                    _ = UsabillaFeedbackForm.load(appId: "0D5424BE-41AD-4434-A081-32C393A998A3")
-                    expect(UsabillaFeedbackForm.appIdentifier).to(equal("0D5424BE-41AD-4434-A081-32C393A998A3"))
+                it("should be initialized with no appID when it is not a UUID") {
+                    UsabillaFeedbackForm.initialize(appID: "0D5424BE-41AD-4434-A081-32C393A998A3")
+                    expect(UsabillaFeedbackForm.appID).to(equal("0D5424BE-41AD-4434-A081-32C393A998A3"))
                 }
                 it("should call the fail delegate method if the form cannot be loaded") {
                     waitUntil(timeout: 55.0) { done in

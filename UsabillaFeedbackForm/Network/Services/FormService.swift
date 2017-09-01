@@ -13,7 +13,7 @@ protocol FormServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
-    func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel>
+    func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel>
     func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool>
 }
 
@@ -26,8 +26,8 @@ class FormService: FormServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getForm(withId id: String, screenShot: UIImage?) -> Promise<FormModel> {
-        let request = requestBuilder.requestGetPassiveForm(withId: id)
+    func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
+        let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
             httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {

@@ -19,14 +19,14 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
         let manager = CampaignSubmissionManagerMock()
 
         beforeSuite {
-            campaignSubmissionManager = CampaignSubmissionRequestManager(appId: "appId", campaignId: "campaignId", formVersion: 0, userContext: ["user" : "context"], campaignSubmissionManager: manager, reachability: reachabilityMock)
+            campaignSubmissionManager = CampaignSubmissionRequestManager(appID: "appID", campaignID: "campaignID", formVersion: 0, userContext: ["user" : "context"], campaignSubmissionManager: manager, reachability: reachabilityMock)
         }
 
         describe("the CampaignSubmissionRequestManager") {
 
             it("Sends the id payload only on the first call") {
-                let campaignSubmissionRequestManager = CampaignSubmissionRequestManager(appId: "appId", campaignId: "campaignId", formVersion: 0, userContext: ["user" : "context"], campaignSubmissionManager: manager, reachability: reachabilityMock)
-                let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignId/feedback"
+                let campaignSubmissionRequestManager = CampaignSubmissionRequestManager(appID: "appID", campaignID: "campaignID", formVersion: 0, userContext: ["user" : "context"], campaignSubmissionManager: manager, reachability: reachabilityMock)
+                let expectedURL = "https://api-staging.usabilla.com/v2/sdk/campaigns/campaignID/feedback"
                 let page = UBPageModelMock()
                 page.type = .form
                 campaignSubmissionRequestManager.savePage(page: page, nextPageType: .form)
@@ -56,7 +56,7 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
                 campaignSubmissionManager.savePage(page: page, nextPageType: .form)
                 let json = manager.requestJSON!
                 expect(json["data"]["one"]).to(equal(["one"]))
-                expect(json["app_id"]).to(equal("appId"))
+                expect(json["app_id"]).to(equal("appID"))
                 expect(json["form_version"]).to(equal(0))
                 expect(json["metadata"]).toNot(beNil())
                 expect(json["context"]).toNot(beNil())

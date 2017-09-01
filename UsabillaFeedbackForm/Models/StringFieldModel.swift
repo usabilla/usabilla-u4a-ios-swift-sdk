@@ -12,10 +12,10 @@ class StringFieldModel: BaseFieldModel, StringComponentModel {
     var fieldValue: String? {
         didSet {
             if let value = fieldValue {
-                pageModel.fieldValuesCollection[fieldId] = [value]
+                pageModel.fieldValuesCollection[fieldID] = [value]
                 return
             }
-            pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
+            pageModel.fieldValuesCollection.removeValue(forKey: fieldID)
         }
     }
 

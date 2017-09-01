@@ -9,8 +9,8 @@
 import Foundation
 
 protocol UBCampaignStoreProtocol {
-    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]>
-    func getCampaignForm(withFormId formId: String, theme: UsabillaTheme) -> Promise<FormModel>
+    func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]>
+    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme) -> Promise<FormModel>
 }
 
 class UBCampaignStore: UBCampaignStoreProtocol {
@@ -44,7 +44,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
             }
         }
         for campaignModel in campaigns {
-            self.campaignService.getTargeting(withId: campaignModel.targetingId).then { result in
+            self.campaignService.getTargeting(withID: campaignModel.targetingID).then { result in
                 if result.hasChanged {
                     campaignModel.rule = result.value
                 } else {
@@ -63,9 +63,9 @@ class UBCampaignStore: UBCampaignStoreProtocol {
     /**
      - returns: a promise of CampaignModel array
      */
-    func getCampaigns(withAppId appId: String) -> Promise<[CampaignModel]> {
+    func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
-            self.campaignService.getCampaigns(withAppId: appId).then { cachableCampainModels in
+            self.campaignService.getCampaigns(withAppID: appID).then { cachableCampainModels in
                 let cachedCampaignsList = UBCampaignDAO.shared.readAll()
                 if !cachableCampainModels.hasChanged {
                     return fulfill(cachedCampaignsList)
@@ -82,9 +82,9 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 // update number of times triggered
                 activeInactiveCampaigns
                     .forEach {
-                        let campaignIdentifier = $0.identifier
+                        let campaignIDentifier = $0.identifier
                         let cachedCampaign = cachedCampaignsList.first(where: { model in
-                            model.identifier == campaignIdentifier
+                            model.identifier == campaignIDentifier
                         })
                         $0.numberOfTimesTriggered = cachedCampaign?.numberOfTimesTriggered ?? 0
                 }
@@ -118,9 +118,9 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         }
     }
 
-    func getCampaignForm(withFormId formId: String, theme: UsabillaTheme) -> Promise<FormModel> {
+    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme) -> Promise<FormModel> {
         return Promise { fulfill, reject in
-            self.campaignService.getCampaignForm(withId: formId).then { formModel in
+            self.campaignService.getCampaignForm(withID: formID).then { formModel in
                 formModel.theme = theme
                 formModel.updateTheme()
                 fulfill(formModel)

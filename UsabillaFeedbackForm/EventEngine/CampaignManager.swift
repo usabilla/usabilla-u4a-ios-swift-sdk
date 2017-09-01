@@ -13,14 +13,14 @@ class CampaignManager {
     private(set) var campaignStore: UBCampaignStoreProtocol
     private(set) var campaignService: CampaignServiceProtocol
     private(set) var eventEngine: EventEngine
-    private(set) var appId: String
+    private(set) var appID: String
     private let submissionManager: CampaignSubmissionManager
 
-    init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appId: String) {
+    init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appID: String) {
         self.campaignStore = campaignStore
         self.campaignService = campaignService
         self.eventEngine = EventEngine(campaigns: [])
-        self.appId = appId
+        self.appID = appID
         self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared)
         fetchCampaignForEventEngine()
     }
@@ -51,8 +51,8 @@ class CampaignManager {
         guard campaign.canBeDisplayed && UsabillaFeedbackForm.canDisplayCampaigns else {
             return
         }
-        campaignStore.getCampaignForm(withFormId: campaign.formId, theme: UsabillaFeedbackForm.theme).then { form in
-            let submissionManager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
+        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaFeedbackForm.theme).then { form in
+            let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
             if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
@@ -66,7 +66,7 @@ class CampaignManager {
     }
 
     private func incrementViews(forCampaign campaign: CampaignModel) {
-        self.campaignService.incrementCampaignViews(forCampaignId: campaign.identifier, viewCount: 1).then { _ in
+        self.campaignService.incrementCampaignViews(forCampaignID: campaign.identifier, viewCount: 1).then { _ in
             PLog("View count increment for campaign id \(campaign.identifier)")
         }.catch { _ in
             PLog("Error incrementing view count for campaign id \(campaign.identifier)")
@@ -89,25 +89,25 @@ class CampaignManager {
     }
 
     private func fetchCampaignForEventEngine(completion: (() -> Void)? = nil) {
-        campaignStore.getCampaigns(withAppId: appId).then { campaigns in
+        campaignStore.getCampaigns(withAppID: appID).then { campaigns in
             self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
             completion?()
         }
     }
 
     #if INTERNAL_USE || DEBUG
-        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignId: String = "id") -> Bool {
+        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignID: String = "id") -> Bool {
             var manager = manager
             if manager == nil {
-                manager = CampaignSubmissionRequestManager(appId: self.appId, campaignId: campaignId, formVersion: form.version, userContext: ["debug":"debug"], campaignSubmissionManager: self.submissionManager)
+                manager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaignID, formVersion: form.version, userContext: ["debug": "debug"], campaignSubmissionManager: self.submissionManager)
             }
             //swiftlint:disable:next force_unwrapping
             let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
             return CampaignWindow.shared.showCampaign(campaignViewModel)
         }
 
-        #else
-        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager, campaignId: String = "id") -> Bool {
+    #else
+        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager, campaignID: String = "id") -> Bool {
             let campaignViewModel = CampaignViewModel(form: form, manager: manager)
             return CampaignWindow.shared.showCampaign(campaignViewModel)
         }

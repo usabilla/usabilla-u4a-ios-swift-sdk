@@ -38,7 +38,7 @@ class UBFormDAOTests: QuickSpec {
                 it("should return the correct id") {
                     let form = UBMock.formMock()
                     let id = UBFormDAO.shared.id(forObj: form)
-                    expect(id).to(equal(form.appId))
+                    expect(id).to(equal(form.identifier))
                 }
             }
         }

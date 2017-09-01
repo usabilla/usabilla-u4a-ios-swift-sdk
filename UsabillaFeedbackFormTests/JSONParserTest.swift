@@ -54,7 +54,7 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.copyModel.navigationSubmit).to(equal("TestSubmit"))
                     expect(formModel.hasScreenshot).to(equal(true))
                     expect(formModel.version).to(equal(6))
-                    expect(formModel.appId).to(equal("a"))
+                    expect(formModel.identifier).to(equal("a"))
                     expect(formModel.isDefault).to(equal(false))
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
@@ -99,18 +99,18 @@ class JSONParserTest: QuickSpec {
             context("when fields are parsed") {
                 it("should set correct values for field 1") {
                     let field: MoodFieldModel = (formModel.pages[0].fields[0]) as! MoodFieldModel
-                    expect(field.fieldId).to(equal("mood"))
+                    expect(field.fieldID).to(equal("mood"))
                     expect(field.fieldTitle).to(equal("Click to edit question"))
                     expect(field.type).to(equal("mood"))
                     expect(field.required).to(beTrue())
-                    expect(field.fieldId).to(equal("mood"))
-                    expect(field.fieldId).to(equal("mood"))
+                    expect(field.fieldID).to(equal("mood"))
+                    expect(field.fieldID).to(equal("mood"))
                     expect(field.rule).to(beNil())
                 }
                 it("should set correct values for field 2") {
                     let field: ParagraphFieldModel = formModel.pages[0].fields[1] as! ParagraphFieldModel
                     expect(field.fieldTitle).to(beEmpty())
-                    expect(field.fieldId).to(beEmpty())
+                    expect(field.fieldID).to(beEmpty())
                     expect(field.type).to(equal("paragraph"))
                     expect(field.required).to(beFalse())
                     expect(field.fieldValue).to(equal("I am a paragraph"))
@@ -122,7 +122,7 @@ class JSONParserTest: QuickSpec {
                 it("should set correct values for field 3") {
                     let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
                     expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
-                    expect(field.fieldId).to(equal("nps"))
+                    expect(field.fieldID).to(equal("nps"))
                     expect(field.type).to(equal("rating"))
                     expect(field.required).to(beTrue())
                     expect(field.fieldValue).to(beNil())
@@ -137,7 +137,7 @@ class JSONParserTest: QuickSpec {
                 it("should set correct values for field 4") {
                     let field: TextFieldModel = formModel.pages[0].fields[3] as! TextFieldModel
                     expect(field.fieldTitle).to(equal("Click to edit"))
-                    expect(field.fieldId).to(equal("text"))
+                    expect(field.fieldID).to(equal("text"))
                     expect(field.type).to(equal("text"))
                     expect(field.required).to(beFalse())
                     expect(field.fieldValue).to(beNil())
@@ -147,7 +147,7 @@ class JSONParserTest: QuickSpec {
                 it("should set correct values for field 5") {
                     let field: CheckboxFieldModel = formModel.pages[0].fields[4] as! CheckboxFieldModel
                     expect(field.fieldTitle).to(equal("Checkboxah"))
-                    expect(field.fieldId).to(equal("Checkboxah"))
+                    expect(field.fieldID).to(equal("Checkboxah"))
                     expect(field.type).to(equal("checkbox"))
                     expect(field.required).to(beFalse())
                     expect(field.fieldValue).to(equal([]))

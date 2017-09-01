@@ -14,10 +14,10 @@ class OptionsFieldModel: BaseFieldModel, Exportable {
     var fieldValue: [String] = [] {
         didSet {
             if fieldValue.count > 0 {
-                pageModel.fieldValuesCollection[fieldId] = fieldValue
+                pageModel.fieldValuesCollection[fieldID] = fieldValue
                 return
             }
-            pageModel.fieldValuesCollection.removeValue(forKey: fieldId)
+            pageModel.fieldValuesCollection.removeValue(forKey: fieldID)
         }
     }
 

@@ -56,9 +56,9 @@ class FormServiceTests: QuickSpec {
             }
 
             context("When calling getFormWithFormID", {
-                it("should fail with an invalid formId") {
+                it("should fail with an invalid formID") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withId: "thisIsNotAValidFormId", screenShot: nil)
+                        let promise = self.formService.getForm(withID: "thisIsNotAValidFormId", screenShot: nil)
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { _ in
@@ -66,9 +66,9 @@ class FormServiceTests: QuickSpec {
                         }
                     }
                 }
-                it("should succeed with a valid formId") {
+                it("should succeed with a valid formID") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withId: "583c0d8ea935028022c145f4", screenShot: nil)
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028022c145f4", screenShot: nil)
                         promise.then { _ in
                             done()
                         }.catch { _ in
@@ -103,9 +103,9 @@ class FormServiceTests: QuickSpec {
             })
 
             context("When getFormJson is called") {
-                it("should fail getting formModel when formId is wrong") {
+                it("should fail getting formModel when formID is wrong") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withId: "ThisIsAnInvalidFormId", screenShot: nil)
+                        let promise = self.formService.getForm(withID: "ThisIsAnInvalidFormId", screenShot: nil)
                         promise.then { _ in
                             fail()
                         }.catch { _ in
@@ -115,7 +115,7 @@ class FormServiceTests: QuickSpec {
                 }
                 it("should retun a formModel when appid is correct") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withId: "58bd668e4ee2f5fc304eac59", screenShot: nil)
+                        let promise = self.formService.getForm(withID: "58bd668e4ee2f5fc304eac59", screenShot: nil)
                         promise.then { _ in
                             done()
                         }.catch { _ in

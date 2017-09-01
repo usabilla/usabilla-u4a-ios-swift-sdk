@@ -18,7 +18,7 @@ class UBFormViewModel {
 
     let shouldAddMarginWhenKeyboardIsShown: Bool
     var id: String {
-        return model.appId
+        return model.identifier
     }
     var shouldHideProgressBar: Bool {
         return model.pages.count == 2 || !model.showProgressBar
@@ -134,7 +134,7 @@ class UBFormViewModel {
 
     func reset() {
         let theme = model.theme
-        self.model = FormModel(json: model.formJsonString, id: model.appId, screenshot: nil)
+        self.model = FormModel(json: model.formJsonString, id: model.identifier, screenshot: nil)
         self.model.theme = theme
         self.model.updateTheme()
         self.currentPageIndex = 0

@@ -21,10 +21,10 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
-    func getCampaignForm(withId id: String) -> Promise<FormModel>
-    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>>
-    func getTargeting(withId id: String) -> Promise<Cachable<Rule>>
-    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool>
+    func getCampaignForm(withID id: String) -> Promise<FormModel>
+    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>>
+    func getTargeting(withID id: String) -> Promise<Cachable<Rule>>
+    func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool>
 }
 
 class CampaignService: CampaignServiceProtocol {
@@ -37,8 +37,8 @@ class CampaignService: CampaignServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getCampaignForm(withId id: String) -> Promise<FormModel> {
-        let request = requestBuilder.requestGetCampaignForm(withId: id)
+    func getCampaignForm(withID id: String) -> Promise<FormModel> {
+        let request = requestBuilder.requestGetCampaignForm(withID: id)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
@@ -56,8 +56,8 @@ class CampaignService: CampaignServiceProtocol {
         }
     }
 
-    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>> {
-        let request = requestBuilder.requestGetCampaigns(withAppId: appId)
+    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
+        let request = requestBuilder.requestGetCampaigns(withAppID: appID)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
@@ -77,8 +77,8 @@ class CampaignService: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
-        let request = requestBuilder.requestGetTargeting(withId: id)
+    func getTargeting(withID id: String) -> Promise<Cachable<Rule>> {
+        let request = requestBuilder.requestGetTargeting(withID: id)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let jsonData = response.data {
@@ -132,13 +132,13 @@ class CampaignService: CampaignServiceProtocol {
     /// Increase a campaign number of views
     ///
     /// - Parameters:
-    ///   - campaignId: the id of the campaign to increment the number of views
+    ///   - campaignID: the id of the campaign to increment the number of views
     ///   - viewCount: the number of views to increment with
     ///
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
 
-    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool> {
-        let request = requestBuilder.requestPatchCampaignViews(forCampaignId: campaignId, viewCount: viewCount)
+    func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool> {
+        let request = requestBuilder.requestPatchCampaignViews(forCampaignID: campaignID, viewCount: viewCount)
         return Promise { fulfill, reject in
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
                 if response.success {

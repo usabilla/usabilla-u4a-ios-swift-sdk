@@ -35,7 +35,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getCampaignForm(withId id: String) -> Promise<FormModel> {
+    func getCampaignForm(withID id: String) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             if campaignForm != nil {
                 return fulfill(campaignForm!)
@@ -44,7 +44,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getCampaigns(withAppId appId: String) -> Promise<Cachable<[CampaignModel]>> {
+    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
         return Promise { fulfill, reject in
             if campaignsResponse != nil {
                 return fulfill(campaignsResponse!)
@@ -53,7 +53,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withId id: String) -> Promise<Cachable<Rule>> {
+    func getTargeting(withID id: String) -> Promise<Cachable<Rule>> {
         return Promise { fulfill, reject in
             if targetingResponse != nil {
                 return fulfill(targetingResponse!)
@@ -74,7 +74,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
             reject(NSError(domain: "", code: 0, userInfo: nil))
         }
     }
-    func incrementCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> Promise<Bool> {
+    func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool> {
         return Promise { fulfill, reject in
             fulfill(true)
         }

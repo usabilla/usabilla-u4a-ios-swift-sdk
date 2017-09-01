@@ -14,7 +14,7 @@ class FormModel: NSObject, NSCoding {
     let hasScreenshot: Bool
     let version: Int
     let pages: [PageModel]
-    let appId: String
+    let identifier: String
     var isDefault: Bool = false
     let formJsonString: JSON
     let redirectToAppStore: Bool
@@ -23,12 +23,12 @@ class FormModel: NSObject, NSCoding {
     let copyModel: CopyModel
 
     // swiftlint:disable:next function_parameter_count
-    init(appId: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel) {
+    init(identifier: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
         self.pages = pages
-        self.appId = appId
+        self.identifier = identifier
         self.formJsonString = jsonString
         self.theme = UsabillaFeedbackForm.theme
         self.showProgressBar = showProgressBar ?? true
@@ -47,7 +47,7 @@ class FormModel: NSObject, NSCoding {
         self.redirectToAppStore = data["appStoreRedirect"].boolValue
         self.version = json["version"].intValue
         self.showProgressBar = data["progressBar"].bool ?? true
-        self.appId = id
+        self.identifier = id
         self.formJsonString = json
         self.theme = UsabillaTheme()
 
@@ -116,15 +116,15 @@ class FormModel: NSObject, NSCoding {
     // MARK: NScoding protocols
 
     public required convenience init?(coder aDecoder: NSCoder) {
-        guard let appId = aDecoder.decodeObject(forKey: "appId") as? String,
+        guard let identifier = aDecoder.decodeObject(forKey: "identifier") as? String,
             let rawJson = aDecoder.decodeObject(forKey: "formJsonString") else {
                 return nil
         }
-        self.init(json: JSON(rawJson), id: appId, screenshot: nil)
+        self.init(json: JSON(rawJson), id: identifier, screenshot: nil)
     }
 
     public func encode(with aCoder: NSCoder) {
-        aCoder.encode(appId, forKey: "appId")
+        aCoder.encode(identifier, forKey: "identifier")
         aCoder.encode(formJsonString.rawValue, forKey: "formJsonString")
     }
 }

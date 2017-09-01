@@ -17,6 +17,6 @@ class UBFormDAO: UBFileStorageDAO<FormModel> {
     }
 
     override func id(forObj: FormModel) -> String {
-        return forObj.appId
+        return forObj.identifier
     }
 }

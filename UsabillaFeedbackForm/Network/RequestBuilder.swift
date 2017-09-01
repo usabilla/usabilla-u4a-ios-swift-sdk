@@ -128,44 +128,44 @@ class RequestBuilder {
     }
 
     // MARK: Public methods
-    class func requestGetPassiveForm(withId id: String) -> URLRequest {
+    class func requestGetPassiveForm(withID id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .passiveForm, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestGetCampaignForm(withId id: String) -> URLRequest {
+    class func requestGetCampaignForm(withID id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .campaignForm, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestGetCampaigns(withAppId appId: String) -> URLRequest {
-        let endPoint = Endpoints.campaignsList.rawValue.replacingOccurrences(of: "{app_id}", with: appId)
+    class func requestGetCampaigns(withAppID appID: String) -> URLRequest {
+        let endPoint = Endpoints.campaignsList.rawValue.replacingOccurrences(of: "{app_id}", with: appID)
         let url = buildURL(withString: endPoint)
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestGetTargeting(withId id: String) -> URLRequest {
+    class func requestGetTargeting(withID id: String) -> URLRequest {
         let url = buildURL(withEndpoint: .targetingOptions, withURLParam: id)
         return requestForGet(withURL: url) as URLRequest
     }
 
-    class func requestCampaignFeedbackItemCreation(forCampaignId campaignId: String, withPayload payload: Payload) -> URLRequest {
+    class func requestCampaignFeedbackItemCreation(forCampaignID campaignID: String, withPayload payload: Payload) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
-        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
+        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
         let url = buildURL(withString: newEndPoint)
         return requestForPost(withURL: url, payload: payload) as URLRequest
     }
 
-    class func requestCampaignFeedbackItemPatch(forCampaignId campaignId: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
+    class func requestCampaignFeedbackItemPatch(forCampaignID campaignID: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
-        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
+        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
         let url = buildURL(withString: newEndPoint, withURLParam: token)
         return requestForPatch(withURL: url, payload: payload) as URLRequest
     }
 
-    class func requestPatchCampaignViews(forCampaignId campaignId: String, viewCount: Int) -> URLRequest {
+    class func requestPatchCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> URLRequest {
         let endPoint = Endpoints.campaignViews.rawValue
-        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignId)
+        let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
         let url = buildURL(withString: newEndPoint)
         return requestForPatch(withURL: url, payload: ["view": viewCount]) as URLRequest
     }

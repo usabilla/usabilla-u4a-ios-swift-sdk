@@ -21,26 +21,26 @@ protocol CampaignSubmissionRequestManagerProtocol {
 
 class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol {
 
-    private let appId: String
-    private let campaignId: String
+    private let appID: String
+    private let campaignID: String
     private let formVersion: Int
     private let reachability: Reachable
     private let userContext: [String: Any]?
-    private let feedbackId: String
+    private let feedbackID: String
     private let queue: DispatchQueue
     private let campaignSubmissionManager: CampaignSubmissionManagerProtocol
 
     private var isFirst: Bool
 
-    init(appId: String, campaignId: String, formVersion: Int, userContext: [String: Any]?, campaignSubmissionManager: CampaignSubmissionManagerProtocol, reachability: Reachable = Reachability()!) {
+    init(appID: String, campaignID: String, formVersion: Int, userContext: [String: Any]?, campaignSubmissionManager: CampaignSubmissionManagerProtocol, reachability: Reachable = Reachability()!) {
 
-        self.appId = appId
+        self.appID = appID
         self.formVersion = formVersion
         self.userContext = userContext
-        self.campaignId = campaignId
+        self.campaignID = campaignID
         self.reachability = reachability
         try? reachability.startNotifier()
-        self.feedbackId = UUID().uuidString
+        self.feedbackID = UUID().uuidString
         self.isFirst = true
         self.queue = DispatchQueue(label: "com.usabilla.u4a.isFristQueue")
         self.campaignSubmissionManager = campaignSubmissionManager
@@ -51,7 +51,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
 
         if page.type == .banner {
             payload = addMetadataPayload(payload: payload)
-            payload["id"] = feedbackId
+            payload["id"] = feedbackID
         }
 
         if nextPageType == .toast {
@@ -72,9 +72,9 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         queue.sync {
             if isFirst {
                 isFirst = false
-                req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignId: campaignId, withPayload: payload) as URLRequest
+                req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignID: campaignID, withPayload: payload) as URLRequest
             } else {
-                req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignId: campaignId, withPayload: payload, withSessionToken: feedbackId) as URLRequest
+                req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignID: campaignID, withPayload: payload, withSessionToken: feedbackID) as URLRequest
             }
         }
         return req
@@ -87,7 +87,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         var metadata: [String: Any] = [:]
         UIDevice.current.isBatteryMonitoringEnabled = true
 
-        payload["app_id"] = appId
+        payload["app_id"] = appID
         payload["form_version"] = formVersion
         payload["complete"] = false
 

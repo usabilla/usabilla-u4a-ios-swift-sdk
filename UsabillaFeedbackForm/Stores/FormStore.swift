@@ -20,7 +20,7 @@ class FormStore {
     // Entry to laod a form from Network or try getting it from Cache
     func loadForm(id: String, screenshot: UIImage?, theme: UsabillaTheme) -> Promise<FormModel> {
         return Promise { fulfill, reject in
-            self.formService.getForm(withId: id, screenShot: screenshot).then { form in
+            self.formService.getForm(withID: id, screenShot: screenshot).then { form in
                 UBFormDAO.shared.create(form)
                 form.theme = theme
                 form.updateTheme()
@@ -40,7 +40,7 @@ class FormStore {
     }
 
     // Loads the default form implemented with the app
-    func loadDefaultForm(_ appId: String, screenshot: UIImage?, theme: UsabillaTheme) -> FormModel? {
+    func loadDefaultForm(_ formID: String, screenshot: UIImage?, theme: UsabillaTheme) -> FormModel? {
         guard let path = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")?.path(forResource: "defaultJson", ofType: "json") else {
             PLog("❌ Invalid filename/path.")
             return nil
@@ -49,7 +49,7 @@ class FormStore {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
             let jsonObj: JSON = JSON(data: data)
             if jsonObj != JSON.null {
-                let form = FormModel(json: jsonObj, id: appId, screenshot: screenshot)
+                let form = FormModel(json: jsonObj, id: formID, screenshot: screenshot)
                 form.theme = theme
                 form.updateTheme()
                 form.isDefault = true

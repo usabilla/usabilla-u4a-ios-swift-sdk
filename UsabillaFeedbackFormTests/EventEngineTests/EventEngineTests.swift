@@ -15,8 +15,8 @@ import Nimble
 
 class EventEngineTests: QuickSpec {
     
-    func campaignMock(forId id: String) -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formId: "", targetingId: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+    func campaignMock(forID id: String) -> CampaignModel {
+        return CampaignModel(id: id, rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
     var campaigns: [CampaignModel] = []
     var activeStatuses: [String: String] = [String: String]()
@@ -26,8 +26,8 @@ class EventEngineTests: QuickSpec {
         describe("EventEngineTests") {
             beforeEach {
                 self.campaigns = [
-                    self.campaignMock(forId: "a"),
-                    self.campaignMock(forId: "b")
+                    self.campaignMock(forID: "a"),
+                    self.campaignMock(forID: "b")
                 ]
             }
             context("When instantiating eventengine") {

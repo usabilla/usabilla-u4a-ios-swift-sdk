@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension NSLayoutConstraint {
-    func withId(_ identifier: String?) -> NSLayoutConstraint {
+    func withID(_ identifier: String?) -> NSLayoutConstraint {
         self.identifier = identifier
         return self
     }

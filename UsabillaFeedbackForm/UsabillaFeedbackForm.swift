@@ -20,7 +20,7 @@ open class UsabillaFeedbackForm {
     open static var canDisplayCampaigns: Bool = true
     open static var customVariables: [String: Any] = [:]
 
-    static var appIdentifier: String?
+    static var appID: String?
     static var defaultLocalisationFile = true
     static let campaignService = CampaignService()
     static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: UsabillaFeedbackForm.campaignService)
@@ -52,18 +52,17 @@ open class UsabillaFeedbackForm {
     This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
      
     The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
-    It also allows to fetch the campaigns associated to the **appId**.
+    It also allows to fetch the campaigns associated to the **appID**.
      
-    - parameter appId: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
+    - parameter appID: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
-    open class func load(appId: String) -> Bool {
-        guard NSUUID(uuidString: appId) != nil else {
+    open class func initialize(appID: String) {
+        guard NSUUID(uuidString: appID) != nil else {
             Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
-            return false
+            return
         }
-        appIdentifier = appId
-        campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appId: appId)
-        return true
+        UsabillaFeedbackForm.appID = appID
+        campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID)
     }
 
     open class func removeCachedForms() {
@@ -83,24 +82,24 @@ open class UsabillaFeedbackForm {
             return navigationController
         }
 
-        open class func displayCampaignForm(withFormId formId: String, theme: UsabillaTheme = theme) {
-            campaignStore.getCampaignForm(withFormId: formId, theme: theme).then { form in
+        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = theme) {
+            campaignStore.getCampaignForm(withFormID: formID, theme: theme).then { form in
                 campaignManager?.displayCampaignForm(form)
             }
         }
 
-        open class func showCampaignForm(formJson: JSON, campaignId: String = "id") {
+        open class func showCampaignForm(formJson: JSON, campaignID: String = "id") {
             let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-            campaignManager?.displayCampaignForm(formModel, campaignId: campaignId)
+            campaignManager?.displayCampaignForm(formModel, campaignID: campaignID)
         }
     #endif
 
-    open class func loadFeedbackForm(_ appId: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = theme) {
+    open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = theme) {
 
-        formStore.loadForm(id: appId, screenshot: screenshot, theme: theme).then { form in
+        formStore.loadForm(id: formID, screenshot: screenshot, theme: theme).then { form in
             UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables, success: true)
         }.catch { _ in
-            if let defaulForm = formStore.loadDefaultForm(appId, screenshot: screenshot, theme: theme) {
+            if let defaulForm = formStore.loadDefaultForm(formID, screenshot: screenshot, theme: theme) {
                 UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables, success: false)
             }
         }

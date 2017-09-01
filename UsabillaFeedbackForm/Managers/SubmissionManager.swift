@@ -61,7 +61,7 @@ class SubmissionManager {
     private func createSubmission(formModel: FormModel, customVars: [String: Any]?) -> UBFeedbackRequest {
         let uiDevice = UIDevice()
         var contentDictionary: [String: Any] = [:]
-        contentDictionary["app_id"] = formModel.appId //String
+        contentDictionary["app_id"] = formModel.identifier //String
         contentDictionary["version"] = formModel.version //String
 
         if let SDKVersion = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") {

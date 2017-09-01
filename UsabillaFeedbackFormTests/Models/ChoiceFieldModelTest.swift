@@ -20,7 +20,7 @@ class ChoiceFieldModelTests: QuickSpec {
         beforeSuite {
             self.pageModel = PageModel(pageNumber: 0, pageName: "test")
             self.model = ChoiceFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: self.pageModel)
-            self.model.fieldId = "id"
+            self.model.fieldID = "id"
         }
 
         describe("ChoiceFieldModel") {

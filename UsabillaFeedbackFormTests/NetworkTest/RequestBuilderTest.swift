@@ -58,7 +58,7 @@ class RequestBuilderTest: QuickSpec {
 
         describe("The Request builder") {
             it("Builds the campaign form request correctly") {
-                let get = RequestBuilder.requestGetCampaignForm(withId: "a")
+                let get = RequestBuilder.requestGetCampaignForm(withID: "a")
                 expect(get.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/forms/a"))
                 expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
                 expect(get.httpMethod).to(equal(self.correctGet.httpMethod))
@@ -66,7 +66,7 @@ class RequestBuilderTest: QuickSpec {
             }
 
             it("Builds the campaign feedback item creation request correctly") {
-                let req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignId: "campaignID", withPayload: ["p": "p"])
+                let req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignID: "campaignID", withPayload: ["p": "p"])
                 expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/campaignID/feedback"))
                 expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
                 expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
@@ -74,7 +74,7 @@ class RequestBuilderTest: QuickSpec {
             }
 
             it("Builds the campaign feedback item patch request correctly") {
-                let req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignId: "c", withPayload: ["p": "p"], withSessionToken: "t")
+                let req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignID: "c", withPayload: ["p": "p"], withSessionToken: "t")
                 expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/t"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("PATCH"))
@@ -82,14 +82,14 @@ class RequestBuilderTest: QuickSpec {
             }
 
             it("Builds the campaign list request correctly") {
-                let req = RequestBuilder.requestGetCampaigns(withAppId: "myAppId")
+                let req = RequestBuilder.requestGetCampaigns(withAppID: "myAppId")
                 expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns?app_id=myAppId"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("GET"))
             }
 
             it("Builds the increment campaign view request correctly") {
-                let req = RequestBuilder.requestPatchCampaignViews(forCampaignId: "1234", viewCount: 2)
+                let req = RequestBuilder.requestPatchCampaignViews(forCampaignID: "1234", viewCount: 2)
                 expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/1234/views"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("PATCH"))

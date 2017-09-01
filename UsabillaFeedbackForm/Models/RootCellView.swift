@@ -82,10 +82,10 @@ class RootCellView: UITableViewCell {
             if let comp = component {
                 comp.translatesAutoresizingMaskIntoConstraints = false
                 rootCellContainerView.addSubview(comp)
-                comp.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).withId("RootCellView component left constraint").activate()
-                comp.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).withId("RootCellView component right constraint").activate()
-                comp.topAnchor.constraint(equalTo: rootCellContainerView.topAnchor).withId("RootCellView component top constraint").activate()
-                comp.bottomAnchor.constraint(equalTo: rootCellContainerView.bottomAnchor).withId("RootCellView component bottom constraint").activate()
+                comp.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).withID("RootCellView component left constraint").activate()
+                comp.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).withID("RootCellView component right constraint").activate()
+                comp.topAnchor.constraint(equalTo: rootCellContainerView.topAnchor).withID("RootCellView component top constraint").activate()
+                comp.bottomAnchor.constraint(equalTo: rootCellContainerView.bottomAnchor).withID("RootCellView component bottom constraint").activate()
                 comp.addTarget(self, action: #selector(RootCellView.componentValueChanged), for: .valueChanged)
             }
         }
