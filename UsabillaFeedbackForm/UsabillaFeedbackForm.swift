@@ -11,13 +11,26 @@ import UIKit
 
 open class UsabillaFeedbackForm {
 
+    private static var privateCustomVariables: [String: Any] = [:]
+
     //Various init methods with many parameters\
     open static weak var delegate: UsabillaFeedbackFormDelegate?
     open static var hideGiveMoreFeedback: Bool = true
     open static var dismissAutomatically: Bool = true
     open static var theme: UsabillaTheme = UsabillaTheme()
     open static var canDisplayCampaigns: Bool = true
-    open static var customVariables: [String: Any] = [:]
+    open static var customVariables: [String: Any] {
+        get {
+            return privateCustomVariables
+        }
+        set {
+            if !JSONSerialization.isValidJSONObject(newValue) {
+                print("UBError: attempting to set invalid custom variables object. For more on how to use custom variables, visit https://github.com/usabilla/usabilla-u4a-ios-swift-sdk#other-configuration")
+                return
+            }
+            privateCustomVariables = newValue
+        }
+    }
 
     static var appID: String?
     static var defaultLocalisationFile = true
@@ -185,5 +198,5 @@ public extension UsabillaFeedbackFormDelegate {
     }
     func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     }
-    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {}
+    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
 }

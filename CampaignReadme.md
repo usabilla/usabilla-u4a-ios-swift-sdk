@@ -269,8 +269,13 @@ or by simply modifying the dictionary object
 
 `UsabillaFeedbackForm.customVariables["key"] = "value"`
 
-The `value` of a custom variable can be any primitive type, an array or an Object.
-**The only unsupported value is array of objects.**
+**Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitation have to be taken into account.
+The `value` of a custom variable must then be an instance NSString, NSNumber, NSArray, NSDictionary, or NSNull.**   
+Trying to set an invalid object as custom variable will result in that object not being set and in an error being printed in the console.   
+
+You can always check whether an object is considered valid or not by calling `JSONSerialization.isValidJSONObject(object)`
+
+
 
 Custom variables are added as extra feedback data with every feedback item sent by the SDK, whether from a passive form or a campaign.
 

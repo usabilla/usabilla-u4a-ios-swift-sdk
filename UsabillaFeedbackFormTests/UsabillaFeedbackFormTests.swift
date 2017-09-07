@@ -89,6 +89,38 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
                     expect(UsabillaFeedbackForm.customVariables.keys.count).to(equal(1))
                 }
             }
+
+            context("When custom variables are set") {
+                it("it should accept valid custom variables") {
+                    UsabillaFeedbackForm.customVariables = [:]
+
+                    expect(UsabillaFeedbackForm.customVariables).toNot(beNil())
+                    expect(UsabillaFeedbackForm.customVariables).to(beEmpty())
+
+                    var cs: [String: Any] = [:]
+                    cs["string"] = "1"
+                    cs["int"] = 1
+                    cs["array"] = [1,2,3,4]
+
+                    UsabillaFeedbackForm.customVariables = cs
+
+                    expect(UsabillaFeedbackForm.customVariables).toNot(beEmpty())
+                    expect(UsabillaFeedbackForm.customVariables["array"] as! [Int]).to(equal([1,2,3,4]))
+                    expect(UsabillaFeedbackForm.customVariables["int"] as! Int).to(equal(1))
+                }
+
+                it("it should refuse invalid custom variables") {
+                    UsabillaFeedbackForm.customVariables = [:]
+
+                    expect(UsabillaFeedbackForm.customVariables).toNot(beNil())
+                    expect(UsabillaFeedbackForm.customVariables).to(beEmpty())
+                    UsabillaFeedbackForm.customVariables["wrong"] = UIColor.red
+                    expect(UsabillaFeedbackForm.customVariables).to(beEmpty())
+                    UsabillaFeedbackForm.customVariables["wrong"] = UBMock.campaignMock()
+                    expect(UsabillaFeedbackForm.customVariables).to(beEmpty())
+
+                }
+            }
         }
     }
 
