@@ -28,7 +28,7 @@ $ gem install cocoapods
 
 To use the SDK in your project, specify it in your `Podfile`:
 
-```
+```ruby
 source 'https://github.com/usabilla/u4a-ios-pilot'
 
 target 'YourProjectTarget' do
@@ -52,6 +52,8 @@ Then, run the following command:
 $ pod install
 ```
 
+**PS:** Alternatively, you can download the latest version of the repository and add **UsabillaFeedbackForm.framework** to your app’s embedded frameworks.
+
 <!-- ### Carthage
 
 The Usabilla SDK is also available through [Carthage](https://github.com/Carthage/Carthage).
@@ -67,17 +69,15 @@ github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.6.0"
 
 ### Manual
 
-Alternatively, you can download the latest version of the repository and add **UsabillaFeedbackForm.framework** to your app’s embedded frameworks.
-
-
-- Create a new form on your [Usabilla](https://app.usabilla.com/member/) Live for Apps section.
-
+The new Usabilla SDK Version 4 comes with two major advancements:
+1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred to as **Campaigns** in this document).
+2. More stabilized [Passive feedback forms](#passive-feedback).
 
 ## Implement the SDK
 
 ### Initialization
 
-Inside your **AppDelegate** add the following line at the top of your file to import the SDK.
+Import Usabilla SDK inside your **AppDelegate**.
 
 ```swift
 import UsabillaFeedbackForm
@@ -88,82 +88,85 @@ Add the following line to the **didFinishLaunchingWithOptions**:
 UsabillaFeedbackForm.initialize(appID: "appID")
 ```
 The **initialize** method will take care of:
-* Submit any pending feedback item
-* Fetch and update all campaign associated with the app ID
-* Initialize a few background processes of the SDK
+* Submitting any pending feedback items.
+* Fetching and updating all campaigns associated with the app ID.
+* Initializing a few background processes of the SDK.
 
 
-
-### Using Campaigns
-Version 4 of the Usabilla for Apps Swift SDK introduces the new campaigns functionality.
+### Campaigns
+Version 4 of the Usabilla for Apps SDK introduces the new campaigns feature.
 This guide describes the Campaigns feature and all the steps necessary to work with it.
 
-In the Usabilla for Apps Platform, we define a campaign as a proactive survey targeted to a specific set of users.
+In the Usabilla for Apps Platform, a campaign is defined as a proactive survey targeted to a specific set of users.
 
 Being able to run campaigns in your mobile app is great because it allows you to collect more specific insights from your targeted users. What is even better is that creating new and managing existing campaigns can be done without the need for a new release of your app. Everything can be managed from the Usabilla web interface.
 
-You can run as many campaigns as you like and target them to be triggered when a specific set of targeting options is met. The survey that is displayed to the user can be configured just like you are used to with the existing feedback forms in your app.
+You can run as many campaigns as you like and target them to be triggered when a specific set of targeting options are met.
+The configuration of how a campaign is displayed to the user will be familiar to existing Usabilla customers. You can configure it to suit your needs just like you are used to from the Passive feedback forms.
 
 The most important aspect of running a mobile campaign are 'Events'. Events are custom triggers that are configured in the SDK. When a pre-defined event occurs, it will allow you to trigger a campaign. A good example of an event is a successful purchase by a user in your app.
 
 ### The App Id
 The app Id is an identifier used to associate campaigns to a mobile app.
-By loading the SDK with a specific App Id, it will fetch all campaigns connected to said App Id and start running them on the device.
+By loading the SDK with a specific app Id, it will fetch all the campaigns connected to the given app Id.
 
 It is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App) by associating it with multiple App Ids.
 
 ### Targeting options
-Campaigns are triggered with events. Events are used to communicate to the SDK when something happens in your app, so that the SDK can react accordingly to what you have set in our web interface.
-To send an event to the SDK, use `sendEvent(event: String)`.
+Campaigns are triggered by events. Events are used to communicate with the SDK when something happens in your app. Consequently, the SDK will react to an event depending on the configuration of the Usabilla web interface.
+To send an event to the SDK, use :
+```swift
+UsabillaFeedbackForm.sendEvent(event: String)
+```
 
-When that event will be sent to the SDK, the campaign will appear.
-
-There are a few options that allow you to have a more specific targeting:
-- You can set a number of times that event has to occur (e.g. 3 times).
+There are multiple options which allow you to define more specific targeting rules of a campaign:
+- You can set the number of times an event has to occur (e.g. 3 times).
 - Specify the percentage of users for whom the campaign should be triggered (e.g. 10%).
+- Define whether you would like to target a specific device language.
 
 You can also segment your user base using custom variables.
-Custom variables can be used to specify some traits of the user and limit the campaign only to a specific subset.
+**Custom variables** can be used to specify some traits of the user and target the campaign only to a specific subset.
 
-For more on how to use custom variables, read [Custom Variables](#adding_custom_variables)
+For more on how to use custom variables, read [Custom Variables](#adding-custom-variables)
 
 **Note: A campaign will never be triggered for the same user more than once.**
 
 ### Campaign Toggling
 
-Sometimes the user of your app is in the middle of a delicate process and should not be disturbed.
-To make sure no campaigns trigger at an inappropriate moment, you can set the boolean property `canDisplayCampaigns` of `UsabillaFeedbackForm` to suit your needs.
+The Usabilla SDK allows you to make sure no campaigns trigger at an inappropriate moment. For example, when the user of your app is in the middle of a delicate process and should not be disturbed. This can be done by setting the boolean property `canDisplayCampaigns` of `UsabillaFeedbackForm` to suit your needs.
+```swift
+UsabillaFeedbackForm.canDisplayCampaigns = false
+```
 
 Setting it to `true` will allow the SDK to display any campaign when it triggers.
-Setting it to `false` will prevent any campaign from being displayed.
+Setting it to `false` will prevent all campaigns from being displayed.
 
-**If a campaign triggers while `canDisplayCampaigns` is `false`, it won't be displayed nor delayed: That event instance will be lost.**
+**Even though `canDisplayCampaigns` is set to `false`, the SDK continues to receive the events sent and if a campaign happens to trigger, it won't be displayed nor delayed: That event instance will be lost.**
 
 By default, `canDisplayCampaigns` is set to `true`.
 
-There is an important reason why a campaign is not delayed for display if the `canDisplayCampaigns` was `false` when the campaign is triggered and later changes to `true`. The reasoning is that displaying a campaign should happen when the targeted event occurs. We can assume that the events configured in your application are also triggered at a proper time in order to display it to your users.
-
+If one or more of your campaigns trigger when the `canDisplayCampaigns` property is set to `false` and later on changed to `true`, the SDK will not display the campaign. The reasoning is because this moment, later in time, might be irrelevant to display the campaign to the user.
 
 ### Managing an existing campaign
 
-After you create a new campaign in the Usabilla for Apps [Campaign Editor](https://app.usabilla.com/member/live/apps/campaigns/add) you can start collecting results. By default, new campaigns are marked as inactive. From the Usabilla web interface, on the Usabilla for Apps [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/), you can activate a campaign. Once you have received a satisfying amount of responses you can deactivate it.
+You can start collecting campaign results right after you create a new campaign in the Usabilla for Apps [Campaign Editor](https://app.usabilla.com/member/live/apps/campaigns/add).
+By default, new campaigns are marked as inactive. On the Usabilla for Apps [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/) page, you can activate or deactivate an existing campaign at any moment to reflect your specific needs.
 
-At any time you can update the survey content of your campaign (e.g. questions). Keep in mind that the changes you make to an existing campaign might affect the integrity of the data you collect (different responses before and after a change).
+Moreover, you can update the content of your campaign (e.g. questions) at any time. Keep in mind that the changes you make to an existing active campaign might affect the integrity of the data you collect (different responses before and after a change).
 
 Furthermore, you can also change the targeting options of a campaign. Keep in mind that updating the targeting options of an active campaign will reset any progression previously made on the user's device.
 
 ### Campaign results
 
-Aggregated campaign results are available for download from the [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/). Here you download the results per campaign, in the CSV format.
+Aggregated campaign results are available for download from the [Campaign Overview](https://app.usabilla.com/member/#/apps/campaigns/overview/). Here you can download the results per campaign, in the CSV format.
 
-Campaign results will contain the answers that your users provided. The campaign feature collects campaign results page by page. This means that even if the user abandons the campaign halfway through, you will still collect valuable insights. When a user navigates to a new page, then the results of the previous page are submitted to Usabilla. Besides the results showing the answers to your questions, campaigns will always contain metadata from the device.
+Campaign results will contain the answers that your users provided. Responses from a campaign are collected and sent to Usabilla page by page. This means that even if a user decides to abandon the campaign halfway through, you will still collect valuable insights. When a user continues to the next page, then the results of the previous page are submitted to Usabilla. Besides campaign results showing the answers to your campaign questions, you will be able to view the device metadata and custom variables.
 
 As for campaign results. Please note that editing the form of an existing campaign will affect the aggregated campaign results:
 
-- Adding new questions to a form will add an additional column to the CSV file.
+- Adding new questions to a form will add additional columns to the CSV file.
 - Removing questions from an existing form will not affect the previously collected results. The associated column and its data will still be in the CSV file.
 - Replacing the question type with a different question is also possible. When you give the same 'name' in the Usabilla for Apps Campaign Editor, then results are represented in the same column.
-
 
 
 
@@ -174,12 +177,12 @@ They are mostly, but not necessarily, initiated by the user.
 
 ### Loading a form
 
-The SDK uses the Form ID you previously got from [Usabilla](https://app.usabilla.com/member/) to fetch and display your form inside your app.
+The SDK uses the Form ID you get from [Usabilla](https://app.usabilla.com/member/apps/list) after creating a new form to fetch and display the form inside your app.
 
-A basic implementation of the SDK would be the following.
+A basic implementation of the SDK would be the following:
 
 ```swift
-class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
+class SomeViewController: UIViewController, UsabillaFeedbackFormDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -195,7 +198,6 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
     func formFailedLoading(_ backupForm: UINavigationController) {
         present(backupForm, animated: true, completion: nil)
     }
-
 }
 ```
 
@@ -204,9 +206,15 @@ class ViewController: UIViewController, UsabillaFeedbackFormDelegate {
 
 It is possible to attach a screenshot to a feedback form.
 
-You can take a screenshot at any moment calling `let image = UsabillaFeedbackForm.takeScreenshot(self.view)`.
+You can take a screenshot at any moment calling 
+```swift
+let image = UsabillaFeedbackForm.takeScreenshot(self.view)
+```
 
-To attach the screenshot to the form, pass it as a parameter when calling `UsabillaFeedbackForm.loadFeedbackForm("Form Id", screenshot: image)`
+To attach the screenshot to the form, pass it as a parameter when calling 
+```swift
+UsabillaFeedbackForm.loadFeedbackForm("Form Id", screenshot: image)
+```
 
 Pass `nil` as the `screenshot` parameter if you don't want to have a screenshot of the current view.
 
@@ -214,7 +222,7 @@ Pass `nil` as the `screenshot` parameter if you don't want to have a screenshot 
 
 Instead of taking the screenshot using the `UsabillaFeedbackForm.takeScreenshot()` method, you can provide any image you wish by passing it as the `image` parameter when calling `UsabillaFeedbackForm.loadFeedbackForm()`
 
-This will allow you to hide any user sensitive or private information by, for example, taking the screenshot yourself, removing all unwanted information and submitting the censored version.
+This will allow you to hide any user sensitive information by, for example, taking the screenshot yourself, removing all unwanted information and submitting the censored version.
 
 
 <!-- ### Preloading a form
@@ -263,11 +271,15 @@ You can pass along custom variables that will be attached to the feedback users 
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
 
 You can set custom variables using the public method
-`UsabillaFeedbackForm.setCustomVariable(value: Any?, forKey: String)`
+```swift
+UsabillaFeedbackForm.setCustomVariable(value: Any?, forKey: String)
+```
 
 or by simply modifying the dictionary object
 
-`UsabillaFeedbackForm.customVariables["key"] = "value"`
+```swift
+UsabillaFeedbackForm.customVariables["key"] = "value"
+```
 
 **Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitation have to be taken into account.
 The `value` of a custom variable must then be an instance NSString, NSNumber, NSArray, NSDictionary, or NSNull.**   
@@ -279,7 +291,7 @@ You can always check whether an object is considered valid or not by calling `JS
 
 Custom variables are added as extra feedback data with every feedback item sent by the SDK, whether from a passive form or a campaign.
 
-**Custom variables will also be used as targeting option, as long as the value is a String.**
+**Custom variables can be used as targeting options, as long as the `value` is a String.**
 
 ### App Store rating
 
@@ -289,11 +301,28 @@ In the Usabilla web interface, it is possible to define whether a specific feedb
 
 ### Submission callback
 
-Since **v3.3.0** it is possible to get information about the feedback the user has left by implementing UsabillaFeedbackFormDelegate.**formDidClose** method, for the passive forms, and UsabillaFeedbackFormDelegate.**campaignDidClose** for the campaigns.
+It is possible to get information about the feedback the user has left and you will also be notified if the user has left the form without submitting it, simply by implementing:
 
-You will also be notified if the user has left the form without submitting it.
+#### Passive forms
 
-This method provides you with an array of (or a single) **FeedbackResult**:
+```swift
+func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+    // code here
+}
+```
+This delegate method provides you with an array of `FeedbackResult` because the user may submit the form multiple times and this method will be called only once for all the feedback sent.
+
+
+#### Campaigns
+
+```swift
+func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {
+    // code here
+}
+```
+Unlike the Passive forms method, the campaigns method only returns one `FeedbackResult` and called only once.
+
+#### FeedbackResult
 
 ```swift
 struct FeedbackResult {
@@ -303,16 +332,13 @@ struct FeedbackResult {
 }
 ```
 
-This is because, for the passive form, the user may submit the form multiple times and this method will be called only once for all feedback sent.
-
 The **rating** value is set as soon as the user interacts with it and will be reported even if the form is not submitted.
 
 The **abandonedPageIndex** is only set if the user cancels the form before submission.
 
-Here is a sample implementation :
-
+#### Implementation Sample
 ```swift
-func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool){
+func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
      guard let feedback = feedbackResults.first else {
          return
      }
@@ -337,8 +363,8 @@ func formDidClose(_ form: UINavigationController, formID: String, with feedbackR
 ### Custom Emoticons
 It is possible to use custom images instead of the one provided natively in the SDK.
 
-To do so, you must provide a list (or two, depending on what you want to achieve) of five UIImage that will be used instead of the Usabilla's default emoticons.
-The element 0 will be the lowest or leftmost item, while the 5th element will be the highest or rightmost.
+To do so, you must provide a list (or two, depending on what you want to achieve) of five `UIImage` that will be used instead of the Usabilla's default emoticons.
+The first element of the array should be the lowest or leftmost item, while the 5th element will be the highest or rightmost.
 At the moment, the SDK does not perform any check to make sure the lists are valid.
 
 #### Provide only the selected version
@@ -347,7 +373,7 @@ You can provide only one list containing the selected version of the icons.
 The images will be displayed with an alpha value of 0.5 when unselected, and with an alpha value of 1 when selected.
 
 
-```
+```swift
     let a = UIImage(named: "1")!
     let b = UIImage(named: "2")!
     let c = UIImage(named: "3")!
@@ -361,27 +387,24 @@ The images will be displayed with an alpha value of 0.5 when unselected, and wit
 You can provide two lists containing the selected and the unselected version of the icons.
 
 The icons drawable will be selected from one of the two lists according to its state.
-```
 
+```swift
     let enabled = createEnabledArray()
     let disabled = createDisabledArray()
 
     UsabillaFeedbackForm.theme.enabledEmoticons = enabled
     UsabillaFeedbackForm.theme.disabledEmoticons = disabled
-
 ```
 
-### Custom Stars
+### Custom Star Rating
 
 You can change the appearance of the star in the Star Rating by setting both fullStar and emptyStar in the UsabillaThemeConfigurator.
-The first will be the full star, the second the empty version.
 
-Keep in mind that, in order to see a Rating Bar in your form, you must first enable it in the [Usabilla for App](https://app.usabilla.com/member/apps/) page.
+Keep in mind that, in order to display the Star Rating in your form, you must first enable it in the [Usabilla Web Interface](https://app.usabilla.com/member/apps/).
 
-```
+```swift
     UsabillaFeedbackForm.theme.fullStar = UIImage(named: "fullStar")!
     UsabillaFeedbackForm.theme.emptyStar = UIImage(named: "emptyStar")!
-
 ```
 
 ### Custom Fonts
@@ -392,7 +415,9 @@ Since the SDK uses also the bold and italic version of the font, it is recommend
 If that is not the case, the SDK will use the default system font for the italic and bold phrases.
 
 
-`UsabillaFeedbackForm.theme.customFont= UIFont(name: "Helvetica-LightOblique", size: 20)`
+```swift
+UsabillaFeedbackForm.theme.customFont = UIFont(name: "Helvetica-LightOblique", size: 20)
+```
 
 ### Custom colors
 
@@ -409,25 +434,25 @@ If you want to provide your own translation, you need to override **all** the ke
 
 
 The default file with the keys and the default text is the following:
-```
-//Default usabilla english localisation
+```swift
+//Default Usabilla English localization
 "usa_form_required_field_error" = "Please check this field";
 "usa_screnshot_placeholder" = "Add screenshot";
-
 ```
 
 Failure to override a key will display the key itself instead as the text.
 
 If you want to use your custom .string file, you can do so by calling
 
-`    UsabillaFeedbackForm.localizedStringFile = "your_localization_file_name"
-`
+```swift
+UsabillaFeedbackForm.localizedStringFile = "your_localization_file_name"
+```
 
 With the name of your file, without the .string extension.
 
 ## Integration with Obj-C applications
 
-To integrate the SDK in your Obj-C application, follow apple official guidelines on how to [use Swift and Objective-C in the Same Project](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html)
+To integrate the SDK in your Obj-C application, follow the Apple official guidelines on how to [use Swift and Objective-C in the Same Project](https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).
 
 A quick way to approach this problem is to create a Swift file from where you will handle your application. After creating the new file and having set up the Bridging Header, you can extend your existing view controllers inside the Swift class to seamlessly integrate the SDK in your app.
 
@@ -436,22 +461,19 @@ In this example you can see a ViewController in Obj-C:
 ```objectivec
 #import "ViewController.h"
 
-//Remember to import the auto generated Swift header, otherwise you won't see you Swift extension
+//Remember to import the auto generated Swift header, otherwise, you won't see your Swift extension
 #import "objctest-Swift.h"
-
 
 @interface ViewController ()
 
 @end
 
+
 @implementation ViewController
 
-
 - (IBAction)buttonPressed:(id)sender {
-      [self  showForm];
-
+    [self showForm];
 }
-
 
 @end
 
@@ -468,7 +490,6 @@ extension ViewController : UsabillaFeedbackFormDelegate {
         super.viewDidLoad()
         UsabillaFeedbackForm.delegate = self
     }
-
 
     public func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
         present(form, animated:  true)
