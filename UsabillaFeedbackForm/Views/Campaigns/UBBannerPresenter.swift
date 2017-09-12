@@ -52,7 +52,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
 
-        UIView.animate(withDuration: 0.15, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             animations?()
             self.topConstraint.constant = -self.offset
             self.bottomConstraint.constant = self.offset
