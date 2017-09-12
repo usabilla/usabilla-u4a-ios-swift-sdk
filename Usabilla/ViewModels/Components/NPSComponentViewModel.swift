@@ -1,17 +1,14 @@
 //
-//  SliderComponentViewModel.swift
+//  NPSComponentViewModel.swift
 //  Usabilla
 //
-//  Created by Benjamin Grima on 15/03/2017.
+//  Created by Benjamin Grima on 12/09/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
 import Foundation
 
-class SliderComponentViewModel: BaseIntComponentViewModel<RatingFieldModel> {
-    var scale: Int? {
-        return model.scale
-    }
+class NPSComponentViewModel: BaseIntComponentViewModel<NPSFieldModel> {
     var lowLabel: String? {
         return model.low
     }

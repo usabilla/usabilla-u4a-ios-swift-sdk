@@ -1,23 +1,19 @@
 //
 //  NPSFieldModel.swift
-//  UsabillaFeedbackForm
+//  Usabilla
 //
-//  Created by Giacomo Pinato on 04/03/16.
-//  Copyright © 2016 Usabilla. All rights reserved.
+//  Created by Benjamin Grima on 12/09/2017.
+//  Copyright © 2017 Usabilla. All rights reserved.
 //
 
 import Foundation
 
 class NPSFieldModel: IntFieldModel {
+    let low, high: String?
 
-    let mode, low, high: String?
-    let colorLegend: Bool?
-
-    required init(json: JSON, pageModel: PageModel) {
-        mode = json["mode"].string
+    override init(json: JSON, pageModel: PageModel) {
         low = json["low"].string
         high = json["high"].string
-        colorLegend = json["colorLegend"].bool
         super.init(json: json, pageModel: pageModel)
     }
 }

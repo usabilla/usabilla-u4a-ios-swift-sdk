@@ -1,6 +1,6 @@
 //
 //  UsabillaInternalTest.swift
-//  UsabillaFeedbackFormTests
+//  UsabillaTests
 //
 //  Created by Giacomo Pinato on 02/05/16.
 //  Copyright © 2016 Usabilla. All rights reserved.

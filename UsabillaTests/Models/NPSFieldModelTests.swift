@@ -1,8 +1,8 @@
 //
-//  RatingFieldModelTest.swift
-//  Usabilla
+//  NPSFieldModelTests.swift
+//  UsabillaTests
 //
-//  Created by Benjamin Grima on 15/01/2017.
+//  Created by Benjamin Grima on 25/09/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
@@ -11,15 +11,15 @@ import Nimble
 
 @testable import Usabilla
 
-class RatingFieldModelTest: QuickSpec {
-
+class NPSFieldModelTests: QuickSpec {
+    
     override func spec() {
         let pageModel = PageModel(pageNumber: 0, pageName: "test")
-        var model: RatingFieldModel?
-
-        describe("RatingFieldModel") {
+        var model: NPSFieldModel?
+        
+        describe("NPSFieldModel") {
             beforeEach {
-                model = RatingFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+                model = NPSFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
             }
             it("init RatingFieldModel") {
                 expect(model).toNot(beNil())

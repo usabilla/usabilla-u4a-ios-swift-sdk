@@ -22,6 +22,7 @@ class JumpRulesManyControls: XCTestCase {
 
     var app: XCUIApplication!
     var moodButtons: XCUIElementQuery!
+    let mainScreen = MainScreen()
 
     override func setUp() {
         super.setUp()
@@ -36,8 +37,8 @@ class JumpRulesManyControls: XCTestCase {
         moodButtons.element(boundBy: index).tap()
     }
 
-    private func selectSlider(withValue value: CGFloat) {
-        app.sliders.element(boundBy: 0).adjust(toNormalizedSliderValue: value)
+    private func selectNPS(withValue value: CGFloat) {
+        mainScreen.nps.adjust(toNormalizedSliderValue: value)
     }
 
     private func tapNext() {
@@ -49,46 +50,46 @@ class JumpRulesManyControls: XCTestCase {
         return textView.value as! String
     }
 
-    func testSelecting1InMoodControlAndNoValueForTheSliderTakesToTheNextPage() {
+    func testSelecting1InMoodControlAndNoValueForTheNPSTakesToTheNextPage() {
         selectMood(atIndex: 0)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
-    func testSelecting2InMoodControlAndNoValueForTheSliderTakesToTheNextPage() {
+    func testSelecting2InMoodControlAndNoValueForTheNPSTakesToTheNextPage() {
         selectMood(atIndex: 1)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
-    func testSelecting3InMoodControlAndNoValueForTheSliderTakesToTheNextPage() {
+    func testSelecting3InMoodControlAndNoValueForTheNPSTakesToTheNextPage() {
         selectMood(atIndex: 2)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
-    func testSelecting4InMoodControlAndNoValueForTheSliderTakesToTheNextPage() {
+    func testSelecting4InMoodControlAndNoValueForTheNPSTakesToTheNextPage() {
         selectMood(atIndex: 3)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
-    func testSelecting5InMoodControlAndNoValueForTheSliderTakesToPage3() {
+    func testSelecting5InMoodControlAndNoValueForTheNPSTakesToPage3() {
         selectMood(atIndex: 4)
         tapNext()
         XCTAssert(getTextViewText() == "Page 3", "It should display 'Page 3'")
     }
 
-    func testSelecting1InMoodControlAnd4ForTheSliderTakesToPage4() {
+    func testSelecting1InMoodControlAnd4ForTheNPSTakesToPage4() {
         selectMood(atIndex: 0)
-        selectSlider(withValue: 0.4)
+        selectNPS(withValue: 0.4)
         tapNext()
         XCTAssert(getTextViewText() == "Page 4", "It should display 'Page 4'")
     }
 
-    func testSelecting5InMoodControlAnd4ForTheSliderTakesToPage3() {
+    func testSelecting5InMoodControlAnd4ForTheNPSTakesToPage3() {
         selectMood(atIndex: 4)
-        selectSlider(withValue: 0.4)
+        selectNPS(withValue: 0.4)
         tapNext()
         XCTAssert(getTextViewText() == "Page 3", "It should display 'Page 3'")
     }

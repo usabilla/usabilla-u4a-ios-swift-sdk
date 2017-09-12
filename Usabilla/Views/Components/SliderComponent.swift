@@ -66,21 +66,14 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         rightLabel.textAlignment = .right
 
         // configuration
-        if viewModel.isNPS {
-            valueLabel.text = "0/10"
-            slider.minimumValue = 0
-            slider.maximumValue = 10
+        if let scale = viewModel.scale {
+            slider.maximumValue = Float(scale)
+            valueLabel.text = "1/\(scale)"
         } else {
-
-            if let scale = viewModel.scale {
-                slider.maximumValue = Float(scale)
-                valueLabel.text = "1/\(scale)"
-            } else {
-                slider.maximumValue = 10
-                valueLabel.text = "0/10"
-            }
-            slider.minimumValue = 1
+            slider.maximumValue = 10
+            valueLabel.text = "0/10"
         }
+        slider.minimumValue = 1
 
         if let fieldValue = viewModel.value {
             if let scale = viewModel.scale {

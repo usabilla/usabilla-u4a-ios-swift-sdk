@@ -9,8 +9,16 @@
 import Foundation
 import UIKit
 
-#if DEBUG
-    extension UIView {
+extension UIView {
+
+    /// Add array of subviews to view.
+    ///
+    /// - Parameter subviews: array of subviews to add to self.
+    public func addSubviews(_ subviews: UIView...) {
+        subviews.forEach({ self.addSubview($0) })
+    }
+
+    #if DEBUG
         /**
          *  Add a border to all UI Components
          */
@@ -18,5 +26,5 @@ import UIKit
             layer.borderColor = color.cgColor
             layer.borderWidth = width
         }
-    }
-#endif
+    #endif
+}

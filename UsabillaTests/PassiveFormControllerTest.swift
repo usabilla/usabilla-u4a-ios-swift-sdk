@@ -122,8 +122,8 @@ class PassiveFormControllerTest: QuickSpec {
                 moodVM?.value = 2
 
                 let npsVM = vm.cellViewModels.first {
-                    $0.componentViewModel is SliderComponentViewModel
-                }?.componentViewModel as? SliderComponentViewModel
+                    $0.componentViewModel is NPSComponentViewModel
+                }?.componentViewModel as? NPSComponentViewModel
 
                 npsVM?.value = 2
                 expect(viewController.viewModel.currentPageIndex).to(equal(0))

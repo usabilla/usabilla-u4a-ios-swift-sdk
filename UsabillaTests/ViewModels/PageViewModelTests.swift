@@ -63,7 +63,7 @@ class PageViewModelTests: QuickSpec {
                     expect(nextPageName).to(equal("Third"))
                 }
                 it("should return the right page name with jumpRule is satisfied") {
-                    let npsField = pageModel.fields.first { $0 is RatingFieldModel } as? RatingFieldModel
+                    let npsField = pageModel.fields.first { $0 is NPSFieldModel } as? NPSFieldModel
                     npsField?.fieldValue = 1
                     let nextPageName = viewModel.nextPageName()
                     expect(nextPageName).to(equal("second"))

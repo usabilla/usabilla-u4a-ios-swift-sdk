@@ -5,6 +5,7 @@
 //  Created by Giacomo Pinato on 19/09/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
+import Foundation
 
 import Foundation
 

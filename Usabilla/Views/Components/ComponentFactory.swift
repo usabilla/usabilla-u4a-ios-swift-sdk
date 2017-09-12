@@ -39,6 +39,9 @@ class ComponentFactory {
             return ScreenshotComponent(viewModel: (viewModel as? ScreenshotComponentViewModel)!)
         case is SliderComponentViewModel:
             return SliderComponent(viewModel: (viewModel as? SliderComponentViewModel)!)
+        case is NPSComponentViewModel:
+            return NPSComponent(viewModel: (viewModel as? NPSComponentViewModel)!)
+
         default:
             break
         }

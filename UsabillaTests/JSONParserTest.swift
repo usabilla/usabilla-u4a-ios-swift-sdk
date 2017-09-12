@@ -119,10 +119,10 @@ class JSONParserTest: QuickSpec {
                     expect(field.rule?.dependsOnID).to(equal("mood"))
                 }
                 it("should set correct values for field 3") {
-                    let field: RatingFieldModel = formModel.pages[0].fields[2] as! RatingFieldModel
+                    let field: NPSFieldModel = formModel.pages[0].fields[2] as! NPSFieldModel
                     expect(field.fieldTitle).to(equal("How likely are you to recommend our company/product/service to your friends and colleagues?"))
                     expect(field.fieldID).to(equal("nps"))
-                    expect(field.type).to(equal("rating"))
+                    expect(field.type).to(equal("nps"))
                     expect(field.required).to(beTrue())
                     expect(field.fieldValue).to(beNil())
                     expect(field.shouldAppear()).to(beFalse())

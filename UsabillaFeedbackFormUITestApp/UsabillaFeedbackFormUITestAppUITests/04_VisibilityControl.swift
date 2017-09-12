@@ -13,6 +13,8 @@ class VisibilityControl: XCTestCase {
     var app: XCUIApplication!
     var paragraph: XCUIElement!
     var moodButtons: XCUIElementQuery!
+    let mainScreen = MainScreen()
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
@@ -28,72 +30,72 @@ class VisibilityControl: XCTestCase {
         moodButtons.element(boundBy: index).tap()
     }
 
-    private func selectSlider(withValue value: CGFloat) {
-        app.sliders.element(boundBy: 0).adjust(toNormalizedSliderValue: value)
+    private func selectNPS(withValue value: CGFloat) {
+        mainScreen.nps.adjust(toNormalizedSliderValue: value)
     }
 
-    private func displaySliderAndParagraph() {
+    private func displayNPSAndParagraph() {
         selectMood(atIndex: 4)
-        selectSlider(withValue: 0.5)
-        XCTAssert(app.sliders.count == 1, "The slider should be visible")
+        selectNPS(withValue: 0.5)
+        XCTAssert(mainScreen.nps.isHittable, "The NPS should be visible")
         XCTAssert(paragraph.visible(), "The paragraph should be visible")
     }
 
     func testVisbilityControls() {
-        // Selecting 1 (nothing happens - Slider and Paragraph are not visible)
+        // Selecting 1 (nothing happens - NPS and Paragraph are not visible)
         selectMood(atIndex: 0)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 2 (nothing happens - Slider and Paragraph are not visible)
+        // Selecting 2 (nothing happens - NPS and Paragraph are not visible)
         selectMood(atIndex: 1)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 3 (nothing happens - Slider and Paragraph are not visible)
+        // Selecting 3 (nothing happens - NPS and Paragraph are not visible)
         selectMood(atIndex: 2)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 4 (nothing happens - Slider and Paragraph are not visible)
+        // Selecting 4 (nothing happens - NPS and Paragraph are not visible)
         selectMood(atIndex: 3)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 5 in Mood Control displays Slider
+        // Selecting 5 in Mood Control displays NPS
         selectMood(atIndex: 4)
-        XCTAssert(app.sliders.count == 1, "The slider should be visible")
+        XCTAssert(mainScreen.nps.isHittable, "The NPS should be visible")
 
-        // Selecting 5 in Slider displays Paragraph
-        selectSlider(withValue: 0.5)
+        // Selecting 5 in NPS displays Paragraph
+        selectNPS(withValue: 0.5)
         XCTAssert(paragraph.visible(), "The paragraph should be visible")
 
-        // Selecting 1 (2, 3 or 4) in Mood Control hides Slider and Paragraph
+        // Selecting 1 (2, 3 or 4) in Mood Control hides NPS and Paragraph
         selectMood(atIndex: 0)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 2 in Mood Control hides Slider and Paragraph
-        displaySliderAndParagraph()
+        // Selecting 2 in Mood Control hides NPS and Paragraph
+        displayNPSAndParagraph()
         selectMood(atIndex: 1)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 3 in Mood Control hides Slider and Paragraph
-        displaySliderAndParagraph()
+        // Selecting 3 in Mood Control hides NPS and Paragraph
+        displayNPSAndParagraph()
         selectMood(atIndex: 2)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 4 in Mood Control hides Slider and Paragraph
-        displaySliderAndParagraph()
+        // Selecting 4 in Mood Control hides NPS Paragraph
+        displayNPSAndParagraph()
         selectMood(atIndex: 3)
-        XCTAssert(app.sliders.count == 0, "The slider should not be visible")
+        XCTAssert(!mainScreen.nps.isHittable, "The NPS should not be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
 
-        // Selecting 5 in Mood Control displays only Slider and not the Paragraph
+        // Selecting 5 in Mood Control displays only NPS and not the Paragraph
         selectMood(atIndex: 4)
-        XCTAssert(app.sliders.count == 1, "The slider should be visible")
+        XCTAssert(mainScreen.nps.isHittable, "The NPS should be visible")
         XCTAssert(!paragraph.visible(), "The paragraph should not be visible")
     }
 }

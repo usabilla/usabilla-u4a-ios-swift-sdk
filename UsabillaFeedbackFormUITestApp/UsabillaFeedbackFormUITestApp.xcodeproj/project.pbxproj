@@ -15,6 +15,7 @@
 		437B96D61E266A8F00AA0A25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D41E266A8F00AA0A25 /* Main.storyboard */; };
 		437B96D81E266A8F00AA0A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D71E266A8F00AA0A25 /* Assets.xcassets */; };
 		437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D91E266A8F00AA0A25 /* LaunchScreen.storyboard */; };
+		43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E37341F7BC28A00FA61FE /* MainScreen.swift */; };
 		43F9516E1F01116500FE23F8 /* 02_JumpRulesOneControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */; };
 		43F9516F1F01116500FE23F8 /* 03_JumpRulesManyControls.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */; };
 		43F951701F01116500FE23F8 /* 04_VisibilityControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951661F01116500FE23F8 /* 04_VisibilityControl.json */; };
@@ -61,6 +62,7 @@
 		437B96E11E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaFeedbackFormUITestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96E71E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		438E37341F7BC28A00FA61FE /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 02_JumpRulesOneControl.json; sourceTree = "<group>"; };
 		43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 03_JumpRulesManyControls.json; sourceTree = "<group>"; };
 		43F951661F01116500FE23F8 /* 04_VisibilityControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 04_VisibilityControl.json; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				438E37331F7BC26E00FA61FE /* Helpers */,
 				C555E99F1EE0120900F84B51 /* 01_FormAppearance.swift */,
 				43F951761F0111F000FE23F8 /* 02_JumpRulesOneControl.swift */,
 				43F9517C1F01633300FE23F8 /* 03_JumpRulesManyControls.swift */,
@@ -133,6 +136,14 @@
 				437B96E71E266A8F00AA0A25 /* Info.plist */,
 			);
 			path = UsabillaFeedbackFormUITestAppUITests;
+			sourceTree = "<group>";
+		};
+		438E37331F7BC26E00FA61FE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				438E37341F7BC28A00FA61FE /* MainScreen.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		43F951611F01116500FE23F8 /* SDK-UI-Scenarios */ = {
@@ -282,6 +293,7 @@
 			files = (
 				43F9517F1F024EAF00FE23F8 /* 04_VisibilityControl.swift in Sources */,
 				C555E9A01EE0120900F84B51 /* 01_FormAppearance.swift in Sources */,
+				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
 				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
 				43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */,
 			);

@@ -47,11 +47,11 @@ class FieldFactory {
         case .textArea:
             return TextAreaFieldModel(json: json, pageModel: pagemodel)
         case .nps:
-            return RatingFieldModel(json: json, pageModel: pagemodel, isNPS: true)
+            return NPSFieldModel(json: json, pageModel: pagemodel)
         case .mood:
             return MoodFieldModel(json: json, pageModel: pagemodel)
         case .rating:
-            return RatingFieldModel(json: json, pageModel: pagemodel, isNPS: false)
+            return RatingFieldModel(json: json, pageModel: pagemodel)
         case .radio:
             return RadioFieldModel(json: json, pageModel: pagemodel)
         case .checkbox:

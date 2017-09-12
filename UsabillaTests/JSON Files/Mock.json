@@ -1,5 +1,26 @@
 {
     "node": {
+        "NPSField": {
+            "type": "nps",
+            "caption": "NPS",
+            "autoSubmit": false,
+            "forceRequired": false,
+            "fixed": false,
+            "interactive": true,
+            "showHideRule": {
+                "control": "mood",
+                "value": ["4", "5"],
+                "action": "show"
+            },
+            "validationText": "This field is required",
+            "name": "nps",
+            "title":
+            "How likely are you to recommend our company/product/service to your friends and colleagues?",
+            "low": "not at all",
+            "high": "very likely",
+            "hidden": true,
+            "required": true
+        },
         "TargetingPassiveStatus": {
             "Correct" : {
                 "rule": {
