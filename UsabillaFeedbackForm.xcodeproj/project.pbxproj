@@ -26,6 +26,7 @@
 		0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */; };
 		047B7FE11EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */; };
 		047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */ = {isa = PBXBuildFile; fileRef = 047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */; };
+		047EE5A71F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
 		0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
 		0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
 		0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
@@ -54,6 +55,7 @@
 		04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */; };
 		04A368461EF41CB100B88279 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
 		04B12F091E9FC8B400E65BE5 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
+		04C6284B1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6284A1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift */; };
 		04C6BEEA1E9521440078F6FC /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
 		04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */; };
 		04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */; };
@@ -429,6 +431,7 @@
 		047B7FE01EFA7A9D00AD43C1 /* UBCampaignFeedbackRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestTests.swift; sourceTree = "<group>"; };
 		047B7FE21EFBC39B00AD43C1 /* HTTPClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		047B7FE41EFBD77100AD43C1 /* OneButtonCampaign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OneButtonCampaign.json; sourceTree = "<group>"; };
+		047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFeedbackIDDictionaryDAO.swift; sourceTree = "<group>"; };
 		0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingFieldModel.swift; sourceTree = "<group>"; };
 		0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CheckBoxWithText.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxFieldModel.swift; sourceTree = "<group>"; };
@@ -456,6 +459,7 @@
 		04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentageTest.swift; sourceTree = "<group>"; };
 		04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignSubmissionManager.swift; sourceTree = "<group>"; };
 		04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		04C6284A1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBFeedbackIDDictionaryDAOTests.swift; sourceTree = "<group>"; };
 		04C6BEE91E9521440078F6FC /* EventEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEngine.swift; sourceTree = "<group>"; };
 		04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignManager.swift; path = ../EventEngine/CampaignManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04CAA1881EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampaignSubmissionRequestManagerTests.swift; path = ManagersTest/CampaignSubmissionRequestManagerTests.swift; sourceTree = "<group>"; };
@@ -1102,6 +1106,7 @@
 				43B0EE6C1EA0B98900241D44 /* UBCampaignDAOTests.swift */,
 				431F6B071E9F9B0300D5BF17 /* UBFeedbackRequestDAOTests.swift */,
 				040325091EF2CD8200A2AE48 /* UBCampaignFeedbackRequestDAOTests.swift */,
+				04C6284A1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -1171,6 +1176,7 @@
 		4390C0F01E97BE8D00092977 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */,
 				4390C0F11E97BE9B00092977 /* UBDAO.swift */,
 				4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */,
 				4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */,
@@ -1609,6 +1615,7 @@
 				4390C0F41E97BEC500092977 /* UBFileStorageDAO.swift in Sources */,
 				04DC25B31E8BB347002962A3 /* Decorator.swift in Sources */,
 				04F54E261CD76708002F501E /* UsabillaTheme.swift in Sources */,
+				047EE5A71F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift in Sources */,
 				4390C0F21E97BE9B00092977 /* UBDAO.swift in Sources */,
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
@@ -1717,6 +1724,7 @@
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,
 				43BFD4291EFBE6B400AD47AE /* UBToastPageViewModelTests.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */,
+				04C6284B1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeConfiguratorTest.swift in Sources */,
 				4306698E1E7692690078E3B3 /* FeedbackResultTest.swift in Sources */,
 				04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */,

@@ -26,7 +26,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
     var campaignForm: FormModel?
 
     var submissionSucceed: Bool = true
-
+    var returnFeedbackID: Bool = false
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
 
@@ -62,13 +62,13 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func submit(withRequest request: URLRequest) -> Promise<Bool> {
+    func submit(withRequest request: URLRequest) -> Promise<String?> {
         lastRequest = request
         counter += 1
         return Promise { fulfill, reject in
 
             if self.submissionSucceed {
-                fulfill(true)
+                returnFeedbackID ? fulfill("newID") : fulfill(nil)
                 return
             }
             reject(NSError(domain: "", code: 0, userInfo: nil))
@@ -90,9 +90,9 @@ class CampaignSubmissionManagerTests: QuickSpec {
         let dao = UBCampaignFeedbackRequestDAO.shared
         var submissionService: SubmitServiceMock!
 
-        let item1 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389940")
-        let item2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389960")
-        let item5 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389990")
+        let post = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389940")
+        let patch1 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl/internalID")!), internalID: "internalID", id: "1498039389960")
+        let patch2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl/internalID")!), internalID: "internalID", id: "1498039389990")
 
         describe("CampaignSubmissionManager") {
 
@@ -100,18 +100,19 @@ class CampaignSubmissionManagerTests: QuickSpec {
                 reachabilityMock = ReachabilityMock()
                 dao.deleteAll()
                 submissionService = SubmitServiceMock()
-                csm = CampaignSubmissionManager(DAO: dao, service: submissionService, reachability: reachabilityMock)
+                submissionService.returnFeedbackID = false
+                csm = CampaignSubmissionManager(DAO: dao, dictionaryStore: UBFeedbackIDDictionaryDAO.shared, service: submissionService, reachability: reachabilityMock)
             }
 
             it("should work online and offline") {
                 //set offline
                 reachabilityMock.reachable = false
 
-                csm.handle(request: item1)
+                csm.handle(request: post)
                 expect(dao.readAll().count).to(equal(1))
-                csm.handle(request: item2)
+                csm.handle(request: patch1)
                 expect(dao.readAll().count).to(equal(2))
-                csm.handle(request: item5)
+                csm.handle(request: patch2)
                 expect(dao.readAll().count).to(equal(3))
 
                 //set online
@@ -119,29 +120,43 @@ class CampaignSubmissionManagerTests: QuickSpec {
                 expect(dao.readAll().count).toEventually(equal(0), timeout: 4)
             }
 
+            context("when updating a feedback item URL") {
+                it("should apply the new ID to all patches") {
+                    submissionService.submissionSucceed = true
+                    reachabilityMock.reachable = true
+                    submissionService.returnFeedbackID = true
+                    csm.handle(request: post)
+                    csm.handle(request: patch1)
+                    expect(submissionService.lastRequest?.url?.absoluteString).toEventually(equal("https://www.google.nl/newID"), timeout: 4)
+                    csm.handle(request: patch2)
+                    expect(submissionService.lastRequest?.url?.absoluteString).toEventually(equal("https://www.google.nl/newID"), timeout: 4)
+                }
+            }
+
             context("when sending a request fails") {
                 it("should delete the request after 3 failed attempts") {
                     reachabilityMock.reachable = true
                     expect(dao.readAll().count).to(equal(0))
                     submissionService.submissionSucceed = false
-                    csm.handle(request: item1)
-                    expect(dao.readAll().count).toEventually(equal(1))
+                    csm.handle(request: post)
+                    expect(dao.readAll().count).toEventually(equal(1), timeout: 4)
                     var campaign = dao.readAll().first!
                     expect(campaign.numberOfSubmissionAttempts).toEventually(equal(1))
                     reachabilityMock.reachable = false
                     reachabilityMock.reachable = true
-                    expect(dao.readAll().count).toEventually(equal(1))
+                    expect(dao.readAll().count).toEventually(equal(1), timeout: 4)
                     campaign = dao.readAll().first!
                     expect(campaign.numberOfSubmissionAttempts).toEventually(equal(2))
                     reachabilityMock.reachable = false
                     reachabilityMock.reachable = true
                     expect(dao.readAll().count).toEventually(equal(0))
                 }
+
                 it("should increase the number of attempts of this request") {
                     reachabilityMock.reachable = true
                     expect(dao.readAll().count).to(equal(0))
                     submissionService.submissionSucceed = false
-                    csm.handle(request: item1)
+                    csm.handle(request: post)
                     expect(dao.readAll().count).toEventually(equal(1))
                     let campaign = dao.readAll().first!
                     expect(campaign.numberOfSubmissionAttempts).toEventually(equal(1))

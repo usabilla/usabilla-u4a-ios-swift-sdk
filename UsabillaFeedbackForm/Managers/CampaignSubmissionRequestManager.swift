@@ -32,8 +32,8 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
 
     private var isFirst: Bool
 
+    // swiftlint:disable:next force_unwrapping
     init(appID: String, campaignID: String, formVersion: Int, userContext: [String: Any]?, campaignSubmissionManager: CampaignSubmissionManagerProtocol, reachability: Reachable = Reachability()!) {
-
         self.appID = appID
         self.formVersion = formVersion
         self.userContext = userContext
@@ -51,7 +51,6 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
 
         if page.type == .banner {
             payload = addMetadataPayload(payload: payload)
-            payload["id"] = feedbackID
         }
 
         if nextPageType == .toast {
@@ -63,8 +62,8 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
     }
 
     private func saveToStore(withRequest request: URLRequest) {
-            let request = UBCampaignFeedbackRequest(request: request)
-           campaignSubmissionManager.handle(request: request)
+        let request = UBCampaignFeedbackRequest(request: request, internalID: feedbackID)
+        campaignSubmissionManager.handle(request: request)
     }
 
     private func buildRequest(withPayload payload: Payload) -> URLRequest {

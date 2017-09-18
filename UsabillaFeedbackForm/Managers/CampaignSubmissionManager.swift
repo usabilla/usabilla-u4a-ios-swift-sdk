@@ -16,12 +16,20 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
     private let service: SubmissionServiceProtocol
     private let DAO: UBCampaignFeedbackRequestDAO
     private let maxNumberOfSubmissionAttempts = 3
+    private var feedbackIDs: NSMutableDictionary = [:]
+    private var dictionaryStore: UBFeedbackIDDictionaryDAO
 
-    init(DAO: UBCampaignFeedbackRequestDAO, service: SubmissionServiceProtocol = CampaignService(), reachability: Reachable = Reachability()!) {
+    // swiftlint:disable:next force_unwrapping
+    init(DAO: UBCampaignFeedbackRequestDAO, dictionaryStore: UBFeedbackIDDictionaryDAO, service: SubmissionServiceProtocol = CampaignService(), reachability: Reachable = Reachability()!) {
         self.service = service
         self.DAO = DAO
         self.reachability = reachability
         try? reachability.startNotifier()
+        self.dictionaryStore = dictionaryStore
+        if let dictionary = dictionaryStore.read(id: UBFeedbackIDDictionaryDAO.dictionaryID) {
+            feedbackIDs = dictionary
+        }
+
         self.reachability.whenReachable = { reachability in
             if self.reachability.isReachable {
                 self.submitNextItem()
@@ -30,28 +38,47 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
     }
 
     private func submitNextItem() {
-        guard let item = nextStoreItem(), reachability.isReachable else { return }
-        sendToService(request: item)
+        guard let partialFeedbackItem = nextPartialFeedbackRequest(), reachability.isReachable else { return }
+        sendToService(partialFeedbackRequest: partialFeedbackItem)
     }
 
-    private func nextStoreItem() -> UBCampaignFeedbackRequest? {
+    private func nextPartialFeedbackRequest() -> UBCampaignFeedbackRequest? {
         return self.DAO.readAll().first
     }
 
-    private func sendToService(request: UBCampaignFeedbackRequest) {
+    //swiftlint:disable force_unwrapping
+    private func updateUrl(request: URLRequest, oldID: String, newID: String) -> URLRequest {
+        var mutableRequest = request
+        let url = mutableRequest.url!.absoluteString
+        let newUrl = url.replacingOccurrences(of: oldID, with: newID)
+        mutableRequest.url = URL(string: newUrl)!
+        return mutableRequest
+    }
+    //swiftlint:enable force_unwrapping
+
+    private func sendToService(partialFeedbackRequest: UBCampaignFeedbackRequest) {
         submissionSerialQueue.async {
-            self.service.submit(withRequest: request.request).then { _ in
-                self.DAO.delete(request)
+            var request = partialFeedbackRequest.request
+            if let backendFeedbackID = self.feedbackIDs[partialFeedbackRequest.internalID] as? String {
+                request = self.updateUrl(request: request, oldID: partialFeedbackRequest.internalID, newID: backendFeedbackID)
+            }
+
+            self.service.submit(withRequest: request).then { feedbackID in
+                if let feedbackID = feedbackID {
+                    self.feedbackIDs.setObject(feedbackID, forKey: partialFeedbackRequest.internalID as NSCopying)
+                    self.dictionaryStore.create(self.feedbackIDs)
+                }
+                self.DAO.delete(partialFeedbackRequest)
                 self.submitNextItem()
                 self.semaphore.signal()
             }.catch { _ in
-                request.numberOfSubmissionAttempts += 1
-                if request.numberOfSubmissionAttempts >= self.maxNumberOfSubmissionAttempts {
-                    self.DAO.delete(request)
+                partialFeedbackRequest.numberOfSubmissionAttempts += 1
+                if partialFeedbackRequest.numberOfSubmissionAttempts >= self.maxNumberOfSubmissionAttempts {
+                    self.DAO.delete(partialFeedbackRequest)
                     self.semaphore.signal()
                     return
                 }
-                self.DAO.create(request)
+                self.DAO.create(partialFeedbackRequest)
                 self.semaphore.signal()
             }
             self.semaphore.wait()

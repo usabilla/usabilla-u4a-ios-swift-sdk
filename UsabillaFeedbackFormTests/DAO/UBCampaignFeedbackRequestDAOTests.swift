@@ -19,11 +19,11 @@ class UBCampaignFeedbackRequestDAOTests: QuickSpec {
         let rootUrl = documentsDirectory.appendingPathComponent("UBSDK")
         let directoryUrl = rootUrl.appendingPathComponent(UBCampaignFeedbackRequestDAO.directoryName)
 
-        let item1 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389940")
-        let item2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389950")
-        let item3 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389960")
-        let item4 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389970")
-        let item5 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), id: "1498039389980")
+        let item1 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389940")
+        let item2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389950")
+        let item3 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389960")
+        let item4 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389970")
+        let item5 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389980")
 
         let store = UBCampaignFeedbackRequestDAO.shared
 
@@ -48,7 +48,7 @@ class UBCampaignFeedbackRequestDAOTests: QuickSpec {
 
             context("when requesting an id") {
                 it("should return the correct id") {
-                    let feedbackRequest = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!))
+                    let feedbackRequest = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID")
                     let id = UBCampaignFeedbackRequestDAO.shared.id(forObj: feedbackRequest)
                     expect(id).to(equal(feedbackRequest.id))
                 }

@@ -112,11 +112,15 @@ class CampaignService: CampaignServiceProtocol {
     ///
     /// - Returns: A promise fulfilled with the location header of the feedback item being submitted.
 
-    func submit(withRequest request: URLRequest) -> Promise<Bool> {
+    func submit(withRequest request: URLRequest) -> Promise<String?> {
         return Promise { fulfill, reject in
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
                 if response.success {
-                    fulfill(true)
+                    if let feedbackID = response.headers?["Location"] as? String {
+                        fulfill(feedbackID.components(separatedBy: "/").last)
+                        return
+                    }
+                    fulfill(nil)
                     return
                 }
                 guard let error = response.error else {

@@ -134,10 +134,10 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func submit(withRequest request: URLRequest) -> Promise<Bool> {
+    func submit(withRequest request: URLRequest) -> Promise<String?> {
         return Promise { fulfill, reject in
             if targetingResponse != nil {
-                return fulfill(true)
+                return fulfill("true")
             }
             reject(NSError(domain: "", code: 500, userInfo: nil))
         }

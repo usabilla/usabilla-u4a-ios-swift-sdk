@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         UsabillaFeedbackForm.delegate = self
         UsabillaFeedbackForm.hideGiveMoreFeedback = false
-
         UsabillaFeedbackForm.dismissAutomatically = false
     }
 

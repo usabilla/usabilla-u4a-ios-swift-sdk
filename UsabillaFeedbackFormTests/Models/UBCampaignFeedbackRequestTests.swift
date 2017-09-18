@@ -20,7 +20,7 @@ class UBCampaignFeedbackRequestTests: QuickSpec {
 
                 for _ in 0...2 {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                        items.append(UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!)))
+                        items.append(UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID"))
                     })
 
                 }

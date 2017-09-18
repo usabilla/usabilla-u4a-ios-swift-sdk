@@ -21,7 +21,7 @@ class CampaignManager {
         self.campaignService = campaignService
         self.eventEngine = EventEngine(campaigns: [])
         self.appID = appID
-        self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared)
+        self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared, dictionaryStore: UBFeedbackIDDictionaryDAO.shared)
         fetchCampaignForEventEngine()
     }
 

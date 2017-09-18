@@ -63,7 +63,6 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
                 expect(json["context"]).to(equal(["user": "context"]))
                 expect(json["metadata"]["system"]).to(equal("ios"))
                 expect(json["metadata"]["battery"]).to(equal(1))
-                expect(json["id"].exists()).to(beTrue())
             }
 
             it("Sends the closing page correctly") {

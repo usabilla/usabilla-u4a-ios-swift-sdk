@@ -123,18 +123,33 @@ class CampaignServiceTests: QuickSpec {
             }
 
             context("When submiting campaign result") {
-                it("should succeed if request succeeds") {
+
+                it("should succeed and return header if post request succeeds") {
                     waitUntil(timeout: 2.0) { done in
-                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: ["Location": "this_should/not/appear/location"], error: nil, success: true, isChanged: true)
                         let request = URLRequest(url: URL(string: "http://test.com")!)
                         CampaignService(httpClient: UBHTTPMock.self).submit(withRequest: request).then { succeed in
-                            expect(succeed).to(beTrue())
+                            expect(succeed).to(equal("location"))
                             done()
                         }.catch { _ in
                             fail("should not go here")
                         }
                     }
                 }
+
+                it("should succeed and return nil if patch request succeeds") {
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                        let request = URLRequest(url: URL(string: "http://test.com")!)
+                        CampaignService(httpClient: UBHTTPMock.self).submit(withRequest: request).then { succeed in
+                            expect(succeed).to(beNil())
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
+
                 it("should fail if request fails") {
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: false, isChanged: true)

@@ -157,7 +157,7 @@ class FormViewController: UIViewController {
         rightNavItem.title = ""
         rightNavItem.isEnabled = false
         leftNavItem.title = viewModel.cancelButtonTitle
-        
+
         thankYouViewController = ThankYouViewController(viewModel: endPageViewModel)
 
         pageViewController.willMove(toParentViewController: nil)

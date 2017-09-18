@@ -77,7 +77,7 @@ protocol CampaignSubmissionManagerProtocol {
 }
 
 protocol SubmissionServiceProtocol {
-    @discardableResult func submit(withRequest request: URLRequest) -> Promise<Bool>
+    @discardableResult func submit(withRequest request: URLRequest) -> Promise<String?>
 }
 
 protocol Exportable {
