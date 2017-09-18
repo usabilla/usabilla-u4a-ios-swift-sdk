@@ -579,7 +579,7 @@
 		43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewModel.swift; sourceTree = "<group>"; };
 		43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIntComponentViewModelTests.swift; sourceTree = "<group>"; };
 		43B04FCE1F1F7EEF0032F057 /* UsabillaFeedbackFormInternal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaFeedbackFormInternal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43B04FCF1F1F7EEF0032F057 /* UsabillaFeedbackFormInternal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UsabillaFeedbackFormInternal-Info.plist"; path = "/Users/Benjamin/dev/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/UsabillaFeedbackFormInternal-Info.plist"; sourceTree = "<absolute>"; };
+		43B04FCF1F1F7EEF0032F057 /* UsabillaFeedbackFormInternal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UsabillaFeedbackFormInternal-Info.plist"; sourceTree = SOURCE_ROOT; };
 		43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EmailFieldModelTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFieldModeltest.swift; sourceTree = "<group>"; };
 		43B0A2101E2CC4FB00879E5F /* IntFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IntFieldModelTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2049,7 +2049,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				USABILLA_API_URL = "https://api-staging.usabilla.com";
+				USABILLA_API_HOST = "https://api-staging.usabilla.com";
+				USABILLA_CDN_HOST = "https://sdk.out-staging.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
@@ -2077,7 +2078,8 @@
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-				USABILLA_API_URL = "https://api.usabilla.com";
+				USABILLA_API_HOST = "https://api.usabilla.com";
+				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
@@ -2145,7 +2147,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				USABILLA_API_URL = "https://api-staging.usabilla.com";
+				USABILLA_API_HOST = "https://api-staging.usabilla.com";
+				USABILLA_CDN_HOST = "https://sdk.out-staging.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
@@ -2174,7 +2177,8 @@
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-				USABILLA_API_URL = "https://api.usabilla.com";
+				USABILLA_API_HOST = "https://api.usabilla.com";
+				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};

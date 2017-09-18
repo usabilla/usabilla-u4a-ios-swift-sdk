@@ -20,6 +20,10 @@ class RequestBuilderTest: QuickSpec {
     var correctPost: URLRequest!
     var correctPatch: URLRequest!
     var headers: [String: String]!
+    var correctCDNUrl: URL!
+    var correctCDNUrlWithParameter: URL!
+    var correctCDNGet: URLRequest!
+
 
     override func spec() {
 
@@ -31,12 +35,21 @@ class RequestBuilderTest: QuickSpec {
                 "os": "iOS"
             ]
             self.correctUrl = URL(string: "https://api-staging.usabilla.com/v2/sdk/forms/")
+            self.correctCDNUrl = URL(string: "https://sdk.out-staging.usbla.net/forms/")
             self.correctUrlWithParameter = URL(string: "https://api-staging.usabilla.com/v2/sdk/forms/123")
+            self.correctCDNUrlWithParameter = URL(string: "https://sdk.out-staging.usbla.net/forms/123")
+
             let get = NSMutableURLRequest(url: self.correctUrlWithParameter)
             get.cachePolicy = .useProtocolCachePolicy
             get.httpMethod = "GET"
             get.allHTTPHeaderFields = self.headers
             self.correctGet = get as URLRequest
+
+            let get2 = NSMutableURLRequest(url: self.correctCDNUrlWithParameter)
+            get2.cachePolicy = .useProtocolCachePolicy
+            get2.httpMethod = "GET"
+            get2.allHTTPHeaderFields = self.headers
+            self.correctCDNGet = get2 as URLRequest
 
             let post = NSMutableURLRequest(url: self.correctUrlWithParameter)
             post.cachePolicy = .useProtocolCachePolicy
@@ -57,12 +70,35 @@ class RequestBuilderTest: QuickSpec {
         }
 
         describe("The Request builder") {
+
+            it("Builds the passive form request correctly") {
+                let get = RequestBuilder.requestGetPassiveForm(withID: "myformId")
+                expect(get.url?.absoluteString).to(equal("https://api-staging.usabilla.com/live/mobile/app/forms/myformId"))
+                expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
+                expect(get.httpMethod).to(equal("GET"))
+                expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+            }
+
             it("Builds the campaign form request correctly") {
                 let get = RequestBuilder.requestGetCampaignForm(withID: "a")
-                expect(get.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/forms/a"))
+                expect(get.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/forms/a"))
                 expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
-                expect(get.httpMethod).to(equal(self.correctGet.httpMethod))
+                expect(get.httpMethod).to(equal("GET"))
                 expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+            }
+
+            it("Builds the campaign list request correctly") {
+                let req = RequestBuilder.requestGetCampaigns(withAppID: "myAppId")
+                expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/campaigns?app_id=myAppId"))
+                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                expect(req.httpMethod).to(equal("GET"))
+            }
+
+            it("Builds the targeting option request correctly") {
+                let req = RequestBuilder.requestGetTargeting(withID: "targetingID")
+                expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/targeting-options/targetingID"))
+                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                expect(req.httpMethod).to(equal("GET"))
             }
 
             it("Builds the campaign feedback item creation request correctly") {
@@ -79,13 +115,6 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("PATCH"))
                 expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
-            }
-
-            it("Builds the campaign list request correctly") {
-                let req = RequestBuilder.requestGetCampaigns(withAppID: "myAppId")
-                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns?app_id=myAppId"))
-                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
-                expect(req.httpMethod).to(equal("GET"))
             }
 
             it("Builds the increment campaign view request correctly") {
