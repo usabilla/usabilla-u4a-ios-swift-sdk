@@ -7,7 +7,6 @@
 //
 
 // swiftlint:disable force_cast
-// swiftlint:disable force_try
 
 import XCTest
 

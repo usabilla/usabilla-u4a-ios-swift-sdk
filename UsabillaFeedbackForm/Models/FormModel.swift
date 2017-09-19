@@ -22,7 +22,6 @@ class FormModel: NSObject, NSCoding {
     var theme: UsabillaTheme
     let copyModel: CopyModel
 
-    // swiftlint:disable:next function_parameter_count
     init(identifier: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
