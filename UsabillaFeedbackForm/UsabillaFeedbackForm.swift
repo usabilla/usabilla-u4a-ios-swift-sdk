@@ -128,7 +128,7 @@ open class UsabillaFeedbackForm {
                 UsabillaFeedbackForm.delegate?.formFailedLoading(navigationController)
                 return
             }
-            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController, active: true)
+            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController)
         }
     }
 
@@ -152,7 +152,7 @@ public struct FeedbackResult {
 
 public protocol UsabillaFeedbackFormDelegate: class {
 
-    func formLoadedCorrectly(_ form: UINavigationController, active: Bool)
+    func formLoadedCorrectly(_ form: UINavigationController)
     func formFailedLoading(_ backupForm: UINavigationController)
 
     /**

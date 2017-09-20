@@ -87,7 +87,7 @@ class CampaignViewControllerTests: QuickSpec {
 }
 
 extension CampaignViewControllerTests: UsabillaFeedbackFormDelegate {
-    func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
+    func formLoadedCorrectly(_ form: UINavigationController) {
     }
 
     func formFailedLoading(_ backupForm: UINavigationController) {

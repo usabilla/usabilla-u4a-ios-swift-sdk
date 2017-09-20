@@ -36,7 +36,7 @@ extension ViewController: UsabillaFeedbackFormDelegate {
 
     }
 
-    func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
+    func formLoadedCorrectly(_ form: UINavigationController) {
         present(form, animated: true, completion: nil)
     }
 

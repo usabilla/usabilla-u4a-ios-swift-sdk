@@ -128,7 +128,7 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
         failed?()
     }
 
-    func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
+    func formLoadedCorrectly(_ form: UINavigationController) {
         succeed?()
     }
 }
