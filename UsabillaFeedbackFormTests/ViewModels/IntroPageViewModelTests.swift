@@ -18,9 +18,9 @@ class IntroPageViewModelTests: QuickSpec {
 
     override func spec() {
         var configurator = UsabillaTheme()
-        configurator.backgroundColor = UIColor(rgba: "#012345")
-        configurator.titleColor = UIColor(rgba: "#012346")
-        configurator.textColor = UIColor(rgba: "#012347")
+        configurator.colors.background = UIColor(rgba: "#012345")
+        configurator.colors.title = UIColor(rgba: "#012346")
+        configurator.colors.text = UIColor(rgba: "#012347")
 
         let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
         let copyModel = CopyModel()
@@ -56,21 +56,21 @@ class IntroPageViewModelTests: QuickSpec {
             context("when using default font") {
                 it("customization should match") {
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
-                    expect(introPageViewModel.backgroundColor).to(equal(configurator.backgroundColor))
-                    expect(introPageViewModel.titleColor).to(equal(configurator.titleColor))
-                    expect(introPageViewModel.hintColor).to(equal(configurator.hintColor))
-                    expect(introPageViewModel.font).to(equal(configurator.font))
-                    expect(introPageViewModel.boldFont).to(equal(configurator.boldFont))
-                    expect(introPageViewModel.buttonColor).to(equal(configurator.accentColor))
+                    expect(introPageViewModel.backgroundColor).to(equal(configurator.colors.background))
+                    expect(introPageViewModel.titleColor).to(equal(configurator.colors.title))
+                    expect(introPageViewModel.hintColor).to(equal(configurator.colors.hint))
+                    expect(introPageViewModel.font).to(equal(configurator.fonts.font))
+                    expect(introPageViewModel.boldFont).to(equal(configurator.fonts.boldFont))
+                    expect(introPageViewModel.buttonColor).to(equal(configurator.colors.accent))
                 }
             }
 
             context("when using custom font") {
                 it("cancel and continue label font should be customized") {
                     let customFont = UIFont(name: "TimesNewRomanPSMT", size: 17)
-                    configurator.customFont = customFont
+                    configurator.fonts.regular = customFont
                     let customFontBold = UIFont(name: "TimesNewRomanPS-BoldMT", size: 17)
-                    configurator.customFontBold = customFontBold
+                    configurator.fonts.bold = customFontBold
                     let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
 

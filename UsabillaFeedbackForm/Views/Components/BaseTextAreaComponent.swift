@@ -31,9 +31,9 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
 
         // customization
         let theme = viewModel.theme
-        textView.font = theme.font
-        textView.textColor = theme.textColor
-        textView.tintColor = theme.hintColor
-        textView.backgroundColor = theme.backgroundColor
+        textView.font = theme.fonts.font
+        textView.textColor = theme.colors.text
+        textView.tintColor = theme.colors.hint
+        textView.backgroundColor = theme.colors.background
     }
 }

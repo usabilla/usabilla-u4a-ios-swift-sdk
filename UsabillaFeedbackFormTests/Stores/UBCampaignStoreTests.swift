@@ -354,11 +354,11 @@ class UBCampaignStoreTests: QuickSpec {
                     campaignService.campaignForm = form
                     store = UBCampaignStore(service: campaignService)
                     var theme = UsabillaTheme()
-                    theme.headerColor = UIColor.purple
+                    theme.colors.header = UIColor.purple
                     waitUntil(timeout: 2.0) { done in
                         let promise = store.getCampaignForm(withFormID: "test", theme: theme)
                         promise.then { formResponse in
-                            expect(formResponse.theme.headerColor).to(equal(UIColor.purple))
+                            expect(formResponse.theme.colors.header).to(equal(UIColor.purple))
                             done()
                         }.catch { _ in
                             fail("should not go here")

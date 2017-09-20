@@ -38,10 +38,10 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(moodComponentViewModel).toNot(beNil())
                     expect(moodComponentViewModel.ratingMode).to(equal(RatingMode.emoticon))
                     expect(moodComponentViewModel.maxValue).to(equal(5))
-                    expect(moodComponentViewModel.selectedImages).to(equal(theme.enabledEmoticons))
+                    expect(moodComponentViewModel.selectedImages).to(equal(theme.images.enabledEmoticons))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
-                    expect(moodComponentViewModel.tintColor).to(equal(theme.accentColor))
+                    expect(moodComponentViewModel.tintColor).to(equal(theme.colors.accent))
                 })
                 it("should have all values setup correctly for Star mode", closure: {
                     moodComponentViewModel = MoodComponentViewModel(model: starMoodModel, theme: theme)
@@ -62,7 +62,7 @@ class MoodComponentViewModelTests: QuickSpec {
 
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods, theme: theme)
                     expect(moodComponentViewModel.maxValue).to(equal(3))
-                    let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.enabledEmoticons)
+                    let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.images.enabledEmoticons)
                     expect(moodComponentViewModel.selectedImages).to(equal(images))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))
@@ -73,7 +73,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods, theme: theme)
 
                     expect(moodComponentViewModel.maxValue).to(equal(2))
-                    let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.enabledEmoticons)
+                    let images = theme.emoticons(size: moodModelLessThan5Moods.points, emoticons: theme.images.enabledEmoticons)
                     expect(moodComponentViewModel.selectedImages).to(equal(images))
                     expect(moodComponentViewModel.unselectedImages).to(beNil())
                     expect(moodComponentViewModel.value).to(equal(0))

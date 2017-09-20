@@ -33,11 +33,11 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.id).to(equal(self.model.identifier))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(0.25))
-                    expect(formViewModel.accentColor).to(equal(self.model.theme.accentColor))
-                    expect(formViewModel.backgrounColor).to(equal(self.model.theme.backgroundColor))
-                    expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
-                    expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
-                    expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.textOnAccentColor))
+                    expect(formViewModel.accentColor).to(equal(self.model.theme.colors.accent))
+                    expect(formViewModel.backgrounColor).to(equal(self.model.theme.colors.background))
+                    expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarStyle))
+                    expect(formViewModel.headerColor).to(equal(self.model.theme.colors.accent))
+                    expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.colors.textOnAccent))
                     expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beFalse())
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
@@ -57,10 +57,10 @@ class UBFormViewModelTests: QuickSpec {
                     let formViewModel = UBFormViewModel(formModel: self.model)
 
                     // Change theme header Color
-                    self.model.theme.headerColor = .red
+                    self.model.theme.colors.header = .red
                     expect(formViewModel.headerColor).to(equal(UIColor.red))
                     expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
-                    self.model.theme.headerColor = nil
+                    self.model.theme.colors.header = nil
                 }
                 it("should tell if an index is contained in the page view model count") {
                     let formViewModel = UBFormViewModel(formModel: self.model)
@@ -136,9 +136,9 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.id).to(equal(self.model.identifier))
                     expect(formViewModel.shouldHideProgressBar).to(beTrue())
                     expect(formViewModel.progress).to(equal(0.25))
-                    expect(formViewModel.accentColor).to(equal(self.model.theme.accentColor))
-                    expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarColor))
-                    expect(formViewModel.headerColor).to(equal(self.model.theme.accentColor))
+                    expect(formViewModel.accentColor).to(equal(self.model.theme.colors.accent))
+                    expect(formViewModel.statusBarColor).to(equal(self.model.theme.statusBarStyle))
+                    expect(formViewModel.headerColor).to(equal(self.model.theme.colors.accent))
                     expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beFalse())
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))

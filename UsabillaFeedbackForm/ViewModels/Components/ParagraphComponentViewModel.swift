@@ -18,7 +18,7 @@ class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldMo
 
     var attributedValue: NSAttributedString? {
         get {
-            return model.immutableParagraphValue?.parseHTMLString(font: theme.font.withSize(theme.textFontSize))
+            return model.immutableParagraphValue?.parseHTMLString(font: theme.fonts.font.withSize(theme.fonts.textSize))
         }
         set {}
     }

@@ -11,69 +11,100 @@ import UIKit
 
 public struct UsabillaTheme {
 
+    public var colors: Colors
+    public var fonts: Fonts
+    public var images: Images
+
     // MARK: Colors
-    public var titleColor: UIColor
-    public var textColor: UIColor
-    public var accentColor: UIColor
-    public var headerColor: UIColor?
-    public var textOnAccentColor: UIColor
-    public var backgroundColor: UIColor
-    public var errorColor: UIColor
-    public var hintColor: UIColor {
-        return textColor.withAlphaComponent(0.38)
+    public struct Colors {
+        public var header: UIColor?
+        var title: UIColor
+        var text: UIColor
+        var accent: UIColor
+        var textOnAccent: UIColor
+        var background: UIColor
+        var error: UIColor
+        var hint: UIColor {
+            return text.withAlphaComponent(0.38)
+        }
+
+        init() {
+            text = UIColor(red: 89 / 255, green: 99 / 255, blue: 107 / 255, alpha: 1)
+            textOnAccent = UIColor.white
+            accent = UIColor(red: 0 / 255, green: 165 / 255, blue: 201 / 255, alpha: 1)
+            title = UIColor(red: 65 / 255, green: 71 / 255, blue: 76 / 255, alpha: 1)
+            error = UIColor(red: 244 / 255, green: 96 / 255, blue: 110 / 255, alpha: 1)
+            background = UIColor.white
+            header = nil
+        }
+
+        mutating func update(withJSON json: JSON) {
+            title = UIColor(rgbao: json["group1"]["hash"].string) ?? title
+            accent = UIColor(rgbao: json["group2"]["hash"].string) ?? accent
+            text = UIColor(rgbao: json["group3"]["hash"].string) ?? text
+            error = UIColor(rgbao: json["group4"]["hash"].string) ?? error
+            background = UIColor(rgbao: json["group5"]["hash"].string) ?? background
+            textOnAccent = UIColor(rgbao: json["group6"]["hash"].string) ?? textOnAccent
+        }
     }
 
-    public var statusBarColor: UIStatusBarStyle
+    public var statusBarStyle: UIStatusBarStyle
 
     // MARK: Fonts
-    public var customFont: UIFont?
-    public var customFontBold: UIFont?
-    public var titleFontSize: CGFloat
-    public var textFontSize: CGFloat
-    public var miniFontSize: CGFloat
+    public struct Fonts {
+        public var regular: UIFont?
+        public var bold: UIFont?
+        public var titleSize: CGFloat
+        public var textSize: CGFloat
+        public var miniSize: CGFloat
 
-    //Computed font to use in SDK
-    var font: UIFont {
-        if let font = customFont {
-            return font.withSize(textFontSize)
+        //Computed font to use in SDK
+        var font: UIFont {
+            if let font = regular {
+                return font.withSize(textSize)
+            }
+            return UIFont.systemFont(ofSize: textSize)
         }
-        return UIFont.systemFont(ofSize: textFontSize)
-    }
 
-    var boldFont: UIFont {
-        if let boldFont = customFontBold {
-            return boldFont.withSize(titleFontSize)
+        var boldFont: UIFont {
+            if let boldFont = bold {
+                return boldFont.withSize(titleSize)
+            }
+            if let font = regular {
+                return font.withSize(titleSize)
+            }
+            return UIFont.systemFont(ofSize: titleSize, weight: UIFontWeightSemibold)
         }
-        if let font = customFont {
-            return font.withSize(titleFontSize)
+
+        init() {
+            titleSize = 17
+            textSize = 17
+            miniSize = 15
         }
-        return UIFont.systemFont(ofSize: titleFontSize, weight: UIFontWeightSemibold)
     }
 
     // MARK: Custom images
-    public var enabledEmoticons: [UIImage]
-    public var disabledEmoticons: [UIImage]?
-    public var star: UIImage
-    public var starOutline: UIImage
+    public struct Images {
+        public var enabledEmoticons: [UIImage]
+        public var disabledEmoticons: [UIImage]?
+        public var star: UIImage
+        public var starOutline: UIImage
+
+        init() {
+            enabledEmoticons = UsabillaTheme.createEmoticons()
+            disabledEmoticons = nil
+            //swiftlint:disable force_unwrapping
+            star = UsabillaTheme.getImage(withName: "star")!
+            starOutline = UsabillaTheme.getImage(withName: "star_outline")!
+            //swiftlint:enable force_unwrapping
+        }
+    }
 
     public init() {
-        statusBarColor = .default
-        textColor = UIColor(rgba: "#59636B")
-        textOnAccentColor = UIColor.white
-        accentColor = UIColor(rgba: "#00A5C9")
-        titleColor = UIColor(rgba: "#41474C")
-        errorColor = UIColor(rgba: "#F4606E")
-        backgroundColor = UIColor.white
-        enabledEmoticons = UsabillaTheme.createEmoticons()
-        disabledEmoticons = nil
-        titleFontSize = 17
-        textFontSize = 17
-        miniFontSize = 15
-        headerColor = nil
-        //swiftlint:disable force_unwrapping
-        star = UsabillaTheme.getImage(withName: "star")!
-        starOutline = UsabillaTheme.getImage(withName: "star_outline")!
-        //swiftlint:enable force_unwrapping
+        colors = Colors()
+        images = Images()
+        fonts = Fonts()
+        statusBarStyle = .default
     }
 
     fileprivate static func createEmoticons() -> [UIImage] {
@@ -111,13 +142,7 @@ public struct UsabillaTheme {
         }
     }
 
-    mutating func updateConfig(json: JSON) {
-        // TO DO guard with empty check
-        self.titleColor = UIColor(rgbao: json["group1"]["hash"].string) ?? titleColor
-        self.accentColor = UIColor(rgbao: json["group2"]["hash"].string) ?? accentColor
-        self.textColor = UIColor(rgbao: json["group3"]["hash"].string) ?? textColor
-        self.errorColor = UIColor(rgbao: json["group4"]["hash"].string) ?? errorColor
-        self.backgroundColor = UIColor(rgbao: json["group5"]["hash"].string) ?? backgroundColor
-        self.textOnAccentColor = UIColor(rgbao: json["group6"]["hash"].string) ?? textOnAccentColor
+    mutating func updateColors(json: JSON) {
+        self.colors.update(withJSON: json)
     }
 }

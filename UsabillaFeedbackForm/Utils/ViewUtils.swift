@@ -16,9 +16,9 @@ class ViewUtils {
         let logo = UIButton(type: UIButtonType.custom)
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.addTarget(PageViewController.self, action: #selector(PageViewController.openUsabilla), for: .touchUpInside)
-        logo.setImage(Icons.imageOfPoweredBy(color: theme.textColor.withAlphaComponent(0.5)), for: UIControlState())
+        logo.setImage(Icons.imageOfPoweredBy(color: theme.colors.text.withAlphaComponent(0.5)), for: UIControlState())
         logo.accessibilityIdentifier = "powered-by-id"
-        view.backgroundColor = theme.backgroundColor
+        view.backgroundColor = theme.colors.background
         view.addSubview(logo)
 
         logo.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true

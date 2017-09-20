@@ -17,7 +17,7 @@ class EmailComponent: BaseTextFieldComponent<EmailComponentViewModel> {
 
     func updateBorderColor(email: String?) {
         let theme = viewModel.theme
-        textField.layer.borderColor = viewModel.isValid ? theme.hintColor.cgColor : theme.errorColor.cgColor
+        textField.layer.borderColor = viewModel.isValid ? theme.colors.hint.cgColor : theme.colors.error.cgColor
     }
 
     override func textFieldDidEndEditing(_ textField: UITextField) {

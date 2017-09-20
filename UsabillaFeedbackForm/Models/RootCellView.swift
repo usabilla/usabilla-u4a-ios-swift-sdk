@@ -103,7 +103,7 @@ class RootCellView: UITableViewCell {
             titleLabel.text = requiredTitle
             if let attributedText = self.titleLabel.attributedText {
                 let text = NSMutableAttributedString(attributedString: attributedText)
-                text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.hintColor,
+                text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.colors.hint,
                                   range: NSRange.init(location: requiredTitle.characters.count - 1, length: 1))
                 titleLabel.attributedText = text
             }
@@ -115,12 +115,12 @@ class RootCellView: UITableViewCell {
     private func applyCustomisations() {
         let theme = cellViewModel.theme
         let copy = cellViewModel.copy
-        titleLabel.textColor = theme.titleColor
-        titleLabel.font = theme.boldFont
-        errorLabel.font = theme.font.withSize(theme.miniFontSize)
-        errorLabel.textColor = theme.errorColor
+        titleLabel.textColor = theme.colors.title
+        titleLabel.font = theme.fonts.boldFont
+        errorLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        errorLabel.textColor = theme.colors.error
         errorLabel.text = copy.requiredFieldError
-        backgroundColor = theme.backgroundColor
+        backgroundColor = theme.colors.background
     }
 
     @discardableResult func updateValidStatus() -> Bool {

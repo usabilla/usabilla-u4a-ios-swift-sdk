@@ -135,11 +135,11 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         let theme = viewModel.theme
         deleteIcon.setImage(Icons.imageOfArtboard(color: UIColor.white), for: UIControlState())
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
-        addIcon.setImage(Icons.imageOfAddImage(color: theme.textColor), for: UIControlState())
-        addScreenshotLabel.setTitleColor(theme.titleColor, for: .normal)
-        addScreenshotLabel.titleLabel?.font = theme.font
-        addScreenshotLine.backgroundColor = theme.hintColor
-        screenShotView.layer.borderColor = theme.hintColor.cgColor
+        addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.text), for: UIControlState())
+        addScreenshotLabel.setTitleColor(theme.colors.title, for: .normal)
+        addScreenshotLabel.titleLabel?.font = theme.fonts.font
+        addScreenshotLine.backgroundColor = theme.colors.hint
+        screenShotView.layer.borderColor = theme.colors.hint.cgColor
     }
 
     func updateUI() {

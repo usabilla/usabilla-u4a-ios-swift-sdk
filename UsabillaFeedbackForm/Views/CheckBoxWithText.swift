@@ -54,12 +54,12 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         guard let theme = theme else {
             return
         }
-        let color = theme.accentColor
+        let color = theme.colors.accent
         checkBox.tintColor = color
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
-        label.font = theme.font.withSize(theme.textFontSize)
-        label.textColor = theme.textColor
+        label.font = theme.fonts.font.withSize(theme.fonts.textSize)
+        label.textColor = theme.colors.text
         let spaceAvailable = (checkboxSize - label.font.lineHeight)
         labelTopConstraint.constant = spaceAvailable / 2
 

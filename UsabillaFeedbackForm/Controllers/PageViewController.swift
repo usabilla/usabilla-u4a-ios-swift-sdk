@@ -75,12 +75,12 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     func customizeView() {
-        view.backgroundColor = viewModel.theme.backgroundColor
-        tableView.backgroundColor = viewModel.theme.backgroundColor
+        view.backgroundColor = viewModel.theme.colors.background
+        tableView.backgroundColor = viewModel.theme.colors.background
 
-        requiredLabel.textColor = viewModel.theme.textColor
-        requiredLabel.font = viewModel.theme.font.withSize(viewModel.theme.miniFontSize)
-        requiredLabel.backgroundColor = viewModel.theme.backgroundColor
+        requiredLabel.textColor = viewModel.theme.colors.text
+        requiredLabel.font = viewModel.theme.fonts.font.withSize(viewModel.theme.fonts.miniSize)
+        requiredLabel.backgroundColor = viewModel.theme.colors.background
     }
 
     func handleHeaderViewVisibility() {
@@ -232,7 +232,7 @@ extension PageViewController: UITableViewDataSource {
             if let cell = cell as? FooterTableViewCell {
                 cell.footerView = ViewUtils.generateFooter(theme: viewModel.theme)
             }
-            cell.backgroundColor = viewModel.theme.backgroundColor
+            cell.backgroundColor = viewModel.theme.colors.background
             return cell
         }
 

@@ -38,7 +38,7 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
 
         // customization
         setCorrectFont()
-        line.backgroundColor = viewModel.theme.hintColor
+        line.backgroundColor = viewModel.theme.colors.hint
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -67,12 +67,12 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
 
     func setCorrectFont() {
         let theme = viewModel.theme
-        textView.font = theme.font
+        textView.font = theme.fonts.font
 
         if !viewModel.isPlaceHolder {
-            textView.textColor = theme.textColor
+            textView.textColor = theme.colors.text
         } else {
-            textView.textColor = theme.hintColor
+            textView.textColor = theme.colors.hint
         }
 
     }

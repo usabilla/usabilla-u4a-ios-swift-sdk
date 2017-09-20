@@ -102,15 +102,15 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         // customization
         let theme = viewModel.theme
 
-        slider.tintColor = theme.accentColor
-        slider.thumbTintColor = theme.accentColor
+        slider.tintColor = theme.colors.accent
+        slider.thumbTintColor = theme.colors.accent
 
-        valueLabel.font = theme.font.withSize(theme.miniFontSize)
-        valueLabel.textColor = theme.textColor
-        rightLabel.font = theme.font.withSize(theme.miniFontSize)
-        rightLabel.textColor = theme.textColor
-        leftLabel.font = theme.font.withSize(theme.miniFontSize)
-        leftLabel.textColor = theme.textColor
+        valueLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        valueLabel.textColor = theme.colors.text
+        rightLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        rightLabel.textColor = theme.colors.text
+        leftLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        leftLabel.textColor = theme.colors.text
 
     }
 

@@ -44,8 +44,8 @@ class PageControllerTest: QuickSpec {
             it("sets the background color") {
                 // Since the label is only initialized when the view is loaded, this
                 // would fail if we didn't access the view in the `beforeEach` above.
-                expect(viewController.view.backgroundColor).to(equal(viewController.viewModel.theme.backgroundColor))
-                expect(viewController.tableView.backgroundColor).to(equal(viewController.viewModel.theme.backgroundColor))
+                expect(viewController.view.backgroundColor).to(equal(viewController.viewModel.theme.colors.background))
+                expect(viewController.tableView.backgroundColor).to(equal(viewController.viewModel.theme.colors.background))
             }
 
             it("sets up the header") {
@@ -53,9 +53,9 @@ class PageControllerTest: QuickSpec {
                 let header = headerWrapper?.subviews.first as? UILabel
                 expect(header).toNot(beNil())
                 expect(header?.text).to(equal(viewController.viewModel.copy.errorMessage))
-                expect(header?.textColor).to(equal(viewController.viewModel.theme.textColor))
-                expect(header?.font).to(equal(viewController.viewModel.theme.font.withSize(viewController.viewModel.theme.miniFontSize)))
-                expect(header?.backgroundColor).to(equal(viewController.viewModel.theme.backgroundColor))
+                expect(header?.textColor).to(equal(viewController.viewModel.theme.colors.text))
+                expect(header?.font).to(equal(viewController.viewModel.theme.fonts.font.withSize(viewController.viewModel.theme.fonts.miniSize)))
+                expect(header?.backgroundColor).to(equal(viewController.viewModel.theme.colors.background))
             }
 
             it("sets up the variables") {

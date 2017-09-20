@@ -72,7 +72,7 @@ class FormModelTests: QuickSpec {
                     expect(previousTheme).toNot(beNil())
                     formModel.updateTheme()
                     expect(formModel.theme).toNot(beNil())
-                    expect(formModel.theme.backgroundColor).toNot(equal(previousTheme.backgroundColor))
+                    expect(formModel.theme.colors.background).toNot(equal(previousTheme.colors.background))
                 }
                 it("should get the right theme from json without Structure") {
                     let json = "{\"pages\":\"test\", \"allowedPageTypes\":\"test\", \"data\":\"test\", \"colors\": {\"group1\": {\"hash\": \"#41474C\" }, \"group5\": {\"hash\": \"#FFFFFF\" }} ,\"localization\":\"test\"}"
@@ -81,7 +81,7 @@ class FormModelTests: QuickSpec {
                     expect(previousTheme).toNot(beNil())
                     formModel.updateTheme()
                     expect(formModel.theme).toNot(beNil())
-                    expect(formModel.theme.backgroundColor).toNot(equal(previousTheme.backgroundColor))
+                    expect(formModel.theme.colors.background).toNot(equal(previousTheme.colors.background))
                 }
             }
 

@@ -25,16 +25,16 @@ class UsabillaThemeConfiguratorTest: QuickSpec {
             context("when UsabillaTheme is initilized", {
                 it("init UsabillaTheme") {
                     expect(theme).toNot(beNil())
-                    expect(theme?.enabledEmoticons.count).to(equal(5))
-                    expect(theme?.headerColor).to(beNil())
-                    expect(theme?.customFont).to(beNil())
-                    expect(theme?.hintColor).to(equal(theme?.textColor.withAlphaComponent(0.38)))
-                    expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 17)))
+                    expect(theme.images.enabledEmoticons.count).to(equal(5))
+                    expect(theme.colors.header).to(beNil())
+                    expect(theme.fonts.bold).to(beNil())
+                    expect(theme.colors.hint).to(equal(theme.colors.text.withAlphaComponent(0.38)))
+                    expect(theme.fonts.font).to(equal(UIFont.systemFont(ofSize: 17)))
                 }
 
                 it("UsabillaTheme font") {
-                    theme?.customFont = UIFont.systemFont(ofSize: 50)
-                    expect(theme?.font).to(equal(UIFont.systemFont(ofSize: 17)))
+                    theme.fonts.bold = UIFont.systemFont(ofSize: 50)
+                    expect(theme.fonts.font).to(equal(UIFont.systemFont(ofSize: 17)))
                 }
             })
 
@@ -46,13 +46,13 @@ class UsabillaThemeConfiguratorTest: QuickSpec {
 
             context("when mood array contains different sizes mood arrays", {
                 it("should return an array of only 2 emoticon images", closure: {
-                    expect(theme?.emoticons(size: 2, emoticons: theme?.enabledEmoticons)?.count).to(equal(2))
+                    expect(theme?.emoticons(size: 2, emoticons: theme.images.enabledEmoticons)?.count).to(equal(2))
                 })
                 it("should return an array of only three emoticon images", closure: {
-                    expect(theme?.emoticons(size: 3, emoticons: theme?.enabledEmoticons)?.count).to(equal(3))
+                    expect(theme?.emoticons(size: 3, emoticons: theme.images.enabledEmoticons)?.count).to(equal(3))
                 })
                 it("should return an array of only five emoticon images", closure: {
-                    expect(theme?.emoticons(size: 5, emoticons: theme?.enabledEmoticons)?.count).to(equal(5))
+                    expect(theme?.emoticons(size: 5, emoticons: theme.images.enabledEmoticons)?.count).to(equal(5))
                 })
             })
         }

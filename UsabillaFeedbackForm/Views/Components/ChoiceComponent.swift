@@ -64,14 +64,14 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         // customization
 
         let theme = viewModel.theme
-        pickerButton.setTitleColor(theme.textColor, for: .normal)
-        pickerButton.titleLabel?.font = theme.font
+        pickerButton.setTitleColor(theme.colors.text, for: .normal)
+        pickerButton.titleLabel?.font = theme.fonts.font
 
-        picker.backgroundColor = theme.backgroundColor
-        picker.tintColor = theme.textColor
+        picker.backgroundColor = theme.colors.background
+        picker.tintColor = theme.colors.text
 
-        bottomBorder.backgroundColor = theme.hintColor
-        topBorder.backgroundColor = theme.hintColor
+        bottomBorder.backgroundColor = theme.colors.hint
+        topBorder.backgroundColor = theme.colors.hint
 
         configure()
     }
@@ -121,8 +121,8 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         if pickerLabel == nil {
             pickerLabel = UILabel()
             pickerLabel?.textAlignment = NSTextAlignment.center
-            pickerLabel?.font = viewModel.theme.font.withSize(viewModel.theme.titleFontSize + 2)
-            pickerLabel?.textColor = viewModel.theme.textColor
+            pickerLabel?.font = viewModel.theme.fonts.font.withSize(viewModel.theme.fonts.titleSize + 2)
+            pickerLabel?.textColor = viewModel.theme.colors.text
         }
 
         pickerLabel?.text = viewModel.options[row].title

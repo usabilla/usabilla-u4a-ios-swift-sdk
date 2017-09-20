@@ -62,12 +62,12 @@ class JSONParserTest: QuickSpec {
                     expect(JSONFormParser.checkForContinueButton(pageJson: oneButtonCampaign["structure"]["form"]["pages"][1])).to(beTrue())
                 }
                 it("should correctly extract the colors") {
-                    expect(formModel.theme.titleColor.hexString(false)).to(equal("#41474C"))
-                    expect(formModel.theme.accentColor.hexString(false)).to(equal("#00A5C9"))
-                    expect(formModel.theme.textColor.hexString(false)).to(equal("#59636B"))
-                    expect(formModel.theme.errorColor.hexString(false)).to(equal("#F4606E"))
-                    expect(formModel.theme.backgroundColor.hexString(false)).to(equal("#FFFFFF"))
-                    expect(formModel.theme.textOnAccentColor.hexString(false)).to(equal("#FFFFFF"))
+                    expect(formModel.theme.colors.title.hexString(false)).to(equal("#41474C"))
+                    expect(formModel.theme.colors.accent.hexString(false)).to(equal("#00A5C9"))
+                    expect(formModel.theme.colors.text.hexString(false)).to(equal("#59636B"))
+                    expect(formModel.theme.colors.error.hexString(false)).to(equal("#F4606E"))
+                    expect(formModel.theme.colors.background.hexString(false)).to(equal("#FFFFFF"))
+                    expect(formModel.theme.colors.textOnAccent.hexString(false)).to(equal("#FFFFFF"))
                 }
                 it("should correctly parse the pages") {
                     let pages = formModel.pages

@@ -27,23 +27,23 @@ class UBFormViewModel {
         return Float(currentPageIndex + 1) / Float(model.pages.count)
     }
     var accentColor: UIColor {
-        return model.theme.accentColor
+        return model.theme.colors.accent
     }
     var backgrounColor: UIColor {
-        return model.theme.backgroundColor
+        return model.theme.colors.background
     }
     var statusBarColor: UIStatusBarStyle {
-        return model.theme.statusBarColor
+        return model.theme.statusBarStyle
     }
     var headerColor: UIColor {
-        if let headerColor = model.theme.headerColor {
+        if let headerColor = model.theme.colors.header {
             return headerColor
         }
 
-        return model.theme.accentColor
+        return model.theme.colors.accent
     }
     var textOnAccentColor: UIColor {
-        return model.theme.textOnAccentColor
+        return model.theme.colors.textOnAccent
     }
     var navigationBarTitle: String? {
         return model.copyModel.appTitle
@@ -52,7 +52,7 @@ class UBFormViewModel {
         return model.copyModel.cancelButton
     }
     var navBarItemsFont: UIFont {
-        return model.theme.boldFont
+        return model.theme.fonts.boldFont
     }
     var isCurrentPageValid: Bool {
         return pageViewModels[currentPageIndex].isCorrectlyFilled

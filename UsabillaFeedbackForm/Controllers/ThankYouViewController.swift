@@ -80,16 +80,16 @@ class ThankYouViewController: UIViewController {
 
     func customizeView() {
         if let configuration = viewModel?.theme {
-            view.backgroundColor = configuration.backgroundColor
-            titleLabel.textColor = configuration.titleColor
-            titleLabel.font = configuration.boldFont
+            view.backgroundColor = configuration.colors.background
+            titleLabel.textColor = configuration.colors.title
+            titleLabel.font = configuration.fonts.boldFont
 
-            let font = configuration.font
-            messageLabel.textColor = configuration.textColor
+            let font = configuration.fonts.font
+            messageLabel.textColor = configuration.colors.text
             messageLabel.font = font
 
             if viewModel.canGiveMoreFeedback {
-                moreFeedBackButton.setTitleColor(configuration.accentColor, for: .normal)
+                moreFeedBackButton.setTitleColor(configuration.colors.accent, for: .normal)
                 moreFeedBackButton.titleLabel?.font = font
             }
         }
