@@ -72,9 +72,9 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         queue.sync {
             if isFirst {
                 isFirst = false
-                req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignID: campaignID, withPayload: payload) as URLRequest
+                req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignID: campaignID, withPayload: payload)
             } else {
-                req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignID: campaignID, withPayload: payload, withSessionToken: feedbackID) as URLRequest
+                req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignID: campaignID, withPayload: payload, withSessionToken: feedbackID)
             }
         }
         return req

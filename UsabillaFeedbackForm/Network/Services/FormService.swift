@@ -29,7 +29,7 @@ class FormService: FormServiceProtocol {
     func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
-            httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false) { response in
+            httpClient.request(request: request, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: screenShot))
                     return

@@ -77,6 +77,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
                 expect(get.httpMethod).to(equal("GET"))
                 expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+                expect(get.timeoutInterval).to(equal(10))
             }
 
             it("Builds the campaign form request correctly") {
@@ -85,6 +86,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
                 expect(get.httpMethod).to(equal("GET"))
                 expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+                expect(get.timeoutInterval).to(equal(10))
             }
 
             it("Builds the campaign list request correctly") {
@@ -92,6 +94,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/campaigns?app_id=myAppId"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("GET"))
+                expect(req.timeoutInterval).to(equal(10))
             }
 
             it("Builds the targeting option request correctly") {
@@ -99,6 +102,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/targeting-options/targetingID"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("GET"))
+                expect(req.timeoutInterval).to(equal(10))
             }
 
             it("Builds the campaign feedback item creation request correctly") {
@@ -107,6 +111,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
                 expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
                 expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
+                expect(req.timeoutInterval).to(equal(10))
             }
 
             it("Builds the campaign feedback item patch request correctly") {
@@ -115,6 +120,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("PATCH"))
                 expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
+                expect(req.timeoutInterval).to(equal(10))
             }
 
             it("Builds the increment campaign view request correctly") {
@@ -122,6 +128,7 @@ class RequestBuilderTest: QuickSpec {
                 expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/1234/views"))
                 expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                 expect(req.httpMethod).to(equal("PATCH"))
+                expect(req.timeoutInterval).to(equal(10))
             }
         }
     }

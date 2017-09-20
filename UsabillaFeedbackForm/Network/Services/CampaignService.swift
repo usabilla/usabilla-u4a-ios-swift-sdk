@@ -40,7 +40,7 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaignForm(withID id: String) -> Promise<FormModel> {
         let request = requestBuilder.requestGetCampaignForm(withID: id)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
+            self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: nil))
                     return
@@ -59,7 +59,7 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
         let request = requestBuilder.requestGetCampaigns(withAppID: appID)
         return Promise { fulfill, reject in
-            self.httpClient.request(request: request as URLRequest, responseQueue: nil, allowNilData: false, completion: { response in
+            self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
                     let campaignsArray = JSON(json).array else {
                         guard let error = response.error else {

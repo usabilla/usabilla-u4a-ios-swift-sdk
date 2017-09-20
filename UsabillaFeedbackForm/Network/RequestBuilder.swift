@@ -68,6 +68,15 @@ class RequestBuilder {
         return URL(string: baseUrl.appending(endpoint))!
     }
 
+    fileprivate static func buildSharedRequest(_ url: URL, method: HTTPMethod) -> NSMutableURLRequest {
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
+        request.cachePolicy = .useProtocolCachePolicy
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = headers
+        request.timeoutInterval = 10
+        return request
+    }
+
     /**
      Creates a basic GET request
      
@@ -75,13 +84,8 @@ class RequestBuilder {
      
      - Return: the basic GET request
      */
-    private class func requestForGet(withURL url: URL) -> NSMutableURLRequest {
-        let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        request.cachePolicy = .useProtocolCachePolicy
-        request.httpMethod = HTTPMethod.get.rawValue
-        request.allHTTPHeaderFields = headers
-
-        return request
+    private class func requestForGet(withURL url: URL) -> URLRequest {
+        return buildSharedRequest(url, method: .get) as URLRequest
     }
 
     /**
@@ -93,19 +97,15 @@ class RequestBuilder {
 
      - Return: the basic POST request
      */
-    private class func requestForPost(withURL url: URL, payload: Parameters) -> NSMutableURLRequest {
-        var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        request.cachePolicy = .useProtocolCachePolicy
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.allHTTPHeaderFields = headers
-
+    private class func requestForPost(withURL url: URL, payload: Parameters) -> URLRequest {
+        var request = buildSharedRequest(url, method: .post)
         do {
             request = try JSONEncoding.default.encode(request, with: payload)
         } catch {
             //Do intelligent stuff with error
         }
 
-        return request
+        return request as URLRequest
     }
 
     /**
@@ -117,19 +117,15 @@ class RequestBuilder {
 
      - Return: the basic PATCH request
      */
-    private class func requestForPatch(withURL url: URL, payload: Parameters) -> NSMutableURLRequest {
-        var request: NSMutableURLRequest = NSMutableURLRequest(url: url)
-        request.cachePolicy = .useProtocolCachePolicy
-        request.httpMethod = HTTPMethod.patch.rawValue
-        request.allHTTPHeaderFields = headers
-
+    private class func requestForPatch(withURL url: URL, payload: Parameters) -> URLRequest {
+        var request = buildSharedRequest(url, method: .patch)
         do {
             request = try JSONEncoding.default.encode(request, with: payload)
         } catch {
             //Do intelligent stuff with error
         }
 
-        return request
+        return request as URLRequest
     }
 
     // MARK: Public methods
@@ -138,23 +134,23 @@ class RequestBuilder {
 
     class func requestGetPassiveForm(withID id: String) -> URLRequest {
         let url = buildURL(withBaseUrl: apiUrl, withEndpoint: .passiveForm, withURLParam: id)
-        return requestForGet(withURL: url) as URLRequest
+        return requestForGet(withURL: url)
     }
 
     class func requestGetCampaignForm(withID id: String) -> URLRequest {
         let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .campaignForm, withURLParam: id)
-        return requestForGet(withURL: url) as URLRequest
+        return requestForGet(withURL: url)
     }
 
     class func requestGetCampaigns(withAppID appID: String) -> URLRequest {
         let endPoint = Endpoints.campaignsList.rawValue.replacingOccurrences(of: "{app_id}", with: appID)
         let url = buildURL(withBaseUrl: cdnUrl, withString: endPoint)
-        return requestForGet(withURL: url) as URLRequest
+        return requestForGet(withURL: url)
     }
 
     class func requestGetTargeting(withID id: String) -> URLRequest {
         let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withURLParam: id)
-        return requestForGet(withURL: url) as URLRequest
+        return requestForGet(withURL: url)
     }
 
     // MARK: Writing
@@ -163,20 +159,20 @@ class RequestBuilder {
         let endPoint = Endpoints.campaignSubmission.rawValue
         let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
         let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint)
-        return requestForPost(withURL: url, payload: payload) as URLRequest
+        return requestForPost(withURL: url, payload: payload)
     }
 
     class func requestCampaignFeedbackItemPatch(forCampaignID campaignID: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
         let endPoint = Endpoints.campaignSubmission.rawValue
         let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
         let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint, withURLParam: token)
-        return requestForPatch(withURL: url, payload: payload) as URLRequest
+        return requestForPatch(withURL: url, payload: payload)
     }
 
     class func requestPatchCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> URLRequest {
         let endPoint = Endpoints.campaignViews.rawValue
         let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
         let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint)
-        return requestForPatch(withURL: url, payload: ["view": viewCount]) as URLRequest
+        return requestForPatch(withURL: url, payload: ["view": viewCount])
     }
 }
