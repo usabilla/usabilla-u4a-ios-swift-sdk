@@ -87,7 +87,6 @@
 		04F54E581CD76789002F501E /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
 		04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
-		04F54E611CD76A21002F501E /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
 		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
 		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
 		41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */; };
@@ -302,7 +301,6 @@
 		43B04FC21F1F7EEF0032F057 /* UsabillaFeedbackForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC31F1F7EEF0032F057 /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC41F1F7EEF0032F057 /* UsabillaFeedbackForm.swift in Headers */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		43B04FC71F1F7EEF0032F057 /* defaultJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5C1CD76A21002F501E /* defaultJson.json */; };
 		43B04FC81F1F7EEF0032F057 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		43B04FC91F1F7EEF0032F057 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */; };
@@ -495,7 +493,6 @@
 		04F54E551CD76789002F501E /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ThankYouViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E5A1CD76A21002F501E /* usa_localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = usa_localizable.strings; sourceTree = "<group>"; };
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		04F54E5C1CD76A21002F501E /* defaultJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultJson.json; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
 		41C536C31E2BA4E30079D3EE /* RatingFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RatingFieldModelTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -946,7 +943,6 @@
 				0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */,
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
 				04F54E5B1CD76A21002F501E /* Assets.xcassets */,
-				04F54E5C1CD76A21002F501E /* defaultJson.json */,
 			);
 			path = UsabillaFeedbackForm;
 			sourceTree = "<group>";
@@ -1432,7 +1428,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F54E611CD76A21002F501E /* defaultJson.json in Resources */,
 				04F54E601CD76A21002F501E /* Assets.xcassets in Resources */,
 				04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */,
 			);
@@ -1457,7 +1452,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43B04FC71F1F7EEF0032F057 /* defaultJson.json in Resources */,
 				43B04FC81F1F7EEF0032F057 /* Assets.xcassets in Resources */,
 				43B04FC91F1F7EEF0032F057 /* usa_localizable.strings in Resources */,
 			);

@@ -90,7 +90,7 @@ extension CampaignViewControllerTests: UsabillaFeedbackFormDelegate {
     func formLoadedCorrectly(_ form: UINavigationController) {
     }
 
-    func formFailedLoading(_ backupForm: UINavigationController) {
+    func formFailedLoading() {
     }
 
     func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {

@@ -38,28 +38,4 @@ class FormStore {
             }
         }
     }
-
-    // Loads the default form implemented with the app
-    func loadDefaultForm(_ formID: String, screenshot: UIImage?, theme: UsabillaTheme) -> FormModel? {
-        guard let path = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")?.path(forResource: "defaultJson", ofType: "json") else {
-            PLog("❌ Invalid filename/path.")
-            return nil
-        }
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions.mappedIfSafe)
-            let jsonObj: JSON = JSON(data: data)
-            if jsonObj != JSON.null {
-                let form = FormModel(json: jsonObj, id: formID, screenshot: screenshot)
-                form.theme = theme
-                form.updateTheme()
-                form.isDefault = true
-                return form
-            } else {
-                PLog("❌ could not get json from file, make sure that file contains valid json.")
-            }
-        } catch let error as NSError {
-            PLog(error.localizedDescription)
-        }
-        return nil
-    }
 }

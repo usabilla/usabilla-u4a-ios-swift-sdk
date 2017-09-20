@@ -15,7 +15,6 @@ class FormModel: NSObject, NSCoding {
     let version: Int
     let pages: [PageModel]
     let identifier: String
-    var isDefault: Bool = false
     let formJsonString: JSON
     let redirectToAppStore: Bool
     let showProgressBar: Bool

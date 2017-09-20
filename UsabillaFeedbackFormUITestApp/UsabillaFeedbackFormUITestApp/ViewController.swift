@@ -32,7 +32,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UsabillaFeedbackFormDelegate {
 
-    func formFailedLoading(_ backupForm: UINavigationController) {
+    func formFailedLoading() {
 
     }
 

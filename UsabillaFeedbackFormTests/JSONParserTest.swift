@@ -55,7 +55,6 @@ class JSONParserTest: QuickSpec {
                     expect(formModel.hasScreenshot).to(equal(true))
                     expect(formModel.version).to(equal(6))
                     expect(formModel.identifier).to(equal("a"))
-                    expect(formModel.isDefault).to(equal(false))
                     expect(formModel.copyModel.errorMessage).to(equal("Error"))
                 }
                 it("checks for the continue button correctly") {

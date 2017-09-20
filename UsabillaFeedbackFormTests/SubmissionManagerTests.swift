@@ -74,7 +74,6 @@ class SubmissionManagerTests: QuickSpec {
                 let screenshost = ScreenshotModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: formModel!.pages.first!)
                 screenshost.image = Icons.imageOfPoweredBy(color: .blue)
                 formModel?.pages.first?.fields.append(screenshost)
-                formModel?.isDefault = true
                 sm.submit(form: formModel!, customVars: ["test": "test"])
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
                 expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)

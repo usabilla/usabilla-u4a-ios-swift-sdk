@@ -115,10 +115,6 @@ class SubmissionManager {
             contentDictionary["custom_variables"] = customVars
         }
 
-        if formModel.isDefault {
-            contentDictionary["defaultForm"] = true
-        }
-
         var payload: [String: Any] = [:]
 
         payload["type"] = "app_feedback"

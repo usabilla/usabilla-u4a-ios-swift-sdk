@@ -124,7 +124,7 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
         }
     }
 
-    func formFailedLoading(_ backupForm: UINavigationController) {
+    func formFailedLoading() {
         failed?()
     }
 

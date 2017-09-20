@@ -152,7 +152,7 @@ class PassiveFormControllerTest: QuickSpec {
 }
 
 extension PassiveFormControllerTest: UsabillaFeedbackFormDelegate {
-    func formFailedLoading(_ backupForm: UINavigationController) {
+    func formFailedLoading() {
 
     }
 

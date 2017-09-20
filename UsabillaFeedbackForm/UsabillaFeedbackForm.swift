@@ -109,25 +109,19 @@ open class UsabillaFeedbackForm {
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = theme) {
 
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme).then { form in
-            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables, success: true)
+            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
         }.catch { _ in
-            if let defaulForm = formStore.loadDefaultForm(formID, screenshot: screenshot, theme: theme) {
-                UsabillaFeedbackForm.viewForForm(form: defaulForm, customeVariables: customVariables, success: false)
-            }
+            delegate?.formFailedLoading()
         }
     }
 
-    private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil, success: Bool) {
+    private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         formController.customVars = customeVariables
 
         DispatchQueue.main.async {
-            if !success {
-                UsabillaFeedbackForm.delegate?.formFailedLoading(navigationController)
-                return
-            }
             UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController)
         }
     }
@@ -153,7 +147,7 @@ public struct FeedbackResult {
 public protocol UsabillaFeedbackFormDelegate: class {
 
     func formLoadedCorrectly(_ form: UINavigationController)
-    func formFailedLoading(_ backupForm: UINavigationController)
+    func formFailedLoading()
 
     /**
         This method is called once the form is closed
