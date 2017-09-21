@@ -43,19 +43,18 @@ class SubmissionManagerTests: QuickSpec {
         let reachabilityMock = ReachabilityMock()
         var sm: SubmissionManager!
 
-        describe("SubmissionManager test") {
-            it("SubmissionManager init") {
-                //initialization code not in a before suite to not overlap with DataStore unit tests
+        describe("The SubmissionManager") {
+            beforeEach {
                 formModel = UBMock.formMock()
                 sm = SubmissionManager(formService: UBFormServiceMock(), reachability: reachabilityMock)
             }
 
-            it("SubmissionManager should work online and offline") {
+            it("should work online and offline") {
                 //set offline
                 reachabilityMock.reachable = false
-                sm.submit(form: formModel!, customVars: nil)
+                sm.submit(form: formModel!)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
-                sm.submit(form: formModel!, customVars: nil)
+                sm.submit(form: formModel!)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(2))
 
                 //set online
@@ -64,19 +63,19 @@ class SubmissionManagerTests: QuickSpec {
                 expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
             }
 
-            it("SubmissionManager submit with reachability") {
-                sm.submit(form: formModel!, customVars: nil)
+            it("submit with reachable") {
+                sm.submit(form: formModel!)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
                 expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
             }
 
-            it("SubmissionManager submit with custom vars, screenshot") {
-                let screenshost = ScreenshotModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: formModel!.pages.first!)
-                screenshost.image = Icons.imageOfPoweredBy(color: .blue)
-                formModel?.pages.first?.fields.append(screenshost)
-                sm.submit(form: formModel!, customVars: ["test": "test"])
-                expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
-                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
+            it("submit with custom vars, screenshot") {
+                sm.userContext = ["test": "test"]
+                sm.submit(form: UBMock.formMock())
+                let request = UBFeedbackRequestDAO.shared.readAll().first!
+                let data = request.payload["data"] as! [String: Any]
+                let cv = data["custom_variables"] as! [String: String]
+                expect(cv).to(equal(["test": "test"]))
             }
         }
     }

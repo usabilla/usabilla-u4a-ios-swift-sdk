@@ -15,7 +15,6 @@ class FormViewController: UIViewController {
     var reachability: Reachability!
     var pageViewController: PageViewController!
     var thankYouViewController: ThankYouViewController!
-    var customVars: [String: Any]?
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
 

@@ -13,6 +13,7 @@ extension Reachability: Reachable { }
 
 class SubmissionManager {
 
+    var userContext: [String: Any] = [:]
     private var reachability: Reachable
     private var formService: FormServiceProtocol
 
@@ -49,8 +50,8 @@ class SubmissionManager {
         setUpReachability()
     }
 
-    func submit(form: FormModel, customVars: [String: Any]?) {
-        let feedbackRequest = createSubmission(formModel: form, customVars: customVars)
+    func submit(form: FormModel) {
+        let feedbackRequest = createSubmission(formModel: form)
 
         UBFeedbackRequestDAO.shared.create(feedbackRequest)
         if reachability.isReachable {
@@ -58,7 +59,7 @@ class SubmissionManager {
         }
     }
 
-    private func createSubmission(formModel: FormModel, customVars: [String: Any]?) -> UBFeedbackRequest {
+    private func createSubmission(formModel: FormModel) -> UBFeedbackRequest {
         let uiDevice = UIDevice()
         var contentDictionary: [String: Any] = [:]
         contentDictionary["app_id"] = formModel.identifier //String
@@ -111,9 +112,7 @@ class SubmissionManager {
             }
         }
 
-        if customVars != nil {
-            contentDictionary["custom_variables"] = customVars
-        }
+        contentDictionary["custom_variables"] = userContext
 
         var payload: [String: Any] = [:]
 

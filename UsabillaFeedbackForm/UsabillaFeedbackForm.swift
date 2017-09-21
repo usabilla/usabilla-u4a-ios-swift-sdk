@@ -11,7 +11,11 @@ import UIKit
 
 open class UsabillaFeedbackForm {
 
-    private static var privateCustomVariables: [String: Any] = [:]
+    private static var privateCustomVariables: [String: Any] = [:] {
+        didSet {
+            submissionManager.userContext = privateCustomVariables
+        }
+    }
 
     //Various init methods with many parameters\
     open static weak var delegate: UsabillaFeedbackFormDelegate?
@@ -50,7 +54,7 @@ open class UsabillaFeedbackForm {
     private static var submissionManager: SubmissionManager = SubmissionManager(formService: formService)
 
     open class func sendEvent(event: String) {
-        campaignManager?.sendEvent(event: event, customVariables: customVariables)
+        campaignManager?.sendEvent(event: event, customVariables: privateCustomVariables)
     }
 
     open class func setCustomVariable(value: Any?, forKey key: String) {
@@ -106,21 +110,19 @@ open class UsabillaFeedbackForm {
         }
     #endif
 
-    open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, customVariables: [String: Any]? = nil, theme: UsabillaTheme = theme) {
+    open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
 
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme).then { form in
-            UsabillaFeedbackForm.viewForForm(form: form, customeVariables: customVariables)
+            UsabillaFeedbackForm.viewForForm(form: form)
         }.catch { _ in
             delegate?.formFailedLoading()
         }
     }
 
-    private static func viewForForm(form: FormModel, customeVariables: [String: Any]? = nil) {
+    private static func viewForForm(form: FormModel) {
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
-        formController.customVars = customeVariables
-
         DispatchQueue.main.async {
             UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController)
         }

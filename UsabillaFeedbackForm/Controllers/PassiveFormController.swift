@@ -36,7 +36,7 @@ class PassiveFormController: FormViewControllerDelegate {
             return
         }
         results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
-        submissionManager.submit(form: formViewController.viewModel.model, customVars: formViewController.customVars)
+        submissionManager.submit(form: formViewController.viewModel.model)
 
     }
 
