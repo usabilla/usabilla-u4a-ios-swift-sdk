@@ -13,11 +13,11 @@ open class UsabillaFeedbackForm {
 
     private static var privateCustomVariables: [String: Any] = [:] {
         didSet {
-            submissionManager.userContext = privateCustomVariables
+            submissionManager?.userContext = privateCustomVariables
         }
     }
 
-    //Various init methods with many parameters\
+    //Various init methods with many parameters
     open static weak var delegate: UsabillaFeedbackFormDelegate?
     open static var hideGiveMoreFeedback: Bool = true
     open static var dismissAutomatically: Bool = true
@@ -41,17 +41,17 @@ open class UsabillaFeedbackForm {
     static let campaignService = CampaignService()
     static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: UsabillaFeedbackForm.campaignService)
 
+    // services
+    private static var campaignManager: CampaignManager?
+    private static var formService: FormService?
+    private static var formStore: FormStore?
+    private static var submissionManager: SubmissionManager?
+
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
             defaultLocalisationFile = false
         }
     }
-
-    // services
-    private static var campaignManager: CampaignManager?
-    private static var formService: FormService = FormService()
-    private static var formStore: FormStore = FormStore(service: formService)
-    private static var submissionManager: SubmissionManager = SubmissionManager(formService: formService)
 
     open class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event, customVariables: privateCustomVariables)
@@ -72,13 +72,21 @@ open class UsabillaFeedbackForm {
      
     - parameter appID: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
     */
-    open class func initialize(appID: String) {
-        guard NSUUID(uuidString: appID) != nil else {
-            Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
-            return
+    open class func initialize(appID: String?) {
+        if let appID = appID {
+            guard NSUUID(uuidString: appID) != nil else {
+                Swift.debugPrint("UsabillaFeedbackForm: provided appID has wrong format: expected UUID")
+                return
+            }
+            UsabillaFeedbackForm.appID = appID
+            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID)
         }
-        UsabillaFeedbackForm.appID = appID
-        campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID)
+
+        formService = FormService()
+        // swiftlint:disable force_unwrapping
+        formStore = FormStore(service: formService!)
+        submissionManager = SubmissionManager(formService: formService!)
+        // swiftlint:enable force_unwrapping
     }
 
     open class func removeCachedForms() {
@@ -90,7 +98,8 @@ open class UsabillaFeedbackForm {
     }
     #if INTERNAL_USE || DEBUG
 
-        open class func formViewController(forFormJson json: JSON) -> UINavigationController {
+        open class func formViewController(forFormJson json: JSON) -> UINavigationController? {
+            guard let submissionManager = submissionManager else { return nil}
             let form = FormModel(json: json, id: "", screenshot: nil)
             let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
             let navigationController = UINavigationController(rootViewController: formController)
@@ -111,15 +120,21 @@ open class UsabillaFeedbackForm {
     #endif
 
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
-
+        guard let formStore = formStore else {
+            print("UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational.")
+            return
+        }
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme).then { form in
             UsabillaFeedbackForm.viewForForm(form: form)
         }.catch { _ in
-            delegate?.formFailedLoading()
+            DispatchQueue.main.async {
+                delegate?.formFailedLoading()
+            }
         }
     }
 
     private static func viewForForm(form: FormModel) {
+        guard let submissionManager = submissionManager else { return }
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)

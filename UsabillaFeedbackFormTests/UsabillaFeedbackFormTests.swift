@@ -20,6 +20,10 @@ class UsabillaFeedbackFormTest: QuickSpec, UsabillaFeedbackFormDelegate {
 
         describe("UsabillaFeedbackFormTest") {
 
+            beforeSuite {
+                UsabillaFeedbackForm.initialize(appID: nil)
+            }
+
             beforeEach {
                 UsabillaFeedbackForm.delegate = self
             }

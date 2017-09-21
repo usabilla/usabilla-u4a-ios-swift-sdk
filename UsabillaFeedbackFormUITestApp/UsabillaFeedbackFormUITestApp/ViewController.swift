@@ -26,7 +26,9 @@ class ViewController: UIViewController {
         let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
         let json: JSON = JSON(data: data as Data)
 
-        self.present(UsabillaFeedbackForm.formViewController(forFormJson: json), animated: true)
+        if let controller = UsabillaFeedbackForm.formViewController(forFormJson: json) {
+            self.present(controller, animated: true)
+        }
     }
 }
 
