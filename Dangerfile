@@ -8,8 +8,8 @@ swiftlint.config_file = '.swiftlint.yml'
 swiftlint.lint_files
 swiftlint.lint_files inline_mode: true
 
-slather.configure("UsabillaFeedbackForm.xcodeproj", "UsabillaFeedbackForm", options: {
-  workspace: 'UsabillaFeedbackForm.xcworkspace',
+slather.configure("Usabilla.xcodeproj", "Usabilla”, options: {
+  workspace: 'Usabilla.xcworkspace',
   source_directory: ".",
   decimals: 2
 })

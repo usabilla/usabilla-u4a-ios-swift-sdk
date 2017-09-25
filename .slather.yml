@@ -1,15 +1,15 @@
 coverage_service: cobertura_xml
-xcodeproj: UsabillaFeedbackForm.xcodeproj
-workspace: UsabillaFeedbackForm.xcworkspace
-scheme: UsabillaFeedbackForm
+xcodeproj: Usabilla.xcodeproj
+workspace: Usabilla.xcworkspace
+scheme: Usabilla
 source_directory: .
 output_directory: ./xml_report
 ignore:
- - UsabillaFeedbackForm/Utils/Reachability.swift
- - UsabillaFeedbackForm/Utils/SwiftyJSON.swift
- - UsabillaFeedbackFormTests/*
- - UsabillaFeedbackForm/*ViewController.swift
- - UsabillaFeedbackForm/*View.swift
- - UsabillaFeedbackForm/*ViewCell.swift
- - UsabillaFeedbackForm/*Component.swift
+ - Usabilla/Utils/Reachability.swift
+ - Usabilla/Utils/SwiftyJSON.swift
+ - UsabillaTests/*
+ - Usabilla/*ViewController.swift
+ - Usabilla/*View.swift
+ - Usabilla/*ViewCell.swift
+ - Usabilla/*Component.swift
 

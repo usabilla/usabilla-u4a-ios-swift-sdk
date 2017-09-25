@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; };
+		04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */ = {isa = PBXBuildFile; fileRef = 43120C9D1F027E5800802141 /* 01_FormAppearance.json */; };
 		437B96D11E266A8F00AA0A25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96D01E266A8F00AA0A25 /* AppDelegate.swift */; };
 		437B96D31E266A8F00AA0A25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96D21E266A8F00AA0A25 /* ViewController.swift */; };
 		437B96D61E266A8F00AA0A25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D41E266A8F00AA0A25 /* Main.storyboard */; };
 		437B96D81E266A8F00AA0A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D71E266A8F00AA0A25 /* Assets.xcassets */; };
 		437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D91E266A8F00AA0A25 /* LaunchScreen.storyboard */; };
-		437C60DA1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; };
-		437C60DB1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43F9516E1F01116500FE23F8 /* 02_JumpRulesOneControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */; };
 		43F9516F1F01116500FE23F8 /* 03_JumpRulesManyControls.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */; };
 		43F951701F01116500FE23F8 /* 04_VisibilityControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951661F01116500FE23F8 /* 04_VisibilityControl.json */; };
@@ -35,13 +35,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		437C60DC1E269FC5003E6F70 /* Embed Frameworks */ = {
+		04C464F61F799FB200FE43DB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				437C60DB1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Embed Frameworks */,
+				04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04C464F31F799FB100FE43DB /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
 		437B96CD1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaFeedbackFormUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96D01E266A8F00AA0A25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437C60DA1E269FC5003E6F70 /* UsabillaFeedbackForm.framework in Frameworks */,
+				04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +92,7 @@
 		437B96C41E266A8F00AA0A25 = {
 			isa = PBXGroup;
 			children = (
+				04C464F31F799FB100FE43DB /* Usabilla.framework */,
 				43F951611F01116500FE23F8 /* SDK-UI-Scenarios */,
 				437B96CF1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */,
 				437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */,
@@ -170,7 +172,7 @@
 				437B96C91E266A8F00AA0A25 /* Sources */,
 				437B96CA1E266A8F00AA0A25 /* Frameworks */,
 				437B96CB1E266A8F00AA0A25 /* Resources */,
-				437C60DC1E269FC5003E6F70 /* Embed Frameworks */,
+				04C464F61F799FB200FE43DB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

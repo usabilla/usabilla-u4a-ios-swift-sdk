@@ -1,11 +1,11 @@
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
-  - UsabillaFeedbackFormTests
-  - UsabillaFeedbackForm/Utils/SwiftyJSON.swift 
-  - UsabillaFeedbackForm/Utils/StyleKit.swift 
-  - UsabillaFeedbackForm/Utils/Reachability.swift
-  - UsabillaFeedbackForm/Utils/SwiftEventBus.swift
+  - UsabillaTests
+  - Usabilla/Utils/SwiftyJSON.swift 
+  - Usabilla/Utils/StyleKit.swift 
+  - Usabilla/Utils/Reachability.swift
+  - Usabilla/Utils/SwiftEventBus.swift
   - codecov.swift
 
 opt_in_rules:

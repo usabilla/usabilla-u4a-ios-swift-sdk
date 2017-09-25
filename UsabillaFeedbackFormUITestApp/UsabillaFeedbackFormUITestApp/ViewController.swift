@@ -7,7 +7,7 @@
 //
 // swiftlint:disable force_try
 import UIKit
-import UsabillaFeedbackForm
+import Usabilla
 
 class ViewController: UIViewController {
 
@@ -25,13 +25,13 @@ class ViewController: UIViewController {
         let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
         let json: JSON = JSON(data: data as Data)
 
-        if let controller = UsabillaFeedbackForm.formViewController(forFormJson: json) {
+        if let controller = Usabilla.formViewController(forFormJson: json) {
             self.present(controller, animated: true)
         }
     }
 }
 
-extension ViewController: UsabillaFeedbackFormDelegate {
+extension ViewController: UsabillaDelegate {
 
     func formFailedLoading() {
 

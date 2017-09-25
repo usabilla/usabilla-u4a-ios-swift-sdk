@@ -9,7 +9,7 @@
 // swiftlint:disable force_try
 
 import UIKit
-import UsabillaFeedbackForm
+import Usabilla
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UsabillaFeedbackForm.initialize(appID: nil)
+        Usabilla.initialize(appID: nil)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         var controller: UIViewController!
 
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let path = Bundle(for: AppDelegate.self).path(forResource: scenario, ofType: "json")!
             let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             let json: JSON = JSON(data: data as Data)
-            controller = UsabillaFeedbackForm.formViewController(forFormJson: json)
+            controller = Usabilla.formViewController(forFormJson: json)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             controller = storyboard.instantiateInitialViewController()
