@@ -98,7 +98,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         metadata["orientation"] = UIDeviceOrientationIsLandscape(uiDevice.orientation) ? "Landscape" : "Portrait"
         metadata["os_version"] = uiDevice.systemVersion
         metadata["screen"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
-        metadata["sdk_version"] = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        metadata["sdk_version"] = Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         metadata["system"] = "ios"
         metadata["timestamp"] = Date().timeIntervalSince1970.description
         metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]

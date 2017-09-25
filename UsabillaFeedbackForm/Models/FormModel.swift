@@ -28,7 +28,7 @@ class FormModel: NSObject, NSCoding {
         self.pages = pages
         self.identifier = identifier
         self.formJsonString = jsonString
-        self.theme = UsabillaFeedbackForm.theme
+        self.theme = Usabilla.theme
         self.showProgressBar = showProgressBar ?? true
         self.redirectToAppStore = redirectToAppStore
         _ = pages.map { $0.copy = copyModel }

@@ -11,53 +11,25 @@ import UIKit
 
 open class UsabillaFeedbackForm {
 
-    private static var privateCustomVariables: [String: Any] = [:] {
+    static var customVariables: [String: Any] = [:] {
         didSet {
-            submissionManager?.userContext = privateCustomVariables
+            submissionManager?.userContext = customVariables
         }
     }
+    private static let campaignService = CampaignService()
+    private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: UsabillaFeedbackForm.campaignService)
 
-    //Various init methods with many parameters
-    open static weak var delegate: UsabillaFeedbackFormDelegate?
-    open static var hideGiveMoreFeedback: Bool = true
-    open static var dismissAutomatically: Bool = true
-    open static var theme: UsabillaTheme = UsabillaTheme()
-    open static var canDisplayCampaigns: Bool = true
-    open static var customVariables: [String: Any] {
-        get {
-            return privateCustomVariables
-        }
-        set {
-            if !JSONSerialization.isValidJSONObject(newValue) {
-                print("UBError: attempting to set invalid custom variables object. For more on how to use custom variables, visit https://github.com/usabilla/usabilla-u4a-ios-swift-sdk#other-configuration")
-                return
-            }
-            privateCustomVariables = newValue
-        }
-    }
-
-    static var appID: String?
-    static var defaultLocalisationFile = true
-    static let campaignService = CampaignService()
-    static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: UsabillaFeedbackForm.campaignService)
-
-    // services
+    private static var appID: String?
     private static var campaignManager: CampaignManager?
     private static var formService: FormService?
     private static var formStore: FormStore?
     private static var submissionManager: SubmissionManager?
 
-    open static var localizedStringFile: String = "usa_localizable" {
-        didSet {
-            defaultLocalisationFile = false
-        }
+    class func sendEvent(event: String) {
+        campaignManager?.sendEvent(event: event, customVariables: customVariables)
     }
 
-    open class func sendEvent(event: String) {
-        campaignManager?.sendEvent(event: event, customVariables: privateCustomVariables)
-    }
-
-    open class func setCustomVariable(value: Any?, forKey key: String) {
+    class func setCustomVariable(value: Any?, forKey key: String) {
         customVariables[key] = value
         PLog(customVariables)
     }
@@ -89,11 +61,11 @@ open class UsabillaFeedbackForm {
         // swiftlint:enable force_unwrapping
     }
 
-    open class func removeCachedForms() {
+    class func removeCachedForms() {
         UBFormDAO.shared.deleteAll()
     }
 
-    open class func resetCampaignData(completion: (() -> Void)?) {
+    class func resetCampaignData(completion: (() -> Void)?) {
         campaignManager?.resetData(completion: completion)
     }
     #if INTERNAL_USE || DEBUG
@@ -107,7 +79,7 @@ open class UsabillaFeedbackForm {
             return navigationController
         }
 
-        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = theme) {
+        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = Usabilla.theme) {
             campaignStore.getCampaignForm(withFormID: formID, theme: theme).then { form in
                 campaignManager?.displayCampaignForm(form)
             }
@@ -119,7 +91,7 @@ open class UsabillaFeedbackForm {
         }
     #endif
 
-    open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
+    class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = Usabilla.theme) {
         guard let formStore = formStore else {
             print("UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational.")
             return
@@ -128,7 +100,7 @@ open class UsabillaFeedbackForm {
             UsabillaFeedbackForm.viewForForm(form: form)
         }.catch { _ in
             DispatchQueue.main.async {
-                delegate?.formFailedLoading()
+                Usabilla.delegate?.formFailedLoading()
             }
         }
     }
@@ -139,11 +111,11 @@ open class UsabillaFeedbackForm {
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         DispatchQueue.main.async {
-            UsabillaFeedbackForm.delegate?.formLoadedCorrectly(navigationController)
+            Usabilla.delegate?.formLoadedCorrectly(navigationController)
         }
     }
 
-    open class func takeScreenshot(_ view: UIView) -> UIImage? {
+    class func takeScreenshot(_ view: UIView) -> UIImage? {
         //Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -151,63 +123,4 @@ open class UsabillaFeedbackForm {
         UIGraphicsEndImageContext()
         return image
     }
-}
-
-public struct FeedbackResult {
-    public let rating: Int?
-    public let abandonedPageIndex: Int?
-    public var sent: Bool {
-        return abandonedPageIndex == nil
-    }
-}
-
-public protocol UsabillaFeedbackFormDelegate: class {
-
-    func formLoadedCorrectly(_ form: UINavigationController)
-    func formFailedLoading()
-
-    /**
-        This method is called once the form is closed
-     
-        - Parameter form: UINavigationcontroller which is being dismissed
-        - Parameter formID: String representing the ID of the form
-        - Parameter feedbackResults: Array of FeedbackResult
-        - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
-
-        If UsabillaFeedbackForm.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
-        Otherwise the feedbackResults can contains between 1 and n FeedbackResult
-    */
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
-
-    /**
-
-     This method is called before the form is closed
-
-     - Parameter form: UINavigationcontroller which is being dismissed
-     - Parameter formID: String representing the ID of the form
-     - Parameter feedbackResults: Array of FeedbackResult
-     - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
-
-     This method should be used to dismiss the form if the UsabillaFeedbackForm.**dismissAutomatically** attribute is set to **false**
-     */
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
-
-    /**
-
-     This method is called once a campaign form is closed
-
-     - Parameter campaign: UIViewController which is being dismissed
-     - Parameter feedbackResult: FeedbackResult containing the campaign data submitted by the user
-     - Parameter isRedirectToAppStoreEnabled: Bool indicating whether or not the form is set to redirect to the App Store
-
-     */
-    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool)
-}
-
-public extension UsabillaFeedbackFormDelegate {
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-    }
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-    }
-    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
 }

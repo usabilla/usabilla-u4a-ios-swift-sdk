@@ -10,6 +10,7 @@
 		040325061EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */; };
 		040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
 		040CDA611F2741750005F986 /* ChoiceFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CDA601F2741750005F986 /* ChoiceFieldModelTest.swift */; };
+		041275D81F792BF700A12E09 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044204E11DD07A3B004FA09F /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -414,6 +415,7 @@
 		040325091EF2CD8200A2AE48 /* UBCampaignFeedbackRequestDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequestDAOTests.swift; sourceTree = "<group>"; };
 		040C97DC1EA6527200A59C95 /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		040CDA601F2741750005F986 /* ChoiceFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceFieldModelTest.swift; sourceTree = "<group>"; };
+		041275D71F792BF700A12E09 /* Usabilla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usabilla.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTests.swift; sourceTree = "<group>"; };
 		0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 				0483EA041CDCE01A004EC234 /* UsabillaFeedbackForm.swift */,
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
 				04F54E5B1CD76A21002F501E /* Assets.xcassets */,
+				041275D71F792BF700A12E09 /* Usabilla.swift */,
 			);
 			path = UsabillaFeedbackForm;
 			sourceTree = "<group>";
@@ -1619,6 +1622,7 @@
 				4390C0F21E97BE9B00092977 /* UBDAO.swift in Sources */,
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
+				041275D81F792BF700A12E09 /* Usabilla.swift in Sources */,
 				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
 				4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */,
 				43CCD4701E799AE500B3E4FE /* ParagraphComponentViewModel.swift in Sources */,
@@ -2043,7 +2047,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackForm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2073,7 +2077,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackForm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2141,7 +2145,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DINTERNAL_USE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackForm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2172,7 +2176,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackForm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;

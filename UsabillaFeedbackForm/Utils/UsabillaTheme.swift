@@ -116,7 +116,7 @@ public struct UsabillaTheme {
     }
 
     fileprivate static func getImage(withName name: String) -> UIImage? {
-        let bundle = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")
+        let bundle = Bundle(identifier: "com.usabilla.Usabilla")
         return UIImage(named: name, in: bundle, compatibleWith: nil)
     }
 

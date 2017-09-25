@@ -13,9 +13,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UsabillaFeedbackForm.delegate = self
-        UsabillaFeedbackForm.hideGiveMoreFeedback = false
-        UsabillaFeedbackForm.dismissAutomatically = false
+        Usabilla.delegate = self
+        Usabilla.hideGiveMoreFeedback = false
+        Usabilla.dismissAutomatically = false
     }
 
     @IBAction func scenarioAction(_ sender: UIButton) {

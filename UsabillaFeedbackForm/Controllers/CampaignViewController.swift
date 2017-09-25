@@ -194,7 +194,7 @@ class CampaignViewController: UIViewController {
 
     func closeCampaign(atPageIndex index: Int? = nil) {
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
-        UsabillaFeedbackForm.delegate?.campaignDidClose(self, with: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
+        Usabilla.delegate?.campaignDidClose(self, with: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
         self.delegate?.campaignDidEnd()
     }
 }

@@ -65,7 +65,7 @@ class SubmissionManager {
         contentDictionary["app_id"] = formModel.identifier //String
         contentDictionary["version"] = formModel.version //String
 
-        if let SDKVersion = Bundle(identifier: "com.usabilla.UsabillaFeedbackForm")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
+        if let SDKVersion = Bundle(identifier: "com.usabilla.Usabilla")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
             contentDictionary["SDK_version"] = SDKVersion
         } else {
             PLog("❌ impossible to get SDK version")
