@@ -5,7 +5,7 @@
       location = "group:UsabillaFeedbackFormExample.custom/SwiftDevApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/Jack/Usabilla/iOS/UsabillaFeedbackForm/Usabilla.xcodeproj">
+      location = "group:Usabilla.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:UsabillaFeedbackFormUITestApp/UsabillaFeedbackFormUITestApp.xcodeproj">
