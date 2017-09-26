@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: 9.0.0
+    version: 8.3.2
 dependencies:
   pre: 
     - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
@@ -24,7 +24,7 @@ test:
           CODE_SIGN_IDENTITY=
           PROVISIONING_PROFILE=
           -sdk iphonesimulator
-          -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6'
+          -destination 'platform=iOS Simulator,OS=9.0,name=iPhone 6'
           -workspace Usabilla.xcworkspace
           -scheme "Usabilla"
           test |
@@ -44,26 +44,13 @@ test:
         tee $CIRCLE_ARTIFACTS/xcode_raw_ut.log |
         xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ut_ios_10_3_iPhone_7.xml
 
-        - set -o pipefail &&
-        xcodebuild
-          CODE_SIGNING_REQUIRED=NO
-          CODE_SIGN_IDENTITY=
-          PROVISIONING_PROFILE=
-          -sdk iphonesimulator
-          -destination 'platform=iOS Simulator,OS=11,name=iPhone 7'
-          -workspace Usabilla.xcworkspace
-          -scheme "Usabilla"
-          test |
-        tee $CIRCLE_ARTIFACTS/xcode_raw_ut.log |
-        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ut_ios_10_3_iPhone_7.xml
-
       - set -o pipefail &&
         xcodebuild
           CODE_SIGNING_REQUIRED=NO
           CODE_SIGN_IDENTITY=
           PROVISIONING_PROFILE=
           -sdk iphonesimulator
-          -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6'
+          -destination 'platform=iOS Simulator,OS=9.0,name=iPhone 6'
           -workspace Usabilla.xcworkspace
           -scheme "UsabillaUITestApp"
           test |

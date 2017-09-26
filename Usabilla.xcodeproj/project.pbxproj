@@ -45,7 +45,7 @@
 		0483EA051CDCE01A004EC234 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
 		0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */; };
 		0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */; };
-		0489CE0C1CD7739400E84E0F /* UsabillaFeedbackForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0489CE0C1CD7739400E84E0F /* Usabilla.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* Usabilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D77811E1BF2EB00117606 /* ViewUtils.swift */; };
 		04A0C1BE1E8BB86E00A483AC /* OrRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BD1E8BB86E00A483AC /* OrRuleTests.swift */; };
 		04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1BF1E8BB9D100A483AC /* SequenceRuleTests.swift */; };
@@ -301,7 +301,7 @@
 		43B04FBD1F1F7EEF0032F057 /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
 		43B04FBE1F1F7EEF0032F057 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
 		43B04FBF1F1F7EEF0032F057 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
-		43B04FC21F1F7EEF0032F057 /* UsabillaFeedbackForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43B04FC21F1F7EEF0032F057 /* Usabilla.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* Usabilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC31F1F7EEF0032F057 /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC41F1F7EEF0032F057 /* UsabillaInternal.swift in Headers */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC81F1F7EEF0032F057 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
@@ -406,7 +406,7 @@
 			containerPortal = 04F54DBF1CD75A3F002F501E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 04F54DC71CD75A3F002F501E;
-			remoteInfo = UsabillaFeedbackForm;
+			remoteInfo = Usabilla;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -482,7 +482,7 @@
 		04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignFeedbackRequest.swift; sourceTree = "<group>"; };
 		04F149DE1CE0B8D000D56B29 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../Utils/Reachability.swift; sourceTree = "<group>"; };
 		04F54DC81CD75A3F002F501E /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsabillaFeedbackForm.h; sourceTree = "<group>"; };
+		04F54DCB1CD75A3F002F501E /* Usabilla.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Usabilla.h; sourceTree = "<group>"; };
 		04F54DCD1CD75A3F002F501E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F54DF31CD766EC002F501E /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Protocols.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -658,7 +658,7 @@
 		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
-		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaFeedbackFormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -943,7 +943,7 @@
 				04F54DE41CD75AD6002F501E /* Utils */,
 				04F54DE31CD75ACB002F501E /* Models */,
 				04F54DE21CD75A75002F501E /* Controllers */,
-				04F54DCB1CD75A3F002F501E /* UsabillaFeedbackForm.h */,
+				04F54DCB1CD75A3F002F501E /* Usabilla.h */,
 				04F54DCD1CD75A3F002F501E /* Info.plist */,
 				43B04FCF1F1F7EEF0032F057 /* UsabillaInternal-Info.plist */,
 				0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */,
@@ -1303,7 +1303,7 @@
 			children = (
 				434F3CFB1E2F847200F6FD38 /* Nimble.framework */,
 				434F3CFC1E2F847200F6FD38 /* Quick.framework */,
-				EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaFeedbackFormTests.framework */,
+				EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1315,7 +1315,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0489CE0C1CD7739400E84E0F /* UsabillaFeedbackForm.h in Headers */,
+				0489CE0C1CD7739400E84E0F /* Usabilla.h in Headers */,
 				044204E11DD07A3B004FA09F /* UsabillaTheme.swift in Headers */,
 				044204E21DD07A68004FA09F /* UsabillaInternal.swift in Headers */,
 			);
@@ -1325,7 +1325,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43B04FC21F1F7EEF0032F057 /* UsabillaFeedbackForm.h in Headers */,
+				43B04FC21F1F7EEF0032F057 /* Usabilla.h in Headers */,
 				43B04FC31F1F7EEF0032F057 /* UsabillaTheme.swift in Headers */,
 				43B04FC41F1F7EEF0032F057 /* UsabillaInternal.swift in Headers */,
 			);
@@ -1349,7 +1349,7 @@
 			dependencies = (
 			);
 			name = Usabilla;
-			productName = UsabillaFeedbackForm;
+			productName = Usabilla;
 			productReference = 04F54DC81CD75A3F002F501E /* Usabilla.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -1368,7 +1368,7 @@
 				04F54DD51CD75A3F002F501E /* PBXTargetDependency */,
 			);
 			name = UsabillaTests;
-			productName = UsabillaFeedbackFormTests;
+			productName = UsabillaTests;
 			productReference = 04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -1387,7 +1387,7 @@
 			dependencies = (
 			);
 			name = UsabillaInternal;
-			productName = UsabillaFeedbackForm;
+			productName = Usabilla;
 			productReference = 43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -1968,7 +1968,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "UsabillaFeedbackForm-Swift.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Usabilla-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
@@ -2021,7 +2021,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "UsabillaFeedbackForm-Swift.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Usabilla-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
