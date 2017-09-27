@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:UsabillaFeedbackFormExample.custom/SwiftDevApp.xcodeproj">
+      location = "group:UsabillaExample/SwiftDevApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Usabilla.xcodeproj">

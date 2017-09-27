@@ -15,18 +15,18 @@
 		04E95FF91D1998DA0041E4CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FF71D1998DA0041E4CA /* Main.storyboard */; };
 		04E95FFB1D1998DA0041E4CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFA1D1998DA0041E4CA /* Assets.xcassets */; };
 		04E95FFE1D1998DA0041E4CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E95FFC1D1998DA0041E4CA /* LaunchScreen.storyboard */; };
-		43A838D71E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */; };
-		43A838D81E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C5DC407B1F7BCF9E00FA89B8 /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5DC407A1F7BCF9E00FA89B8 /* Usabilla.framework */; };
+		C5DC407C1F7BCF9E00FA89B8 /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5DC407A1F7BCF9E00FA89B8 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		43B0A2261E2D0CBA00879E5F /* Embed Frameworks */ = {
+		C5DC407D1F7BCF9E00FA89B8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				43A838D81E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Embed Frameworks */,
+				C5DC407C1F7BCF9E00FA89B8 /* Usabilla.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +45,7 @@
 		04E95FFD1D1998DA0041E4CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04E95FFF1D1998DA0041E4CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UsabillaFeedbackForm.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/UsabillaFeedbackForm.framework"; sourceTree = "<group>"; };
+		C5DC407A1F7BCF9E00FA89B8 /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43A838D71E2D0ECE00110916 /* UsabillaFeedbackForm.framework in Frameworks */,
+				C5DC407B1F7BCF9E00FA89B8 /* Usabilla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +71,7 @@
 		04E95FE71D1998D90041E4CA = {
 			isa = PBXGroup;
 			children = (
+				C5DC407A1F7BCF9E00FA89B8 /* Usabilla.framework */,
 				04E95FF21D1998D90041E4CA /* SwiftDevApp */,
 				04E95FF11D1998D90041E4CA /* Products */,
 				040F854C1D893C0500E4A360 /* Frameworks */,
@@ -111,7 +113,7 @@
 				04E95FEC1D1998D90041E4CA /* Sources */,
 				04E95FED1D1998D90041E4CA /* Frameworks */,
 				04E95FEE1D1998D90041E4CA /* Resources */,
-				43B0A2261E2D0CBA00879E5F /* Embed Frameworks */,
+				C5DC407D1F7BCF9E00FA89B8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
