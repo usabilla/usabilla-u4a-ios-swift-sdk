@@ -45,12 +45,12 @@ open class Usabilla {
 
     /**
      Initialize the **Usabilla SDK**
-
+     
      This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
-
+     
      The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
      It also allows to fetch the campaigns associated to the **appID**.
-
+     
      - parameter appID: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
      */
     open class func initialize(appID: String?) {
@@ -65,8 +65,15 @@ open class Usabilla {
         UsabillaInternal.resetCampaignData(completion: completion)
     }
 
+    /**
+     Preloads a list of forms to make them available to the user even without network connectivity.
+     */
+    open class func preloadForms(withFormIDs formIDs: [String]) {
+        UsabillaInternal.preloadForms(withFormIDs: formIDs)
+    }
+
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
-       UsabillaInternal.loadFeedbackForm(formID, screenshot: screenshot, theme: theme)
+        UsabillaInternal.loadFeedbackForm(formID, screenshot: screenshot, theme: theme)
     }
 
     open class func takeScreenshot(_ view: UIView) -> UIImage? {
@@ -74,18 +81,17 @@ open class Usabilla {
     }
 
     #if INTERNAL_USE || DEBUG
+        open class func formViewController(forFormJson json: JSON) -> UINavigationController? {
+            return UsabillaInternal.formViewController(forFormJson: json)
+        }
 
-    open class func formViewController(forFormJson json: JSON) -> UINavigationController? {
-        return UsabillaInternal.formViewController(forFormJson: json)
-    }
+        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = Usabilla.theme) {
+            UsabillaInternal.displayCampaignForm(withFormID: formID)
+        }
 
-    open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = Usabilla.theme) {
-        UsabillaInternal.displayCampaignForm(withFormID: formID)
-    }
-
-    open class func showCampaignForm(formJson: JSON, campaignID: String = "id") {
-        UsabillaInternal.showCampaignForm(formJson: formJson, campaignID: campaignID)
-    }
+        open class func showCampaignForm(formJson: JSON, campaignID: String = "id") {
+            UsabillaInternal.showCampaignForm(formJson: formJson, campaignID: campaignID)
+        }
     #endif
 
 }
@@ -105,38 +111,38 @@ public protocol UsabillaDelegate: class {
 
     /**
      This method is called once the form is closed
-
+     
      - Parameter form: UINavigationcontroller which is being dismissed
      - Parameter formID: String representing the ID of the form
      - Parameter feedbackResults: Array of FeedbackResult
      - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
-
+     
      If Usabilla.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
      Otherwise the feedbackResults can contains between 1 and n FeedbackResult
      */
     func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
     /**
-
+     
      This method is called before the form is closed
-
+     
      - Parameter form: UINavigationcontroller which is being dismissed
      - Parameter formID: String representing the ID of the form
      - Parameter feedbackResults: Array of FeedbackResult
      - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
-
+     
      This method should be used to dismiss the form if the Usabilla.**dismissAutomatically** attribute is set to **false**
      */
     func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
     /**
-
+     
      This method is called once a campaign form is closed
-
+     
      - Parameter campaign: UIViewController which is being dismissed
      - Parameter feedbackResult: FeedbackResult containing the campaign data submitted by the user
      - Parameter isRedirectToAppStoreEnabled: Bool indicating whether or not the form is set to redirect to the App Store
-
+     
      */
     func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool)
 }

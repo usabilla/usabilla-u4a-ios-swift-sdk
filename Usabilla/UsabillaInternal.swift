@@ -34,16 +34,6 @@ class UsabillaInternal {
         PLog(customVariables)
     }
 
-    /**
-    Initialize the **Usabilla SDK**
-     
-    This method should be called once, inside the AppDelegate **didFinishLaunchingWithOptions** method.
-     
-    The initialization allows to send previous persisted feedbacks if it was not possible to send them because of an internet connection issue for example.
-    It also allows to fetch the campaigns associated to the **appID**.
-     
-    - parameter appID: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
-    */
     class func initialize(appID: String?) {
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
@@ -68,10 +58,21 @@ class UsabillaInternal {
     class func resetCampaignData(completion: (() -> Void)?) {
         campaignManager?.resetData(completion: completion)
     }
+
+    class func preloadForms(withFormIDs formIDs: [String]) {
+        guard let formStore = formStore else {
+            print("UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational.")
+            return
+        }
+
+        for formID in formIDs {
+            _ = formStore.loadForm(id: formID, screenshot: nil, theme: Usabilla.theme)
+        }
+    }
     #if INTERNAL_USE || DEBUG
 
         open class func formViewController(forFormJson json: JSON) -> UINavigationController? {
-            guard let submissionManager = submissionManager else { return nil}
+            guard let submissionManager = submissionManager else { return nil }
             let form = FormModel(json: json, id: "", screenshot: nil)
             let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
             let navigationController = UINavigationController(rootViewController: formController)
