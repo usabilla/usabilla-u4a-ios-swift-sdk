@@ -164,9 +164,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         cellHeights = [:]
 
         tableView.reloadData()
-        DispatchQueue.main.async {
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+        tableView.scrollTo(indexPath: IndexPath(row: 0, section: 0), animated: true)
         handleHeaderViewVisibility()
     }
 
@@ -192,8 +190,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     func gotToNextErrorField() {
         viewModel.verifyFields()
         if let index = viewModel.indexOfInvalidField() {
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            tableView.scrollTo(indexPath: IndexPath(row: index, section: 0), animated: true)
             tableView.reloadData()
         }
     }
