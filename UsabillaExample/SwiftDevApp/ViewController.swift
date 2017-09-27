@@ -38,11 +38,11 @@ class ViewController: UIViewController, UsabillaDelegate {
     @IBAction func show(_ sender: Any) {
         Usabilla.loadFeedbackForm("57ea3cacaaba75e6addebf7b")
     }
-    
+
     func formLoadedCorrectly(_ form: UINavigationController) {
         present(form, animated: true, completion: nil)
     }
-    
+
     func formFailedLoading() {
 //        present(backupForm, animated: true, completion: nil)
     }
