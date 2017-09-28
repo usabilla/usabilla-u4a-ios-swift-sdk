@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  UsabillaFeedbackFormUITestApp
+//  UsabillaUITestApp
 //
 //  Created by Benjamin Grima on 11/01/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.

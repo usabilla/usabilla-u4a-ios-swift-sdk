@@ -69,7 +69,7 @@ To send an event to the SDK, use `sendEvent(event: String)`.
 ### Campaign Toggling
 
 Sometimes the user of your app is in the middle of a delicate process and should not be disturbed.
-To make sure no campaigns trigger at an inappropriate moment, you can set the boolean property `canDisplayCampaigns` of `UsabillaFeedbackForm` to suit your needs.
+To make sure no campaigns trigger at an inappropriate moment, you can set the boolean property `canDisplayCampaigns` of `Usabilla` to suit your needs.
 
 Setting it to `true` will allow the SDK to display any campaign when it triggers.
 Setting it to `false` will prevent any campaign from being displayed.

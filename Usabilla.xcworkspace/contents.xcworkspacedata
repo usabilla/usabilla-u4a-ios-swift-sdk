@@ -8,6 +8,6 @@
       location = "group:Usabilla.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:UsabillaFeedbackFormUITestApp/UsabillaFeedbackFormUITestApp.xcodeproj">
+      location = "group:UsabillaUITestApp/UsabillaUITestApp.xcodeproj">
    </FileRef>
 </Workspace>

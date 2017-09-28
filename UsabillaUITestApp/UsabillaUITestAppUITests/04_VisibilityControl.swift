@@ -1,6 +1,6 @@
 //
 //  04_VisibilityControl.swift
-//  UsabillaFeedbackFormUITestApp
+//  UsabillaUITestApp
 //
 //  Created by Benjamin Grima on 27/06/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.

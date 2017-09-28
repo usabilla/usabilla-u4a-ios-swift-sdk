@@ -1,3 +1,3 @@
-[submodule "UsabillaFeedbackFormUITestApp/SDK-UI-Scenarios"]
-	path = UsabillaFeedbackFormUITestApp/SDK-UI-Scenarios
+[submodule "UsabillaUITestApp/SDK-UI-Scenarios"]
+	path = UsabillaUITestApp/SDK-UI-Scenarios
 	url = git@github.com:usabilla/SDK-UI-Scenarios.git

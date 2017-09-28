@@ -31,7 +31,7 @@
 			containerPortal = 437B96C51E266A8F00AA0A25 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 437B96CC1E266A8F00AA0A25;
-			remoteInfo = UsabillaFeedbackFormUITestApp;
+			remoteInfo = UsabillaUITestApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -52,16 +52,16 @@
 /* Begin PBXFileReference section */
 		04C464F31F799FB100FE43DB /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
-		437B96CD1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaFeedbackFormUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		437B96CD1E266A8F00AA0A25 /* UsabillaUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96D01E266A8F00AA0A25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		437B96D21E266A8F00AA0A25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		437B96D51E266A8F00AA0A25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		437B96D71E266A8F00AA0A25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		437B96DA1E266A8F00AA0A25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		437B96DC1E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		437B96E11E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaFeedbackFormUITestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		437B96E11E266A8F00AA0A25 /* UsabillaUITestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaUITestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96E71E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UsabillaFeedbackForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		437C60D91E269FC5003E6F70 /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		438E37341F7BC28A00FA61FE /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 02_JumpRulesOneControl.json; sourceTree = "<group>"; };
 		43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 03_JumpRulesManyControls.json; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 			children = (
 				04C464F31F799FB100FE43DB /* Usabilla.framework */,
 				43F951611F01116500FE23F8 /* SDK-UI-Scenarios */,
-				437B96CF1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */,
-				437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */,
+				437B96CF1E266A8F00AA0A25 /* UsabillaUITestApp */,
+				437B96E41E266A8F00AA0A25 /* UsabillaUITestAppUITests */,
 				437B96CE1E266A8F00AA0A25 /* Products */,
 				9B799909DBB261666DE0010F /* Frameworks */,
 			);
@@ -106,13 +106,13 @@
 		437B96CE1E266A8F00AA0A25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				437B96CD1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp.app */,
-				437B96E11E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.xctest */,
+				437B96CD1E266A8F00AA0A25 /* UsabillaUITestApp.app */,
+				437B96E11E266A8F00AA0A25 /* UsabillaUITestAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		437B96CF1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */ = {
+		437B96CF1E266A8F00AA0A25 /* UsabillaUITestApp */ = {
 			isa = PBXGroup;
 			children = (
 				437B96D01E266A8F00AA0A25 /* AppDelegate.swift */,
@@ -122,10 +122,10 @@
 				437B96D91E266A8F00AA0A25 /* LaunchScreen.storyboard */,
 				437B96DC1E266A8F00AA0A25 /* Info.plist */,
 			);
-			path = UsabillaFeedbackFormUITestApp;
+			path = UsabillaUITestApp;
 			sourceTree = "<group>";
 		};
-		437B96E41E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */ = {
+		437B96E41E266A8F00AA0A25 /* UsabillaUITestAppUITests */ = {
 			isa = PBXGroup;
 			children = (
 				438E37331F7BC26E00FA61FE /* Helpers */,
@@ -135,7 +135,7 @@
 				43F9517E1F024EAF00FE23F8 /* 04_VisibilityControl.swift */,
 				437B96E71E266A8F00AA0A25 /* Info.plist */,
 			);
-			path = UsabillaFeedbackFormUITestAppUITests;
+			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
 		};
 		438E37331F7BC26E00FA61FE /* Helpers */ = {
@@ -168,7 +168,7 @@
 		9B799909DBB261666DE0010F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				437C60D91E269FC5003E6F70 /* UsabillaFeedbackForm.framework */,
+				437C60D91E269FC5003E6F70 /* Usabilla.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		437B96CC1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */ = {
+		437B96CC1E266A8F00AA0A25 /* UsabillaUITestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 437B96EA1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaFeedbackFormUITestApp" */;
+			buildConfigurationList = 437B96EA1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaUITestApp" */;
 			buildPhases = (
 				437B96C91E266A8F00AA0A25 /* Sources */,
 				437B96CA1E266A8F00AA0A25 /* Frameworks */,
@@ -189,14 +189,14 @@
 			);
 			dependencies = (
 			);
-			name = UsabillaFeedbackFormUITestApp;
-			productName = UsabillaFeedbackFormUITestApp;
-			productReference = 437B96CD1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp.app */;
+			name = UsabillaUITestApp;
+			productName = UsabillaUITestApp;
+			productReference = 437B96CD1E266A8F00AA0A25 /* UsabillaUITestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		437B96E01E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */ = {
+		437B96E01E266A8F00AA0A25 /* UsabillaUITestAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 437B96ED1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaFeedbackFormUITestAppUITests" */;
+			buildConfigurationList = 437B96ED1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaUITestAppUITests" */;
 			buildPhases = (
 				437B96DD1E266A8F00AA0A25 /* Sources */,
 				437B96DE1E266A8F00AA0A25 /* Frameworks */,
@@ -207,9 +207,9 @@
 			dependencies = (
 				437B96E31E266A8F00AA0A25 /* PBXTargetDependency */,
 			);
-			name = UsabillaFeedbackFormUITestAppUITests;
-			productName = UsabillaFeedbackFormUITestAppUITests;
-			productReference = 437B96E11E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests.xctest */;
+			name = UsabillaUITestAppUITests;
+			productName = UsabillaUITestAppUITests;
+			productReference = 437B96E11E266A8F00AA0A25 /* UsabillaUITestAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -234,7 +234,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 437B96C81E266A8F00AA0A25 /* Build configuration list for PBXProject "UsabillaFeedbackFormUITestApp" */;
+			buildConfigurationList = 437B96C81E266A8F00AA0A25 /* Build configuration list for PBXProject "UsabillaUITestApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -247,8 +247,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				437B96CC1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */,
-				437B96E01E266A8F00AA0A25 /* UsabillaFeedbackFormUITestAppUITests */,
+				437B96CC1E266A8F00AA0A25 /* UsabillaUITestApp */,
+				437B96E01E266A8F00AA0A25 /* UsabillaUITestAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,7 +304,7 @@
 /* Begin PBXTargetDependency section */
 		437B96E31E266A8F00AA0A25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 437B96CC1E266A8F00AA0A25 /* UsabillaFeedbackFormUITestApp */;
+			target = 437B96CC1E266A8F00AA0A25 /* UsabillaUITestApp */;
 			targetProxy = 437B96E21E266A8F00AA0A25 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -427,10 +427,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
-				INFOPLIST_FILE = UsabillaFeedbackFormUITestApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UsabillaUITestApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackFormUITestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaUITestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -441,10 +441,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
-				INFOPLIST_FILE = UsabillaFeedbackFormUITestApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UsabillaUITestApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackFormUITestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaUITestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -454,12 +454,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = UsabillaFeedbackFormUITestAppUITests/Info.plist;
+				INFOPLIST_FILE = UsabillaUITestAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackFormUITestAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaUITestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = UsabillaFeedbackFormUITestApp;
+				TEST_TARGET_NAME = UsabillaUITestApp;
 			};
 			name = Debug;
 		};
@@ -467,19 +467,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = UsabillaFeedbackFormUITestAppUITests/Info.plist;
+				INFOPLIST_FILE = UsabillaUITestAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaFeedbackFormUITestAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaUITestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = UsabillaFeedbackFormUITestApp;
+				TEST_TARGET_NAME = UsabillaUITestApp;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		437B96C81E266A8F00AA0A25 /* Build configuration list for PBXProject "UsabillaFeedbackFormUITestApp" */ = {
+		437B96C81E266A8F00AA0A25 /* Build configuration list for PBXProject "UsabillaUITestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				437B96E81E266A8F00AA0A25 /* Debug */,
@@ -488,7 +488,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		437B96EA1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaFeedbackFormUITestApp" */ = {
+		437B96EA1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaUITestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				437B96EB1E266A8F00AA0A25 /* Debug */,
@@ -497,7 +497,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		437B96ED1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaFeedbackFormUITestAppUITests" */ = {
+		437B96ED1E266A8F00AA0A25 /* Build configuration list for PBXNativeTarget "UsabillaUITestAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				437B96EE1E266A8F00AA0A25 /* Debug */,

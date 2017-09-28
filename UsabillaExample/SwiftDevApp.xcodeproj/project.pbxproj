@@ -44,7 +44,7 @@
 		04E95FFA1D1998DA0041E4CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04E95FFD1D1998DA0041E4CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04E95FFF1D1998DA0041E4CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UsabillaFeedbackForm.framework; path = "../../../Library/Developer/Xcode/DerivedData/UsabillaFeedbackForm-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/UsabillaFeedbackForm.framework"; sourceTree = "<group>"; };
+		43D50D891E1D204D0080BCB8 /* Usabilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Usabilla.framework; path = "../../../Library/Developer/Xcode/DerivedData/Usabilla-ejtpauaijovhbygiqwsbhknyrkna/Build/Products/Debug-iphonesimulator/Usabilla.framework"; sourceTree = "<group>"; };
 		C5DC407A1F7BCF9E00FA89B8 /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 		040F854C1D893C0500E4A360 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				43D50D891E1D204D0080BCB8 /* UsabillaFeedbackForm.framework */,
+				43D50D891E1D204D0080BCB8 /* Usabilla.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

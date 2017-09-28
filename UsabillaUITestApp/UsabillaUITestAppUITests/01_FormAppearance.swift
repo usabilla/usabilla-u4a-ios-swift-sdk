@@ -1,6 +1,6 @@
 //
 //  01_FormAppearance.swift
-//  UsabillaFeedbackFormUITestApp
+//  UsabillaUITestApp
 //
 //  Created by Adil Bougamza on 01/06/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.

@@ -104,7 +104,7 @@ If changes were made to the public interface of the SDK, this project must be up
 
 #### Increase the SDK version
 
-The SDK version must be increased in the General tab of the UsabillaFeedbackForm project.
+The SDK version must be increased in the General tab of the Usabilla project.
 
 In order to do this, you must follow these steps:
 1. Open a branch from **develop** called **`release/vX.Y.Z`**.
@@ -147,9 +147,9 @@ To make sure the framework has been correctly built, run `pod lib lint --verbose
 If no error arises, the Carthage framework can be built:
 
 1. Open a terminal in the private repository and run `carthage build --no-skip-current --platform iOS`
-2. Once the previous command is done, run `carthage archive UsabillaFeedbackForm`
+2. Once the previous command is done, run `carthage archive Usabilla`
 
-This will create a UsabillaFeedbackForm.zip containing the framework for Carthage.
+This will create a Usabilla.zip containing the framework for Carthage.
 
 At this point remember to:
 1. Delete the Run Script phase added Before
@@ -167,7 +167,7 @@ In the [release page of Github](https://github.com/usabilla/usabilla-u4a-android
 1. Select `Draft a new release`.
 2. Select the latest tag on **master**
 3. Copy the changelog section relative to this release in the release notes.
-4. Upload the Carthage zip archive (`UsabillaFeedbackForm.zip`) and rename it to `Carthage.framework.zip`
+4. Upload the Carthage zip archive (`Usabilla.zip`) and rename it to `Carthage.framework.zip`
 5. Publish the new release.
 
 
@@ -176,4 +176,4 @@ In the [release page of Github](https://github.com/usabilla/usabilla-u4a-android
 To publish the SDK on CocoaPods, run:
 
 1. `pod spec lint --verbose`.
-2. If no error arises, run `pod trunk push UsabillaFeedbackForm.podspec` and the SDK will be published on CocoaPods.
+2. If no error arises, run `pod trunk push Usabilla.podspec` and the SDK will be published on CocoaPods.
