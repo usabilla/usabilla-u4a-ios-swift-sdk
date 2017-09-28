@@ -114,8 +114,10 @@ class FormViewController: UIViewController {
     }
 
     func customizeView() {
-        previousStatusBarColor = UIApplication.shared.statusBarStyle
-        UIApplication.shared.statusBarStyle = viewModel.statusBarColor
+        if let statusBarColor = viewModel.statusBarColor {
+            previousStatusBarColor = UIApplication.shared.statusBarStyle
+            UIApplication.shared.statusBarStyle = statusBarColor
+        }
 
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
         navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
@@ -132,7 +134,10 @@ class FormViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = previousStatusBarColor ?? .default
+
+        if let previousStatusColor = previousStatusBarColor {
+            UIApplication.shared.statusBarStyle = previousStatusColor
+        }
     }
 
     func setUpLeftButton() {

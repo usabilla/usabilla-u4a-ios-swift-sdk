@@ -14,6 +14,7 @@ public struct UsabillaTheme {
     public var colors: Colors
     public var fonts: Fonts
     public var images: Images
+    public var statusBarStyle: UIStatusBarStyle?
 
     // MARK: Colors
     public struct Colors {
@@ -47,8 +48,6 @@ public struct UsabillaTheme {
             textOnAccent = UIColor(rgbao: json["group6"]["hash"].string) ?? textOnAccent
         }
     }
-
-    public var statusBarStyle: UIStatusBarStyle
 
     // MARK: Fonts
     public struct Fonts {
@@ -104,7 +103,6 @@ public struct UsabillaTheme {
         colors = Colors()
         images = Images()
         fonts = Fonts()
-        statusBarStyle = .default
     }
 
     fileprivate static func createEmoticons() -> [UIImage] {

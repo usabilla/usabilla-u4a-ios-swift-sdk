@@ -1,5 +1,5 @@
 //
-//  UsabillaThemeConfiguratorTest.swift
+//  UsabillaThemeTests.swift
 //  Usabilla
 //
 //  Created by Benjamin Grima on 17/01/2017.
@@ -11,7 +11,7 @@ import Nimble
 
 @testable import Usabilla
 
-class UsabillaThemeConfiguratorTest: QuickSpec {
+class UsabillaThemeTests: QuickSpec {
 
     override func spec() {
         var theme: UsabillaTheme!
@@ -30,11 +30,16 @@ class UsabillaThemeConfiguratorTest: QuickSpec {
                     expect(theme.fonts.bold).to(beNil())
                     expect(theme.colors.hint).to(equal(theme.colors.text.withAlphaComponent(0.38)))
                     expect(theme.fonts.font).to(equal(UIFont.systemFont(ofSize: 17)))
+                    expect(theme.statusBarStyle).to(beNil())
                 }
-
                 it("UsabillaTheme font") {
                     theme.fonts.bold = UIFont.systemFont(ofSize: 50)
                     expect(theme.fonts.font).to(equal(UIFont.systemFont(ofSize: 17)))
+                }
+                it("should set status bar color with correct value") {
+                    theme.statusBarStyle = .default
+                    expect(theme).toNot(beNil())
+                    expect(theme.statusBarStyle).toNot(beNil())
                 }
             })
 

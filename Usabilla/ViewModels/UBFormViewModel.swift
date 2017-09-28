@@ -32,8 +32,8 @@ class UBFormViewModel {
     var backgrounColor: UIColor {
         return model.theme.colors.background
     }
-    var statusBarColor: UIStatusBarStyle {
-        return model.theme.statusBarStyle
+    var statusBarColor: UIStatusBarStyle? {
+        return isCampaignForm ? nil : model.theme.statusBarStyle
     }
     var headerColor: UIColor {
         if let headerColor = model.theme.colors.header {
