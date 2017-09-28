@@ -16,6 +16,7 @@ class UsabillaInternal {
             submissionManager?.userContext = customVariables
         }
     }
+    static var defaultLocalisationFile = true
     private static let campaignService = CampaignService()
     private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: campaignService)
 

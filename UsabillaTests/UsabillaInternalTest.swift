@@ -30,9 +30,9 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
             }
 
             it("UsabillaInternal localizable") {
-                expect(Usabilla.defaultLocalisationFile).to(beTrue())
+                expect(UsabillaInternal.defaultLocalisationFile).to(beTrue())
                 Usabilla.localizedStringFile = "test"
-                expect(Usabilla.defaultLocalisationFile).to(beFalse())
+                expect(UsabillaInternal.defaultLocalisationFile).to(beFalse())
             }
 
             it("UsabillaInternal takescreenshot") {

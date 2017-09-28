@@ -27,11 +27,9 @@ open class Usabilla {
         }
     }
 
-    static var defaultLocalisationFile = true
-
     open static var localizedStringFile: String = "usa_localizable" {
         didSet {
-            defaultLocalisationFile = false
+            UsabillaInternal.defaultLocalisationFile = false
         }
     }
 
