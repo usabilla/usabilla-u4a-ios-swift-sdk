@@ -39,6 +39,7 @@ class SubmissionManager {
         }
     }
 
+    // swiftlint:disable:next force_unwrapping
     init(formService: FormServiceProtocol, reachability: Reachable = Reachability()!) {
         self.formService = formService
         self.reachability = reachability
@@ -60,7 +61,7 @@ class SubmissionManager {
     }
 
     private func createSubmission(formModel: FormModel) -> UBFeedbackRequest {
-        let uiDevice = UIDevice()
+        let uiDevice = UIDevice.current
         var contentDictionary: [String: Any] = [:]
         contentDictionary["app_id"] = formModel.identifier //String
         contentDictionary["version"] = formModel.version //String

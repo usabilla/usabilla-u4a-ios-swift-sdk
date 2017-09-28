@@ -71,8 +71,8 @@ class PageViewModel: UBPageViewModel {
      Returns the name/id of the next page name based on the jump rules
      */
     func nextPageName() -> String? {
-        if model.jumpRuleList != nil && model.jumpRuleList!.count > 0 {
-            for rule in model.jumpRuleList! {
+        if let ruleList = model.jumpRuleList, ruleList.count > 0 {
+            for rule in ruleList {
                 if rule.isSatisfied() {
                     return rule.jumpTo
                 }

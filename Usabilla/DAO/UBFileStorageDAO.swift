@@ -22,7 +22,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
 
     init(directoryName: String) {
         self.directoryName = directoryName
-
+        // swiftlint:disable:next force_unwrapping
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         sdkRootDirectoryUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
         directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directoryName)

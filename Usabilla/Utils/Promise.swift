@@ -20,6 +20,7 @@ class Promise<S> {
         resolvers({ (data: S) in
             self.data = data
             self._success?(data)
+            // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { (error: Error) in
             self.error = error
             self._failure?(error)

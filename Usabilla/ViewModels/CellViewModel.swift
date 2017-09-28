@@ -24,6 +24,7 @@ class CellViewModel {
         self.model = model
         self.title = model.fieldTitle
         self.theme = theme
+        // swiftlint:disable:next force_unwrapping
         self.copy = model.pageModel.copy!
         self.required = model.required
         componentViewModel = ComponentViewModelFactory.component(field: model, theme: theme)

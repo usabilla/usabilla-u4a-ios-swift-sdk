@@ -19,6 +19,7 @@ class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel>
             return model.fieldValue.first
         }
         set {
+            // swiftlint:disable:next force_unwrapping
             model.fieldValue = newValue != nil ? [newValue!] : []
         }
     }
@@ -27,6 +28,7 @@ class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel>
 
         //If it exists, select the value the user selected before
         if let tmpValue = value {
+            // swiftlint:disable:next force_unwrapping
             return options.first(where: { $0.value == tmpValue })!.title
         }
 

@@ -24,6 +24,7 @@ extension String {
 
         do {
             let attrStr = try NSAttributedString(
+                                                // swiftlint:disable:next force_unwrapping
                                                  data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
                                                  options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
                                                  documentAttributes: nil)

@@ -81,26 +81,28 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
 
     private func addMetadataPayload(payload: [String: Any]) -> [String: Any] {
         var payload = payload
-        let uiDevice = UIDevice()
+        let uiDevice = UIDevice.current
         let screenBounds = UIScreen.main.bounds
         var metadata: [String: Any] = [:]
-        UIDevice.current.isBatteryMonitoringEnabled = true
+        uiDevice.isBatteryMonitoringEnabled = true
 
         payload["app_id"] = appID
         payload["form_version"] = formVersion
         payload["complete"] = false
-
+        // swiftlint:disable:next force_unwrapping
         metadata["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]
-        metadata["battery"] = abs(UIDevice.current.batteryLevel)
+        metadata["battery"] = abs(uiDevice.batteryLevel)
         metadata["network_connection"] = reachability.currentReachabilityStatus.description
         metadata["device"] = uiDevice.modelName
         metadata["language"] = (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode)
         metadata["orientation"] = UIDeviceOrientationIsLandscape(uiDevice.orientation) ? "Landscape" : "Portrait"
         metadata["os_version"] = uiDevice.systemVersion
         metadata["screen"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
+        // swiftlint:disable:next force_unwrapping
         metadata["sdk_version"] = Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         metadata["system"] = "ios"
         metadata["timestamp"] = Date().timeIntervalSince1970.description
+        // swiftlint:disable:next force_unwrapping
         metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
 
         if userContext != nil {

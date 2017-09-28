@@ -16,6 +16,11 @@ class UsabillaInternal {
             submissionManager?.userContext = customVariables
         }
     }
+    static var localizedStringFile: String = "usa_localizable" {
+        didSet {
+            defaultLocalisationFile = false
+        }
+    }
     static var defaultLocalisationFile = true
     private static let campaignService = CampaignService()
     private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: campaignService)
@@ -120,6 +125,7 @@ class UsabillaInternal {
     class func takeScreenshot(_ view: UIView) -> UIImage? {
         //Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)
+        // swiftlint:disable:next force_unwrapping
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

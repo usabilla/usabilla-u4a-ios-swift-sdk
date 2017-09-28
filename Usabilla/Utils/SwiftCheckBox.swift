@@ -83,6 +83,7 @@ class SwiftCheckBox: UIView {
         pathManager.lineWidth = 2.0
         pathManager.boxType = BoxType.square
         animationManager = AnimationManager(animationDuration: 0.5)
+        // swiftlint:disable:next force_unwrapping
         super.init(coder: coder)!
         offBoxLayer = CAShapeLayer(layer: layer)
         onBoxLayer = CAShapeLayer(layer: layer)
@@ -197,7 +198,7 @@ extension SwiftCheckBox {
 
         self.checkMarkLayer?.rasterizationScale = 2.0 * UIScreen.main.scale
         self.checkMarkLayer?.shouldRasterize = true
-
+        // swiftlint:disable:next force_unwrapping
         self.layer.addSublayer(checkMarkLayer!)
     }
 

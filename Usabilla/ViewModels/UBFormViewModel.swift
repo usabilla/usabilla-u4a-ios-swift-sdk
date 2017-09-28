@@ -77,6 +77,7 @@ class UBFormViewModel {
         set {
             currentPageIndex = pageViewModels.index(where: {
                 $0.name == newValue.name
+                // swiftlint:disable:next force_unwrapping
             })!
         }
     }

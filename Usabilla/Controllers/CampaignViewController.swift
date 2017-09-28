@@ -29,8 +29,9 @@ class CampaignViewController: UIViewController {
 
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
-            introView = UBIntroOutroView(viewModel: introPageViewModel)
-            introView!.delegate = self
+            let introView = UBIntroOutroView(viewModel: introPageViewModel)
+            self.introView = introView
+            introView.delegate = self
 
             var animations: (() -> Void)?
 
@@ -40,12 +41,10 @@ class CampaignViewController: UIViewController {
                     self.backgroundLayer?.alpha = 1
                 }
             }
-            view.addSubview(introView!)
-            viewModel.introPresenter?.present(view: introView!, inView: view, animations: animations)
-            // TO DO : display intro
+            view.addSubview(introView)
+            viewModel.introPresenter?.present(view: introView, inView: view, animations: animations)
             return
         }
-        // TO DO : display modal
     }
 
     override func loadView() {
@@ -177,6 +176,7 @@ class CampaignViewController: UIViewController {
             self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.formNavigationController?.view.alpha = 0
             self.backgroundLayer?.alpha = 0
+            // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { _ in
             self.formNavigationController?.view.removeFromSuperview()
             self.formNavigationController?.removeFromParentViewController()

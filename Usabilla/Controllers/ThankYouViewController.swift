@@ -30,7 +30,6 @@ class ThankYouViewController: UIViewController {
         return UIButton(type: UIButtonType.system)
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

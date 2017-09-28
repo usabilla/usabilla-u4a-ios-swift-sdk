@@ -10,5 +10,6 @@ import Foundation
 
 protocol HTTPClientProtocol {
     static func request(request: URLRequest, responseQueue: DispatchQueue?, allowNilData: Bool, completion: @escaping(HTTPClientResponse) -> Void)
+    // swiftlint:disable:next function_parameter_count
     static func request(_ url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, responseQueue: DispatchQueue?, allowNilData: Bool, completion: @escaping (HTTPClientResponse) -> Void)
 }

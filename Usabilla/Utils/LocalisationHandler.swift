@@ -12,6 +12,7 @@ class LocalisationHandler {
 
     static func getLocalisedStringForKey(_ key: String) -> String {
         if UsabillaInternal.defaultLocalisationFile {
+            // swiftlint:disable:next force_unwrapping
             let bundle = Bundle(identifier: "com.usabilla.Usabilla")!
             return NSLocalizedString(key, tableName: Usabilla.localizedStringFile, bundle: bundle, comment: "")
         } else {

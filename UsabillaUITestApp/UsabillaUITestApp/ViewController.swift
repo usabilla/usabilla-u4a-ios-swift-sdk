@@ -19,8 +19,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func scenarioAction(_ sender: UIButton) {
+        // swiftlint:disable:next force_unwrapping
         let scenarioName = sender.accessibilityIdentifier!
-
+        // swiftlint:disable:next force_unwrapping
         let path = Bundle(for: ViewController.self).path(forResource: scenarioName, ofType: "json")!
         let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
         let json: JSON = JSON(data: data as Data)

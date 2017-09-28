@@ -60,6 +60,7 @@ extension UIImage {
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        // swiftlint:disable:next force_unwrapping
         return newImage!
 
     }
@@ -84,6 +85,7 @@ extension UIImage {
             draw(in: CGRect(x: 0, y: 0, width: CGFloat(newWidth), height: CGFloat(newHeight)))
             let img = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
+            // swiftlint:disable:next force_unwrapping
             return img!
         }
 
@@ -95,6 +97,7 @@ extension UIImage {
         let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
+        // swiftlint:disable force_unwrapping
         context!.clip(to: rect, mask: self.cgImage!)
         context!.setFillColor(color.cgColor)
         context!.fill(rect)

@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var controller: UIViewController!
 
         if let scenario = ProcessInfo.processInfo.environment["scenario"] {
+            // swiftlint:disable:next force_unwrapping
             let path = Bundle(for: AppDelegate.self).path(forResource: scenario, ofType: "json")!
             let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             let json: JSON = JSON(data: data as Data)

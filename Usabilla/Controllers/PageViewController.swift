@@ -263,11 +263,9 @@ extension PageViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && !viewModel.viewModelForCellAt(index: indexPath.row)!.shouldAppear {
-            return 0
-        } else {
-            return cellHeights[indexPath] ?? UITableViewAutomaticDimension
+        guard indexPath.section == 0, let cell = viewModel.viewModelForCellAt(index: indexPath.row), !cell.shouldAppear else { return cellHeights[indexPath] ?? UITableViewAutomaticDimension
         }
+        return 0
     }
 }
 

@@ -36,6 +36,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
             view.alpha = 0
             animations?()
             inView.layoutIfNeeded()
+            // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { _ in
             completion?()
         }

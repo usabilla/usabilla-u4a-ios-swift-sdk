@@ -18,7 +18,7 @@ class BaseOptionsComponentViewModel<T: OptionsFieldModel>: BaseComponentViewMode
             return model.fieldValue
         }
         set {
-            model.fieldValue = newValue != nil ? newValue! : []
+            model.fieldValue = newValue ?? []
         }
     }
 }

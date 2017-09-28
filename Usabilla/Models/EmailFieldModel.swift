@@ -21,6 +21,7 @@ class EmailFieldModel: StringFieldModel, EditableStringComponentModel, Exportabl
     }
 
     override func isValid() -> Bool {
+        // swiftlint:disable:next force_unwrapping
         return !required || (fieldValue != nil && fieldValue!.characters.count > 0 && isValidEmail(testStr: fieldValue!))
     }
 

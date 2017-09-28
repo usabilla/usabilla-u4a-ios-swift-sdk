@@ -57,6 +57,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             self.topConstraint.constant = -self.offset
             self.bottomConstraint.constant = self.offset
             inView.layoutIfNeeded()
+            // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { _ in
             completion?()
         }

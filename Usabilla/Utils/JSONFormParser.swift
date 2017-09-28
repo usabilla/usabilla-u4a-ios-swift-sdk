@@ -25,6 +25,7 @@ class JSONFormParser {
     class func parsePage(_ pageJson: JSON, pageNum: Int) -> PageModel {
 
         let pageName = pageJson["name"].stringValue
+        // swiftlint:disable:next force_unwrapping
         let type = PageType(rawValue: pageJson["type"].stringValue)!
 
         var pageModelClass: PageModel.Type
