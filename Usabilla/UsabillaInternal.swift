@@ -111,7 +111,7 @@ class UsabillaInternal {
             viewForForm(form: form)
         }.catch { _ in
             DispatchQueue.main.async {
-                delegate?.formFailedLoading()
+                delegate?.formDidFailLoading(error: UBError(description: "Could not load form"))
             }
         }
     }
@@ -122,7 +122,7 @@ class UsabillaInternal {
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         DispatchQueue.main.async {
-            delegate?.formLoadedCorrectly(navigationController)
+            delegate?.formDidLoad(form: navigationController)
         }
     }
 

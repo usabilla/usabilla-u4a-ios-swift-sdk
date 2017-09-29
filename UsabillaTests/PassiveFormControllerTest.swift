@@ -152,18 +152,18 @@ class PassiveFormControllerTest: QuickSpec {
 }
 
 extension PassiveFormControllerTest: UsabillaDelegate {
-    func formFailedLoading() {
+    func formDidLoad(form: UINavigationController) {
 
     }
 
-    func formLoadedCorrectly(_ form: UINavigationController) {
-
+    func formDidFailLoading(error: UBError) {
+        
     }
 
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+    func formWillClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
         onWillClose?(feedbackResults, isRedirectToAppStoreEnabled)
     }
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+    func formDidClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
         onDidClose?(feedbackResults, isRedirectToAppStoreEnabled)
     }
 }

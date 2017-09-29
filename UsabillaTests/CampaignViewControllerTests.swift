@@ -87,14 +87,15 @@ class CampaignViewControllerTests: QuickSpec {
 }
 
 extension CampaignViewControllerTests: UsabillaDelegate {
-    func formLoadedCorrectly(_ form: UINavigationController) {
+    func formDidLoad(form: UINavigationController) {
+
     }
 
-    func formFailedLoading() {
-    }
+    func formDidFailLoading(error: UBError) {
 
-    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {
-        onDidClose?(feedbackResult, isRedirectToAppStoreEnabled)
+    }
+    func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {
+        onDidClose?(result, isRedirectToAppStoreEnabled)
     }
 }
 

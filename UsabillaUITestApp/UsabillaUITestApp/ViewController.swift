@@ -34,15 +34,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UsabillaDelegate {
 
-    func formFailedLoading() {
+    func formDidFailLoading(error: UBError) {
 
     }
 
-    func formLoadedCorrectly(_ form: UINavigationController) {
+    func formDidLoad(form: UINavigationController) {
         present(form, animated: true, completion: nil)
     }
 
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    func formDidClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
         form.dismiss(animated: true, completion: nil)
     }
 }

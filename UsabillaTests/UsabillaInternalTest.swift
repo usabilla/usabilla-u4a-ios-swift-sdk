@@ -129,11 +129,11 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
         }
     }
 
-    func formFailedLoading() {
+    func formDidFailLoading(error: UBError) {
         failed?()
     }
 
-    func formLoadedCorrectly(_ form: UINavigationController) {
+    func formDidLoad(form: UINavigationController) {
         succeed?()
     }
 }

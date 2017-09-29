@@ -145,10 +145,14 @@ public struct FeedbackResult {
     }
 }
 
+public struct UBError: Error, LocalizedError {
+    let description: String
+}
+
 public protocol UsabillaDelegate: class {
 
-    func formLoadedCorrectly(_ form: UINavigationController)
-    func formFailedLoading()
+    func formDidLoad(form: UINavigationController)
+    func formDidFailLoading(error: UBError)
 
     /**
      This method is called once the form is closed
@@ -161,7 +165,7 @@ public protocol UsabillaDelegate: class {
      If Usabilla.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
      Otherwise the feedbackResults can contains between 1 and n FeedbackResult
      */
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
+    func formDidClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
     /**
      
@@ -174,7 +178,7 @@ public protocol UsabillaDelegate: class {
      
      This method should be used to dismiss the form if the Usabilla.**dismissAutomatically** attribute is set to **false**
      */
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
+    func formWillClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
     /**
      
@@ -185,13 +189,13 @@ public protocol UsabillaDelegate: class {
      - Parameter isRedirectToAppStoreEnabled: Bool indicating whether or not the form is set to redirect to the App Store
      
      */
-    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool)
+    func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool)
 }
 
 public extension UsabillaDelegate {
-    func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+    func formDidClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     }
-    func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+    func formWillClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
     }
-    func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
+    func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
 }
