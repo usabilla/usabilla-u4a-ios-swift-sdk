@@ -1,26 +1,55 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
+The new Usabilla SDK Version 4 comes with two major advancements:
+1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred as **Campaigns** in this document).
+2. More stabilized [Passive feedback forms](#passive-feedback).
+
+* * *
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+    - [CocoaPods](#cocoapods)
+    - [Manual](#manual)
+- [Initialization](#initialization)
+- [Campaigns](#campaigns)
+    - [The App Id](#the-app-id)
+    - [Targeting options](#targeting-options)
+    - [Campaign toggling](#campaign-toggling)
+    - [Campaign submission callback](#campaign-submission-callback)
+    - [Managing an existing campaign](#managing-an-existing-campaign)
+    - [Campaign results](#campaign-results)
+- [Passive feedback](#passive-feedback)
+    - [Loading a form](#loading-a-form)
+    - [Adding a screenshot](#adding-a-screenshot)
+    - [Feedback submission callback](#feedback-submission-callback)
+    - [Handle manual dismiss](#handle-manual-dismiss)
+- [Custom variables](#custom-variables)
+- [App Store rating](#app-store-rating)
+- [UI Customisations](#ui-customisations)
+    - [Custom Emoticons Rating](#custom-emoticons-rating)
+    - [Custom Star Rating](#custom-star-rating)
+    - [Custom Fonts](#custom-fonts)
+- [Localisation](#localisation)
+    - [String file contents](#string-file-contents)
+- [Integration with Obj-C applications](#integration-with-obj-c-applications)
+
+* * *
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8.0+
-- Swift 3.1+
+- Xcode 8+ or 9+
+- Swift 3.1, 3.2, 4.0
 
 
 ## Installation
 
-### Github setup
-
-Since this is a temporary private repository, you will need to be authenticated with Github to be able to access it.
-Our organization uses 2FA, you will also need to enable it for your Github account.
-
-Fetching the SDK using SSH will only require you to configure your public key with Github.
-Using HTTPS will require generating a [personal access token](https://github.com/settings/tokens) to log into Github.
+Since 4.0.0 our **master** branch contains the framework built with **swift 3.2** and **Xcode 9**
+If you are using **Xcode 8** please use or `Xcode8` branch or our releases tags that end with `-Xcode8` for example: `v4.0.0-Xcode8`
 
 ### CocoaPods
 
-The Usabilla SDK is available on [CocoaPods](http://cocoapods.org). You can install cocoapods the following way:
+The Usabilla SDK is available on [CocoaPods](http://cocoapods.org). You can install CocoaPods the following way:
 
 ```bash
 $ gem install cocoapods
@@ -29,19 +58,14 @@ $ gem install cocoapods
 To use the SDK in your project, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/usabilla/u4a-ios-pilot'
-
-target 'YourProjectTarget' do
 use_frameworks!
 
-#With SSH
-pod 'Usabilla', :git => 'git@github.com:usabilla/u4a-ios-pilot.git', :branch=> 'master'
+target 'YourProjectTarget' do
 
-#Or with HTTPS
-pod 'Usabilla', :git => 'https://github.com/usabilla/u4a-ios-pilot.git', :branch=> 'master'
+pod 'Usabilla', '~> 4.0.0'
 
-#Specifying a tag
-pod 'Usabilla', :git => 'git@github.com:usabilla/u4a-ios-pilot.git', :tag=> '4.0.0-RC7'
+#Or by specifying a tag
+pod 'Usabilla', :tag=> 'v4.0.0'
 
 End
 ```
@@ -52,9 +76,8 @@ Then, run the following command:
 $ pod install
 ```
 
-**PS:** Alternatively, you can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.
 
-<!-- ### Carthage
+### Carthage
 
 The Usabilla SDK is also available through [Carthage](https://github.com/Carthage/Carthage).
 
@@ -64,18 +87,14 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v3.6.0"
-``` -->
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.0"
+```
 
 ### Manual
 
-The new Usabilla SDK Version 4 comes with two major advancements:
-1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred to as **Campaigns** in this document).
-2. More stabilized [Passive feedback forms](#passive-feedback).
+**PS:** Alternatively, you can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.
 
-## Implement the SDK
-
-### Initialization
+## Initialization
 
 Import Usabilla SDK inside your **AppDelegate**.
 
@@ -92,8 +111,9 @@ The **initialize** method will take care of:
 * Fetching and updating all campaigns associated with the app ID.
 * Initializing a few background processes of the SDK.
 
+>⚠️ **Failure to call this method before using the SDK will prevent it from running properly.** 
 
-### Campaigns
+## Campaigns
 Version 4 of the Usabilla for Apps SDK introduces the new campaigns feature.
 This guide describes the Campaigns feature and all the steps necessary to work with it.
 
@@ -104,7 +124,7 @@ Being able to run campaigns in your mobile app is great because it allows you to
 You can run as many campaigns as you like and target them to be triggered when a specific set of targeting options are met.
 The configuration of how a campaign is displayed to the user will be familiar to existing Usabilla customers. You can configure it to suit your needs just like you are used to from the Passive feedback forms.
 
-The most important aspect of running a mobile campaign are 'Events'. Events are custom triggers that are configured in the SDK. When a pre-defined event occurs, it will allow you to trigger a campaign. A good example of an event is a successful purchase by a user in your app.
+The most important aspect of running a mobile campaign is 'Events'. Events are custom triggers that are configured in the SDK. When a pre-defined event occurs, it will allow you to trigger a campaign. A good example of an event is a successful purchase by a user in your app.
 
 ### The App Id
 The app Id is an identifier used to associate campaigns to a mobile app.
@@ -131,7 +151,7 @@ For more on how to use custom variables, read [Custom Variables](#adding-custom-
 
 **Note: A campaign will never be triggered for the same user more than once.**
 
-### Campaign Toggling
+### Campaign toggling
 
 The Usabilla SDK allows you to make sure no campaigns trigger at an inappropriate moment. For example, when the user of your app is in the middle of a delicate process and should not be disturbed. This can be done by setting the boolean property `canDisplayCampaigns` of `Usabilla` to suit your needs.
 ```swift
@@ -146,6 +166,17 @@ Setting it to `false` will prevent all campaigns from being displayed.
 By default, `canDisplayCampaigns` is set to `true`.
 
 If one or more of your campaigns trigger when the `canDisplayCampaigns` property is set to `false` and later on changed to `true`, the SDK will not display the campaign. The reasoning is because this moment, later in time, might be irrelevant to display the campaign to the user.
+
+### Campaign submission callback
+
+It is possible to get information about the feedback the user has left and you will also be notified if the user has left the form without submitting it, simply by implementing:
+
+```swift
+func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {
+    //...
+}
+```
+Unlike the Passive feedback method, the campaigns method only returns one [FeedbackResult](#feedbackresult) and is called only once.
 
 ### Managing an existing campaign
 
@@ -184,20 +215,22 @@ A basic implementation of the SDK would be the following:
 ```swift
 class SomeViewController: UIViewController, UsabillaDelegate {
 
-override func viewDidLoad() {
-super.viewDidLoad()
-Usabilla.delegate = self
-Usabilla.loadFeedbackForm("Form ID")
-}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Usabilla.delegate = self
+        Usabilla.loadFeedbackForm("Form ID")
+    }
 
-//Called when your form succesfully load
-func formLoadedCorrectly(_ form: UINavigationController, active: Bool) {
-present(form, animated: true, completion: nil)
-}
-//Called when your forms can not be loaded. Returns a default form
-func formFailedLoading(_ backupForm: UINavigationController) {
-present(backupForm, animated: true, completion: nil)
-}
+    //Called when your form succesfully load
+    func formDidLoad(form: UINavigationController) {
+        present(form, animated: true, completion: nil)
+    }
+
+    //Called when your forms can not be loaded. Returns a default form
+    func formDidFailLoading(error: UBError) {
+        //...
+    }
+
 }
 ```
 
@@ -241,11 +274,57 @@ If you wish, you can empty the cache using
 Usabilla.removeCachedForms()
 ``` -->
 
+
+### Feedback submission callback
+It is possible to get information about the feedback the user has left and you will also be notified if the user has left the form without submitting it, simply by implementing:
+
+```swift
+func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+    //...
+}
+```
+This delegate method provides you with an array of `FeedbackResult` because the user may submit the form multiple times and this method will be called only once for all the feedback sent.
+
+#### FeedbackResult
+
+```swift
+struct FeedbackResult {
+    let rating: Int?
+    let abandonedPageIndex: Int?
+    var sent: Bool
+}
+```
+
+The **rating** value is set as soon as the user interacts with it and will be reported even if the form is not submitted.
+
+The **abandonedPageIndex** is only set if the user cancels the form before submission.
+
+**Example**
+```swift
+func formDidClose(formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+
+    guard let feedback = feedbackResults.first else {
+    return
+    }
+
+    if feedback.sent == false {
+        let abandonedPageIndex = feedback.abandonedPageIndex
+        print("Hey why did you left the form here \(abandonedPageIndex)")
+        return
+    }
+
+    if let rating = feedback.rating {
+        if rating >= 4 && isRedirectToAppStoreEnabled {
+            // Prompt the user for rating and review
+        }
+    }
+
+}
+```
+
 ### Handle manual dismiss
 
-Since **v3.3.0** it is possible to customize the way the form is dismissed
-
-Set the automatic Usabilla dismissal attribute to false:
+It is possible to customize the way the form is dismissed, you can achieve this by adding this line:
 
 ```swift
 Usabilla.dismissAutomatically = false
@@ -254,7 +333,7 @@ Usabilla.dismissAutomatically = false
 and implement the **formWillClose** delegate method:
 
 ```swift
-func formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
 // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
 }
 ```
@@ -262,10 +341,7 @@ func formWillClose(_ form: UINavigationController, formID: String, with feedback
 **Warning**: by doing this the form will not dismiss by itself and you will be the only one responsible for its correct behavior. Also, the delegate method `formDidClose` will not be called.
 
 
-## Other configuration
-
-
-### Adding custom variables
+## Custom variables
 
 You can pass along custom variables that will be attached to the feedback users send.
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
@@ -281,86 +357,28 @@ or by simply modifying the dictionary object
 Usabilla.customVariables["key"] = "value"
 ```
 
-**Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitation have to be taken into account.
+**Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitations have to be taken into account.
 The `value` of a custom variable must then be an instance NSString, NSNumber, NSArray, NSDictionary, or NSNull.**
-Trying to set an invalid object as custom variable will result in that object not being set and in an error being printed in the console.
+
+
+Trying to set an invalid object as a custom variable will result in that object not being set and in an error being printed in the console.
 
 You can always check whether an object is considered valid or not by calling `JSONSerialization.isValidJSONObject(object)`
 
 
-
-Custom variables are added as extra feedback data with every feedback item sent by the SDK, whether from a passive form or a campaign.
+Custom variables are added as extra feedback data with every feedback item sent by the SDK, whether from a passive feedback or a campaign.
 
 **Custom variables can be used as targeting options, as long as the `value` is a String.**
 
-### App Store rating
+## App Store rating
 
 To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#submission-callback)
 
 In the Usabilla web interface, it is possible to define whether a specific feedback form should prompt the user for a rating.
 
-### Submission callback
+## UI Customisations
 
-It is possible to get information about the feedback the user has left and you will also be notified if the user has left the form without submitting it, simply by implementing:
-
-#### Passive forms
-
-```swift
-func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-// code here
-}
-```
-This delegate method provides you with an array of `FeedbackResult` because the user may submit the form multiple times and this method will be called only once for all the feedback sent.
-
-
-#### Campaigns
-
-```swift
-func campaignDidClose(_ campaign: UIViewController, with feedbackResult: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {
-// code here
-}
-```
-Unlike the Passive forms method, the campaigns method only returns one `FeedbackResult` and called only once.
-
-#### FeedbackResult
-
-```swift
-struct FeedbackResult {
-let rating: Int?
-let abandonedPageIndex: Int?
-var sent: Bool
-}
-```
-
-The **rating** value is set as soon as the user interacts with it and will be reported even if the form is not submitted.
-
-The **abandonedPageIndex** is only set if the user cancels the form before submission.
-
-#### Implementation Sample
-```swift
-func formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-guard let feedback = feedbackResults.first else {
-return
-}
-
-if feedback.sent == false {
-let abandonedPageIndex = feedback.abandonedPageIndex
-print("Hey why did you left the form here \(abandonedPageIndex)")
-return
-}
-
-if let rating = feedback.rating {
-if rating >= 4 && isRedirectToAppStoreEnabled {
-// Prompt the user for rating and review
-}
-}
-}
-```
-
-
-## Customisations
-
-### Custom Emoticons
+### Custom Emoticons Rating
 It is possible to use custom images instead of the one provided natively in the SDK.
 
 To do so, you must provide a list (or two, depending on what you want to achieve) of five `UIImage` that will be used instead of the Usabilla's default emoticons.
@@ -380,7 +398,6 @@ let c = UIImage(named: "3")!
 let d = UIImage(named: "4")!
 let e = UIImage(named: "5")!
 Usabilla.theme.images.enabledEmoticons = [a,b,c,d,e]
-
 ```
 
 #### Provide both the selected and unselected version
@@ -398,28 +415,26 @@ Usabilla.theme.images.disabledEmoticons = disabled
 
 ### Custom Star Rating
 
-You can change the appearance of the star in the Star Rating by setting both fullStar and emptyStar in the UsabillaThemeConfigurator.
+You can change the appearance of the star in the Star Rating by setting both `star` and `starOutline` in the UsabillaTheme.
 
 Keep in mind that, in order to display the Star Rating in your form, you must first enable it in the [Usabilla Web Interface](https://app.usabilla.com/member/apps/).
 
 ```swift
-Usabilla.theme.images.star = UIImage(named: "fullStar")!
-Usabilla.theme.images.starOutline = UIImage(named: "emptyStar")!
+Usabilla.theme.images.star = UIImage(named: "starFilled")!
+Usabilla.theme.images.starOutline = UIImage(named: "starOutline")!
 ```
 
 ### Custom Fonts
 
-It is possible to change the font of the feedback form setting the property `customFont` of the `UsabillaThemeConfigurator` object.
-
-Since the SDK uses also the bold and italic version of the font, it is recommended to use a file containing the whole font family when setting a custom font.
-If that is not the case, the SDK will use the default system font for the italic and bold phrases.
-
+It is possible to change the font of the feedback form by setting the `regular` and `bold` properties of the `UsabillaTheme.fonts` structure.
+If they are not set the SDK will use the default system font.
 
 ```swift
 Usabilla.theme.fonts.regular = UIFont(name: "Helvetica-LightOblique", size: 20)
+Usabilla.theme.fonts.bold = UIFont(name: "Helvetica-Bold", size: 20)
 ```
 
-### Localisation
+## Localisation
 
 For all the text that is not customizable in the web interface, you can provide your own translation using a .string localized file inside your application.
 
@@ -455,7 +470,7 @@ In this example you can see a ViewController in Obj-C:
 ```objectivec
 #import "ViewController.h"
 
-//Remember to import the auto generated Swift header, otherwise, you won't see your Swift extension
+//Remember to import the auto-generated Swift header, otherwise, you won't see your Swift extension
 #import "objctest-Swift.h"
 
 @interface ViewController ()
@@ -465,9 +480,9 @@ In this example you can see a ViewController in Obj-C:
 
 @implementation ViewController
 
-- (IBAction)buttonPressed:(id)sender {
-[self showForm];
-}
+    - (IBAction)buttonPressed:(id)sender {
+        [self showForm];
+    }
 
 @end
 
@@ -480,22 +495,22 @@ import Usabilla
 
 extension ViewController : UsabillaDelegate {
 
-open override func viewDidLoad() {
-super.viewDidLoad()
-Usabilla.delegate = self
-}
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        Usabilla.delegate = self
+    }
 
-public func formLoadedCorrectly(_ form: UINavigationController) {
-present(form, animated:  true)
-}
+    func formDidLoad(form: UINavigationController) {
+        present(form, animated:  true)
+    }
 
-public func formFailedLoading() {
+    func formDidFailLoading(error: UBError) {
+        //...
+    }
 
-}
-
-@objc public func showForm(){
-Usabilla.loadFeedbackForm("Form ID")
-}
+    @objc public func showForm(){
+        Usabilla.loadFeedbackForm("Form ID")
+    }
 }
 
 ```
