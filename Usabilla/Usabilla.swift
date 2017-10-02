@@ -9,11 +9,6 @@ import UIKit
 
 open class Usabilla {
 
-    open static weak var delegate: UsabillaDelegate?
-    open static var hideGiveMoreFeedback: Bool = true
-    open static var dismissAutomatically: Bool = true
-    open static var theme: UsabillaTheme = UsabillaTheme()
-    open static var canDisplayCampaigns: Bool = true
     open static var customVariables: [String: Any] {
         get {
             return UsabillaInternal.customVariables
@@ -32,7 +27,52 @@ open class Usabilla {
             return UsabillaInternal.localizedStringFile
         }
         set {
-            UsabillaInternal.localizedStringFile = localizedStringFile
+            UsabillaInternal.localizedStringFile = newValue
+        }
+    }
+
+    open static var theme: UsabillaTheme {
+        get {
+            return UsabillaInternal.theme
+        }
+        set {
+            UsabillaInternal.theme = newValue
+        }
+    }
+
+    open static var delegate: UsabillaDelegate? {
+        get {
+            return UsabillaInternal.delegate
+        }
+        set {
+            UsabillaInternal.delegate = newValue
+        }
+    }
+
+    open static var hideGiveMoreFeedback: Bool {
+        get {
+            return UsabillaInternal.hideGiveMoreFeedback
+        }
+        set {
+            UsabillaInternal.hideGiveMoreFeedback = newValue
+        }
+    }
+
+    open static var dismissAutomatically: Bool {
+        get {
+            return UsabillaInternal.dismissAutomatically
+        }
+        set {
+            UsabillaInternal.dismissAutomatically = newValue
+        }
+    }
+
+    open static var canDisplayCampaigns: Bool {
+        get {
+            return UsabillaInternal.canDisplayCampaigns
+        }
+        set {
+            UsabillaInternal.canDisplayCampaigns = newValue
         }
     }
 
@@ -86,7 +126,7 @@ open class Usabilla {
             return UsabillaInternal.formViewController(forFormJson: json)
         }
 
-        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = Usabilla.theme) {
+        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = theme) {
             UsabillaInternal.displayCampaignForm(withFormID: formID)
         }
 

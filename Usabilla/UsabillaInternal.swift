@@ -21,10 +21,14 @@ class UsabillaInternal {
             defaultLocalisationFile = false
         }
     }
+    static var hideGiveMoreFeedback: Bool = true
+    static var dismissAutomatically: Bool = true
+    static var canDisplayCampaigns: Bool = true
+    static weak var delegate: UsabillaDelegate?
+    static var theme: UsabillaTheme = UsabillaTheme()
     static var defaultLocalisationFile = true
     private static let campaignService = CampaignService()
     private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: campaignService)
-
     private (set) static var appID: String?
     private static var campaignManager: CampaignManager?
     private static var formService: FormService?
@@ -72,7 +76,7 @@ class UsabillaInternal {
         }
 
         for formID in formIDs {
-            _ = formStore.loadForm(id: formID, screenshot: nil, theme: Usabilla.theme)
+            _ = formStore.loadForm(id: formID, screenshot: nil, theme: theme)
         }
     }
     #if INTERNAL_USE || DEBUG
@@ -86,7 +90,7 @@ class UsabillaInternal {
             return navigationController
         }
 
-        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = Usabilla.theme) {
+        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = theme) {
             campaignStore.getCampaignForm(withFormID: formID, theme: theme).then { form in
                 campaignManager?.displayCampaignForm(form)
             }
@@ -98,16 +102,16 @@ class UsabillaInternal {
         }
     #endif
 
-    class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = Usabilla.theme) {
+    class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
         guard let formStore = formStore else {
             print("UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational.")
             return
         }
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme).then { form in
-            UsabillaInternal.viewForForm(form: form)
+            viewForForm(form: form)
         }.catch { _ in
             DispatchQueue.main.async {
-                Usabilla.delegate?.formFailedLoading()
+                delegate?.formFailedLoading()
             }
         }
     }
@@ -118,7 +122,7 @@ class UsabillaInternal {
         let navigationController = UINavigationController(rootViewController: formController)
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         DispatchQueue.main.async {
-            Usabilla.delegate?.formLoadedCorrectly(navigationController)
+            delegate?.formLoadedCorrectly(navigationController)
         }
     }
 

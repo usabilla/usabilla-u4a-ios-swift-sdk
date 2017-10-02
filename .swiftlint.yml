@@ -6,6 +6,9 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Usabilla/Utils/StyleKit.swift 
   - Usabilla/Utils/Reachability.swift
   - Usabilla/Utils/SwiftEventBus.swift
+  - UsabillaUITestApp
+  - UsabillaExample.custom
+  - UsabillaExample
   - codecov.swift
 
 opt_in_rules:
@@ -64,3 +67,11 @@ custom_rules:
     severity: error # violation severity. optional.
 
 
+  no_calls_to_usabilla: # rule identifier
+    included: ".*.Usabilla\\/.*.swift" # regex that defines paths to include during linting. optional.    excluded: ".*Test\\.swift" # regex that defines paths to exclude during linting. optional
+    name: "No calls to Usabilla class" # rule name. optional.
+    regex: "Usabilla\\." # matching pattern
+    match_kinds: # SyntaxKinds to match. optional.
+      - identifier
+    message: "Do not call the public interface." # violation message. optional.
+    severity: error # violation severity. optional.

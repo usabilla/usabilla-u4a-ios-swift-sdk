@@ -52,7 +52,7 @@ class JSONFormParser {
         }
 
         if let endPage = currentPage as? UBEndPageModel {
-            endPage.giveMoreFeedback = !Usabilla.hideGiveMoreFeedback
+            endPage.giveMoreFeedback = !UsabillaInternal.hideGiveMoreFeedback
         }
 
         var fields: [BaseFieldModel] = []

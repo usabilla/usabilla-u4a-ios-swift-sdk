@@ -48,10 +48,10 @@ class CampaignManager {
     }
 
     func displayCampaign(_ campaign: CampaignModel, withUserContext userContext: [String: Any]) {
-        guard campaign.canBeDisplayed && Usabilla.canDisplayCampaigns else {
+        guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
             return
         }
-        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: Usabilla.theme).then { form in
+        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme).then { form in
             let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
             if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
