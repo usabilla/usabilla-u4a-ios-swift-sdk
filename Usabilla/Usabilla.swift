@@ -146,7 +146,7 @@ public struct FeedbackResult {
 }
 
 public struct UBError: Error {
-    let description: String
+    public let description: String
 }
 
 public protocol UsabillaDelegate: class {

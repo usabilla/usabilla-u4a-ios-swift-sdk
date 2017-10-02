@@ -111,7 +111,7 @@ class UsabillaInternal {
             viewForForm(form: form)
         }.catch { _ in
             DispatchQueue.main.async {
-                delegate?.formDidFailLoading(error: UBError(description: "Could not load form"))
+                delegate?.formDidFailLoading(error: UBError(description: "Unable to load the form"))
             }
         }
     }
