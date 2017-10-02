@@ -42,7 +42,7 @@ extension ViewController: UsabillaDelegate {
         present(form, animated: true, completion: nil)
     }
 
-    func formDidClose(form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult]) {
+    func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
         form.dismiss(animated: true, completion: nil)
     }
 }

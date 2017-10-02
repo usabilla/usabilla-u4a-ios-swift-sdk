@@ -22,12 +22,11 @@ class PassiveFormController: FormViewControllerDelegate {
             results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         }
         // swiftlint:disable:next force_unwrapping
-        UsabillaInternal.delegate?.formWillClose(form: formViewController.navigationController!, formID: formViewController.viewModel.id, with: results, isRedirectToAppStoreEnabled: formViewController.viewModel.model.redirectToAppStore)
+        UsabillaInternal.delegate?.formWillClose(form: formViewController.navigationController!, formID: formViewController.viewModel.id, withFeedbackResults: results, isRedirectToAppStoreEnabled: formViewController.viewModel.model.redirectToAppStore)
 
         if UsabillaInternal.dismissAutomatically {
             formViewController.dismiss(animated: true, completion: nil)
-            // swiftlint:disable:next force_unwrapping
-            UsabillaInternal.delegate?.formDidClose(form: formViewController.navigationController!, formID: formViewController.viewModel.id, with: self.results, isRedirectToAppStoreEnabled: formViewController.viewModel.model.redirectToAppStore)
+            UsabillaInternal.delegate?.formDidClose(formID: formViewController.viewModel.id, withFeedbackResults: self.results, isRedirectToAppStoreEnabled: formViewController.viewModel.model.redirectToAppStore)
         }
     }
 
