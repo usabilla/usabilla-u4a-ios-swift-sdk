@@ -151,7 +151,18 @@ public struct UBError: Error {
 
 public protocol UsabillaDelegate: class {
 
+    /**
+     This method is called once a passive feedback form is correctly loaded
+
+     - Parameter form: The view controller containing the form
+     */
     func formDidLoad(form: UINavigationController)
+
+    /**
+     This method is called if the SDK encountered an error while loading the passive feedback form
+
+     - Parameter error: An error describing the issue encoutered
+     */
     func formDidFailLoading(error: UBError)
 
     /**
@@ -192,9 +203,7 @@ public protocol UsabillaDelegate: class {
 }
 
 public extension UsabillaDelegate {
-    func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-    }
-    func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-    }
+    func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }
+    func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }
     func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
 }
