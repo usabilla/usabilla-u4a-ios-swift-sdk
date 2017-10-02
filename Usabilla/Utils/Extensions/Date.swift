@@ -13,6 +13,7 @@ extension Date {
         static let `default` = "yyyy'-'MM'-'dd'T'HH':'mm':'ssXXXXX"
         static let fractionalSeconds = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSSSSXXXXX"
     }
+
     static let RFC3339Formatter: DateFormatter = {
         return buildRFC3339(format: Date.RFC3339Formats.default)
     }()
@@ -28,5 +29,10 @@ extension Date {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = format
         return formatter
+    }
+
+    func toRFC3339Format() -> String {
+        let formatter = Date.RFC3339Formatter
+        return formatter.string(from: self)
     }
 }

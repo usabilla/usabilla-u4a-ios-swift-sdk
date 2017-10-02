@@ -101,7 +101,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         // swiftlint:disable:next force_unwrapping
         metadata["sdk_version"] = Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         metadata["system"] = "ios"
-        metadata["timestamp"] = Date().timeIntervalSince1970.description
+        metadata["timestamp"] = Date().toRFC3339Format()
         // swiftlint:disable:next force_unwrapping
         metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
 
