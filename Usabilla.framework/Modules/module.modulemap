@@ -7,5 +7,4 @@ framework module Usabilla {
 
 module Usabilla.Swift {
     header "Usabilla-Swift.h"
-    requires objc
 }
