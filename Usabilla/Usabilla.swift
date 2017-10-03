@@ -161,11 +161,11 @@ public protocol UsabillaDelegate: class {
      This method is called once the form is closed
      
      - Parameter formID: String representing the ID of the form
-     - Parameter feedbackResults: Array of FeedbackResult
+     - Parameter withFeedbackResults: Array of FeedbackResult
      - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
      
-     If Usabilla.**hideGiveMoreFeedback** is set to **false**, the **feedbackResults** array will always contains only one value.
-     Otherwise the feedbackResults can contains between 1 and n FeedbackResult
+     If Usabilla.**hideGiveMoreFeedback** is set to **false**, the **withFeedbackResults** array will always contains only one value.
+     Otherwise the withFeedbackResults can contains between 1 and n FeedbackResult
      */
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
@@ -175,7 +175,7 @@ public protocol UsabillaDelegate: class {
      
      - Parameter form: UINavigationcontroller which is being dismissed
      - Parameter formID: String representing the ID of the form
-     - Parameter feedbackResults: Array of FeedbackResult
+     - Parameter withFeedbackResults: Array of FeedbackResult
      - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
      
      This method should be used to dismiss the form if the Usabilla.**dismissAutomatically** attribute is set to **false**
@@ -185,9 +185,8 @@ public protocol UsabillaDelegate: class {
     /**
      
      This method is called once a campaign form is closed
-     
-     - Parameter campaign: UIViewController which is being dismissed
-     - Parameter feedbackResult: FeedbackResult containing the campaign data submitted by the user
+
+     - Parameter withFeedbackResult: FeedbackResult containing the campaign data submitted by the user
      - Parameter isRedirectToAppStoreEnabled: Bool indicating whether or not the form is set to redirect to the App Store
      
      */
