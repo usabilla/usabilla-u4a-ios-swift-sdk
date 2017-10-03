@@ -103,7 +103,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     func keyboardWillShow(notification: NSNotification) {
         guard viewModel.shouldAddMarginWhenKeyboardIsShown,
             var userInfo = notification.userInfo,
-            var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+            var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
                 return
         }
 

@@ -64,7 +64,7 @@ class CampaignViewController: UIViewController {
 
     func keyboardWillShow(notification: NSNotification) {
         guard let info: [AnyHashable: Any] = notification.userInfo,
-            let keyboardFrame: CGRect = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+            let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let bottomConstraint = modalBottomConstraint else { return }
 
         let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
