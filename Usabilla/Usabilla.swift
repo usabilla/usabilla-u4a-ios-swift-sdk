@@ -122,16 +122,8 @@ open class Usabilla {
     }
 
     #if INTERNAL_USE || DEBUG
-        open class func formViewController(forFormJson json: JSON) -> UINavigationController? {
-            return UsabillaInternal.formViewController(forFormJson: json)
-        }
-
-        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = theme) {
-            UsabillaInternal.displayCampaignForm(withFormID: formID)
-        }
-
-        open class func showCampaignForm(formJson: JSON, campaignID: String = "id") {
-            UsabillaInternal.showCampaignForm(formJson: formJson, campaignID: campaignID)
+        open class func formViewController(forFormData data: Data) -> UINavigationController? {
+            return UsabillaInternal.formViewController(forFormData: data)
         }
     #endif
 

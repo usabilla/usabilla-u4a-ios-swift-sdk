@@ -14,7 +14,7 @@ class OrRule: ConcreteRule {
         super.init(type: .or, childRules: childRules, ruleID: ruleID, alreadyTriggered: alreadyTriggered)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

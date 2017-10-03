@@ -81,7 +81,8 @@ class UsabillaInternal {
     }
     #if INTERNAL_USE || DEBUG
 
-        open class func formViewController(forFormJson json: JSON) -> UINavigationController? {
+        class func formViewController(forFormData data: Data) -> UINavigationController? {
+            let json = JSON.init(data: data)
             guard let submissionManager = submissionManager else { return nil }
             let form = FormModel(json: json, id: "", screenshot: nil)
             let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
@@ -90,16 +91,6 @@ class UsabillaInternal {
             return navigationController
         }
 
-        open class func displayCampaignForm(withFormID formID: String, theme: UsabillaTheme = theme) {
-            campaignStore.getCampaignForm(withFormID: formID, theme: theme).then { form in
-                campaignManager?.displayCampaignForm(form)
-            }
-        }
-
-        open class func showCampaignForm(formJson: JSON, campaignID: String = "id") {
-            let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-            campaignManager?.displayCampaignForm(formModel, campaignID: campaignID)
-        }
     #endif
 
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {

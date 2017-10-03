@@ -14,7 +14,7 @@ extension UIView {
     /// Add array of subviews to view.
     ///
     /// - Parameter subviews: array of subviews to add to self.
-    public func addSubviews(_ subviews: UIView...) {
+    func addSubviews(_ subviews: UIView...) {
         subviews.forEach({ self.addSubview($0) })
     }
 

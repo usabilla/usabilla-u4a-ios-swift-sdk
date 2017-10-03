@@ -14,7 +14,7 @@ class AndRule: ConcreteRule {
         super.init(type: .and, childRules: childRules, ruleID: ruleID, alreadyTriggered: alreadyTriggered)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

@@ -16,7 +16,7 @@ import Foundation
 ///   - file: The name of the file, defaults to the current file without the ".swift" extension.
 ///   - function: The name of the function, defaults to the function within which the call is made.
 ///   - line: The line number, defaults to the line number within the file that the call is made.
-public func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
         let value = object()
         let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"
@@ -37,7 +37,7 @@ public func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ fu
 ///   - file: he name of the file, defaults to the current file without the ".swift" extension.
 ///   - function: The name of the function, defaults to the function within which the call is made.
 ///   - line: The line number, defaults to the line number within the file that the call is made.
-public func PDump<T>(_ object: @autoclosure () -> T, label: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+func PDump<T>(_ object: @autoclosure () -> T, label: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
         let value = object()
         let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"

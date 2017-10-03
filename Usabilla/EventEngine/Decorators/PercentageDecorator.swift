@@ -36,14 +36,14 @@ class PercentageDecorator: Decorator {
     }
 
     // MARK: NSCoding
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         let percentage = aDecoder.decodeInteger(forKey: "percentage")
         self.percentage = percentage
         super.init(coder: aDecoder)
 
     }
 
-    public override func encode(with aCoder: NSCoder) {
+    override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
         aCoder.encode(self.percentage, forKey: "percentage")
     }

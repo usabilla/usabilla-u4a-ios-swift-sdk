@@ -113,7 +113,7 @@ class FormModel: NSObject, NSCoding {
 
     // MARK: NScoding protocols
 
-    public required convenience init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         guard let identifier = aDecoder.decodeObject(forKey: "identifier") as? String,
             let rawJson = aDecoder.decodeObject(forKey: "formJsonString") else {
                 return nil
@@ -121,7 +121,7 @@ class FormModel: NSObject, NSCoding {
         self.init(json: JSON(rawJson), id: identifier, screenshot: nil)
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(identifier, forKey: "identifier")
         aCoder.encode(formJsonString.rawValue, forKey: "formJsonString")
     }

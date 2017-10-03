@@ -55,7 +55,6 @@ custom_rules:
     regex: "([t,T][e]?mp[ ]+)"
     match_kinds: string
 
-
   no_asd_allowed: # rule identifier
     included: ".*.swift" # regex that defines paths to include during linting. optional.
     name: "No Asd Allowed" # rule name. optional.
@@ -66,7 +65,6 @@ custom_rules:
     message: "Do not use asd." # violation message. optional.
     severity: error # violation severity. optional.
 
-
   no_calls_to_usabilla: # rule identifier
     included: ".*.Usabilla\\/.*.swift" # regex that defines paths to include during linting. optional.    excluded: ".*Test\\.swift" # regex that defines paths to exclude during linting. optional
     name: "No calls to Usabilla class" # rule name. optional.
@@ -74,4 +72,12 @@ custom_rules:
     match_kinds: # SyntaxKinds to match. optional.
       - identifier
     message: "Do not call the public interface." # violation message. optional.
+    severity: error # violation severity. optional.
+
+  no_open_or_public: # rule identifier
+    included: ".*.Usabilla\\/.*.swift" # regex that defines paths to include during linting. optional.    excluded: ".*Test\\.swift" # regex that defines paths to exclude during linting. optional
+    excluded: "(Usabilla.swift)|(UsabillaTheme.swift)"
+    name: "No open or public declaration" # rule name. optional.
+    regex: "^\\s*(open)|(public)\\s+" # matching pattern
+    message: "Do not use open or public declarations." # violation message. optional.
     severity: error # violation severity. optional.

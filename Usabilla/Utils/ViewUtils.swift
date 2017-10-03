@@ -11,7 +11,7 @@ import UIKit
 
 class ViewUtils {
 
-    public static func generateFooter(theme: UsabillaTheme) -> UIView {
+    static func generateFooter(theme: UsabillaTheme) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
         let logo = UIButton(type: UIButtonType.custom)
         logo.translatesAutoresizingMaskIntoConstraints = false

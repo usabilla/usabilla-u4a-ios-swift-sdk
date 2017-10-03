@@ -21,7 +21,7 @@ class CampaignModel: NSObject, NSCoding {
         static let targetingID = "targetingID"
     }
 
-    public enum Status: String {
+    enum Status: String {
         case active
         case inactive
         case invalid
@@ -71,7 +71,7 @@ class CampaignModel: NSObject, NSCoding {
     }
 
     // MARK: NSCoding
-    public required convenience init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         guard let identifier = aDecoder.decodeObject(forKey: Archiving.identifier) as? String,
             let formID = aDecoder.decodeObject(forKey: Archiving.formID) as? String,
             let targetingID = aDecoder.decodeObject(forKey: Archiving.targetingID) as? String,
@@ -88,7 +88,7 @@ class CampaignModel: NSObject, NSCoding {
         self.init(id: identifier, rule: rule, formID: formID, targetingID: targetingID, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status, createdAt: createdAt)
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: Archiving.identifier)
         aCoder.encode(self.rule, forKey: Archiving.rule)
         aCoder.encode(self.formID, forKey: Archiving.formID)

@@ -56,7 +56,7 @@ class Decorator: NSObject, Rule {
     }
 
     // MARK: NSCoding
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         guard let rule = aDecoder.decodeObject(forKey: "rule") as? Rule else {
             PLog("❌ impossible to decode Decorator")
             return nil
@@ -67,7 +67,7 @@ class Decorator: NSObject, Rule {
         self.alreadyTriggered = alreadyTriggered
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.rule, forKey: "rule")
         aCoder.encode(self.alreadyTriggered, forKey: "alreadyTriggered")
     }

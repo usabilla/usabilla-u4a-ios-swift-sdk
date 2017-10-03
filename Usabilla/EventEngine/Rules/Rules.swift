@@ -89,7 +89,7 @@ class ConcreteRule: NSObject, Rule {
 
     // MARK: NSCoding
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         guard let ruleID = aDecoder.decodeObject(forKey: "ruleID") as? String,
             let ruleType = aDecoder.decodeObject(forKey: "type") as? String,
             let type = RuleType(rawValue: ruleType),
@@ -104,7 +104,7 @@ class ConcreteRule: NSObject, Rule {
         self.alreadyTriggered = aDecoder.decodeBool(forKey: "alreadyTriggered")
     }
 
-    public func encode(with aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(self.ruleID, forKey: "ruleID")
         aCoder.encode(self.type.rawValue, forKey: "type")
         aCoder.encode(self.childRules, forKey: "childRules")

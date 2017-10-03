@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // swiftlint:disable:next force_unwrapping
             let path = Bundle(for: AppDelegate.self).path(forResource: scenario, ofType: "json")!
             let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            let json: JSON = JSON(data: data as Data)
-            controller = Usabilla.formViewController(forFormJson: json)
+            controller = Usabilla.formViewController(forFormData: data as Data)
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             controller = storyboard.instantiateInitialViewController()

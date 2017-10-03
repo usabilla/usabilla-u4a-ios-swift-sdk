@@ -25,7 +25,7 @@ class CampaignManager {
         fetchCampaignForEventEngine()
     }
 
-    // customVariables sent from the public interface are the activeStatuses used inside our SDK.
+    // customVariables sent from the interface are the activeStatuses used inside our SDK.
     func sendEvent(event: String, customVariables: [String: Any]) {
         let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: filterActiveStatuses(fromCustomVariables: customVariables))
 
