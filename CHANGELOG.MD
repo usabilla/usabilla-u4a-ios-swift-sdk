@@ -1,3 +1,32 @@
+## 4.0.0
+
+#### Added
+
+- Added targeted active feedback functionalities. See the [readme](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk#campaigns) for more detail.
+
+#### Updated
+- Update default smilies and stars.
+- Renamed `UsabillaFeedbackForm` to `Usabilla`.
+- Renamed `UsabillaFeedbackFormDelegate` to `UsabillaDelegate`.
+- Renamed `load()` method to `initialize(appID: String?)`. Calling this method is now mandatory to start the SDK.
+- Changed `formLoadedCorrectly(_ form: UINavigationController)` to `formDidLoad(form: UINavigationController)`.
+- Changed `formFailedLoading(_ backupForm: UINavigationController)` to `formDidFailLoading(error: UBError)`.
+- Changed `formDidClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)` to `formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)`.
+- Changed `formWillClose(_ form: UINavigationController, formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)` to `formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)`.
+- Changed `formFailedLoading(_ backupForm: UINavigationController)` to `formDidFailLoading(error: UBError)`.
+- Changed `loadFeedbackForm(_ appId: String, screenshot: UIImage?, customVariables: [String: Any]?, themeConfig: UsabillaThemeConfigurator)` to `loadFeedbackForm(_ formID: String, screenshot: UIImage?, theme: UsabillaTheme)`.
+- Refactored `UsabillaTheme`. See the [readme](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk#ui-customisations) for more detail.
+- Redesigned the NPS component
+
+
+#### Fixed
+- Fixed feedback title not being displayed
+
+#### Removed
+- Removed `showCancelButton` property. The cancel button will now be always displayed.
+- Removed the possibility to add specialised custom variables to passive forms. The global custom variables will be used instead from now on.
+
+
 ## 3.6.1
 
 #### Fixed
