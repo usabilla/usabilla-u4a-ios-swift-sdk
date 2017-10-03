@@ -87,10 +87,10 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                     let value = Usabilla.customVariables["key1"] as? String
                     expect(value).to(equal("value1"))
                     
-                    Usabilla.setCustomVariable(value: "value2", forKey: "key2")
+                    Usabilla.customVariables["key"] = "value2"
                     expect(Usabilla.customVariables.keys.count).to(equal(2))
                     
-                    Usabilla.setCustomVariable(value: nil, forKey: "key2")
+                    Usabilla.customVariables["key"] = nil
                     expect(Usabilla.customVariables.keys.count).to(equal(1))
                 }
             }

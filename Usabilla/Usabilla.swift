@@ -80,10 +80,6 @@ open class Usabilla {
         UsabillaInternal.sendEvent(event: event)
     }
 
-    open class func setCustomVariable(value: Any?, forKey key: String) {
-        UsabillaInternal.setCustomVariable(value: value, forKey: key)
-    }
-
     /**
      Initialize the **Usabilla SDK**
      
