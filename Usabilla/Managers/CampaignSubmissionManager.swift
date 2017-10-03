@@ -24,7 +24,6 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
         self.service = service
         self.DAO = DAO
         self.reachability = reachability
-        try? reachability.startNotifier()
         self.dictionaryStore = dictionaryStore
         if let dictionary = dictionaryStore.read(id: UBFeedbackIDDictionaryDAO.dictionaryID) {
             feedbackIDs = dictionary
@@ -35,6 +34,7 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
                 self.submitNextItem()
             }
         }
+        try? reachability.startNotifier()
     }
 
     private func submitNextItem() {
