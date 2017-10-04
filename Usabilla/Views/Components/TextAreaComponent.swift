@@ -30,50 +30,33 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
         // configuration
         if viewModel.value != nil {
             textView.text = viewModel.value
-            viewModel.isPlaceHolder = false
         } else {
-            viewModel.isPlaceHolder = true
-            textView.text = viewModel.placeHolder
+            labelPlaceHolder.isHidden = false
+            labelPlaceHolder.text = viewModel.placeHolder
         }
 
-        // customization
-        setCorrectFont()
         line.backgroundColor = viewModel.theme.colors.hint
     }
 
+    // MARK: TextField delegates
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if viewModel.isPlaceHolder {
+        if !labelPlaceHolder.isHidden {
             textView.text = nil
         }
-        viewModel.isPlaceHolder = false
-        setCorrectFont()
     }
 
     func textViewDidChange(_ textView: UITextView) {
         viewModel.value = textView.text
+        labelPlaceHolder.isHidden = !textView.text.isEmpty
         valueChanged()
         SwiftEventBus.postToMainThread("updateMySize")
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = viewModel.placeHolder
             viewModel.value = nil
-            viewModel.isPlaceHolder = true
-            setCorrectFont()
+            labelPlaceHolder.isHidden = false
             valueChanged()
         }
-    }
-
-    func setCorrectFont() {
-        let theme = viewModel.theme
-        textView.font = theme.fonts.font
-
-        if !viewModel.isPlaceHolder {
-            textView.textColor = theme.colors.text
-        } else {
-            textView.textColor = theme.colors.hint
-        }
-
     }
 }

@@ -9,5 +9,4 @@
 import Foundation
 
 class TextAreaComponentViewModel: BaseEditableStringComponentViewModel<TextAreaFieldModel> {
-    var isPlaceHolder: Bool = true
 }
