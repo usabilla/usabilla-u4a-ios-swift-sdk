@@ -91,6 +91,18 @@ class UsabillaInternal {
             return navigationController
         }
 
+        class func displayCampaignForm(withID formID: String, completion: ((UBCampaignFormDisplayError?) -> Void)? = nil) {
+            guard let campaignManager = campaignManager else {
+                completion?(.sdkNotInitialized)
+                return
+            }
+            campaignService.getCampaignForm(withID: formID).then { form in
+                let displayed = campaignManager.displayCampaignForm(form)
+                completion?(displayed ? nil : .campaignAlreadyBeingPresented)
+            }.catch { _ in
+                completion?(.formFetchFailed)
+            }
+        }
     #endif
 
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {

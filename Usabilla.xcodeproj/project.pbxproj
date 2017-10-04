@@ -380,6 +380,8 @@
 		43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F51E37B7B900A97F1D /* StringTest.swift */; };
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
+		43ED68F51F86806B00C9D279 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED68F41F86806B00C9D279 /* Debug.swift */; };
+		43ED68F61F86806B00C9D279 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED68F41F86806B00C9D279 /* Debug.swift */; };
 		43F838931F793B2A005109AA /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
@@ -656,6 +658,7 @@
 		43E883F51E37B7B900A97F1D /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		43E883F71E38A28A00A97F1D /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
+		43ED68F41F86806B00C9D279 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignFormJumpRules.json; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
@@ -977,6 +980,7 @@
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
 				04F54E5B1CD76A21002F501E /* Assets.xcassets */,
 				041275D71F792BF700A12E09 /* Usabilla.swift */,
+				43ED68F41F86806B00C9D279 /* Debug.swift */,
 			);
 			path = Usabilla;
 			sourceTree = "<group>";
@@ -1685,6 +1689,7 @@
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
+				43ED68F51F86806B00C9D279 /* Debug.swift in Sources */,
 				436C2B811E85187000741E10 /* UBIntroOutroView.swift in Sources */,
 				049D77821E1BF2EB00117606 /* ViewUtils.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
@@ -1937,6 +1942,7 @@
 				43B04FAE1F1F7EEF0032F057 /* ComponentViewModel.swift in Sources */,
 				43B04FAF1F1F7EEF0032F057 /* ParagraphComponent.swift in Sources */,
 				43B04FB01F1F7EEF0032F057 /* FieldModel.swift in Sources */,
+				43ED68F61F86806B00C9D279 /* Debug.swift in Sources */,
 				43B04FB11F1F7EEF0032F057 /* UBIntroOutroView.swift in Sources */,
 				43B04FB21F1F7EEF0032F057 /* ViewUtils.swift in Sources */,
 				43B04FB31F1F7EEF0032F057 /* PathManager.swift in Sources */,

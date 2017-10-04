@@ -116,13 +116,6 @@ open class Usabilla {
     open class func takeScreenshot(_ view: UIView) -> UIImage? {
         return UsabillaInternal.takeScreenshot(view)
     }
-
-    #if INTERNAL_USE || DEBUG
-        open class func formViewController(forFormData data: Data) -> UINavigationController? {
-            return UsabillaInternal.formViewController(forFormData: data)
-        }
-    #endif
-
 }
 
 public struct FeedbackResult {
