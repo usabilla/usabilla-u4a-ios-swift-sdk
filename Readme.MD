@@ -150,7 +150,7 @@ There are multiple options which allow you to define more specific targeting rul
 You can also segment your user base using custom variables.
 **Custom variables** can be used to specify some traits of the user and target the campaign only to a specific subset.
 
-For more on how to use custom variables, read [Custom Variables](#adding-custom-variables)
+For more on how to use custom variables, read [Custom Variables](#custom-variables)
 
 **Note: A campaign will never be triggered for the same user more than once.**
 
