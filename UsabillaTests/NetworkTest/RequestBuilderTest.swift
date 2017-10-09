@@ -32,7 +32,12 @@ class RequestBuilderTest: QuickSpec {
                 "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
                 "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
                 "sdk-version": Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
-                "os": "iOS"
+                "os": "iOS",
+                "sdk-build": Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
+                "app-id": "",
+                "device-model": UIDevice.current.modelName,
+                "os-version": UIDevice.current.systemVersion,
+                "app-bundle": Bundle.main.bundleIdentifier ?? ""
             ]
             self.correctUrl = URL(string: "https://api-staging.usabilla.com/v2/sdk/forms/")
             self.correctCDNUrl = URL(string: "https://sdk.out-staging.usbla.net/forms/")
@@ -69,66 +74,69 @@ class RequestBuilderTest: QuickSpec {
 
         }
 
-        describe("The Request builder") {
+        describe("RequestBuilder") {
 
-            it("Builds the passive form request correctly") {
-                let get = RequestBuilder.requestGetPassiveForm(withID: "myformId")
-                expect(get.url?.absoluteString).to(equal("https://api-staging.usabilla.com/live/mobile/app/forms/myformId"))
-                expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
-                expect(get.httpMethod).to(equal("GET"))
-                expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
-                expect(get.timeoutInterval).to(equal(10))
-            }
-
-            it("Builds the campaign form request correctly") {
-                let get = RequestBuilder.requestGetCampaignForm(withID: "a")
-                expect(get.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/forms/a"))
-                expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
-                expect(get.httpMethod).to(equal("GET"))
-                expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
-                expect(get.timeoutInterval).to(equal(10))
-            }
-
-            it("Builds the campaign list request correctly") {
-                let req = RequestBuilder.requestGetCampaigns(withAppID: "myAppId")
-                expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/campaigns?app_id=myAppId"))
-                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
-                expect(req.httpMethod).to(equal("GET"))
-                expect(req.timeoutInterval).to(equal(10))
-            }
-
-            it("Builds the targeting option request correctly") {
-                let req = RequestBuilder.requestGetTargeting(withID: "targetingID")
-                expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/targeting-options/targetingID"))
-                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
-                expect(req.httpMethod).to(equal("GET"))
-                expect(req.timeoutInterval).to(equal(10))
-            }
-
-            it("Builds the campaign feedback item creation request correctly") {
-                let req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignID: "campaignID", withPayload: ["p": "p"])
-                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/campaignID/feedback"))
-                expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
-                expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
-                expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
-                expect(req.timeoutInterval).to(equal(10))
-            }
-
-            it("Builds the campaign feedback item patch request correctly") {
-                let req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignID: "c", withPayload: ["p": "p"], withSessionToken: "t")
-                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/t"))
-                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
-                expect(req.httpMethod).to(equal("PATCH"))
-                expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
-                expect(req.timeoutInterval).to(equal(10))
-            }
-
-            it("Builds the increment campaign view request correctly") {
-                let req = RequestBuilder.requestPatchCampaignViews(forCampaignID: "1234", viewCount: 2)
-                expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/1234/views"))
-                expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
-                expect(req.httpMethod).to(equal("PATCH"))
-                expect(req.timeoutInterval).to(equal(10))
+            context("When called") {
+                it("Builds the passive form request correctly") {
+                    let get = RequestBuilder.requestGetPassiveForm(withID: "myformId")
+                    expect(get.url?.absoluteString).to(equal("https://api-staging.usabilla.com/live/mobile/app/forms/myformId"))
+                    expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
+                    expect(get.httpMethod).to(equal("GET"))
+                    expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+                    expect(get.timeoutInterval).to(equal(10))
+                }
+                it("Builds the campaign form request correctly") {
+                    let get = RequestBuilder.requestGetCampaignForm(withID: "a")
+                    expect(get.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/forms/a"))
+                    expect(get.cachePolicy).to(equal(self.correctGet.cachePolicy))
+                    expect(get.httpMethod).to(equal("GET"))
+                    expect(get.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+                    expect(get.timeoutInterval).to(equal(10))
+                }
+                it("Builds the campaign list request correctly") {
+                    let req = RequestBuilder.requestGetCampaigns(withAppID: "myAppId")
+                    expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/campaigns?app_id=myAppId"))
+                    expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req.httpMethod).to(equal("GET"))
+                    expect(req.timeoutInterval).to(equal(10))
+                }
+                it("Builds the targeting option request correctly") {
+                    let req = RequestBuilder.requestGetTargeting(withID: "targetingID")
+                    expect(req.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/targeting-options/targetingID"))
+                    expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req.httpMethod).to(equal("GET"))
+                    expect(req.timeoutInterval).to(equal(10))
+                }
+                it("Builds the campaign feedback item creation request correctly") {
+                    let req = RequestBuilder.requestCampaignFeedbackItemCreation(forCampaignID: "campaignID", withPayload: ["p": "p"])
+                    expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/campaignID/feedback"))
+                    expect(req.cachePolicy).to(equal(self.correctPost.cachePolicy))
+                    expect(req.httpMethod).to(equal(self.correctPost.httpMethod))
+                    expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
+                    expect(req.timeoutInterval).to(equal(10))
+                }
+                it("Builds the campaign feedback item patch request correctly") {
+                    let req = RequestBuilder.requestCampaignFeedbackItemPatch(forCampaignID: "c", withPayload: ["p": "p"], withSessionToken: "t")
+                    expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/c/feedback/t"))
+                    expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req.httpMethod).to(equal("PATCH"))
+                    expect(req.allHTTPHeaderFields).to(equal(self.correctPost.allHTTPHeaderFields))
+                    expect(req.timeoutInterval).to(equal(10))
+                }
+                it("Builds the increment campaign view request correctly") {
+                    let req = RequestBuilder.requestPatchCampaignViews(forCampaignID: "1234", viewCount: 2)
+                    expect(req.url?.absoluteString).to(equal("https://api-staging.usabilla.com/v2/sdk/campaigns/1234/views"))
+                    expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req.httpMethod).to(equal("PATCH"))
+                    expect(req.timeoutInterval).to(equal(10))
+                }
+                it("Should have the correct header entities") {
+                    let requestBuilderHeaders = RequestBuilder.headers
+                    expect(requestBuilderHeaders.count).to(equal(self.headers.count))
+                    for key in requestBuilderHeaders.keys {
+                        expect(requestBuilderHeaders[key]).to(equal(self.headers[key]))
+                    }
+                }
             }
         }
     }

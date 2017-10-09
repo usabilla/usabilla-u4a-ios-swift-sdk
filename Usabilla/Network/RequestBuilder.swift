@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 // swiftlint:disable force_unwrapping
 class RequestBuilder {
 
@@ -25,11 +26,18 @@ class RequestBuilder {
     static let submitUrl: String = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
     static let cdnUrl: String = bundle.infoDictionary!["USABILLA_CDN_HOST"] as! String
     // swiftlint:enable force_cast
+
+    static let sdkBundle = Bundle(identifier: "com.usabilla.Usabilla")!
     static let headers: [String: String] = [
         "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
         "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
-        "sdk-version": Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
-        "os": "iOS"
+        "sdk-version": sdkBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
+        "os": "iOS",
+        "sdk-build": sdkBundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
+        "app-id": UsabillaInternal.appID ?? "",
+        "device-model": UIDevice.current.modelName,
+        "os-version": UIDevice.current.systemVersion,
+        "app-bundle": Bundle.main.bundleIdentifier ?? ""
     ]
 
     /**
