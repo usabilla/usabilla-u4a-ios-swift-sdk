@@ -97,6 +97,7 @@ class UsabillaInternal {
                 return
             }
             campaignService.getCampaignForm(withID: formID).then { form in
+                form.updateTheme()
                 let displayed = campaignManager.displayCampaignForm(form)
                 completion?(displayed ? nil : .campaignAlreadyBeingPresented)
             }.catch { _ in
