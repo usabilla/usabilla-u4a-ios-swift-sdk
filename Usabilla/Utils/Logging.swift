@@ -4,6 +4,25 @@
 
 import Foundation
 
+/// prints a message to the client when an error occurs
+func DLogError(_ message: String) {
+    print("UBError: \(message)")
+}
+
+/// prints a network message to the client when an error occurs
+func DLogError(_ endpoint: String, code: String, description: String? = nil) {
+    if let description = description {
+        print("UBError: \(endpoint), code: \(code), description: \(description)")
+        return
+    }
+    print("UBError: \(endpoint), code: \(code)")
+}
+
+/// prints some usefull information to the client when needed
+func DLogInfo(_ message: String) {
+    print("UBInfo: \(message)")
+}
+
 /// Prints the filename, function name, line number and textual representation of `object` and a newline character into the standard output if the build setting for "Active Complilation Conditions" (SWIFT_ACTIVE_COMPILATION_CONDITIONS) defines `DEBUG`.
 ///
 /// The current thread is a prefix on the output. <UI> for the main thread, <BG> for anything else.

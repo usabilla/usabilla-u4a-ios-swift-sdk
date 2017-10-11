@@ -23,6 +23,8 @@ class EventEngine {
         - campaigns which triggered
      */
     func sendEvent(_ eventName: String, activeStatuses: [String: String]) -> ([CampaignModel], [CampaignModel]) {
+        DLogInfo("Event \"\(eventName)\" sent!")
+
         let event = Event(name: eventName)
 
         let campaignThatResponds = campaigns.filter {
@@ -32,7 +34,7 @@ class EventEngine {
         let campaignToDisplay = campaignThatResponds.filter {
             $0.triggers(event: event, activeStatuses: activeStatuses) == true
         }
-
+        campaignToDisplay.forEach { DLogInfo("Campaign \($0.identifier) has been triggered!") }
         return (campaignThatResponds, campaignToDisplay)
     }
 }

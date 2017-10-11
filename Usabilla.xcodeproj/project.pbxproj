@@ -1218,9 +1218,9 @@
 		4390C0F01E97BE8D00092977 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */,
 				4390C0F11E97BE9B00092977 /* UBDAO.swift */,
 				4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */,
+				047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */,
 				4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */,
 				C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */,
 				431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */,

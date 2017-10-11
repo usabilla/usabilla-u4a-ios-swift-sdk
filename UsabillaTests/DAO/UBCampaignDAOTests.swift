@@ -17,7 +17,7 @@ class UBCampaignDAOTests: QuickSpec {
 
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let rootUrl = documentsDirectory.appendingPathComponent("UBSDK")
-        let directoryUrl = rootUrl.appendingPathComponent(UBCampaignDAO.directoryName)
+        let directoryUrl = rootUrl.appendingPathComponent(UBCampaignDAO.directoryName.rawValue)
 
         describe("UBCampaignDAOTests") {
             context("when directory is created") {

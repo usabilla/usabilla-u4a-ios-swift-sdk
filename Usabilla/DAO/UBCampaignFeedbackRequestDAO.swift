@@ -7,7 +7,7 @@
 //
 
 class UBCampaignFeedbackRequestDAO: UBFileStorageDAO<UBCampaignFeedbackRequest> {
-    static let directoryName = "UBCampaignFeedbackRequest"
+    static let directoryName = FileDirectory.campaignFeedbackRequest
     static let shared = UBCampaignFeedbackRequestDAO()
 
     required init() {

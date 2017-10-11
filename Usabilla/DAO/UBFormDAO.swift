@@ -9,7 +9,7 @@
 import Foundation
 
 class UBFormDAO: UBFileStorageDAO<FormModel> {
-    static let directoryName = "Forms"
+    static let directoryName = FileDirectory.form
     static let shared = UBFormDAO()
 
     internal required init() {

@@ -9,7 +9,7 @@
 import Foundation
 
 class UBCampaignDAO: UBFileStorageDAO<CampaignModel> {
-    static let directoryName = "Campaigns"
+    static let directoryName = FileDirectory.campaign
     static let shared = UBCampaignDAO()
 
     internal required init() {

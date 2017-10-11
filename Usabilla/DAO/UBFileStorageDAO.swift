@@ -8,6 +8,32 @@
 
 import Foundation
 
+enum FileDirectory: String {
+    case campaign = "Campaigns"
+    case form = "Forms"
+    case campaignFeedbackRequest = "UBCampaignFeedbackRequest"
+    case passiveFeedbackRequest = "FeedbackRequests"
+    case feedbackIds = "UBFeedbackIDDictionaryDAO"
+    case testDirectory = "Testdirectory"
+
+    var description: String {
+        switch self {
+        case .campaign:
+            return "campaign"
+        case .form:
+            return "form"
+        case .passiveFeedbackRequest:
+            return "passive feedback request"
+        case .campaignFeedbackRequest:
+            return "campaign feedback request"
+        case .feedbackIds:
+            return "submission feedback ids"
+        case .testDirectory:
+            return "testDirectory"
+        }
+    }
+}
+
 let kSDKRootDirectoryName = "UBSDK"
 
 let fileStorageSerialQueue = DispatchQueue(label: "com.usabilla.u4a.storage")
@@ -16,16 +42,16 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
 
     typealias DataType = ModelType
 
-    let directoryName: String
+    let directoryName: FileDirectory
     let sdkRootDirectoryUrl: URL
     let directoryUrl: URL
 
-    init(directoryName: String) {
+    init(directoryName: FileDirectory) {
         self.directoryName = directoryName
         // swiftlint:disable:next force_unwrapping
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         sdkRootDirectoryUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
-        directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directoryName)
+        directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directoryName.rawValue)
 
         fileStorageSerialQueue.sync {
             UBFileHelper.createDirectory(url: sdkRootDirectoryUrl)
@@ -73,6 +99,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
                     }
                 }
             } catch let error {
+                DLogError("Couldn't load \(directoryName.description) with id: \(id) from database")
                 PLog("Error ❌ during unarchiving: \(error)")
                 delete(id: id)
             }

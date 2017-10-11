@@ -14,6 +14,10 @@ enum HTTPMethod: String {
     case patch = "PATCH"
 }
 
+enum ErrorCode: Int {
+    case networkError = 1401
+}
+
 struct HTTPClientResponse {
     let data: Any?
     let error: NSError?
@@ -92,10 +96,17 @@ class HTTPClient: HTTPClientProtocol {
                 let headers = (response as? HTTPURLResponse)?.allHeaderFields
                 let isChanged = hasChanged(oldEtag: oldEtag, newEtag: headers?["Etag"] as? String)
 
-                guard error == nil else {
-                    completion(HTTPClientResponse(data: nil, error: NSError(domain: error.debugDescription, code: 0, userInfo: nil)))
+                if let error = error, let url = request.url {
+                    DLogError(url.absoluteString, code: String(ErrorCode.networkError.rawValue), description: error.localizedDescription)
+                    completion(HTTPClientResponse(data: nil, error: error as NSError))
                     return
                 }
+                if let httpResponse = response as? HTTPURLResponse, let url = request.url {
+                    if case 400..<600 = httpResponse.statusCode {
+                        DLogError(url.absoluteString, code: String(httpResponse.statusCode))
+                    }
+                }
+
                 guard let data = data, data.count > 0 else {
                     if allowNilData {
                         completion(HTTPClientResponse(data: nil, headers: headers, error: nil, success: true, isChanged: isChanged))

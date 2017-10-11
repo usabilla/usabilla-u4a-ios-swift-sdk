@@ -9,7 +9,7 @@
 import Foundation
 
 class UBFeedbackRequestDAO: UBFileStorageDAO<UBFeedbackRequest> {
-    static let directoryName = "FeedbackRequests"
+    static let directoryName = FileDirectory.passiveFeedbackRequest
     static let shared = UBFeedbackRequestDAO()
 
     required init() {

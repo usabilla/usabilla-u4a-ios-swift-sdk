@@ -13,7 +13,7 @@ import Nimble
 
 @testable import Usabilla
 
-let kDirectoryName = "testdata"
+let kDirectoryName = FileDirectory.testDirectory
 
 class UBFileStorageDAOTests: QuickSpec {
     class TestData: NSObject, NSCoding {
@@ -49,7 +49,7 @@ class UBFileStorageDAOTests: QuickSpec {
         static let shared = TestDAO()
 
         internal required init() {
-            super.init(directoryName: kDirectoryName)
+            super.init(directoryName: FileDirectory.testDirectory)
         }
 
         override func id(forObj: TestData) -> String {
@@ -58,9 +58,10 @@ class UBFileStorageDAOTests: QuickSpec {
     }
 
     override func spec() {
+        
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let rootUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
-        let directoryUrl = rootUrl.appendingPathComponent(kDirectoryName)
+        let directoryUrl = rootUrl.appendingPathComponent(kDirectoryName.rawValue)
 
         describe("UBFileStorageDAOTests") {
 

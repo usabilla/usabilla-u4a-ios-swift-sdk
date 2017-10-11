@@ -18,7 +18,7 @@ class UBFileHelperTests: QuickSpec {
     override func spec() {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let rootUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
-        let directoryUrl = rootUrl.appendingPathComponent("testdirectory")
+        let directoryUrl = rootUrl.appendingPathComponent(FileDirectory.testDirectory.rawValue)
 
         describe("UBFileHelperTests") {
             beforeEach {
