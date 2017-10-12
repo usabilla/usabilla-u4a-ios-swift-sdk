@@ -191,3 +191,15 @@ class CampaignSubmissionManagerMock: CampaignSubmissionManagerProtocol {
         lastRequest = request
     }
 }
+
+enum MockDirectoryEnum: String, DirectoryProtocol {
+    case testDirectory = "Testdirectory"
+
+    var description: String {
+        return "test"
+    }
+    
+    var name: String {
+        return "Testdirectory"
+    }
+}

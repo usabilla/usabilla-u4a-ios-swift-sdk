@@ -13,7 +13,7 @@ import Nimble
 
 @testable import Usabilla
 
-let kDirectoryName = FileDirectory.testDirectory
+let kDirectoryName = MockDirectoryEnum.testDirectory
 
 class UBFileStorageDAOTests: QuickSpec {
     class TestData: NSObject, NSCoding {
@@ -49,7 +49,7 @@ class UBFileStorageDAOTests: QuickSpec {
         static let shared = TestDAO()
 
         internal required init() {
-            super.init(directoryName: FileDirectory.testDirectory)
+            super.init(directory: kDirectoryName)
         }
 
         override func id(forObj: TestData) -> String {

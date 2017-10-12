@@ -17,7 +17,7 @@ class UBCampaignFeedbackRequestDAOTests: QuickSpec {
 
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let rootUrl = documentsDirectory.appendingPathComponent("UBSDK")
-        let directoryUrl = rootUrl.appendingPathComponent(UBCampaignFeedbackRequestDAO.directoryName.rawValue)
+        let directoryUrl = rootUrl.appendingPathComponent(UBCampaignFeedbackRequestDAO.directory.name)
 
         let item1 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389940")
         let item2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl")!), internalID: "internalID", id: "1498039389950")

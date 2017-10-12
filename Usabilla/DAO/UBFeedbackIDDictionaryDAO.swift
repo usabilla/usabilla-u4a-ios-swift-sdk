@@ -9,12 +9,12 @@
 import Foundation
 
 class UBFeedbackIDDictionaryDAO: UBFileStorageDAO<NSMutableDictionary> {
-    static let directoryName = FileDirectory.feedbackIds
+    static let directory = FileDirectory.feedbackIds
     static let shared = UBFeedbackIDDictionaryDAO()
     static let dictionaryID = "id"
 
     required init() {
-        super.init(directoryName: UBFeedbackIDDictionaryDAO.directoryName)
+        super.init(directory: UBFeedbackIDDictionaryDAO.directory)
     }
 
     override func id(forObj: NSMutableDictionary) -> String {

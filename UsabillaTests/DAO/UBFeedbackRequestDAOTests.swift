@@ -17,7 +17,7 @@ class UBFeedbackRequestDAOTests: QuickSpec {
 
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let rootUrl = documentsDirectory.appendingPathComponent("UBSDK")
-        let directoryUrl = rootUrl.appendingPathComponent(UBFeedbackRequestDAO.directoryName.rawValue)
+        let directoryUrl = rootUrl.appendingPathComponent(UBFeedbackRequestDAO.directory.name)
 
         describe("UBFeedbackRequestDAO") {
             context("when directory is created") {

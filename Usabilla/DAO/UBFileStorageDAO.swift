@@ -8,13 +8,17 @@
 
 import Foundation
 
-enum FileDirectory: String {
+protocol DirectoryProtocol {
+    var description: String { get }
+    var name: String { get }
+}
+
+enum FileDirectory: String, DirectoryProtocol {
     case campaign = "Campaigns"
     case form = "Forms"
     case campaignFeedbackRequest = "UBCampaignFeedbackRequest"
     case passiveFeedbackRequest = "FeedbackRequests"
     case feedbackIds = "UBFeedbackIDDictionaryDAO"
-    case testDirectory = "Testdirectory"
 
     var description: String {
         switch self {
@@ -28,9 +32,11 @@ enum FileDirectory: String {
             return "campaign feedback request"
         case .feedbackIds:
             return "submission feedback ids"
-        case .testDirectory:
-            return "testDirectory"
         }
+    }
+
+    var name: String {
+        return rawValue
     }
 }
 
@@ -42,16 +48,16 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
 
     typealias DataType = ModelType
 
-    let directoryName: FileDirectory
+    let directory: DirectoryProtocol
     let sdkRootDirectoryUrl: URL
     let directoryUrl: URL
 
-    init(directoryName: FileDirectory) {
-        self.directoryName = directoryName
+    init(directory: DirectoryProtocol) {
+        self.directory = directory
         // swiftlint:disable:next force_unwrapping
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         sdkRootDirectoryUrl = documentsDirectory.appendingPathComponent(kSDKRootDirectoryName)
-        directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directoryName.rawValue)
+        directoryUrl = sdkRootDirectoryUrl.appendingPathComponent(directory.name)
 
         fileStorageSerialQueue.sync {
             UBFileHelper.createDirectory(url: sdkRootDirectoryUrl)
@@ -99,7 +105,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
                     }
                 }
             } catch let error {
-                DLogError("Couldn't load \(directoryName.description) with id: \(id) from database")
+                DLogError("Couldn't load \(directory.description) with id: \(id) from database")
                 PLog("Error ❌ during unarchiving: \(error)")
                 delete(id: id)
             }

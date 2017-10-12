@@ -9,11 +9,11 @@
 import Foundation
 
 class UBFeedbackRequestDAO: UBFileStorageDAO<UBFeedbackRequest> {
-    static let directoryName = FileDirectory.passiveFeedbackRequest
+    static let directory = FileDirectory.passiveFeedbackRequest
     static let shared = UBFeedbackRequestDAO()
 
     required init() {
-        super.init(directoryName: UBFeedbackRequestDAO.directoryName)
+        super.init(directory: UBFeedbackRequestDAO.directory)
     }
 
     override func id(forObj: UBFeedbackRequest) -> String {

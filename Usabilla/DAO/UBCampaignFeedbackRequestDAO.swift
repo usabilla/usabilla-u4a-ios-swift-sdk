@@ -7,11 +7,11 @@
 //
 
 class UBCampaignFeedbackRequestDAO: UBFileStorageDAO<UBCampaignFeedbackRequest> {
-    static let directoryName = FileDirectory.campaignFeedbackRequest
+    static let directory = FileDirectory.campaignFeedbackRequest
     static let shared = UBCampaignFeedbackRequestDAO()
 
     required init() {
-        super.init(directoryName: UBCampaignFeedbackRequestDAO.directoryName)
+        super.init(directory: UBCampaignFeedbackRequestDAO.directory)
     }
 
     override func id(forObj: UBCampaignFeedbackRequest) -> String {

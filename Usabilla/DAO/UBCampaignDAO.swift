@@ -9,11 +9,11 @@
 import Foundation
 
 class UBCampaignDAO: UBFileStorageDAO<CampaignModel> {
-    static let directoryName = FileDirectory.campaign
+    static let directory = FileDirectory.campaign
     static let shared = UBCampaignDAO()
 
     internal required init() {
-        super.init(directoryName: UBCampaignDAO.directoryName)
+        super.init(directory: UBCampaignDAO.directory)
     }
 
     override func id(forObj: CampaignModel) -> String {
