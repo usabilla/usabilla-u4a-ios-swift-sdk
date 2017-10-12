@@ -4,23 +4,38 @@
 
 import Foundation
 
-/// prints a message to the client when an error occurs
-func DLogError(_ message: String) {
-    print("UBError: \(message)")
-}
-
-/// prints a network message to the client when an error occurs
-func DLogError(_ endpoint: String, code: String, description: String? = nil) {
-    if let description = description {
-        print("UBError: \(endpoint), code: \(code), description: \(description)")
+private func DLog(_ message: String) {
+    guard UsabillaInternal.debugEnabled else {
         return
     }
-    print("UBError: \(endpoint), code: \(code)")
+
+    print("\(message)")
 }
 
 /// prints some usefull information to the client when needed
 func DLogInfo(_ message: String) {
-    print("UBInfo: \(message)")
+    DLog("UBInfo: \(message)")
+}
+
+/// prints a message to the client when an error occurs
+func DLogError(_ message: String) {
+    DLog("UBError: \(message)")
+}
+
+/// prints a network message to the client when an error occurs
+func DLogError(_ endpoint: String, code: String, description: String? = nil) {
+    guard UsabillaInternal.debugEnabled else {
+        return
+    }
+
+    var message = ""
+    if let description = description {
+        message = "\(endpoint), code: \(code), description: \(description)"
+    } else {
+        message = "\(endpoint), code: \(code)"
+    }
+
+    DLogError(message)
 }
 
 /// Prints the filename, function name, line number and textual representation of `object` and a newline character into the standard output if the build setting for "Active Complilation Conditions" (SWIFT_ACTIVE_COMPILATION_CONDITIONS) defines `DEBUG`.

@@ -24,6 +24,7 @@ class UsabillaInternal {
     static var hideGiveMoreFeedback: Bool = true
     static var dismissAutomatically: Bool = true
     static var canDisplayCampaigns: Bool = true
+    static var debugEnabled: Bool = false
     static weak var delegate: UsabillaDelegate?
     static var theme: UsabillaTheme = UsabillaTheme()
     static var defaultLocalisationFile = true

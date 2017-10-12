@@ -76,6 +76,15 @@ open class Usabilla {
         }
     }
 
+    open static var debugEnabled: Bool {
+        get {
+            return UsabillaInternal.debugEnabled
+        }
+        set {
+            UsabillaInternal.debugEnabled = newValue
+        }
+    }
+
     open class func sendEvent(event: String) {
         UsabillaInternal.sendEvent(event: event)
     }
