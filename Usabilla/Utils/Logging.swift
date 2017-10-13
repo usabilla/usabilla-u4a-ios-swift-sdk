@@ -28,14 +28,12 @@ func DLogError(_ endpoint: String, code: String, description: String? = nil) {
         return
     }
 
-    var message = ""
     if let description = description {
-        message = "\(endpoint), code: \(code), description: \(description)"
-    } else {
-        message = "\(endpoint), code: \(code)"
+        DLogError("\(endpoint), code: \(code), description: \(description)")
+        return
     }
 
-    DLogError(message)
+    DLogError("\(endpoint), code: \(code)")
 }
 
 /// Prints the filename, function name, line number and textual representation of `object` and a newline character into the standard output if the build setting for "Active Complilation Conditions" (SWIFT_ACTIVE_COMPILATION_CONDITIONS) defines `DEBUG`.

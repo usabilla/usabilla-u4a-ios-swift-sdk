@@ -10,8 +10,10 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 - [Requirements](#requirements)
 - [Installation](#installation)
     - [CocoaPods](#cocoapods)
+    - [Carthage](#carthage)
     - [Manual](#manual)
 - [Initialization](#initialization)
+    - [DebugMode](#debugmode)
 - [Campaigns](#campaigns)
     - [The App Id](#the-app-id)
     - [Targeting options](#targeting-options)
@@ -111,7 +113,14 @@ The **initialize** method will take care of:
 * Fetching and updating all campaigns associated with the app ID.
 * Initializing a few background processes of the SDK.
 
->⚠️ **Failure to call this method before using the SDK will prevent it from running properly.** 
+>⚠️ **Failure to call this method before using the SDK will prevent it from running properly.**
+
+### DebugMode
+In order to have more insights from the SDK while developing, you can enable logging with:
+```swift
+Usabilla.debugEnabled = true
+```
+This property is by default set to `false`.
 
 ## Campaigns
 Version 4 of the Usabilla for Apps SDK introduces the new campaigns feature.

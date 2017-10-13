@@ -76,6 +76,9 @@ open class Usabilla {
         }
     }
 
+    /**
+     A Boolean value that determines whether the SDK should display logs.
+     */
     open static var debugEnabled: Bool {
         get {
             return UsabillaInternal.debugEnabled
