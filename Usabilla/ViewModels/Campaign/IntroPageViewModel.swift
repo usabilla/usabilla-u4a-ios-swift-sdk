@@ -16,53 +16,44 @@ class IntroPageViewModel {
     private let theme: UsabillaTheme
 
     let componentViewModel: ComponentViewModel?
-
     var cancelLabelText: String? {
         // swiftlint:disable:next force_unwrapping
         return introPage.copy!.introCancelButton
     }
-
     var hasContinueButton: Bool {
         return introPage.hasContinueButton
     }
-
     var continueLabelText: String? {
         // swiftlint:disable:next force_unwrapping
         return introPage.copy!.introContinueButton
     }
-
     var canContinue: Bool {
         return introPage.fields.first?.isValid() ?? false
     }
-
     var title: String? {
         return field?.fieldTitle
     }
-
     var displayMode: IntroPageDisplayMode {
         return introPage.displayMode
     }
-
     var backgroundColor: UIColor {
         return theme.colors.background
     }
-
     var titleColor: UIColor {
         return theme.colors.title
     }
-
     var hintColor: UIColor {
         return theme.colors.hint
     }
-
     var buttonColor: UIColor {
         return theme.colors.accent
     }
-
+    var barButtonItemColor: UIColor {
+        return theme.colors.textOnAccent
+    }
     var font: UIFont {
         return theme.fonts.font
     }
-
     var boldFont: UIFont {
         return theme.fonts.boldFont
     }

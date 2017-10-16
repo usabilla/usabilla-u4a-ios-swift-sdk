@@ -51,8 +51,11 @@ class UBFormViewModel {
     var cancelButtonTitle: String? {
         return model.copyModel.cancelButton
     }
-    var navBarItemsFont: UIFont {
+    var navBarItemsFontBold: UIFont {
         return model.theme.fonts.boldFont
+    }
+    var navBarItemsFontNormal: UIFont {
+        return model.theme.fonts.font
     }
     var isCurrentPageValid: Bool {
         return pageViewModels[currentPageIndex].isCorrectlyFilled

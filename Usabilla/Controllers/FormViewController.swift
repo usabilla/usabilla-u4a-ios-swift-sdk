@@ -120,11 +120,14 @@ class FormViewController: UIViewController {
             UIApplication.shared.statusBarStyle = statusBarColor
         }
 
+        let textOnAccentedColor = viewModel.textOnAccentColor
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
-        navigationController?.navigationBar.tintColor = viewModel.textOnAccentColor
+        navigationController?.navigationBar.tintColor = textOnAccentedColor
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textOnAccentedColor]
 
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: viewModel.textOnAccentColor]
-        rightNavItem.setFont(font: viewModel.navBarItemsFont)
+        UIBarButtonItem.setTextForegroundColor(color: textOnAccentedColor)
+        rightNavItem.setFont(font: viewModel.navBarItemsFontBold)
+        leftNavItem.setFont(font: viewModel.navBarItemsFontNormal)
 
         if !viewModel.shouldHideProgressBar {
             progressBar.progressTintColor = viewModel.accentColor

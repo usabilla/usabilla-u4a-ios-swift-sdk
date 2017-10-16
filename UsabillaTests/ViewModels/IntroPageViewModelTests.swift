@@ -59,6 +59,7 @@ class IntroPageViewModelTests: QuickSpec {
                     expect(introPageViewModel.backgroundColor).to(equal(configurator.colors.background))
                     expect(introPageViewModel.titleColor).to(equal(configurator.colors.title))
                     expect(introPageViewModel.hintColor).to(equal(configurator.colors.hint))
+                    expect(introPageViewModel.barButtonItemColor).to(equal(configurator.colors.textOnAccent))
                     expect(introPageViewModel.font).to(equal(configurator.fonts.font))
                     expect(introPageViewModel.boldFont).to(equal(configurator.fonts.boldFont))
                     expect(introPageViewModel.buttonColor).to(equal(configurator.colors.accent))

@@ -40,6 +40,8 @@ class UBFormViewModelTests: QuickSpec {
                     expect(formViewModel.textOnAccentColor).to(equal(self.model.theme.colors.textOnAccent))
                     expect(formViewModel.cancelButtonTitle).to(equal(self.model.copyModel.cancelButton))
                     expect(formViewModel.isCurrentPageValid).to(beFalse())
+                    expect(formViewModel.navBarItemsFontNormal).to(equal(self.model.theme.fonts.font))
+                    expect(formViewModel.navBarItemsFontBold).to(equal(self.model.theme.fonts.boldFont))
                     expect(formViewModel.firstPageViewModel?.name).to(equal(formViewModel.currentPageViewModel.name))
                     expect(formViewModel.rightBarButtonTitle).to(equal(self.model.copyModel.navigationNext))
                     expect(formViewModel.endPageViewModel).to(beNil())

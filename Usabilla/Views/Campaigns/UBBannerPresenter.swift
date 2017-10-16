@@ -21,6 +21,10 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
         let style = view.viewModel.displayMode
+
+        // iOS 11: this sets the barButtonItem text foreground color in the campaigns window
+        UIBarButtonItem.setTextForegroundColor(color: view.viewModel.barButtonItemColor)
+
         view.translatesAutoresizingMaskIntoConstraints = false
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
         bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
