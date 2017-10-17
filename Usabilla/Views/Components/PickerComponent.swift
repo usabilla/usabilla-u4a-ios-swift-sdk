@@ -1,5 +1,5 @@
 //
-//  ChoiceComponent.swift
+//  PickerComponent.swift
 //  Usabilla
 //
 //  Created by Benjamin Grima on 24/02/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSource, UIPickerViewDelegate {
+class PickerComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDataSource, UIPickerViewDelegate {
 
     var picker = UIPickerView()
     var pickerButton = UIButton(type: .custom)
@@ -30,36 +30,36 @@ class ChoiceComponent: UBComponent<ChoiceComponentViewModel>, UIPickerViewDataSo
         addSubview(picker)
 
         //top border
-        topBorder.topAnchor.constraint(equalTo: topAnchor).withID("ChoiceComponent top border top constraint").activate()
-        topBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withID("ChoiceComponent top border right constraint").activate()
-        topBorder.leadingAnchor.constraint(equalTo: leadingAnchor).withID("ChoiceComponent top border left constraint").activate()
-        topBorder.heightAnchor.constraint(equalToConstant: 1).withID("ChoiceComponent top border heigt constraint").activate()
+        topBorder.topAnchor.constraint(equalTo: topAnchor).withID("PickerComponent top border top constraint").activate()
+        topBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent top border right constraint").activate()
+        topBorder.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent top border left constraint").activate()
+        topBorder.heightAnchor.constraint(equalToConstant: 1).withID("PickerComponent top border heigt constraint").activate()
 
         // button
-        pickerButton.topAnchor.constraint(equalTo: topBorder.bottomAnchor).withID("ChoiceComponent button top constraint").activate()
-        pickerButton.trailingAnchor.constraint(equalTo: trailingAnchor).withID("ChoiceComponent button right constraint").activate()
-        pickerButton.leadingAnchor.constraint(equalTo: leadingAnchor).withID("ChoiceComponent button left constraint").activate()
+        pickerButton.topAnchor.constraint(equalTo: topBorder.bottomAnchor).withID("PickerComponent button top constraint").activate()
+        pickerButton.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent button right constraint").activate()
+        pickerButton.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent button left constraint").activate()
 
         // bottom border
-        bottomBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).withID("ChoiceComponent bottom border top constraint").activate()
-        bottomBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withID("ChoiceComponent bottom border right constraint").activate()
-        bottomBorder.leadingAnchor.constraint(equalTo: leadingAnchor).withID("ChoiceComponent bottom border left constraint").activate()
-        bottomBorder.heightAnchor.constraint(equalToConstant: 1).withID("ChoiceComponent bottom border height constraint").activate()
+        bottomBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).withID("PickerComponent bottom border top constraint").activate()
+        bottomBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent bottom border right constraint").activate()
+        bottomBorder.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent bottom border left constraint").activate()
+        bottomBorder.heightAnchor.constraint(equalToConstant: 1).withID("PickerComponent bottom border height constraint").activate()
 
         // picker
         picker.dataSource = self
         picker.delegate = self
 
-        picker.topAnchor.constraint(equalTo: bottomBorder.bottomAnchor).withID("ChoiceComponent picker top constraint").activate()
-        picker.bottomAnchor.constraint(equalTo: bottomAnchor).withID("ChoiceComponent picker bottom constraint").activate()
-        picker.trailingAnchor.constraint(equalTo: trailingAnchor).withID("ChoiceComponent picker right constraint").activate()
-        picker.leadingAnchor.constraint(equalTo: leadingAnchor).withID("ChoiceComponent picker left constraint").activate()
+        picker.topAnchor.constraint(equalTo: bottomBorder.bottomAnchor).withID("PickerComponent picker top constraint").activate()
+        picker.bottomAnchor.constraint(equalTo: bottomAnchor).withID("PickerComponent picker bottom constraint").activate()
+        picker.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent picker right constraint").activate()
+        picker.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent picker left constraint").activate()
 
         pickerHeightConstraint = picker.heightAnchor.constraint(equalToConstant: 0).activate()
         updateHeightConstraint()
 
         // configuration
-        pickerButton.addTarget(self, action: #selector(ChoiceComponent.pickerButtonClicked), for: .touchUpInside)
+        pickerButton.addTarget(self, action: #selector(PickerComponent.pickerButtonClicked), for: .touchUpInside)
 
         // customization
 

@@ -41,7 +41,7 @@ class FieldFactory {
         case .text:
             return TextFieldModel(json: json, pageModel: pagemodel)
         case .choice:
-            return ChoiceFieldModel(json: json, pageModel: pagemodel)
+            return PickerFieldModel(json: json, pageModel: pagemodel)
         case .email:
             return EmailFieldModel(json: json, pageModel: pagemodel)
         case .textArea:

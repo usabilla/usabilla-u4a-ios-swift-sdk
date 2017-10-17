@@ -1,5 +1,5 @@
 //
-//  ChoiceViewModel.swift
+//  PickerComponentViewModel.swift
 //  Usabilla
 //
 //  Created by Benjamin Grima on 13/03/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChoiceComponentViewModel: BaseComponentViewModel<String, ChoiceFieldModel> {
+class PickerComponentViewModel: BaseComponentViewModel<String, PickerFieldModel> {
     var expanded: Bool = false
     var options: [Options] {
         return model.options

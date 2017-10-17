@@ -1,5 +1,5 @@
 //
-//  ChoiceFieldModel.swift
+//  PickerFieldModel.swift
 //  ubform_swift
 //
 //  Created by Giacomo Pinato on 04/03/16.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ChoiceFieldModel: OptionsFieldModel {
+class PickerFieldModel: OptionsFieldModel {
     let defaultValue: String?
     let emptyValue: String?
     var expanded: Bool = false
 
     override var exportableValue: Any? {
-        return isChoiceValueValid() ? fieldValue : nil
+        return isPickerValueValid() ? fieldValue : nil
     }
 
     override init(json: JSON, pageModel: PageModel) {
@@ -30,7 +30,7 @@ class ChoiceFieldModel: OptionsFieldModel {
         }
     }
 
-    func isChoiceValueValid() -> Bool {
+    func isPickerValueValid() -> Bool {
         guard let first = fieldValue.first else {
             return false
         }
@@ -38,6 +38,6 @@ class ChoiceFieldModel: OptionsFieldModel {
     }
 
     override func isValid() -> Bool {
-        return !required || isChoiceValueValid()
+        return !required || isPickerValueValid()
     }
 }

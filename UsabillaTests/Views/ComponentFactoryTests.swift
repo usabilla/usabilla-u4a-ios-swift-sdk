@@ -28,12 +28,12 @@ class ComponentFactoryTests: QuickSpec {
                 }
             }
 
-            context("when viewModel is ChoiceComponentViewModel") {
-                it("should return a ChoiceComponent") {
-                    let model = ChoiceFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let viewModel = ChoiceComponentViewModel(model: model, theme: theme)
+            context("when viewModel is PickerComponentViewModel") {
+                it("should return a PickerComponent") {
+                    let model = PickerFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
+                    let viewModel = PickerComponentViewModel(model: model, theme: theme)
                     let component = ComponentFactory.component(viewModel: viewModel)
-                    expect(component is ChoiceComponent).to(beTrue())
+                    expect(component is PickerComponent).to(beTrue())
                 }
             }
 

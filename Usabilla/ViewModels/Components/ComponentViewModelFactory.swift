@@ -20,9 +20,9 @@ class ComponentViewModelFactory {
         case is CheckboxFieldModel:
             let model = (field as? CheckboxFieldModel)!
             return CheckBoxComponentViewModel(model: model, theme: theme)
-        case is ChoiceFieldModel:
-            let model = (field as? ChoiceFieldModel)!
-            return ChoiceComponentViewModel(model: model, theme: theme)
+        case is PickerFieldModel:
+            let model = (field as? PickerFieldModel)!
+            return PickerComponentViewModel(model: model, theme: theme)
         case is EmailFieldModel:
             let model = (field as? EmailFieldModel)!
             return EmailComponentViewModel(model: model, theme: theme)

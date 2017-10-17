@@ -1,5 +1,5 @@
 //
-//  ChoiceComponentviewModelTests.swift
+//  PickerComponentViewModelTests.swift
 //  Usabilla
 //
 //  Created by Benjamin Grima on 20/03/2017.
@@ -13,32 +13,32 @@ import Nimble
 
 @testable import Usabilla
 
-class ChoiceComponentViewModelTests: QuickSpec {
+class PickerComponentViewModelTests: QuickSpec {
     override func spec() {
 
-        var viewModelEmpty: ChoiceComponentViewModel!
-        var modelEmpty: ChoiceFieldModel!
+        var viewModelEmpty: PickerComponentViewModel!
+        var modelEmpty: PickerFieldModel!
 
-        var viewModelDefault: ChoiceComponentViewModel!
-        var modelDefault: ChoiceFieldModel!
+        var viewModelDefault: PickerComponentViewModel!
+        var modelDefault: PickerFieldModel!
 
-        var viewModel: ChoiceComponentViewModel!
-        var model: ChoiceFieldModel!
+        var viewModel: PickerComponentViewModel!
+        var model: PickerFieldModel!
 
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeEach {
             var jsonObj = UBMock.json("PickerWithEmpty")!
-            modelEmpty = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
-            viewModelEmpty = ChoiceComponentViewModel(model: modelEmpty, theme: UsabillaTheme())
+            modelEmpty = PickerFieldModel(json: jsonObj, pageModel: pageModel)
+            viewModelEmpty = PickerComponentViewModel(model: modelEmpty, theme: UsabillaTheme())
 
             jsonObj = UBMock.json("PickerWithDefault")!
-            modelDefault = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
-            viewModelDefault = ChoiceComponentViewModel(model: modelDefault, theme: UsabillaTheme())
+            modelDefault = PickerFieldModel(json: jsonObj, pageModel: pageModel)
+            viewModelDefault = PickerComponentViewModel(model: modelDefault, theme: UsabillaTheme())
 
             jsonObj = UBMock.json("Picker")!
-            model = ChoiceFieldModel(json: jsonObj, pageModel: pageModel)
-            viewModel = ChoiceComponentViewModel(model: model, theme: UsabillaTheme())
+            model = PickerFieldModel(json: jsonObj, pageModel: pageModel)
+            viewModel = PickerComponentViewModel(model: model, theme: UsabillaTheme())
         }
 
         describe("the validation method") {
@@ -85,7 +85,7 @@ class ChoiceComponentViewModelTests: QuickSpec {
             }
         }
 
-        describe("the ChoiceComponentviewModelTests") {
+        describe("the PickerComponentViewModelTests") {
             it("viewModel options should match model options") {
                 expect(modelEmpty.options.count).to(equal(viewModelEmpty.options.count))
             }

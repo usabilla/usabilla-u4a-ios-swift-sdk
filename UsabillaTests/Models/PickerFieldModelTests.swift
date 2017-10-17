@@ -1,5 +1,5 @@
 //
-//  ChoiceFieldModelTest.swift
+//  PickerFieldModelTests.swift
 //  Usabilla
 //
 //  Created by Giacomo Pinato on 25/07/2017.
@@ -11,19 +11,19 @@ import Nimble
 
 @testable import Usabilla
 
-class ChoiceFieldModelTests: QuickSpec {
+class PickerFieldModelTests: QuickSpec {
 
     var pageModel: PageModel!
-    var model: ChoiceFieldModel!
+    var model: PickerFieldModel!
 
     override func spec() {
         beforeSuite {
             self.pageModel = PageModel(pageNumber: 0, pageName: "test")
-            self.model = ChoiceFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: self.pageModel)
+            self.model = PickerFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: self.pageModel)
             self.model.fieldID = "id"
         }
 
-        describe("ChoiceFieldModel") {
+        describe("PickerFieldModel") {
             context("When required") {
                 beforeEach {
                     self.model.required = true

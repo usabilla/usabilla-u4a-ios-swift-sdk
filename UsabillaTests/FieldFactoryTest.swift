@@ -30,7 +30,7 @@ class FieldFactoryTest: QuickSpec {
             }
             it("choice type") {
                 let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"choice\"}"), pagemodel: pageModel)
-                expect(field is ChoiceFieldModel).to(beTrue())
+                expect(field is PickerFieldModel).to(beTrue())
             }
             it("text type") {
                 let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"email\"}"), pagemodel: pageModel)

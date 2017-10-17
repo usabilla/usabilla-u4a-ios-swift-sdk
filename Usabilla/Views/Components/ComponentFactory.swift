@@ -17,8 +17,8 @@ class ComponentFactory {
     class func component(viewModel: ComponentViewModel) -> UIControl {
 
         switch viewModel {
-        case is ChoiceComponentViewModel:
-            return ChoiceComponent(viewModel: (viewModel as? ChoiceComponentViewModel)!)
+        case is PickerComponentViewModel:
+            return PickerComponent(viewModel: (viewModel as? PickerComponentViewModel)!)
         case is RadioComponentViewModel:
             return RadioComponent(viewModel: (viewModel as? RadioComponentViewModel)!)
         case is CheckBoxComponentViewModel:
