@@ -23,7 +23,7 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
 
     func getCampaignForm(withID id: String) -> Promise<FormModel>
     func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>>
-    func getTargeting(withID id: String) -> Promise<Cachable<Rule>>
+    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>>
     func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool>
 }
 
@@ -77,21 +77,19 @@ class CampaignService: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withID id: String) -> Promise<Cachable<Rule>> {
+    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>> {
         let request = requestBuilder.requestGetTargeting(withID: id)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let jsonData = response.data {
-                    let json = JSON(jsonData).dictionary
+                    let json = JSON(jsonData)
                     PLog("targeting for id : \(id) :\n \(String(describing: json))")
 
-                    guard let targetingJson = json?["options"],
-                        let rule = TargetingFactory.createRule(targetingJson["rule"]) else {
-                            reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
-                            return
+                    guard let targeting = TargetingOptionsModel(json: json) else {
+                        reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
+                        return
                     }
-
-                    let cachable: Cachable<Rule> = Cachable(value: rule, hasChanged: response.isChanged)
+                    let cachable: Cachable<TargetingOptionsModel> = Cachable(value: targeting, hasChanged: response.isChanged)
                     fulfill(cachable)
                     return
                 }

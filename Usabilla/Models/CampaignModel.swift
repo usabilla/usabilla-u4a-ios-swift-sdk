@@ -16,7 +16,7 @@ class CampaignModel: NSObject, NSCoding {
         static let identifier = "identifier"
         static let maximumDisplays = "maximumDisplays"
         static let numberOfTimesTriggered = "numberOfTimesTriggered"
-        static let rule = "rule"
+        static let targeting = "targeting"
         static let status = "status"
         static let targetingID = "targetingID"
     }
@@ -28,7 +28,7 @@ class CampaignModel: NSObject, NSCoding {
     }
 
     let identifier: String
-    var rule: Rule?
+    var targeting: TargetingOptionsModel?
     let formID: String
     let targetingID: String
     var numberOfTimesTriggered: Int = 0
@@ -40,9 +40,9 @@ class CampaignModel: NSObject, NSCoding {
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 
-    init(id: String, rule: Rule?, formID: String, targetingID: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status, createdAt: Date) {
+    init(id: String, targeting: TargetingOptionsModel?, formID: String, targetingID: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status, createdAt: Date) {
         self.identifier = id
-        self.rule = rule
+        self.targeting = targeting
         self.formID = formID
         self.targetingID = targetingID
         self.numberOfTimesTriggered = numberOfTimesTriggered
@@ -54,20 +54,21 @@ class CampaignModel: NSObject, NSCoding {
     convenience init?(json: JSON) {
         guard let identifier = json["id"].string,
             let formID = json["form_id"].string,
-            let targetingID = json["targeting_options_id"].string, let status = Status(rawValue: json["status"].stringValue),
+            let targetingID = json["targeting_options_id"].string,
+            let status = Status(rawValue: json["status"].stringValue),
             let createdAt = json["created_at"].string?.dateFromRFC3339 else {
                 return nil
         }
 
-        self.init(id: identifier, rule: nil, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt)
+        self.init(id: identifier, targeting: nil, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt)
     }
 
     func respondToEvents(event: Event) -> Bool {
-        return rule?.respondsToEvent(event: event) ?? false
+        return targeting?.rule.respondsToEvent(event: event) ?? false
     }
 
     func triggers(event: Event, activeStatuses: [String: String]) -> Bool {
-        return rule?.triggersWith(event: event, activeStatuses: activeStatuses) ?? false
+        return targeting?.rule.triggersWith(event: event, activeStatuses: activeStatuses) ?? false
     }
 
     // MARK: NSCoding
@@ -81,16 +82,16 @@ class CampaignModel: NSObject, NSCoding {
                 return nil
         }
 
-        let rule = aDecoder.decodeObject(forKey: Archiving.rule) as? Rule
+        let targeting = aDecoder.decodeObject(forKey: Archiving.targeting) as? TargetingOptionsModel
         let maximumDisplays = aDecoder.decodeInteger(forKey: Archiving.maximumDisplays)
         let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: Archiving.numberOfTimesTriggered)
 
-        self.init(id: identifier, rule: rule, formID: formID, targetingID: targetingID, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status, createdAt: createdAt)
+        self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status, createdAt: createdAt)
     }
 
     func encode(with aCoder: NSCoder) {
         aCoder.encode(self.identifier, forKey: Archiving.identifier)
-        aCoder.encode(self.rule, forKey: Archiving.rule)
+        aCoder.encode(self.targeting, forKey: Archiving.targeting)
         aCoder.encode(self.formID, forKey: Archiving.formID)
         aCoder.encode(self.targetingID, forKey: Archiving.targetingID)
         aCoder.encode(self.numberOfTimesTriggered, forKey: Archiving.numberOfTimesTriggered)

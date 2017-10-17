@@ -46,15 +46,15 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         for campaignModel in campaigns {
             self.campaignService.getTargeting(withID: campaignModel.targetingID).then { result in
                 if result.hasChanged {
-                    campaignModel.rule = result.value
+                    campaignModel.targeting = result.value
                 } else {
-                    let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
-                    campaignModel.rule = cachedRule ?? result.value
+                    let cachedTargeting = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.targeting
+                    campaignModel.targeting = cachedTargeting ?? result.value
                 }
                 doneFetchingTargeting(campaignModel)
             }.catch { _ in
-                let cachedRule = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.rule
-                campaignModel.rule = cachedRule
+                let cachedTargeting = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.targeting
+                campaignModel.targeting = cachedTargeting
                 doneFetchingTargeting(campaignModel)
             }
         }
@@ -65,13 +65,13 @@ class UBCampaignStore: UBCampaignStoreProtocol {
      */
     func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
-            self.campaignService.getCampaigns(withAppID: appID).then { cachableCampainModels in
-                let cachedCampaignsList = UBCampaignDAO.shared.readAll()
-                if !cachableCampainModels.hasChanged {
-                    return fulfill(cachedCampaignsList)
+            self.campaignService.getCampaigns(withAppID: appID).then { serverCampaigns in
+                let localCampaigns = UBCampaignDAO.shared.readAll()
+                if !serverCampaigns.hasChanged {
+                    return fulfill(localCampaigns)
                 }
 
-                let activeInactiveCampaigns = cachableCampainModels.value.filter { $0.status != .invalid }
+                let activeInactiveCampaigns = serverCampaigns.value.filter { $0.status != .invalid }
 
                 guard activeInactiveCampaigns.count > 0 else {
                     UBCampaignDAO.shared.deleteAll()
@@ -83,7 +83,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 activeInactiveCampaigns
                     .forEach {
                         let campaignIDentifier = $0.identifier
-                        let cachedCampaign = cachedCampaignsList.first(where: { model in
+                        let cachedCampaign = localCampaigns.first(where: { model in
                             model.identifier == campaignIDentifier
                         })
                         $0.numberOfTimesTriggered = cachedCampaign?.numberOfTimesTriggered ?? 0
@@ -93,8 +93,8 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 activeInactiveCampaigns
                     .filter { $0.status == .inactive }
                     .forEach {
-                        let cachedRule = UBCampaignDAO.shared.read(id: $0.identifier)?.rule
-                        $0.rule = cachedRule
+                        let cachedRule = UBCampaignDAO.shared.read(id: $0.identifier)?.targeting
+                        $0.targeting = cachedRule
                         UBCampaignDAO.shared.create($0)
                 }
 
