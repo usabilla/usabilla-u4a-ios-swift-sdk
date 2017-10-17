@@ -11,6 +11,7 @@
 		040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
 		040CDA611F2741750005F986 /* ChoiceFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CDA601F2741750005F986 /* ChoiceFieldModelTest.swift */; };
 		041275D81F792BF700A12E09 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
+		041AEE291F96485C00679C5D /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E68161DD3777A00CE75E1 /* PerformanceTest.swift */; };
@@ -436,6 +437,7 @@
 		040C97DC1EA6527200A59C95 /* CampaignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignService.swift; sourceTree = "<group>"; };
 		040CDA601F2741750005F986 /* ChoiceFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceFieldModelTest.swift; sourceTree = "<group>"; };
 		041275D71F792BF700A12E09 /* Usabilla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usabilla.swift; sourceTree = "<group>"; };
+		041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptionsModel.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTests.swift; sourceTree = "<group>"; };
 		0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
@@ -1014,6 +1016,7 @@
 				4342CBA21E82C02000601F3D /* IntroPageModel.swift */,
 				436264131E92867A00A0533C /* UBEndPageModel.swift */,
 				04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */,
+				041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1689,6 +1692,7 @@
 				43CCD4361E77E27A00B3E4FE /* ChoiceComponent.swift in Sources */,
 				C5780D1F1F22073B0016C519 /* TargetingFactory.swift in Sources */,
 				04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */,
+				041AEE291F96485C00679C5D /* TargetingOptionsModel.swift in Sources */,
 				C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */,
 				43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */,
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
