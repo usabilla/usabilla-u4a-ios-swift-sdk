@@ -44,11 +44,8 @@ class RequestBuilder {
      Creates a URL
 
      - Parameter baseUrl: the host URL
-
      - Parameter endpoint: the endpoint of the URL
-     
      - Parameter param: parameter to add at the end of the URL
-     
      - Return: and URL with endpoint and parameter
      */
     private class func buildURL(withBaseUrl baseUrl: String, withEndpoint endpoint: Endpoints, withURLParam param: String? = nil) -> URL {
@@ -59,14 +56,23 @@ class RequestBuilder {
     }
 
     /**
+     Creates a query URL
+
+     - Parameter baseUrl: the host URL
+     - Parameter endpoint: the endpoint of the URL
+     - Parameter query: query parameter to add at the end of the URL
+     - Return: and URL with endpoint and parameter
+     */
+    private class func buildURL(withBaseUrl baseUrl: String, withEndpoint endpoint: Endpoints, withQueryParams query: String) -> URL {
+        return URL(string: baseUrl.appending(endpoint.rawValue).appending(query))!
+    }
+
+    /**
      Creates a URL
 
      - Parameter baseUrl: the host URL
-
      - Parameter endpoint: the endpoint of the URL
-
      - Parameter param: parameter to add at the end of the URL
-
      - Return: and URL with endpoint and parameter
      */
     private class func buildURL(withBaseUrl baseUrl: String, withString endpoint: String, withURLParam param: String? = nil) -> URL {
@@ -89,7 +95,6 @@ class RequestBuilder {
      Creates a basic GET request
      
      - Parameter url: the url to use for the GET request
-     
      - Return: the basic GET request
      */
     private class func requestForGet(withURL url: URL) -> URLRequest {
@@ -100,9 +105,7 @@ class RequestBuilder {
      Creates a basic POST request
      
      - Parameter url: the url to use for the POST request
-     
      - Parameter parameters: the parameters to use for the POST
-
      - Return: the basic POST request
      */
     private class func requestForPost(withURL url: URL, payload: Parameters) -> URLRequest {
@@ -120,9 +123,7 @@ class RequestBuilder {
      Creates a basic PATCH request
 
      - Parameter url: the url to use for the PATCH request
-
      - Parameter parameters: the parameters to use for the PATCH
-
      - Return: the basic PATCH request
      */
     private class func requestForPatch(withURL url: URL, payload: Parameters) -> URLRequest {
@@ -158,6 +159,19 @@ class RequestBuilder {
 
     class func requestGetTargeting(withID id: String) -> URLRequest {
         let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withURLParam: id)
+        return requestForGet(withURL: url)
+    }
+
+    class func requestGetAllTargetingOptions(targetingIds: [String]) -> URLRequest {
+        var urlParam = ""
+        for (index, string) in targetingIds.enumerated() {
+            if index == 0 {
+                urlParam.append("?ids[]=\(string)")
+            } else {
+                urlParam.append("&ids[]=\(string)")
+            }
+        }
+        let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withQueryParams: urlParam)
         return requestForGet(withURL: url)
     }
 

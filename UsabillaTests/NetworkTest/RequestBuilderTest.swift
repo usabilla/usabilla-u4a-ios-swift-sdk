@@ -130,6 +130,21 @@ class RequestBuilderTest: QuickSpec {
                     expect(req.httpMethod).to(equal("PATCH"))
                     expect(req.timeoutInterval).to(equal(10))
                 }
+                it("Builds the get all targeting options request correctly") {
+                    var correctUrl = "https://sdk.out-staging.usbla.net/targeting-options?ids%5B%5D=d314a564-e046-4ff2-a688-b8e6e32af1b3"
+                    var req = RequestBuilder.requestGetAllTargetingOptions(targetingIds: ["d314a564-e046-4ff2-a688-b8e6e32af1b3"])
+                    expect(req.url?.absoluteString).to(equal(correctUrl))
+                    expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req.httpMethod).to(equal("GET"))
+                    expect(req.timeoutInterval).to(equal(10))
+
+                    correctUrl = "https://sdk.out-staging.usbla.net/targeting-options?ids%5B%5D=d314a564-e046-4ff2-a688-b8e6e32af1b3&ids%5B%5D=6ad0b9e2-d336-4c74-b72b-bc6d90dc8258&ids%5B%5D=b1ddd75c-0254-44df-b5a6-2b3d806fc140"
+                    req = RequestBuilder.requestGetAllTargetingOptions(targetingIds: ["d314a564-e046-4ff2-a688-b8e6e32af1b3", "6ad0b9e2-d336-4c74-b72b-bc6d90dc8258", "b1ddd75c-0254-44df-b5a6-2b3d806fc140"])
+                    expect(req.url?.absoluteString).to(equal(correctUrl))
+                    expect(req.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req.httpMethod).to(equal("GET"))
+                    expect(req.timeoutInterval).to(equal(10))
+                }
                 it("Should have the correct header entities") {
                     let requestBuilderHeaders = RequestBuilder.headers
                     expect(requestBuilderHeaders.count).to(equal(self.headers.count))
