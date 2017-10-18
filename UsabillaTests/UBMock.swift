@@ -32,14 +32,15 @@ class UBMock {
     }
 
     class func campaignMock(withID id: String = "") -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+        return CampaignModel(id: id, targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
 
     class func campaignMockWithRules(id: String = "a", createdAt: Date = Date()) -> CampaignModel {
         let leaf = LeafEvent(event: Event(name: "foo"))
         let leaf2 = LeafEvent(event: Event(name: "bar"))
         let rule = AndRule(childRules: [leaf, leaf2])
-        return CampaignModel(id: id, rule: rule, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: createdAt)
+        let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+        return CampaignModel(id: id, targeting: targeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: createdAt)
     }
 }
 
@@ -96,7 +97,7 @@ class UBHTTPMock: HTTPClientProtocol {
 class UBCampaignServiceMock: CampaignServiceProtocol {
 
     var campaignsResponse: Cachable<[CampaignModel]>?
-    var targetingResponse: Cachable<Rule>?
+    var targetingResponse: Cachable<TargetingOptionsModel>?
     var campaignForm: FormModel?
     var onIncrementCampaign: ((String, Int) -> Void)?
     var onGetTargeting: ((String) -> Void)?
@@ -127,7 +128,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withID id: String) -> Promise<Cachable<Rule>> {
+    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>> {
         return Promise { fulfill, reject in
             onGetTargeting?(id)
             if targetingResponse != nil {

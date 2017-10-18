@@ -22,7 +22,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
     }
     var counter = 0
     var campaignsResponse: Cachable<[CampaignModel]>?
-    var targetingResponse: Cachable<Rule>?
+    var targetingResponse: Cachable<TargetingOptionsModel>?
     var campaignForm: FormModel?
 
     var submissionSucceed: Bool = true
@@ -53,7 +53,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withID id: String) -> Promise<Cachable<Rule>> {
+    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>> {
         return Promise { fulfill, reject in
             if targetingResponse != nil {
                 return fulfill(targetingResponse!)

@@ -16,7 +16,7 @@ import Nimble
 class EventEngineTests: QuickSpec {
     
     func campaignMock(forID id: String) -> CampaignModel {
-        return CampaignModel(id: id, rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+        return CampaignModel(id: id, targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
     var campaigns: [CampaignModel] = []
     var activeStatuses: [String: String] = [String: String]()
@@ -49,7 +49,8 @@ class EventEngineTests: QuickSpec {
                 it("should return no responding campaigns when they don't match the event") {
                     let leaf = LeafEvent(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf])
-                    self.campaigns[0].rule = rule
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    self.campaigns[0].targeting = targeting
                     let eventEngine = EventEngine(campaigns: self.campaigns)
                     let (respondCampaigns, _) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns).to(beEmpty())
@@ -58,7 +59,8 @@ class EventEngineTests: QuickSpec {
                 it("should return the responding campaigns when they match the event") {
                     let leaf = LeafEvent(event: Event(name: "foo"))
                     let rule = AndRule(childRules: [leaf])
-                    self.campaigns[0].rule = rule
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    self.campaigns[0].targeting = targeting
                     let eventEngine = EventEngine(campaigns: self.campaigns)
                     let (respondCampaigns, _) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns.count).to(equal(1))
@@ -68,7 +70,8 @@ class EventEngineTests: QuickSpec {
                     let leaf = LeafEvent(event: Event(name: "foo"))
                     let leaf2 = LeafEvent(event: Event(name: "bar"))
                     let rule = AndRule(childRules: [leaf, leaf2])
-                    self.campaigns[0].rule = rule
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    self.campaigns[0].targeting = targeting
                     let eventEngine = EventEngine(campaigns: self.campaigns)
                     var (respondCampaigns, triggeredCampaigns) = eventEngine.sendEvent("foo", activeStatuses: self.activeStatuses)
                     expect(respondCampaigns.count).to(equal(1))

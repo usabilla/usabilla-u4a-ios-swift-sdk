@@ -46,7 +46,9 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return the correct data when result contains a list of Campains") {
                     let campaignService = UBCampaignServiceMock()
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [self.campaign1, self.campaign2], hasChanged: true)
-                    campaignService.targetingResponse = Cachable<Rule>(value: ConcreteRule(type: RuleType.and, childRules: []), hasChanged: true)
+                    let rule: ConcreteRule = ConcreteRule(type: RuleType.and, childRules: [])
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    campaignService.targetingResponse = Cachable<TargetingOptionsModel>(value: targeting, hasChanged: true)
                     store = UBCampaignStore(service: campaignService)
                     waitUntil(timeout: 2.0) { done in
                         let promise = store.getCampaigns(withAppID: "")
@@ -61,7 +63,9 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return result rule if targeting has not changed and not found in cache") {
                     let campaignService = UBCampaignServiceMock()
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [self.campaign1], hasChanged: true)
-                    campaignService.targetingResponse = Cachable<Rule>(value: ConcreteRule(type: RuleType.and, childRules: []), hasChanged: false)
+                    let rule: ConcreteRule = ConcreteRule(type: RuleType.and, childRules: [])
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    campaignService.targetingResponse = Cachable<TargetingOptionsModel>(value: targeting, hasChanged: false)
                     store = UBCampaignStore(service: campaignService)
                     waitUntil(timeout: 2.0) { done in
                         let promise = store.getCampaigns(withAppID: "")
@@ -70,9 +74,9 @@ class UBCampaignStoreTests: QuickSpec {
                             let campaign = campaigns.first
                             let campaignModel = UBCampaignDAO.shared.read(id: (campaign?.identifier)!)
                             UBCampaignDAO.shared.delete(campaignModel!)
-                            expect(campaign?.rule).toNot(beNil())
-                            expect(campaign?.rule?.childRules.count).to(equal(0))
-                            expect(campaign?.rule?.type).to(equal(RuleType.and))
+                            expect(campaign?.targeting?.rule).toNot(beNil())
+                            expect(campaign?.targeting?.rule.childRules.count).to(equal(0))
+                            expect(campaign?.targeting?.rule.type).to(equal(RuleType.and))
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -95,8 +99,8 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should filter out invalid campaigns") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp1 = CampaignModel(id: "cmp1", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2], hasChanged: true)
 
                     store = UBCampaignStore(service: campaignService)
@@ -112,17 +116,16 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should filter out invalid campaigns when there are in/active ones") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
-                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
+                    let cmp1 = CampaignModel(id: "cmp1", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp3 = CampaignModel(id: "cmp3", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp4 = CampaignModel(id: "cmp4", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
 
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
 
                     store = UBCampaignStore(service: campaignService)
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaigns(withAppID: "")
-                        promise.then { campaigns in
+                        store.getCampaigns(withAppID: "").then { campaigns in
                             expect(campaigns.count).to(equal(1))
                             done()
                         }.catch { _ in
@@ -132,10 +135,10 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should return an empty list of campaigns if there are no ACTIVE ones") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
-                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
+                    let cmp1 = CampaignModel(id: "cmp1", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp3 = CampaignModel(id: "cmp3", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
+                    let cmp4 = CampaignModel(id: "cmp4", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
 
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
 
@@ -165,9 +168,9 @@ class UBCampaignStoreTests: QuickSpec {
                         promise.then { _ in
                             expect(UBCampaignDAO.shared.readAll().count).to(equal(1))
                             var campaign = UBCampaignDAO.shared.readAll().first!
-                            expect(campaign.rule).toNot(beNil())
-                            expect(campaign.rule?.type).to(equal(RuleType.and))
-                            expect(campaign.rule?.childRules.count).to(equal(2))
+                            expect(campaign.targeting?.rule).toNot(beNil())
+                            expect(campaign.targeting?.rule.type).to(equal(RuleType.and))
+                            expect(campaign.targeting?.rule.childRules.count).to(equal(2))
                             campaign = UBCampaignDAO.shared.readAll().first!
                             expect(campaign.status).to(equal(CampaignModel.Status.inactive))
                             expect(campaign.numberOfTimesTriggered).to(equal(17))
@@ -179,10 +182,10 @@ class UBCampaignStoreTests: QuickSpec {
                 }
                 it("should update targeting only for active campaigns") {
                     let campaignService = UBCampaignServiceMock()
-                    let cmp1 = CampaignModel(id: "cmp1", rule: nil, formID: "", targetingID: "t1", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp2 = CampaignModel(id: "cmp2", rule: nil, formID: "", targetingID: "t2", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
-                    let cmp3 = CampaignModel(id: "cmp3", rule: nil, formID: "", targetingID: "t3", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
-                    let cmp4 = CampaignModel(id: "cmp4", rule: nil, formID: "", targetingID: "t4", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
+                    let cmp1 = CampaignModel(id: "cmp1", targeting: nil, formID: "", targetingID: "t1", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", targeting: nil, formID: "", targetingID: "t2", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .invalid, createdAt: Date())
+                    let cmp3 = CampaignModel(id: "cmp3", targeting: nil, formID: "", targetingID: "t3", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp4 = CampaignModel(id: "cmp4", targeting: nil, formID: "", targetingID: "t4", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .inactive, createdAt: Date())
 
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [cmp1, cmp2, cmp3, cmp4], hasChanged: true)
 
@@ -226,7 +229,9 @@ class UBCampaignStoreTests: QuickSpec {
                     // fetch new campaigns from network
                     let campaignService = UBCampaignServiceMock()
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [self.campaign1], hasChanged: true)
-                    campaignService.targetingResponse = Cachable<Rule>(value: ConcreteRule(type: RuleType.and, childRules: []), hasChanged: true)
+                    let rule: ConcreteRule = ConcreteRule(type: RuleType.and, childRules: [])
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    campaignService.targetingResponse = Cachable<TargetingOptionsModel>(value: targeting, hasChanged: true)
                     store = UBCampaignStore(service: campaignService)
 
                     waitUntil(timeout: 2.0) { done in
@@ -249,16 +254,19 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return cahced targeting") {
                     let campaignService = UBCampaignServiceMock()
                     let fakeRule = ConcreteRule(type: RuleType.or, childRules: [])
-                    self.campaign1.rule = fakeRule
+                    let targeting1 = TargetingOptionsModel(rule: fakeRule, targetingID: "tid", lastModifiedDate: nil)
+                    self.campaign1.targeting = targeting1
                     UBCampaignDAO.shared.create(self.campaign1)
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [self.campaign1], hasChanged: true)
-                    campaignService.targetingResponse = Cachable<Rule>(value: ConcreteRule(type: RuleType.and, childRules: []), hasChanged: false)
+                    let rule: ConcreteRule = ConcreteRule(type: RuleType.and, childRules: [])
+                    let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
+                    campaignService.targetingResponse = Cachable<TargetingOptionsModel>(value: targeting, hasChanged: false)
                     store = UBCampaignStore(service: campaignService)
                     waitUntil(timeout: 2.0) { done in
                         let promise = store.getCampaigns(withAppID: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(1))
-                            expect(campaigns.first?.rule?.type).to(equal(RuleType.or))
+                            expect(campaigns.first?.targeting?.rule.type).to(equal(RuleType.or))
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -271,7 +279,8 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return the cached targeting") {
                     let campaignService = UBCampaignServiceMock()
                     let fakeRule = ConcreteRule(type: RuleType.or, childRules: [])
-                    self.campaign1.rule = fakeRule
+                    let targeting = TargetingOptionsModel(rule: fakeRule, targetingID: "tid", lastModifiedDate: nil)
+                    self.campaign1.targeting = targeting
                     UBCampaignDAO.shared.create(self.campaign1)
                     campaignService.campaignsResponse = Cachable<[CampaignModel]>(value: [self.campaign1], hasChanged: true)
                     store = UBCampaignStore(service: campaignService)
@@ -279,7 +288,7 @@ class UBCampaignStoreTests: QuickSpec {
                         let promise = store.getCampaigns(withAppID: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(1))
-                            expect(campaigns.first?.rule?.type).to(equal(RuleType.or))
+                            expect(campaigns.first?.targeting?.rule.type).to(equal(RuleType.or))
                             done()
                         }.catch { _ in
                             fail("should not go here")

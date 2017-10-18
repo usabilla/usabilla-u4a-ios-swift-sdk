@@ -13,6 +13,7 @@
 		041275D81F792BF700A12E09 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
 		041AEE291F96485C00679C5D /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
+		043461BD1F9798B5002604F7 /* TargetingOptionsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E68161DD3777A00CE75E1 /* PerformanceTest.swift */; };
 		044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044E68191DD37FA200CE75E1 /* testAssets.xcassets */; };
@@ -438,6 +439,7 @@
 		040CDA601F2741750005F986 /* ChoiceFieldModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceFieldModelTest.swift; sourceTree = "<group>"; };
 		041275D71F792BF700A12E09 /* Usabilla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usabilla.swift; sourceTree = "<group>"; };
 		041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptionsModel.swift; sourceTree = "<group>"; };
+		043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptionsModelTests.swift; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTests.swift; sourceTree = "<group>"; };
 		0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
@@ -1174,6 +1176,7 @@
 				040CDA601F2741750005F986 /* ChoiceFieldModelTest.swift */,
 				43B221E91F3096A80037987A /* PageModelTests.swift */,
 				433D25291F79947400B1D819 /* NPSFieldModelTests.swift */,
+				043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1804,6 +1807,7 @@
 				0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */,
 				C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
+				043461BD1F9798B5002604F7 /* TargetingOptionsModelTests.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4317189C1F2A15E900BF612E /* UBFeedbackRequestDAOTests.swift in Sources */,
