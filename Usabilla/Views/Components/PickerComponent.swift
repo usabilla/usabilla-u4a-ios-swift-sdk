@@ -107,6 +107,10 @@ class PickerComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDataSo
     }
 
     func pickerButtonClicked() {
+        if DeviceInfo.isIPad() {
+            SwiftEventBus.postToMainThread("pickerClicked", sender: self)
+            return
+        }
         viewModel.expanded = !viewModel.expanded
         bottomBorder.isHidden = !viewModel.expanded
         updateHeightConstraint()

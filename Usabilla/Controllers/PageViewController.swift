@@ -127,6 +127,34 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
             self.pickImageFromGallery()
         }
 
+        SwiftEventBus.onMainThread(self, name: "pickerClicked") { sender in
+            if DeviceInfo.isIPad() {
+                // Create picker ipad component
+                // swiftlint:disable force_cast
+                let pickerComponent: PickerComponent = sender.object as! PickerComponent
+                // swiftlint:enable force_cast
+                let picker = PickerIPadComponent(viewModel: pickerComponent.viewModel)
+                picker.delegate = pickerComponent
+
+                // Add picker component in a container view controller
+                let pickerController = UIViewController()
+                pickerController.view = picker
+                pickerController.modalPresentationStyle = .popover
+                pickerController.preferredContentSize = CGSize(width: 274, height: 200)
+
+                // Create the PopOverPresenter
+                let popController = pickerController.popoverPresentationController
+                popController?.permittedArrowDirections = .up
+                popController?.delegate = self
+                popController?.sourceView = pickerComponent.topBorder
+                popController?.sourceRect = CGRect(x: 150, y: 4, width: 0, height: 0)
+
+                // present the pop over
+                self.present(pickerController, animated: true, completion: nil)
+                return
+            }
+        }
+
         SwiftEventBus.onMainThread(self, name: "updateMySize") { _ in
             let lastScrollOffset = self.tableView.contentOffset
             UIView.setAnimationsEnabled(false)
@@ -135,6 +163,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
             UIView.setAnimationsEnabled(true)
             self.tableView.setContentOffset(lastScrollOffset, animated: false)
         }
+
     }
 
     func tableViewContentHeight() -> CGFloat {
@@ -208,8 +237,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
 
-    static func openUsabilla() {
-        // swiftlint:disable:next force_unwrapping
+    func openUsabilla() {
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
     }
 }
@@ -274,5 +302,19 @@ extension PageViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         self.dismiss(animated: true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
+    }
+}
+
+extension PageViewController: UIPopoverPresentationControllerDelegate {
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        PLog("prepareForPopover == Presentation")
+    }
+
+//    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+//        PLog("")
+//    }
+
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        PLog("popoverPresentationControllerDid == DismissPopover")
     }
 }
