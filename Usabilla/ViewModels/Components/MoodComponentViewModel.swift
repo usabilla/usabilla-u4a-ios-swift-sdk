@@ -100,15 +100,4 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
             return index
         }
     }
-
-    private func starsArrayWith(image: UIImage?) -> [UIImage]? {
-        guard let image = image else {
-            return nil
-        }
-        var stars = [UIImage]()
-        for _ in 0..<model.points {
-            stars.append(image)
-        }
-        return stars
-    }
 }

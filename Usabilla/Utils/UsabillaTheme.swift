@@ -93,8 +93,8 @@ public struct UsabillaTheme {
             enabledEmoticons = UsabillaTheme.createEmoticons()
             disabledEmoticons = nil
             //swiftlint:disable force_unwrapping
-            star = UsabillaTheme.getImage(withName: "star")!
-            starOutline = UsabillaTheme.getImage(withName: "star_outline")!
+            star = UIImage.getImageFromSDKBundle(name: "star")!
+            starOutline = UIImage.getImageFromSDKBundle(name: "star_outline")!
             //swiftlint:enable force_unwrapping
         }
     }
@@ -109,13 +109,8 @@ public struct UsabillaTheme {
         let imagesName = ["hate", "sad", "normal", "happy", "love"]
         return imagesName.map { name in
             //swiftlint:disable:next force_unwrapping
-            getImage(withName: name)!
+            UIImage.getImageFromSDKBundle(name: name)!
         }
-    }
-
-    fileprivate static func getImage(withName name: String) -> UIImage? {
-        let bundle = Bundle(identifier: "com.usabilla.Usabilla")
-        return UIImage(named: name, in: bundle, compatibleWith: nil)
     }
 
     /**
