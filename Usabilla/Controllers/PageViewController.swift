@@ -10,7 +10,7 @@ import UIKit
 
 let footerHeight: CGFloat = 80.0
 
-class PageViewController: UIViewController, UINavigationControllerDelegate {
+class PageViewController: UIViewController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate {
 
     var viewModel: PageViewModel!
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
@@ -127,12 +127,12 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
             self.pickImageFromGallery()
         }
 
-        SwiftEventBus.onMainThread(self, name: "pickerClicked") { sender in
+        SwiftEventBus.onMainThread(self, name: "pickerButtonTapped") { sender in
             if DeviceInfo.isIPad() {
                 // Create picker ipad component
-                // swiftlint:disable force_cast
-                let pickerComponent: PickerComponent = sender.object as! PickerComponent
-                // swiftlint:enable force_cast
+                guard let pickerComponent = sender.object as? PickerComponent else {
+                    return
+                }
                 let picker = PickerIPadComponent(viewModel: pickerComponent.viewModel)
                 picker.delegate = pickerComponent
 
@@ -147,7 +147,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
                 popController?.permittedArrowDirections = .up
                 popController?.delegate = self
                 popController?.sourceView = pickerComponent.topBorder
-                popController?.sourceRect = CGRect(x: 150, y: 4, width: 0, height: 0)
+                popController?.sourceRect = CGRect(x: 134, y: 4, width: 0, height: 0)
 
                 // present the pop over
                 self.present(pickerController, animated: true, completion: nil)
@@ -237,7 +237,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
 
-    func openUsabilla() {
+    static func openUsabilla() {
+        // swiftlint:disable:next force_unwrapping
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
     }
 }
@@ -302,19 +303,5 @@ extension PageViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         self.dismiss(animated: true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
-    }
-}
-
-extension PageViewController: UIPopoverPresentationControllerDelegate {
-    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
-        PLog("prepareForPopover == Presentation")
-    }
-
-//    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-//        PLog("")
-//    }
-
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        PLog("popoverPresentationControllerDid == DismissPopover")
     }
 }

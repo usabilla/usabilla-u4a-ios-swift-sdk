@@ -418,6 +418,8 @@
 		C59F73BF1F97748200447B2C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73BD1F97748200447B2C /* UIImageView.swift */; };
 		C59F73ED1F98CBD000447B2C /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
 		C59F73EE1F98CBD000447B2C /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
+		C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
+		C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5DC40861F7BDCAE00FA89B8 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
 		C5DC40A11F7BEA3D00FA89B8 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
 		C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */; };
@@ -695,6 +697,7 @@
 		C59C823F1E8914C200840D4E /* CampaignViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewModelTests.swift; sourceTree = "<group>"; };
 		C59F73BD1F97748200447B2C /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerIPadComponent.swift; sourceTree = "<group>"; };
+		C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerParentComponent.swift; sourceTree = "<group>"; };
 		C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShouldShowRequiredFieldHeader.json; sourceTree = "<group>"; };
 		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
@@ -1082,6 +1085,7 @@
 				430669971E76B4B30078E3B3 /* EmailComponent.swift */,
 				430669991E76B4B30078E3B3 /* MoodComponent.swift */,
 				4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */,
+				C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */,
 				430669951E76B4B30078E3B3 /* PickerComponent.swift */,
 				C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */,
 				4306699B1E76B4B30078E3B3 /* RadioComponent.swift */,
@@ -1718,6 +1722,7 @@
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
+				C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
 				C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */,
 				C54593B01F34A29F000C5090 /* LeafPassiveStatus.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
@@ -1975,6 +1980,7 @@
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
 				43B04FB51F1F7EEF0032F057 /* MoodFieldModel.swift in Sources */,
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
+				C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
 				C530A9631F7CFB3E007A701B /* UITableView.swift in Sources */,
 				C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */,
 				C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */,

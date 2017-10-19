@@ -9,13 +9,11 @@
 import Foundation
 import UIKit
 
-class PickerIPadComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDataSource, UIPickerViewDelegate {
-    var picker = UIPickerView()
+class PickerIPadComponent: PickerParentComponent {
     weak var delegate: PickerComponent!
 
     override func build() {
         picker.translatesAutoresizingMaskIntoConstraints = false
-
         addSubview(picker)
 
         // picker
@@ -53,35 +51,5 @@ class PickerIPadComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDa
         viewModel.value = item.value
         delegate.pickerButton.setTitle(item.title, for: .normal)
         valueChanged()
-    }
-
-    // MARK: Datasource
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return viewModel.options.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-
-        var pickerLabel = view as? UILabel
-
-        if pickerLabel == nil {
-            pickerLabel = UILabel()
-            pickerLabel?.textAlignment = NSTextAlignment.center
-            pickerLabel?.font = viewModel.theme.fonts.font.withSize(viewModel.theme.fonts.titleSize + 2)
-            pickerLabel?.textColor = viewModel.theme.colors.text
-        }
-
-        pickerLabel?.text = viewModel.options[row].title
-        //swiftlint:disable:next force_unwrapping
-        return pickerLabel!
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 33.0
     }
 }

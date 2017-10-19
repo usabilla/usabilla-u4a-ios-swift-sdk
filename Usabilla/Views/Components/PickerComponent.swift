@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-class PickerComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDataSource, UIPickerViewDelegate {
+class PickerComponent: PickerParentComponent {
 
-    var picker = UIPickerView()
     var pickerButton = UIButton(type: .custom)
     var topBorder = UIView()
     var bottomBorder = UIView()
@@ -108,7 +107,7 @@ class PickerComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDataSo
 
     func pickerButtonClicked() {
         if DeviceInfo.isIPad() {
-            SwiftEventBus.postToMainThread("pickerClicked", sender: self)
+            SwiftEventBus.postToMainThread("pickerButtonTapped", sender: self)
             return
         }
         viewModel.expanded = !viewModel.expanded
@@ -122,41 +121,10 @@ class PickerComponent: UBComponent<PickerComponentViewModel>, UIPickerViewDataSo
     }
 
     // MARK: Delegate
-
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let item = viewModel.options[row]
         viewModel.value = item.value
         pickerButton.setTitle(item.title, for: .normal)
         valueChanged()
-    }
-
-    // MARK: Datasource
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return viewModel.options.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-
-        var pickerLabel = view as? UILabel
-
-        if pickerLabel == nil {
-            pickerLabel = UILabel()
-            pickerLabel?.textAlignment = NSTextAlignment.center
-            pickerLabel?.font = viewModel.theme.fonts.font.withSize(viewModel.theme.fonts.titleSize + 2)
-            pickerLabel?.textColor = viewModel.theme.colors.text
-        }
-
-        pickerLabel?.text = viewModel.options[row].title
-        //swiftlint:disable:next force_unwrapping
-        return pickerLabel!
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 33.0
     }
 }
