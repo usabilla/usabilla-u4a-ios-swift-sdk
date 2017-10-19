@@ -95,11 +95,11 @@ class CampaignManagerTests: QuickSpec {
 
                     storeMock.campaigns = campaigns
                     let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appID: "test")
-                    var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.targeting?.rule.childRules.first as? LeafEvent
+                    var triggeredRule = UBCampaignDAO.shared.read(id: "a")?.targeting.rule.childRules.first as? LeafEvent
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beFalse())
                     campaignManager.sendEvent(event: "foo", customVariables: customVariables)
-                    triggeredRule = UBCampaignDAO.shared.read(id: "a")?.targeting?.rule.childRules.first as? LeafEvent
+                    triggeredRule = UBCampaignDAO.shared.read(id: "a")?.targeting.rule.childRules.first as? LeafEvent
                     expect(triggeredRule?.event.name).to(equal("foo"))
                     expect(triggeredRule?.alreadyTriggered).to(beTrue())
                 }
@@ -400,10 +400,10 @@ class CampaignManagerTests: QuickSpec {
                     Usabilla.canDisplayCampaigns = true
                     campaignServiceMock = UBCampaignServiceMock()
 
-                    let cmp1 = CampaignModel(id: "cmp1", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
-                    let cmp2 = CampaignModel(id: "cmp2", targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp1 = CampaignModel(id: "cmp1", targeting: UBMock.mockTargeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+                    let cmp2 = CampaignModel(id: "cmp2", targeting: UBMock.mockTargeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
                     let campaigns = [cmp1, cmp2]
-                    campaignServiceMock.campaignsResponse = Cachable<[CampaignModel]>(value: campaigns, hasChanged: true)
+                    campaignServiceMock.campaignsResponse = campaigns
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
                     }

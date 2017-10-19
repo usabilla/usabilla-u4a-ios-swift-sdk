@@ -28,7 +28,7 @@ class CampaignModel: NSObject, NSCoding {
     }
 
     let identifier: String
-    var targeting: TargetingOptionsModel?
+    var targeting: TargetingOptionsModel
     let formID: String
     let targetingID: String
     var numberOfTimesTriggered: Int = 0
@@ -40,7 +40,7 @@ class CampaignModel: NSObject, NSCoding {
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 
-    init(id: String, targeting: TargetingOptionsModel?, formID: String, targetingID: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status, createdAt: Date) {
+    init(id: String, targeting: TargetingOptionsModel, formID: String, targetingID: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status, createdAt: Date) {
         self.identifier = id
         self.targeting = targeting
         self.formID = formID
@@ -51,7 +51,7 @@ class CampaignModel: NSObject, NSCoding {
         self.createdAt = createdAt
     }
 
-    convenience init?(json: JSON) {
+    convenience init?(json: JSON, targeting: TargetingOptionsModel) {
         guard let identifier = json["id"].string,
             let formID = json["form_id"].string,
             let targetingID = json["targeting_options_id"].string,
@@ -60,15 +60,15 @@ class CampaignModel: NSObject, NSCoding {
                 return nil
         }
 
-        self.init(id: identifier, targeting: nil, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt)
+        self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt)
     }
 
     func respondToEvents(event: Event) -> Bool {
-        return targeting?.rule.respondsToEvent(event: event) ?? false
+        return targeting.rule.respondsToEvent(event: event)
     }
 
     func triggers(event: Event, activeStatuses: [String: String]) -> Bool {
-        return targeting?.rule.triggersWith(event: event, activeStatuses: activeStatuses) ?? false
+        return targeting.rule.triggersWith(event: event, activeStatuses: activeStatuses)
     }
 
     // MARK: NSCoding
@@ -78,11 +78,11 @@ class CampaignModel: NSObject, NSCoding {
             let targetingID = aDecoder.decodeObject(forKey: Archiving.targetingID) as? String,
             let statusStr = aDecoder.decodeObject(forKey: Archiving.status) as? String,
             let createdAt = aDecoder.decodeObject(forKey: Archiving.createdAt) as? Date,
+            let targeting = aDecoder.decodeObject(forKey: Archiving.targeting) as? TargetingOptionsModel,
             let status = Status(rawValue: statusStr) else {
                 return nil
         }
 
-        let targeting = aDecoder.decodeObject(forKey: Archiving.targeting) as? TargetingOptionsModel
         let maximumDisplays = aDecoder.decodeInteger(forKey: Archiving.maximumDisplays)
         let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: Archiving.numberOfTimesTriggered)
 

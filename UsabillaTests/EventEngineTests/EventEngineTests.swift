@@ -16,7 +16,7 @@ import Nimble
 class EventEngineTests: QuickSpec {
     
     func campaignMock(forID id: String) -> CampaignModel {
-        return CampaignModel(id: id, targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+        return CampaignModel(id: id, targeting: UBMock.mockTargeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
     var campaigns: [CampaignModel] = []
     var activeStatuses: [String: String] = [String: String]()

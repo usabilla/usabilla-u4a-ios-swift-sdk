@@ -43,7 +43,7 @@ class CampaignModelTests: QuickSpec {
 
                     expect(campaign.identifier).to(equal(campaignID))
                     // swiftlint:disable force_cast
-                    expect((campaign.targeting?.rule as! LeafEvent).event).to(equal(event))
+                    expect((campaign.targeting.rule as! LeafEvent).event).to(equal(event))
                     expect(campaign.formID).to(equal(formID))
                     expect(campaign.targetingID).to(equal(targetingID))
                     expect(campaign.maximumDisplays).to(equal(maxDisplays))
@@ -72,7 +72,7 @@ class CampaignModelTests: QuickSpec {
 
                     expect(campaign.identifier).to(equal(campaignID))
                     // swiftlint:disable force_cast
-                    expect((unserialised.targeting?.rule as! LeafEvent).event.name).to(equal(event.name))
+                    expect((unserialised.targeting.rule as! LeafEvent).event.name).to(equal(event.name))
                     expect(unserialised.formID).to(equal(formID))
                     expect(unserialised.targetingID).to(equal(targetingID))
                     expect(unserialised.maximumDisplays).to(equal(maxDisplays))
@@ -90,7 +90,7 @@ class CampaignModelTests: QuickSpec {
                     let numberOfTimesTriggered = 0
 
                     var json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"active\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
-                    var campaign = CampaignModel(json: JSON(parseJSON: json))
+                    var campaign = CampaignModel(json: JSON(parseJSON: json), targeting: UBMock.mockTargeting)
 
                     expect(campaign).toNot(beNil())
                     expect(campaign!.identifier).to(equal(campaignID))
@@ -101,11 +101,11 @@ class CampaignModelTests: QuickSpec {
                     expect(campaign!.status).to(equal(CampaignModel.Status.active))
                     expect(campaign!.createdAt.description).to(equal("2017-07-17 13:25:33 +0000"))
                     json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"inactive\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
-                    campaign = CampaignModel(json: JSON(parseJSON: json))
+                    campaign = CampaignModel(json: JSON(parseJSON: json), targeting: UBMock.mockTargeting)
                     expect(campaign!.status).to(equal(CampaignModel.Status.inactive))
 
                     json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"invalid\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
-                    campaign = CampaignModel(json: JSON(parseJSON: json))
+                    campaign = CampaignModel(json: JSON(parseJSON: json), targeting: UBMock.mockTargeting)
                     expect(campaign!.status).to(equal(CampaignModel.Status.invalid))
                 }
 
@@ -117,7 +117,7 @@ class CampaignModelTests: QuickSpec {
                     let json = "{\"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     let parsedJSON = JSON(parseJSON: json)
                     expect(parsedJSON == JSON.null).to(beFalse())
-                    let campaign = CampaignModel(json: parsedJSON)
+                    let campaign = CampaignModel(json: parsedJSON, targeting: UBMock.mockTargeting)
                     expect(campaign).to(beNil())
                 }
                 it("Should fail when formID property is missing") {
@@ -128,7 +128,7 @@ class CampaignModelTests: QuickSpec {
                     let json = "{\"id\": \"\(campaignID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     let parsedJSON = JSON(parseJSON: json)
                     expect(parsedJSON == JSON.null).to(beFalse())
-                    let campaign = CampaignModel(json: parsedJSON)
+                    let campaign = CampaignModel(json: parsedJSON, targeting: UBMock.mockTargeting)
                     expect(campaign).to(beNil())
                 }
                 it("Should fail when targetingID property is missing") {
@@ -139,7 +139,7 @@ class CampaignModelTests: QuickSpec {
                     let json = "{\"id\": \"\(campaignID)\",\"form_id\": \"\(formID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"\(status)\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     let parsedJSON = JSON(parseJSON: json)
                     expect(parsedJSON == JSON.null).to(beFalse())
-                    let campaign = CampaignModel(json: parsedJSON)
+                    let campaign = CampaignModel(json: parsedJSON, targeting: UBMock.mockTargeting)
                     expect(campaign).to(beNil())
                 }
                 it("Should fail when status property is missing") {
@@ -150,7 +150,7 @@ class CampaignModelTests: QuickSpec {
                     let json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
                     let parsedJSON = JSON(parseJSON: json)
                     expect(parsedJSON == JSON.null).to(beFalse())
-                    let campaign = CampaignModel(json: parsedJSON)
+                    let campaign = CampaignModel(json: parsedJSON, targeting: UBMock.mockTargeting)
                     expect(campaign).to(beNil())
                 }
                 it("Should fail when createdAt property is missing") {
@@ -161,7 +161,7 @@ class CampaignModelTests: QuickSpec {
                     let json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays)}"
                     let parsedJSON = JSON(parseJSON: json)
                     expect(parsedJSON == JSON.null).to(beFalse())
-                    let campaign = CampaignModel(json: parsedJSON)
+                    let campaign = CampaignModel(json: parsedJSON, targeting: UBMock.mockTargeting)
                     expect(campaign).to(beNil())
                 }
             }
