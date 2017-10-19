@@ -20,7 +20,7 @@ class BaseOptionsComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
-            model = OptionsFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
+            model = OptionsFieldModel(json: JSON(parseJSON: "{\"name\":\"test\"}"), pageModel: pageModel)
             viewModel = BaseOptionsComponentViewModel<OptionsFieldModel>(model: model, theme: UsabillaTheme())
         }
 

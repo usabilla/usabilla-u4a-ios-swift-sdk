@@ -19,7 +19,7 @@ class NPSFieldModelTests: QuickSpec {
         
         describe("NPSFieldModel") {
             beforeEach {
-                model = NPSFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+                model = NPSFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
             }
             it("init RatingFieldModel") {
                 expect(model).toNot(beNil())

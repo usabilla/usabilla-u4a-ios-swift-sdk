@@ -90,7 +90,7 @@ class CampaignModelTests: QuickSpec {
                     let numberOfTimesTriggered = 0
 
                     var json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"active\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
-                    var campaign = CampaignModel(json: JSON.parse(json))
+                    var campaign = CampaignModel(json: JSON(parseJSON: json))
 
                     expect(campaign).toNot(beNil())
                     expect(campaign!.identifier).to(equal(campaignID))
@@ -101,11 +101,11 @@ class CampaignModelTests: QuickSpec {
                     expect(campaign!.status).to(equal(CampaignModel.Status.active))
                     expect(campaign!.createdAt.description).to(equal("2017-07-17 13:25:33 +0000"))
                     json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"inactive\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
-                    campaign = CampaignModel(json: JSON.parse(json))
+                    campaign = CampaignModel(json: JSON(parseJSON: json))
                     expect(campaign!.status).to(equal(CampaignModel.Status.inactive))
 
                     json = "{\"id\": \"\(campaignID)\", \"form_id\": \"\(formID)\", \"targeting_options_id\": \"\(targetingID)\", \"maximumDisplays\": \(maxDisplays), \"status\": \"invalid\", \"created_at\": \"2017-07-17T13:25:33+00:00\"}"
-                    campaign = CampaignModel(json: JSON.parse(json))
+                    campaign = CampaignModel(json: JSON(parseJSON: json))
                     expect(campaign!.status).to(equal(CampaignModel.Status.invalid))
                 }
 

@@ -25,7 +25,7 @@ class IntroPageViewModelTests: QuickSpec {
         let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
         let copyModel = CopyModel()
         beforeEach {
-            let moodField = MoodFieldModel(json: JSON.parse("{\"title\":\"Hello\"}"), pageModel: introPage)
+            let moodField = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"), pageModel: introPage)
             introPage.fields = [moodField]
             introPage.copy = copyModel
             copyModel.introCancelButton = "canceltest"
@@ -35,7 +35,7 @@ class IntroPageViewModelTests: QuickSpec {
         describe("IntroPageViewModel") {
             context("when initialized with a page a paragraph field") {
                 it("should not set the component view model when the paragraph is empty") {
-                    let paragraphField = ParagraphFieldModel(json: JSON.parse("{\"text\":\"\"}"), pageModel: introPage)
+                    let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"\"}"), pageModel: introPage)
                     let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
                     introPage.fields = [paragraphField]
 
@@ -44,7 +44,7 @@ class IntroPageViewModelTests: QuickSpec {
                     expect(introPageViewModel.componentViewModel).to(beNil())
                 }
                 it("should set the component view model when the paragraph has a text") {
-                    let paragraphField = ParagraphFieldModel(json: JSON.parse("{\"text\":\"hello\"}"), pageModel: introPage)
+                    let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"hello\"}"), pageModel: introPage)
                     let introPage = IntroPageModel(pageNumber: 0, pageName: "test")
                     introPage.fields = [paragraphField]
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
@@ -86,7 +86,7 @@ class IntroPageViewModelTests: QuickSpec {
                     let copy2 = CopyModel()
                     copy2.introCancelButton = "canceltest"
                     introPage2.copy = copy2
-                    introPage2.fields = [MoodFieldModel(json: JSON.parse("{\"title\":\"Hello\"}"), pageModel: introPage2)]
+                    introPage2.fields = [MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"), pageModel: introPage2)]
                     let introPageViewModel2 = IntroPageViewModel(introPage: introPage2, theme: configurator)
                     expect(introPageViewModel2.displayMode).to(equal(IntroPageDisplayMode.bannerBottom))
                     expect(introPageViewModel2.title).to(equal("Hello"))

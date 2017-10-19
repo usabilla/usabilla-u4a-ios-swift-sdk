@@ -78,7 +78,7 @@ class CampaignServiceTests: QuickSpec {
                     }
                 }
                 it("should fail if request succeeds and json is invalid") {
-                    let data = try! JSON.parse("{\"hello\":\"you\"}").rawData()
+                    let data = try! JSON(parseJSON: "{\"hello\":\"you\"}").rawData()
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: data, headers: nil, error: nil, success: true, isChanged: true)
                         CampaignService(httpClient: UBHTTPMock.self).getTargeting(withID: "tid").then { _ in

@@ -19,7 +19,7 @@ class OptionsFieldModelTest: QuickSpec {
 
         describe("OptionsFieldModel") {
             beforeEach {
-                model = OptionsFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                model = OptionsFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
             }
             it("init OptionsFieldModel") {
                 expect(model).toNot(beNil())

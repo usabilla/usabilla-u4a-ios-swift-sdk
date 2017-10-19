@@ -19,10 +19,10 @@ class EmailFieldModelTest: QuickSpec {
 
         describe("EmailFieldModel") {
             beforeEach {
-                model = EmailFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+                model = EmailFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
             }
             it("init EmailFieldModel") {
-                model = EmailFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+                model = EmailFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
                 expect(model).toNot(beNil())
             }
             it("EmailFieldModel isValidEmail") {

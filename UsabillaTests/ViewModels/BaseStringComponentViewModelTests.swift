@@ -20,7 +20,7 @@ class BaseStringComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
-            model = StringFieldModel(json: JSON.parse("{\"name\":\"test\"}"), pageModel: pageModel)
+            model = StringFieldModel(json: JSON(parseJSON: "{\"name\":\"test\"}"), pageModel: pageModel)
             viewModel = BaseStringComponentViewModel<StringFieldModel>(model: model, theme: UsabillaTheme())
         }
 

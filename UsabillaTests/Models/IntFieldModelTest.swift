@@ -19,7 +19,7 @@ class IntFieldModelTest: QuickSpec {
 
         describe("IntFieldModel") {
             beforeEach {
-                model = IntFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                model = IntFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
             }
             it("init IntFieldModel") {
                 expect(model).toNot(beNil())

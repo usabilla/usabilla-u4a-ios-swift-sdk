@@ -40,7 +40,7 @@ class TargetingOptionsModelTests: QuickSpec {
                     let targeting = TargetingOptionsModel(json: json)
                     expect(targeting).to(beNil())
                 }
-                it("should fail initialising with json without valid date") {
+                it("should initialise with json without valid date") {
                     let jsonString = "{\"id\": \"eca84024-6db0-4a3d-b620-ffdcee03e677\", \"last_modified_at\": \"2017-05-04T15:222:59.000Z\" , \"options\": {\"rule\": {\"type\": \"repetition\",\"repetition\": 2, \"children\": [{\"type\": \"event\",\"name\": \"pizza\"}]}}}"
                     let json = JSON(parseJSON: jsonString)
                     let targeting = TargetingOptionsModel(json: json)
@@ -51,7 +51,7 @@ class TargetingOptionsModelTests: QuickSpec {
                 }
             }
 
-            it("should serialise and userialise correctly") {
+            it("should serialise and unserialise correctly") {
                 let targeting = TargetingOptionsModel(json: json)
                 let data = NSKeyedArchiver.archivedData(withRootObject: targeting)
 

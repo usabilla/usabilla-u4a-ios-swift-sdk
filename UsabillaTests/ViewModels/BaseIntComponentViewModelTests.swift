@@ -20,7 +20,7 @@ class BaseIntComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
-            model = IntFieldModel(json: JSON.parse("{\"name\":\"mood\"}"), pageModel: pageModel)
+            model = IntFieldModel(json: JSON(parseJSON: "{\"name\":\"mood\"}"), pageModel: pageModel)
             viewModel = BaseIntComponentViewModel<IntFieldModel>(model: model, theme: UsabillaTheme())
         }
 

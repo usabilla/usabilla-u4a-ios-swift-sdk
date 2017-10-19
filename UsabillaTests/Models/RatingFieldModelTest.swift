@@ -19,7 +19,7 @@ class RatingFieldModelTest: QuickSpec {
 
         describe("RatingFieldModel") {
             beforeEach {
-                model = RatingFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+                model = RatingFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
             }
             it("init RatingFieldModel") {
                 expect(model).toNot(beNil())

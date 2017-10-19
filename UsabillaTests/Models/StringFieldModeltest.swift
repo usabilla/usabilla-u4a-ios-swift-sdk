@@ -19,7 +19,7 @@ class StringFieldModelTest: QuickSpec {
 
         describe("StringFieldModel") {
             it("init StringFieldModel") {
-                model = StringFieldModel(json: JSON.parse("{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                model = StringFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
                 expect(model).toNot(beNil())
             }
 

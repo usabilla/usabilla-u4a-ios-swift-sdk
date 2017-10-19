@@ -20,7 +20,7 @@ class BaseImageComponentViewModelTests: QuickSpec {
         let pageModel = PageModel(pageNumber: 0, pageName: "")
 
         beforeSuite {
-            model = ScreenshotModel(json: JSON.parse("{\"name\":\"image\"}"), pageModel: pageModel)
+            model = ScreenshotModel(json: JSON(parseJSON: "{\"name\":\"image\"}"), pageModel: pageModel)
             viewModel = BaseImageComponentViewModel<ScreenshotModel>(model: model, theme: UsabillaTheme())
         }
 

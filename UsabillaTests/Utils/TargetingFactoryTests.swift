@@ -37,7 +37,7 @@ class TargetingFactoryTests: QuickSpec {
                     expect(LeafEvent.event.name).to(equal("purchaseOrder"))
                 }
                 it("should return nil when the json is invalid") {
-                    let json = JSON.parse("{\"hello\":\"you\"}")
+                    let json = JSON(parseJSON: "{\"hello\":\"you\"}")
                     let targeting = TargetingFactory.createRule(json)
                     expect(targeting).to(beNil())
                 }

@@ -19,7 +19,7 @@ class ChoiceFieldModelTests: QuickSpec {
     override func spec() {
         beforeSuite {
             self.pageModel = PageModel(pageNumber: 0, pageName: "test")
-            self.model = ChoiceFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: self.pageModel)
+            self.model = ChoiceFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: self.pageModel)
             self.model.fieldID = "id"
         }
 

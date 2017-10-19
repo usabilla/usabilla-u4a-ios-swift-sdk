@@ -19,7 +19,7 @@ class ParagraphFieldModelTest: QuickSpec {
 
         describe("ParagraphModel") {
             it("init ParagraphModel") {
-                model = ParagraphFieldModel(json: JSON.parse("{\"title\":\"test\"}"), pageModel: pageModel)
+                model = ParagraphFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
                 expect(model).toNot(beNil())
             }
         }
