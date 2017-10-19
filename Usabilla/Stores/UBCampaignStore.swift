@@ -21,43 +21,39 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         self.campaignService = service
     }
 
-    private func deleteCachedCampaigns(notInCampaigns campaigns: [CampaignModel]) {
-        let cachedCampaignsList = UBCampaignDAO.shared.readAll()
-        for cachedCampaign in cachedCampaignsList {
+    private func deleteLocalCampaigns(notInCampaigns campaigns: [CampaignModel]) {
+        let localCampaignsList = UBCampaignDAO.shared.readAll()
+        for localCampaign in localCampaignsList {
             let shouldDeleteCampaign = !campaigns.contains {
-                $0.identifier == cachedCampaign.identifier
+                $0.identifier == localCampaign.identifier
             }
             if shouldDeleteCampaign {
-                UBCampaignDAO.shared.delete(cachedCampaign)
+                UBCampaignDAO.shared.delete(localCampaign)
             }
         }
     }
 
-    private func updateTargeting(forCampaigns campaigns: [CampaignModel], completion: (([CampaignModel]) -> Void)?) {
-        var count = 0
-        let doneFetchingTargeting: (_ campaign: CampaignModel) -> Void = { campaign in
-            UBCampaignDAO.shared.create(campaign)
-            count += 1
-            if count == campaigns.count {
-                completion?(campaigns)
-                return
+    private func updateCampaignData(serverCampaign: CampaignModel, localCampaigns: [CampaignModel]) -> CampaignModel {
+        if let localCampaign = localCampaigns.first(where: { model in
+            model.identifier == serverCampaign.identifier
+        }) {
+            serverCampaign.numberOfTimesTriggered = localCampaign.numberOfTimesTriggered
+            if !shouldUpdateTargeting(serverTargeting: serverCampaign.targeting, localTargeting: localCampaign.targeting) {
+                serverCampaign.targeting = localCampaign.targeting
             }
         }
-        for campaignModel in campaigns {
-            self.campaignService.getTargeting(withID: campaignModel.targetingID).then { result in
-                if result.hasChanged {
-                    campaignModel.targeting = result.value
-                } else {
-                    let cachedTargeting = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.targeting
-                    campaignModel.targeting = cachedTargeting ?? result.value
-                }
-                doneFetchingTargeting(campaignModel)
-            }.catch { _ in
-                let cachedTargeting = UBCampaignDAO.shared.read(id: campaignModel.identifier)?.targeting
-                campaignModel.targeting = cachedTargeting
-                doneFetchingTargeting(campaignModel)
+        return serverCampaign
+    }
+
+    private func shouldUpdateTargeting(serverTargeting: TargetingOptionsModel, localTargeting: TargetingOptionsModel) -> Bool {
+        if let lastModifiedServer = serverTargeting.lastModifiedDate {
+            let lastModifiedLocal = localTargeting.lastModifiedDate
+            //swiftlint:disable:next force_unwrapping
+            if lastModifiedLocal == nil || lastModifiedServer > lastModifiedLocal! {
+                return true
             }
         }
+        return false
     }
 
     /**
@@ -65,57 +61,68 @@ class UBCampaignStore: UBCampaignStoreProtocol {
      */
     func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]> {
         return Promise { fulfill, reject in
-            self.campaignService.getCampaigns(withAppID: appID).then { serverCampaigns in
+            getCampaignsFromService(withAppID: appID).then { cachableCampaigns in
+                guard cachableCampaigns.hasChanged else {
+                    fulfill(cachableCampaigns.value)
+                    return
+                }
+                let validServerCampaigns = cachableCampaigns.value.filter { $0.status != .invalid }
+
                 let localCampaigns = UBCampaignDAO.shared.readAll()
-                if !serverCampaigns.hasChanged {
-                    return fulfill(localCampaigns)
+
+                self.deleteLocalCampaigns(notInCampaigns: validServerCampaigns)
+
+                let updatedCampaigns = validServerCampaigns.map {
+                    self.updateCampaignData(serverCampaign: $0, localCampaigns: localCampaigns)
                 }
 
-                let activeInactiveCampaigns = serverCampaigns.value.filter { $0.status != .invalid }
+                updatedCampaigns.forEach { UBCampaignDAO.shared.create($0) }
+                fulfill(updatedCampaigns)
 
-                guard activeInactiveCampaigns.count > 0 else {
-                    UBCampaignDAO.shared.deleteAll()
-                    return fulfill([])
-                }
-                self.deleteCachedCampaigns(notInCampaigns: activeInactiveCampaigns)
-
-                // update number of times triggered
-                activeInactiveCampaigns
-                    .forEach {
-                        let campaignIDentifier = $0.identifier
-                        let cachedCampaign = localCampaigns.first(where: { model in
-                            model.identifier == campaignIDentifier
-                        })
-                        $0.numberOfTimesTriggered = cachedCampaign?.numberOfTimesTriggered ?? 0
-                }
-
-                // update inactive campaigns in cache
-                activeInactiveCampaigns
-                    .filter { $0.status == .inactive }
-                    .forEach {
-                        let cachedRule = UBCampaignDAO.shared.read(id: $0.identifier)?.targeting
-                        $0.targeting = cachedRule
-                        UBCampaignDAO.shared.create($0)
-                }
-
-                // update targeting only for active campaigns
-                let activeCampaigns = activeInactiveCampaigns.filter { $0.status == .active }
-                guard activeCampaigns.count > 0 else {
-                    return fulfill([])
-                }
-                self.updateTargeting(forCampaigns: activeCampaigns) { campaigns in
-                    fulfill(campaigns)
-                }
             }.catch { error in
                 PLog("Error loading campaigns :\(error.localizedDescription)")
-                let cachedCampaigns = UBCampaignDAO.shared.readAll()
-                if cachedCampaigns.count > 0 {
-                    fulfill(cachedCampaigns)
+                let localCampaigns = UBCampaignDAO.shared.readAll()
+                if localCampaigns.count > 0 {
+                    fulfill(localCampaigns)
                     return
                 }
                 reject(error)
             }
         }
+    }
+
+    private func getCampaignsFromService(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
+        return Promise { fulfill, reject in
+            self.campaignService.getCampaignsJSON(withAppID: appID).then { cachableArray in
+                guard cachableArray.hasChanged else {
+                    fulfill(Cachable(value: UBCampaignDAO.shared.readAll(), hasChanged: false))
+                    return
+                }
+                let targetingIDs = cachableArray.value.flatMap { $0["targeting_options_id"].stringValue }
+                guard cachableArray.value.count > 0 || targetingIDs.count > 0 else {
+                    fulfill(Cachable(value: [], hasChanged: true))
+                    return
+                }
+                self.campaignService.getTargetings(withIDs: targetingIDs).then { targetings in
+                    let campaigns = UBCampaignStore.buildCampaigns(fromJsonArray: cachableArray.value, withTargetings: targetings)
+                    fulfill(Cachable(value: campaigns, hasChanged: true))
+                }.catch { error in
+                    reject(error)
+                }
+            }.catch { error in
+                reject(error)
+            }
+        }
+    }
+
+    private class func buildCampaigns(fromJsonArray: [JSON], withTargetings targetings: [TargetingOptionsModel]) -> [CampaignModel] {
+        var campaigns: [CampaignModel] = []
+        for json in fromJsonArray {
+            guard let targeting = targetings.first(where: { $0.targetingID == json["targeting_options_id"].string }),
+                let campaign = CampaignModel(json: json, targeting: targeting) else { continue }
+            campaigns.append(campaign)
+        }
+        return campaigns
     }
 
     func getCampaignForm(withFormID formID: String, theme: UsabillaTheme) -> Promise<FormModel> {
@@ -127,5 +134,4 @@ class UBCampaignStore: UBCampaignStoreProtocol {
             }.catch(execute: reject)
         }
     }
-
 }

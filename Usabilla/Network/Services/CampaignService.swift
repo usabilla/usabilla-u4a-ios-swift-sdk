@@ -22,8 +22,8 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     var httpClient: HTTPClientProtocol.Type { get }
 
     func getCampaignForm(withID id: String) -> Promise<FormModel>
-    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>>
-    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>>
+    func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>>
+    func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]>
     func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool>
 }
 
@@ -45,7 +45,6 @@ class CampaignService: CampaignServiceProtocol {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: nil))
                     return
                 }
-
                 guard let error = response.error else {
                     PLog("❌ error missing from response")
                     reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
@@ -56,7 +55,7 @@ class CampaignService: CampaignServiceProtocol {
         }
     }
 
-    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
+    func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>> {
         let request = requestBuilder.requestGetCampaigns(withAppID: appID)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
@@ -70,35 +69,27 @@ class CampaignService: CampaignServiceProtocol {
                         reject(error)
                         return
                 }
-                let campaigns = campaignsArray.flatMap { CampaignModel(json: $0) }
-                let cachabelResult: Cachable<[CampaignModel]> = Cachable(value: campaigns, hasChanged: response.isChanged)
-                fulfill(cachabelResult)
+                fulfill(Cachable(value: campaignsArray, hasChanged: response.isChanged))
             })
         }
     }
 
-    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>> {
-        let request = requestBuilder.requestGetTargeting(withID: id)
+    func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
+        let request = requestBuilder.requestGetAllTargetingOptions(targetingIds: ids)
         return Promise { fulfill, reject in
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
-                if let jsonData = response.data {
-                    let json = JSON(jsonData)
-                    PLog("targeting for id : \(id) :\n \(String(describing: json))")
-
-                    guard let targeting = TargetingOptionsModel(json: json) else {
-                        reject(NSError(domain: "Impossible to parse targeting", code: 0, userInfo: nil))
-                        return
-                    }
-                    let cachable: Cachable<TargetingOptionsModel> = Cachable(value: targeting, hasChanged: response.isChanged)
-                    fulfill(cachable)
+                guard response.error == nil else {
+                    // swiftlint:disable:next force_unwrapping
+                    reject(response.error!)
                     return
                 }
-                guard let error = response.error else {
-                    PLog("❌ error missing from response")
-                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                guard let jsonData = response.data, let json = JSON(jsonData).array else {
+                    reject(NSError(domain: "could not parse targeting", code: 0, userInfo: nil))
                     return
                 }
-                reject(error)
+                let targetings: [TargetingOptionsModel] = json.flatMap { TargetingOptionsModel(json: $0) }
+                fulfill(targetings)
+                return
             })
         }
     }

@@ -14,14 +14,17 @@
 		041AEE291F96485C00679C5D /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		041CBBC91D2A53670000441C /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
 		043461BD1F9798B5002604F7 /* TargetingOptionsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */; };
+		0439437D1F99F55B008E1356 /* CampaignServiceTestBroken.json in Resources */ = {isa = PBXBuildFile; fileRef = 0439437C1F99F55B008E1356 /* CampaignServiceTestBroken.json */; };
 		044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
 		044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044E68161DD3777A00CE75E1 /* PerformanceTest.swift */; };
 		044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 044E68191DD37FA200CE75E1 /* testAssets.xcassets */; };
+		045289C11FA0C39000A1CCC1 /* CampaignStoreTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 045289C01FA0C39000A1CCC1 /* CampaignStoreTest.json */; };
 		04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B601D99787F001E0EC3 /* FormControllerTest.swift */; };
 		04575B761D99799C001E0EC3 /* JSONParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B621D99787F001E0EC3 /* JSONParserTest.swift */; };
 		04575B771D99799C001E0EC3 /* PageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B631D99787F001E0EC3 /* PageControllerTest.swift */; };
 		04575B781D99799C001E0EC3 /* UsabillaInternalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04575B641D99787F001E0EC3 /* UsabillaInternalTest.swift */; };
 		04575B791D99799C001E0EC3 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 04575B651D99787F001E0EC3 /* test.json */; };
+		0462005F1F99EC630094793C /* CampaignServiceTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 0462005E1F99EC630094793C /* CampaignServiceTest.json */; };
 		046C3F9C1EAA14A000B0B190 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C3F9B1EAA14A000B0B190 /* HTTPClientProtocol.swift */; };
 		047125E11EAE3F28003DB0BB /* UBTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047125E01EAE3F28003DB0BB /* UBTestHelper.swift */; };
 		0471D7851EEE7E4800D5F344 /* CampaignSubmissionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */; };
@@ -55,6 +58,7 @@
 		04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */; };
 		04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */; };
 		04A368461EF41CB100B88279 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
+		04A6F39D1F9F445B004840C8 /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		04B12F091E9FC8B400E65BE5 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
 		04C6284B1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6284A1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift */; };
 		04C6BEEA1E9521440078F6FC /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
@@ -449,17 +453,20 @@
 		041275D71F792BF700A12E09 /* Usabilla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usabilla.swift; sourceTree = "<group>"; };
 		041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptionsModel.swift; sourceTree = "<group>"; };
 		043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptionsModelTests.swift; sourceTree = "<group>"; };
+		0439437C1F99F55B008E1356 /* CampaignServiceTestBroken.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CampaignServiceTestBroken.json; sourceTree = "<group>"; };
 		044204DF1DCC94C1004FA09F /* CopyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyModel.swift; sourceTree = "<group>"; };
 		0445F87A1EA8BD86007704D5 /* CampaignServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignServiceTests.swift; sourceTree = "<group>"; };
 		0445F87E1EA8C97C007704D5 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
 		044E68161DD3777A00CE75E1 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		044E68191DD37FA200CE75E1 /* testAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = testAssets.xcassets; sourceTree = "<group>"; };
+		045289C01FA0C39000A1CCC1 /* CampaignStoreTest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CampaignStoreTest.json; sourceTree = "<group>"; };
 		04575B601D99787F001E0EC3 /* FormControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FormControllerTest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04575B611D99787F001E0EC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04575B621D99787F001E0EC3 /* JSONParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParserTest.swift; sourceTree = "<group>"; };
 		04575B631D99787F001E0EC3 /* PageControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControllerTest.swift; sourceTree = "<group>"; };
 		04575B641D99787F001E0EC3 /* UsabillaInternalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsabillaInternalTest.swift; sourceTree = "<group>"; };
 		04575B651D99787F001E0EC3 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = test.json; path = ../test.json; sourceTree = "<group>"; };
+		0462005E1F99EC630094793C /* CampaignServiceTest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CampaignServiceTest.json; sourceTree = "<group>"; };
 		046C3F9B1EAA14A000B0B190 /* HTTPClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientProtocol.swift; sourceTree = "<group>"; };
 		047125E01EAE3F28003DB0BB /* UBTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBTestHelper.swift; sourceTree = "<group>"; };
 		0471D7831EEE7E2000D5F344 /* CampaignSubmissionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CampaignSubmissionManagerTests.swift; path = ManagersTest/CampaignSubmissionManagerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -849,6 +856,9 @@
 				04575B651D99787F001E0EC3 /* test.json */,
 				43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */,
 				C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */,
+				0462005E1F99EC630094793C /* CampaignServiceTest.json */,
+				0439437C1F99F55B008E1356 /* CampaignServiceTestBroken.json */,
+				045289C01FA0C39000A1CCC1 /* CampaignStoreTest.json */,
 			);
 			path = "JSON Files";
 			sourceTree = "<group>";
@@ -1514,10 +1524,13 @@
 				C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */,
 				C5F813D41F25E43700F994F9 /* Mock.json in Resources */,
 				431718A41F2A231D00BF612E /* redirectEnabled.json in Resources */,
+				045289C11FA0C39000A1CCC1 /* CampaignStoreTest.json in Resources */,
 				43DA99BB1EE8396F00FB6862 /* CampaignForm.json in Resources */,
+				0462005F1F99EC630094793C /* CampaignServiceTest.json in Resources */,
 				044E681B1DD3805D00CE75E1 /* testAssets.xcassets in Resources */,
 				43D2D1AE1F2F57E40059BB37 /* CampaignFormJumpRules.json in Resources */,
 				04575B791D99799C001E0EC3 /* test.json in Resources */,
+				0439437D1F99F55B008E1356 /* CampaignServiceTestBroken.json in Resources */,
 				047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1976,6 +1989,7 @@
 				43B04FAA1F1F7EEF0032F057 /* PickerComponent.swift in Sources */,
 				C5780D201F2226FE0016C519 /* TargetingFactory.swift in Sources */,
 				43B04FAB1F1F7EEF0032F057 /* CampaignManager.swift in Sources */,
+				04A6F39D1F9F445B004840C8 /* TargetingOptionsModel.swift in Sources */,
 				43B04FAC1F1F7EEF0032F057 /* UIView.swift in Sources */,
 				43B04FAD1F1F7EEF0032F057 /* ComponentViewModelFactory.swift in Sources */,
 				43B04FAE1F1F7EEF0032F057 /* ComponentViewModel.swift in Sources */,

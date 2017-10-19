@@ -18,7 +18,7 @@ class TargetingFactoryTests: QuickSpec {
         var targetingJson: JSON!
 
         beforeEach {
-            targetingJson = UBMock.json("CampaignTargeting")?["options"]["rule"]
+            targetingJson = UBMock.json("CampaignTargeting")?.arrayValue.first!["options"]["rule"]
         }
 
         describe("TargetingFactory") {

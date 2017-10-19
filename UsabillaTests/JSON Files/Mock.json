@@ -268,7 +268,7 @@
                              }]
             }
         },
-        "CampaignTargeting": {
+        "CampaignTargeting": [{
             "id": "f56384fa-31b6-4492-9bf0-11f1bfa887c8",
             "options": {
                 "rule": {
@@ -284,7 +284,7 @@
                                  }]
                 }
             }
-        },
+        }],
         "Picker": {
             "type": "choice",
             "caption": "Picker",
@@ -394,6 +394,22 @@
                                          "form",
                                          "toast"
                                          ]
+                }
+            }
+        },
+        "TargetingOptionsJSON": {
+            "id": "targetingId",
+            "last_modified_at": "2017-05-04T15:22:59.000Z",
+            "options": {
+                "rule": {
+                    "type": "repetition",
+                    "repetition": 2,
+                    "children": [
+                                 {
+                                 "type": "event",
+                                 "name": "pizza"
+                                 }
+                                 ]
                 }
             }
         }

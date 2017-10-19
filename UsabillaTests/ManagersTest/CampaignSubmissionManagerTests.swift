@@ -12,7 +12,7 @@ import Nimble
 @testable import Usabilla
 
 class SubmitServiceMock: CampaignServiceProtocol {
-
+  
     var lastRequest: URLRequest?
     var requestJSON: JSON? {
         if let request = lastRequest {
@@ -21,8 +21,8 @@ class SubmitServiceMock: CampaignServiceProtocol {
         return nil
     }
     var counter = 0
-    var campaignsResponse: Cachable<[CampaignModel]>?
-    var targetingResponse: Cachable<TargetingOptionsModel>?
+    var campaignsResponse: Cachable<[JSON]>?
+    var targetingResponse: [TargetingOptionsModel]?
     var campaignForm: FormModel?
 
     var submissionSucceed: Bool = true
@@ -44,7 +44,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
+    func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>> {
         return Promise { fulfill, reject in
             if campaignsResponse != nil {
                 return fulfill(campaignsResponse!)
@@ -53,7 +53,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>> {
+    func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
         return Promise { fulfill, reject in
             if targetingResponse != nil {
                 return fulfill(targetingResponse!)

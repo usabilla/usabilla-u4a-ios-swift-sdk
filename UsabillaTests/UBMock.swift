@@ -15,13 +15,22 @@ class UBMock {
 
     static var mockJson: JSON?
     static var formJson: JSON?
-
+    static var mockTargeting: TargetingOptionsModel {
+        get {
+            return TargetingOptionsModel(json: json("TargetingOptionsJSON")!)!
+        }
+    }
     class func json(_ key: String) -> JSON? {
         if mockJson == nil {
             mockJson = UBTestHelper.getJSONFromFile(named: "Mock")["node"]
         }
 
         return UBMock.mockJson?[key]
+    }
+
+    class func json(fromFile: String, _ key: String) -> JSON {
+        var mockJson = UBTestHelper.getJSONFromFile(named: fromFile)
+        return mockJson[key]
     }
 
     class func formMock () -> FormModel {
@@ -31,8 +40,8 @@ class UBMock {
         return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)
     }
 
-    class func campaignMock(withID id: String = "") -> CampaignModel {
-        return CampaignModel(id: id, targeting: nil, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
+    class func campaignMock(withID id: String = "", withTargetingID targetingId: String = "", withTargeting targeting: TargetingOptionsModel = UBMock.mockTargeting) -> CampaignModel {
+        return CampaignModel(id: id, targeting: targeting, formID: "", targetingID: targetingId, maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
 
     class func campaignMockWithRules(id: String = "a", createdAt: Date = Date()) -> CampaignModel {
@@ -86,21 +95,33 @@ class UBHTTPMockSuccess: HTTPClientProtocol {
 class UBHTTPMock: HTTPClientProtocol {
     // inject your expected response to be tested
     static var response: HTTPClientResponse!
+    static var onURLRequest: [String: HTTPClientResponse] = [:]
+    static var onStringRequest: [String: HTTPClientResponse] = [:]
+
     static func request(request: URLRequest, responseQueue: DispatchQueue?, allowNilData: Bool, completion: @escaping (HTTPClientResponse) -> Void) {
+        if let response = onURLRequest[request.url!.absoluteString] {
+            completion(response)
+            return
+        }
         completion(response)
     }
 
     static func request(_ url: String, method: HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, responseQueue: DispatchQueue?, allowNilData: Bool, completion: @escaping (HTTPClientResponse) -> Void) {
+        if let response = onStringRequest[url] {
+            completion(response)
+            return
+        }
+        completion(response)
     }
 }
 
 class UBCampaignServiceMock: CampaignServiceProtocol {
 
-    var campaignsResponse: Cachable<[CampaignModel]>?
-    var targetingResponse: Cachable<TargetingOptionsModel>?
+    var campaignsJSONResponse: Cachable<[JSON]>?
+    var targetingResponse: [TargetingOptionsModel]?
     var campaignForm: FormModel?
     var onIncrementCampaign: ((String, Int) -> Void)?
-    var onGetTargeting: ((String) -> Void)?
+    var onGetTargeting: (([String]) -> Void)?
     var incrementCampaignSucceed = true
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
@@ -119,18 +140,18 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         }
     }
 
-    func getCampaigns(withAppID appID: String) -> Promise<Cachable<[CampaignModel]>> {
+    func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>> {
         return Promise { fulfill, reject in
-            if campaignsResponse != nil {
-                return fulfill(campaignsResponse!)
+            if campaignsJSONResponse != nil {
+                return fulfill(campaignsJSONResponse!)
             }
             reject(NSError(domain: "", code: 500, userInfo: nil))
         }
     }
 
-    func getTargeting(withID id: String) -> Promise<Cachable<TargetingOptionsModel>> {
+    func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
         return Promise { fulfill, reject in
-            onGetTargeting?(id)
+            onGetTargeting?(ids)
             if targetingResponse != nil {
                 return fulfill(targetingResponse!)
             }

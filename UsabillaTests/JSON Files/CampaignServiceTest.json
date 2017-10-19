@@ -1,0 +1,139 @@
+{
+    "campaigns": [
+                  {
+                  "id": "63f11920-4854-48df-83cc-e75d49449289",
+                  "name": "Campaign test staging1",
+                  "form_id": "9e2f845c-24db-4638-a642-365b77b31cc5",
+                  "targeting_options_id": "d314a564-e046-4ff2-a688-b8e6e32af1b3",
+                  "app_ids": [
+                              "d5af199e-9b6e-4397-838e-6e26691e80c3"
+                              ],
+                  "status": "inactive",
+                  "created_at": "2017-07-17T13:25:33+00:00",
+                  "last_modified_at": "2017-10-03T06:22:38+00:00"
+                  },
+                  {
+                  "id": "269d0962-4034-497c-b47b-d7f7a0f04e15",
+                  "name": "Campaign test staging2",
+                  "form_id": "99086549-f7fa-4b55-a0a3-e2610a33bc65",
+                  "targeting_options_id": "6ad0b9e2-d336-4c74-b72b-bc6d90dc8258",
+                  "app_ids": [
+                              "d5af199e-9b6e-4397-838e-6e26691e80c3"
+                              ],
+                  "status": "inactive",
+                  "created_at": "2017-07-17T13:32:23+00:00",
+                  "last_modified_at": "2017-10-03T06:22:39+00:00"
+                  },
+                  {
+                  "id": "37f0c0f8-c00b-405d-b0d6-4980fb186be2",
+                  "name": "Campaign test staging3",
+                  "form_id": "f9641d01-756c-441e-a2da-56daa149c4f5",
+                  "targeting_options_id": "b1ddd75c-0254-44df-b5a6-2b3d806fc140",
+                  "app_ids": [
+                              "d5af199e-9b6e-4397-838e-6e26691e80c3"
+                              ],
+                  "status": "inactive",
+                  "created_at": "2017-07-17T15:42:07+00:00",
+                  "last_modified_at": "2017-10-03T06:22:40+00:00"
+                  },
+                  {
+                  "id": "ab68e921-b254-45a9-bee4-947870e3efd7",
+                  "name": "Schiphol sample campaign1",
+                  "form_id": "a1ba84b3-bb7f-48b3-9aa8-5670f7682d72",
+                  "targeting_options_id": "7a00a958-6e0e-4e88-8471-64f5897ea626",
+                  "app_ids": [
+                              "d5af199e-9b6e-4397-838e-6e26691e80c3"
+                              ],
+                  "status": "inactive",
+                  "created_at": "2017-07-17T16:21:55+00:00",
+                  "last_modified_at": "2017-07-25T15:12:29+00:00"
+                  }
+                  ],
+    "targetings": [
+                   {
+                   "id": "6ad0b9e2-d336-4c74-b72b-bc6d90dc8258",
+                   "last_modified_at": "2017-07-25T15:12:29+00:00",
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 3,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "tjerk2"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   },
+                   {
+                   "id": "7a00a958-6e0e-4e88-8471-64f5897ea626",
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 1,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "schiphol1"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   },
+                   {
+                   "id": "b1ddd75c-0254-44df-b5a6-2b3d806fc140",
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 3,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "tjerk3"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   },
+                   {
+                   "id": "d314a564-e046-4ff2-a688-b8e6e32af1b3",
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 3,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "tjerk1"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   }
+                   ]
+}

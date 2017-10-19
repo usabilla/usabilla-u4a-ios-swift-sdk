@@ -394,16 +394,9 @@ class CampaignManagerTests: QuickSpec {
 
             context("when resetting the campaigns data") {
                 it("should reset the data correctly") {
-                    CampaignWindow.shared.campaignDidEnd()
-                    storeMock.getCampaignFormHasBeenCalled = false
-                    storeMock.form = nil
-                    Usabilla.canDisplayCampaigns = true
-                    campaignServiceMock = UBCampaignServiceMock()
-
                     let cmp1 = CampaignModel(id: "cmp1", targeting: UBMock.mockTargeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
                     let cmp2 = CampaignModel(id: "cmp2", targeting: UBMock.mockTargeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
                     let campaigns = [cmp1, cmp2]
-                    campaignServiceMock.campaignsResponse = campaigns
                     campaigns.forEach {
                         UBCampaignDAO.shared.create($0)
                     }
