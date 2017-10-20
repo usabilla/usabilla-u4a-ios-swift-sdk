@@ -127,30 +127,12 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             self.pickImageFromGallery()
         }
 
-        SwiftEventBus.onMainThread(self, name: "pickerButtonTapped") { sender in
+        SwiftEventBus.onMainThread(self, name: "iPadPickerButtonTapped") { sender in
             if DeviceInfo.isIPad() {
-                // Create picker ipad component
                 guard let pickerComponent = sender.object as? PickerComponent else {
                     return
                 }
-                let picker = PickerIPadComponent(viewModel: pickerComponent.viewModel)
-                picker.delegate = pickerComponent
-
-                // Add picker component in a container view controller
-                let pickerController = UIViewController()
-                pickerController.view = picker
-                pickerController.modalPresentationStyle = .popover
-                pickerController.preferredContentSize = CGSize(width: 274, height: 200)
-
-                // Create the PopOverPresenter
-                let popController = pickerController.popoverPresentationController
-                popController?.permittedArrowDirections = .up
-                popController?.delegate = self
-                popController?.sourceView = pickerComponent.topBorder
-                popController?.sourceRect = CGRect(x: 134, y: 4, width: 0, height: 0)
-
-                // present the pop over
-                self.present(pickerController, animated: true, completion: nil)
+                self.showPickerViewForiPad(pickerComponent: pickerComponent)
                 return
             }
         }
@@ -164,6 +146,28 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             self.tableView.setContentOffset(lastScrollOffset, animated: false)
         }
 
+    }
+
+    func showPickerViewForiPad(pickerComponent: PickerComponent) {
+        // Create picker ipad component
+        let picker = PickerIPadComponent(viewModel: pickerComponent.viewModel)
+        picker.delegate = pickerComponent
+
+        // Add picker component in a container view controller
+        let pickerController = UIViewController()
+        pickerController.view = picker
+        pickerController.modalPresentationStyle = .popover
+        pickerController.preferredContentSize = CGSize(width: 274, height: 200)
+
+        // Create the PopOverPresenter
+        let popController = pickerController.popoverPresentationController
+        popController?.permittedArrowDirections = .up
+        popController?.delegate = self
+        popController?.sourceView = pickerComponent.topBorder
+        popController?.sourceRect = CGRect(x: 134, y: 4, width: 0, height: 0)
+
+        // present the pop over
+        self.present(pickerController, animated: true, completion: nil)
     }
 
     func tableViewContentHeight() -> CGFloat {

@@ -12,7 +12,7 @@ import UIKit
 extension UIImageView {
 
     func tintWithColor(color: UIColor) {
-            self.image = self.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            self.tintColor = color
+        self.image = self.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        self.tintColor = color
     }
 }

@@ -96,14 +96,15 @@ class PickerComponent: PickerParentComponent {
 
     func configure() {
         bottomBorder.isHidden = true
+        if let buttonTitle = viewModel.pickerButtonTitle {
+            pickerButton.setTitle(buttonTitle, for: .normal)
+        }
 
         guard !DeviceInfo.isIPad() else {
             picker.isHidden = true
             return
         }
-        if let buttonTitle = viewModel.pickerButtonTitle {
-            pickerButton.setTitle(buttonTitle, for: .normal)
-        }
+
         if let selectedIndex = viewModel.indexOfSelectedOption {
             picker.selectRow(selectedIndex, inComponent: 0, animated: false)
         }
@@ -111,7 +112,7 @@ class PickerComponent: PickerParentComponent {
 
     func pickerButtonClicked() {
         if DeviceInfo.isIPad() {
-            SwiftEventBus.postToMainThread("pickerButtonTapped", sender: self)
+            SwiftEventBus.postToMainThread("iPadPickerButtonTapped", sender: self)
             return
         }
         viewModel.expanded = !viewModel.expanded
