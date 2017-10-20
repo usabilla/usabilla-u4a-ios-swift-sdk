@@ -35,6 +35,7 @@ class UsabillaInternal {
     private static var formService: FormService?
     private static var formStore: FormStore?
     private static var submissionManager: SubmissionManager?
+    private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
 
     class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event, customVariables: customVariables)
@@ -72,7 +73,7 @@ class UsabillaInternal {
 
     class func preloadForms(withFormIDs formIDs: [String]) {
         guard let formStore = formStore else {
-            print("UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational.")
+            print(errorSDKNotInitialized)
             return
         }
 
@@ -84,12 +85,8 @@ class UsabillaInternal {
 
         class func formViewController(forFormData data: Data) -> UINavigationController? {
             let json = JSON.init(data: data)
-            guard let submissionManager = submissionManager else { return nil }
             let form = FormModel(json: json, id: "", screenshot: nil)
-            let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
-            let navigationController = UINavigationController(rootViewController: formController)
-            formController.delegate = PassiveFormController(submissionManager: submissionManager)
-            return navigationController
+            return viewForForm(form: form)
         }
 
         class func displayCampaignForm(withID formID: String, completion: ((UBCampaignFormDisplayError?) -> Void)? = nil) {
@@ -109,11 +106,20 @@ class UsabillaInternal {
 
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
         guard let formStore = formStore else {
-            print("UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational.")
+            print(errorSDKNotInitialized)
             return
         }
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme).then { form in
-            viewForForm(form: form)
+            guard let navigationController = viewForForm(form: form) else {
+                DispatchQueue.main.async {
+                    delegate?.formDidFailLoading(error: UBError(description: errorSDKNotInitialized))
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                delegate?.formDidLoad(form: navigationController)
+            }
+
         }.catch { _ in
             DispatchQueue.main.async {
                 delegate?.formDidFailLoading(error: UBError(description: "Unable to load the form"))
@@ -121,14 +127,18 @@ class UsabillaInternal {
         }
     }
 
-    private static func viewForForm(form: FormModel) {
-        guard let submissionManager = submissionManager else { return }
+    private static func viewForForm(form: FormModel) -> UINavigationController? {
+        guard let submissionManager = submissionManager else {
+            print(errorSDKNotInitialized)
+            return nil
+        }
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UINavigationController(rootViewController: formController)
-        formController.delegate = PassiveFormController(submissionManager: submissionManager)
-        DispatchQueue.main.async {
-            delegate?.formDidLoad(form: navigationController)
+        if DeviceInfo.isIPad() {
+            navigationController.modalPresentationStyle = .formSheet
         }
+        formController.delegate = PassiveFormController(submissionManager: submissionManager)
+        return navigationController
     }
 
     class func takeScreenshot(_ view: UIView) -> UIImage? {

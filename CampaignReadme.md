@@ -23,6 +23,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Campaign results](#campaign-results)
 - [Passive feedback](#passive-feedback)
     - [Loading a form](#loading-a-form)
+    - [iPad display](#ipad-display)
     - [Adding a screenshot](#adding-a-screenshot)
     - [Feedback submission callback](#feedback-submission-callback)
     - [Handle manual dismiss](#handle-manual-dismiss)
@@ -243,6 +244,17 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 }
 ```
 
+### iPad display
+
+On iPad, the Passive feedback form has a presentation style set to [formSheet](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/1621491-formsheet) by default.
+If you want to override this behavior and have a fullscreen display you can achieve it with:
+
+```swift
+func formDidLoad(form: UINavigationController) {
+    form.modalPresentationStyle = .fullScreen
+    present(form, animated: true, completion: nil)
+}
+```
 
 ### Adding a screenshot
 
