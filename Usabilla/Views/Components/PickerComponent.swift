@@ -97,6 +97,10 @@ class PickerComponent: PickerParentComponent {
     func configure() {
         bottomBorder.isHidden = true
 
+        guard !DeviceInfo.isIPad() else {
+            picker.isHidden = true
+            return
+        }
         if let buttonTitle = viewModel.pickerButtonTitle {
             pickerButton.setTitle(buttonTitle, for: .normal)
         }
