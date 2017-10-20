@@ -13,6 +13,7 @@ class EmailComponent: BaseTextFieldComponent<EmailComponentViewModel> {
     override func build() {
         super.build()
         textField.keyboardType = .emailAddress
+        textField.autocapitalizationType = .none
     }
 
     func updateBorderColor(email: String?) {
