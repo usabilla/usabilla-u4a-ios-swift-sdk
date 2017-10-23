@@ -28,7 +28,7 @@ class JumpRulesManyControls: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchEnvironment["scenario"] = "03_JumpRulesManyControls"
+        app.setup(type: .passiveForm, scenario: "03_JumpRulesManyControls")
         app.launch()
         moodButtons = app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .button)
     }

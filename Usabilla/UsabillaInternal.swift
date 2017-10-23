@@ -102,6 +102,16 @@ class UsabillaInternal {
                 completion?(.formFetchFailed)
             }
         }
+
+        class func displayCampaignForm(withData data: Data) {
+            let json = JSON.init(data: data)
+            guard json != JSON.null,
+                let campaignManager = campaignManager else {
+                return
+            }
+            let formModel = FormModel(json: json, id: "", screenshot: nil)
+            campaignManager.displayCampaignForm(formModel)
+        }
     #endif
 
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {

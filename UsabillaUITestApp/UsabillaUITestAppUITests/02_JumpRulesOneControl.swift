@@ -19,7 +19,7 @@ class JumpRulesOneControl: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchEnvironment["scenario"] = "02_JumpRulesOneControl"
+        app.setup(type: .passiveForm, scenario: "02_JumpRulesOneControl")
         app.launch()
         moodButtons = app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .button)
     }

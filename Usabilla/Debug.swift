@@ -35,6 +35,9 @@ import UIKit
         open class func displayCampaignForm(withID formID: String, completion: ((UBCampaignFormDisplayError?) -> Void)? = nil) {
             UsabillaInternal.displayCampaignForm(withID: formID, completion: completion)
         }
+        open class func displayCampaignForm(withData data: Data) {
+            UsabillaInternal.displayCampaignForm(withData: data)
+        }
     }
 
 #endif

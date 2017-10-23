@@ -15,25 +15,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    enum FormType: String {
+        case campaignForm
+        case passiveForm
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Usabilla.initialize(appID: nil)
+        Usabilla.initialize(appID: "8874466A-E523-4F36-9315-EF00E0E2343F")
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        var controller: UIViewController!
-
-        if let scenario = ProcessInfo.processInfo.environment["scenario"] {
-            // swiftlint:disable:next force_unwrapping
-            let path = Bundle(for: AppDelegate.self).path(forResource: scenario, ofType: "json")!
-            let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-            controller = Usabilla.formViewController(forFormData: data as Data)
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            controller = storyboard.instantiateInitialViewController()
+        let environment = ProcessInfo.processInfo.environment
+        guard let scenario = environment["scenario"],
+            let formTypeString = environment["formType"],
+            let type = FormType(rawValue: formTypeString) else {
+                loadMain()
+                return true
         }
 
-        self.window?.rootViewController = controller
-        self.window?.makeKeyAndVisible()
+        // swiftlint:disable:next force_unwrapping
+        let path = Bundle(for: AppDelegate.self).path(forResource: scenario, ofType: "json")!
+        let data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe) as Data
+
+        switch type {
+        case .passiveForm:
+            self.window?.rootViewController = Usabilla.formViewController(forFormData: data)
+            self.window?.makeKeyAndVisible()
+        case .campaignForm:
+            loadMain()
+            Usabilla.displayCampaignForm(withData: data)
+        }
+
         return true
+    }
+
+    func loadMain() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        self.window?.rootViewController = storyboard.instantiateInitialViewController()
+        self.window?.makeKeyAndVisible()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -19,7 +19,7 @@ class VisibilityControl: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchEnvironment["scenario"] = "04_VisibilityControl"
+        app.setup(type: .passiveForm, scenario: "04_VisibilityControl")
         app.launch()
 
         paragraph = app.tables.children(matching: .cell).element(boundBy: 2).children(matching: .textView).element

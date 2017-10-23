@@ -29,7 +29,7 @@ class FormAppearance: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchEnvironment["scenario"] = "01_FormAppearance"
+        app.setup(type: .passiveForm, scenario: "01_FormAppearance")
         app.launch()
     }
 
