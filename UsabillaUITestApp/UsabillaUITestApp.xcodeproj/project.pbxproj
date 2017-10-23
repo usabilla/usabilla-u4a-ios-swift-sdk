@@ -28,6 +28,7 @@
 		43F57A831F9E14A8005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F57A821F9E14A8005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.swift */; };
 		43F57A851F9E1831005BFA80 /* 08_BannerMoodJumpRuleToPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F57A841F9E1831005BFA80 /* 08_BannerMoodJumpRuleToPages.swift */; };
 		43F57A871F9E1CC9005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F57A861F9E1CC9005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.swift */; };
+		43F57A891F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F57A881F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift */; };
 		43F9516E1F01116500FE23F8 /* 02_JumpRulesOneControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */; };
 		43F9516F1F01116500FE23F8 /* 03_JumpRulesManyControls.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */; };
 		43F951701F01116500FE23F8 /* 04_VisibilityControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F951661F01116500FE23F8 /* 04_VisibilityControl.json */; };
@@ -87,6 +88,7 @@
 		43F57A821F9E14A8005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 07_BannerMoodNoJumpRulesNoPagesGoesToToast.swift; sourceTree = "<group>"; };
 		43F57A841F9E1831005BFA80 /* 08_BannerMoodJumpRuleToPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 08_BannerMoodJumpRuleToPages.swift; sourceTree = "<group>"; };
 		43F57A861F9E1CC9005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 09_BannerMoodJumpRulesNoPagesToToast.swift; sourceTree = "<group>"; };
+		43F57A881F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 10_BannerMoodJumpRulesPageGoesToToast.swift; sourceTree = "<group>"; };
 		43F951641F01116500FE23F8 /* 02_JumpRulesOneControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 02_JumpRulesOneControl.json; sourceTree = "<group>"; };
 		43F951651F01116500FE23F8 /* 03_JumpRulesManyControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 03_JumpRulesManyControls.json; sourceTree = "<group>"; };
 		43F951661F01116500FE23F8 /* 04_VisibilityControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 04_VisibilityControl.json; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				43F57A821F9E14A8005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.swift */,
 				43F57A841F9E1831005BFA80 /* 08_BannerMoodJumpRuleToPages.swift */,
 				43F57A861F9E1CC9005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.swift */,
+				43F57A881F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift */,
 			);
 			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
 				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
 				43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */,
+				43F57A891F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
