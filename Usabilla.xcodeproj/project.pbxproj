@@ -421,6 +421,8 @@
 		C5AD477C1F9F45A200FBAE7A /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
+		C5D1CE741F9E1963007B098E /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
+		C5D1CE751F9E1963007B098E /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
 		C5DC40861F7BDCAE00FA89B8 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
 		C5DC40A11F7BEA3D00FA89B8 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
 		C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */; };
@@ -699,6 +701,7 @@
 		C59F73BD1F97748200447B2C /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerIPadComponent.swift; sourceTree = "<group>"; };
 		C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerParentComponent.swift; sourceTree = "<group>"; };
+		C5D1CE731F9E1963007B098E /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShouldShowRequiredFieldHeader.json; sourceTree = "<group>"; };
 		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
@@ -1336,6 +1339,7 @@
 				C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */,
 				43552B231F8CE82500BE657A /* UIBarButtonItem.swift */,
 				C59F73BD1F97748200447B2C /* UIImageView.swift */,
+				C5D1CE731F9E1963007B098E /* UIFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1617,6 +1621,7 @@
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				431F6B041E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift in Sources */,
 				04DC25AE1E8BB33E002962A3 /* SequenceRule.swift in Sources */,
+				C5D1CE741F9E1963007B098E /* UIFont.swift in Sources */,
 				0483EA0B1CDCE07B004EC234 /* EmailFieldModel.swift in Sources */,
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
@@ -1876,6 +1881,7 @@
 				43B04F511F1F7EEF0032F057 /* RootCellView.swift in Sources */,
 				43B04F521F1F7EEF0032F057 /* UBFeedbackRequestDAO.swift in Sources */,
 				43B04F531F1F7EEF0032F057 /* SequenceRule.swift in Sources */,
+				C5D1CE751F9E1963007B098E /* UIFont.swift in Sources */,
 				43B04F541F1F7EEF0032F057 /* EmailFieldModel.swift in Sources */,
 				43B04F551F1F7EEF0032F057 /* LocalisationHandler.swift in Sources */,
 				43B04F561F1F7EEF0032F057 /* NSLayoutConstraint.swift in Sources */,
