@@ -77,8 +77,8 @@ class RatingControl: UIControl {
     }
 
     private func internalInit() {
+        accessibilityIdentifier = "ratingControl"
         addSubview(contentView)
-
         contentView.isUserInteractionEnabled = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
