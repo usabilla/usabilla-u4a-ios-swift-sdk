@@ -418,6 +418,7 @@
 		C59F73BF1F97748200447B2C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73BD1F97748200447B2C /* UIImageView.swift */; };
 		C59F73ED1F98CBD000447B2C /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
 		C59F73EE1F98CBD000447B2C /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
+		C5AD477C1F9F45A200FBAE7A /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5DC40861F7BDCAE00FA89B8 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
@@ -1879,6 +1880,7 @@
 				43B04F551F1F7EEF0032F057 /* LocalisationHandler.swift in Sources */,
 				43B04F561F1F7EEF0032F057 /* NSLayoutConstraint.swift in Sources */,
 				43B04F571F1F7EEF0032F057 /* CheckBoxWithText.swift in Sources */,
+				C5AD477C1F9F45A200FBAE7A /* TargetingOptionsModel.swift in Sources */,
 				43B04F581F1F7EEF0032F057 /* CampaignSubmissionRequestManager.swift in Sources */,
 				43B04F591F1F7EEF0032F057 /* MoodComponent.swift in Sources */,
 				43B04F5A1F1F7EEF0032F057 /* UBFormViewModel.swift in Sources */,
