@@ -13,6 +13,9 @@ class UBToast: UIView {
 
     private let opacity: CGFloat = 0.6
     private let margin: CGFloat = 18
+    private var widthConstraint: NSLayoutConstraint?
+    private var bottomConstraint: NSLayoutConstraint?
+
     var duration: Int = 2
 
     var label: UILabel!
@@ -69,8 +72,8 @@ class UBToast: UIView {
         alpha = 0
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: delegate.view.centerXAnchor).activate()
-        widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor, constant: -2 * margin).activate()
-        bottomAnchor.constraint(equalTo: delegate.view.bottomAnchor, constant: -margin).activate()
+        widthConstraint = widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor).activate()
+        bottomConstraint = bottomAnchor.constraint(equalTo: delegate.view.bottomAnchor).activate()
 
         UIView.animate(withDuration: 0.33, delay: 0.5, options: .curveEaseOut, animations: {
             self.alpha = 1
@@ -88,5 +91,11 @@ class UBToast: UIView {
                 completion?()
             })
         }
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        widthConstraint?.constant = -(2 * margin) - UIView.safeAreaEdgeInsets.left - UIView.safeAreaEdgeInsets.right
+        bottomConstraint?.constant = -margin - UIView.safeAreaEdgeInsets.bottom
     }
 }

@@ -38,6 +38,10 @@ class UBIntroOutroView: UIView {
     var buttonsStackViewBottomContraint: NSLayoutConstraint?
     var titleTopConstraint: NSLayoutConstraint!
 
+    var wrapper: UIView!
+    var wrapperLeftConstraint: NSLayoutConstraint?
+    var wrapperRightConstraint: NSLayoutConstraint?
+
     // constants
     let sidesMargin: CGFloat = 16
     let outsideVerticalMargin: CGFloat = 20
@@ -51,6 +55,7 @@ class UBIntroOutroView: UIView {
         self.viewModel = viewModel
         super.init(frame: CGRect.zero)
 
+        setupWrapper()
         setupTitle()
         setupComponent()
         setupButtons()
@@ -77,25 +82,42 @@ class UBIntroOutroView: UIView {
     private func updateContinueButton() {
         continueButton?.isEnabled = viewModel.canContinue
     }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        wrapperRightConstraint?.constant = -UIView.safeAreaEdgeInsets.right
+        wrapperLeftConstraint?.constant = UIView.safeAreaEdgeInsets.left
+    }
+
+    private func setupWrapper() {
+        wrapper = UIView()
+        wrapper.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(wrapper)
+        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+        wrapper.topAnchor.constraint(equalTo: topAnchor).activate()
+        wrapperLeftConstraint = wrapper.leftAnchor.constraint(equalTo: leftAnchor).activate()
+        wrapperRightConstraint = wrapper.rightAnchor.constraint(equalTo: rightAnchor).activate()
+    }
+
     private func setupTitle() {
         titleLabel = UILabel()
         titleLabel.text = viewModel.title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 0
-        addSubview(titleLabel)
-        titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: outsideVerticalMargin).activate()
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).activate()
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).activate()
+        wrapper.addSubview(titleLabel)
+        titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: outsideVerticalMargin).activate()
+        titleLabel.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: sidesMargin).activate()
+        titleLabel.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -sidesMargin).activate()
     }
 
     private func setupButtons() {
         buttonsStackView = UIStackView()
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         //swiftlint:disable:next force_unwrapping
-        addSubview(buttonsStackView!)
-        buttonsStackView.leftAnchor.constraint(equalTo: leftAnchor).activate()
-        buttonsStackView.rightAnchor.constraint(equalTo: rightAnchor).activate()
-        buttonsStackViewBottomContraint = buttonsStackView?.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
+        wrapper.addSubview(buttonsStackView!)
+        buttonsStackView.leftAnchor.constraint(equalTo: wrapper.leftAnchor).activate()
+        buttonsStackView.rightAnchor.constraint(equalTo: wrapper.rightAnchor).activate()
+        buttonsStackViewBottomContraint = buttonsStackView?.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor).activate()
         buttonsStackView.heightAnchor.constraint(equalToConstant: 44).activate()
         buttonsStackView.axis = .horizontal
         buttonsStackView.distribution = .fillEqually
@@ -125,10 +147,10 @@ class UBIntroOutroView: UIView {
                 componentView?.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
             }
             //swiftlint:disable:next force_unwrapping
-            addSubview(componentView!)
+            wrapper.addSubview(componentView!)
             componentView?.translatesAutoresizingMaskIntoConstraints = false
-            componentView?.leftAnchor.constraint(equalTo: leftAnchor, constant: sidesMargin).isActive = true
-            componentView?.rightAnchor.constraint(equalTo: rightAnchor, constant: -sidesMargin).isActive = true
+            componentView?.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: sidesMargin).isActive = true
+            componentView?.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -sidesMargin).isActive = true
             componentView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: marginBetweenComponentAndTitle).isActive = true
         }
     }

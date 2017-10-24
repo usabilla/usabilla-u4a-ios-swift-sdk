@@ -24,8 +24,33 @@ class CampaignViewController: UIViewController {
     var backgroundLayer: UIView?
     var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
+    var toast: UBToast?
 
+    var modalTopConstraint: NSLayoutConstraint?
+    var modalRightConstraint: NSLayoutConstraint?
     var modalBottomConstraint: NSLayoutConstraint?
+    var modalLeftConstraint: NSLayoutConstraint?
+
+    private var iphoneXModalsMargin: UIEdgeInsets {
+        var margins = UIView.safeAreaEdgeInsets
+        switch UIDevice.current.orientation {
+        case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
+            margins.top -= 56 - topMargin // 88 - 56 = iphone X notch height
+        case .landscapeLeft, .landscapeRight:
+            break
+        }
+        margins.left += sideMargin
+        margins.right += sideMargin
+        margins.bottom += sideMargin
+        return margins
+    }
+
+    private var modalsMargin: UIEdgeInsets {
+        if DeviceInfo.isIphoneX() {
+            return iphoneXModalsMargin
+        }
+        return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
+    }
 
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
@@ -141,11 +166,12 @@ class CampaignViewController: UIViewController {
         base.view.layer.masksToBounds = true
 
         base.view.translatesAutoresizingMaskIntoConstraints = false
-        base.view.topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin).activate()
-        base.view.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).activate()
-        base.view.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).activate()
-        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -sideMargin).activate()
 
+        modalTopConstraint = base.view.topAnchor.constraint(equalTo: view.topAnchor).activate()
+        modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
+        modalRightConstraint = base.view.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
+        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
+        updateModalConstraints()
         createBackgroundLayer()
 
         base.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
@@ -186,8 +212,8 @@ class CampaignViewController: UIViewController {
 
     func showToast() {
         let thankYoutext = viewModel.toastPageViewModel?.text
-        let toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
-        toast.show {
+        toast = UBToast(delegate: self, text: thankYoutext, duration: 2)
+        toast?.show {
             self.closeCampaign()
         }
     }
@@ -196,6 +222,19 @@ class CampaignViewController: UIViewController {
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
         UsabillaInternal.delegate?.campaignDidClose(withFeedbackResult: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
         self.delegate?.campaignDidEnd()
+    }
+
+    private func updateModalConstraints() {
+        modalTopConstraint?.constant = modalsMargin.top
+        modalLeftConstraint?.constant = modalsMargin.left
+        modalRightConstraint?.constant = -modalsMargin.right
+        modalBottomConstraint?.constant = -modalsMargin.bottom
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        introView?.setNeedsUpdateConstraints()
+        toast?.setNeedsUpdateConstraints()
+        updateModalConstraints()
     }
 }
 

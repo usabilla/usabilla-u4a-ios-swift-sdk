@@ -16,7 +16,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     private var kWidthTablet: CGFloat = 350.0
     private var kRightOffsetTablet: CGFloat = -25.0
-
+    private var kShadowOffset: CGFloat = 5.0
     var offset: CGFloat = 0.0
 
     func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
@@ -26,8 +26,10 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         UIBarButtonItem.setTextForegroundColor(color: view.viewModel.barButtonItemColor)
 
         view.translatesAutoresizingMaskIntoConstraints = false
+
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
         bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
+
         if DeviceInfo.isIPad() {
             view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
             view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
@@ -38,8 +40,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         inView.layoutIfNeeded()
 
         offset = view.bounds.height
+
         topConstraint.constant = -offset
-        bottomConstraint.constant = offset - UBBannerDisplay.kBannerExtraSpace
+        bottomConstraint.constant = offset
 
         // activate bottom or top constraint based on banner position
         topConstraint.isActive = style != .bannerBottom
@@ -47,9 +50,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         inView.layoutIfNeeded()
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
 
-        UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.40, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.topConstraint.constant = -UBBannerDisplay.kBannerExtraSpace
-            self.bottomConstraint.constant = UBBannerDisplay.kBannerExtraSpace
+            self.bottomConstraint.constant = UBBannerDisplay.kBannerExtraSpace - UIView.safeAreaEdgeInsets.bottom
             inView.layoutIfNeeded()
         })
     }
@@ -58,8 +61,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         UIView.animate(withDuration: 0.3, animations: {
             animations?()
-            self.topConstraint.constant = -self.offset
-            self.bottomConstraint.constant = self.offset
+            self.topConstraint.constant = -self.offset - self.kShadowOffset
+            self.bottomConstraint.constant = self.offset + self.kShadowOffset
+
             inView.layoutIfNeeded()
             // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { _ in

@@ -15,6 +15,11 @@ class DeviceInfo {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
 
+    class func isIphoneX() -> Bool {
+        let deviceType = UIDevice.current.modelName
+        return deviceType.range(of: "iPhone10,3") != nil || deviceType.range(of: "iPhone10,6") != nil || UIScreen.main.nativeBounds.height == 2436
+    }
+
     class func isJailbroken() -> Bool {
         let str = "Jailbreak test string"
         do {

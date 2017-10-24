@@ -11,6 +11,23 @@ import UIKit
 
 extension UIView {
 
+    class var safeAreaEdgeInsets: UIEdgeInsets {
+        guard DeviceInfo.isIphoneX() else {
+            switch UIDevice.current.orientation {
+            case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
+                return UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+            case .landscapeLeft, .landscapeRight:
+                return UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+            }
+        }
+        switch UIDevice.current.orientation {
+        case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
+            return UIEdgeInsets(top: 88.0, left: 0, bottom: 34.0, right: 0)
+        case .landscapeLeft, .landscapeRight:
+            return UIEdgeInsets(top: 32.0, left: 44.0, bottom: 21.0, right: 44.0)
+        }
+    }
+
     /// Add array of subviews to view.
     ///
     /// - Parameter subviews: array of subviews to add to self.

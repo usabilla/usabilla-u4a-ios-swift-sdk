@@ -15,7 +15,7 @@ protocol UBIntroOutroDisplay {
 
 class UBBannerDisplay: UBIntroOutroDisplay {
     private static let topBannerMargin: CGFloat = 10
-    static let kBannerExtraSpace: CGFloat = 100
+    static let kBannerExtraSpace: CGFloat = 120
 
     static func build(view: UBIntroOutroView) {
         view.buttonsStackView?.axis = .horizontal
@@ -49,13 +49,12 @@ class UBBannerDisplay: UBIntroOutroDisplay {
     static private func buildHorizontaleLine(_ view: UBIntroOutroView) {
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
-        view.buttonsStackView?.addSubview(line)
+        view.addSubview(line)
         line.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        line.rightAnchor.constraint(equalTo: view.buttonsStackView.rightAnchor).activate()
-        line.leftAnchor.constraint(equalTo: view.buttonsStackView.leftAnchor).activate()
-        line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor, constant: 0.0).activate()
+        line.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
+        line.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
+        line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor).activate()
         line.heightAnchor.constraint(equalToConstant: 1.0).activate()
-        view.buttonsStackView?.clipsToBounds = true
     }
 
     static private func configureWithContinueButton(_ view: UBIntroOutroView) {
