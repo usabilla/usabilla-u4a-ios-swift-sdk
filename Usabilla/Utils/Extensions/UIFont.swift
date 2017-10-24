@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-enum FontWeight {
-    case regular
-    case semiBold
-}
-
 extension UIFont {
+    enum FontWeight {
+        case regular
+        case semiBold
+    }
+
     class func uSystemFont(ofSize: CGFloat, weight: FontWeight) -> UIFont {
         if #available(iOS 11, *) {
             // swiftlint:disable force_unwrapping
