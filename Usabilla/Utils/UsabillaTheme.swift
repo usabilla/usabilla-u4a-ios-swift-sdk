@@ -63,7 +63,7 @@ public struct UsabillaTheme {
                 return font.withSize(textSize)
             }
 
-            return UIFont.uSystemFont(ofSize: textSize, weight: UIFontWeightRegular)
+            return UIFont.uSystemFont(ofSize: textSize, weight: .regular)
         }
 
         var boldFont: UIFont {
@@ -74,7 +74,7 @@ public struct UsabillaTheme {
                 return font.withSize(titleSize)
             }
 
-            return UIFont.uSystemFont(ofSize: textSize, weight: UIFontWeightSemibold)
+            return UIFont.uSystemFont(ofSize: textSize, weight: .semiBold)
         }
 
         init() {
