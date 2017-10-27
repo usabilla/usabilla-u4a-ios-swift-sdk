@@ -10,8 +10,8 @@ import XCTest
 
 class BannerNPSJumpRulesGoesToPagesAndToasts: XCTestCase {
 
-    let app = XCUIApplication()
-    let npsComponent = BannerView.nps
+    let app = Application.xcApp
+    let bannerView = BannerViewNPS()
 
     override func setUp() {
         super.setUp()
@@ -26,57 +26,57 @@ class BannerNPSJumpRulesGoesToPagesAndToasts: XCTestCase {
     }
 
     func testNPS0GoestToPage2() {
-        BannerView.selectNPS(withValue: 0)
+        bannerView.nps.select(value: 0)
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
     func testNPS1GoestToPage3() {
-        BannerView.selectNPS(withValue: 0.2)
-        XCTAssert(getTextViewText() == "Page 3", "It should display 'Page 2'")
+        bannerView.nps.select(value: 0.2)
+        XCTAssert(getTextViewText() == "Page 3", "It should display 'Page 3'")
     }
 
     func testNPS2GoestToToast1() {
-        BannerView.selectNPS(withValue: 0.25)
+        bannerView.nps.select(value: 0.25)
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display the end page")
     }
 
     func testNPS3GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.35)
+        bannerView.nps.select(value: 0.35)
         XCTAssert(app.staticTexts["Thanks!"].exists, "It should display the end page")
     }
 
     func testNPS4GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.45)
+        bannerView.nps.select(value: 0.45)
         XCTAssert(app.staticTexts["Thanks!"].exists, "It should display the end page")
     }
 
     func testNPS5GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.5)
+        bannerView.nps.select(value: 0.5)
         XCTAssert(app.staticTexts["Thanks!"].exists, "It should display the end page")
     }
 
     func testNPS6GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.6)
+        bannerView.nps.select(value: 0.6)
         XCTAssert(app.staticTexts["Thanks!"].exists, "It should display the end page")
     }
 
     func testNPS7GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.67)
-        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 2'")
+        bannerView.nps.select(value: 0.67)
+        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testNPS8GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.77)
-        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 2'")
+        bannerView.nps.select(value: 0.77)
+        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testNPS9GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.85)
-        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 2'")
+        bannerView.nps.select(value: 0.85)
+        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testNPS10GoestToToast2() {
-        BannerView.selectNPS(withValue: 0.95)
-        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 2'")
+        bannerView.nps.select(value: 0.95)
+        XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 }
