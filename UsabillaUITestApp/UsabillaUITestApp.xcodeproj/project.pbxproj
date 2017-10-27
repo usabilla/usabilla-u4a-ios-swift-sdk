@@ -35,6 +35,7 @@
 		43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F951761F0111F000FE23F8 /* 02_JumpRulesOneControl.swift */; };
 		43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9517C1F01633300FE23F8 /* 03_JumpRulesManyControls.swift */; };
 		43F9517F1F024EAF00FE23F8 /* 04_VisibilityControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9517E1F024EAF00FE23F8 /* 04_VisibilityControl.swift */; };
+		C538939B1FA35A8F009941E8 /* UBXCScenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = C538939A1FA35A8F009941E8 /* UBXCScenario.swift */; };
 		C555E9A01EE0120900F84B51 /* 01_FormAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E99F1EE0120900F84B51 /* 01_FormAppearance.swift */; };
 		C58489B51FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58489B41FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift */; };
 		C58489B71FA0CE8900DEC2F1 /* UBComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58489B61FA0CE8900DEC2F1 /* UBComponents.swift */; };
@@ -98,6 +99,7 @@
 		43F951761F0111F000FE23F8 /* 02_JumpRulesOneControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 02_JumpRulesOneControl.swift; sourceTree = "<group>"; };
 		43F9517C1F01633300FE23F8 /* 03_JumpRulesManyControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 03_JumpRulesManyControls.swift; sourceTree = "<group>"; };
 		43F9517E1F024EAF00FE23F8 /* 04_VisibilityControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 04_VisibilityControl.swift; sourceTree = "<group>"; };
+		C538939A1FA35A8F009941E8 /* UBXCScenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBXCScenario.swift; sourceTree = "<group>"; };
 		C555E99F1EE0120900F84B51 /* 01_FormAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 01_FormAppearance.swift; sourceTree = "<group>"; };
 		C58489B31FA0CBD600DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 11_BannerNPSJumpRulesGoesToPagesAndToasts.json; sourceTree = "<group>"; };
 		C58489B41FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				438E37341F7BC28A00FA61FE /* MainScreen.swift */,
 				43F57A7A1F9DEE23005BFA80 /* TestSetup.swift */,
 				C58489B61FA0CE8900DEC2F1 /* UBComponents.swift */,
+				C538939A1FA35A8F009941E8 /* UBXCScenario.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
 				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
 				C58489B51FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift in Sources */,
+				C538939B1FA35A8F009941E8 /* UBXCScenario.swift in Sources */,
 				43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */,
 				43F57A891F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift in Sources */,
 			);

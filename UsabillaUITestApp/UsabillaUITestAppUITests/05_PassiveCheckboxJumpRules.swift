@@ -8,27 +8,14 @@
 
 import XCTest
 
-class PassiveCheckboxJumpRules: XCTestCase {
+class PassiveCheckboxJumpRules: UBXCScenario {
 
-    let app = XCUIApplication()
-    var moodButtons: XCUIElementQuery!
-
-    private func selectMood(atIndex index: UInt) {
-        moodButtons.element(boundBy: index).tap()
-    }
-
-    private func getTextViewText() -> String {
-        let textView = app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .textView).element
-        return textView.value as! String
-    }
+    let moodComponent = MoodComponent()
 
     override func setUp() {
+        scenario = "05_PassiveCheckboxJumpRules"
         super.setUp()
-        continueAfterFailure = false
-        app.setup(type: .passiveForm, scenario: "05_PassiveCheckboxJumpRules")
-        app.launch()
-        moodButtons = app.tables.children(matching: .cell).element(boundBy: 0).children(matching: .button)
-        selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1)
     }
 
     func testOption1GoestToPage1() {

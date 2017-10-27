@@ -23,7 +23,18 @@ struct BannerViewNPS {
 struct NPSComponent {
     let nps = Application.xcApp.otherElements["Select a score"]
 
-    func select(value: CGFloat) {
-        nps.adjust(toNormalizedSliderValue: value)
+    // selects an NPS value
+    func select(number: Int) {
+        let floatValue = CGFloat(number) / 11.0 + 0.05
+        nps.adjust(toNormalizedSliderValue: floatValue)
+    }
+}
+
+// Mood Component
+struct MoodComponent {
+    let mood = Application.xcApp.otherElements["ratingControl"].children(matching: .other).element.children(matching: .button)
+
+    func selectMood(atIndex index: UInt) {
+        mood.element(boundBy: index).tap()
     }
 }

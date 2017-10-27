@@ -8,22 +8,15 @@
 
 import XCTest
 
-class BannerMoodJumpRulesPageGoesToToast: XCTestCase {
+class BannerMoodJumpRulesPageGoesToToast: UBXCScenario {
 
-    let app = XCUIApplication()
-    var moodButtons: XCUIElementQuery!
-
-    private func selectMood(atIndex index: UInt) {
-        moodButtons.element(boundBy: index).tap()
-    }
+    let moodComponent = MoodComponent()
 
     override func setUp() {
+        scenario = "10_BannerMoodJumpRulesPageGoesToToast"
         super.setUp()
-        continueAfterFailure = false
-        app.setup(type: .campaignForm, scenario: "10_BannerMoodJumpRulesPageGoesToToast")
-        app.launch()
-        moodButtons = app.otherElements["ratingControl"].children(matching: .other).element.children(matching: .button)
-        selectMood(atIndex: 0)
+        // select first index
+        moodComponent.selectMood(atIndex: 0)
     }
 
     func testOption1GoestToToast2() {

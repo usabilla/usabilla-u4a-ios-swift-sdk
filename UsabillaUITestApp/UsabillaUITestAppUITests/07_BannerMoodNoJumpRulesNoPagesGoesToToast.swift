@@ -8,45 +8,37 @@
 
 import XCTest
 
-class BannerMoodNoJumpRulesNoPagesGoesToToast: XCTestCase {
+class BannerMoodNoJumpRulesNoPagesGoesToToast: UBXCScenario {
 
-    let app = XCUIApplication()
-    var moodButtons: XCUIElementQuery!
-
-    private func selectMood(atIndex index: UInt) {
-        moodButtons.element(boundBy: index).tap()
-    }
+    let moodComponent = MoodComponent()
 
     override func setUp() {
+        scenario = "07_BannerMoodNoJumpRulesNoPagesGoesToToast"
         super.setUp()
-        continueAfterFailure = false
-        app.setup(type: .campaignForm, scenario: "07_BannerMoodNoJumpRulesNoPagesGoesToToast")
-        app.launch()
-        moodButtons = app.otherElements["ratingControl"].children(matching: .other).element.children(matching: .button)
     }
 
     func testMood1GoestToPage1() {
-        selectMood(atIndex: 0)
+        moodComponent.selectMood(atIndex: 0)
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood2GoestToPage1() {
-        selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1)
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood3GoestToPage1() {
-        selectMood(atIndex: 2)
+        moodComponent.selectMood(atIndex: 2)
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood4GoestToPage1() {
-        selectMood(atIndex: 3)
+        moodComponent.selectMood(atIndex: 3)
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood5GoestToPage1() {
-        selectMood(atIndex: 4)
+        moodComponent.selectMood(atIndex: 4)
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 }
