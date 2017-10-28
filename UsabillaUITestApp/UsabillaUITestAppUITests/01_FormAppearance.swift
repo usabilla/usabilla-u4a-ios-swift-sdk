@@ -50,7 +50,10 @@ class FormAppearance: XCTestCase {
         XCTAssert(next.exists, "Next button should exist")
 
         // form title exists
-        let navigationTitle = feedbackNavigationBar.staticTexts["Feedback"]
+        var navigationTitle = feedbackNavigationBar.staticTexts["Feedback"]
+        if #available(iOS 11.0, *) {
+            navigationTitle =  feedbackNavigationBar.otherElements["Feedback"]
+        }
         XCTAssert(navigationTitle.exists, "Navigation title should exist")
 
         // Usabilla logo is present
