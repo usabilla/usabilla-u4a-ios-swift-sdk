@@ -13,8 +13,7 @@ class BannerNPSJumpRulesGoesToPagesAndToasts: UBXCScenario {
     let bannerView = BannerViewNPS()
 
     override func setUp() {
-        scenario = "11_BannerNPSJumpRulesGoesToPagesAndToasts"
-        super.setUp(type: .campaignForm)
+        super.setUp(type: .campaignForm, scenario: "11_BannerNPSJumpRulesGoesToPagesAndToasts")
     }
 
     func testNPS0GoestToPage2() {
@@ -29,27 +28,27 @@ class BannerNPSJumpRulesGoesToPagesAndToasts: UBXCScenario {
 
     func testNPS2GoestToToast1() {
         bannerView.nps.select(number: 2)
-        XCTAssert(app.staticTexts["Toast 1"].exists, "It should display the end page")
+        XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testNPS3GoestToToast2() {
         bannerView.nps.select(number: 3)
-        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display the end page")
+        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testNPS4GoestToToast2() {
         bannerView.nps.select(number: 4)
-        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display the end page")
+        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testNPS5GoestToToast2() {
         bannerView.nps.select(number: 5)
-        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display the end page")
+        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testNPS6GoestToToast2() {
         bannerView.nps.select(number: 6)
-        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display the end page")
+        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testNPS7GoestToPage1() {

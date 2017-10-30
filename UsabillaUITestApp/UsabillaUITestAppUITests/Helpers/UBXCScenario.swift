@@ -10,12 +10,11 @@ import XCTest
 
 class UBXCScenario: XCTestCase {
     let app = Application.xcApp
-    var scenario: String?
 
-    func setUp(type: FormType) {
+    func setUp(type: FormType, scenario: String) {
         super.setUp()
         continueAfterFailure = false
-        app.setup(type: type, scenario: scenario!)
+        app.setup(type: type, scenario: scenario)
         app.launch()
     }
 

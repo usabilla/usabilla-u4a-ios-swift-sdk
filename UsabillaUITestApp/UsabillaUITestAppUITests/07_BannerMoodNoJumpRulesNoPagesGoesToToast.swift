@@ -13,8 +13,7 @@ class BannerMoodNoJumpRulesNoPagesGoesToToast: UBXCScenario {
     let moodComponent = MoodComponentCampaign()
 
     override func setUp() {
-        scenario = "07_BannerMoodNoJumpRulesNoPagesGoesToToast"
-        super.setUp(type: .campaignForm)
+        super.setUp(type: .campaignForm, scenario: "07_BannerMoodNoJumpRulesNoPagesGoesToToast")
     }
 
     func testMood1GoestToPage1() {

@@ -13,8 +13,7 @@ class PassiveCheckboxJumpRules: UBXCScenario {
     let moodComponent = MoodComponentPassive()
 
     override func setUp() {
-        scenario = "05_PassiveCheckboxJumpRules"
-        super.setUp(type: .passiveForm)
+        super.setUp(type: .passiveForm, scenario: "05_PassiveCheckboxJumpRules")
         moodComponent.selectMood(atIndex: 1)
     }
 
