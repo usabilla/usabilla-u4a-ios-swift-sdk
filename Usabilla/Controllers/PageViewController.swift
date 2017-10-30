@@ -14,6 +14,9 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
     var viewModel: PageViewModel!
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
+    private var constraintHeaderLeft: NSLayoutConstraint?
+    private var constraintHeaderRight: NSLayoutConstraint?
+
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
@@ -87,11 +90,12 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         if tableView.tableHeaderView == nil {
             tableView.tableHeaderView = headerView
             headerView.heightAnchor.constraint(equalToConstant: 40).activate()
-            headerView.leftAnchor.constraint(equalTo: tableView.leftAnchor).activate()
-            headerView.rightAnchor.constraint(equalTo: tableView.rightAnchor).activate()
+            constraintHeaderLeft = headerView.leftAnchor.constraint(equalTo: tableView.leftAnchor).activate()
+            constraintHeaderRight = headerView.rightAnchor.constraint(equalTo: tableView.rightAnchor).activate()
             requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).activate()
             requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor).activate()
             requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).activate()
+            updateHeaderMargins()
             tableView.tableHeaderView?.layoutIfNeeded()
         }
 
@@ -244,6 +248,16 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     static func openUsabilla() {
         // swiftlint:disable:next force_unwrapping
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
+    }
+
+    private func updateHeaderMargins() {
+        constraintHeaderLeft?.constant = UIView.safeAreaEdgeInsets.left
+        constraintHeaderRight?.constant = UIView.safeAreaEdgeInsets.right
+    }
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        updateHeaderMargins()
+        headerView.setNeedsUpdateConstraints()
     }
 }
 
