@@ -23,6 +23,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Campaign results](#campaign-results)
 - [Passive feedback](#passive-feedback)
     - [Loading a form](#loading-a-form)
+    - [Preloading a form](#preloading-a-form)
     - [iPad display](#ipad-display)
     - [Adding a screenshot](#adding-a-screenshot)
     - [Feedback submission callback](#feedback-submission-callback)
@@ -41,7 +42,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8+ or 9+
+- Xcode 8.3+ or 9+
 - Swift 3.1, 3.2, 4.0
 
 
@@ -65,10 +66,10 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 4.0.0'
+pod 'Usabilla', '~> 4.0'
 
 #Or by specifying a tag
-pod 'Usabilla', :tag=> 'v4.0.0'
+pod 'Usabilla', :tag=> 'v4.0.1'
 
 End
 ```
@@ -90,14 +91,20 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.1"
 ```
 
 ### Manual
 
-**PS:** Alternatively, you can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.
+You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
+
+In doing so, you might encounter a problem while submitting your app to the App Store. This is due to a [bug in the App Store](http://www.openradar.me/radar?id=6409498411401216) itself.     
+
+You can solve it by creating a new **Run Script Phase**, after the **Embed Frameworks** phase, in your app’s target’s **Build Phases**, and copying the script available [here](https://stackoverflow.com/a/30866648).
 
 ## Initialization
+
+We recommend initializing the SDK in the AppDelegate. However this is not mandatory, and the initialization can be performed elsewhere without any problem.    
 
 Import Usabilla SDK inside your **AppDelegate**.
 
@@ -114,7 +121,7 @@ The **initialize** method will take care of:
 * Fetching and updating all campaigns associated with the app ID.
 * Initializing a few background processes of the SDK.
 
->⚠️ **Failure to call this method before using the SDK will prevent it from running properly.**
+>⚠️ **Failure to call this method will prevent the SDK from running. No functionalities at all will be available.**
 
 ### DebugMode
 In order to have more insights from the SDK while developing, you can enable logging with:
@@ -243,6 +250,25 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 
 }
 ```
+
+
+### Preloading a form
+
+If you know you will need to display a feedback form when the user is offline, you can preload and cache it to make it available at any given moment.   
+To preload a form use
+```
+UsabillaFeedbackForm.preloadForms(withFormIDs: ["myId", "myOtherId"])
+```
+This will fetch the latest version of the form and cache it in the SDK.    
+ When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
+
+Feedback submitted while offline will be sent when connectivity is restored.
+
+If you wish, you can empty the cache using
+```
+UsabillaFeedbackForm.removeCachedForms()
+```
+
 
 ### iPad display
 
@@ -393,7 +419,7 @@ Custom variables are added as extra feedback data with every feedback item sent 
 
 ## App Store rating
 
-To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#submission-callback)
+To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#feedback-submission-callback) or the [Campaign submission callback](#campaign-submission-callback)
 
 In the Usabilla web interface, it is possible to define whether a specific feedback form should prompt the user for a rating.
 
