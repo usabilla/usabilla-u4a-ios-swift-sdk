@@ -31,10 +31,24 @@ struct NPSComponent {
 }
 
 // Mood Component
-struct MoodComponent {
-    let mood = Application.xcApp.otherElements["ratingControl"].children(matching: .other).element.children(matching: .button)
+class MoodComponent {
+    var mood: XCUIElementQuery? = nil
 
     func selectMood(atIndex index: UInt) {
-        mood.element(boundBy: index).tap()
+        mood?.element(boundBy: index).tap()
+    }
+}
+
+class MoodComponentCampaign: MoodComponent {
+    override init() {
+        super.init()
+        self.mood = Application.xcApp.otherElements["ratingControl"].children(matching: .other).element.children(matching: .button)
+    }
+}
+
+class MoodComponentPassive: MoodComponent {
+    override init() {
+        super.init()
+        self.mood = Application.xcApp.tables.children(matching: .cell).element(boundBy: 0).children(matching: .button)
     }
 }

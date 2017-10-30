@@ -14,7 +14,7 @@ class BannerNPSJumpRulesGoesToPagesAndToasts: UBXCScenario {
 
     override func setUp() {
         scenario = "11_BannerNPSJumpRulesGoesToPagesAndToasts"
-        super.setUp()
+        super.setUp(type: .campaignForm)
     }
 
     func testNPS0GoestToPage2() {
@@ -52,22 +52,22 @@ class BannerNPSJumpRulesGoesToPagesAndToasts: UBXCScenario {
         XCTAssert(app.staticTexts["Toast 2"].exists, "It should display the end page")
     }
 
-    func testNPS7GoestToToast2() {
+    func testNPS7GoestToPage1() {
         bannerView.nps.select(number: 7)
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
-    func testNPS8GoestToToast2() {
+    func testNPS8GoestToPage1() {
         bannerView.nps.select(number: 8)
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
-    func testNPS9GoestToToast2() {
+    func testNPS9GoestToPage1() {
         bannerView.nps.select(number: 9)
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
-    func testNPS10GoestToToast2() {
+    func testNPS10GoestToPage1() {
         bannerView.nps.select(number: 10)
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }

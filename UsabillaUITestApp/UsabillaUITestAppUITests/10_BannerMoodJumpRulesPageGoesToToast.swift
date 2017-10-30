@@ -10,11 +10,11 @@ import XCTest
 
 class BannerMoodJumpRulesPageGoesToToast: UBXCScenario {
 
-    let moodComponent = MoodComponent()
+    let moodComponent = MoodComponentCampaign()
 
     override func setUp() {
         scenario = "10_BannerMoodJumpRulesPageGoesToToast"
-        super.setUp()
+        super.setUp(type: .campaignForm)
         // select first index
         moodComponent.selectMood(atIndex: 0)
     }

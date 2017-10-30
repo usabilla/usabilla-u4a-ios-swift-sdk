@@ -12,10 +12,10 @@ class UBXCScenario: XCTestCase {
     let app = Application.xcApp
     var scenario: String?
 
-    override func setUp() {
+    func setUp(type: FormType) {
         super.setUp()
         continueAfterFailure = false
-        app.setup(type: .campaignForm, scenario: scenario!)
+        app.setup(type: type, scenario: scenario!)
         app.launch()
     }
 

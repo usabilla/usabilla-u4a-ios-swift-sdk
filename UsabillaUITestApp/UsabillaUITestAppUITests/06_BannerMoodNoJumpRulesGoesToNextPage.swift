@@ -10,11 +10,11 @@ import XCTest
 
 class BannerMoodNoJumpRulesGoesToNextPage: UBXCScenario {
 
-    let moodComponent = MoodComponent()
+    let moodComponent = MoodComponentCampaign()
 
     override func setUp() {
         scenario = "06_BannerMoodNoJumpRulesGoesToNextPage"
-        super.setUp()
+        super.setUp(type: .campaignForm)
     }
 
     func testMood1GoestToPage1() {

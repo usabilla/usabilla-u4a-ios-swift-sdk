@@ -9,13 +9,13 @@
 import XCTest
 @testable import UsabillaUITestApp
 
+enum FormType: String {
+    case campaignForm
+    case passiveForm
+}
+
 extension XCUIApplication {
     
-    enum FormType: String {
-        case campaignForm
-        case passiveForm
-    }
-
     func setup(type: FormType, scenario: String) {
         launchEnvironment["scenario"] = scenario
         launchEnvironment["formType"] = type.rawValue
