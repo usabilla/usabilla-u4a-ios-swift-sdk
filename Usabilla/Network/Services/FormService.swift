@@ -29,6 +29,11 @@ class FormService: FormServiceProtocol {
     func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
+            guard let request = request else {
+                PLog("❌ not a valid url parameter")
+                reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
+                return
+            }
             httpClient.request(request: request, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {
                     fulfill(FormModel(json: JSON(json), id: id, screenshot: screenShot))

@@ -56,6 +56,16 @@ class FormServiceTests: QuickSpec {
             }
 
             context("When calling getFormWithFormID", {
+                it("should succeed with a valid formID") {
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028022c145f4", screenShot: nil)
+                        promise.then { _ in
+                            done()
+                        }.catch { _ in
+                            fail("should not go here")
+                        }
+                    }
+                }
                 it("should fail with an invalid formID") {
                     waitUntil(timeout: 2.0) { done in
                         let promise = self.formService.getForm(withID: "thisIsNotAValidFormId", screenShot: nil)
@@ -66,13 +76,43 @@ class FormServiceTests: QuickSpec {
                         }
                     }
                 }
-                it("should succeed with a valid formID") {
+                it("should fail when formid param contains {") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withID: "583c0d8ea935028022c145f4", screenShot: nil)
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028{022c145f4", screenShot: nil)
                         promise.then { _ in
-                            done()
-                        }.catch { _ in
                             fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should fail when formid param contains \\") {
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028\\022c145f4", screenShot: nil)
+                        promise.then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should fail when formid param contains :") {
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = self.formService.getForm(withID: "583c0d8:ea935028022c145f4", screenShot: nil)
+                        promise.then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should fail when formid param contains }") {
+                    waitUntil(timeout: 2.0) { done in
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028022c}145f4", screenShot: nil)
+                        promise.then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }

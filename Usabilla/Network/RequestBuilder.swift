@@ -48,11 +48,11 @@ class RequestBuilder {
      - Parameter param: parameter to add at the end of the URL
      - Return: and URL with endpoint and parameter
      */
-    private class func buildURL(withBaseUrl baseUrl: String, withEndpoint endpoint: Endpoints, withURLParam param: String? = nil) -> URL {
+    private class func buildURL(withBaseUrl baseUrl: String, withEndpoint endpoint: Endpoints, withURLParam param: String? = nil) -> URL? {
         if let param = param {
-            return URL(string: baseUrl.appending(endpoint.rawValue).appending("/").appending(param))!
+            return URL(string: baseUrl.appending(endpoint.rawValue).appending("/").appending(param))
         }
-        return URL(string: baseUrl.appending(endpoint.rawValue))!
+        return URL(string: baseUrl.appending(endpoint.rawValue))
     }
 
     /**
@@ -63,8 +63,8 @@ class RequestBuilder {
      - Parameter query: query parameter to add at the end of the URL
      - Return: and URL with endpoint and parameter
      */
-    private class func buildURL(withBaseUrl baseUrl: String, withEndpoint endpoint: Endpoints, withQueryParams query: String) -> URL {
-        return URL(string: baseUrl.appending(endpoint.rawValue).appending(query))!
+    private class func buildURL(withBaseUrl baseUrl: String, withEndpoint endpoint: Endpoints, withQueryParams query: String) -> URL? {
+        return URL(string: baseUrl.appending(endpoint.rawValue).appending(query))
     }
 
     /**
@@ -75,11 +75,11 @@ class RequestBuilder {
      - Parameter param: parameter to add at the end of the URL
      - Return: and URL with endpoint and parameter
      */
-    private class func buildURL(withBaseUrl baseUrl: String, withString endpoint: String, withURLParam param: String? = nil) -> URL {
+    private class func buildURL(withBaseUrl baseUrl: String, withString endpoint: String, withURLParam param: String? = nil) -> URL? {
         if let param = param {
-            return URL(string: baseUrl.appending(endpoint).appending("/").appending(param))!
+            return URL(string: baseUrl.appending(endpoint).appending("/").appending(param))
         }
-        return URL(string: baseUrl.appending(endpoint))!
+        return URL(string: baseUrl.appending(endpoint))
     }
 
     fileprivate static func buildSharedRequest(_ url: URL, method: HTTPMethod) -> NSMutableURLRequest {
@@ -141,28 +141,36 @@ class RequestBuilder {
 
     // MARK: Reading
 
-    class func requestGetPassiveForm(withID id: String) -> URLRequest {
-        let url = buildURL(withBaseUrl: apiUrl, withEndpoint: .passiveForm, withURLParam: id)
+    class func requestGetPassiveForm(withID id: String) -> URLRequest? {
+        guard let url = buildURL(withBaseUrl: apiUrl, withEndpoint: .passiveForm, withURLParam: id) else {
+            return nil
+        }
         return requestForGet(withURL: url)
     }
 
-    class func requestGetCampaignForm(withID id: String) -> URLRequest {
-        let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .campaignForm, withURLParam: id)
+    class func requestGetCampaignForm(withID id: String) -> URLRequest? {
+        guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .campaignForm, withURLParam: id) else {
+            return nil
+        }
         return requestForGet(withURL: url)
     }
 
-    class func requestGetCampaigns(withAppID appID: String) -> URLRequest {
+    class func requestGetCampaigns(withAppID appID: String) -> URLRequest? {
         let endPoint = Endpoints.campaignsList.rawValue.replacingOccurrences(of: "{app_id}", with: appID)
-        let url = buildURL(withBaseUrl: cdnUrl, withString: endPoint)
+        guard let url = buildURL(withBaseUrl: cdnUrl, withString: endPoint) else {
+            return nil
+        }
         return requestForGet(withURL: url)
     }
 
-    class func requestGetTargeting(withID id: String) -> URLRequest {
-        let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withURLParam: id)
+    class func requestGetTargeting(withID id: String) -> URLRequest? {
+        guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withURLParam: id) else {
+            return nil
+        }
         return requestForGet(withURL: url)
     }
 
-    class func requestGetAllTargetingOptions(targetingIds: [String]) -> URLRequest {
+    class func requestGetAllTargetingOptions(targetingIds: [String]) -> URLRequest? {
         var urlParam = ""
         for (index, string) in targetingIds.enumerated() {
             if index == 0 {
@@ -171,30 +179,38 @@ class RequestBuilder {
                 urlParam.append("&ids[]=\(string)")
             }
         }
-        let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withQueryParams: urlParam)
+        guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .targetingOptions, withQueryParams: urlParam) else {
+            return nil
+        }
         return requestForGet(withURL: url)
     }
 
     // MARK: Writing
 
-    class func requestCampaignFeedbackItemCreation(forCampaignID campaignID: String, withPayload payload: Payload) -> URLRequest {
+    class func requestCampaignFeedbackItemCreation(forCampaignID campaignID: String, withPayload payload: Payload) -> URLRequest? {
         let endPoint = Endpoints.campaignSubmission.rawValue
         let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
-        let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint)
+        guard let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint) else {
+            return nil
+        }
         return requestForPost(withURL: url, payload: payload)
     }
 
-    class func requestCampaignFeedbackItemPatch(forCampaignID campaignID: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest {
+    class func requestCampaignFeedbackItemPatch(forCampaignID campaignID: String, withPayload payload: Payload, withSessionToken token: String) -> URLRequest? {
         let endPoint = Endpoints.campaignSubmission.rawValue
         let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
-        let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint, withURLParam: token)
+        guard let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint, withURLParam: token) else {
+            return nil
+        }
         return requestForPatch(withURL: url, payload: payload)
     }
 
-    class func requestPatchCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> URLRequest {
+    class func requestPatchCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> URLRequest? {
         let endPoint = Endpoints.campaignViews.rawValue
         let newEndPoint = endPoint.replacingOccurrences(of: "{campaign_id}", with: campaignID)
-        let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint)
+        guard let url = buildURL(withBaseUrl: apiUrl, withString: newEndPoint) else {
+            return nil
+        }
         return requestForPatch(withURL: url, payload: ["view": viewCount])
     }
 }

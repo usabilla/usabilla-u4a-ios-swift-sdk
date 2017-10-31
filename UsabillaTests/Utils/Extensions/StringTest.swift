@@ -88,15 +88,15 @@ class StringTest: QuickSpec {
                 dateComponents.minute = 00
                 let userCalendar = Calendar.current
                 let someDateTime = userCalendar.date(from: dateComponents)
-                
+
                 expect(someDateTime).toNot(beNil())
-                
+
                 var date = "2002-10-02T10:00:00-05:00".dateFromRFC3339
                 expect(date).toNot(beNil())
-                
+
                 date = "2002-10-02T15:00:00Z".dateFromRFC3339
                 expect(date).toNot(beNil())
-                
+
                 date = "2002-10-02T15:00:00.955Z".dateFromRFC3339
                 expect(date).toNot(beNil())
                 expect(date?.description).to(equal("2002-10-02 15:00:00 +0000"))

@@ -45,8 +45,28 @@ class CampaignServiceTests: QuickSpec {
                     waitUntil(timeout: 2.0) { done in
                         CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a").then { _ in
                             fail("should not go here")
-                            }.catch { _ in
-                                done()
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should fail if url parameter is not valid = {") {
+                    UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a{NotValidId").then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should fail if url parameter is not valid = }") {
+                    UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "aNotVa}lidId").then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
                         }
                     }
                 }
@@ -54,6 +74,16 @@ class CampaignServiceTests: QuickSpec {
 
             context("When getCampaignsJSON is called") {
                 context("and everything goes well") {
+                    it("should fail if appId is not valid") {
+                        UBHTTPMockSuccess.self.result = []
+                        waitUntil(timeout: 2.0) { done in
+                            CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignsJSON(withAppID: "notVal{idId").then { result in
+                                fail("should not go here")
+                            }.catch { _ in
+                                done()
+                            }
+                        }
+                    }
                     it("should succeed if request succeeds") {
                         UBHTTPMockSuccess.self.result = []
                         waitUntil(timeout: 2.0) { done in
@@ -134,8 +164,8 @@ class CampaignServiceTests: QuickSpec {
                         waitUntil(timeout: 2.0) { done in
                             CampaignService(httpClient: UBHTTPMock.self).getCampaignsJSON(withAppID: "appid").then { _ in
                                 fail("should not go here")
-                                }.catch { _ in
-                                    done()
+                            }.catch { _ in
+                                done()
                             }
                         }
                     }
@@ -205,6 +235,15 @@ class CampaignServiceTests: QuickSpec {
                             }
                         }
                     }
+                    it("should fail parameter is not valid") {
+                        waitUntil(timeout: 2.0) { done in
+                            CampaignService(httpClient: UBHTTPMockFail.self).getTargetings(withIDs: ["tid\\NotValid"]).then { _ in
+                                fail("should not go here")
+                            }.catch { _ in
+                                done()
+                            }
+                        }
+                    }
                 }
             }
             context("When incrementCampaignViews is called") {
@@ -222,6 +261,16 @@ class CampaignServiceTests: QuickSpec {
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: false, isChanged: true)
                         CampaignService(httpClient: UBHTTPMock.self).incrementCampaignViews(forCampaignID: "1234", viewCount: 1).then { _ in
+                            fail("should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
+                it("should succeed if request succeeds") {
+                    waitUntil(timeout: 2.0) { done in
+                        UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
+                        CampaignService(httpClient: UBHTTPMock.self).incrementCampaignViews(forCampaignID: "12}34", viewCount: 1).then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()
