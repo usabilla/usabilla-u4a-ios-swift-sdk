@@ -58,7 +58,6 @@
 		04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1C91E8BD73500A483AC /* DecoratorTests.swift */; };
 		04A0C1CC1E8CEE1600A483AC /* PercentageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A0C1CB1E8CEE1600A483AC /* PercentageTest.swift */; };
 		04A368461EF41CB100B88279 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
-		04A6F39D1F9F445B004840C8 /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		04B12F091E9FC8B400E65BE5 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
 		04C6284B1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6284A1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift */; };
 		04C6BEEA1E9521440078F6FC /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
@@ -160,6 +159,7 @@
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
 		43552B241F8CE82500BE657A /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43552B231F8CE82500BE657A /* UIBarButtonItem.swift */; };
 		43552B251F8CE82700BE657A /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43552B231F8CE82500BE657A /* UIBarButtonItem.swift */; };
+		435D06F71FA8A11600D5A2F4 /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		436264121E92865000A0533C /* UBEndPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264111E92865000A0533C /* UBEndPageViewModel.swift */; };
 		436264141E92867A00A0533C /* UBEndPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264131E92867A00A0533C /* UBEndPageModel.swift */; };
 		436264161E93A03200A0533C /* UBFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264151E93A03200A0533C /* UBFormViewModelTests.swift */; };
@@ -422,7 +422,6 @@
 		C59F73BF1F97748200447B2C /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73BD1F97748200447B2C /* UIImageView.swift */; };
 		C59F73ED1F98CBD000447B2C /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
 		C59F73EE1F98CBD000447B2C /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
-		C5AD477C1F9F45A200FBAE7A /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
 		C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5D1CE741F9E1963007B098E /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
@@ -1899,7 +1898,6 @@
 				43B04F551F1F7EEF0032F057 /* LocalisationHandler.swift in Sources */,
 				43B04F561F1F7EEF0032F057 /* NSLayoutConstraint.swift in Sources */,
 				43B04F571F1F7EEF0032F057 /* CheckBoxWithText.swift in Sources */,
-				C5AD477C1F9F45A200FBAE7A /* TargetingOptionsModel.swift in Sources */,
 				43B04F581F1F7EEF0032F057 /* CampaignSubmissionRequestManager.swift in Sources */,
 				43B04F591F1F7EEF0032F057 /* MoodComponent.swift in Sources */,
 				43B04F5A1F1F7EEF0032F057 /* UBFormViewModel.swift in Sources */,
@@ -1940,6 +1938,7 @@
 				43B04F7A1F1F7EEF0032F057 /* ScreenshotComponentViewModel.swift in Sources */,
 				43B04F7B1F1F7EEF0032F057 /* UBCampaignDAO.swift in Sources */,
 				43B04F7C1F1F7EEF0032F057 /* BaseStringComponentViewModel.swift in Sources */,
+				435D06F71FA8A11600D5A2F4 /* TargetingOptionsModel.swift in Sources */,
 				43B04F7D1F1F7EEF0032F057 /* HeaderComponent.swift in Sources */,
 				43B04F7E1F1F7EEF0032F057 /* BaseEditableStringComponentViewModel.swift in Sources */,
 				43B04F7F1F1F7EEF0032F057 /* RequestBuilder.swift in Sources */,
@@ -1989,7 +1988,6 @@
 				43B04FAA1F1F7EEF0032F057 /* PickerComponent.swift in Sources */,
 				C5780D201F2226FE0016C519 /* TargetingFactory.swift in Sources */,
 				43B04FAB1F1F7EEF0032F057 /* CampaignManager.swift in Sources */,
-				04A6F39D1F9F445B004840C8 /* TargetingOptionsModel.swift in Sources */,
 				43B04FAC1F1F7EEF0032F057 /* UIView.swift in Sources */,
 				43B04FAD1F1F7EEF0032F057 /* ComponentViewModelFactory.swift in Sources */,
 				43B04FAE1F1F7EEF0032F057 /* ComponentViewModel.swift in Sources */,
