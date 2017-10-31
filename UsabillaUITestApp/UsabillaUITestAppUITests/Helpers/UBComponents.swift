@@ -12,6 +12,19 @@ import XCTest
 // Main Application
 struct Application {
     static let xcApp = XCUIApplication()
+    let banner = Banner()
+}
+
+struct Banner {
+    let element: XCUIElement
+    let cancelButton: XCUIElement
+    let continueButton: XCUIElement
+
+    init() {
+        element = Application.xcApp.otherElements["banner"]
+        cancelButton = element.buttons["Cancel"]
+        continueButton = element.buttons["Continue"]
+    }
 }
 
 // The banner view with NPS component
@@ -25,7 +38,7 @@ struct NPSComponent {
 
     // selects an NPS value
     func select(number: Int) {
-        let floatValue = CGFloat(number) / 11.0 + 0.05
+        let floatValue = CGFloat(number) / 11.0 + (1 / 11.0) / 2
         nps.adjust(toNormalizedSliderValue: floatValue)
     }
 }

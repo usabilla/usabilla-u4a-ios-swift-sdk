@@ -18,6 +18,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
     static let kBannerExtraSpace: CGFloat = 120
 
     static func build(view: UBIntroOutroView) {
+        view.accessibilityIdentifier = "banner"
         view.buttonsStackView?.axis = .horizontal
 
         buildShadow(view)
