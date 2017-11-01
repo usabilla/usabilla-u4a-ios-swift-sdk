@@ -6,11 +6,11 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		8FqNtfKOQBV/lyp9MHAhp7Nmdyg=
+		B9804SaWievhhyTKEfo7YMyFDoQ=
 		</data>
 		<key>Headers/Usabilla-Swift.h</key>
 		<data>
-		BgOCdzb8EDIHWhFOjdOcH3x1pJk=
+		N+kWYr0j3f+ewwR8ZBPbwKhPI2o=
 		</data>
 		<key>Headers/Usabilla.h</key>
 		<data>
@@ -18,23 +18,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Tucz0Avrjm3+/iqrVpu5IOmKUcc=
+		dEzW0ROCtvtL9SfByhgp+5buQW0=
 		</data>
 		<key>Modules/Usabilla.swiftmodule/arm.swiftdoc</key>
 		<data>
-		9knrx5gQNd5Tu+0XwbWLKJ/2r20=
+		StS6GLErsnS7ImWFC7H3D9EsWGs=
 		</data>
 		<key>Modules/Usabilla.swiftmodule/arm.swiftmodule</key>
 		<data>
-		lsGHPyT9aMW+yFf3HiQQospJHkI=
+		CNGGApoV5BqDxWaLfXIYQ/l/XD4=
 		</data>
 		<key>Modules/Usabilla.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		U9GtBvC7Npahhs8bR13BV5PEtSg=
+		Z0oMEhAdy12fjyBKRz+i8WWC5rs=
 		</data>
 		<key>Modules/Usabilla.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		pm+HmsecaYQ//6NPB7h0mTxiAa4=
+		KsWSg83vuprnvx2k1HgjVjsTXZ0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -51,22 +51,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			8FqNtfKOQBV/lyp9MHAhp7Nmdyg=
+			B9804SaWievhhyTKEfo7YMyFDoQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			qN2zczkWmbWlhgslg78vSnUNCe0oMiYallpfjsT/z0I=
+			dDiIBPht7jldZVVzxQVS8szqQqES9i8SBaWDpRcqCrc=
 			</data>
 		</dict>
 		<key>Headers/Usabilla-Swift.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			BgOCdzb8EDIHWhFOjdOcH3x1pJk=
+			N+kWYr0j3f+ewwR8ZBPbwKhPI2o=
 			</data>
 			<key>hash2</key>
 			<data>
-			pCtAfHOYlcXjVPeez18IlsznS7XdwM7F5S8c7rxVdnM=
+			vIP9Z3nSCTjnOfXA+hqHoS14nrJ3IIL9lFIr9cviUIQ=
 			</data>
 		</dict>
 		<key>Headers/Usabilla.h</key>
@@ -84,44 +84,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9knrx5gQNd5Tu+0XwbWLKJ/2r20=
+			StS6GLErsnS7ImWFC7H3D9EsWGs=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZnwcQHggHEo9bQZ9SHcPc7o6CDvjOusfXsKT4pGf7IY=
+			U22Plnto+o4xVVSWbd9gAdPq/+AbG+5Qc5mYh6p1CJo=
 			</data>
 		</dict>
 		<key>Modules/Usabilla.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			lsGHPyT9aMW+yFf3HiQQospJHkI=
+			CNGGApoV5BqDxWaLfXIYQ/l/XD4=
 			</data>
 			<key>hash2</key>
 			<data>
-			nk+ieTiBpeWE96nOYEsx6hjmJrKEk38PjfGk8Rixsd0=
+			i849vwc1irpzvecbLM1/Ug/INBtzzbDI8aaeH4uj1jQ=
 			</data>
 		</dict>
 		<key>Modules/Usabilla.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			U9GtBvC7Npahhs8bR13BV5PEtSg=
+			Z0oMEhAdy12fjyBKRz+i8WWC5rs=
 			</data>
 			<key>hash2</key>
 			<data>
-			keNiWs0zrLv46LTN3tUYUHELE/LxftHkSwz111IeBeI=
+			9+LpuDU/gHYSx9YNeY/rdlLb/Y7se+Jad82FBmIErE8=
 			</data>
 		</dict>
 		<key>Modules/Usabilla.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			pm+HmsecaYQ//6NPB7h0mTxiAa4=
+			KsWSg83vuprnvx2k1HgjVjsTXZ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			xndIS+PYAcmjfuP6nMl3S+oQdQhZssYYGu0gOeh5RoY=
+			D7dXtpmyJs8Rw+MKFm/78cqBogDWksTGTlhglCJp4Fk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

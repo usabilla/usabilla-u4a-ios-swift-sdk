@@ -1,3 +1,24 @@
+## 4.0.1
+#### Added
+- Support for **Xcode 9.1**
+- Ability to enable debug logs in order to have more insights from the SDK while developing:
+```swift
+Usabilla.debugEnabled = true
+```
+- Display Passive Feedback Forms as a formSheet on iPad by default
+
+#### Updated
+- Design improvements for iPhone X
+- Design and interaction improvements of the picker component iPhone & iPad
+- Internal networking optimisation to reducing network usage when using Campaigns 
+
+#### Fixed
+- Fix status bar colour for campaign modal window
+- Fix campaign navigation bar button colour in iOS 11
+- Fix capitalization behaviour in e-mail component
+- Fix placeholder text display behaviour on text area component
+- Fix for the ‘bold’ HTML tag in iOS 11
+
 ## 4.0.0
 
 #### Added
