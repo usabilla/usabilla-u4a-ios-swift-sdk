@@ -10,8 +10,10 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 - [Requirements](#requirements)
 - [Installation](#installation)
     - [CocoaPods](#cocoapods)
+    - [Carthage](#carthage)
     - [Manual](#manual)
 - [Initialization](#initialization)
+    - [DebugMode](#debugmode)
 - [Campaigns](#campaigns)
     - [The App Id](#the-app-id)
     - [Targeting options](#targeting-options)
@@ -21,6 +23,8 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Campaign results](#campaign-results)
 - [Passive feedback](#passive-feedback)
     - [Loading a form](#loading-a-form)
+    - [Preloading a form](#preloading-a-form)
+    - [iPad display](#ipad-display)
     - [Adding a screenshot](#adding-a-screenshot)
     - [Feedback submission callback](#feedback-submission-callback)
     - [Handle manual dismiss](#handle-manual-dismiss)
@@ -38,7 +42,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8+ or 9+
+- Xcode 8.3+ or 9+
 - Swift 3.1, 3.2, 4.0
 
 
@@ -62,13 +66,10 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 4.0.0'
+pod 'Usabilla', '~> 4.0'
 
 #Or by specifying a tag
-pod 'Usabilla', :git=>'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git', :tag=> 'v4.0.0'
-
-#If you are using XCode 8
-pod 'Usabilla', :git=>'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git', :tag=> 'v4.0.0-Xcode8'
+pod 'Usabilla', :tag=> 'v4.0.1'
 
 End
 ```
@@ -90,14 +91,20 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.1"
 ```
 
 ### Manual
 
-**PS:** Alternatively, you can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.
+You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
+
+In doing so, you might encounter a problem while submitting your app to the App Store. This is due to a [bug in the App Store](http://www.openradar.me/radar?id=6409498411401216) itself.     
+
+You can solve it by creating a new **Run Script Phase**, after the **Embed Frameworks** phase, in your app’s target’s **Build Phases**, and copying the script available [here](https://stackoverflow.com/a/30866648).
 
 ## Initialization
+
+We recommend initializing the SDK in the AppDelegate. However this is not mandatory, and the initialization can be performed elsewhere without any problem.    
 
 Import Usabilla SDK inside your **AppDelegate**.
 
@@ -114,7 +121,14 @@ The **initialize** method will take care of:
 * Fetching and updating all campaigns associated with the app ID.
 * Initializing a few background processes of the SDK.
 
->⚠️ **Failure to call this method before using the SDK will prevent it from running properly.** 
+>⚠️ **Failure to call this method will prevent the SDK from running. No functionalities at all will be available.**
+
+### DebugMode
+In order to have more insights from the SDK while developing, you can enable logging with:
+```swift
+Usabilla.debugEnabled = true
+```
+This property is by default set to `false`.
 
 ## Campaigns
 Version 4 of the Usabilla for Apps SDK introduces the new campaigns feature.
@@ -150,7 +164,7 @@ There are multiple options which allow you to define more specific targeting rul
 You can also segment your user base using custom variables.
 **Custom variables** can be used to specify some traits of the user and target the campaign only to a specific subset.
 
-For more on how to use custom variables, read [Custom Variables](#custom-variables)
+For more on how to use custom variables, read [Custom Variables](#adding-custom-variables)
 
 **Note: A campaign will never be triggered for the same user more than once.**
 
@@ -238,6 +252,36 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 ```
 
 
+### Preloading a form
+
+If you know you will need to display a feedback form when the user is offline, you can preload and cache it to make it available at any given moment.   
+To preload a form use
+```
+UsabillaFeedbackForm.preloadForms(withFormIDs: ["myId", "myOtherId"])
+```
+This will fetch the latest version of the form and cache it in the SDK.    
+ When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
+
+Feedback submitted while offline will be sent when connectivity is restored.
+
+If you wish, you can empty the cache using
+```
+UsabillaFeedbackForm.removeCachedForms()
+```
+
+
+### iPad display
+
+On iPad, the Passive feedback form has a presentation style set to [formSheet](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/1621491-formsheet) by default.
+If you want to override this behavior and have a fullscreen display you can achieve it with:
+
+```swift
+func formDidLoad(form: UINavigationController) {
+    form.modalPresentationStyle = .fullScreen
+    present(form, animated: true, completion: nil)
+}
+```
+
 ### Adding a screenshot
 
 It is possible to attach a screenshot to a feedback form.
@@ -304,10 +348,10 @@ The **abandonedPageIndex** is only set if the user cancels the form before submi
 
 **Example**
 ```swift
-func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
+func formDidClose(formID: String, with feedbackResults: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
 
-    guard let feedback = results.first else {
-        return
+    guard let feedback = feedbackResults.first else {
+    return
     }
 
     if feedback.sent == false {
@@ -337,7 +381,7 @@ and implement the **formWillClose** delegate method:
 
 ```swift
 func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {
-    // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
+// handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
 }
 ```
 
@@ -349,7 +393,12 @@ func formWillClose(form: UINavigationController, formID: String, withFeedbackRes
 You can pass along custom variables that will be attached to the feedback users send.
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
 
-You can set custom variables by simply modifying the dictionary object
+You can set custom variables using the public method
+```swift
+Usabilla.setCustomVariable(value: Any?, forKey: String)
+```
+
+or by simply modifying the dictionary object
 
 ```swift
 Usabilla.customVariables["key"] = "value"
@@ -370,7 +419,7 @@ Custom variables are added as extra feedback data with every feedback item sent 
 
 ## App Store rating
 
-To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#submission-callback)
+To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#feedback-submission-callback) or the [Campaign submission callback](#campaign-submission-callback)
 
 In the Usabilla web interface, it is possible to define whether a specific feedback form should prompt the user for a rating.
 
@@ -512,4 +561,3 @@ extension ViewController : UsabillaDelegate {
 }
 
 ```
-
