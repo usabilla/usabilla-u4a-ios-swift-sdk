@@ -147,6 +147,10 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @end
 
 
+@interface UIBarButtonItem (SWIFT_EXTENSION(Usabilla))
+@end
+
+
 @interface UIColor (SWIFT_EXTENSION(Usabilla))
 @end
 
@@ -155,7 +159,15 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @end
 
 
+@interface UIFont (SWIFT_EXTENSION(Usabilla))
+@end
+
+
 @interface UIImage (SWIFT_EXTENSION(Usabilla))
+@end
+
+
+@interface UIImageView (SWIFT_EXTENSION(Usabilla))
 @end
 
 
