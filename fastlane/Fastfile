@@ -1,0 +1,50 @@
+fastlane_version "2.64.1"
+import "./CarthageFastFile.rb"
+import "./BuildFastFile.rb"
+
+default_platform :ios
+actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
+platform :ios do
+
+    # def xcode_version 
+    #     sh("xcodebuild -version | head -1 | sed -e 's@.*\([0-9]..\).*@\1@'")
+    # end
+
+    def readXcodeVersions
+        JSON.parse(File.read("versions.json"), {:symbolize_names => true})
+    end
+
+    desc "Builds the framework for the specified framework"
+    lane :buildSdk do |options|
+        unless options[:version]
+            UI.error("missing Xcode version")
+        end
+        version = options[:version]
+        project_directory = "#{File.expand_path(File.dirname(__FILE__))}/../"        
+        xcversion(version: version)
+        buildFramework
+        buildCarthage
+        crateReleaseDirectory(
+            version: version,
+            project_directory: project_directory
+        )
+        cleanProject
+    end
+
+    desc "Check that all required xcode versions are installed"
+    lane :checkXcodeVersions do
+        versions = readXcodeVersions
+        versions.each do |version|
+            xcversion(version: version)         
+        end
+        versions
+    end
+
+    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+    lane :buildAll do
+        versions = checkXcodeVersions()
+        versions.each do |version|
+            buildSdk(version: version)
+        end
+    end
+end

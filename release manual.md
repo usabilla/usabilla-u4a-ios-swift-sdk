@@ -130,6 +130,7 @@ Before building the frameworks, make sure you are on the correct branch (**maste
 
 Make sure to delete the old framework from the public repository folder before building the new one.
 
+##### Manually
 The framework is built using a script saved in the main folder of the repository.
 To build the form:
 1. Open the build phases of the project
@@ -140,20 +141,50 @@ To build the form:
 6. Build the project.
 
 This will produce a framework file ready to be released.
-The new file will be copied into the public repository folder and a new finder window will be open on that folder.
-
+The new file will be copied into a folder called `generatedFramework` and a new window will be open on that folder.
 To make sure the framework has been correctly built, run `pod lib lint --verbose`
 
-If no error arises, the Carthage framework can be built:
 
+If no error arises, the Carthage framework can be built:
 1. Open a terminal in the private repository and run `carthage build --no-skip-current --platform iOS`
 2. Once the previous command is done, run `carthage archive Usabilla`
 
 This will create a Usabilla.zip containing the framework for Carthage.
 
+Now, **Rename** (`Usabilla.zip`) to `Carthage.framework.zip`
+
+
 At this point remember to:
 1. Delete the Run Script phase added Before
 2. Reset the project configuration to `Debug`
+
+##### Semi-Automatically
+The framework is built using Fastlane.
+
+There are two ways of building the framework:
+
+- All required Xcode versions at once (see fastlane/versions.json): 
+    - `fastlane buildAll`
+- A specific Xxcode version
+    - `fastlane buildSdk version:X.X` where X.X is the xcode version you are using
+
+Here are the steps taken by this script:
+- Build Framework using Xcode
+- Remove old Carthage symbols and framework
+- Build Framework with Carthage
+- Archive Carthage Framework
+- Remove old release directory
+- Create Release Directory name Xcode-X.X.X
+- Copy Framework ans Symbols to Release Directory
+- Copy Carthage framework to Release Directory
+- Clean project folder from temporary created files
+
+This will produce the library files ready to be released:
+- Xcode-X.X/Pods/Usabilla.framework
+- Xcode-X.X/Pods/Usabilla.DSYM
+- Xcode-X.X/Carthage/Carthage.Framework.zip
+
+Now, copy the `Usabilla.framework` and `Usabilla.DSYM` files in the public repository folder
 
 #### Update the public master branch
 
@@ -167,7 +198,7 @@ In the [release page of Github](https://github.com/usabilla/usabilla-u4a-android
 1. Select `Draft a new release`.
 2. Select the latest tag on **master**
 3. Copy the changelog section relative to this release in the release notes.
-4. Upload the Carthage zip archive (`Usabilla.zip`) and rename it to `Carthage.framework.zip`
+4. Upload the Carthage zip archive `Carthage.framework.zip`
 5. Publish the new release.
 
 
