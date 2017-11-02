@@ -201,8 +201,14 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         cellHeights = [:]
 
         tableView.reloadData()
-        tableView.scrollTo(indexPath: IndexPath(row: 0, section: 0), animated: true)
+        scrollToTop()
         handleHeaderViewVisibility()
+    }
+
+    func scrollToTop() {
+        DispatchQueue.main.async {
+            self.tableView.contentOffset.y = 0
+        }
     }
 
     func reloadTableWithAnimation() {

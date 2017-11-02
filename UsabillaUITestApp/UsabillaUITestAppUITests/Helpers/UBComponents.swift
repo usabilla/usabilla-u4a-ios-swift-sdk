@@ -29,7 +29,7 @@ struct Banner {
 struct Modal {
     let form: Form
     init() {
-        form = Form(element: Application.xcApp.otherElements["form-navigation-controller"])
+        form = Form()
     }
 }
 
@@ -38,7 +38,7 @@ struct Form {
     var navigationBar: NavigationBar {
         return NavigationBar(element: element.navigationBars.allElementsBoundByIndex.first!)
     }
-    init(element: XCUIElement) {
+    init(element: XCUIElement = Application.xcApp.otherElements["form-navigation-controller"]) {
         self.element = element
     }
 }
