@@ -12,6 +12,8 @@
 		43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */ = {isa = PBXBuildFile; fileRef = 43120C9D1F027E5800802141 /* 01_FormAppearance.json */; };
 		435D06ED1FA879E400D5A2F4 /* 12_BannerNoControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 435D06EC1FA879E400D5A2F4 /* 12_BannerNoControl.json */; };
 		435D06EF1FA87A0100D5A2F4 /* 12_BannerNoControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D06EE1FA87A0100D5A2F4 /* 12_BannerNoControl.swift */; };
+		435D06F31FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D06F21FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift */; };
+		435D06F41FA8868D00D5A2F4 /* 13_CampaignPageToastNoControls.json in Resources */ = {isa = PBXBuildFile; fileRef = 435D06F01FA884A900D5A2F4 /* 13_CampaignPageToastNoControls.json */; };
 		437B96D11E266A8F00AA0A25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96D01E266A8F00AA0A25 /* AppDelegate.swift */; };
 		437B96D31E266A8F00AA0A25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B96D21E266A8F00AA0A25 /* ViewController.swift */; };
 		437B96D61E266A8F00AA0A25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437B96D41E266A8F00AA0A25 /* Main.storyboard */; };
@@ -73,6 +75,8 @@
 		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
 		435D06EC1FA879E400D5A2F4 /* 12_BannerNoControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 12_BannerNoControl.json; sourceTree = "<group>"; };
 		435D06EE1FA87A0100D5A2F4 /* 12_BannerNoControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 12_BannerNoControl.swift; sourceTree = "<group>"; };
+		435D06F01FA884A900D5A2F4 /* 13_CampaignPageToastNoControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 13_CampaignPageToastNoControls.json; sourceTree = "<group>"; };
+		435D06F21FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 13_CampaignPageToastNoControls.swift; sourceTree = "<group>"; };
 		437B96CD1E266A8F00AA0A25 /* UsabillaUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96D01E266A8F00AA0A25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		437B96D21E266A8F00AA0A25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				43F57A881F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift */,
 				C58489B41FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift */,
 				435D06EE1FA87A0100D5A2F4 /* 12_BannerNoControl.swift */,
+				435D06F21FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift */,
 			);
 			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				43F57A721F9DEDF0005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.json */,
 				C58489B31FA0CBD600DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json */,
 				435D06EC1FA879E400D5A2F4 /* 12_BannerNoControl.json */,
+				435D06F01FA884A900D5A2F4 /* 13_CampaignPageToastNoControls.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				C58489B91FA2143400DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json in Resources */,
 				43F57A791F9DEDF1005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.json in Resources */,
 				43F57A781F9DEDF1005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.json in Resources */,
+				435D06F41FA8868D00D5A2F4 /* 13_CampaignPageToastNoControls.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +374,7 @@
 				43F57A7D1F9DF540005BFA80 /* 05_PassiveCheckboxJumpRules.swift in Sources */,
 				435D06EF1FA87A0100D5A2F4 /* 12_BannerNoControl.swift in Sources */,
 				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
+				435D06F31FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift in Sources */,
 				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
 				C58489B51FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift in Sources */,
 				C538939B1FA35A8F009941E8 /* UBXCScenario.swift in Sources */,

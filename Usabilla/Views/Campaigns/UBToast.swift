@@ -43,6 +43,7 @@ class UBToast: UIView {
 
     init(delegate: UIViewController, text: String? = nil, duration: Int = 2) {
         super.init(frame: .zero)
+        self.accessibilityIdentifier = "toast"
         self.delegate = delegate
         self.duration = duration
         self.text = text

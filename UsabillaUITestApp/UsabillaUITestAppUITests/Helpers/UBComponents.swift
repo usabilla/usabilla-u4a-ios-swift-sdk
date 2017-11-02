@@ -19,11 +19,49 @@ struct Banner {
     let element: XCUIElement
     let cancelButton: XCUIElement
     let continueButton: XCUIElement
-
     init() {
         element = Application.xcApp.otherElements["banner"]
         cancelButton = element.buttons["Cancel"]
         continueButton = element.buttons["Continue"]
+    }
+}
+
+struct Modal {
+    let form: Form
+    init() {
+        form = Form(element: Application.xcApp.otherElements["form-navigation-controller"])
+    }
+}
+
+struct Form {
+    let element: XCUIElement
+    var navigationBar: NavigationBar {
+        return NavigationBar(element: element.navigationBars.allElementsBoundByIndex.first!)
+    }
+    init(element: XCUIElement) {
+        self.element = element
+    }
+}
+
+struct Toast {
+    let element: XCUIElement
+    var text: String? {
+        return element.staticTexts.allElementsBoundByIndex.first?.label
+    }
+
+    init() {
+        element = Application.xcApp.otherElements["toast"]
+    }
+}
+
+struct NavigationBar {
+    let element: XCUIElement
+    let cancelButton: XCUIElement
+    let nextButton: XCUIElement
+    init(element: XCUIElement) {
+        self.element = element
+        cancelButton = element.buttons["Cancel"]
+        nextButton = element.buttons["Next"]
     }
 }
 

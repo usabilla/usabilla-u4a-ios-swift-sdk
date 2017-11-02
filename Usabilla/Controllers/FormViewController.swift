@@ -82,7 +82,7 @@ class FormViewController: UIViewController {
     // MARK: View setup
     func setUpView() {
         title = viewModel.navigationBarTitle
-
+        navigationController?.view?.accessibilityIdentifier = "form-navigation-controller"
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.leftBarButtonItem = leftNavItem
         navigationItem.rightBarButtonItem = rightNavItem
