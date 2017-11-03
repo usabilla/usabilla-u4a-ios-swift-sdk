@@ -14,6 +14,7 @@ class EmailComponent: BaseTextFieldComponent<EmailComponentViewModel> {
         super.build()
         textField.keyboardType = .emailAddress
         textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
     }
 
     func updateBorderColor(email: String?) {
