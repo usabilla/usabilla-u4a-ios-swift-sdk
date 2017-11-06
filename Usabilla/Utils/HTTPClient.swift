@@ -102,8 +102,16 @@ class HTTPClient: HTTPClientProtocol {
                     return
                 }
                 if let httpResponse = response as? HTTPURLResponse, let url = request.url {
-                    if case 400..<600 = httpResponse.statusCode {
-                        DLogError(url.absoluteString, code: String(httpResponse.statusCode))
+                    if case 400..<500 = httpResponse.statusCode {
+                        let errorDesciption = "Client Error: please check your request!"
+                        DLogError(url.absoluteString, code: String(httpResponse.statusCode), description: errorDesciption)
+                        completion(HTTPClientResponse(data: nil, error: NSError(domain: errorDesciption, code: 4, userInfo: nil)))
+                        return
+                    } else if case 500..<600 = httpResponse.statusCode {
+                        let errorDesciption = "Server Error: The server failed to fulfill your request!"
+                        DLogError(url.absoluteString, code: String(httpResponse.statusCode), description: errorDesciption)
+                        completion(HTTPClientResponse(data: nil, error: NSError(domain: errorDesciption, code: 5, userInfo: nil)))
+                        return
                     }
                 }
 
