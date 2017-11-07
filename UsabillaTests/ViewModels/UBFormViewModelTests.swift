@@ -154,7 +154,7 @@ class UBFormViewModelTests: QuickSpec {
                     it("should have correct values for showing the requiredFiled header") {
                         let formJson = UBTestHelper.getJSONFromFile(named: "ShouldShowRequiredFieldHeader")
                         let formModel = FormModel(json: formJson, id: "", screenshot: nil)
-                        let formViewModel = UBFormViewModel(formModel: formModel)
+                        let formViewModel = UBFormViewModel(formModel: formModel!)
                         expect(formViewModel).toNot(beNil())
 
                         let pageVM0 = formViewModel.pageViewModel(atIndex: 0)
@@ -177,7 +177,7 @@ class UBFormViewModelTests: QuickSpec {
                         let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                         let json = JSON(data: (data as Data?)!)
                         let formModel = FormModel(json: json, id: "", screenshot: nil)
-                        formViewModel = UBFormViewModel(formModel: formModel)
+                        formViewModel = UBFormViewModel(formModel: formModel!)
 
                     }
                     it("Should be false when current page is not a toast and not an end page") {

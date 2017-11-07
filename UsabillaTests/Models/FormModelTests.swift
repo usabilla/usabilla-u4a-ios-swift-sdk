@@ -22,10 +22,7 @@ class FormModelTests: QuickSpec {
     override func spec() {
         describe("FormModelTest") {
             beforeEach {
-                let path = Bundle(for: FormModelTests.self).path(forResource: "test", ofType: "json")!
-                let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                self.jsonObj = JSON(data: (data as Data?)!)
-                self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
+                self.formModel = UBMock.formMock()
             }
 
             context("When initialized") {
@@ -33,22 +30,19 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel).toNot(beNil())
                     expect(self.formModel.hasScreenshot).to(beTrue())
                     expect(self.formModel.version).to(equal(6))
-                    expect(self.formModel.identifier).to(equal("a"))
+                    expect(self.formModel.identifier).to(equal("mockFormId"))
                     expect(self.formModel.pages.count).to(equal(4))
                     expect(self.formModel.pages[0].type).to(equal(PageType.form))
                     expect(self.formModel.pages[1].type).to(equal(PageType.form))
                     expect(self.formModel.pages[2].type).to(equal(PageType.form))
                     expect(self.formModel.pages[3].type).to(equal(PageType.end))
-                    expect(self.formModel.formJsonString).to(equal(self.jsonObj))
+                    expect(self.formModel.formJsonString).toNot(beNil())
                     expect(self.formModel.showProgressBar).to(beFalse())
                     expect(self.formModel.theme).toNot(beNil())
                     expect(self.formModel.copyModel).toNot(beNil())
                 }
-
                 it("Should set all properties successfully when it is a campaign form model") {
-                    let path = Bundle(for: FormModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
-                    let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
-                    self.jsonObj = JSON(data: (data as Data?)!)
+                    self.jsonObj = UBMock.json(fromFile: "CampaignForm")
                     self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
 
                     expect(self.formModel).toNot(beNil())
@@ -62,26 +56,38 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel.theme).toNot(beNil())
                     expect(self.formModel.copyModel).toNot(beNil())
                 }
+                it("Should fail when form json does not contain \"form\" key") {
+                    let json = UBMock.json("InvalidFormJsonNoForm")
+                    let form = FormModel(json: json!, id: "id", screenshot: nil)
+
+                    expect(form).to(beNil())
+                }
+                it("Should fail when form json does not contain \"pages\" key") {
+                    let json = UBMock.json("InvalidFormJsonNoPages")
+                    let form = FormModel(json: json!, id: "id", screenshot: nil)
+                    
+                    expect(form).to(beNil())
+                }
             }
 
             context("When calling update theme") {
                 it("should get the right theme from json with Structure") {
-                    let json = "{\"structure\" : {\"pages\":\"test\", \"allowedPageTypes\":\"test\", \"data\":\"test\", \"colors\": {\"group1\": {\"hash\": \"#41474C\" }, \"group5\": {\"hash\": \"#FFFFFF\" }} ,\"localization\":\"test\"}}"
-                    let formModel = FormModel(json: JSON(parseJSON: json), id: "id", screenshot: nil)
-                    let previousTheme = formModel.theme
+                    let json = UBMock.json("FormWithStructure")
+                    let formModel = FormModel(json: json!, id: "id", screenshot: nil)
+                    let previousTheme = formModel!.theme
                     expect(previousTheme).toNot(beNil())
-                    formModel.updateTheme()
-                    expect(formModel.theme).toNot(beNil())
-                    expect(formModel.theme.colors.background).toNot(equal(previousTheme.colors.background))
+                    formModel!.updateTheme()
+                    expect(formModel!.theme).toNot(beNil())
+                    expect(formModel!.theme.colors.background).toNot(equal(previousTheme.colors.background))
                 }
                 it("should get the right theme from json without Structure") {
-                    let json = "{\"pages\":\"test\", \"allowedPageTypes\":\"test\", \"data\":\"test\", \"colors\": {\"group1\": {\"hash\": \"#41474C\" }, \"group5\": {\"hash\": \"#FFFFFF\" }} ,\"localization\":\"test\"}"
-                    let formModel = FormModel(json: JSON(parseJSON: json), id: "id", screenshot: nil)
-                    let previousTheme = formModel.theme
+                    let json = UBMock.json("FormWithoutStructure")
+                    let formModel = FormModel(json: json!, id: "id", screenshot: nil)
+                    let previousTheme = formModel!.theme
                     expect(previousTheme).toNot(beNil())
-                    formModel.updateTheme()
-                    expect(formModel.theme).toNot(beNil())
-                    expect(formModel.theme.colors.background).toNot(equal(previousTheme.colors.background))
+                    formModel!.updateTheme()
+                    expect(formModel!.theme).toNot(beNil())
+                    expect(formModel!.theme.colors.background).toNot(equal(previousTheme.colors.background))
                 }
             }
 

@@ -28,16 +28,19 @@ class UBMock {
         return UBMock.mockJson?[key]
     }
 
-    class func json(fromFile: String, _ key: String) -> JSON {
+    class func json(fromFile: String, _ key: String? = nil) -> JSON {
         var mockJson = UBTestHelper.getJSONFromFile(named: fromFile)
-        return mockJson[key]
+        if let key = key {
+            return mockJson[key]
+        }
+        return mockJson
     }
 
     class func formMock () -> FormModel {
         if formJson == nil {
             formJson = UBTestHelper.getJSONFromFile(named: "test")
         }
-        return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)
+        return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)!
     }
 
     class func campaignMock(withID id: String = "", withTargetingID targetingId: String = "", withTargeting targeting: TargetingOptionsModel = UBMock.mockTargeting) -> CampaignModel {
@@ -61,7 +64,7 @@ class UBFormServiceMock: FormServiceProtocol {
     func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
         return Promise { fulfill, _ in
             let formModel = FormModel(json: "", id: "a", screenshot: nil)
-            fulfill(formModel)
+            fulfill(formModel!)
         }
     }
     func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool> {

@@ -14,17 +14,17 @@ import Nimble
 @testable import Usabilla
 
 class CampaignServiceTests: QuickSpec {
+
     override func spec() {
-        var targetingData: Data!
-        beforeEach {
-            targetingData = try! UBMock.json("CampaignTargeting")?.rawData()
-        }
+
         describe("CampaignService") {
+
             context("When getCampaignForm is called") {
                 it("should succeed if request succeeds") {
-                    UBHTTPMockSuccess.self.result = []
+                    let validFormData = try! UBMock.json("FormWithStructure")?.rawData()
+                    UBHTTPMock.response = HTTPClientResponse(data: validFormData, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockSuccess.self).getCampaignForm(withID: "a").then { _ in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a").then { _ in
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -67,6 +67,17 @@ class CampaignServiceTests: QuickSpec {
                             fail("should not go here")
                         }.catch { _ in
                             done()
+                        }
+                    }
+                }
+                it("should fail when form is not instaciated correctly") {
+                    let invalidFormData = try! UBMock.json("InvalidFormJsonNoPages")?.rawData()
+                    UBHTTPMock.response = HTTPClientResponse(data: invalidFormData, headers: nil, error: nil, success: true, isChanged: true)
+                    waitUntil(timeout: 2.0) { done in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a").then { _ in
+                            fail("should not go here")
+                            }.catch { _ in
+                                done()
                         }
                     }
                 }
@@ -149,6 +160,7 @@ class CampaignServiceTests: QuickSpec {
                         }
                     }
                 }
+
                 context("and there are errors") {
                     it("should fail if request fails") {
                         waitUntil(timeout: 2.0) { done in
@@ -171,10 +183,12 @@ class CampaignServiceTests: QuickSpec {
                     }
                 }
             }
+
             context("When getTargetings is called") {
                 context("and everything goes well") {
                     it("should succeed if request succeeds") {
                         waitUntil(timeout: 2.0) { done in
+                            let targetingData = try! UBMock.json("CampaignTargeting")?.rawData()
                             UBHTTPMock.response = HTTPClientResponse(data: targetingData, headers: nil, error: nil, success: true, isChanged: true)
                             CampaignService(httpClient: UBHTTPMock.self).getTargetings(withIDs: ["tid"]).then { _ in
                                 done()
@@ -214,6 +228,7 @@ class CampaignServiceTests: QuickSpec {
                         }
                     }
                 }
+
                 context("and there are errors") {
                     it("should fail if request succeeds and json is invalid") {
                         let data = try! JSON(parseJSON: "{\"hello\":\"you\"}").rawData()
@@ -246,6 +261,7 @@ class CampaignServiceTests: QuickSpec {
                     }
                 }
             }
+
             context("When incrementCampaignViews is called") {
                 it("should succeed if request succeeds") {
                     waitUntil(timeout: 2.0) { done in
@@ -280,7 +296,6 @@ class CampaignServiceTests: QuickSpec {
             }
 
             context("When submiting campaign result") {
-
                 it("should succeed and return header if post request succeeds") {
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: nil, headers: ["Location": "this_should/not/appear/location"], error: nil, success: true, isChanged: true)
@@ -293,7 +308,6 @@ class CampaignServiceTests: QuickSpec {
                         }
                     }
                 }
-
                 it("should succeed and return nil if patch request succeeds") {
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
@@ -306,7 +320,6 @@ class CampaignServiceTests: QuickSpec {
                         }
                     }
                 }
-
                 it("should fail if request fails") {
                     waitUntil(timeout: 2.0) { done in
                         UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: false, isChanged: true)
@@ -319,7 +332,6 @@ class CampaignServiceTests: QuickSpec {
                     }
                 }
             }
-
         }
     }
 }

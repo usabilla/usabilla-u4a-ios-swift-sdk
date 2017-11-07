@@ -23,7 +23,7 @@ class UBToastPageViewModelTests: QuickSpec {
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let json = JSON(data: (data as Data?)!)
                 self.formModel = FormModel(json: json, id: "a", screenshot: nil)
-                self.endPageModel = (self.formModel.pages.last as? UBEndPageModel)!
+                self.endPageModel = self.formModel.pages.last as? UBEndPageModel
             }
 
             context("When initilized") {

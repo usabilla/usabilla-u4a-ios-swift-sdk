@@ -38,7 +38,7 @@ class CampaignViewModelTests: QuickSpec {
                     self.campaignModel.form = formModel
 
                     expect(self.self.campaignModel).toNot(beNil())
-                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    campaignViewModel = CampaignViewModel(form: formModel!, manager: self.manager)
                     expect(campaignViewModel).toNot(beNil())
                     expect(campaignViewModel.introPageViewModel).to(beNil())
                     expect(campaignViewModel.introPresenter).to(beNil())
@@ -53,7 +53,7 @@ class CampaignViewModelTests: QuickSpec {
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     self.campaignModel.form = formModel
                     expect(self.campaignModel).toNot(beNil())
-                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    campaignViewModel = CampaignViewModel(form: formModel!, manager: self.manager)
                     expect(campaignViewModel).toNot(beNil())
                     expect(campaignViewModel.introPageViewModel).toNot(beNil())
                     expect(campaignViewModel.introPresenter).toNot(beNil())
@@ -71,7 +71,7 @@ class CampaignViewModelTests: QuickSpec {
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     self.campaignModel.form = formModel
                     expect(self.campaignModel).toNot(beNil())
-                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    campaignViewModel = CampaignViewModel(form: formModel!, manager: self.manager)
                     expect(campaignViewModel).toNot(beNil())
                     expect(campaignViewModel.introPageViewModel).toNot(beNil())
                     expect(campaignViewModel.introPresenter is UBAlertPresenter).to(beTrue())
@@ -82,7 +82,7 @@ class CampaignViewModelTests: QuickSpec {
                 it("should return a formViewModel with the right data") {
                     let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
                     self.campaignModel.form = formModel
-                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    campaignViewModel = CampaignViewModel(form: formModel!, manager: self.manager)
                     let formViewModel = campaignViewModel.formViewModel
 
                     expect(formViewModel).toNot(beNil())
@@ -96,7 +96,7 @@ class CampaignViewModelTests: QuickSpec {
                     let json = UBTestHelper.getJSONFromFile(named: "CampaignForm")
                     let formModel = FormModel(json: json, id: "", screenshot: nil)
                     self.campaignModel.form = formModel
-                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    campaignViewModel = CampaignViewModel(form: formModel!, manager: self.manager)
                     
                 }
                 it("should return a toastViewModel with the right data") {
@@ -116,7 +116,7 @@ class CampaignViewModelTests: QuickSpec {
                     let json = UBTestHelper.getJSONFromFile(named: "CampaignFormJumpRules")
                     let formModel = FormModel(json: json, id: "", screenshot: nil)
                     self.campaignModel.form = formModel
-                    campaignViewModel = CampaignViewModel(form: formModel, manager: self.manager)
+                    campaignViewModel = CampaignViewModel(form: formModel!, manager: self.manager)
 
                 }
                 it("should go to the correct page when the mood is 1") {

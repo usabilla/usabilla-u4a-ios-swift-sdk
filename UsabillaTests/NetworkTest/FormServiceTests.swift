@@ -116,6 +116,17 @@ class FormServiceTests: QuickSpec {
                         }
                     }
                 }
+                it("should fail when form json is not valid") {
+                    let validFormData = try! UBMock.json("InvalidFormJsonNoPages")?.rawData()
+                    UBHTTPMock.response = HTTPClientResponse(data: validFormData, headers: nil, error: nil, success: true, isChanged: true)
+                    waitUntil(timeout: 2.0) { done in
+                        FormService(httpClient: UBHTTPMock.self).getForm(withID: "a", screenShot: nil).then { _ in
+                            fail("Should not go here")
+                        }.catch { _ in
+                            done()
+                        }
+                    }
+                }
             })
 
             context("when calling submitFeedbackSmallData", {

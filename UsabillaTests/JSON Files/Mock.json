@@ -1,5 +1,74 @@
 {
     "node": {
+        "InvalidFormJsonNoForm": {
+            "structure" : {
+                "colors":{
+                    "group1":{
+                        "hash":"#41474c"
+                    },
+                    "group5":{
+                        "hash":"#b9b7b7"
+                    },
+                    "group6":{
+                        "hash":"#ffffff"
+                    }
+                }
+            }
+        },
+        "InvalidFormJsonNoPages": {
+            "structure" : {
+                "form":{ },
+                "colors":{
+                    "group1":{
+                        "hash":"#41474c"
+                    },
+                    "group5":{
+                        "hash":"#b9b7b7"
+                    },
+                    "group6":{
+                        "hash":"#ffffff"
+                    }
+                }
+            }
+        },
+        "FormWithStructure": {
+            "structure" : {
+                "form":{
+                    "pages":[
+                    { "type":"form" }
+                    ]
+                },
+                "colors":{
+                    "group1":{
+                        "hash":"#41474c"
+                    },
+                    "group5":{
+                        "hash":"#b9b7b7"
+                    },
+                    "group6":{
+                        "hash":"#ffffff"
+                    }
+                }
+            }
+        },
+        "FormWithoutStructure": {
+            "form":{
+                "pages":[
+                         { "type":"form" }
+                         ]
+            },
+            "colors":{
+                "group1":{
+                    "hash":"#41474c"
+                },
+                "group5":{
+                    "hash":"#b9b7b7"
+                },
+                "group6":{
+                    "hash":"#ffffff"
+                }
+            }
+        },
         "NPSField": {
             "type": "nps",
             "caption": "NPS",
@@ -270,6 +339,9 @@
         },
         "CampaignTargeting": [{
             "id": "f56384fa-31b6-4492-9bf0-11f1bfa887c8",
+            "form":{
+            "pages":[ { "type":"form" } ]
+              },
             "options": {
                 "rule": {
                     "type": "percentage",
