@@ -85,7 +85,8 @@ class UsabillaInternal {
 
         class func formViewController(forFormData data: Data) -> UINavigationController? {
             let json = JSON.init(data: data)
-            let form = FormModel(json: json, id: "", screenshot: nil)
+            // swiftlint:disable:next force_unwrapping
+            let form = FormModel(json: json, id: "", screenshot: nil)!
             return viewForForm(form: form)
         }
 
@@ -107,10 +108,11 @@ class UsabillaInternal {
             let json = JSON.init(data: data)
             guard json != JSON.null,
                 let campaignManager = campaignManager else {
-                return
+                    return
             }
             let formModel = FormModel(json: json, id: "", screenshot: nil)
-            campaignManager.displayCampaignForm(formModel)
+            // swiftlint:disable:next force_unwrapping
+            campaignManager.displayCampaignForm(formModel!)
         }
     #endif
 

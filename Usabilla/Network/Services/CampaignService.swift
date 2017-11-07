@@ -47,7 +47,11 @@ class CampaignService: CampaignServiceProtocol {
             }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
-                    fulfill(FormModel(json: JSON(json), id: id, screenshot: nil))
+                    guard let formModel = FormModel(json: JSON(json), id: id, screenshot: nil) else {
+                        reject(NSError(domain: "form model is not valid", code: 0, userInfo: nil))
+                        return
+                    }
+                    fulfill(formModel)
                     return
                 }
                 guard let error = response.error else {

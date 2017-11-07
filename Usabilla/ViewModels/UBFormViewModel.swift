@@ -135,7 +135,8 @@ class UBFormViewModel {
 
     func reset() {
         let theme = model.theme
-        self.model = FormModel(json: model.formJsonString, id: model.identifier, screenshot: nil)
+        // swiftlint:disable:next force_unwrapping
+        self.model = FormModel(json: model.formJsonString, id: model.identifier, screenshot: nil)!
         self.model.theme = theme
         self.model.updateTheme()
         self.currentPageIndex = 0

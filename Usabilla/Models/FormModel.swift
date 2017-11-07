@@ -34,24 +34,26 @@ class FormModel: NSObject, NSCoding {
         _ = pages.map { $0.copy = copyModel }
     }
 
-    init(json: JSON, id: String, screenshot: UIImage?) {
-
+    init?(json: JSON, id: String, screenshot: UIImage?) {
         let jsonHolder = JSONFormParser.getStructureHolder(inJSON: json)
+        guard let form = jsonHolder["form"].dictionary,
+            let formPages = form["pages"] else {
+                return nil
+        }
 
         let data = jsonHolder["data"]
-        let form = jsonHolder["form"]
         self.copyModel = CopyModel(json: jsonHolder)
-        self.hasScreenshot = data["screenshot"].boolValue
-        self.redirectToAppStore = data["appStoreRedirect"].boolValue
         self.version = json["version"].intValue
-        self.showProgressBar = data["progressBar"].bool ?? true
         self.identifier = id
         self.formJsonString = json
         self.theme = UsabillaTheme()
+        self.showProgressBar = data["progressBar"].bool ?? true
+        self.hasScreenshot = data["screenshot"].boolValue
+        self.redirectToAppStore = data["appStoreRedirect"].boolValue
 
         var newPages: [PageModel] = []
 
-        for (index, subJson): (String, JSON) in form["pages"] {
+        for (index, subJson): (String, JSON) in formPages {
             if let index = Int(index) {
                 let page = JSONFormParser.parsePage(subJson, pageNum: index)
                 page.errorMessage = copyModel.errorMessage
