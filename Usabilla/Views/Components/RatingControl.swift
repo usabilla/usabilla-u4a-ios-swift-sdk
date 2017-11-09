@@ -16,12 +16,28 @@ enum RatingMode {
 class RatingControl: UIControl {
 
     private let contentView = UIStackView()
-    private var selectedIndex = -1
+
+    private let accessibilityLabels: [String] = [LocalisationHandler.getLocalisedStringForKey("usa_mood_hate"),
+        LocalisationHandler.getLocalisedStringForKey("usa_mood_dislike"),
+        LocalisationHandler.getLocalisedStringForKey("usa_mood_neutral"),
+        LocalisationHandler.getLocalisedStringForKey("usa_mood_like"),
+        LocalisationHandler.getLocalisedStringForKey("usa_mood_love")]
 
     private let size: CGFloat = 44
     private let spacing: CGFloat = 22
 
     private var initialTouchIndex = -1
+    private var selectedIndex = -1 {
+        didSet {
+            guard let rating = rating else {
+                return
+            }
+            
+            let index = (rating > 0) ? rating - 1: 0
+            accessibilityValue = accessibilityLabels[index]
+            refreshSelection()
+        }
+    }
     var maxValue = 5 {
         didSet {
             reload()
@@ -52,11 +68,9 @@ class RatingControl: UIControl {
         set {
             guard let v = newValue, v > 0 && v <= maxValue else {
                 selectedIndex = -1
-                refreshSelection()
                 return
             }
             selectedIndex = v - 1
-            refreshSelection()
         }
     }
 
@@ -77,8 +91,12 @@ class RatingControl: UIControl {
     }
 
     private func internalInit() {
-        accessibilityIdentifier = "ratingControl"
+        isAccessibilityElement = true
+        accessibilityLabel = LocalisationHandler.getLocalisedStringForKey("usa_mood_select_a_rating")
+        accessibilityTraits = UIAccessibilityTraitAdjustable
+
         addSubview(contentView)
+        accessibilityIdentifier = "ratingControl"
         contentView.isUserInteractionEnabled = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -117,7 +135,8 @@ class RatingControl: UIControl {
         for i in 0..<maxValue {
 
             let button = UIButton()
-
+            button.isAccessibilityElement = true
+            button.accessibilityValue = accessibilityLabels[i]
             button.contentMode = .scaleAspectFill
             button.imageView?.contentMode = .scaleAspectFit
             button.contentHorizontalAlignment = .fill
@@ -193,6 +212,31 @@ class RatingControl: UIControl {
             return
         }
         selectedIndex = newIndex
-        refreshSelection()
+    }
+
+    // MARK: Accessibility
+
+    override func accessibilityElementCount() -> Int {
+        return maxValue
+    }
+
+    override func accessibilityIncrement() {
+        guard selectedIndex < maxValue - 1 else {
+            return
+        }
+        selectedIndex += 1
+        sendActions(for: .valueChanged)
+    }
+
+    override func accessibilityDecrement() {
+        guard selectedIndex > 0 else {
+            return
+        }
+        selectedIndex -= 1
+        sendActions(for: .valueChanged)
+    }
+
+    override func accessibilityActivate() -> Bool {
+        return true
     }
 }

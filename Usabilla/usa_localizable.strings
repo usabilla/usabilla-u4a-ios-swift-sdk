@@ -12,3 +12,11 @@
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
 "usa_screnshot_placeholder" = "Add screenshot";
+
+// accessiblity labels
+"usa_mood_hate" = "Hate";
+"usa_mood_dislike" = "Dislike";
+"usa_mood_neutral" = "Neutral";
+"usa_mood_like" = "Like";
+"usa_mood_love" = "Love";
+"usa_mood_select_a_rating" = "select a rating";
