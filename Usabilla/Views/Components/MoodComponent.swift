@@ -14,8 +14,10 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
     override func build() {
         moodControl = RatingControl()
+        moodControl.maxValue = viewModel.maxValue
         moodControl.mode = viewModel.ratingMode
         moodControl.centered = viewModel.isCentered
+        moodControl.accessibilityLabels = viewModel.accessibilityLabels
         moodControl.translatesAutoresizingMaskIntoConstraints = false
         moodControl.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
 
@@ -29,7 +31,6 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
         // customization
         moodControl?.backgroundColor = viewModel.backgroundColor
-        moodControl?.maxValue = viewModel.maxValue
         moodControl?.selectedImages = viewModel.selectedImages
         moodControl?.unselectedImages = viewModel.unselectedImages
         moodControl?.rating = viewModel.value

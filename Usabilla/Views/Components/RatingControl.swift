@@ -17,12 +17,6 @@ class RatingControl: UIControl {
 
     private let contentView = UIStackView()
 
-    private let accessibilityLabels: [String] = [LocalisationHandler.getLocalisedStringForKey("usa_mood_hate"),
-        LocalisationHandler.getLocalisedStringForKey("usa_mood_dislike"),
-        LocalisationHandler.getLocalisedStringForKey("usa_mood_neutral"),
-        LocalisationHandler.getLocalisedStringForKey("usa_mood_like"),
-        LocalisationHandler.getLocalisedStringForKey("usa_mood_love")]
-
     private let size: CGFloat = 44
     private let spacing: CGFloat = 22
 
@@ -32,10 +26,15 @@ class RatingControl: UIControl {
             guard let rating = rating else {
                 return
             }
-            
+
             let index = (rating > 0) ? rating - 1: 0
             accessibilityValue = accessibilityLabels[index]
             refreshSelection()
+        }
+    }
+    var accessibilityLabels: [String] = [] {
+        didSet {
+            setupAccessibility()
         }
     }
     var maxValue = 5 {
@@ -54,13 +53,11 @@ class RatingControl: UIControl {
             reload()
         }
     }
-
     var mode: RatingMode = .star {
         didSet {
             reload()
         }
     }
-
     var rating: Int? {
         get {
             return selectedIndex > -1 ? selectedIndex + 1: nil
@@ -73,7 +70,6 @@ class RatingControl: UIControl {
             selectedIndex = v - 1
         }
     }
-
     var centered = false {
         didSet {
             reload()
@@ -92,7 +88,6 @@ class RatingControl: UIControl {
 
     private func internalInit() {
         isAccessibilityElement = true
-        accessibilityLabel = LocalisationHandler.getLocalisedStringForKey("usa_mood_select_a_rating")
         accessibilityTraits = UIAccessibilityTraitAdjustable
 
         addSubview(contentView)
@@ -113,6 +108,13 @@ class RatingControl: UIControl {
         reload()
     }
 
+    private func setupAccessibility() {
+        for (index, subView) in contentView.arrangedSubviews.enumerated() {
+            let button = (subView as? UIButton)
+            button?.accessibilityValue = accessibilityLabels[index]
+        }
+    }
+
     private func imageForButton(_ index: Int, selected: Bool) -> UIImage? {
         switch mode {
         case .star:
@@ -129,6 +131,7 @@ class RatingControl: UIControl {
 
     private func reload() {
         isExclusiveTouch = true
+        accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_mood_select_a_rating_out_of"))\(maxValue)"
         contentView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         var prevbutton: UIButton?
 
@@ -136,7 +139,6 @@ class RatingControl: UIControl {
 
             let button = UIButton()
             button.isAccessibilityElement = true
-            button.accessibilityValue = accessibilityLabels[i]
             button.contentMode = .scaleAspectFill
             button.imageView?.contentMode = .scaleAspectFit
             button.contentHorizontalAlignment = .fill

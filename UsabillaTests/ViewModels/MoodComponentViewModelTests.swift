@@ -126,6 +126,47 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(moodComponentViewModel.reverseEmoticonValue(fieldValue: 515151, maxMoods: 2)).to(equal(0))
                 })
             })
+
+            context("When mood component is correctly setup") {
+                it("should return correct values for accessibility labels when count is 2") {
+                    let modelFor2 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"), pageModel: pageModel)
+                    moodComponentViewModel = MoodComponentViewModel(model: modelFor2, theme: theme)
+                    let labels = moodComponentViewModel.accessibilityLabels
+                    expect(labels.count).to(equal(2))
+                    expect(labels[0]).to(equal("Hate"))
+                    expect(labels[1]).to(equal("Love"))
+                }
+                it("should return correct values for accessibility labels when count is 3") {
+                    let modelFor3 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"), pageModel: pageModel)
+                    moodComponentViewModel = MoodComponentViewModel(model: modelFor3, theme: theme)
+                    let labels = moodComponentViewModel.accessibilityLabels
+                    expect(labels.count).to(equal(3))
+                    expect(labels[0]).to(equal("Hate"))
+                    expect(labels[1]).to(equal("Neutral"))
+                    expect(labels[2]).to(equal("Love"))
+                }
+                it("should return correct values for accessibility labels when count is 5") {
+                    let modelFor5 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"), pageModel: pageModel)
+                    moodComponentViewModel = MoodComponentViewModel(model: modelFor5, theme: theme)
+                    let labels = moodComponentViewModel.accessibilityLabels
+                    expect(labels.count).to(equal(5))
+                    expect(labels[0]).to(equal("Hate"))
+                    expect(labels[1]).to(equal("Dislike"))
+                    expect(labels[2]).to(equal("Neutral"))
+                    expect(labels[3]).to(equal("Like"))
+                    expect(labels[4]).to(equal("Love"))
+                }
+                it("should return correct values for accessibility labels in Star mode") {
+                    moodComponentViewModel = MoodComponentViewModel(model: starMoodModel, theme: theme)
+                    let labels = moodComponentViewModel.accessibilityLabels
+                    expect(labels.count).to(equal(5))
+                    expect(labels[0]).to(equal("1 star"))
+                    expect(labels[1]).to(equal("2 stars"))
+                    expect(labels[2]).to(equal("3 stars"))
+                    expect(labels[3]).to(equal("4 stars"))
+                    expect(labels[4]).to(equal("5 stars"))
+                }
+            }
         }
     }
 }

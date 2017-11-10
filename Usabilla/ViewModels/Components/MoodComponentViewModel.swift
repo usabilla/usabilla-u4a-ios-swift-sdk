@@ -48,6 +48,31 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
         return theme.emoticons(size: model.points, emoticons: theme.images.disabledEmoticons)
     }
 
+    var accessibilityLabels: [String] {
+        if model.mode == .star {
+            return UBAccessibility.starLabels
+        }
+
+        // for emoticons only return labels based on the number of emoticons
+        var labels = [String]()
+        switch model.points {
+        case 3:
+            labels = UBAccessibility.emoticonLabels
+                .enumerated()
+                .filter { $0.offset % 2 == 0 }
+                .map { $0.element }
+        case 2:
+            labels = UBAccessibility.emoticonLabels
+                .enumerated()
+                .filter { $0.offset % 4 == 0 }
+                .map { $0.element }
+        default:
+            labels = UBAccessibility.emoticonLabels
+        }
+
+        return labels
+    }
+
     var backgroundColor: UIColor {
         return theme.colors.background
     }

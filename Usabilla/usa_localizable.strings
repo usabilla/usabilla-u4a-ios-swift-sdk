@@ -13,10 +13,17 @@
 "usa_form_required_field_error" = "Please check this field";
 "usa_screnshot_placeholder" = "Add screenshot";
 
-// accessiblity labels
+// Accessiblity labels
+"usa_mood_select_a_rating_out_of" = "select a rating out of";
+// Emoticons
 "usa_mood_hate" = "Hate";
 "usa_mood_dislike" = "Dislike";
 "usa_mood_neutral" = "Neutral";
 "usa_mood_like" = "Like";
 "usa_mood_love" = "Love";
-"usa_mood_select_a_rating" = "select a rating";
+// Stars
+"usa_mood_one_star" = "1 star";
+"usa_mood_two_star" = "2 stars";
+"usa_mood_three_star" = "3 stars";
+"usa_mood_four_star" = "4 stars";
+"usa_mood_five_star" = "5 stars";
