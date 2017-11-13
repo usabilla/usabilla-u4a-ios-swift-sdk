@@ -177,6 +177,7 @@ class CampaignViewController: UIViewController {
         base.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
 
         view.layoutIfNeeded()
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, viewModel.formViewModel.navigationBarTitle)
         // swiftlint:disable:next force_unwrapping
         viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
             base.view.alpha = 1

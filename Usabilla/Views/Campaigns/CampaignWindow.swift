@@ -19,6 +19,7 @@ class CampaignWindow: UIWindow {
         backgroundColor = .clear
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
         windowLevel = UIWindowLevelStatusBar - 1
+        accessibilityViewIsModal = true
     }
 
     required init?(coder aDecoder: NSCoder) {
