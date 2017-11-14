@@ -32,11 +32,7 @@ class RatingControl: UIControl {
             refreshSelection()
         }
     }
-    var accessibilityLabels: [String] = [] {
-        didSet {
-            setupAccessibility()
-        }
-    }
+    var accessibilityLabels: [String] = []
     var maxValue = 5 {
         didSet {
             reload()
@@ -107,13 +103,6 @@ class RatingControl: UIControl {
         reload()
     }
 
-    private func setupAccessibility() {
-        for (index, subView) in contentView.arrangedSubviews.enumerated() {
-            let button = (subView as? UIButton)
-            button?.accessibilityValue = accessibilityLabels[index]
-        }
-    }
-
     private func imageForButton(_ index: Int, selected: Bool) -> UIImage? {
         switch mode {
         case .star:
@@ -130,14 +119,13 @@ class RatingControl: UIControl {
 
     private func reload() {
         isExclusiveTouch = true
-        accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_mood_select_a_rating_out_of"))\(maxValue)"
+        accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_mood_select_a_rating_out_of")) \(maxValue)"
         contentView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         var prevbutton: UIButton?
 
         for i in 0..<maxValue {
 
             let button = UIButton()
-            button.isAccessibilityElement = true
             button.contentMode = .scaleAspectFill
             button.imageView?.contentMode = .scaleAspectFit
             button.contentHorizontalAlignment = .fill
