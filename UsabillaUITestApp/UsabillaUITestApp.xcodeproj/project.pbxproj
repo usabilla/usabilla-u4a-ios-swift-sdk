@@ -52,6 +52,10 @@
 		C5A083851FBB301300152060 /* 18_AccessibilityRatingControl5Moods.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083811FBB301200152060 /* 18_AccessibilityRatingControl5Moods.json */; };
 		C5A083861FBB301300152060 /* 19_AccessibilityRatingControl5Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083821FBB301200152060 /* 19_AccessibilityRatingControl5Stars.json */; };
 		C5A083871FBB301300152060 /* 17_AccessibilityRatingControl3Moods.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083831FBB301200152060 /* 17_AccessibilityRatingControl3Moods.json */; };
+		C5A0838A1FBB3BA900152060 /* 16_AccessibilityRatingControl2Moods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A083891FBB3BA900152060 /* 16_AccessibilityRatingControl2Moods.swift */; };
+		C5A0838C1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838B1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift */; };
+		C5A0838E1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */; };
+		C5A083901FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,10 @@
 		C5A083811FBB301200152060 /* 18_AccessibilityRatingControl5Moods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 18_AccessibilityRatingControl5Moods.json; sourceTree = "<group>"; };
 		C5A083821FBB301200152060 /* 19_AccessibilityRatingControl5Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 19_AccessibilityRatingControl5Stars.json; sourceTree = "<group>"; };
 		C5A083831FBB301200152060 /* 17_AccessibilityRatingControl3Moods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 17_AccessibilityRatingControl3Moods.json; sourceTree = "<group>"; };
+		C5A083891FBB3BA900152060 /* 16_AccessibilityRatingControl2Moods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 16_AccessibilityRatingControl2Moods.swift; sourceTree = "<group>"; };
+		C5A0838B1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 17_AccessibilityRatingControl3Moods.swift; sourceTree = "<group>"; };
+		C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 18_AccessibilityRatingControl5Moods.swift; sourceTree = "<group>"; };
+		C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 19_AccessibilityRatingControl5Stars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +211,10 @@
 				435D06F21FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift */,
 				43D31DB71FAB118D00D46F2F /* 14_BannerNoControlNoButtons.swift */,
 				43D31DBB1FAB161900D46F2F /* 15_PassivePagesNoControls.swift */,
+				C5A083891FBB3BA900152060 /* 16_AccessibilityRatingControl2Moods.swift */,
+				C5A0838B1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift */,
+				C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */,
+				C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */,
 			);
 			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
@@ -406,10 +418,14 @@
 				435D06EF1FA87A0100D5A2F4 /* 12_BannerNoControl.swift in Sources */,
 				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
 				435D06F31FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift in Sources */,
+				C5A0838C1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift in Sources */,
 				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
 				43D31DBC1FAB161900D46F2F /* 15_PassivePagesNoControls.swift in Sources */,
 				C58489B51FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift in Sources */,
+				C5A0838E1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift in Sources */,
+				C5A0838A1FBB3BA900152060 /* 16_AccessibilityRatingControl2Moods.swift in Sources */,
 				C538939B1FA35A8F009941E8 /* UBXCScenario.swift in Sources */,
+				C5A083901FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift in Sources */,
 				43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */,
 				43F57A891F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift in Sources */,
 			);

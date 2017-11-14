@@ -8,8 +8,6 @@
 
 import XCTest
 
-
-
 class FormAppearance: UBXCScenario {
 
     var moodComponent: MoodComponentPassive? = nil
@@ -23,8 +21,8 @@ class FormAppearance: UBXCScenario {
         // Check if mood control exists
         moodComponent = MoodComponentPassive()
         XCTAssertTrue(moodComponent != nil, "element exists")
-        XCTAssertTrue((moodComponent?.mood?.isHittable)!, "hittable")
-        XCTAssertTrue((moodComponent?.mood?.exists)!, "element exists")
+        XCTAssertTrue((moodComponent!.mood?.isHittable)!, "hittable")
+        XCTAssertTrue((moodComponent!.mood?.exists)!, "element exists")
 
         let feedbackNavigationBar = app.navigationBars["Feedback"]
 

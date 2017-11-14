@@ -27,7 +27,7 @@ class RatingControl: UIControl {
                 return
             }
 
-            let index = (rating > 0) ? rating - 1: 0
+            let index = rating > 0 ? rating - 1: 0
             accessibilityValue = accessibilityLabels[index]
             refreshSelection()
         }

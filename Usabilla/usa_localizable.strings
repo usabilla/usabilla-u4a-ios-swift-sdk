@@ -15,12 +15,14 @@
 
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
+
 // Emoticons
 "usa_mood_hate" = "Hate";
 "usa_mood_dislike" = "Dislike";
 "usa_mood_neutral" = "Neutral";
 "usa_mood_like" = "Like";
 "usa_mood_love" = "Love";
+
 // Stars
 "usa_mood_one_star" = "1 star";
 "usa_mood_two_star" = "2 stars";
