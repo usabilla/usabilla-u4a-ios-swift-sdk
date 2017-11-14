@@ -15,6 +15,7 @@
 
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
+"usa_accessibility_field_required" = "This field is required";
 
 // Emoticons
 "usa_mood_hate" = "Hate";

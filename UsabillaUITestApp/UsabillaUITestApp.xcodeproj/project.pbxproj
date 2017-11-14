@@ -10,6 +10,8 @@
 		04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; };
 		04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */ = {isa = PBXBuildFile; fileRef = 43120C9D1F027E5800802141 /* 01_FormAppearance.json */; };
+		4356E98A1FBD828800B761CA /* 20_AccessibilityRequiredField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */; };
+		4356E98B1FBD832C00B761CA /* 20_AccessibilityRequiredField.json in Resources */ = {isa = PBXBuildFile; fileRef = 4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */; };
 		435D06ED1FA879E400D5A2F4 /* 12_BannerNoControl.json in Resources */ = {isa = PBXBuildFile; fileRef = 435D06EC1FA879E400D5A2F4 /* 12_BannerNoControl.json */; };
 		435D06EF1FA87A0100D5A2F4 /* 12_BannerNoControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D06EE1FA87A0100D5A2F4 /* 12_BannerNoControl.swift */; };
 		435D06F31FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D06F21FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift */; };
@@ -85,6 +87,8 @@
 /* Begin PBXFileReference section */
 		04C464F31F799FB100FE43DB /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
+		4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 20_AccessibilityRequiredField.json; sourceTree = "<group>"; };
+		4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 20_AccessibilityRequiredField.swift; sourceTree = "<group>"; };
 		435D06EC1FA879E400D5A2F4 /* 12_BannerNoControl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 12_BannerNoControl.json; sourceTree = "<group>"; };
 		435D06EE1FA87A0100D5A2F4 /* 12_BannerNoControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 12_BannerNoControl.swift; sourceTree = "<group>"; };
 		435D06F01FA884A900D5A2F4 /* 13_CampaignPageToastNoControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 13_CampaignPageToastNoControls.json; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				C5A0838B1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift */,
 				C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */,
 				C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */,
+				4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */,
 			);
 			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				C5A083831FBB301200152060 /* 17_AccessibilityRatingControl3Moods.json */,
 				C5A083811FBB301200152060 /* 18_AccessibilityRatingControl5Moods.json */,
 				C5A083821FBB301200152060 /* 19_AccessibilityRatingControl5Stars.json */,
+				4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				435D06ED1FA879E400D5A2F4 /* 12_BannerNoControl.json in Resources */,
 				C5A083851FBB301300152060 /* 18_AccessibilityRatingControl5Moods.json in Resources */,
 				43D31DB61FAB117600D46F2F /* 14_BannerNoControlNoButtons.json in Resources */,
+				4356E98B1FBD832C00B761CA /* 20_AccessibilityRequiredField.json in Resources */,
 				43F57A761F9DEDF1005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.json in Resources */,
 				43F57A771F9DEDF1005BFA80 /* 05_PassiveCheckboxJumpRules.json in Resources */,
 				437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */,
@@ -425,6 +432,7 @@
 				C5A0838E1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift in Sources */,
 				C5A0838A1FBB3BA900152060 /* 16_AccessibilityRatingControl2Moods.swift in Sources */,
 				C538939B1FA35A8F009941E8 /* UBXCScenario.swift in Sources */,
+				4356E98A1FBD828800B761CA /* 20_AccessibilityRequiredField.swift in Sources */,
 				C5A083901FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift in Sources */,
 				43F9517D1F01633300FE23F8 /* 03_JumpRulesManyControls.swift in Sources */,
 				43F57A891F9E2646005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.swift in Sources */,

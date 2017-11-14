@@ -76,6 +76,7 @@ class RootCellView: UITableViewCell {
     }
 
     private func updateView() {
+        setupAccessiblity()
         component?.removeFromSuperview()
         if let componentViewModel = cellViewModel.componentViewModel {
             component = ComponentFactory.component(viewModel: componentViewModel)
@@ -110,6 +111,15 @@ class RootCellView: UITableViewCell {
             return
         }
         self.titleLabel.text = cellViewModel.title
+    }
+
+    private func setupAccessiblity() {
+        guard cellViewModel.required else {
+            accessibilityLabel = cellViewModel.title
+            return
+        }
+        let requiredLabel = LocalisationHandler.getLocalisedStringForKey("usa_accessibility_field_required")
+        accessibilityLabel = "\(cellViewModel.title) \(requiredLabel)"
     }
 
     private func applyCustomisations() {
