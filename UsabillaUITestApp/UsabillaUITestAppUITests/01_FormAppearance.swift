@@ -8,36 +8,23 @@
 
 import XCTest
 
-extension XCUIElement {
-    func scrollToElement(element: XCUIElement) {
-        while !element.visible() {
-            swipeUp()
-        }
-    }
 
-    func visible() -> Bool {
-        guard self.exists && !self.frame.isEmpty else { return false }
-        return XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
-    }
-}
 
-class FormAppearance: XCTestCase {
+class FormAppearance: UBXCScenario {
 
-    var app: XCUIApplication!
+    var moodComponent: MoodComponentPassive? = nil
 
     override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        app = XCUIApplication()
-        app.setup(type: .passiveForm, scenario: "01_FormAppearance")
-        app.launch()
+        super.setUp(type: .passiveForm, scenario: "01_FormAppearance")
     }
 
     func testOneField() {
-        // first cell is mood control
-        let firstCell = app.tables.children(matching: .cell).element(boundBy: 0)
-        let cellContent = firstCell.children(matching: .button)
-        XCTAssert(cellContent.count == 5, "5 buttons are presents")
+
+        // Check if mood control exists
+        moodComponent = MoodComponentPassive()
+        XCTAssertTrue(moodComponent != nil, "element exists")
+        XCTAssertTrue((moodComponent?.mood?.isHittable)!, "hittable")
+        XCTAssertTrue((moodComponent?.mood?.exists)!, "element exists")
 
         let feedbackNavigationBar = app.navigationBars["Feedback"]
 
@@ -52,7 +39,7 @@ class FormAppearance: XCTestCase {
         // form title exists
         var navigationTitle = feedbackNavigationBar.staticTexts["Feedback"]
         if #available(iOS 11.0, *) {
-            navigationTitle =  feedbackNavigationBar.otherElements["Feedback"]
+            navigationTitle = feedbackNavigationBar.otherElements["Feedback"]
         }
         XCTAssert(navigationTitle.exists, "Navigation title should exist")
 

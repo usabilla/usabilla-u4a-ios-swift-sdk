@@ -72,34 +72,35 @@ struct BannerViewNPS {
 
 // NPS Component
 struct NPSComponent {
-    let nps = Application.xcApp.otherElements["Select a score"]
+    let element: XCUIElement = Application.xcApp.otherElements["Select a score"]
 
     // selects an NPS value
     func select(number: Int) {
         let floatValue = CGFloat(number) / 11.0 + (1 / 11.0) / 2
-        nps.adjust(toNormalizedSliderValue: floatValue)
+        element.adjust(toNormalizedSliderValue: floatValue)
     }
 }
 
 // Mood Component
 class MoodComponent {
-    var mood: XCUIElementQuery? = nil
+    var mood: XCUIElement? = nil
 
     func selectMood(atIndex index: UInt) {
-        mood?.element(boundBy: index).tap()
+        let floatValue = CGFloat(index) / 5.0 + (1 / 5.0) / 2
+        mood?.adjust(toNormalizedSliderValue: floatValue)
     }
 }
 
 class MoodComponentCampaign: MoodComponent {
     override init() {
         super.init()
-        self.mood = Application.xcApp.otherElements["ratingControl"].children(matching: .other).element.children(matching: .button)
+        self.mood = Application.xcApp.otherElements["ratingControl"]
     }
 }
 
 class MoodComponentPassive: MoodComponent {
     override init() {
         super.init()
-        self.mood = Application.xcApp.tables.children(matching: .cell).element(boundBy: 0).children(matching: .button)
+        self.mood = Application.xcApp.tables.children(matching: .cell).otherElements["ratingControl"]
     }
 }

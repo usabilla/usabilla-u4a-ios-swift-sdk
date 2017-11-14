@@ -10,8 +10,8 @@ import Foundation
 import XCTest
 
 struct MainScreen {
-    static let app = XCUIApplication()
-    var nps = app.tables.otherElements["Select a score"]
+    static let app = Application.xcApp
+    let nps = NPSComponent()
 
     static func tapNext() {
         app.navigationBars["Feedback"].buttons["Next"].tap()
