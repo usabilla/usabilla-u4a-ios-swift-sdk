@@ -109,6 +109,7 @@ class FormService: FormServiceProtocol {
                     }
                 }.catch { err in
                     PLog(err)
+                    reject(err)
                 }
             }
         }
@@ -159,7 +160,7 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            HTTPClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil) { response in
+            httpClient.request(self.requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil, allowNilData: true) { response in
                 if response.success {
                     fulfill(true)
                     return

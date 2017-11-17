@@ -45,6 +45,7 @@ class SubmissionManagerTests: QuickSpec {
 
         describe("The SubmissionManager") {
             beforeEach {
+                UBFeedbackRequestDAO.shared.deleteAll()
                 formModel = UBMock.formMock()
                 sm = SubmissionManager(formService: UBFormServiceMock(), reachability: reachabilityMock)
             }

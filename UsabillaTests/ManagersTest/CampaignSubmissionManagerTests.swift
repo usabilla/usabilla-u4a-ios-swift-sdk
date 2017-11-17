@@ -95,7 +95,7 @@ class CampaignSubmissionManagerTests: QuickSpec {
         let patch2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl/internalID")!), internalID: "internalID", id: "1498039389990")
 
         describe("CampaignSubmissionManager") {
-
+            Nimble.AsyncDefaults.Timeout = 5
             beforeEach {
                 reachabilityMock = ReachabilityMock()
                 dao.deleteAll()
@@ -134,19 +134,26 @@ class CampaignSubmissionManagerTests: QuickSpec {
             }
 
             context("when sending a request fails") {
+                beforeEach {
+                    dao.deleteAll()
+                }
                 it("should delete the request after 3 failed attempts") {
                     reachabilityMock.reachable = true
                     expect(dao.readAll().count).to(equal(0))
                     submissionService.submissionSucceed = false
                     csm.handle(request: post)
-                    expect(dao.readAll().count).toEventually(equal(1), timeout: 4)
+                    // this sleep is necessary to avoid the test to crash
+                    // it waits for the results of the csm.handle(request: post) line which is async
+                    sleep(2)
+                    expect(dao.readAll().count).to(equal(1))
                     var campaign = dao.readAll().first!
-                    expect(campaign.numberOfSubmissionAttempts).toEventually(equal(1))
+                    expect(campaign.numberOfSubmissionAttempts).to(equal(1))
                     reachabilityMock.reachable = false
                     reachabilityMock.reachable = true
-                    expect(dao.readAll().count).toEventually(equal(1), timeout: 4)
+                    sleep(2)
+                    expect(dao.readAll().count).to(equal(1))
                     campaign = dao.readAll().first!
-                    expect(campaign.numberOfSubmissionAttempts).toEventually(equal(2))
+                    expect(campaign.numberOfSubmissionAttempts).to(equal(2))
                     reachabilityMock.reachable = false
                     reachabilityMock.reachable = true
                     expect(dao.readAll().count).toEventually(equal(0))

@@ -4,6 +4,7 @@ workspace: Usabilla.xcworkspace
 scheme: Usabilla
 source_directory: .
 output_directory: ./xml_report
+build_directory: ./derivedData
 ignore:
  - Usabilla/Utils/Reachability.swift
  - Usabilla/Utils/SwiftyJSON.swift

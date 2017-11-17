@@ -25,9 +25,68 @@ platform :ios do
         JSON.parse(File.read("versions-validate.json"), {:symbolize_names => true})
     end
 
+    def readUnitTestDevices
+        JSON.parse(File.read("unit-test-devices.json"), {:symbolize_names => true})
+    end
+
     def resetSimulator
        sh("killall -9 'Simulator' || echo 'No simulator launched'")
        sh("launchctl remove com.apple.CoreSimulator.CoreSimulatorService || true")
+    end
+
+    desc "Build for Unit Testing"
+    lane :buildForUnitTesting do
+        scan(
+            workspace: 'Usabilla.xcworkspace',
+            scheme: 'Usabilla',
+            clean: true,
+            build_for_testing: true,
+            derived_data_path: './derivedData'
+        )
+    end
+
+    desc "Unit tests for all device model specified in fastlane/unit-tests.json"
+    lane :unitTestAllDevices do
+        xcversion(version: "9.2")
+        versions = readUnitTestDevices
+        versions.each do |deviceModel|
+            unitTest(deviceModel: deviceModel)
+        end
+    end
+
+    desc "Unit test"
+    lane :unitTest do |options|
+        unless options[:deviceModel]
+            UI.error("missing device model")
+        end
+        scan(
+            workspace: 'Usabilla.xcworkspace',
+            scheme: 'Usabilla',
+            test_without_building: true,
+            derived_data_path: './derivedData',
+            code_coverage: true,
+            device: options[:deviceModel]
+        )
+    end
+
+    desc "Build for UI Testing"
+    lane :buildForUITesting do
+        scan(
+            workspace: 'Usabilla.xcworkspace',
+            scheme: 'UsabillaUITestApp',
+            clean: true,
+            build_for_testing: true,
+        )
+    end
+
+    desc "UI test"
+    lane :uiTest do
+        scan(
+            workspace: 'Usabilla.xcworkspace',
+            scheme: 'UsabillaUITestApp',
+            test_without_building: true,            
+            devices: ["iPhone X (11.0)", "iPhone 7 (10.3.1)", "iPhone 6 (9.3)"]
+        )
     end
 
     desc "Builds the framework for the specified framework"

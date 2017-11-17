@@ -6,10 +6,12 @@ warn("Big PR") if git.lines_of_code > 500
 
 swiftlint.config_file = '.swiftlint.yml'
 swiftlint.lint_files inline_mode: true
-
 slather.configure("Usabilla.xcodeproj", "Usabilla", options: {
   workspace: 'Usabilla.xcworkspace',
   source_directory: ".",
-  decimals: 2
+  decimals: 2,
+  build_directory: "derivedData",
+  ci_service: :jenkins
 })
 slather.show_coverage
+message "[Coverage report](#{ENV['BUILD_URL']}Coverage_Report/)"
