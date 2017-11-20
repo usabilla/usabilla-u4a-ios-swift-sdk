@@ -27,10 +27,9 @@ extension UIBarButtonItem {
         }
     }
 
-    static func setTextForegroundColor(color: UIColor) {
+    func setTextForegroundColor(color: UIColor) {
         if #available(iOS 11, *) {
-            let colorAttribute = [NSForegroundColorAttributeName: color]
-            UIBarButtonItem.appearance().setTitleTextAttributes(colorAttribute, for: .normal)
+            setTitleTextAttributes([NSForegroundColorAttributeName: color], for: .normal)
             return
         }
     }

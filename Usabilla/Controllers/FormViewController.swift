@@ -125,7 +125,6 @@ class FormViewController: UIViewController {
         navigationController?.navigationBar.tintColor = textOnAccentedColor
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textOnAccentedColor]
 
-        UIBarButtonItem.setTextForegroundColor(color: textOnAccentedColor)
         rightNavItem.setFont(font: viewModel.navBarItemsFontBold)
         leftNavItem.setFont(font: viewModel.navBarItemsFontNormal)
 
@@ -133,6 +132,13 @@ class FormViewController: UIViewController {
             progressBar.progressTintColor = viewModel.accentColor
             progressBar.trackTintColor = viewModel.backgrounColor
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        rightNavItem.setTextForegroundColor(color: viewModel.textOnAccentColor)
+        leftNavItem.setTextForegroundColor(color: viewModel.textOnAccentColor)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
