@@ -23,7 +23,6 @@ class NPSControlTests: QuickSpec {
             context("When initialized"){
                 it("Should have the correct value by default") {
                     expect(view.rating).to(beNil())
-                    expect(view.boldFont).to(beNil())
                     expect(view.font).to(beNil())
                     expect(view.toolTipTextColor).to(beNil())
                     expect(view.accessibilityElementCount()).to(equal(11))

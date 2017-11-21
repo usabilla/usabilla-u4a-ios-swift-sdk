@@ -53,8 +53,7 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
     }
 
     private func customizeView() {
-        nps.font = viewModel.theme.fonts.font
-        nps.boldFont = viewModel.theme.fonts.boldFont
+        nps.font = viewModel.theme.fonts.boldFont
         nps.tintColor = viewModel.theme.colors.accent
         nps.toolTipTextColor = viewModel.theme.colors.textOnAccent
 

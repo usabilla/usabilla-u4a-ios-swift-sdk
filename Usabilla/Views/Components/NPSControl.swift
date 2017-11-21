@@ -20,7 +20,6 @@ class NPSControl: UIControl {
         }
         var isSelected: Bool = false {
             didSet {
-                updateFont()
                 updateColor()
             }
         }
@@ -29,23 +28,14 @@ class NPSControl: UIControl {
                 updateColor()
             }
         }
-        var customBoldFont: UIFont? {
-            didSet {
-                updateFont()
-            }
-        }
         var customFont: UIFont? {
             didSet {
-                updateFont()
+                font = customFont
             }
         }
 
         func updateColor() {
             textColor = isLower || isSelected ? hightlightedTextColor : tintColor
-        }
-
-        func updateFont() {
-            font = isSelected ? customBoldFont?.withSize(selectedFontSize) : font
         }
     }
 
@@ -84,12 +74,7 @@ class NPSControl: UIControl {
     var font: UIFont? {
         didSet {
             labels.forEach { $0.customFont = font }
-        }
-    }
-    var boldFont: UIFont? {
-        didSet {
-            labels.forEach { $0.customBoldFont = boldFont }
-            toolTip.label.font = boldFont?.withSize(20)
+            toolTip.label.font = font?.withSize(20)
         }
     }
     var toolTipTextColor: UIColor? {
