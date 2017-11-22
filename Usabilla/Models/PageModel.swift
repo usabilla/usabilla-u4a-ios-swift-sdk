@@ -14,6 +14,10 @@ enum PageType: String {
     case form
     case end
     case toast
+
+    var final: Bool {
+        return self == .end || self == .toast
+    }
 }
 
 class PageModel: PageModelProtocol {

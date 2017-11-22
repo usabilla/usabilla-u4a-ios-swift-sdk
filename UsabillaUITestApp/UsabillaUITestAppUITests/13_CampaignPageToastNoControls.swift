@@ -23,9 +23,9 @@ class CampaignPageToastNoControls: UBXCScenario {
         XCTAssert(modal.form.element.exists)
         XCTAssert(modal.form.navigationBar.element.exists)
         XCTAssert(modal.form.navigationBar.cancelButton.exists)
-        XCTAssert(modal.form.navigationBar.nextButton.exists)
+        XCTAssert(modal.form.navigationBar.submitButton.exists)
 
-        modal.form.navigationBar.nextButton.tap()
+        modal.form.navigationBar.submitButton.tap()
         XCTAssert(toast.element.exists)
         XCTAssert(toast.text == nil || toast.text! == "")
     }

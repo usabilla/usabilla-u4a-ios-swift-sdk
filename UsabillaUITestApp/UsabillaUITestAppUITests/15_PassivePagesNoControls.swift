@@ -20,6 +20,6 @@ class PassivePagesNoControls: UBXCScenario {
         XCTAssert(form.element.exists)
         mood.selectMood(atIndex: 0)
         form.navigationBar.nextButton.tap() // Displays Page 2
-        form.navigationBar.nextButton.tap() // Displays End Page
+        form.navigationBar.submitButton.tap() // Displays End Page
     }
 }

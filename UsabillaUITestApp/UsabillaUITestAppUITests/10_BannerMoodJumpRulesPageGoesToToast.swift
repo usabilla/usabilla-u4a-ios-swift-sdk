@@ -11,7 +11,7 @@ import XCTest
 class BannerMoodJumpRulesPageGoesToToast: UBXCScenario {
 
     let moodComponent = MoodComponentCampaign()
-
+    let modal = Modal()
     override func setUp() {
         super.setUp(type: .campaignForm, scenario: "10_BannerMoodJumpRulesPageGoesToToast")
         // select first index
@@ -20,18 +20,18 @@ class BannerMoodJumpRulesPageGoesToToast: UBXCScenario {
 
     func testOption1GoestToToast2() {
         MainScreen.selectOption("Option 1")
-        MainScreen.tapNext()
+        modal.form.navigationBar.submitButton.tap()
         XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testOption2GoestToToast3() {
         MainScreen.selectOption("Option 2")
-        MainScreen.tapNext()
+        modal.form.navigationBar.submitButton.tap()
         XCTAssert(app.staticTexts["Toast 3"].exists, "It should display 'Toast 3'")
     }
 
     func testNoOptionsGoestToToast1() {
-        MainScreen.tapNext()
+        modal.form.navigationBar.submitButton.tap()
         XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 }

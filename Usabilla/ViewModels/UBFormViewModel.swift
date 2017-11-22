@@ -48,9 +48,6 @@ class UBFormViewModel {
     var navigationBarTitle: String? {
         return model.copyModel.appTitle
     }
-    var cancelButtonTitle: String? {
-        return model.copyModel.cancelButton
-    }
     var navBarItemsFontBold: UIFont {
         return model.theme.fonts.boldFont
     }
@@ -63,14 +60,25 @@ class UBFormViewModel {
     var firstPageViewModel: PageViewModel? {
         return pageViewModels.first
     }
+    var leftBarButtonTitle: String? {
+        return self.isItTheEnd ? nil : model.copyModel.cancelButton
+    }
     var rightBarButtonTitle: String? {
-        if currentPageIndex == model.pages.count - 2 {
-            return model.copyModel.navigationSubmit
-        } else if currentPageIndex == model.pages.count - 1 {
-            return nil
+        if isItTheEnd {
+            return model.copyModel.cancelButton
         }
-
+        if isNextPageAnEndPage {
+            return model.copyModel.navigationSubmit
+        }
         return model.copyModel.navigationNext
+    }
+    private var isNextPageAnEndPage: Bool {
+        let index = currentPageIndex + 1
+        guard index >= 0 && index < model.pages.count,
+            let pageType = model.pages[index].type else {
+                return false
+        }
+        return pageType.final
     }
     var currentPageViewModel: PageViewModel {
         get {
@@ -113,8 +121,7 @@ class UBFormViewModel {
         return newPageIndex
     }
     var isItTheEnd: Bool {
-        let pageType = model.pages[currentPageIndex].type
-        return pageType == .end || pageType == .toast
+        return model.pages[currentPageIndex].type?.final ?? false
     }
 
     init(formModel: FormModel, shouldAddMarginWhenKeyboardIsShown: Bool = true) {

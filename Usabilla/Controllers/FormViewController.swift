@@ -21,12 +21,10 @@ class FormViewController: UIViewController {
 
     lazy var leftNavItem: UIBarButtonItem = {
         let navLeft = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonPressed(_:)))
-        navLeft.accessibilityLabel = "Cancel"
         return navLeft
     }()
     lazy var rightNavItem: UIBarButtonItem = {
         let navRight = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonPressed(_:)))
-        navRight.accessibilityLabel = "Next"
         return navRight
     }()
     var progressBar: UIProgressView = {
@@ -65,8 +63,8 @@ class FormViewController: UIViewController {
         customizeView()
 
         updateProgressBar()
+        updateLeftButton()
         updateRightButton()
-        setUpLeftButton()
     }
 
     deinit {
@@ -149,14 +147,24 @@ class FormViewController: UIViewController {
         }
     }
 
-    func setUpLeftButton() {
-        leftNavItem.title = viewModel.cancelButtonTitle
+    // MARK: Actions
+
+    func updateLeftButton() {
+        guard let title = viewModel.leftBarButtonTitle else {
+            navigationItem.leftBarButtonItem = nil
+            return
+        }
+        leftNavItem.title = title
+        navigationItem.leftBarButtonItem = leftNavItem
     }
 
-    // MARK: Actions
     func updateRightButton() {
-        rightNavItem.isEnabled = true
-        rightNavItem.title = viewModel.rightBarButtonTitle
+        guard let title = viewModel.rightBarButtonTitle else {
+            navigationItem.rightBarButtonItem = nil
+            return
+        }
+        rightNavItem.title = title
+        navigationItem.rightBarButtonItem = rightNavItem
     }
 
     func updateProgressBar() {
@@ -168,9 +176,8 @@ class FormViewController: UIViewController {
             return
         }
         progressBar.setProgress(1, animated: true)
-        rightNavItem.title = ""
-        rightNavItem.isEnabled = false
-        leftNavItem.title = viewModel.cancelButtonTitle
+        updateLeftButton()
+        updateRightButton()
 
         thankYouViewController = ThankYouViewController(viewModel: endPageViewModel)
 
@@ -190,9 +197,9 @@ class FormViewController: UIViewController {
         transition(from: thankYouViewController, to: pageViewController, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: { _ in
             self.thankYouViewController = nil
         })
+        updateLeftButton()
         updateRightButton()
         updateProgressBar()
-        setUpLeftButton()
     }
 
     func leftBarButtonPressed(_ sender: UIBarButtonItem) {
@@ -200,6 +207,10 @@ class FormViewController: UIViewController {
     }
 
     func rightBarButtonPressed(_ sender: UIBarButtonItem) {
+        guard !viewModel.isItTheEnd else {
+            delegate?.formWillClose(self)
+            return
+        }
         if viewModel.isCurrentPageValid {
             let index = viewModel.nextPageIndex
             let oldPageModel = viewModel.currentPageViewModel.model
@@ -215,9 +226,6 @@ class FormViewController: UIViewController {
     func swipeToPage(_ pageViewModel: PageViewModel) {
         pageViewController.setupViewModel(pageViewModel)
         viewModel.currentPageViewModel = pageViewModel
-
-        updateProgressBar()
-        updateRightButton()
     }
 
     func goToPage(atIndex index: Int) {

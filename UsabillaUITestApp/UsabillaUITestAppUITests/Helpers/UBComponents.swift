@@ -58,10 +58,12 @@ struct NavigationBar {
     let element: XCUIElement
     let cancelButton: XCUIElement
     let nextButton: XCUIElement
+    let submitButton: XCUIElement
     init(element: XCUIElement) {
         self.element = element
         cancelButton = element.buttons["Cancel"]
         nextButton = element.buttons["Next"]
+        submitButton = element.buttons["Submit"]
     }
 }
 

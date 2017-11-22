@@ -11,7 +11,7 @@ import XCTest
 class PassiveCheckboxJumpRules: UBXCScenario {
 
     let moodComponent = MoodComponentPassive()
-
+    let form = Form()
     override func setUp() {
         super.setUp(type: .passiveForm, scenario: "05_PassiveCheckboxJumpRules")
         moodComponent.selectMood(atIndex: 1)
@@ -19,21 +19,21 @@ class PassiveCheckboxJumpRules: UBXCScenario {
 
     func testOption1GoestToPage1() {
         MainScreen.selectOption("Option 1")
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption1And2GoestToPage1() {
         MainScreen.selectOption("Option 1")
         MainScreen.selectOption("Option 2")
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption1And3GoestToPage1() {
         MainScreen.selectOption("Option 1")
         MainScreen.selectOption("Option 3")
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
@@ -41,24 +41,24 @@ class PassiveCheckboxJumpRules: UBXCScenario {
         MainScreen.selectOption("Option 1")
         MainScreen.selectOption("Option 2")
         MainScreen.selectOption("Option 3")
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption2GoestToPage2() {
         MainScreen.selectOption("Option 2")
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
     func testOption3GoestToPage2() {
         MainScreen.selectOption("Option 3")
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
     func testNoOptionsShouldGoToEndPage() {
-        MainScreen.tapNext()
+        form.navigationBar.nextButton.tap()
         XCTAssert(app.staticTexts["Thanks!"].exists, "It should display the end page")
     }
 }

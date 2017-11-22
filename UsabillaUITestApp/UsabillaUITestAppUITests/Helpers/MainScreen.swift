@@ -13,10 +13,6 @@ struct MainScreen {
     static let app = Application.xcApp
     let nps = NPSComponent()
 
-    static func tapNext() {
-        app.navigationBars["Feedback"].buttons["Next"].tap()
-    }
-    
     static func selectOption(_ option: String) {
         app.tables.staticTexts[option].tap()
     }

@@ -28,10 +28,12 @@ class FormAppearance: UBXCScenario {
 
         // cancel button exists
         let cancel = feedbackNavigationBar.buttons["Cancel"]
+        XCTAssertEqual(cancel.label, "Cancel")
         XCTAssert(cancel.exists, "Cancel button should exist")
 
-        // next button exists
-        let next = feedbackNavigationBar.buttons["Next"]
+        // submit button exists
+        let next = feedbackNavigationBar.buttons["Submit"]
+        XCTAssertEqual(next.label, "Submit")
         XCTAssert(next.exists, "Next button should exist")
 
         // form title exists
