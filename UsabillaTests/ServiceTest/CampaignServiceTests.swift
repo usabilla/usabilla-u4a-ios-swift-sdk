@@ -227,6 +227,30 @@ class CampaignServiceTests: QuickSpec {
                             }
                         }
                     }
+                    it("should not fail if a targeting option is incorrect") {
+                        let targetingListJSON = try! UBMock.json(fromFile: "CampaignServiceTest", "targetingsBroken").rawData()
+                        let targetingIDs: [String] = []
+                        UBHTTPMock.response = HTTPClientResponse(data: targetingListJSON, headers: nil, error: nil, success: true, isChanged: true)
+                        waitUntil(timeout: 2.0) { done in
+                            CampaignService(httpClient: UBHTTPMock.self).getTargetings(withIDs: targetingIDs).then { targetings in
+                                expect(targetings).notTo(beNil())
+                                expect(targetings.count).to(equal(2))
+
+                                let targeting1 = targetings.first
+                                let targeting2 = targetings.last
+                                expect(targeting1).notTo(beNil())
+                                expect(targeting1?.targetingID).to(equal("6ad0b9e2-d336-4c74-b72b-bc6d90dc8258"))
+                                expect(targeting1?.lastModifiedDate).notTo(beNil())
+                                expect(targeting2).notTo(beNil())
+                                expect(targeting2?.targetingID).to(equal("b1ddd75c-0254-44df-b5a6-2b3d806fc140"))
+                                expect(targeting2?.lastModifiedDate).to(beNil())
+
+                                done()
+                                }.catch { _ in
+                                    fail("should not go here")
+                            }
+                        }
+                    }
                 }
 
                 context("and there are errors") {

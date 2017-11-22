@@ -135,5 +135,112 @@
                    }
                    }
                    }
+                   ],
+    "targetingsBroken": [
+                   {
+                   "id": "6ad0b9e2-d336-4c74-b72b-bc6d90dc8258",
+                   "last_modified_at": "2017-07-25T15:12:29+00:00",
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 3,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "tjerk2"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   },
+                   {
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 1,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "schiphol1"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   },
+                   {
+                   "id": "b1ddd75c-0254-44df-b5a6-2b3d806fc140",
+                   "options": {
+                   "rule": {
+                   "type": "percentage",
+                   "percentage": 100,
+                   "children": [
+                                {
+                                "type": "repetition",
+                                "repetition": 3,
+                                "children": [
+                                             {
+                                             "type": "event",
+                                             "name": "tjerk3"
+                                             }
+                                             ]
+                                }
+                                ]
+                   }
+                   }
+                   },
+                     {
+                     "id": "faked75c-0254-44df-b5a6-2b3d806fc140",
+                     "options": {
+                     "rule": {
+                     "type": "percentage",
+                     "percentage": 100,
+                     "children": [
+                                  {
+                                  "type": "fake-type",
+                                  "repetition": 3,
+                                  "children": [
+                                               {
+                                               "type": "event",
+                                               "name": "tjerk3"
+                                               }
+                                               ]
+                                  }
+                                  ]
+                     }
+                     }
+                     },
+                     {
+                     "id": "d314a564-e046-4ff2-a688-b8e6e32af1b3",
+                     "fakeKey": {
+                     "rule": {
+                     "type": "percentage",
+                     "percentage": 100,
+                     "children": [
+                                  {
+                                  "type": "repetition",
+                                  "repetition": 3,
+                                  "children": [
+                                               {
+                                               "type": "event",
+                                               "name": "tjerk1"
+                                               }
+                                               ]
+                                  }
+                                  ]
+                     }
+                     }
+                     }
                    ]
 }
