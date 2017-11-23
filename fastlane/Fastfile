@@ -93,4 +93,15 @@ platform :ios do
             validateSDK(version: version)
         end
     end
+
+    desc "Run integration tests"
+    lane :integrationTests do
+        scan(
+            project: './automation/UsabillaIntegrationTest/UsabillaIntegrationTest.xcodeproj',
+            clean: true,
+            devices: [ "iPhone 6s (10.0)", "iPhone 5s (9.3)"]
+            #add  "iPhone 8 (11.1)", when iOS 9 is supported by CircleCI and we migarte from Xcode 8.3.3 to 9
+            #see https://discuss.circleci.com/t/please-add-simulators-for-ios-9-10-to-xcode-9-image/16530
+        )
+    end
 end

@@ -4,6 +4,7 @@ machine:
 dependencies:
   pre: 
     - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+    - gem update fastlane
   override:
     - bin/bootstrap-if-needed
   cache_directories:
@@ -56,3 +57,6 @@ test:
           test |
         tee $CIRCLE_ARTIFACTS/xcode_raw_ui.log |
         xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ui.xml
+
+      - if [ $CIRCLE_BRANCH = 'master' ]; then fastlane integrationTests; fi
+
