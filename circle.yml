@@ -59,4 +59,3 @@ test:
         xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results_ui.xml
 
       - if [ $CIRCLE_BRANCH = 'master' ]; then fastlane integrationTests; fi
-
