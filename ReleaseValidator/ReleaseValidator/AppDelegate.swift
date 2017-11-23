@@ -2,11 +2,12 @@
 //  AppDelegate.swift
 //  ReleaseValidator
 //
-//  Created by Adil Bougamza on 23/11/2017.
+//  Created by Benjamin Grima on 23/11/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
 import UIKit
+import Usabilla
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Usabilla.initialize(appID: nil)
         return true
     }
 

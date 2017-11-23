@@ -2,24 +2,31 @@
 //  ViewController.swift
 //  ReleaseValidator
 //
-//  Created by Adil Bougamza on 23/11/2017.
+//  Created by Benjamin Grima on 23/11/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
 
 import UIKit
+import Usabilla
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        Usabilla.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func barButtonFeedbackAction(_ sender: Any) {
+        Usabilla.loadFeedbackForm("5a16d9c67d66810f2248aad9")
     }
-
-
 }
 
+extension ViewController: UsabillaDelegate {
+    func formDidLoad(form: UINavigationController) {
+        present(form, animated: true, completion: nil)
+    }
+    
+    func formDidFailLoading(error: UBError) {
+        
+    }
+}

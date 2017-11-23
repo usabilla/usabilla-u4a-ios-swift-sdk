@@ -9,24 +9,31 @@ platform :ios do
     # def xcode_version 
     #     sh("xcodebuild -version | head -1 | sed -e 's@.*\([0-9]..\).*@\1@'")
     # end
+    def projectDirectory
+        "#{File.expand_path(File.dirname(__FILE__))}/../"
+    end
+
+    def cleanReleaseProject
+        sh("rm -rf #{projectDirectory}ReleaseValidator/Usabilla.Framework")        
+    end
 
     def readXcodeVersions
         JSON.parse(File.read("versions.json"), {:symbolize_names => true})
     end
 
     desc "Builds the framework for the specified framework"
-    lane :buildSdk do |options|
+    lane :buildSDK do |options|
         unless options[:version]
             UI.error("missing Xcode version")
         end
         version = options[:version]
-        project_directory = "#{File.expand_path(File.dirname(__FILE__))}/../"        
+        UI.message("Building for Xcode-#{version}")
         xcversion(version: version)
         buildFramework
         buildCarthage
         crateReleaseDirectory(
             version: version,
-            project_directory: project_directory
+            project_directory: projectDirectory
         )
         cleanProject
     end
@@ -45,6 +52,33 @@ platform :ios do
         versions = checkXcodeVersions()
         versions.each do |version|
             buildSdk(version: version)
+        end
+    end
+
+    desc "Validate integrating the framework (with specified version) into a sample project"
+    lane :validateSDK do |options|
+        unless options[:version]
+            UI.error("missing Xcode version")
+        end
+        version = options[:version]
+        UI.message("Validating for Xcode-#{version}")
+        xcversion(version: version)
+        framework_path = "#{projectDirectory}Xcode-#{version}/Pods/Usabilla.Framework"
+        cleanReleaseProject
+        sh("cp -r #{framework_path} #{projectDirectory}ReleaseValidator/")
+        scan(
+            project: 'ReleaseValidator/ReleaseValidator.xcodeproj',
+            clean: true,
+            device: "iPhone 6s"
+        )
+        cleanReleaseProject
+    end
+
+    desc "Validate integrating the framework (with for all xcode version specified in fastlane/versions.json) into a sample project"
+    lane :validateAll do
+        versions = checkXcodeVersions()
+        versions.each do |version|
+            validateSDK(version: version)
         end
     end
 end
