@@ -1,3 +1,13 @@
+## 4.0.2
+#### Added
+- Add accessibility/VoiceOver support for
+    - Rating control (mood, star)
+    - Navigation/Focus management between views
+    - Required fields indicator
+
+#### Fixed
+- Fix UIBarButtonItem appearance customizations that may affect the host application
+
 ## 4.0.1
 #### Added
 - Support for **Xcode 9.1**
