@@ -38,9 +38,8 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8+ or 9+
+- Xcode 8.3.3 or 9+
 - Swift 3.1, 3.2, 4.0
-
 
 ## Installation
 
@@ -65,7 +64,7 @@ target 'YourProjectTarget' do
 pod 'Usabilla', '~> 4.0.0'
 
 #Or by specifying a tag
-pod 'Usabilla', :tag=> 'v4.0.0'
+pod 'Usabilla', :tag=> 'v4.0.2'
 
 End
 ```
@@ -87,7 +86,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.2"
 ```
 
 ### Manual
