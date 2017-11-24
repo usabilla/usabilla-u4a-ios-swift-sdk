@@ -21,6 +21,15 @@ platform :ios do
         JSON.parse(File.read("versions.json"), {:symbolize_names => true})
     end
 
+    def readXcodeVersionsValidation
+        JSON.parse(File.read("versions-validate.json"), {:symbolize_names => true})
+    end
+
+    def resetSimulator
+       sh("killall -9 'Simulator' || echo 'No simulator launched'")
+       sh("launchctl remove com.apple.CoreSimulator.CoreSimulatorService || true")
+    end
+
     desc "Builds the framework for the specified framework"
     lane :buildSDK do |options|
         unless options[:version]
@@ -49,9 +58,9 @@ platform :ios do
 
     desc "Builds the framework for all xcode version specified in fastlane/versions.json"
     lane :buildAll do
-        versions = checkXcodeVersions()
+        versions = checkXcodeVersions
         versions.each do |version|
-            buildSdk(version: version)
+            buildSDK(version: version)
         end
     end
 
@@ -62,21 +71,24 @@ platform :ios do
         end
         version = options[:version]
         UI.message("Validating for Xcode-#{version}")
+
+        resetSimulator
         xcversion(version: version)
         framework_path = "#{projectDirectory}Xcode-#{version}/Pods/Usabilla.Framework"
         cleanReleaseProject
         sh("cp -r #{framework_path} #{projectDirectory}ReleaseValidator/")
-        scan(
+	    scan(
             project: 'ReleaseValidator/ReleaseValidator.xcodeproj',
             clean: true,
-            device: "iPhone 6s"
+            device: "iPhone SE"
         )
         cleanReleaseProject
+        resetSimulator
     end
 
-    desc "Validate integrating the framework (with for all xcode version specified in fastlane/versions.json) into a sample project"
+    desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
     lane :validateAll do
-        versions = checkXcodeVersions()
+        versions = readXcodeVersionsValidation
         versions.each do |version|
             validateSDK(version: version)
         end

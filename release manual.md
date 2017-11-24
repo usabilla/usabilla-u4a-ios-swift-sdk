@@ -166,7 +166,7 @@ There are two ways of building the framework:
 - All required Xcode versions at once (see fastlane/versions.json): 
     - `fastlane buildAll`
 - A specific Xxcode version
-    - `fastlane buildSdk version:X.X` where X.X is the xcode version you are using
+    - `fastlane buildSDK version:X.X` where X.X is the xcode version you are using
 
 Here are the steps taken by this script:
 - Build Framework using Xcode
@@ -183,6 +183,12 @@ This will produce the library files ready to be released:
 - Xcode-X.X/Pods/Usabilla.framework
 - Xcode-X.X/Pods/Usabilla.DSYM
 - Xcode-X.X/Carthage/Carthage.Framework.zip
+
+To verify that the builds can be imported correctly you can run:
+
+`fastlane validateAll` or `fastlane validateSDK version:X.X` where X.X is the xcode version you want to test
+
+Be aware that only Xcode 9+ builds will be validated as Xcode 8 builds do not work at the moment.
 
 Now, copy the `Usabilla.framework` and `Usabilla.DSYM` files in the public repository folder
 

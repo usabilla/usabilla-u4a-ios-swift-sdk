@@ -62,6 +62,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+fastlane/README.MD
 
 vendor
 generatedFramework
+ReleaseValidator/Usabilla.framework
