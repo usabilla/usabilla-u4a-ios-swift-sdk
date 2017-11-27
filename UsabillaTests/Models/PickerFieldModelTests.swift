@@ -18,7 +18,7 @@ class PickerFieldModelTests: QuickSpec {
 
     override func spec() {
         beforeSuite {
-            self.pageModel = PageModel(pageNumber: 0, pageName: "test")
+            self.pageModel = UBMock.pageMock()
             self.model = PickerFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: self.pageModel)
             self.model.fieldID = "id"
         }

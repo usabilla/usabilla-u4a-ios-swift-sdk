@@ -43,6 +43,10 @@ class UBMock {
         return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)!
     }
 
+    class func pageMock () -> PageModel {
+        return PageModel(pageNumber: 0, pageName: "", type: .form)
+    }
+
     class func campaignMock(withID id: String = "", withTargetingID targetingId: String = "", withTargeting targeting: TargetingOptionsModel = UBMock.mockTargeting) -> CampaignModel {
         return CampaignModel(id: id, targeting: targeting, formID: "", targetingID: targetingId, maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date())
     }
@@ -189,11 +193,12 @@ class UBPageModelMock: PageModelProtocol {
         return dict
     }
 
-    var type: PageType?
+    var type: PageType
     var fields: [BaseFieldModel]
     var fieldValuesCollection: [String: [String]]
 
-    init() {
+    init(type: PageType? = nil) {
+        self.type = type ?? .form
         fields = []
         fieldValuesCollection = [:]
     }
@@ -223,7 +228,7 @@ enum MockDirectoryEnum: String, DirectoryProtocol {
     var description: String {
         return "test"
     }
-    
+
     var name: String {
         return "Testdirectory"
     }

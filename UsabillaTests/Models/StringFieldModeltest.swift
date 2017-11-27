@@ -14,7 +14,7 @@ import Nimble
 class StringFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test")
+        let pageModel = UBMock.pageMock()
         var model: StringFieldModel?
 
         describe("StringFieldModel") {

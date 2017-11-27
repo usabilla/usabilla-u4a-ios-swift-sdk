@@ -17,7 +17,7 @@ class BaseImageComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseImageComponentViewModel<ScreenshotModel>!
         var model: ScreenshotModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "")
+        let pageModel = UBMock.pageMock()
 
         beforeSuite {
             model = ScreenshotModel(json: JSON(parseJSON: "{\"name\":\"image\"}"), pageModel: pageModel)

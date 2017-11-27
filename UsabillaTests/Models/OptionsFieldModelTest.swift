@@ -14,7 +14,7 @@ import Nimble
 class OptionsFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test")
+        let pageModel = UBMock.pageMock()
         var model: OptionsFieldModel?
 
         describe("OptionsFieldModel") {

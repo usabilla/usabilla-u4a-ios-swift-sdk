@@ -17,7 +17,7 @@ class BaseOptionsComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseOptionsComponentViewModel<OptionsFieldModel>!
         var model: OptionsFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "")
+        let pageModel = UBMock.pageMock()
 
         beforeSuite {
             model = OptionsFieldModel(json: JSON(parseJSON: "{\"name\":\"test\"}"), pageModel: pageModel)

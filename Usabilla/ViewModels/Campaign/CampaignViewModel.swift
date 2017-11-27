@@ -68,9 +68,7 @@ class CampaignViewModel {
         let nextPageViewModel = pageViewModel(atIndex: nextIndex)
         formViewModel.currentPageViewModel = nextPageViewModel
         // swiftlint:disable:next force_unwrapping
-        let type = nextPageViewModel.model.type!
-        // swiftlint:disable:next force_unwrapping
-        pageDidTurn(pageIndex: 0, pageModel: introPageViewModel!.introPage, nextPageType: type)
+        pageDidTurn(pageIndex: 0, pageModel: introPageViewModel!.introPage, nextPageType: nextPageViewModel.model.type)
     }
 
     func pageDidTurn(pageIndex: Int, pageModel: PageModel, nextPageType: PageType) {

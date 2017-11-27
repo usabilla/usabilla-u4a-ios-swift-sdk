@@ -31,19 +31,19 @@ class PageModel: PageModelProtocol {
 
     let pageNumber: Int?
     let pageName: String?
-    var type: PageType?
+    let type: PageType
     var isLastPage: Bool?
     var jumpRuleList: [JumpRule]?
     var defaultJumpTo: String?
     var errorMessage: String?
     weak var copy: CopyModel?
 
-    required init(pageNumber: Int, pageName: String) {
+    required init(pageNumber: Int, pageName: String, type: PageType) {
         self.pageNumber = pageNumber
         self.pageName = pageName
         errorMessage = nil
         fields = []
-        type = nil
+        self.type = type
         isLastPage = nil
         jumpRuleList = nil
         defaultJumpTo = nil

@@ -17,7 +17,7 @@ class BaseIntComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseIntComponentViewModel<IntFieldModel>!
         var model: IntFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "")
+        let pageModel = UBMock.pageMock()
 
         beforeSuite {
             model = IntFieldModel(json: JSON(parseJSON: "{\"name\":\"mood\"}"), pageModel: pageModel)

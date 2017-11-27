@@ -18,6 +18,16 @@ class PageModelTests: QuickSpec {
             beforeEach {
                 pageModel = UBMock.formMock().pages.first
             }
+
+            context("When creating a page") {
+                it("should have the right values") {
+                    let page = PageModel(pageNumber: 1, pageName: "test", type: .start)
+                    expect(page.pageNumber).to(equal(1))
+                    expect(page.pageName).to(equal("test"))
+                    expect(page.type).to(equal(PageType.start))
+                }
+            }
+
             context("When exporting to dictionary") {
                 it("should export the right fields when no value are set") {
                     let dictionary = pageModel.toDictionary()

@@ -17,7 +17,7 @@ class BaseStringComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseStringComponentViewModel<StringFieldModel>!
         var model: StringFieldModel!
-        let pageModel = PageModel(pageNumber: 0, pageName: "")
+        let pageModel = UBMock.pageMock()
 
         beforeSuite {
             model = StringFieldModel(json: JSON(parseJSON: "{\"name\":\"test\"}"), pageModel: pageModel)

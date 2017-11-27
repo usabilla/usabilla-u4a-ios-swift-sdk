@@ -25,7 +25,7 @@ class PickerComponentViewModelTests: QuickSpec {
         var viewModel: PickerComponentViewModel!
         var model: PickerFieldModel!
 
-        let pageModel = PageModel(pageNumber: 0, pageName: "")
+        let pageModel = UBMock.pageMock()
 
         beforeEach {
             var jsonObj = UBMock.json("PickerWithEmpty")!

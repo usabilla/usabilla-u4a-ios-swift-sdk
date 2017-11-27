@@ -16,7 +16,7 @@ import Nimble
 class ComponentViewModelFactoryTests: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test")
+        let pageModel = UBMock.pageMock()
         let theme = UsabillaTheme()
 
         describe("ComponentViewModelFactoryTests") {

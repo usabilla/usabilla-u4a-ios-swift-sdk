@@ -69,7 +69,7 @@ protocol PageModelProtocol {
     func toDictionary() -> [String: Any?]
     var fields: [BaseFieldModel] { get }
     var fieldValuesCollection: [String: [String]] { get }
-    var type: PageType? { get set }
+    var type: PageType { get }
 }
 
 protocol CampaignSubmissionManagerProtocol {

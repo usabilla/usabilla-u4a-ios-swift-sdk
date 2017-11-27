@@ -14,7 +14,7 @@ import Nimble
 class FieldFactoryTest: QuickSpec {
 
     override func spec() {
-        let pageModel = PageModel(pageNumber: 0, pageName: "test")
+        let pageModel = UBMock.pageMock()
         describe("Field Factory") {
             it("paragraph type") {
                 let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"paragraph\"}"), pagemodel: pageModel)

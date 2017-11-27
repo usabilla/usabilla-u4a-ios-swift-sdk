@@ -38,9 +38,8 @@ class JSONFormParser {
         case .end, .toast:
             pageModelClass = UBEndPageModel.self
         }
-        let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName)
+        let currentPage = pageModelClass.init(pageNumber: pageNum, pageName: pageName, type: type)
         currentPage.defaultJumpTo = pageJson["jump"].string
-        currentPage.type = type
 
         // specific intro page parsing
         if let introPage = currentPage as? IntroPageModel {

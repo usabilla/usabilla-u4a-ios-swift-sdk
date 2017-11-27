@@ -20,7 +20,7 @@ class MoodComponentViewModelTests: QuickSpec {
     override func spec() {
 
         let theme = UsabillaTheme()
-        let pageModel = PageModel(pageNumber: 0, pageName: "test")
+        let pageModel = UBMock.pageMock()
         var moodComponentViewModel: MoodComponentViewModel!
         var moodModel: MoodFieldModel!
         var starMoodModel: MoodFieldModel!

@@ -74,11 +74,10 @@ class UBFormViewModel {
     }
     private var isNextPageAnEndPage: Bool {
         let index = currentPageIndex + 1
-        guard index >= 0 && index < model.pages.count,
-            let pageType = model.pages[index].type else {
+        guard index >= 0 && index < model.pages.count else {
                 return false
         }
-        return pageType.final
+        return model.pages[index].type.final
     }
     var currentPageViewModel: PageViewModel {
         get {
@@ -121,7 +120,7 @@ class UBFormViewModel {
         return newPageIndex
     }
     var isItTheEnd: Bool {
-        return model.pages[currentPageIndex].type?.final ?? false
+        return model.pages[currentPageIndex].type.final
     }
 
     init(formModel: FormModel, shouldAddMarginWhenKeyboardIsShown: Bool = true) {

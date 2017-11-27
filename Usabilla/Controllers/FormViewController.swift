@@ -216,8 +216,7 @@ class FormViewController: UIViewController {
             let oldPageModel = viewModel.currentPageViewModel.model
             let oldIndex = viewModel.currentPageIndex
             goToPage(atIndex: index)
-            // swiftlint:disable:next force_unwrapping
-            delegate?.pageDidTurn(oldPageModel: oldPageModel, oldPageIndex: oldIndex, newPageIndex: index, nextPageType: viewModel.currentPageViewModel.model.type!, formViewController: self)
+            delegate?.pageDidTurn(oldPageModel: oldPageModel, oldPageIndex: oldIndex, newPageIndex: index, nextPageType: viewModel.currentPageViewModel.model.type, formViewController: self)
             return
         }
         pageViewController.gotToNextErrorField()
