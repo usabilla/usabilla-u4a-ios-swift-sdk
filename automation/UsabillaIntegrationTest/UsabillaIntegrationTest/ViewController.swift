@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import Usabilla
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var buttonSend: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        textField.text = "purchaseComplete"
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +26,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func sendAction(_ sender: Any) {
+        let eventName = textField.text
+        Usabilla.sendEvent(event: eventName!)
     }
 
+    @IBAction func resetAction(_ sender: Any) {
+        Usabilla.resetCampaignData(completion: nil)
+    }
 }
 

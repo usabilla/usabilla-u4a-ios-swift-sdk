@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Usabilla.initialize(appID: "d5af199e-9b6e-4397-838e-6e26691e80c3")
+        Usabilla.debugEnabled = true
         return true
     }
 
