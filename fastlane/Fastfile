@@ -98,6 +98,7 @@ platform :ios do
     lane :integrationTests do
         scan(
             project: './automation/UsabillaIntegrationTest/UsabillaIntegrationTest.xcodeproj',
+            scheme: "UsabillaIntegrationTest",
             clean: true,
             devices: [ "iPhone 6s (10.0)", "iPhone 5s (9.3)"]
             #add  "iPhone 8 (11.1)", when iOS 9 is supported by CircleCI and we migarte from Xcode 8.3.3 to 9
