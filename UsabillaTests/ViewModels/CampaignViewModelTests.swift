@@ -43,11 +43,11 @@ class CampaignViewModelTests: QuickSpec {
                     expect(campaignViewModel.introPageViewModel).to(beNil())
                     expect(campaignViewModel.introPresenter).to(beNil())
                 }
-                it("should set introPageViewModel & introPresenter when json contains start page") {
+                it("should set introPageViewModel & introPresenter when json contains banner page") {
                     // add start page to json form
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
-                    startDict["type"] = "start"
+                    startDict["type"] = "banner"
                     dict["form"]!["pages"].arrayObject!.append(startDict)
 
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
@@ -63,7 +63,7 @@ class CampaignViewModelTests: QuickSpec {
                     // add start page to json form
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
-                    startDict["type"] = "start"
+                    startDict["type"] = "banner"
                     startDict["fields"] = []
                     startDict["display"] = "alert"
                     dict["form"]!["pages"].arrayObject!.append(startDict)

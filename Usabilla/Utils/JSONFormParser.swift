@@ -31,7 +31,7 @@ class JSONFormParser {
         var pageModelClass: PageModel.Type
 
         switch type {
-        case .start, .banner:
+        case .banner:
             pageModelClass = IntroPageModel.self
         case .form:
             pageModelClass = PageModel.self
