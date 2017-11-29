@@ -15,9 +15,9 @@ class EmailFieldModel: StringFieldModel, EditableStringComponentModel, Exportabl
         return fieldValue
     }
 
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         placeHolder = json["placeholder"].string
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
     }
 
     override func isValid() -> Bool {

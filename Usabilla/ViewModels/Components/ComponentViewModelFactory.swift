@@ -13,7 +13,7 @@ import Foundation
 
 class ComponentViewModelFactory {
 
-    class func component(field: FieldModelProtocol, theme: UsabillaTheme) -> ComponentViewModel? {
+    class func component(field: FieldModelProtocol, theme: UsabillaTheme, copy: CopyModel) -> ComponentViewModel? {
 
         switch field {
 
@@ -43,7 +43,9 @@ class ComponentViewModelFactory {
             return SliderComponentViewModel(model: model, theme: theme)
         case is ScreenshotModel:
             let model = (field as? ScreenshotModel)!
-            return ScreenshotComponentViewModel(model: model, theme: theme)
+            let screenshotComponentViewModel = ScreenshotComponentViewModel(model: model, theme: theme)
+            screenshotComponentViewModel.screenshotPlaceHolder = copy.screenshotPlaceholder
+            return screenshotComponentViewModel
         case is TextAreaFieldModel:
             let model = (field as? TextAreaFieldModel)!
             return TextAreaComponentViewModel(model: model, theme: theme)

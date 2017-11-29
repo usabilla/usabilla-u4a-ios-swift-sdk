@@ -16,94 +16,93 @@ import Nimble
 class ComponentViewModelFactoryTests: QuickSpec {
 
     override func spec() {
-        let pageModel = UBMock.pageMock()
         let theme = UsabillaTheme()
 
         describe("ComponentViewModelFactoryTests") {
             context("when model is CheckBox") {
                 it("should return a ChecboxComponentViewModel") {
-                    let model = CheckboxFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = CheckboxFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is CheckBoxComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is PickerFieldModel") {
                 it("should return a PickerComponentViewModel") {
-                    let model = PickerFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = PickerFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is PickerComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is EmailFieldModel") {
                 it("should return a EmailComponentViewModel") {
-                    let model = EmailFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = EmailFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is EmailComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is HeaderFieldModel") {
                 it("should return a HeaderComponentViewModel") {
-                    let model = HeaderFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = HeaderFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is HeaderComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is MoodFieldModel") {
                 it("should return a MoodComponentViewModel") {
-                    let model = MoodFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = MoodFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is MoodComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is ParagraphFieldModel") {
                 it("should return a ParagraphComponentViewModel") {
-                    let model = ParagraphFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = ParagraphFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is ParagraphComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is RadioFieldModel") {
                 it("should return a RadioComponentViewModel") {
-                    let model = RadioFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = RadioFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is RadioComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is ScreenshotModel") {
                 it("should return a ScreenshotComponentViewModel") {
-                    let model = ScreenshotModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = ScreenshotModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is ScreenshotComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is RatingFieldModel") {
                 it("should return a SliderComponentViewModel") {
-                    let model = RatingFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = RatingFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is SliderComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is TextAreaFieldModel") {
                 it("should return a TextAreaComponentViewModel") {
-                    let model = TextAreaFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = TextAreaFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is TextAreaComponentViewModel).to(beTrue())
                 }
             }
 
             context("when model is TextFieldModel") {
                 it("should return a TextFieldComponentViewModel") {
-                    let model = TextFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
-                    let component = ComponentViewModelFactory.component(field: model, theme: theme)
+                    let model = TextFieldModel(json: JSON(parseJSON: ""))
+                    let component = ComponentViewModelFactory.component(field: model, theme: theme, copy: CopyModel())
                     expect(component is TextFieldComponentViewModel).to(beTrue())
                 }
             }

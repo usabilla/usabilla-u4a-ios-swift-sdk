@@ -13,11 +13,11 @@ class RatingFieldModel: IntFieldModel {
     let textPositioning, low, high: String?
     let scale: Int?
 
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         textPositioning = json["textPositioning"].string
         low = json["low"].string
         high = json["high"].string
         scale = json["scale"].int
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
     }
 }

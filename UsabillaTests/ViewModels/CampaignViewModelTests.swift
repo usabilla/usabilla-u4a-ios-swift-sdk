@@ -137,7 +137,9 @@ class CampaignViewModelTests: QuickSpec {
                 it("should go to the correct page when the mood is 5") {
                     expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(0))
                     let moodField = campaignViewModel.formViewModel.model.pages[0].fields.first as! MoodFieldModel
+                    let moodViewModel = campaignViewModel.formViewModel.pageViewModel(atIndex: 0).cellViewModels.first { $0.model is MoodFieldModel }
                     moodField.fieldValue = 5
+                    moodViewModel?.valueDidChange()
                     expect(campaignViewModel.currentPageType).to(equal(PageType.banner))
                     campaignViewModel.introViewDidContinue()
                     expect(campaignViewModel.formViewModel.currentPageIndex).to(equal(2))

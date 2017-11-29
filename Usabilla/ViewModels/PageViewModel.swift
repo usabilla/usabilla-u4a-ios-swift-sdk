@@ -41,7 +41,9 @@ class PageViewModel: UBPageViewModel {
         self.copy = page.copy!
         self.errorMessage = page.errorMessage
         for (index, fieldModel) in page.fields.enumerated() {
-            cellViewModels.append(CellViewModel(model: fieldModel, theme: theme))
+            let cellViewModel = CellViewModel(model: fieldModel, theme: theme, copy: copy)
+            cellViewModel.delegate = self
+            cellViewModels.append(cellViewModel)
             if fieldModel.rule != nil {
                 dynamicFields.append(index)
             }
@@ -87,5 +89,15 @@ class PageViewModel: UBPageViewModel {
         }.forEach {
             $0.updateErrorLabel()
         }
+    }
+}
+
+extension PageViewModel: CellViewModelDelegate {
+    func valueDidChange(model: BaseFieldModel) {
+        guard let value = model.serialiazedValue else {
+            self.model.fieldValuesCollection.removeValue(forKey: model.fieldID)
+            return
+        }
+        self.model.fieldValuesCollection[model.fieldID] = value
     }
 }

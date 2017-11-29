@@ -9,5 +9,5 @@
 import Foundation
 
 class ScreenshotComponentViewModel: BaseImageComponentViewModel<ScreenshotModel> {
-
+    var screenshotPlaceHolder: String?
 }

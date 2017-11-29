@@ -51,7 +51,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
         addScreenshotLabel.contentHorizontalAlignment = .left
         addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
-        addScreenshotLabel.setTitle(viewModel.model.pageModel.copy?.screenshotPlaceholder, for: .normal)
+        addScreenshotLabel.setTitle(viewModel.screenshotPlaceHolder, for: .normal)
 
         addSubview(screenShotView)
         addSubview(addIcon)

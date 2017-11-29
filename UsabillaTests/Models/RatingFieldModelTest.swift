@@ -14,12 +14,11 @@ import Nimble
 class RatingFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = UBMock.pageMock()
         var model: RatingFieldModel?
 
         describe("RatingFieldModel") {
             beforeEach {
-                model = RatingFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
+                model = RatingFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"))
             }
             it("init RatingFieldModel") {
                 expect(model).toNot(beNil())

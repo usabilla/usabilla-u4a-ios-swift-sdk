@@ -14,22 +14,15 @@ import Nimble
 class IntFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = UBMock.pageMock()
         var model: IntFieldModel?
 
         describe("IntFieldModel") {
             beforeEach {
-                model = IntFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                model = IntFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
             }
             it("init IntFieldModel") {
                 expect(model).toNot(beNil())
             }
-
-            it("IntFieldModel fieldValue") {
-                model?.fieldValue = 15
-                expect(pageModel.fieldValuesCollection["myField"]?.first).to(equal("15"))
-            }
-
             it("StringField isValid") {
                 model?.fieldValue = nil
                 model?.required = false

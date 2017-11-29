@@ -10,15 +10,16 @@ import Foundation
 
 class BaseFieldModel: FieldModelProtocol, ComponentModel {
 
-    unowned var pageModel: PageModel
     var fieldID: String
     var fieldTitle: String
     var required: Bool
     var type: String
     var rule: ShowHideRule?
+    var serialiazedValue: [String]? {
+        return nil
+    }
 
-    init(json: JSON, pageModel: PageModel) {
-        self.pageModel = pageModel
+    init(json: JSON) {
         self.type = json["type"].stringValue
         self.fieldID = json["name"].stringValue
         self.fieldTitle = json["title"].stringValue

@@ -18,11 +18,14 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
             return reverseEmoticonValue(fieldValue: model.fieldValue, maxMoods: model.points)
         }
         set {
+            defer {
+                delegate?.valueDidChange()
+            }
             if let val = newValue {
                 model.fieldValue = emoticonValue(index: val, maxMoods: model.points)
-            } else {
-                model.fieldValue = nil
+                return
             }
+            model.fieldValue = nil
         }
     }
 

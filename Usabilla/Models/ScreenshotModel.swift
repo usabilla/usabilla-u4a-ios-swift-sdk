@@ -15,8 +15,8 @@ class ScreenshotModel: BaseFieldModel, ImageComponentModel {
         return toBase64String()
     }
 
-    required init(json: JSON, pageModel: PageModel, screenShot: UIImage? = nil) {
-        super.init(json: json, pageModel: pageModel)
+    required init(json: JSON, screenShot: UIImage? = nil) {
+        super.init(json: json)
         self.image = screenShot
     }
 

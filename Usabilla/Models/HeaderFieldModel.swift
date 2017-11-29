@@ -10,8 +10,8 @@ import Foundation
 
 class HeaderFieldModel: StringFieldModel {
 
-    override init(json: JSON, pageModel: PageModel) {
-        super.init(json: json, pageModel: pageModel)
+    override init(json: JSON) {
+        super.init(json: json)
         fieldValue = json["text"].string
     }
 }

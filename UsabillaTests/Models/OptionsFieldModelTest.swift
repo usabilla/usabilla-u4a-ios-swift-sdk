@@ -19,18 +19,13 @@ class OptionsFieldModelTest: QuickSpec {
 
         describe("OptionsFieldModel") {
             beforeEach {
-                model = OptionsFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                model = OptionsFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
             }
             it("init OptionsFieldModel") {
                 expect(model).toNot(beNil())
             }
-            it("OptionsFieldModel fieldValue") {
-                model?.fieldValue = ["test1", "test2"]
-                expect(pageModel.fieldValuesCollection["myField"]).to(equal(["test1", "test2"]))
-            }
             it("OptionsFieldModel isValid") {
                 model?.fieldValue = []
-
                 model?.required = false
                 expect(model?.isValid()).to(beTrue())
                 model?.required = true

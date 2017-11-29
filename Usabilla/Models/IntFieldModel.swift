@@ -10,23 +10,22 @@ import Foundation
 
 class IntFieldModel: BaseFieldModel, Exportable {
 
-    var fieldValue: Int? {
-        didSet {
-            if let value = fieldValue {
-                pageModel.fieldValuesCollection[fieldID] = [String(value)]
-                return
-            }
-            pageModel.fieldValuesCollection.removeValue(forKey: fieldID)
-        }
-    }
+    var fieldValue: Int?
 
     var exportableValue: Any? {
         return fieldValue
     }
 
-    override init(json: JSON, pageModel: PageModel) {
+    override var serialiazedValue: [String]? {
+        guard let value = fieldValue else {
+            return nil
+        }
+        return [String(value)]
+    }
+
+    override init(json: JSON) {
         fieldValue = nil
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
     }
 
     override func isValid() -> Bool {

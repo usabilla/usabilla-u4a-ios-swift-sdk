@@ -15,6 +15,13 @@ import Nimble
 
 class CellViewModelTests: QuickSpec {
 
+    class MockCellViewModelDelegate: CellViewModelDelegate {
+        var onValueDidChange: ((BaseFieldModel) -> Void)?
+        func valueDidChange(model: BaseFieldModel) {
+            onValueDidChange?(model)
+        }
+    }
+
     override func spec() {
         var form: FormModel!
         var field: BaseFieldModel!
@@ -25,7 +32,7 @@ class CellViewModelTests: QuickSpec {
             beforeEach {
                 form = UBMock.formMock()
                 field = form.pages.first?.fields.first as! MoodFieldModel
-                cellViewModel = CellViewModel(model: field, theme: theme)
+                cellViewModel = CellViewModel(model: field, theme: theme, copy: CopyModel())
             }
             context("when model is valid") {
                 beforeEach {
@@ -58,6 +65,19 @@ class CellViewModelTests: QuickSpec {
                     cellViewModel.updateVisibility()
                     expect(cellViewModel.isViewCurrentlyVisible).to(beFalse())
                     expect(cellViewModel.isValid).to(beTrue())
+                }
+            }
+            context("when updating value") {
+                it("should notify the delegate") {
+                    let delegate = MockCellViewModelDelegate()
+                    cellViewModel.delegate = delegate
+                    waitUntil(timeout: 1.0) { done in
+                        delegate.onValueDidChange = { model in
+                            expect(model.fieldID).to(equal(field.fieldID))
+                            done()
+                        }
+                        cellViewModel.valueDidChange()
+                    }
                 }
             }
         }

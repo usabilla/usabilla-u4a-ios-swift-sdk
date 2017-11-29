@@ -15,31 +15,30 @@ import Nimble
 
 class MoodFieldModelTests: QuickSpec {
     override func spec() {
-        let pageModel = UBMock.pageMock()
         var model: MoodFieldModel?
 
         describe("MoodFieldModel") {
             context("When MoodFieldModel is initlized with correct json") {
                 it("should have the correct values set up with 5 emojis") {
-                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"5\"}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"5\"}"))
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(5))
                     expect(model?.mode).to(equal(RatingMode.emoticon))
                 }
                 it("should have the correct values set up with 3 emojis") {
-                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"3\"}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"3\"}"))
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(3))
                     expect(model?.mode).to(equal(RatingMode.emoticon))
                 }
                 it("should have the correct values set up with 1 emojis") {
-                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"1\"}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"1\"}"))
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(1))
                     expect(model?.mode).to(equal(RatingMode.emoticon))
                 }
                 it("should have the correct values for star") {
-                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"1\", \"mode\": \"star\"}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"points\": \"1\", \"mode\": \"star\"}"))
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(5))
                     expect(model?.mode).to(equal(RatingMode.star))
@@ -47,7 +46,7 @@ class MoodFieldModelTests: QuickSpec {
             }
             context("When MoodFieldModel is initlized with no points") {
                 it("should have set points to 5") {
-                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                    model = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
                     expect(model).toNot(beNil())
                     expect(model?.points).to(equal(5))
                 }

@@ -13,6 +13,10 @@ protocol Accessible {
     var accessibilityExtraInfo: String? { get set }
 }
 
+protocol CellViewModelDelegate: class {
+    func valueDidChange(model: BaseFieldModel)
+}
+
 protocol IntFieldHandlerProtocol: class {
     var fieldValue: Int { get set }
 }
@@ -24,6 +28,12 @@ protocol FormViewControllerDelegate: class {
 
 protocol ComponentViewModel: Accessible {
     var theme: UsabillaTheme { get }
+    weak var delegate: ComponentViewModelDelegate? { get set }
+    func reset()
+}
+
+protocol ComponentViewModelDelegate: class {
+    func valueDidChange()
 }
 
 protocol StringComponentViewModel: ComponentViewModel {
@@ -44,6 +54,7 @@ protocol Centerable {
 }
 
 protocol ComponentModel {
+    func reset()
 }
 
 protocol IntComponentModel: ComponentModel {

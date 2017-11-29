@@ -21,6 +21,7 @@ class PickerComponentViewModel: BaseComponentViewModel<String, PickerFieldModel>
         set {
             // swiftlint:disable:next force_unwrapping
             model.fieldValue = newValue != nil ? [newValue!] : []
+            delegate?.valueDidChange()
         }
     }
 

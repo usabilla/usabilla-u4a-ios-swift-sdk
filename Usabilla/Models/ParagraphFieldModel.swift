@@ -13,10 +13,10 @@ class ParagraphFieldModel: StringFieldModel {
     let isHTML: Bool
     let immutableParagraphValue: String?
 
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         isHTML = json["html"].boolValue
         immutableParagraphValue = json["text"].string
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
         fieldValue = json["text"].string
     }
 }

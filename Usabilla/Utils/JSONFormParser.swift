@@ -90,8 +90,7 @@ class JSONFormParser {
     }
 
     fileprivate class func parseFieldModel(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
-
-        if let field: BaseFieldModel = FieldFactory.createField(json, pagemodel: pagemodel) {
+        if let field: BaseFieldModel = FieldFactory.createField(json) {
             if json["showHideRule"].exists() && !json["showHideRule"].isEmpty {
                 field.rule = parseShowHideRule(json["showHideRule"], pageModel: pagemodel)
             }

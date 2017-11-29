@@ -15,6 +15,7 @@ class BaseStringComponentViewModel<M: StringComponentModel>: BaseComponentViewMo
         }
         set {
             model.fieldValue = newValue
+            delegate?.valueDidChange()
         }
     }
 }

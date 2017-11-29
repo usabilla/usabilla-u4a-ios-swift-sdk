@@ -19,7 +19,7 @@ class BaseFieldModelTest: QuickSpec {
 
         describe("BaseFieldModel") {
             it("init BaseFieldModel") {
-                base = BaseFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"), pageModel: pageModel)
+                base = BaseFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"))
                 expect(base).toNot(beNil())
             }
 

@@ -9,7 +9,6 @@
 import Foundation
 
 protocol FieldModelProtocol {
-    unowned var pageModel: PageModel {get set}
     var fieldID: String {get set}
     var fieldTitle: String {get set}
     var required: Bool {get set}

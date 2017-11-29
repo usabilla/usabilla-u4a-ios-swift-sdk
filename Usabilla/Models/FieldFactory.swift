@@ -26,7 +26,7 @@ class FieldFactory {
     }
 
     // swiftlint:disable:next cyclomatic_complexity
-    class func createField(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
+    class func createField(_ json: JSON) -> BaseFieldModel? {
         let type = json["type"].stringValue
 
         guard let fieldType = FieldType(rawValue: type) else {
@@ -35,27 +35,27 @@ class FieldFactory {
 
         switch fieldType {
         case .header:
-            return HeaderFieldModel(json: json, pageModel: pagemodel)
+            return HeaderFieldModel(json: json)
         case .paragraph, .titleParagraph:
-            return ParagraphFieldModel(json: json, pageModel: pagemodel)
+            return ParagraphFieldModel(json: json)
         case .text:
-            return TextFieldModel(json: json, pageModel: pagemodel)
+            return TextFieldModel(json: json)
         case .choice:
-            return PickerFieldModel(json: json, pageModel: pagemodel)
+            return PickerFieldModel(json: json)
         case .email:
-            return EmailFieldModel(json: json, pageModel: pagemodel)
+            return EmailFieldModel(json: json)
         case .textArea:
-            return TextAreaFieldModel(json: json, pageModel: pagemodel)
+            return TextAreaFieldModel(json: json)
         case .nps:
-            return NPSFieldModel(json: json, pageModel: pagemodel)
+            return NPSFieldModel(json: json)
         case .mood:
-            return MoodFieldModel(json: json, pageModel: pagemodel)
+            return MoodFieldModel(json: json)
         case .rating:
-            return RatingFieldModel(json: json, pageModel: pagemodel)
+            return RatingFieldModel(json: json)
         case .radio:
-            return RadioFieldModel(json: json, pageModel: pagemodel)
+            return RadioFieldModel(json: json)
         case .checkbox:
-            return CheckboxFieldModel(json: json, pageModel: pagemodel)
+            return CheckboxFieldModel(json: json)
         }
 
     }

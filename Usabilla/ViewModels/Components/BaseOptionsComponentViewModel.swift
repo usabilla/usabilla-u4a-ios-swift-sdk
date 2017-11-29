@@ -19,6 +19,7 @@ class BaseOptionsComponentViewModel<T: OptionsFieldModel>: BaseComponentViewMode
         }
         set {
             model.fieldValue = newValue ?? []
+            delegate?.valueDidChange()
         }
     }
 }

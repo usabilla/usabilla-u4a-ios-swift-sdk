@@ -20,18 +20,27 @@ class MoodComponentViewModelTests: QuickSpec {
     override func spec() {
 
         let theme = UsabillaTheme()
-        let pageModel = UBMock.pageMock()
         var moodComponentViewModel: MoodComponentViewModel!
         var moodModel: MoodFieldModel!
         var starMoodModel: MoodFieldModel!
 
         beforeSuite {
-            moodModel = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"), pageModel: pageModel)
-            starMoodModel = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5, \"mode\": \"star\"}"), pageModel: pageModel)
+            moodModel = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"))
+            starMoodModel = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5, \"mode\": \"star\"}"))
         }
 
         describe("moodComponentViewModelTests") {
-
+            context("When updating value") {
+                it("should notify the delegate") {
+                    moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
+                    let delegate = MockBaseComponentViewModelDelegate()
+                    moodComponentViewModel.delegate = delegate
+                    waitUntil(timeout: 1.0) { done in
+                        delegate.onValueDidChange = done
+                        moodComponentViewModel.value = nil
+                    }
+                }
+            }
             context("When moodComponentViewModel is initialized with correct model") {
                 it("should have all values setup correctly for Emoticone mode", closure: {
                     moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
@@ -58,7 +67,7 @@ class MoodComponentViewModelTests: QuickSpec {
                 var moodModelLessThan5Moods: MoodFieldModel!
 
                 it("should have all values setup correctly for 3 moods", closure: {
-                    moodModelLessThan5Moods = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"), pageModel: pageModel)
+                    moodModelLessThan5Moods = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"))
 
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods, theme: theme)
                     expect(moodComponentViewModel.maxValue).to(equal(3))
@@ -68,7 +77,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(moodComponentViewModel.value).to(equal(0))
                 })
                 it("should have all values setup correctly for 2 moods", closure: {
-                    moodModelLessThan5Moods = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"), pageModel: pageModel)
+                    moodModelLessThan5Moods = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"))
 
                     moodComponentViewModel = MoodComponentViewModel(model: moodModelLessThan5Moods, theme: theme)
 
@@ -129,7 +138,7 @@ class MoodComponentViewModelTests: QuickSpec {
 
             context("When mood component is correctly setup") {
                 it("should return correct values for accessibility labels when count is 2") {
-                    let modelFor2 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"), pageModel: pageModel)
+                    let modelFor2 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 2}"))
                     moodComponentViewModel = MoodComponentViewModel(model: modelFor2, theme: theme)
                     let labels = moodComponentViewModel.accessibilityLabels
                     expect(labels.count).to(equal(2))
@@ -137,7 +146,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(labels[1]).to(equal("Love"))
                 }
                 it("should return correct values for accessibility labels when count is 3") {
-                    let modelFor3 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"), pageModel: pageModel)
+                    let modelFor3 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 3}"))
                     moodComponentViewModel = MoodComponentViewModel(model: modelFor3, theme: theme)
                     let labels = moodComponentViewModel.accessibilityLabels
                     expect(labels.count).to(equal(3))
@@ -146,7 +155,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     expect(labels[2]).to(equal("Love"))
                 }
                 it("should return correct values for accessibility labels when count is 5") {
-                    let modelFor5 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"), pageModel: pageModel)
+                    let modelFor5 = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\", \"placeholder\": \"myplaceholder\", \"points\": 5}"))
                     moodComponentViewModel = MoodComponentViewModel(model: modelFor5, theme: theme)
                     let labels = moodComponentViewModel.accessibilityLabels
                     expect(labels.count).to(equal(5))

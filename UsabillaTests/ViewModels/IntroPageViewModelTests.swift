@@ -25,7 +25,7 @@ class IntroPageViewModelTests: QuickSpec {
         let introPage = IntroPageModel(pageName: "test", type: .form)
         let copyModel = CopyModel()
         beforeEach {
-            let moodField = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"), pageModel: introPage)
+            let moodField = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"))
             introPage.fields = [moodField]
             introPage.copy = copyModel
             copyModel.introCancelButton = "canceltest"
@@ -33,9 +33,21 @@ class IntroPageViewModelTests: QuickSpec {
         }
 
         describe("IntroPageViewModel") {
+            context("when initialized") {
+                it("should create the component view model") {
+                    let moodField = MoodFieldModel(json: "{\"name\":\"mood\"}")
+                    let introPage = IntroPageModel(pageName: "test", type: .banner)
+                    let copy = CopyModel()
+                    introPage.copy = copy
+                    introPage.fields = [moodField]
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    expect(introPageViewModel.componentViewModel).toNot(beNil())
+                    expect(introPageViewModel.componentViewModel?.delegate).toNot(beNil())
+                }
+            }
             context("when initialized with a page a paragraph field") {
                 it("should not set the component view model when the paragraph is empty") {
-                    let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"\"}"), pageModel: introPage)
+                    let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"\"}"))
                     let introPage = IntroPageModel(pageName: "test", type: .banner)
                     introPage.fields = [paragraphField]
 
@@ -44,8 +56,10 @@ class IntroPageViewModelTests: QuickSpec {
                     expect(introPageViewModel.componentViewModel).to(beNil())
                 }
                 it("should set the component view model when the paragraph has a text") {
-                    let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"hello\"}"), pageModel: introPage)
+                    let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"hello\"}"))
                     let introPage = IntroPageModel(pageName: "test", type: .banner)
+                    let copy = CopyModel()
+                    introPage.copy = copy
                     introPage.fields = [paragraphField]
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
                     expect(introPageViewModel.componentViewModel).toNot(beNil())
@@ -86,7 +100,7 @@ class IntroPageViewModelTests: QuickSpec {
                     let copy2 = CopyModel()
                     copy2.introCancelButton = "canceltest"
                     introPage2.copy = copy2
-                    introPage2.fields = [MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"), pageModel: introPage2)]
+                    introPage2.fields = [MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"))]
                     let introPageViewModel2 = IntroPageViewModel(introPage: introPage2, theme: configurator)
                     expect(introPageViewModel2.displayMode).to(equal(IntroPageDisplayMode.bannerBottom))
                     expect(introPageViewModel2.title).to(equal("Hello"))
@@ -148,6 +162,20 @@ class IntroPageViewModelTests: QuickSpec {
                     // swiftlint:disable force_cast
                     (introPage.fields.first as! MoodFieldModel).fieldValue = 2
                     expect(introPageViewModel.canContinue).to(beTrue())
+                }
+            }
+
+            context("when the field value is updated") {
+                it("it should update the page model") {
+                    let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
+                    expect(introPage.fieldValuesCollection.keys.count).to(equal(0))
+                    let mood = introPage.fields.first as! MoodFieldModel
+                    mood.fieldValue = 2
+                    mood.fieldID = "mood1"
+                    expect(introPage.fieldValuesCollection.keys.count).to(equal(0))
+                    introPageViewModel.valueDidChange()
+                    expect(introPage.fieldValuesCollection.keys.count).to(equal(1))
+                    expect(introPage.fieldValuesCollection["mood1"]).to(equal(["2"]))
                 }
             }
         }

@@ -20,7 +20,7 @@ class EmailComponentViewModelTests: QuickSpec {
         let pageModel = UBMock.pageMock()
 
         beforeSuite {
-            model = EmailFieldModel(json: JSON(parseJSON: "{\"name\":\"email\"}"), pageModel: pageModel)
+            model = EmailFieldModel(json: JSON(parseJSON: "{\"name\":\"email\"}"))
             viewModel = EmailComponentViewModel(model: model, theme: UsabillaTheme())
         }
 

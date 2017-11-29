@@ -16,6 +16,7 @@ class BaseImageComponentViewModel<T: ImageComponentModel>: BaseComponentViewMode
         }
         set {
             model.image = newValue
+            delegate?.valueDidChange()
         }
     }
 }

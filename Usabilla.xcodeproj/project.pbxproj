@@ -175,6 +175,7 @@
 		436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
 		436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
 		437BD7CE1E4B2CDF00E6FE2A /* FormModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD7CC1E4B2CDB00E6FE2A /* FormModelTests.swift */; };
+		438BC60B1FE800A400DF3B3B /* BaseComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438BC60A1FE800A400DF3B3B /* BaseComponentViewModelTests.swift */; };
 		4390C0F21E97BE9B00092977 /* UBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F11E97BE9B00092977 /* UBDAO.swift */; };
 		4390C0F41E97BEC500092977 /* UBFileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */; };
 		4390C0F61E97BEFC00092977 /* UBCampaignDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */; };
@@ -624,6 +625,7 @@
 		436F55471E8178D500E91E58 /* CampaignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		436F55491E8178EF00E91E58 /* CampaignModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignModel.swift; sourceTree = "<group>"; };
 		437BD7CC1E4B2CDB00E6FE2A /* FormModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormModelTests.swift; sourceTree = "<group>"; };
+		438BC60A1FE800A400DF3B3B /* BaseComponentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponentViewModelTests.swift; sourceTree = "<group>"; };
 		4390C0F11E97BE9B00092977 /* UBDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBDAO.swift; sourceTree = "<group>"; };
 		4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFileStorageDAO.swift; sourceTree = "<group>"; };
 		4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCampaignDAO.swift; sourceTree = "<group>"; };
@@ -1304,6 +1306,7 @@
 		43B708431E7FE74E00F05A40 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				438BC60A1FE800A400DF3B3B /* BaseComponentViewModelTests.swift */,
 				43B708391E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift */,
 				43AF1B7A1E7C21E400BA309B /* BaseIntComponentViewModelTests.swift */,
 				43B708351E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift */,
@@ -1779,6 +1782,7 @@
 				C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */,
 				4317189E1F2A15EC00BF612E /* UBCampaignStoreTests.swift in Sources */,
 				C536547D1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift in Sources */,
+				438BC60B1FE800A400DF3B3B /* BaseComponentViewModelTests.swift in Sources */,
 				044E68171DD3777A00CE75E1 /* PerformanceTest.swift in Sources */,
 				04A0C1CA1E8BD73500A483AC /* DecoratorTests.swift in Sources */,
 				4334E8681E290E1300AC895C /* ParagraphFieldModel.swift in Sources */,

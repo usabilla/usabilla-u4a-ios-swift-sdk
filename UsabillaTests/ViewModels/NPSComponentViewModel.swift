@@ -17,10 +17,9 @@ class NPSComponentViewModelTests: QuickSpec {
 
         var viewModel: NPSComponentViewModel!
         var model: NPSFieldModel!
-        let pageModel = UBMock.pageMock()
 
         beforeSuite {
-            model = NPSFieldModel(json: UBMock.json("NPSField")!, pageModel: pageModel)
+            model = NPSFieldModel(json: UBMock.json("NPSField")!)
             viewModel = NPSComponentViewModel(model: model, theme: UsabillaTheme())
         }
 

@@ -73,12 +73,30 @@ class IntroPageViewModel {
             }
 
             // create component view model
-            componentViewModel = ComponentViewModelFactory.component(field: field, theme: theme)
+            guard let copy = introPage.copy else {
+                componentViewModel = nil
+                return
+            }
+            componentViewModel = ComponentViewModelFactory.component(field: field, theme: theme, copy: copy)
+            componentViewModel?.delegate = self
             if displayMode == .alert, var cvm = componentViewModel as? Centerable {
                 cvm.isCentered = true
             }
             return
         }
         componentViewModel = nil
+    }
+}
+
+extension IntroPageViewModel: ComponentViewModelDelegate {
+    func valueDidChange() {
+        guard let model = introPage.fields.first else {
+            return
+        }
+        guard let value = model.serialiazedValue else {
+            self.introPage.fieldValuesCollection.removeValue(forKey: model.fieldID)
+            return
+        }
+        self.introPage.fieldValuesCollection[model.fieldID] = value
     }
 }

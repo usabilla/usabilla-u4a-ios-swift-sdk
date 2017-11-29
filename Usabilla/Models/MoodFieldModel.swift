@@ -11,12 +11,12 @@ import Foundation
 class MoodFieldModel: IntFieldModel {
     var points: Int = 5
     let mode: RatingMode
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         mode = json["mode"].stringValue == "star" ? .star : .emoticon
 
         if mode == .emoticon && json["points"].exists() {
             self.points = json["points"].intValue
         }
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
     }
 }

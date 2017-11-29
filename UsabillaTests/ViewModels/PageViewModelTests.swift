@@ -64,9 +64,40 @@ class PageViewModelTests: QuickSpec {
                 }
                 it("should return the right page name with jumpRule is satisfied") {
                     let npsField = pageModel.fields.first { $0 is NPSFieldModel } as? NPSFieldModel
+                    let npsCellViewModel = viewModel.cellViewModels.first { $0.model is NPSFieldModel }
                     npsField?.fieldValue = 1
+                    npsCellViewModel?.valueDidChange()
                     let nextPageName = viewModel.nextPageName()
                     expect(nextPageName).to(equal("second"))
+                }
+            }
+
+            context("When a field value is updated") {
+                var moodField: MoodFieldModel!
+                beforeEach {
+                    let copy = CopyModel()
+                    pageModel = PageModel(pageName: "", type: PageType.form)
+                    pageModel.copy = copy
+                    moodField = MoodFieldModel(json: "{\"name\":\"mood\"}")
+                    moodField.fieldID = "mood1"
+                    pageModel.fields = [moodField]
+                    viewModel = PageViewModel(page: pageModel, theme: UsabillaTheme())
+                }
+                it("should set the field value in the page model") {
+                    expect(pageModel.fieldValuesCollection.keys.count).to(equal(0))
+                    moodField.fieldValue = 1
+                    viewModel.valueDidChange(model: moodField)
+                    expect(pageModel.fieldValuesCollection.keys.count).to(equal(1))
+                    expect(pageModel.fieldValuesCollection["mood1"]).to(equal(["1"]))
+                }
+                it("should remove the field value in the page model") {
+                    moodField.fieldValue = 1
+                    viewModel.valueDidChange(model: moodField)
+                    expect(pageModel.fieldValuesCollection.keys.count).to(equal(1))
+                    expect(pageModel.fieldValuesCollection["mood1"]).to(equal(["1"]))
+                    moodField.fieldValue = nil
+                    viewModel.valueDidChange(model: moodField)
+                    expect(pageModel.fieldValuesCollection.keys.count).to(equal(0))
                 }
             }
         }

@@ -17,14 +17,13 @@ class ParagraphComponentViewModelTests: QuickSpec {
 
         var viewModel: ParagraphComponentViewModel!
         var model: ParagraphFieldModel!
-        let pageModel = UBMock.pageMock()
         let theme = UsabillaTheme()
 
         describe("ParagraphComponentViewModelTests") {
 
             context("when paragraph has no value") {
                 it("should return a nil value") {
-                    model = ParagraphFieldModel(json: JSON(parseJSON: "{\"name\":\"paragraph\", \"html\": 0}"), pageModel: pageModel)
+                    model = ParagraphFieldModel(json: JSON(parseJSON: "{\"name\":\"paragraph\", \"html\": 0}"))
                     viewModel = ParagraphComponentViewModel(model: model, theme: theme)
                     expect(viewModel.value).to(beNil())
                 }
@@ -32,7 +31,7 @@ class ParagraphComponentViewModelTests: QuickSpec {
 
             context("when paragraph is not html") {
                 it("should return a normal string") {
-                    model = ParagraphFieldModel(json: JSON(parseJSON: "{\"name\":\"paragraph\", \"html\": false, \"text\": \"hello\"}"), pageModel: pageModel)
+                    model = ParagraphFieldModel(json: JSON(parseJSON: "{\"name\":\"paragraph\", \"html\": false, \"text\": \"hello\"}"))
                     viewModel = ParagraphComponentViewModel(model: model, theme: theme)
                     expect(viewModel.value).to(equal("hello"))
                     expect(viewModel.attributedValue?.string).to(equal("hello"))
@@ -41,7 +40,7 @@ class ParagraphComponentViewModelTests: QuickSpec {
 
             context("when paragraph is html") {
                 it("should return a attributed string") {
-                    model = ParagraphFieldModel(json: JSON(parseJSON: "{\"name\":\"paragraph\", \"html\": true, \"text\": \"hello<b> you</b>\"}"), pageModel: pageModel)
+                    model = ParagraphFieldModel(json: JSON(parseJSON: "{\"name\":\"paragraph\", \"html\": true, \"text\": \"hello<b> you</b>\"}"))
                     viewModel = ParagraphComponentViewModel(model: model, theme: theme)
                     expect(viewModel.attributedValue?.string).to(equal("hello you"))
                 }

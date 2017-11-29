@@ -17,10 +17,10 @@ class PickerFieldModel: OptionsFieldModel {
         return isPickerValueValid() ? fieldValue : nil
     }
 
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         defaultValue = json["default"].string
         emptyValue = json["empty"].string
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
 
         if let value = defaultValue {
             fieldValue = [value]

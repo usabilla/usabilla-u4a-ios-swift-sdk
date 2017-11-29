@@ -70,7 +70,8 @@ class FormModel: NSObject, NSCoding {
         screenshotJson["required"] = false
 
         if let firstPageModel = newPages.first, hasScreenshot {
-            firstPageModel.fields.append(ScreenshotModel(json: JSON(screenshotJson), pageModel: firstPageModel, screenShot: screenshot))
+            let screenshotModel = ScreenshotModel(json: JSON(screenshotJson), screenShot: screenshot)
+            firstPageModel.fields.append(screenshotModel)
         }
 
         self.pages = newPages

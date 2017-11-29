@@ -25,19 +25,17 @@ class PickerComponentViewModelTests: QuickSpec {
         var viewModel: PickerComponentViewModel!
         var model: PickerFieldModel!
 
-        let pageModel = UBMock.pageMock()
-
         beforeEach {
             var jsonObj = UBMock.json("PickerWithEmpty")!
-            modelEmpty = PickerFieldModel(json: jsonObj, pageModel: pageModel)
+            modelEmpty = PickerFieldModel(json: jsonObj)
             viewModelEmpty = PickerComponentViewModel(model: modelEmpty, theme: UsabillaTheme())
 
             jsonObj = UBMock.json("PickerWithDefault")!
-            modelDefault = PickerFieldModel(json: jsonObj, pageModel: pageModel)
+            modelDefault = PickerFieldModel(json: jsonObj)
             viewModelDefault = PickerComponentViewModel(model: modelDefault, theme: UsabillaTheme())
 
             jsonObj = UBMock.json("Picker")!
-            model = PickerFieldModel(json: jsonObj, pageModel: pageModel)
+            model = PickerFieldModel(json: jsonObj)
             viewModel = PickerComponentViewModel(model: model, theme: UsabillaTheme())
         }
 
@@ -95,7 +93,14 @@ class PickerComponentViewModelTests: QuickSpec {
                     viewModelEmpty.value = "hello"
                     expect(modelEmpty.fieldValue).to(equal(["hello"]))
                 }
-
+                it("should notify the delegate") {
+                    let delegate = MockBaseComponentViewModelDelegate()
+                    viewModel.delegate = delegate
+                    waitUntil(timeout: 1.0) { done in
+                        delegate.onValueDidChange = done
+                        viewModel.value = nil
+                    }
+                }
                 it("should update viewModelEmpty") {
                     viewModelEmpty.value = "hi"
                     expect(viewModelEmpty.value).to(equal("hi"))

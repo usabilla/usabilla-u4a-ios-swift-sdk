@@ -14,13 +14,11 @@ import Nimble
 class BaseStringComponentViewModelTests: QuickSpec {
 
     override func spec() {
-
         var viewModel: BaseStringComponentViewModel<StringFieldModel>!
         var model: StringFieldModel!
-        let pageModel = UBMock.pageMock()
 
         beforeSuite {
-            model = StringFieldModel(json: JSON(parseJSON: "{\"name\":\"test\"}"), pageModel: pageModel)
+            model = StringFieldModel(json: JSON(parseJSON: "{\"name\":\"test\"}"))
             viewModel = BaseStringComponentViewModel<StringFieldModel>(model: model, theme: UsabillaTheme())
         }
 
@@ -30,7 +28,14 @@ class BaseStringComponentViewModelTests: QuickSpec {
                     viewModel.value = ""
                     expect(model.fieldValue).to(equal(""))
                 }
-
+                it("should notify the delegate") {
+                    let delegate = MockBaseComponentViewModelDelegate()
+                    viewModel.delegate = delegate
+                    waitUntil(timeout: 1.0) { done in
+                        delegate.onValueDidChange = done
+                        viewModel.value = nil
+                    }
+                }
                 it("should update viewModel") {
                     viewModel.value = "hello"
                     expect(viewModel.value).to(equal("hello"))

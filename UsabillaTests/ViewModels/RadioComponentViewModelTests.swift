@@ -13,13 +13,12 @@ import Nimble
 
 class RadioComponentViewModelTests: QuickSpec {
     override func spec() {
-        let pageModel = UBMock.pageMock()
         let theme = UsabillaTheme()
 
         describe("RadioComponentViewModel") {
             context("radioButton viewModel is initialized") {
                 it("should have correct accessiblity label") {
-                    let model = RadioFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
+                    let model = RadioFieldModel(json: JSON(parseJSON: ""))
                     let viewModel = RadioComponentViewModel(model: model, theme: theme)
                     expect(viewModel.accessibilityExtraInfo).to(equal("Choose from 0 options, One option possible"))
                 }

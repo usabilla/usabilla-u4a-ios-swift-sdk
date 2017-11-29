@@ -15,6 +15,7 @@ class BaseIntComponentViewModel<M: IntFieldModel>: BaseComponentViewModel<Int, M
         }
         set {
             model.fieldValue = newValue
+            delegate?.valueDidChange()
         }
     }
 }

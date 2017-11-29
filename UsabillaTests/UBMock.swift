@@ -60,6 +60,13 @@ class UBMock {
     }
 }
 
+class MockBaseComponentViewModelDelegate: ComponentViewModelDelegate {
+    var onValueDidChange: (() -> Void)?
+    func valueDidChange() {
+        onValueDidChange?()
+    }
+}
+
 class UBFormServiceMock: FormServiceProtocol {
 
     var requestBuilder: RequestBuilder.Type = RequestBuilder.self

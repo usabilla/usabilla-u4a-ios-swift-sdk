@@ -17,9 +17,9 @@ class TextFieldModel: StringFieldModel, EditableStringComponentModel, Exportable
         return fieldValue
     }
 
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         placeHolder = json["placeholder"].string
         defaultValue = json["defaultValue"].string
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
     }
 }

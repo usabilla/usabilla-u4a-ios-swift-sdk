@@ -19,15 +19,9 @@ class StringFieldModelTest: QuickSpec {
 
         describe("StringFieldModel") {
             it("init StringFieldModel") {
-                model = StringFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel)
+                model = StringFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
                 expect(model).toNot(beNil())
             }
-
-            it("StringField fieldValue") {
-                model?.fieldValue = "test1"
-                expect(pageModel.fieldValuesCollection["myField"]?.first).to(equal("test1"))
-            }
-
             it("StringField isValid") {
                 model?.fieldValue = nil
 

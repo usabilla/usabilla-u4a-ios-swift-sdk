@@ -17,10 +17,9 @@ class BaseImageComponentViewModelTests: QuickSpec {
 
         var viewModel: BaseImageComponentViewModel<ScreenshotModel>!
         var model: ScreenshotModel!
-        let pageModel = UBMock.pageMock()
 
         beforeSuite {
-            model = ScreenshotModel(json: JSON(parseJSON: "{\"name\":\"image\"}"), pageModel: pageModel)
+            model = ScreenshotModel(json: JSON(parseJSON: "{\"name\":\"image\"}"))
             viewModel = BaseImageComponentViewModel<ScreenshotModel>(model: model, theme: UsabillaTheme())
         }
 
@@ -31,7 +30,14 @@ class BaseImageComponentViewModelTests: QuickSpec {
                     viewModel.value = image
                     expect(model.image).to(equal(image))
                 }
-
+                it("should notify the delegate") {
+                    let delegate = MockBaseComponentViewModelDelegate()
+                    viewModel.delegate = delegate
+                    waitUntil(timeout: 1.0) { done in
+                        delegate.onValueDidChange = done
+                        viewModel.value = nil
+                    }
+                }
                 it("should update viewModel") {
                     let image = Icons.imageOfEdit(color: .black)
                     viewModel.value = image

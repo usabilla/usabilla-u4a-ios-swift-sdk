@@ -9,19 +9,18 @@
 import Foundation
 
 class StringFieldModel: BaseFieldModel, StringComponentModel {
-    var fieldValue: String? {
-        didSet {
-            if let value = fieldValue {
-                pageModel.fieldValuesCollection[fieldID] = [value]
-                return
-            }
-            pageModel.fieldValuesCollection.removeValue(forKey: fieldID)
+    var fieldValue: String?
+
+    override var serialiazedValue: [String]? {
+        guard let value = fieldValue else {
+            return nil
         }
+        return [value]
     }
 
-    override init(json: JSON, pageModel: PageModel) {
+    override init(json: JSON) {
         fieldValue = nil
-        super.init(json: json, pageModel: pageModel)
+        super.init(json: json)
     }
 
     override func isValid() -> Bool {

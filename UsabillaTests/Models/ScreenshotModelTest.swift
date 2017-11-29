@@ -19,11 +19,11 @@ class ScreenshotModelTest: QuickSpec {
 
         describe("ScreenshotModel") {
             it("init ScreenshotModel") {
-                model = ScreenshotModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel, screenShot: nil)
+                model = ScreenshotModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), screenShot: nil)
                 expect(model).toNot(beNil())
                 expect(model?.image).to(beNil())
 
-                model = ScreenshotModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), pageModel: pageModel, screenShot: UIImage())
+                model = ScreenshotModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), screenShot: UIImage())
                 expect(model).toNot(beNil())
                 expect(model?.image).toNot(beNil())
             }
