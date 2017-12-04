@@ -19,14 +19,18 @@ class FormViewController: UIViewController {
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
 
-    lazy var leftNavItem: UIBarButtonItem = {
-        let navLeft = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarButtonPressed(_:)))
-        return navLeft
+    lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelButtonPressed(_:)))
     }()
-    lazy var rightNavItem: UIBarButtonItem = {
-        let navRight = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarButtonPressed(_:)))
-        return navRight
+
+    lazy var nextButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextButtonPressed(_:)))
     }()
+
+    lazy var submitButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextButtonPressed(_:)))
+    }()
+
     var progressBar: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .default)
         progressBar.progress = 0.0
@@ -63,8 +67,6 @@ class FormViewController: UIViewController {
         customizeView()
 
         updateProgressBar()
-        updateLeftButton()
-        updateRightButton()
     }
 
     deinit {
@@ -82,9 +84,8 @@ class FormViewController: UIViewController {
         title = viewModel.navigationBarTitle
         navigationController?.view?.accessibilityIdentifier = "form-navigation-controller"
         navigationController?.navigationBar.isTranslucent = false
-        navigationItem.leftBarButtonItem = leftNavItem
-        navigationItem.rightBarButtonItem = rightNavItem
-
+        updateLeftButton()
+        updateRightButton()
         var containerTopAnchor: NSLayoutYAxisAnchor = view.topAnchor
 
         if !viewModel.shouldHideProgressBar {
@@ -122,9 +123,12 @@ class FormViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
         navigationController?.navigationBar.tintColor = textOnAccentedColor
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textOnAccentedColor]
-
-        rightNavItem.setFont(font: viewModel.navBarItemsFontBold)
-        leftNavItem.setFont(font: viewModel.navBarItemsFontNormal)
+        cancelButton.setFont(font: viewModel.navBarItemsFontNormal)
+        cancelButton.title = viewModel.cancelText
+        nextButton.setFont(font: viewModel.navBarItemsFontBold)
+        nextButton.title = viewModel.nextText
+        submitButton.setFont(font: viewModel.navBarItemsFontBold)
+        submitButton.title = viewModel.submitText
 
         if !viewModel.shouldHideProgressBar {
             progressBar.progressTintColor = viewModel.accentColor
@@ -135,8 +139,12 @@ class FormViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        rightNavItem.setTextForegroundColor(color: viewModel.textOnAccentColor)
-        leftNavItem.setTextForegroundColor(color: viewModel.textOnAccentColor)
+        cancelButton.setTextForegroundColor(color: viewModel.textOnAccentColor)
+        nextButton.setTextForegroundColor(color: viewModel.textOnAccentColor)
+        submitButton.setTextForegroundColor(color: viewModel.textOnAccentColor)
+        cancelButton.setFont(font: viewModel.navBarItemsFontNormal)
+        nextButton.setFont(font: viewModel.navBarItemsFontBold)
+        submitButton.setFont(font: viewModel.navBarItemsFontBold)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,21 +158,11 @@ class FormViewController: UIViewController {
     // MARK: Actions
 
     func updateLeftButton() {
-        guard let title = viewModel.leftBarButtonTitle else {
-            navigationItem.leftBarButtonItem = nil
-            return
-        }
-        leftNavItem.title = title
-        navigationItem.leftBarButtonItem = leftNavItem
+        navigationItem.leftBarButtonItem = button(forType: viewModel.leftBarButtonType)
     }
 
     func updateRightButton() {
-        guard let title = viewModel.rightBarButtonTitle else {
-            navigationItem.rightBarButtonItem = nil
-            return
-        }
-        rightNavItem.title = title
-        navigationItem.rightBarButtonItem = rightNavItem
+        navigationItem.rightBarButtonItem = button(forType: viewModel.rightBarButtonType)
     }
 
     func updateProgressBar() {
@@ -202,11 +200,11 @@ class FormViewController: UIViewController {
         updateProgressBar()
     }
 
-    func leftBarButtonPressed(_ sender: UIBarButtonItem) {
+    func cancelButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.formWillClose(self)
     }
 
-    func rightBarButtonPressed(_ sender: UIBarButtonItem) {
+    func nextButtonPressed(_ sender: UIBarButtonItem) {
         guard !viewModel.isItTheEnd else {
             delegate?.formWillClose(self)
             return
@@ -245,5 +243,18 @@ class FormViewController: UIViewController {
         pageViewController.setupViewModel(viewModel.currentPageViewModel)
         updateProgressBar()
         updateRightButton()
+    }
+
+    func button(forType type: UBFormButtonType?) -> UIBarButtonItem? {
+        switch type {
+        case .some(.cancel):
+            return cancelButton
+        case .some(.next):
+            return nextButton
+        case .some(.submit):
+            return submitButton
+        case .none:
+            return nil
+        }
     }
 }

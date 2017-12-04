@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum UBFormButtonType {
+    case cancel
+    case next
+    case submit
+}
+
 class UBFormViewModel {
 
     private(set) var model: FormModel
@@ -60,22 +66,31 @@ class UBFormViewModel {
     var firstPageViewModel: PageViewModel? {
         return pageViewModels.first
     }
-    var leftBarButtonTitle: String? {
-        return self.isItTheEnd ? nil : model.copyModel.cancelButton
+    var submitText: String? {
+        return model.copyModel.navigationSubmit
     }
-    var rightBarButtonTitle: String? {
+    var nextText: String? {
+        return model.copyModel.navigationNext
+    }
+    var cancelText: String? {
+        return model.copyModel.cancelButton
+    }
+    var leftBarButtonType: UBFormButtonType? {
+        return self.isItTheEnd ? nil : .cancel
+    }
+    var rightBarButtonType: UBFormButtonType {
         if isItTheEnd {
-            return model.copyModel.cancelButton
+            return .cancel
         }
         if isNextPageAnEndPage {
-            return model.copyModel.navigationSubmit
+            return .submit
         }
-        return model.copyModel.navigationNext
+        return .next
     }
     private var isNextPageAnEndPage: Bool {
         let index = currentPageIndex + 1
         guard index >= 0 && index < model.pages.count else {
-                return false
+            return false
         }
         return model.pages[index].type.final
     }

@@ -49,7 +49,7 @@ class PassiveFormControllerTest: QuickSpec {
                         done()
 
                     }
-                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                    viewController.cancelButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
             }
 
@@ -73,7 +73,7 @@ class PassiveFormControllerTest: QuickSpec {
                         expect(redirectToAppStore).to(beTrue())
                         done()
                     }
-                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                    viewController.cancelButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
             }
 
@@ -83,7 +83,7 @@ class PassiveFormControllerTest: QuickSpec {
                         expect(redirectToAppStore).to(beFalse())
                         done()
                     }
-                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                    viewController.cancelButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
             }
 
@@ -92,7 +92,7 @@ class PassiveFormControllerTest: QuickSpec {
                     self.onDidClose = { feedbackResults, redirectToAppStore in
                         done()
                     }
-                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                    viewController.cancelButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
             }
 
@@ -105,7 +105,7 @@ class PassiveFormControllerTest: QuickSpec {
                     self.onWillClose = { feedbackResults, redirectToAppStore in
                         done()
                     }
-                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                    viewController.cancelButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
             }
         }
@@ -128,13 +128,13 @@ class PassiveFormControllerTest: QuickSpec {
                 npsVM?.value = 2
                 expect(viewController.viewModel.currentPageIndex).to(equal(0))
                 expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
-                viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                viewController.nextButtonPressed(UIBarButtonItem(customView: UIView()))
                 expect(viewController.viewModel.currentPageIndex).to(equal(1))
                 expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
-                viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                viewController.nextButtonPressed(UIBarButtonItem(customView: UIView()))
                 expect(viewController.viewModel.currentPageIndex).to(equal(2))
                 expect(viewController.viewModel.isCurrentPageValid).to(beTrue())
-                viewController.rightBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                viewController.nextButtonPressed(UIBarButtonItem(customView: UIView()))
                 expect(viewController.viewModel.currentPageIndex).to(equal(3))
                 expect(viewController.thankYouViewController).toNot(beNil())
 
@@ -144,7 +144,7 @@ class PassiveFormControllerTest: QuickSpec {
                         expect(feedbackResults.first?.sent).to(beTrue())
                         done()
                     }
-                    viewController.leftBarButtonPressed(UIBarButtonItem(customView: UIView()))
+                    viewController.cancelButtonPressed(UIBarButtonItem(customView: UIView()))
                 }
             }
         }
