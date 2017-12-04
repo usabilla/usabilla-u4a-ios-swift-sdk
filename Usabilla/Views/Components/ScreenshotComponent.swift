@@ -132,10 +132,10 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     }
 
     func updateUI() {
-        let hasScreeenShot = viewModel.value != nil
-        addIcon.isHidden = hasScreeenShot
-        addScreenshotLabel.isHidden = hasScreeenShot
-        screenShotView.isHidden = !hasScreeenShot
+        let hasScreenShot = viewModel.value != nil
+        addIcon.isHidden = hasScreenShot
+        addScreenshotLabel.isHidden = hasScreenShot
+        screenShotView.isHidden = !hasScreenShot
     }
 
     func deleteScreenshot() {
