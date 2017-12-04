@@ -17,7 +17,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     var deleteIcon: UIButton!
     var addScreenshotLabel: UIButton!
     var iconContainerView: UIView!
-    var addScreenshotLine: UIView!
     var ratioConstraint: NSLayoutConstraint!
 
     override func build() {
@@ -28,10 +27,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         screenShotView.contentMode = .scaleAspectFit
         screenShotView.layer.cornerRadius = 5
         screenShotView.layer.masksToBounds = true
-        screenShotView.layer.borderWidth = 2
-
-        addScreenshotLine = UIView()
-        addScreenshotLine.translatesAutoresizingMaskIntoConstraints = false
+        screenShotView.layer.borderWidth = 1
 
         iconContainerView = UIView()
         iconContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +56,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addSubview(screenShotView)
         addSubview(addIcon)
         addSubview(addScreenshotLabel)
-        addSubview(addScreenshotLine)
 
         screenShotView.addSubview(iconContainerView)
         iconContainerView.addSubview(deleteIcon)
@@ -114,11 +109,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addScreenshotLabel.centerYAnchor.constraint(equalTo: addIcon.centerYAnchor).isActive = true
         addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 8).isActive = true
         addScreenshotLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).activate()
-
-        addScreenshotLine.topAnchor.constraint(equalTo: addScreenshotLabel.bottomAnchor, constant: 3).isActive = true
-        addScreenshotLine.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        addScreenshotLine.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        addScreenshotLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
 
     func setupRatioConstraint(imageSize: CGSize?) {
@@ -138,7 +128,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.text), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.colors.title, for: .normal)
         addScreenshotLabel.titleLabel?.font = theme.fonts.font
-        addScreenshotLine.backgroundColor = theme.colors.hint
         screenShotView.layer.borderColor = theme.colors.hint.cgColor
     }
 
@@ -146,7 +135,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         let hasScreeenShot = viewModel.value != nil
         addIcon.isHidden = hasScreeenShot
         addScreenshotLabel.isHidden = hasScreeenShot
-        addScreenshotLine.isHidden = hasScreeenShot
         screenShotView.isHidden = !hasScreeenShot
     }
 
