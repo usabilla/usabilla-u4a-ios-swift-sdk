@@ -25,16 +25,17 @@ class RadioComponent: BaseCheckBoxComponent<RadioComponentViewModel> {
 
         for checkBox in checkBoxes {
             checkBox.checkBox.setOn(false, animated: true)
+            checkBox.accessibilityValue = "unselected"
         }
 
-        checkBox.setOn(!checkBox.on, animated: true)
+        checkBox.setOn(true, animated: true)
 
         for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on == true {
+            checkBox.accessibilityValue = "selected"
             let option = viewModel.options[index]
             values.append(option.value)
         }
         viewModel.value = values
         valueChanged()
     }
-
 }

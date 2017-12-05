@@ -23,12 +23,16 @@ class CheckBoxComponent: BaseCheckBoxComponent<CheckBoxComponentViewModel> {
     override func didTapCheckBox(_ checkBox: SwiftCheckBox) {
         var values: [String] = []
 
-        for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on == true {
-            let option = viewModel.options[index]
-            values.append(option.value)
+        for (index, checkBoxText) in checkBoxes.enumerated() {
+            var accessibilityValue = "unselected"
+            if checkBoxText.checkBox.on == true {
+                let option = viewModel.options[index]
+                accessibilityValue = "selected"
+                values.append(option.value)
+            }
+            checkBoxText.accessibilityValue = accessibilityValue
         }
         viewModel.value = values
         valueChanged()
     }
-
 }

@@ -32,25 +32,27 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
     }
 
     func configure() {
-
         for c in checkBoxes {
             stackView.removeArrangedSubview(c)
             c.removeFromSuperview()
         }
 
         checkBoxes = []
-        for option in viewModel.options {
-
+        for (index, option) in viewModel.options.enumerated() {
             let checkBox = CheckboxWithText()
             checkBox.translatesAutoresizingMaskIntoConstraints = false
             checkBox.theme = viewModel.theme
             checkBox.delegate = self
             checkBox.checkBox.delegate = self
             checkBox.label.text = option.title
+            checkBox.accessibilityLabel = "option \(index + 1), \(option.title)"
             checkBox.isUserInteractionEnabled = true
 
             if let val = viewModel.value, val.contains(option.value) {
                 checkBox.checkBox.on = true
+                checkBox.accessibilityValue = "selected"
+            } else {
+                checkBox.accessibilityValue = "unselected"
             }
             checkBoxes.append(checkBox)
             stackView.addArrangedSubview(checkBox)

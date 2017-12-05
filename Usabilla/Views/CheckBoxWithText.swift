@@ -48,6 +48,8 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         labelTopConstraint = label.topAnchor.constraint(equalTo: checkBox.topAnchor)
         labelTopConstraint.isActive = true
         label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+
+        isAccessibilityElement = true
     }
 
     func applyCustomisation() {
@@ -62,7 +64,6 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         label.textColor = theme.colors.text
         let spaceAvailable = (checkboxSize - label.font.lineHeight)
         labelTopConstraint.constant = spaceAvailable / 2
-
     }
 
     required init?(coder aDecoder: NSCoder) {
