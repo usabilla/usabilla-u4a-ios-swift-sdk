@@ -16,7 +16,7 @@ class AccessibilityRequiredField: UBXCScenario {
     
     func testMoodComponentLabelAndValues() {
         let moodCell = app.tables.cells.element(boundBy: 0)
-        XCTAssertEqual(moodCell.label, "Select a mood This field is required")
+        XCTAssertEqual(moodCell.label, "Select a mood, This field is required")
         
         let textAreaCell = app.tables.cells.element(boundBy: 1)
         XCTAssertEqual(textAreaCell.label, "What do you think about us?")

@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+protocol Accessible {
+    var accessibilityLabel: String? { get set }
+    var accessibilityValue: String? { get set }
+    var accessibilityHint: String? { get set }
+}
+
 protocol IntFieldHandlerProtocol: class {
     var fieldValue: Int { get set }
 }
@@ -18,7 +24,7 @@ protocol FormViewControllerDelegate: class {
     func pageDidTurn(oldPageModel: PageModel, oldPageIndex: Int, newPageIndex: Int, nextPageType: PageType, formViewController: FormViewController)
 }
 
-protocol ComponentViewModel {
+protocol ComponentViewModel: Accessible {
     var theme: UsabillaTheme { get }
 }
 
@@ -83,3 +89,4 @@ protocol SubmissionServiceProtocol {
 protocol Exportable {
     var exportableValue: Any? { get }
 }
+

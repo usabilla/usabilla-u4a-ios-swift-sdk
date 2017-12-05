@@ -10,4 +10,12 @@ import Foundation
 
 class CheckBoxComponentViewModel: BaseOptionsComponentViewModel<CheckboxFieldModel> {
 
+    override var accessibilityLabel: String? {
+        get {
+            return "Choose from \(model.options.count) options, Multiple options possible"
+        }
+        set {
+            self.accessibilityLabel = newValue
+        }
+    }
 }

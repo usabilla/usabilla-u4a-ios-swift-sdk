@@ -114,12 +114,16 @@ class RootCellView: UITableViewCell {
     }
 
     private func setupAccessiblity() {
+        var accessibilityLabelDetails = ""
+        if let accessibilityLabel = cellViewModel.componentViewModel?.accessibilityLabel {
+            accessibilityLabelDetails = ", " + accessibilityLabel
+        }
         guard cellViewModel.required else {
-            accessibilityLabel = cellViewModel.title
+            accessibilityLabel = "\(cellViewModel.title)\(accessibilityLabelDetails)"
             return
         }
         let requiredLabel = LocalisationHandler.getLocalisedStringForKey("usa_accessibility_field_required")
-        accessibilityLabel = "\(cellViewModel.title) \(requiredLabel)"
+        accessibilityLabel = "\(cellViewModel.title)\(accessibilityLabelDetails), \(requiredLabel)"
     }
 
     private func applyCustomisations() {
