@@ -11,7 +11,7 @@ import XCTest
 class AccessibilityCheckbox: UBXCScenario {
 
     override func setUp() {
-        super.setUp(type: .passiveForm, scenario: "21_AccessibilityCheckBox")
+        super.setUp(type: .passiveForm, scenario: "21_AccessibilityCheckbox")
     }
 
     func testCheckBoxes() {

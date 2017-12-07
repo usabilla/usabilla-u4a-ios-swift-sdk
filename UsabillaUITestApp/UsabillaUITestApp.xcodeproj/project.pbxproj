@@ -50,7 +50,6 @@
 		C58489B51FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58489B41FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift */; };
 		C58489B71FA0CE8900DEC2F1 /* UBComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58489B61FA0CE8900DEC2F1 /* UBComponents.swift */; };
 		C58489B91FA2143400DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json in Resources */ = {isa = PBXBuildFile; fileRef = C58489B31FA0CBD600DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json */; };
-		C58BE4AE1FD969EB009FC821 /* 21_AccessibilityCheckBox.json in Resources */ = {isa = PBXBuildFile; fileRef = C58BE4AC1FD969EA009FC821 /* 21_AccessibilityCheckBox.json */; };
 		C58BE4AF1FD969EB009FC821 /* 22_AccessibilityRadioButton.json in Resources */ = {isa = PBXBuildFile; fileRef = C58BE4AD1FD969EB009FC821 /* 22_AccessibilityRadioButton.json */; };
 		C58BE4B11FD96A50009FC821 /* 21_AccessibilityCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BE4B01FD96A50009FC821 /* 21_AccessibilityCheckbox.swift */; };
 		C5A083841FBB301300152060 /* 16_AccessibilityRatingControl2Moods.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083801FBB301200152060 /* 16_AccessibilityRatingControl2Moods.json */; };
@@ -61,6 +60,7 @@
 		C5A0838C1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838B1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift */; };
 		C5A0838E1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */; };
 		C5A083901FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */; };
+		C5AFA9321FD99E59002A2011 /* 21_AccessibilityCheckbox.json in Resources */ = {isa = PBXBuildFile; fileRef = C5AFA9311FD99E59002A2011 /* 21_AccessibilityCheckbox.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +135,6 @@
 		C58489B31FA0CBD600DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 11_BannerNPSJumpRulesGoesToPagesAndToasts.json; sourceTree = "<group>"; };
 		C58489B41FA0CDBC00DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 11_BannerNPSJumpRulesGoesToPagesAndToasts.swift; sourceTree = "<group>"; };
 		C58489B61FA0CE8900DEC2F1 /* UBComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBComponents.swift; sourceTree = "<group>"; };
-		C58BE4AC1FD969EA009FC821 /* 21_AccessibilityCheckBox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 21_AccessibilityCheckBox.json; sourceTree = "<group>"; };
 		C58BE4AD1FD969EB009FC821 /* 22_AccessibilityRadioButton.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 22_AccessibilityRadioButton.json; sourceTree = "<group>"; };
 		C58BE4B01FD96A50009FC821 /* 21_AccessibilityCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 21_AccessibilityCheckbox.swift; sourceTree = "<group>"; };
 		C5A083801FBB301200152060 /* 16_AccessibilityRatingControl2Moods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 16_AccessibilityRatingControl2Moods.json; sourceTree = "<group>"; };
@@ -146,6 +145,7 @@
 		C5A0838B1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 17_AccessibilityRatingControl3Moods.swift; sourceTree = "<group>"; };
 		C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 18_AccessibilityRatingControl5Moods.swift; sourceTree = "<group>"; };
 		C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 19_AccessibilityRatingControl5Stars.swift; sourceTree = "<group>"; };
+		C5AFA9311FD99E59002A2011 /* 21_AccessibilityCheckbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 21_AccessibilityCheckbox.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,7 +273,7 @@
 				C5A083811FBB301200152060 /* 18_AccessibilityRatingControl5Moods.json */,
 				C5A083821FBB301200152060 /* 19_AccessibilityRatingControl5Stars.json */,
 				4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */,
-				C58BE4AC1FD969EA009FC821 /* 21_AccessibilityCheckBox.json */,
+				C5AFA9311FD99E59002A2011 /* 21_AccessibilityCheckbox.json */,
 				C58BE4AD1FD969EB009FC821 /* 22_AccessibilityRadioButton.json */,
 			);
 			path = JSON;
@@ -380,6 +380,7 @@
 				435D06ED1FA879E400D5A2F4 /* 12_BannerNoControl.json in Resources */,
 				C5A083851FBB301300152060 /* 18_AccessibilityRatingControl5Moods.json in Resources */,
 				43D31DB61FAB117600D46F2F /* 14_BannerNoControlNoButtons.json in Resources */,
+				C5AFA9321FD99E59002A2011 /* 21_AccessibilityCheckbox.json in Resources */,
 				4356E98B1FBD832C00B761CA /* 20_AccessibilityRequiredField.json in Resources */,
 				43F57A761F9DEDF1005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.json in Resources */,
 				43F57A771F9DEDF1005BFA80 /* 05_PassiveCheckboxJumpRules.json in Resources */,
@@ -395,7 +396,6 @@
 				C58489B91FA2143400DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json in Resources */,
 				43F57A791F9DEDF1005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.json in Resources */,
 				43F57A781F9DEDF1005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.json in Resources */,
-				C58BE4AE1FD969EB009FC821 /* 21_AccessibilityCheckBox.json in Resources */,
 				435D06F41FA8868D00D5A2F4 /* 13_CampaignPageToastNoControls.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
