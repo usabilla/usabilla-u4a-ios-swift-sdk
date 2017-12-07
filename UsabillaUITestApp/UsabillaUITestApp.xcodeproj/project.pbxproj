@@ -61,6 +61,7 @@
 		C5A0838E1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */; };
 		C5A083901FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */; };
 		C5AFA9321FD99E59002A2011 /* 21_AccessibilityCheckbox.json in Resources */ = {isa = PBXBuildFile; fileRef = C5AFA9311FD99E59002A2011 /* 21_AccessibilityCheckbox.json */; };
+		C5AFA9341FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFA9331FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		C5A0838D1FBB3F6300152060 /* 18_AccessibilityRatingControl5Moods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 18_AccessibilityRatingControl5Moods.swift; sourceTree = "<group>"; };
 		C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 19_AccessibilityRatingControl5Stars.swift; sourceTree = "<group>"; };
 		C5AFA9311FD99E59002A2011 /* 21_AccessibilityCheckbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 21_AccessibilityCheckbox.json; sourceTree = "<group>"; };
+		C5AFA9331FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 22_AccessibilityRadioButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 				C5A0838F1FBB3F7700152060 /* 19_AccessibilityRatingControl5Stars.swift */,
 				4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */,
 				C58BE4B01FD96A50009FC821 /* 21_AccessibilityCheckbox.swift */,
+				C5AFA9331FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift */,
 			);
 			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				43F57A7D1F9DF540005BFA80 /* 05_PassiveCheckboxJumpRules.swift in Sources */,
 				435D06EF1FA87A0100D5A2F4 /* 12_BannerNoControl.swift in Sources */,
 				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
+				C5AFA9341FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift in Sources */,
 				435D06F31FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift in Sources */,
 				C5A0838C1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift in Sources */,
 				43F951771F0111F000FE23F8 /* 02_JumpRulesOneControl.swift in Sources */,
