@@ -432,6 +432,8 @@
 		C5DC40A11F7BEA3D00FA89B8 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
 		C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */; };
 		C5E456FC1EA8A2480078D324 /* MoodFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */; };
+		C5EF69DA1FDA9503000EBF99 /* RadioComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EF69D91FDA9503000EBF99 /* RadioComponentViewModelTests.swift */; };
+		C5EF69DC1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EF69DB1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift */; };
 		C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */; };
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 /* End PBXBuildFile section */
@@ -714,6 +716,8 @@
 		C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShouldShowRequiredFieldHeader.json; sourceTree = "<group>"; };
 		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
+		C5EF69D91FDA9503000EBF99 /* RadioComponentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioComponentViewModelTests.swift; sourceTree = "<group>"; };
+		C5EF69DB1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxComponentViewModelTests.swift; sourceTree = "<group>"; };
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1310,6 +1314,8 @@
 				432BDE3C1E8BB902008100C7 /* MoodComponentViewModelTests.swift */,
 				43B7083B1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift */,
 				433D252C1F79974800B1D819 /* NPSComponentViewModel.swift */,
+				C5EF69D91FDA9503000EBF99 /* RadioComponentViewModelTests.swift */,
+				C5EF69DB1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -1828,9 +1834,11 @@
 				43BFD4291EFBE6B400AD47AE /* UBToastPageViewModelTests.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */,
 				04C6284B1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift in Sources */,
+				C5EF69DA1FDA9503000EBF99 /* RadioComponentViewModelTests.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeTests.swift in Sources */,
 				4306698E1E7692690078E3B3 /* FeedbackResultTest.swift in Sources */,
 				04A0C1C01E8BB9D100A483AC /* SequenceRuleTests.swift in Sources */,
+				C5EF69DC1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift in Sources */,
 				C5E456FC1EA8A2480078D324 /* MoodFieldModelTests.swift in Sources */,
 				04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */,
 				04575B781D99799C001E0EC3 /* UsabillaInternalTest.swift in Sources */,

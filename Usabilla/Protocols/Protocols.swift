@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 protocol Accessible {
-    var accessibilityLabel: String? { get set }
-    var accessibilityValue: String? { get set }
-    var accessibilityHint: String? { get set }
+    var accessibilityLabelDetail: String? { get set }
+    var accessibilityValueDetail: String? { get set }
+    var accessibilityHintDetail: String? { get set }
 }
 
 protocol IntFieldHandlerProtocol: class {
@@ -89,4 +89,3 @@ protocol SubmissionServiceProtocol {
 protocol Exportable {
     var exportableValue: Any? { get }
 }
-
