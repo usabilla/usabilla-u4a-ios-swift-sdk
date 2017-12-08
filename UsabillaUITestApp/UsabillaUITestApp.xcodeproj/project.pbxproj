@@ -25,7 +25,6 @@
 		43D31DB81FAB118D00D46F2F /* 14_BannerNoControlNoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D31DB71FAB118D00D46F2F /* 14_BannerNoControlNoButtons.swift */; };
 		43D31DBC1FAB161900D46F2F /* 15_PassivePagesNoControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D31DBB1FAB161900D46F2F /* 15_PassivePagesNoControls.swift */; };
 		43D31DBD1FAB176000D46F2F /* 15_PassivePagesNoControls.json in Resources */ = {isa = PBXBuildFile; fileRef = 43D31DB91FAB160300D46F2F /* 15_PassivePagesNoControls.json */; };
-		43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438E37341F7BC28A00FA61FE /* MainScreen.swift */; };
 		43F57A741F9DEDF1005BFA80 /* 06_BannerMoodNoJumpRulesGoesToNextPage.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F57A6E1F9DEDF0005BFA80 /* 06_BannerMoodNoJumpRulesGoesToNextPage.json */; };
 		43F57A751F9DEDF1005BFA80 /* 08_BannerMoodJumpRuleToPages.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F57A6F1F9DEDF0005BFA80 /* 08_BannerMoodJumpRuleToPages.json */; };
 		43F57A761F9DEDF1005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.json in Resources */ = {isa = PBXBuildFile; fileRef = 43F57A701F9DEDF0005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.json */; };
@@ -107,7 +106,6 @@
 		437B96E11E266A8F00AA0A25 /* UsabillaUITestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaUITestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		437B96E71E266A8F00AA0A25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		437C60D91E269FC5003E6F70 /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		438E37341F7BC28A00FA61FE /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		43D31DB51FAB117600D46F2F /* 14_BannerNoControlNoButtons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 14_BannerNoControlNoButtons.json; sourceTree = "<group>"; };
 		43D31DB71FAB118D00D46F2F /* 14_BannerNoControlNoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 14_BannerNoControlNoButtons.swift; sourceTree = "<group>"; };
 		43D31DB91FAB160300D46F2F /* 15_PassivePagesNoControls.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 15_PassivePagesNoControls.json; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 		438E37331F7BC26E00FA61FE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				438E37341F7BC28A00FA61FE /* MainScreen.swift */,
 				43F57A7A1F9DEE23005BFA80 /* TestSetup.swift */,
 				C58489B61FA0CE8900DEC2F1 /* UBComponents.swift */,
 				C538939A1FA35A8F009941E8 /* UBXCScenario.swift */,
@@ -437,7 +434,6 @@
 				C555E9A01EE0120900F84B51 /* 01_FormAppearance.swift in Sources */,
 				43F57A7D1F9DF540005BFA80 /* 05_PassiveCheckboxJumpRules.swift in Sources */,
 				435D06EF1FA87A0100D5A2F4 /* 12_BannerNoControl.swift in Sources */,
-				43EAF7411F7BC7AE003496E5 /* MainScreen.swift in Sources */,
 				C5AFA9341FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift in Sources */,
 				435D06F31FA884DC00D5A2F4 /* 13_CampaignPageToastNoControls.swift in Sources */,
 				C5A0838C1FBB3E0200152060 /* 17_AccessibilityRatingControl3Moods.swift in Sources */,

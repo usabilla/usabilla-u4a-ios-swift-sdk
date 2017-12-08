@@ -19,6 +19,10 @@ class AccessibilityCheckbox: UBXCScenario {
         let option2 = app.tables.otherElements["option 2, cat"]
         let option3 = app.tables.otherElements["option 3, kangaroo"]
 
+        // check component title
+        let textAreaCell = app.tables.cells.element(boundBy: 1)
+        XCTAssertEqual(textAreaCell.label, "choose an animal from the checkbox component, Choose from 3 options, Multiple options possible")
+
         // check options exist
         XCTAssert(option1.exists)
         XCTAssert(option2.exists)

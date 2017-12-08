@@ -10,49 +10,51 @@ import XCTest
 
 class PassiveCheckboxJumpRules: UBXCScenario {
 
+    let mainScreen = MainScreen()
     let moodComponent = MoodComponentPassive()
     let form = Form()
+
     override func setUp() {
         super.setUp(type: .passiveForm, scenario: "05_PassiveCheckboxJumpRules")
         moodComponent.selectMood(atIndex: 1)
     }
 
     func testOption1GoestToPage1() {
-        MainScreen.selectOption("Option 1")
+        mainScreen.selectOption(withLabel: "option 1, Option 1")
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption1And2GoestToPage1() {
-        MainScreen.selectOption("Option 1")
-        MainScreen.selectOption("Option 2")
+        mainScreen.selectOption(withLabel: "option 1, Option 1")
+        mainScreen.selectOption(withLabel: "option 2, Option 2")
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption1And3GoestToPage1() {
-        MainScreen.selectOption("Option 1")
-        MainScreen.selectOption("Option 3")
+        mainScreen.selectOption(withLabel: "option 1, Option 1")
+        mainScreen.selectOption(withLabel: "option 3, Option 3")
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption1And2And3GoestToPage1() {
-        MainScreen.selectOption("Option 1")
-        MainScreen.selectOption("Option 2")
-        MainScreen.selectOption("Option 3")
+        mainScreen.selectOption(withLabel: "option 1, Option 1")
+        mainScreen.selectOption(withLabel: "option 2, Option 2")
+        mainScreen.selectOption(withLabel: "option 3, Option 3")
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 1", "It should display 'Page 1'")
     }
 
     func testOption2GoestToPage2() {
-        MainScreen.selectOption("Option 2")
+        mainScreen.selectOption(withLabel: "option 2, Option 2")
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
     func testOption3GoestToPage2() {
-        MainScreen.selectOption("Option 3")
+        mainScreen.selectOption(withLabel: "option 3, Option 3")
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }

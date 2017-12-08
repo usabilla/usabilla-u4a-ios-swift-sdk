@@ -18,6 +18,10 @@ class AccessibilityRadioButton: UBXCScenario {
         let option1 = app.tables.otherElements["option 1, dragon"]
         let option2 = app.tables.otherElements["option 2, monkey"]
 
+        // check component title
+        let textAreaCell = app.tables.cells.element(boundBy: 1)
+        XCTAssertEqual(textAreaCell.label, "choose your spirit animal, Choose from 2 options, One option possible")
+
         // check options exist
         XCTAssert(option1.exists)
         XCTAssert(option2.exists)

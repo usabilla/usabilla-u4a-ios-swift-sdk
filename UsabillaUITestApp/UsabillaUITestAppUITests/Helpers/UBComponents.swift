@@ -15,6 +15,14 @@ struct Application {
     let banner = Banner()
 }
 
+struct MainScreen {
+    let nps = NPSComponent()
+
+    func selectOption(withLabel label: String) {
+        Application.xcApp.tables.otherElements[label].tap()
+    }
+}
+
 struct Banner {
     let element: XCUIElement
     let cancelButton: XCUIElement
