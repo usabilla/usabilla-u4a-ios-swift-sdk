@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 protocol Accessible {
-    var accessibilityLabelDetail: String? { get set }
-    var accessibilityValueDetail: String? { get set }
-    var accessibilityHintDetail: String? { get set }
+    var accessibilityExtraInfo: String? { get set }
 }
 
 protocol IntFieldHandlerProtocol: class {

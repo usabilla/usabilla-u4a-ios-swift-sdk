@@ -25,13 +25,13 @@ class RadioComponent: BaseCheckBoxComponent<RadioComponentViewModel> {
 
         for checkBox in checkBoxes {
             checkBox.checkBox.setOn(false, animated: true)
-            checkBox.accessibilityValue = "unselected"
+            checkBox.accessibilityValue = LocalisationHandler.getLocalisedStringForKey("usa_unselected")
         }
 
         checkBox.setOn(true, animated: true)
 
         for (index, checkBox) in checkBoxes.enumerated() where checkBox.checkBox.on == true {
-            checkBox.accessibilityValue = "selected"
+            checkBox.accessibilityValue = LocalisationHandler.getLocalisedStringForKey("usa_selected")
             let option = viewModel.options[index]
             values.append(option.value)
         }

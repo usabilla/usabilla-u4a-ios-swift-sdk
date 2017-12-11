@@ -10,12 +10,13 @@ import Foundation
 
 class RadioComponentViewModel: BaseOptionsComponentViewModel<RadioFieldModel> {
 
-    override var accessibilityLabelDetail: String? {
+    override var accessibilityExtraInfo: String? {
         get {
-            return "Choose from \(model.options.count) options, One option possible"
+            let formattedString = String(format: LocalisationHandler.getLocalisedStringForKey("usa_choose_from_options") + ", " + LocalisationHandler.getLocalisedStringForKey("usa_one_option_possible"), model.options.count)
+            return formattedString
         }
         set {
-            self.accessibilityLabelDetail = newValue
+            self.accessibilityExtraInfo = newValue
         }
     }
 }

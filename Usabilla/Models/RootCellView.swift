@@ -115,7 +115,7 @@ class RootCellView: UITableViewCell {
 
     private func setupAccessiblity() {
         var accessibilityLabelDetails = ""
-        if let accessibilityLabel = cellViewModel.componentViewModel?.accessibilityLabelDetail {
+        if let accessibilityLabel = cellViewModel.componentViewModel?.accessibilityExtraInfo {
             accessibilityLabelDetails = ", " + accessibilityLabel
         }
         guard cellViewModel.required else {

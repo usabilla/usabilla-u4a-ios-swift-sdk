@@ -10,12 +10,13 @@ import Foundation
 
 class CheckBoxComponentViewModel: BaseOptionsComponentViewModel<CheckboxFieldModel> {
 
-    override var accessibilityLabelDetail: String? {
+    override var accessibilityExtraInfo: String? {
         get {
-            return "Choose from \(model.options.count) options, Multiple options possible"
+            let formattedString = String(format: LocalisationHandler.getLocalisedStringForKey("usa_choose_from_options") + ", " + LocalisationHandler.getLocalisedStringForKey("usa_multiple_options_possible"), model.options.count)
+            return formattedString
         }
         set {
-            self.accessibilityLabelDetail = newValue
+            self.accessibilityExtraInfo = newValue
         }
     }
 }

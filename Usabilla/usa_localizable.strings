@@ -16,6 +16,7 @@
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
 "usa_accessibility_field_required" = "This field is required";
+"usa_choose_from_options" = "Choose from %d options";
 
 // Emoticons
 "usa_mood_hate" = "Hate";
@@ -30,3 +31,9 @@
 "usa_mood_three_star" = "3 stars";
 "usa_mood_four_star" = "4 stars";
 "usa_mood_five_star" = "5 stars";
+
+// checkbox & radio button
+"usa_multiple_options_possible" = "Multiple options possible";
+"usa_one_option_possible" = "One option possible";
+"usa_selected" = "selected";
+"usa_unselected" = "unselected";

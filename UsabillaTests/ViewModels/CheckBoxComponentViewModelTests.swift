@@ -22,7 +22,7 @@ class CheckBoxComponentViewModelTests: QuickSpec {
                 it("should have correct accessiblity label") {
                     let model = CheckboxFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
                     let viewModel = CheckBoxComponentViewModel(model: model, theme: theme)
-                    expect(viewModel.accessibilityLabelDetail).to(equal("Choose from 0 options, Multiple options possible"))
+                    expect(viewModel.accessibilityExtraInfo).to(equal("Choose from 0 options, Multiple options possible"))
                 }
             }
         }

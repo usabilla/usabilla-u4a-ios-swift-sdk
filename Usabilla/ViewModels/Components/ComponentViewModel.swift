@@ -9,9 +9,7 @@
 import Foundation
 
 class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
-    var accessibilityLabelDetail: String?
-    var accessibilityValueDetail: String?
-    var accessibilityHintDetail: String?
+    var accessibilityExtraInfo: String?
 
     var model: V
     let theme: UsabillaTheme

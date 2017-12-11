@@ -21,7 +21,7 @@ class RadioComponentViewModelTests: QuickSpec {
                 it("should have correct accessiblity label") {
                     let model = RadioFieldModel(json: JSON(parseJSON: ""), pageModel: pageModel)
                     let viewModel = RadioComponentViewModel(model: model, theme: theme)
-                    expect(viewModel.accessibilityLabelDetail).to(equal("Choose from 0 options, One option possible"))
+                    expect(viewModel.accessibilityExtraInfo).to(equal("Choose from 0 options, One option possible"))
                 }
             }
         }

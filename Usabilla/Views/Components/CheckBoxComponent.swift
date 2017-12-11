@@ -24,10 +24,10 @@ class CheckBoxComponent: BaseCheckBoxComponent<CheckBoxComponentViewModel> {
         var values: [String] = []
 
         for (index, checkBoxText) in checkBoxes.enumerated() {
-            var accessibilityValue = "unselected"
+            var accessibilityValue = LocalisationHandler.getLocalisedStringForKey("usa_unselected")
             if checkBoxText.checkBox.on == true {
                 let option = viewModel.options[index]
-                accessibilityValue = "selected"
+                accessibilityValue = LocalisationHandler.getLocalisedStringForKey("usa_selected")
                 values.append(option.value)
             }
             checkBoxText.accessibilityValue = accessibilityValue

@@ -50,9 +50,9 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
 
             if let val = viewModel.value, val.contains(option.value) {
                 checkBox.checkBox.on = true
-                checkBox.accessibilityValue = "selected"
+                checkBox.accessibilityValue = LocalisationHandler.getLocalisedStringForKey("usa_selected")
             } else {
-                checkBox.accessibilityValue = "unselected"
+                checkBox.accessibilityValue = LocalisationHandler.getLocalisedStringForKey("usa_unselected")
             }
             checkBoxes.append(checkBox)
             stackView.addArrangedSubview(checkBox)
