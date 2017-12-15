@@ -14,7 +14,7 @@ platform :ios do
     end
 
     def cleanReleaseProject
-        sh("rm -rf #{projectDirectory}ReleaseValidator/Usabilla.Framework")        
+        sh("rm -rf #{projectDirectory}automation/ReleaseValidator/Usabilla.Framework")        
     end
 
     def readXcodeVersions
@@ -135,9 +135,9 @@ platform :ios do
         xcversion(version: version)
         framework_path = "#{projectDirectory}Xcode-#{version}/Pods/Usabilla.Framework"
         cleanReleaseProject
-        sh("cp -r #{framework_path} #{projectDirectory}ReleaseValidator/")
+        sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/")
 	    scan(
-            project: 'ReleaseValidator/ReleaseValidator.xcodeproj',
+            project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
             clean: true,
             device: "iPhone SE"
         )

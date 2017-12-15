@@ -66,5 +66,5 @@ fastlane/README.MD
 
 vendor
 generatedFramework
-ReleaseValidator/Usabilla.framework
+automation/ReleaseValidator/Usabilla.framework
 slather-coverage
