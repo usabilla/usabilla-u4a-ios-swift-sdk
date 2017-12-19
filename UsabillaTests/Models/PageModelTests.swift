@@ -21,8 +21,7 @@ class PageModelTests: QuickSpec {
 
             context("When creating a page") {
                 it("should have the right values") {
-                    let page = PageModel(pageNumber: 1, pageName: "test", type: .form)
-                    expect(page.pageNumber).to(equal(1))
+                    let page = PageModel(pageName: "test", type: .form)
                     expect(page.pageName).to(equal("test"))
                     expect(page.type).to(equal(PageType.form))
                 }

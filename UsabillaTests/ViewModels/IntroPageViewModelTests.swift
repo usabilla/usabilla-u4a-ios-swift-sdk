@@ -22,7 +22,7 @@ class IntroPageViewModelTests: QuickSpec {
         configurator.colors.title = UIColor(rgba: "#012346")
         configurator.colors.text = UIColor(rgba: "#012347")
 
-        let introPage = IntroPageModel(pageNumber: 0, pageName: "test", type: .form)
+        let introPage = IntroPageModel(pageName: "test", type: .form)
         let copyModel = CopyModel()
         beforeEach {
             let moodField = MoodFieldModel(json: JSON(parseJSON: "{\"title\":\"Hello\"}"), pageModel: introPage)
@@ -36,7 +36,7 @@ class IntroPageViewModelTests: QuickSpec {
             context("when initialized with a page a paragraph field") {
                 it("should not set the component view model when the paragraph is empty") {
                     let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"\"}"), pageModel: introPage)
-                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test", type: .banner)
+                    let introPage = IntroPageModel(pageName: "test", type: .banner)
                     introPage.fields = [paragraphField]
 
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
@@ -45,7 +45,7 @@ class IntroPageViewModelTests: QuickSpec {
                 }
                 it("should set the component view model when the paragraph has a text") {
                     let paragraphField = ParagraphFieldModel(json: JSON(parseJSON: "{\"text\":\"hello\"}"), pageModel: introPage)
-                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test", type: .banner)
+                    let introPage = IntroPageModel(pageName: "test", type: .banner)
                     introPage.fields = [paragraphField]
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
                     expect(introPageViewModel.componentViewModel).toNot(beNil())
@@ -72,7 +72,7 @@ class IntroPageViewModelTests: QuickSpec {
                     configurator.fonts.regular = customFont
                     let customFontBold = UIFont(name: "TimesNewRomanPS-BoldMT", size: 17)
                     configurator.fonts.bold = customFontBold
-                    let introPage = IntroPageModel(pageNumber: 0, pageName: "test", type: .banner)
+                    let introPage = IntroPageModel(pageName: "test", type: .banner)
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
 
                     expect(introPageViewModel.font).to(equal(customFont))
@@ -82,7 +82,7 @@ class IntroPageViewModelTests: QuickSpec {
 
             context("when it is banner with mood component") {
                 it("viewModel attributes should match") {
-                    let introPage2 = IntroPageModel(pageNumber: 0, pageName: "test", type: .banner)
+                    let introPage2 = IntroPageModel(pageName: "test", type: .banner)
                     let copy2 = CopyModel()
                     copy2.introCancelButton = "canceltest"
                     introPage2.copy = copy2

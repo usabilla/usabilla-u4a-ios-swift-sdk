@@ -28,7 +28,6 @@ class PageModel: PageModelProtocol {
         }
     }
 
-    let pageNumber: Int?
     let pageName: String?
     let type: PageType
     var isLastPage: Bool?
@@ -37,8 +36,7 @@ class PageModel: PageModelProtocol {
     var errorMessage: String?
     weak var copy: CopyModel?
 
-    required init(pageNumber: Int, pageName: String, type: PageType) {
-        self.pageNumber = pageNumber
+    required init(pageName: String, type: PageType) {
         self.pageName = pageName
         errorMessage = nil
         fields = []

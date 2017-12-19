@@ -44,7 +44,7 @@ class UBMock {
     }
 
     class func pageMock () -> PageModel {
-        return PageModel(pageNumber: 0, pageName: "", type: .form)
+        return PageModel(pageName: "", type: .form)
     }
 
     class func campaignMock(withID id: String = "", withTargetingID targetingId: String = "", withTargeting targeting: TargetingOptionsModel = UBMock.mockTargeting) -> CampaignModel {
