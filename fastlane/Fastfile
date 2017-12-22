@@ -85,7 +85,7 @@ platform :ios do
             workspace: 'Usabilla.xcworkspace',
             scheme: 'UsabillaUITestApp',
             test_without_building: true,            
-            devices: ["iPhone X (11.0)", "iPhone 7 (10.3.1)", "iPhone 6 (9.3)"]
+            devices: ["iPhone 7 (10.3.1)"]
         )
     end
 

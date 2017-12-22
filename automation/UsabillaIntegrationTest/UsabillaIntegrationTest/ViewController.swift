@@ -9,15 +9,14 @@
 import UIKit
 import Usabilla
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField.text = "purchaseComplete"
-
         Usabilla.customVariables = ["frequent flyer status": "sky elite"]
+        textField.delegate = self
     }
 
     @IBAction func sendAction(_ sender: Any) {
@@ -27,6 +26,11 @@ class ViewController: UIViewController {
 
     @IBAction func resetAction(_ sender: Any) {
         Usabilla.resetCampaignData(completion: nil)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

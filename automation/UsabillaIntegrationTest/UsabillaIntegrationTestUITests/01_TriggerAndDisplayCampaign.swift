@@ -8,7 +8,7 @@
 
 import XCTest
 
-class UsabillaIntegrationTestUITests: XCTestCase {
+class TriggerAndDisplayCampaign: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -19,9 +19,13 @@ class UsabillaIntegrationTestUITests: XCTestCase {
         app.launch()
     }
 
-    func testExample() {
+    func testCampaignAppearance() {
         let app = XCUIApplication()
         app.buttons["reset"].tap()
+
+        app.textFields["eventInput"].tap()
+        app.textFields["eventInput"].typeText("purchaseComplete")
+        app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10)).tap()
 
         let sendButton = app.buttons["send"]
         sendButton.tap()

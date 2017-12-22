@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04F800FB1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */; };
 		433156E41FCC50000036F0A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156E31FCC50000036F0A5 /* AppDelegate.swift */; };
 		433156E61FCC50000036F0A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156E51FCC50000036F0A5 /* ViewController.swift */; };
 		433156E91FCC50000036F0A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433156E71FCC50000036F0A5 /* Main.storyboard */; };
 		433156EB1FCC50000036F0A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433156EA1FCC50000036F0A5 /* Assets.xcassets */; };
 		433156EE1FCC50000036F0A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433156EC1FCC50000036F0A5 /* LaunchScreen.storyboard */; };
-		433156F91FCC50000036F0A5 /* UsabillaIntegrationTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156F81FCC50000036F0A5 /* UsabillaIntegrationTestUITests.swift */; };
+		433156F91FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */; };
 		C5748A441FCD6C7D00F866EF /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5748A3D1FCD6AAD00F866EF /* Usabilla.framework */; };
 		C5748A451FCD6C7D00F866EF /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5748A3D1FCD6AAD00F866EF /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 02_PreventTriggeringCampaignMultipleTimes.swift; sourceTree = "<group>"; };
 		433156E01FCC50000036F0A5 /* UsabillaIntegrationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaIntegrationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433156E31FCC50000036F0A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		433156E51FCC50000036F0A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		433156ED1FCC50000036F0A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		433156EF1FCC50000036F0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433156F41FCC50000036F0A5 /* UsabillaIntegrationTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaIntegrationTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		433156F81FCC50000036F0A5 /* UsabillaIntegrationTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaIntegrationTestUITests.swift; sourceTree = "<group>"; };
+		433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 01_TriggerAndDisplayCampaign.swift; sourceTree = "<group>"; };
 		433156FA1FCC50000036F0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5748A361FCD6AAD00F866EF /* Usabilla.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Usabilla.xcodeproj; path = ../../Usabilla.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,7 +139,8 @@
 		433156F71FCC50000036F0A5 /* UsabillaIntegrationTestUITests */ = {
 			isa = PBXGroup;
 			children = (
-				433156F81FCC50000036F0A5 /* UsabillaIntegrationTestUITests.swift */,
+				433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */,
+				04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */,
 				433156FA1FCC50000036F0A5 /* Info.plist */,
 			);
 			path = UsabillaIntegrationTestUITests;
@@ -299,7 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433156F91FCC50000036F0A5 /* UsabillaIntegrationTestUITests.swift in Sources */,
+				433156F91FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift in Sources */,
+				04F800FB1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

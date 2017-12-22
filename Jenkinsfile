@@ -18,6 +18,7 @@ node('mac') {
         stage('Install') {
             sh "env"
             sh "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3"
+	    sh "bundle update fastlane"
             sh "bin/bootstrap-if-needed"
         }
 
