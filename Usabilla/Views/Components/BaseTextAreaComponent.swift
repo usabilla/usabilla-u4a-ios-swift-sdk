@@ -28,16 +28,16 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
         labelPlaceHolder.isHidden = true // by default it's always hidden
         textView.addSubview(labelPlaceHolder)
 
+        labelPlaceHolder.translatesAutoresizingMaskIntoConstraints = false
+        labelPlaceHolder.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        labelPlaceHolder.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        labelPlaceHolder.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        labelPlaceHolder.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
         textView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         textView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         textView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         textView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-
-        labelPlaceHolder.translatesAutoresizingMaskIntoConstraints = false
-        labelPlaceHolder.leftAnchor.constraint(equalTo: textView.leftAnchor).isActive = true
-        labelPlaceHolder.rightAnchor.constraint(equalTo: textView.rightAnchor).isActive = true
-        labelPlaceHolder.topAnchor.constraint(equalTo: textView.topAnchor).isActive = true
-        labelPlaceHolder.bottomAnchor.constraint(equalTo: textView.bottomAnchor).isActive = true
 
         // customization
         let theme = viewModel.theme
