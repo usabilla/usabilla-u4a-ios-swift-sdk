@@ -63,5 +63,6 @@ extension CampaignWindow: CampaignViewControllerDelegate {
         isHidden = true
         rootViewController = nil
         currentCampaignViewModel = nil
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
     }
 }
