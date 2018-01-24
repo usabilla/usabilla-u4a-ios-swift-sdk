@@ -72,14 +72,14 @@
 
 /* Begin PBXFileReference section */
 		04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 02_PreventTriggeringCampaignMultipleTimes.swift; sourceTree = "<group>"; };
-		433156E01FCC50000036F0A5 /* UsabillaIntegrationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaIntegrationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		433156E01FCC50000036F0A5 /* UsabillaSystemTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsabillaSystemTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		433156E31FCC50000036F0A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		433156E51FCC50000036F0A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		433156E81FCC50000036F0A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		433156EA1FCC50000036F0A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433156ED1FCC50000036F0A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		433156EF1FCC50000036F0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		433156F41FCC50000036F0A5 /* UsabillaIntegrationTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaIntegrationTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		433156F41FCC50000036F0A5 /* UsabillaSystemTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaSystemTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 01_TriggerAndDisplayCampaign.swift; sourceTree = "<group>"; };
 		433156FA1FCC50000036F0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5748A361FCD6AAD00F866EF /* Usabilla.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Usabilla.xcodeproj; path = ../../Usabilla.xcodeproj; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				C5748A361FCD6AAD00F866EF /* Usabilla.xcodeproj */,
-				433156E21FCC50000036F0A5 /* UsabillaIntegrationTest */,
-				433156F71FCC50000036F0A5 /* UsabillaIntegrationTestUITests */,
+				433156E21FCC50000036F0A5 /* UsabillaSystemTest */,
+				433156F71FCC50000036F0A5 /* UsabillaSystemTestUITests */,
 				433156E11FCC50000036F0A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,13 +117,13 @@
 		433156E11FCC50000036F0A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				433156E01FCC50000036F0A5 /* UsabillaIntegrationTest.app */,
-				433156F41FCC50000036F0A5 /* UsabillaIntegrationTestUITests.xctest */,
+				433156E01FCC50000036F0A5 /* UsabillaSystemTest.app */,
+				433156F41FCC50000036F0A5 /* UsabillaSystemTestUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		433156E21FCC50000036F0A5 /* UsabillaIntegrationTest */ = {
+		433156E21FCC50000036F0A5 /* UsabillaSystemTest */ = {
 			isa = PBXGroup;
 			children = (
 				433156E31FCC50000036F0A5 /* AppDelegate.swift */,
@@ -133,17 +133,17 @@
 				433156EC1FCC50000036F0A5 /* LaunchScreen.storyboard */,
 				433156EF1FCC50000036F0A5 /* Info.plist */,
 			);
-			path = UsabillaIntegrationTest;
+			path = UsabillaSystemTest;
 			sourceTree = "<group>";
 		};
-		433156F71FCC50000036F0A5 /* UsabillaIntegrationTestUITests */ = {
+		433156F71FCC50000036F0A5 /* UsabillaSystemTestUITests */ = {
 			isa = PBXGroup;
 			children = (
 				433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */,
 				04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */,
 				433156FA1FCC50000036F0A5 /* Info.plist */,
 			);
-			path = UsabillaIntegrationTestUITests;
+			path = UsabillaSystemTestUITests;
 			sourceTree = "<group>";
 		};
 		C5748A371FCD6AAD00F866EF /* Products */ = {
@@ -159,9 +159,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		433156DF1FCC4FFF0036F0A5 /* UsabillaIntegrationTest */ = {
+		433156DF1FCC4FFF0036F0A5 /* UsabillaSystemTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 433156FD1FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaIntegrationTest" */;
+			buildConfigurationList = 433156FD1FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaSystemTest" */;
 			buildPhases = (
 				433156DC1FCC4FFF0036F0A5 /* Sources */,
 				433156DD1FCC4FFF0036F0A5 /* Frameworks */,
@@ -173,14 +173,14 @@
 			dependencies = (
 				C5748A471FCD6C7D00F866EF /* PBXTargetDependency */,
 			);
-			name = UsabillaIntegrationTest;
+			name = UsabillaSystemTest;
 			productName = UsabillaIntegrationTest;
-			productReference = 433156E01FCC50000036F0A5 /* UsabillaIntegrationTest.app */;
+			productReference = 433156E01FCC50000036F0A5 /* UsabillaSystemTest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		433156F31FCC50000036F0A5 /* UsabillaIntegrationTestUITests */ = {
+		433156F31FCC50000036F0A5 /* UsabillaSystemTestUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 433157001FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaIntegrationTestUITests" */;
+			buildConfigurationList = 433157001FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaSystemTestUITests" */;
 			buildPhases = (
 				433156F01FCC50000036F0A5 /* Sources */,
 				433156F11FCC50000036F0A5 /* Frameworks */,
@@ -191,9 +191,9 @@
 			dependencies = (
 				433156F61FCC50000036F0A5 /* PBXTargetDependency */,
 			);
-			name = UsabillaIntegrationTestUITests;
+			name = UsabillaSystemTestUITests;
 			productName = UsabillaIntegrationTestUITests;
-			productReference = 433156F41FCC50000036F0A5 /* UsabillaIntegrationTestUITests.xctest */;
+			productReference = 433156F41FCC50000036F0A5 /* UsabillaSystemTestUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -203,7 +203,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Usabilla;
 				TargetAttributes = {
 					433156DF1FCC4FFF0036F0A5 = {
@@ -219,7 +219,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 433156DB1FCC4FFF0036F0A5 /* Build configuration list for PBXProject "UsabillaIntegrationTest" */;
+			buildConfigurationList = 433156DB1FCC4FFF0036F0A5 /* Build configuration list for PBXProject "UsabillaSystemTest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -238,8 +238,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				433156DF1FCC4FFF0036F0A5 /* UsabillaIntegrationTest */,
-				433156F31FCC50000036F0A5 /* UsabillaIntegrationTestUITests */,
+				433156DF1FCC4FFF0036F0A5 /* UsabillaSystemTest */,
+				433156F31FCC50000036F0A5 /* UsabillaSystemTestUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +312,7 @@
 /* Begin PBXTargetDependency section */
 		433156F61FCC50000036F0A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 433156DF1FCC4FFF0036F0A5 /* UsabillaIntegrationTest */;
+			target = 433156DF1FCC4FFF0036F0A5 /* UsabillaSystemTest */;
 			targetProxy = 433156F51FCC50000036F0A5 /* PBXContainerItemProxy */;
 		};
 		C5748A471FCD6C7D00F866EF /* PBXTargetDependency */ = {
@@ -352,7 +352,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -360,7 +362,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -403,7 +409,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -411,7 +419,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -443,7 +455,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
-				INFOPLIST_FILE = UsabillaIntegrationTest/Info.plist;
+				INFOPLIST_FILE = UsabillaSystemTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaSystemTest;
@@ -459,7 +471,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
-				INFOPLIST_FILE = UsabillaIntegrationTest/Info.plist;
+				INFOPLIST_FILE = UsabillaSystemTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaSystemTest;
@@ -474,12 +486,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
-				INFOPLIST_FILE = UsabillaIntegrationTestUITests/Info.plist;
+				INFOPLIST_FILE = UsabillaSystemTestUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaIntegrationTestUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaSystemTestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = UsabillaIntegrationTest;
+				TEST_TARGET_NAME = UsabillaSystemTest;
 			};
 			name = Debug;
 		};
@@ -488,19 +500,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 24ZZS38JW5;
-				INFOPLIST_FILE = UsabillaIntegrationTestUITests/Info.plist;
+				INFOPLIST_FILE = UsabillaSystemTestUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaIntegrationTestUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaSystemTestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = UsabillaIntegrationTest;
+				TEST_TARGET_NAME = UsabillaSystemTest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		433156DB1FCC4FFF0036F0A5 /* Build configuration list for PBXProject "UsabillaIntegrationTest" */ = {
+		433156DB1FCC4FFF0036F0A5 /* Build configuration list for PBXProject "UsabillaSystemTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				433156FB1FCC50000036F0A5 /* Debug */,
@@ -509,7 +521,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		433156FD1FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaIntegrationTest" */ = {
+		433156FD1FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaSystemTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				433156FE1FCC50000036F0A5 /* Debug */,
@@ -518,7 +530,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		433157001FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaIntegrationTestUITests" */ = {
+		433157001FCC50000036F0A5 /* Build configuration list for PBXNativeTarget "UsabillaSystemTestUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				433157011FCC50000036F0A5 /* Debug */,
