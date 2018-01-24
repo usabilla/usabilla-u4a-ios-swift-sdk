@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044A93472018F37A00D3420F /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A93452018F37A00D3420F /* TestExtensions.swift */; };
 		04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; };
 		04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */ = {isa = PBXBuildFile; fileRef = 43120C9D1F027E5800802141 /* 01_FormAppearance.json */; };
@@ -88,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		044A93452018F37A00D3420F /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		04C464F31F799FB100FE43DB /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
 		4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 20_AccessibilityRequiredField.json; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				437B96D71E266A8F00AA0A25 /* Assets.xcassets */,
 				437B96D91E266A8F00AA0A25 /* LaunchScreen.storyboard */,
 				437B96DC1E266A8F00AA0A25 /* Info.plist */,
+				044A93452018F37A00D3420F /* TestExtensions.swift */,
 			);
 			path = UsabillaUITestApp;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				43F9517F1F024EAF00FE23F8 /* 04_VisibilityControl.swift in Sources */,
 				43F57A871F9E1CC9005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.swift in Sources */,
 				43F57A7B1F9DEE23005BFA80 /* TestSetup.swift in Sources */,
+				044A93472018F37A00D3420F /* TestExtensions.swift in Sources */,
 				43F57A811F9E0518005BFA80 /* 06_BannerMoodNoJumpRulesGoesToNextPage.swift in Sources */,
 				C555E9A01EE0120900F84B51 /* 01_FormAppearance.swift in Sources */,
 				43F57A7D1F9DF540005BFA80 /* 05_PassiveCheckboxJumpRules.swift in Sources */,

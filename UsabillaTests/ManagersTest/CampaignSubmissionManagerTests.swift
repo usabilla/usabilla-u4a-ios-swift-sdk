@@ -160,9 +160,8 @@ class CampaignSubmissionManagerTests: QuickSpec {
                     expect(dao.readAll().count).to(equal(0))
                     submissionService.submissionSucceed = false
                     csm.handle(request: post)
-                    expect(dao.readAll().count).toEventually(equal(1))
-                    let campaign = dao.readAll().first!
-                    expect(campaign.numberOfSubmissionAttempts).toEventually(equal(1))
+                    expect(dao.readAll().count).toEventually(equal(1), timeout: 5, pollInterval: 1)
+                    expect(dao.readAll().first?.numberOfSubmissionAttempts).toEventually(equal(1), timeout: 5, pollInterval: 1)
                 }
             }
         }

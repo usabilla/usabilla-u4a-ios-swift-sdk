@@ -17,27 +17,31 @@ class BannerMoodJumpRulesNoPagesToToast: UBXCScenario {
     }
 
     func testMood1GoestToToast1() {
-        moodComponent.selectMood(atIndex: 0)
-        XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
+        if (moodComponent.mood.waitForExistence(timeout: 4)) {
+            moodComponent.selectMood(atIndex: 0)
+            verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
+        } else {
+            XCTFail("Mood could not be found")
+        }
     }
 
     func testMood2GoestToToast1() {
         moodComponent.selectMood(atIndex: 1)
-        XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
+        verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood3GoestToToast1() {
         moodComponent.selectMood(atIndex: 2)
-        XCTAssert(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
+        verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood4GoestToToast2() {
         moodComponent.selectMood(atIndex: 3)
-        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
+        verify(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testMood5GoestToToast2() {
         moodComponent.selectMood(atIndex: 4)
-        XCTAssert(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
+        verify(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 }

@@ -51,14 +51,14 @@ class JumpRulesManyControls: UBXCScenario {
 
     func testSelecting1InMoodControlAnd4ForTheNPSTakesToPage4() {
         moodComponent.selectMood(atIndex: 0)
-        mainScreen.nps.select(number: 4)
+        mainScreen.nps.select(index: 4)
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 4", "It should display 'Page 4'")
     }
 
     func testSelecting5InMoodControlAnd4ForTheNPSTakesToPage3() {
         moodComponent.selectMood(atIndex: 4)
-        mainScreen.nps.select(number: 4)
+        mainScreen.nps.select(index: 4)
         form.navigationBar.nextButton.tap()
         XCTAssert(getTextViewText() == "Page 3", "It should display 'Page 3'")
     }

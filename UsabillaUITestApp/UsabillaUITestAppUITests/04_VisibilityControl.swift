@@ -21,7 +21,7 @@ class VisibilityControl: UBXCScenario {
 
     private func displayNPSAndParagraph() {
         moodComponent.selectMood(atIndex: 4)
-        mainScreen.nps.select(number: 5)
+        mainScreen.nps.select(index: 5)
         XCTAssert(mainScreen.nps.element.isHittable, "The NPS should be visible")
         XCTAssert(paragraph.visible(), "The paragraph should be visible")
     }
@@ -52,7 +52,7 @@ class VisibilityControl: UBXCScenario {
         XCTAssert(mainScreen.nps.element.isHittable, "The NPS should be visible")
 
         // Selecting 5 in NPS displays Paragraph
-        mainScreen.nps.select(number: 5)
+        mainScreen.nps.select(index: 5)
         XCTAssert(paragraph.visible(), "The paragraph should be visible")
 
         // Selecting 1 (2, 3 or 4) in Mood Control hides NPS and Paragraph

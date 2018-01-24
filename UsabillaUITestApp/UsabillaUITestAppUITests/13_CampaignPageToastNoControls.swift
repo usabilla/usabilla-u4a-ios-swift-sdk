@@ -20,14 +20,14 @@ class CampaignPageToastNoControls: UBXCScenario {
 
     func testPageAndToastAreDisplayed() {
         banner.continueButton.tap()
-        XCTAssert(modal.form.element.exists)
-        XCTAssert(modal.form.navigationBar.element.exists)
-        XCTAssert(modal.form.navigationBar.cancelButton.exists)
-        XCTAssert(modal.form.navigationBar.submitButton.exists)
+        verify(modal.form.element.exists)
+        verify(modal.form.navigationBar.element.exists)
+        verify(modal.form.navigationBar.cancelButton.exists)
+        verify(modal.form.navigationBar.submitButton.exists)
 
         modal.form.navigationBar.submitButton.tap()
-        XCTAssert(toast.element.exists)
-        XCTAssert(toast.text == nil || toast.text! == "")
+        verify(toast.element.exists)
+        verify(toast.text == nil || toast.text! == "")
     }
 }
 

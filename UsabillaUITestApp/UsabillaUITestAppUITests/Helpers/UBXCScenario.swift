@@ -9,11 +9,15 @@
 import XCTest
 
 extension XCUIElement {
-    open func adjust(toNormalizedSliderValue normalizedSliderValue: CGFloat) {
-        let start = coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
-        let end = coordinate(withNormalizedOffset: CGVector(dx: normalizedSliderValue, dy: 0.0))
-        start.press(forDuration: 0.05, thenDragTo: end)
+
+    open func adjust(toIndex index: Int, withScale scale:Int = 5, withCorrection correction: CGFloat = 2) {
+        let centerY = frame.size.height / 2
+        let elementSize = frame.size.width / CGFloat(scale)
+        let centerX = (elementSize * CGFloat(index)) + elementSize / correction
+        let cooridnate = self.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0)).withOffset(CGVector(dx: centerX, dy: centerY))
+        cooridnate.press(forDuration: 0.1)
     }
+
     
     func scrollToElement(element: XCUIElement) {
         while !element.visible() {

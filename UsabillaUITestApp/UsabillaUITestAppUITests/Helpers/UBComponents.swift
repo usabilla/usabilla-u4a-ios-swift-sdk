@@ -78,26 +78,24 @@ struct NavigationBar {
 // The banner view with NPS component
 struct BannerViewNPS {
     let nps = NPSComponent()
-}
+} 
 
 // NPS Component
 struct NPSComponent {
     let element: XCUIElement = Application.xcApp.otherElements["Select a score"]
 
     // selects an NPS value
-    func select(number: Int) {
-        let floatValue = CGFloat(number) / 11.0 + (1 / 11.0) / 2
-        element.adjust(toNormalizedSliderValue: floatValue)
+    func select(index: Int) {
+        element.adjust(toIndex: index, withScale: 11)
     }
 }
 
 // Mood Component
 class MoodComponent {
-    var mood: XCUIElement? = nil
+    var mood: XCUIElement!
 
     func selectMood(atIndex index: UInt) {
-        let floatValue = CGFloat(index) / 5.0 + (1 / 5.0) / 2
-        mood?.adjust(toNormalizedSliderValue: floatValue)
+        mood.adjust(toIndex: Int(index), withCorrection: 2.5)
     }
 }
 
