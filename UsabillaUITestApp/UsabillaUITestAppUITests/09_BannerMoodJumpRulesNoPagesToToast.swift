@@ -17,12 +17,8 @@ class BannerMoodJumpRulesNoPagesToToast: UBXCScenario {
     }
 
     func testMood1GoestToToast1() {
-        if (moodComponent.mood.waitForExistence(timeout: 4)) {
-            moodComponent.selectMood(atIndex: 0)
-            verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
-        } else {
-            XCTFail("Mood could not be found")
-        }
+        moodComponent.selectMood(atIndex: 0)
+        verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood2GoestToToast1() {

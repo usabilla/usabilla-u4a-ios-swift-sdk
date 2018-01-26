@@ -34,7 +34,7 @@ class BannerMoodJumpRulesPageGoesToToast: UBXCScenario {
 
     func testNoOptionsGoestToToast1() {
         modal.form.navigationBar.submitButton.tap()
-        //XCTAssert(self.app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
-        verify(self.app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
+        sleep(1)
+        verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 }
