@@ -85,7 +85,7 @@ platform :ios do
             workspace: 'Usabilla.xcworkspace',
             scheme: 'UsabillaUITestApp',
             test_without_building: true,            
-            devices: ["iPhone 7 (10.3.1)"]
+            devices: ["iPhone 7 (11.1)"]
         )
     end
 
@@ -159,7 +159,7 @@ platform :ios do
             project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
             scheme: "UsabillaSystemTest",
             clean: true,
-            devices: [ "iPhone 7 (10.3.1)"]
+            devices: [ "iPhone 7 (11.1)"]
             #add  "iPhone 8 (11.1)", when iOS 9 is supported by CircleCI and we migarte from Xcode 8.3.3 to 9
             #see https://discuss.circleci.com/t/please-add-simulators-for-ios-9-10-to-xcode-9-image/16530
         )
