@@ -18,25 +18,30 @@ node('mac') {
         stage('Install') {
             sh "env"
             sh "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3"
-        sh "bundle update fastlane"
+            sh "bundle update fastlane"
             sh "bin/bootstrap-if-needed"
         }
+        // Everyone gets unit and code integration tests
+        stage('Build') {
+            sh "bundle exec fastlane buildForUnitTesting"
+            sh "bundle exec fastlane buildForUITesting"
+        }
+        stage('Unit Tests') {
+            unitTest()
+        }
 
-        if(env.BRANCH_NAME == 'master') {
-            stage('Build') {
-                sh "bundle exec fastlane buildAll"
-            }
-            stage('Validation'){
-                sh "bundle exec fastlane validateAll"
-            }
-            stage('Unit Tests') {
-                unitTest()
-            }
+        if(env.BRANCH_NAME == 'master') {   
             stage('UI Tests') {
                 uiTest()
             }
             stage('System tests') {
                 systemTest()
+            }
+            stage('Package frameworks') {
+                sh "bundle exec fastlane buildAll"
+            }
+            stage('Validation'){
+                sh "bundle exec fastlane validateAll"
             }
             stage('Save Artifacts') {
                 archiveArtifacts 'Xcode*/**'
@@ -46,14 +51,6 @@ node('mac') {
         }
 
         if(env.BRANCH_NAME ==~ '(develop|release|hotfix|feature|task)/?.*') {
-            // Everyone gets unit and code integration tests
-            stage('Build') {
-                sh "bundle exec fastlane buildForUnitTesting"
-                sh "bundle exec fastlane buildForUITesting"
-            }
-            stage('Unit Tests') {
-                unitTest()
-            }
             if(env.BRANCH_NAME ==~ 'task/.*') {
                 //Task does not get UI or system tests
                 currentBuild.result = 'SUCCESS'
