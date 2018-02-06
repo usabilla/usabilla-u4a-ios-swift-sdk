@@ -1,3 +1,14 @@
+## 4.0.3
+#### Added
+- Accessibility/VoiceOver support for Checkboxes, radio buttons and other minor components
+
+#### Updated
+- Moved the cancel button to the right side on the end page
+- Screenshot component UI
+
+#### Fixed
+- Fixed the placeholder on the text area not correctly displaying on multiple lines
+
 ## 4.0.2
 #### Added
 - Add accessibility/VoiceOver support for
