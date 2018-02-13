@@ -67,9 +67,6 @@ target 'YourProjectTarget' do
 
 pod 'Usabilla', '~> 4.0'
 
-#Or by specifying a tag
-pod 'Usabilla', :tag=> 'v4.0.3'
-
 End
 ```
 
