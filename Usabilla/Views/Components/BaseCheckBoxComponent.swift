@@ -57,8 +57,7 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
             checkBoxes.append(checkBox)
             stackView.addArrangedSubview(checkBox)
         }
-        stackView.layoutIfNeeded()
-        stackView.layoutSubviews()
+        stackView.setNeedsLayout()
     }
 
     func didTapCheckBox(_ checkBox: SwiftCheckBox) {
