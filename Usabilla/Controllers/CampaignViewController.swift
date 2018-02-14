@@ -183,7 +183,7 @@ class CampaignViewController: UIViewController {
             self.backgroundLayer?.alpha = 1
             self.introView?.alpha = 0
             base.view.transform = CGAffineTransform.identity
-            base.view.layoutSubviews()
+            base.view.layoutIfNeeded()
         }, completion: {
             self.introView?.removeFromSuperview()
         })
