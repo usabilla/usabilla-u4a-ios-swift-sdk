@@ -14,8 +14,11 @@ import Nimble
 class ScreenshotModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = UBMock.pageMock()
-        var model: ScreenshotModel?
+        var model: ScreenshotModel!
+
+        beforeEach {
+            model = ScreenshotModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"), screenShot: nil)
+        }
 
         describe("ScreenshotModel") {
             it("init ScreenshotModel") {
@@ -29,26 +32,26 @@ class ScreenshotModelTest: QuickSpec {
             }
 
             it("ScreenshotModel base64Value") {
-                model?.image = nil
-                expect(model?.base64Value).to(beNil())
+                model.image = nil
+                expect(model.base64Value).to(beNil())
             }
 
             it("ScreenshotModel tobase64String()") {
                 let bundle = Bundle(for: type(of: self))
-                model?.image = UIImage(named: "Rectangle", in: bundle, compatibleWith: nil)
-                var base64 = model?.toBase64String()
+                model.image = UIImage(named: "Rectangle", in: bundle, compatibleWith: nil)
+                let base64 = model.toBase64String()!
                 expect(base64).toNot(beNil())
-                expect(base64?.characters.count).to(beGreaterThan(0))
+                expect(base64.count).to(beGreaterThan(0))
             }
 
             it("StringField isValid") {
-                model?.image = nil
-                model?.required = false
-                expect(model?.isValid()).to(beTrue())
-                model?.required = true
-                expect(model?.isValid()).to(beFalse())
-                model?.image = UIImage()
-                expect(model?.isValid()).to(beTrue())
+                model.image = nil
+                model.required = false
+                expect(model.isValid()).to(beTrue())
+                model.required = true
+                expect(model.isValid()).to(beFalse())
+                model.image = UIImage()
+                expect(model.isValid()).to(beTrue())
             }
         }
     }

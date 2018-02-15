@@ -48,7 +48,7 @@ class PageModel: PageModelProtocol {
 
     func toDictionary() -> [String: Any?] {
         var pageDictionary: [String: Any?] = [:]
-        for field in fields where field.fieldID.characters.count > 0 && field is Exportable {
+        for field in fields where !field.fieldID.isEmpty && field is Exportable {
             let exportable = field as? Exportable
             pageDictionary[field.fieldID] = exportable?.exportableValue
         }

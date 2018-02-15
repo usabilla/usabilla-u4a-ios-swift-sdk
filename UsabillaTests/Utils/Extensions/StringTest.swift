@@ -21,8 +21,8 @@ class StringTest: QuickSpec {
             it("should correctly divide by 3") {
                 let stringChunks = stringToChunk.components(withLength: 3)
                 expect(stringChunks.count).to(equal(6))
-                expect(stringChunks[5].characters.count).to(equal(3))
-                expect(stringChunks[0].characters.count).to(equal(3))
+                expect(stringChunks[5].count).to(equal(3))
+                expect(stringChunks[0].count).to(equal(3))
                 expect(stringChunks[5]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abc"))
             }
@@ -30,8 +30,8 @@ class StringTest: QuickSpec {
             it("should correctly divide by 4") {
                 let stringChunks = stringToChunk.components(withLength: 4)
                 expect(stringChunks.count).to(equal(5))
-                expect(stringChunks[4].characters.count).to(equal(2))
-                expect(stringChunks[0].characters.count).to(equal(4))
+                expect(stringChunks[4].count).to(equal(2))
+                expect(stringChunks[0].count).to(equal(4))
                 expect(stringChunks[4]).to(equal("st"))
                 expect(stringChunks[0]).to(equal("abcd"))
             }
@@ -39,8 +39,8 @@ class StringTest: QuickSpec {
             it("should correctly divide by 5") {
                 let stringChunks = stringToChunk.components(withLength: 5)
                 expect(stringChunks.count).to(equal(4))
-                expect(stringChunks[3].characters.count).to(equal(3))
-                expect(stringChunks[0].characters.count).to(equal(5))
+                expect(stringChunks[3].count).to(equal(3))
+                expect(stringChunks[0].count).to(equal(5))
                 expect(stringChunks[3]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abcde"))
             }
@@ -48,8 +48,8 @@ class StringTest: QuickSpec {
             it("should correctly divide by 5") {
                 let stringChunks = stringToChunk.components(withLength: 5)
                 expect(stringChunks.count).to(equal(4))
-                expect(stringChunks[3].characters.count).to(equal(3))
-                expect(stringChunks[0].characters.count).to(equal(5))
+                expect(stringChunks[3].count).to(equal(3))
+                expect(stringChunks[0].count).to(equal(5))
                 expect(stringChunks[3]).to(equal("rst"))
                 expect(stringChunks[0]).to(equal("abcde"))
             }

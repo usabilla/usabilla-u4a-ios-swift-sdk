@@ -94,7 +94,7 @@ class FormServiceTests: QuickSpec {
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { error in
-                            expect((error as! NSError).domain).to(equal("not a valid url parameter"))
+                            expect((error as NSError).domain).to(equal("not a valid url parameter"))
                             done()
                         }
                     }
@@ -105,7 +105,7 @@ class FormServiceTests: QuickSpec {
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { error in
-                            expect((error as! NSError).domain).to(equal("not a valid url parameter"))
+                            expect((error as NSError).domain).to(equal("not a valid url parameter"))
                             done()
                         }
                     }
@@ -116,7 +116,7 @@ class FormServiceTests: QuickSpec {
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { error in
-                            expect((error as! NSError).domain).to(equal("not a valid url parameter"))
+                            expect((error as NSError).domain).to(equal("not a valid url parameter"))
                             done()
                         }
                     }
@@ -128,7 +128,7 @@ class FormServiceTests: QuickSpec {
                         FormService(httpClient: UBHTTPMock.self).getForm(withID: "a", screenShot: nil).then { _ in
                             fail("Should not go here")
                         }.catch { error in
-                            expect((error as! NSError).domain).to(equal("form model is not valid"))
+                            expect((error as NSError).domain).to(equal("form model is not valid"))
                             done()
                         }
                     }

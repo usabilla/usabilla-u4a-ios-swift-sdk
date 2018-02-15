@@ -17,7 +17,6 @@ class EmailComponentViewModelTests: QuickSpec {
 
         var viewModel: EmailComponentViewModel!
         var model: EmailFieldModel!
-        let pageModel = UBMock.pageMock()
 
         beforeSuite {
             model = EmailFieldModel(json: JSON(parseJSON: "{\"name\":\"email\"}"))

@@ -14,12 +14,10 @@ import Nimble
 class ParagraphFieldModelTest: QuickSpec {
 
     override func spec() {
-        let pageModel = UBMock.pageMock()
-        var model: BaseFieldModel?
 
         describe("ParagraphModel") {
             it("init ParagraphModel") {
-                model = ParagraphFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"))
+                let model = ParagraphFieldModel(json: JSON(parseJSON: "{\"title\":\"test\"}"))
                 expect(model).toNot(beNil())
             }
         }
