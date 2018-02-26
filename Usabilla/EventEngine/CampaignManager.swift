@@ -16,13 +16,15 @@ class CampaignManager {
     private(set) var appID: String
     private let submissionManager: CampaignSubmissionManager
 
-    init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appID: String) {
+    init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appID: String, completion: (() -> Void)? = nil) {
         self.campaignStore = campaignStore
         self.campaignService = campaignService
         self.eventEngine = EventEngine(campaigns: [])
         self.appID = appID
         self.submissionManager = CampaignSubmissionManager(DAO: UBCampaignFeedbackRequestDAO.shared, dictionaryStore: UBFeedbackIDDictionaryDAO.shared)
-        fetchCampaignForEventEngine()
+        fetchCampaignForEventEngine {
+            completion?()
+        }
     }
 
     // customVariables sent from the interface are the activeStatuses used inside our SDK.

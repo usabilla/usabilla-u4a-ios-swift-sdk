@@ -46,14 +46,16 @@ class UsabillaInternal {
         PLog(customVariables)
     }
 
-    class func initialize(appID: String?) {
+    class func initialize(appID: String?, completion: (() -> Void)? = nil) {
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
-                Swift.debugPrint("Usabilla: provided appID has wrong format: expected UUID")
+                Swift.debugPrint("Usabilla: The appId \(appID) has wrong format (expected UUID)")
                 return
             }
             UsabillaInternal.appID = appID
-            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID)
+            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: {
+                completion?()
+            })
         }
 
         formService = FormService()
@@ -61,6 +63,8 @@ class UsabillaInternal {
         formStore = FormStore(service: formService!)
         submissionManager = SubmissionManager(formService: formService!)
         // swiftlint:enable force_unwrapping
+
+        Swift.debugPrint("Usabilla: SDK finished initializing")
     }
 
     class func removeCachedForms() {

@@ -116,6 +116,15 @@ Add the following line to the **didFinishLaunchingWithOptions**:
 ```swift
 Usabilla.initialize(appID: "appID")
 ```
+
+You can also run a callback after the SDK is finished initializing by calling:
+
+```
+Usabilla.initialize(appID: "appID") {
+    // Your callback code here
+}
+```
+
 The **initialize** method will take care of:
 * Submitting any pending feedback items.
 * Fetching and updating all campaigns associated with the app ID.

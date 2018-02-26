@@ -102,8 +102,10 @@ open class Usabilla {
      
      - parameter appID: The app identifier (eg: **0D5424BE-41AD-4434-A081-32C393A998A3**)
      */
-    open class func initialize(appID: String?) {
-        UsabillaInternal.initialize(appID: appID)
+    open class func initialize(appID: String?, completion: (() -> Void)? = nil) {
+        UsabillaInternal.initialize(appID: appID) {
+            completion?()
+        }
     }
 
     open class func removeCachedForms() {
