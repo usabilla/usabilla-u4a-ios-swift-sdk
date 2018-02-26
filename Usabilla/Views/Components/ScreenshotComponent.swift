@@ -47,6 +47,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon = UIButton(type: UIButtonType.custom)
         addIcon.translatesAutoresizingMaskIntoConstraints = false
         addIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
+        addIcon.isAccessibilityElement = false
+
         addScreenshotLabel = UIButton(type: UIButtonType.system)
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
         addScreenshotLabel.contentHorizontalAlignment = .left
