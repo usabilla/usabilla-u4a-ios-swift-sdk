@@ -17,6 +17,8 @@
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
 "usa_accessibility_field_required" = "This field is required";
 "usa_choose_from_options" = "Choose from %d options";
+"usa_delete_screenshot" = "delete screenshot";
+"usa_edit_screenshot" = "change screenshot";
 
 // Emoticons
 "usa_mood_hate" = "Hate";

@@ -39,10 +39,14 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         deleteIcon = UIButton(type: UIButtonType.custom)
         deleteIcon.translatesAutoresizingMaskIntoConstraints = false
         deleteIcon.addTarget(self, action: #selector(ScreenshotComponent.deleteScreenshot), for: .touchUpInside)
+        deleteIcon.isAccessibilityElement = true
+        deleteIcon.accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_delete_screenshot"))"
 
         editIcon = UIButton(type: UIButtonType.custom)
         editIcon.translatesAutoresizingMaskIntoConstraints = false
         editIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
+        editIcon.isAccessibilityElement = true
+        editIcon.accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_edit_screenshot"))"
 
         addIcon = UIButton(type: UIButtonType.custom)
         addIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +67,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         iconContainerView.addSubview(deleteIcon)
         iconContainerView.addSubview(editIcon)
 
-        makeConstraints()
+        addConstraints()
 
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
             if let image = result.object as? UIImage {
@@ -79,7 +83,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         setImage(image: viewModel.value, updateUI: false, updateModel: false)
     }
 
-    func makeConstraints() {
+    func addConstraints() {
         let editIconSize: CGFloat = 48
         let iconSpacing: CGFloat = 12
 
@@ -151,7 +155,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     func setImage(image: UIImage?, updateUI: Bool = true, updateModel: Bool = true) {
         screenShotView.image = image
 
-        if updateModel == true {
+        if updateModel {
             viewModel.value = image
             valueChanged()
         }
@@ -159,7 +163,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         setupRatioConstraint(imageSize: image?.size)
         self.updateUI()
 
-        if updateUI == true {
+        if updateUI {
             SwiftEventBus.post("updateMySize")
         }
     }
