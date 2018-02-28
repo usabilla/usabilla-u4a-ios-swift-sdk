@@ -142,6 +142,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon.isHidden = hasScreenShot
         addScreenshotLabel.isHidden = hasScreenShot
         screenShotView.isHidden = !hasScreenShot
+        self.accessibilityElements = hasScreenShot ? [editIcon, deleteIcon] : [addScreenshotLabel]
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self)
     }
 
     func deleteScreenshot() {
