@@ -52,6 +52,11 @@
 		C58489B91FA2143400DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json in Resources */ = {isa = PBXBuildFile; fileRef = C58489B31FA0CBD600DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json */; };
 		C58BE4AF1FD969EB009FC821 /* 22_AccessibilityRadioButton.json in Resources */ = {isa = PBXBuildFile; fileRef = C58BE4AD1FD969EB009FC821 /* 22_AccessibilityRadioButton.json */; };
 		C58BE4B11FD96A50009FC821 /* 21_AccessibilityCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BE4B01FD96A50009FC821 /* 21_AccessibilityCheckbox.swift */; };
+		C5967CE52048572200190121 /* 24_PlayStoreButtonVisibility.json in Resources */ = {isa = PBXBuildFile; fileRef = C5967CE12048572100190121 /* 24_PlayStoreButtonVisibility.json */; };
+		C5967CE62048572200190121 /* 25_PlayStorePromptVisibility.json in Resources */ = {isa = PBXBuildFile; fileRef = C5967CE22048572100190121 /* 25_PlayStorePromptVisibility.json */; };
+		C5967CE72048572200190121 /* 23_RadioButtonJumpRules.json in Resources */ = {isa = PBXBuildFile; fileRef = C5967CE32048572100190121 /* 23_RadioButtonJumpRules.json */; };
+		C5967CE82048572200190121 /* 26_AccessibilityScreenshot.json in Resources */ = {isa = PBXBuildFile; fileRef = C5967CE42048572100190121 /* 26_AccessibilityScreenshot.json */; };
+		C5967CEA204858D800190121 /* 26_AccessibilityScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5967CE9204858D800190121 /* 26_AccessibilityScreenshot.swift */; };
 		C5A083841FBB301300152060 /* 16_AccessibilityRatingControl2Moods.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083801FBB301200152060 /* 16_AccessibilityRatingControl2Moods.json */; };
 		C5A083851FBB301300152060 /* 18_AccessibilityRatingControl5Moods.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083811FBB301200152060 /* 18_AccessibilityRatingControl5Moods.json */; };
 		C5A083861FBB301300152060 /* 19_AccessibilityRatingControl5Stars.json in Resources */ = {isa = PBXBuildFile; fileRef = C5A083821FBB301200152060 /* 19_AccessibilityRatingControl5Stars.json */; };
@@ -138,6 +143,11 @@
 		C58489B61FA0CE8900DEC2F1 /* UBComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBComponents.swift; sourceTree = "<group>"; };
 		C58BE4AD1FD969EB009FC821 /* 22_AccessibilityRadioButton.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 22_AccessibilityRadioButton.json; sourceTree = "<group>"; };
 		C58BE4B01FD96A50009FC821 /* 21_AccessibilityCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 21_AccessibilityCheckbox.swift; sourceTree = "<group>"; };
+		C5967CE12048572100190121 /* 24_PlayStoreButtonVisibility.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 24_PlayStoreButtonVisibility.json; sourceTree = "<group>"; };
+		C5967CE22048572100190121 /* 25_PlayStorePromptVisibility.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 25_PlayStorePromptVisibility.json; sourceTree = "<group>"; };
+		C5967CE32048572100190121 /* 23_RadioButtonJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 23_RadioButtonJumpRules.json; sourceTree = "<group>"; };
+		C5967CE42048572100190121 /* 26_AccessibilityScreenshot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 26_AccessibilityScreenshot.json; sourceTree = "<group>"; };
+		C5967CE9204858D800190121 /* 26_AccessibilityScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = 26_AccessibilityScreenshot.swift; path = UsabillaUITestAppUITests/26_AccessibilityScreenshot.swift; sourceTree = SOURCE_ROOT; };
 		C5A083801FBB301200152060 /* 16_AccessibilityRatingControl2Moods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 16_AccessibilityRatingControl2Moods.json; sourceTree = "<group>"; };
 		C5A083811FBB301200152060 /* 18_AccessibilityRatingControl5Moods.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 18_AccessibilityRatingControl5Moods.json; sourceTree = "<group>"; };
 		C5A083821FBB301200152060 /* 19_AccessibilityRatingControl5Stars.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 19_AccessibilityRatingControl5Stars.json; sourceTree = "<group>"; };
@@ -231,6 +241,7 @@
 				4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */,
 				C58BE4B01FD96A50009FC821 /* 21_AccessibilityCheckbox.swift */,
 				C5AFA9331FD99EF3002A2011 /* 22_AccessibilityRadioButton.swift */,
+				C5967CE9204858D800190121 /* 26_AccessibilityScreenshot.swift */,
 			);
 			path = UsabillaUITestAppUITests;
 			sourceTree = "<group>";
@@ -278,6 +289,10 @@
 				4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */,
 				C5AFA9311FD99E59002A2011 /* 21_AccessibilityCheckbox.json */,
 				C58BE4AD1FD969EB009FC821 /* 22_AccessibilityRadioButton.json */,
+				C5967CE32048572100190121 /* 23_RadioButtonJumpRules.json */,
+				C5967CE12048572100190121 /* 24_PlayStoreButtonVisibility.json */,
+				C5967CE22048572100190121 /* 25_PlayStorePromptVisibility.json */,
+				C5967CE42048572100190121 /* 26_AccessibilityScreenshot.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -381,15 +396,19 @@
 				43D31DBD1FAB176000D46F2F /* 15_PassivePagesNoControls.json in Resources */,
 				C5A083871FBB301300152060 /* 17_AccessibilityRatingControl3Moods.json in Resources */,
 				435D06ED1FA879E400D5A2F4 /* 12_BannerNoControl.json in Resources */,
+				C5967CE72048572200190121 /* 23_RadioButtonJumpRules.json in Resources */,
 				C5A083851FBB301300152060 /* 18_AccessibilityRatingControl5Moods.json in Resources */,
 				43D31DB61FAB117600D46F2F /* 14_BannerNoControlNoButtons.json in Resources */,
 				C5AFA9321FD99E59002A2011 /* 21_AccessibilityCheckbox.json in Resources */,
 				4356E98B1FBD832C00B761CA /* 20_AccessibilityRequiredField.json in Resources */,
 				43F57A761F9DEDF1005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.json in Resources */,
+				C5967CE82048572200190121 /* 26_AccessibilityScreenshot.json in Resources */,
+				C5967CE62048572200190121 /* 25_PlayStorePromptVisibility.json in Resources */,
 				43F57A771F9DEDF1005BFA80 /* 05_PassiveCheckboxJumpRules.json in Resources */,
 				437B96DB1E266A8F00AA0A25 /* LaunchScreen.storyboard in Resources */,
 				43F9516E1F01116500FE23F8 /* 02_JumpRulesOneControl.json in Resources */,
 				C5A083861FBB301300152060 /* 19_AccessibilityRatingControl5Stars.json in Resources */,
+				C5967CE52048572200190121 /* 24_PlayStoreButtonVisibility.json in Resources */,
 				C58BE4AF1FD969EB009FC821 /* 22_AccessibilityRadioButton.json in Resources */,
 				437B96D81E266A8F00AA0A25 /* Assets.xcassets in Resources */,
 				C5A083841FBB301300152060 /* 16_AccessibilityRatingControl2Moods.json in Resources */,
@@ -427,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58489B71FA0CE8900DEC2F1 /* UBComponents.swift in Sources */,
+				C5967CEA204858D800190121 /* 26_AccessibilityScreenshot.swift in Sources */,
 				43F57A851F9E1831005BFA80 /* 08_BannerMoodJumpRuleToPages.swift in Sources */,
 				43D31DB81FAB118D00D46F2F /* 14_BannerNoControlNoButtons.swift in Sources */,
 				43F57A831F9E14A8005BFA80 /* 07_BannerMoodNoJumpRulesNoPagesGoesToToast.swift in Sources */,
