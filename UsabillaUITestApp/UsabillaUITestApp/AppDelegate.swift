@@ -38,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         switch type {
         case .passiveForm:
-            self.window?.rootViewController = Usabilla.formViewController(forFormData: data)
+            let attachScreenshot = (environment["withScreenshot"]! as NSString).boolValue
+            self.window?.rootViewController = Usabilla.formViewController(forFormData: data, screenshot: attachScreenshot ? UIImage(named: "logo") : nil)
             self.window?.makeKeyAndVisible()
         case .campaignForm:
             loadMain()

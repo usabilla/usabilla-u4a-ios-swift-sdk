@@ -16,8 +16,9 @@ enum FormType: String {
 
 extension XCUIApplication {
     
-    func setup(type: FormType, scenario: String) {
+    func setup(type: FormType, scenario: String, withScreenshot: Bool = false) {
         launchEnvironment["scenario"] = scenario
         launchEnvironment["formType"] = type.rawValue
+        launchEnvironment["withScreenshot"] = String(withScreenshot)
     }
 }

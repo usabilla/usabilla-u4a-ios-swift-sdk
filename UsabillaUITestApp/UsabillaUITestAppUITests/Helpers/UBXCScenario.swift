@@ -34,10 +34,10 @@ extension XCUIElement {
 class UBXCScenario: XCTestCase {
     let app = Application.xcApp
 
-    func setUp(type: FormType, scenario: String) {
+    func setUp(type: FormType, scenario: String, withScreenshot: Bool = false) {
         super.setUp()
         continueAfterFailure = false
-        app.setup(type: type, scenario: scenario)
+        app.setup(type: type, scenario: scenario, withScreenshot: withScreenshot)
         app.launch()
     }
 

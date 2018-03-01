@@ -87,10 +87,10 @@ class UsabillaInternal {
     }
     #if INTERNAL_USE || DEBUG
 
-        class func formViewController(forFormData data: Data) -> UINavigationController? {
+    class func formViewController(forFormData data: Data, screenshot: UIImage? = nil) -> UINavigationController? {
             let json = JSON.init(data: data)
             // swiftlint:disable:next force_unwrapping
-            let form = FormModel(json: json, id: "", screenshot: nil)!
+            let form = FormModel(json: json, id: "", screenshot: screenshot)!
             return viewForForm(form: form)
         }
 
