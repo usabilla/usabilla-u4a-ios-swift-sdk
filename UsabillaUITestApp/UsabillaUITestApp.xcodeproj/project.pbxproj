@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		04073AF220482576008D5AA8 /* 27_AccessibilityPicker.json in Resources */ = {isa = PBXBuildFile; fileRef = 04073AF120482576008D5AA8 /* 27_AccessibilityPicker.json */; };
 		044A93472018F37A00D3420F /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A93452018F37A00D3420F /* TestExtensions.swift */; };
-		0460AD4B2046FD1100721BB5 /* 25_PlayStorePromptVisibility.json in Resources */ = {isa = PBXBuildFile; fileRef = 0460AD472046FD1000721BB5 /* 25_PlayStorePromptVisibility.json */; };
-		0460AD4C2046FD1100721BB5 /* 24_PlayStoreButtonVisibility.json in Resources */ = {isa = PBXBuildFile; fileRef = 0460AD482046FD1000721BB5 /* 24_PlayStoreButtonVisibility.json */; };
-		0460AD4E2046FD1100721BB5 /* 23_RadioButtonJumpRules.json in Resources */ = {isa = PBXBuildFile; fileRef = 0460AD4A2046FD1000721BB5 /* 23_RadioButtonJumpRules.json */; };
 		0460AD50204708D300721BB5 /* 27_AccessibilityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460AD4F204708D300721BB5 /* 27_AccessibilityPicker.swift */; };
 		04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; };
 		04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -198,6 +195,7 @@
 				437B96E41E266A8F00AA0A25 /* UsabillaUITestAppUITests */,
 				437B96CE1E266A8F00AA0A25 /* Products */,
 				9B799909DBB261666DE0010F /* Frameworks */,
+				C5967CEC204D4F9200190121 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -317,6 +315,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C5967CEC204D4F9200190121 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				0460AD482046FD1000721BB5 /* 24_PlayStoreButtonVisibility.json */,
+				0460AD4A2046FD1000721BB5 /* 23_RadioButtonJumpRules.json */,
+				0460AD472046FD1000721BB5 /* 25_PlayStorePromptVisibility.json */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -409,7 +417,6 @@
 				C5A083871FBB301300152060 /* 17_AccessibilityRatingControl3Moods.json in Resources */,
 				435D06ED1FA879E400D5A2F4 /* 12_BannerNoControl.json in Resources */,
 				C5967CE72048572200190121 /* 23_RadioButtonJumpRules.json in Resources */,
-				0460AD4C2046FD1100721BB5 /* 24_PlayStoreButtonVisibility.json in Resources */,
 				C5A083851FBB301300152060 /* 18_AccessibilityRatingControl5Moods.json in Resources */,
 				43D31DB61FAB117600D46F2F /* 14_BannerNoControlNoButtons.json in Resources */,
 				C5AFA9321FD99E59002A2011 /* 21_AccessibilityCheckbox.json in Resources */,
@@ -423,14 +430,12 @@
 				C5A083861FBB301300152060 /* 19_AccessibilityRatingControl5Stars.json in Resources */,
 				C5967CE52048572200190121 /* 24_PlayStoreButtonVisibility.json in Resources */,
 				C58BE4AF1FD969EB009FC821 /* 22_AccessibilityRadioButton.json in Resources */,
-				0460AD4E2046FD1100721BB5 /* 23_RadioButtonJumpRules.json in Resources */,
 				437B96D81E266A8F00AA0A25 /* Assets.xcassets in Resources */,
 				C5A083841FBB301300152060 /* 16_AccessibilityRatingControl2Moods.json in Resources */,
 				437B96D61E266A8F00AA0A25 /* Main.storyboard in Resources */,
 				43F57A741F9DEDF1005BFA80 /* 06_BannerMoodNoJumpRulesGoesToNextPage.json in Resources */,
 				43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */,
 				C58489B91FA2143400DEC2F1 /* 11_BannerNPSJumpRulesGoesToPagesAndToasts.json in Resources */,
-				0460AD4B2046FD1100721BB5 /* 25_PlayStorePromptVisibility.json in Resources */,
 				43F57A791F9DEDF1005BFA80 /* 09_BannerMoodJumpRulesNoPagesToToast.json in Resources */,
 				43F57A781F9DEDF1005BFA80 /* 10_BannerMoodJumpRulesPageGoesToToast.json in Resources */,
 				04073AF220482576008D5AA8 /* 27_AccessibilityPicker.json in Resources */,

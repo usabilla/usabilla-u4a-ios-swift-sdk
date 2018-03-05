@@ -11,6 +11,10 @@ class AccessibilityPicker: UBXCScenario {
         super.setUp(type: .passiveForm, scenario: "27_AccessibilityPicker")
     }
 
+    /**
+     *   The picker component accessibility label was changed from iOS 10.* To iOS 11.
+     *   These tests run successfully only on iOS 11.
+     */
     func testPickerOptionsAreAccessible() {
         if #available(iOS 11.0, *) {
             let picker = app.tables.otherElements["pickerComponent"].pickerWheels.firstMatch
@@ -28,6 +32,8 @@ class AccessibilityPicker: UBXCScenario {
 
             picker.adjust(toPickerWheelValue: "Option 3")
             XCTAssertEqual(picker.value as! String, "Option 3")
+        } else {
+            XCTAssertTrue(true)
         }
     }
 
@@ -38,6 +44,8 @@ class AccessibilityPicker: UBXCScenario {
 
             XCTAssertEqual(button.label, "Please choose an option")
             XCTAssertFalse(picker.visible())
+        } else {
+            XCTAssertTrue(true)
         }
     }
 }
