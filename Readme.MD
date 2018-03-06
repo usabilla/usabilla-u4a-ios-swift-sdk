@@ -67,9 +67,6 @@ target 'YourProjectTarget' do
 
 pod 'Usabilla', '~> 4.0'
 
-#Or by specifying a tag
-pod 'Usabilla', :tag=> 'v4.0.3'
-
 End
 ```
 
@@ -90,7 +87,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.0.3"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.1.1"
 ```
 
 ### Manual
@@ -115,6 +112,15 @@ Add the following line to the **didFinishLaunchingWithOptions**:
 ```swift
 Usabilla.initialize(appID: "appID")
 ```
+
+You can also run a callback after the SDK is finished initializing by calling:
+
+```swift
+Usabilla.initialize(appID: "appID") {
+    // Your callback code here
+}
+```
+
 The **initialize** method will take care of:
 * Submitting any pending feedback items.
 * Fetching and updating all campaigns associated with the app ID.
