@@ -105,7 +105,7 @@ class RootCellView: UITableViewCell {
             if let attributedText = self.titleLabel.attributedText {
                 let text = NSMutableAttributedString(attributedString: attributedText)
                 text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.colors.hint,
-                                  range: NSRange.init(location: requiredTitle.count - 1, length: 1))
+                                  range: NSRange.init(location: requiredTitle.characters.count - 1, length: 1))
                 titleLabel.attributedText = text
             }
             return

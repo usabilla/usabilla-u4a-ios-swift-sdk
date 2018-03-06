@@ -110,8 +110,8 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                     Usabilla.customVariables = cs
 
                     expect(Usabilla.customVariables).toNot(beEmpty())
-                    expect(Usabilla.customVariables["array"] as? [Int]).to(equal([1,2,3,4]))
-                    expect(Usabilla.customVariables["int"] as? Int).to(equal(1))
+                    expect(Usabilla.customVariables["array"] as! [Int]).to(equal([1,2,3,4]))
+                    expect(Usabilla.customVariables["int"] as! Int).to(equal(1))
                 }
 
                 it("it should refuse invalid custom variables") {

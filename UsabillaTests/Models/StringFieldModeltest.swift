@@ -14,24 +14,25 @@ import Nimble
 class StringFieldModelTest: QuickSpec {
 
     override func spec() {
+        let pageModel = UBMock.pageMock()
+        var model: StringFieldModel?
 
         describe("StringFieldModel") {
             it("init StringFieldModel") {
-                let model = StringFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
+                model = StringFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
                 expect(model).toNot(beNil())
             }
             it("StringField isValid") {
-                let model = StringFieldModel(json: JSON(parseJSON: "{\"title\":\"test\", \"name\": \"myField\"}"))
+                model?.fieldValue = nil
 
-                model.fieldValue = nil
-                model.required = false
-                expect(model.isValid()).to(beTrue())
-                model.required = true
-                expect(model.isValid()).to(beFalse())
-                model.fieldValue = ""
-                expect(model.isValid()).to(beFalse())
-                model.fieldValue = "test"
-                expect(model.isValid()).to(beTrue())
+                model?.required = false
+                expect(model?.isValid()).to(beTrue())
+                model?.required = true
+                expect(model?.isValid()).to(beFalse())
+                model?.fieldValue = ""
+                expect(model?.isValid()).to(beFalse())
+                model?.fieldValue = "test"
+                expect(model?.isValid()).to(beTrue())
             }
         }
     }

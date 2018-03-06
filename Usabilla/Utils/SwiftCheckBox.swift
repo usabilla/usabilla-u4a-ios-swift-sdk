@@ -33,7 +33,7 @@ class SwiftCheckBox: UIView {
         }
     }
 
-    var onTintColor: UIColor = UIColor(red: 0, green: 122.0 / 255.0, blue: 255 / 255, alpha: 1) {
+    var onTintColor: UIColor = UIColor(colorLiteralRed: 0, green: 122.0 / 255.0, blue: 255 / 255, alpha: 1) {
         didSet {
             reload()
         }
@@ -43,7 +43,7 @@ class SwiftCheckBox: UIView {
             reload()
         }
     }
-    var onCheckColor: UIColor = UIColor(red: 0, green: 122.0 / 255.0, blue: 255 / 255, alpha: 1) {
+    var onCheckColor: UIColor = UIColor(colorLiteralRed: 0, green: 122.0 / 255.0, blue: 255 / 255, alpha: 1) {
         didSet {
             reload()
         }
@@ -214,6 +214,7 @@ extension SwiftCheckBox {
 
             animation.delegate = self
             self.checkMarkLayer?.add(animation, forKey: "strokeEnd")
+            break
 
         case AnimationType.fill:
             let wiggle = self.animationManager.fillAnimationWithBounces(1, amplitude: 0.18, reverse: false)
@@ -221,6 +222,7 @@ extension SwiftCheckBox {
             opacityAnimation.delegate = self
             self.onBoxLayer.add(wiggle, forKey: "transform")
             self.checkMarkLayer?.add(opacityAnimation, forKey: "opacity")
+            break
 
         case .bounce:
             let amplitude = (self.boxType == BoxType.square) ? CGFloat( 0.20) : CGFloat(0.35)
@@ -232,6 +234,7 @@ extension SwiftCheckBox {
 
             self.onBoxLayer.add(opacity, forKey: "opacity")
             checkMarkLayer?.add(wiggle, forKey: "transform")
+            break
 
         case .flat:
             let morphAnimation = self.animationManager.morphAnimationFromPath(self.pathManager.pathForFlatCheckMark(), toPath: self.pathManager.pathForCheckMark())
@@ -243,12 +246,14 @@ extension SwiftCheckBox {
             onBoxLayer.add(opacity, forKey: "opacity")
             checkMarkLayer?.add(morphAnimation, forKey: "path")
             checkMarkLayer?.add(opacity, forKey: "opacity")
+            break
 
         default:
             let animation = animationManager.opacityAnimationReverse(false)
             onBoxLayer.add(animation, forKey: "opacity")
             animation.delegate = self
             checkMarkLayer?.add(animation, forKey: "opacity")
+            break
         }
     }
 
@@ -264,6 +269,7 @@ extension SwiftCheckBox {
             onBoxLayer.add(animation, forKey: "strokeEnd")
             animation.delegate = self
             checkMarkLayer?.add(animation, forKey: "strokeEnd")
+            break
 
         case .fill:
             let wiggle = animationManager.fillAnimationWithBounces(1, amplitude: 0.18, reverse: true)
@@ -271,6 +277,7 @@ extension SwiftCheckBox {
             wiggle.delegate = self
             onBoxLayer.add(wiggle, forKey: "transform")
             checkMarkLayer?.add(animationManager.opacityAnimationReverse(true), forKey: "opacity")
+            break
 
         case .bounce:
             let amplitude = (self.boxType == BoxType.square) ? CGFloat(0.20) : CGFloat(0.35)
@@ -280,6 +287,7 @@ extension SwiftCheckBox {
             opacity.delegate = self
             onBoxLayer.add(opacity, forKey: "opacity")
             checkMarkLayer?.add(wiggle, forKey: "transform")
+            break
 
         case .flat:
             let animation = animationManager.morphAnimationFromPath(pathManager.pathForCheckMark(), toPath: pathManager.pathForFlatCheckMark())
@@ -291,12 +299,14 @@ extension SwiftCheckBox {
             onBoxLayer.add(opacity, forKey: "opacity")
             checkMarkLayer?.add(animation, forKey: "path")
             checkMarkLayer?.add(opacity, forKey: "opacity")
+            break
 
         default:
             let animation = animationManager.opacityAnimationReverse(true)
             onBoxLayer.add(animation, forKey: "opacity")
             animation.delegate = self
             checkMarkLayer?.add(animation, forKey: "opacity")
+            break
         }
     }
 }

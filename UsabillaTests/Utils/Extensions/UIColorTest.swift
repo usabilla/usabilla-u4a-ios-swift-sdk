@@ -14,7 +14,6 @@ import Nimble
 class UIColorTest: QuickSpec {
 
     override func spec() {
-        let white = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         describe("UIColor") {
             it("UIColor init should fail") {
@@ -46,8 +45,7 @@ class UIColorTest: QuickSpec {
 
             it("UIColor init should succeed") {
                 do {
-                    let color = try UIColor(rgba_throws: "#FFF")
-                    expect(color.isEqual(white)).to(beTrue())
+                    _ = try UIColor(rgba_throws: "#FFF")
                 } catch {
                     fail()
                 }
@@ -55,8 +53,7 @@ class UIColorTest: QuickSpec {
 
             it("UIColor init should succeed") {
                 do {
-                    let color = try UIColor(rgba_throws: "#FFFF")
-                    expect(color.isEqual(white)).to(beTrue())
+                    _ = try UIColor(rgba_throws: "#FFFF")
                 } catch {
                     fail()
                 }
@@ -64,8 +61,7 @@ class UIColorTest: QuickSpec {
 
             it("UIColor init should succeed") {
                 do {
-                    let color = try UIColor(rgba_throws: "#FFFFFF")
-                    expect(color.isEqual(white)).to(beTrue())
+                    _ = try UIColor(rgba_throws: "#FFFFFF")
                 } catch {
                     fail()
                 }
@@ -73,8 +69,7 @@ class UIColorTest: QuickSpec {
 
             it("UIColor init should succeed") {
                 do {
-                    let color = try UIColor(rgba_throws: "#FFFFFFFF")
-                    expect(color.isEqual(white)).to(beTrue())
+                    _ = try UIColor(rgba_throws: "#FFFFFFFF")
                 } catch {
                     fail()
                 }

@@ -14,7 +14,8 @@ import Nimble
 class OptionsFieldModelTest: QuickSpec {
 
     override func spec() {
-        var model: OptionsFieldModel!
+        let pageModel = UBMock.pageMock()
+        var model: OptionsFieldModel?
 
         describe("OptionsFieldModel") {
             beforeEach {
@@ -24,19 +25,19 @@ class OptionsFieldModelTest: QuickSpec {
                 expect(model).toNot(beNil())
             }
             it("OptionsFieldModel isValid") {
-                model.fieldValue = []
-                model.required = false
-                expect(model.isValid()).to(beTrue())
-                model.required = true
-                expect(model.isValid()).to(beFalse())
-                model.fieldValue = ["hello"]
-                expect(model.isValid()).to(beTrue())
+                model?.fieldValue = []
+                model?.required = false
+                expect(model?.isValid()).to(beTrue())
+                model?.required = true
+                expect(model?.isValid()).to(beFalse())
+                model?.fieldValue = ["hello"]
+                expect(model?.isValid()).to(beTrue())
             }
             it("should export the value correctly") {
-                model.fieldValue = []
-                expect(model.exportableValue).to(beNil())
-                model.fieldValue = ["hello"]
-                let value = model.exportableValue as! [String]
+                model?.fieldValue = []
+                expect(model?.exportableValue).to(beNil())
+                model?.fieldValue = ["hello"]
+                let value = model!.exportableValue as! [String]
                 expect(value).to(equal(["hello"]))
             }
         }

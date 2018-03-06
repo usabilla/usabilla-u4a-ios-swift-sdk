@@ -38,7 +38,7 @@ class CampaignSubmissionRequestManagerTests: QuickSpec {
 
                 //This checks that the feedbackID has been added to the URL as a parameter, as it should be for every call after the first
                 let secondCallURL = manager.lastRequest?.request.url?.absoluteString
-                expect(secondCallURL!.count).to(beGreaterThan(expectedURL.count))
+                expect(secondCallURL!.characters.count).to(beGreaterThan(expectedURL.characters.count))
             }
 
             it("Sends a single page correctly") {

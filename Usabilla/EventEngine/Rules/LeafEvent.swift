@@ -25,7 +25,7 @@ class LeafEvent: ConcreteRule {
         super.init(json: json)
     }
 
-    override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
+    override func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
         return self.event == event
     }
 
