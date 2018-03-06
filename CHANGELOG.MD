@@ -1,3 +1,8 @@
+## 4.1.1
+#### Added
+- Accessibility/VoiceOver support for Screenshot and PickerView components.
+- Added callback parameter to the initialize method to notify when it's finished. See the Readme for more information
+
 ## 4.0.3
 #### Added
 - Accessibility/VoiceOver support for Checkboxes, radio buttons and other minor components
