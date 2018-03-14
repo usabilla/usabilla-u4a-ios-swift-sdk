@@ -346,6 +346,7 @@ class NPSControl: UIControl {
             return
         }
         selectedIndex += 1
+        sendActions(for: .valueChanged)
     }
 
     override func accessibilityDecrement() {
@@ -353,6 +354,7 @@ class NPSControl: UIControl {
             return
         }
         selectedIndex -= 1
+        sendActions(for: .valueChanged)
     }
 
     override func accessibilityActivate() -> Bool {
