@@ -119,8 +119,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
     func setupRatioConstraint(imageSize: CGSize?) {
         ratioConstraint?.isActive = false
-        if let s = imageSize {
-            let ratio = s.width / s.height
+        if let size = imageSize {
+            let ratio = size.width / size.height
             ratioConstraint = screenShotView.widthAnchor.constraint(equalTo: screenShotView.heightAnchor, multiplier: ratio)
             ratioConstraint.priority = 999
             ratioConstraint.isActive = true

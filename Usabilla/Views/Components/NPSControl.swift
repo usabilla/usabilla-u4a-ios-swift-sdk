@@ -186,10 +186,10 @@ class NPSControl: UIControl {
     private func createLabels(inContentView stackView: UIStackView, count: Int) {
         var firstLabel: NPSLabel?
 
-        for i in 0..<count {
+        for index in 0..<count {
             let label = NPSLabel()
             label.textAlignment = .center
-            label.text = String(i)
+            label.text = String(index)
             stackView.addArrangedSubview(label)
 
             if let firstLabel = firstLabel {

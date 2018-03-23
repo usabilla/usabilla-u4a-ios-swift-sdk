@@ -32,9 +32,9 @@ class BaseCheckBoxComponent<T: OptionsComponentViewModel>: UBComponent<T>, Swift
     }
 
     func configure() {
-        for c in checkBoxes {
-            stackView.removeArrangedSubview(c)
-            c.removeFromSuperview()
+        for checkbox in checkBoxes {
+            stackView.removeArrangedSubview(checkbox)
+            checkbox.removeFromSuperview()
         }
 
         checkBoxes = []
