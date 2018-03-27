@@ -39,6 +39,8 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
 
         textField.text = viewModel.value
 
+        textField.addTarget(self, action: #selector(UITextFieldDelegate.textFieldShouldEndEditing(_:)), for: UIControlEvents.editingChanged)
+
         //placeholder
         if let placeHolder = viewModel.placeHolder {
             let theme = viewModel.theme
