@@ -1,3 +1,11 @@
+## 4.1.2
+#### Added
+- Support for **Xcode 9.3**
+#### Fixed
+- Accessibility/VoiceOver: Fix the NPS Component value that was not changing.
+- Accessibility/VoiceOver: fix for the PickerView component.
+- Accessibility/VoiceOver: fix an unhandeled jump while the screenshot component is visible.
+
 ## 4.1.1
 #### Added
 - Accessibility/VoiceOver support for Screenshot and PickerView components.
