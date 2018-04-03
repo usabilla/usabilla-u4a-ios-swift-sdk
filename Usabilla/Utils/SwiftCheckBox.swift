@@ -93,8 +93,8 @@ class SwiftCheckBox: UIView {
     }
 
     override func layoutSubviews() {
-        let a = self.frame.size.height
-        self.pathManager.size = a
+        let size = self.frame.size.height
+        self.pathManager.size = size
         super.layoutSubviews()
     }
 

@@ -23,6 +23,7 @@ class PickerComponent: PickerParentComponent {
     }()
 
     override func build() {
+        accessibilityIdentifier = "pickerComponent"
 
         topBorder.translatesAutoresizingMaskIntoConstraints = false
         pickerButton.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +48,7 @@ class PickerComponent: PickerParentComponent {
         imageViewArrow.rightAnchor.constraint(equalTo: pickerButton.rightAnchor).activate()
         imageViewArrow.centerYAnchor.constraint(equalTo: pickerButton.centerYAnchor).activate()
 
-        //top border
+        // top border
         topBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).withID("PickerComponent bottom border top constraint").activate()
         topBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent bottom border right constraint").activate()
         topBorder.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent bottom border left constraint").activate()
@@ -58,18 +59,18 @@ class PickerComponent: PickerParentComponent {
         picker.delegate = self
 
         picker.topAnchor.constraint(equalTo: topBorder.bottomAnchor).withID("PickerComponent picker top constraint").activate()
-        picker.bottomAnchor.constraint(equalTo: bottomAnchor).withID("PickerComponent picker bottom constraint").activate()
+        picker.bottomAnchor.constraint(equalTo: bottomBorder.topAnchor).withID("PickerComponent picker bottom constraint").activate()
         picker.leftAnchor.constraint(equalTo: leftAnchor, constant: -16).withID("PickerComponent picker right constraint").activate()
         picker.rightAnchor.constraint(equalTo: rightAnchor, constant: 16).withID("PickerComponent picker right constraint").activate()
 
         // bottom border
-        bottomBorder.bottomAnchor.constraint(equalTo: picker.bottomAnchor).activate()
+        bottomBorder.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
         bottomBorder.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
         bottomBorder.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
         bottomBorder.heightAnchor.constraint(equalToConstant: 1).activate()
 
         pickerHeightConstraint = picker.heightAnchor.constraint(equalToConstant: 0).activate()
-        updateHeightConstraint()
+        updatePickerStatus(isExpanded: false)
 
         // configuration
         pickerButton.addTarget(self, action: #selector(PickerComponent.pickerButtonClicked), for: .touchUpInside)
@@ -115,14 +116,23 @@ class PickerComponent: PickerParentComponent {
             SwiftEventBus.postToMainThread("iPadPickerButtonTapped", sender: self)
             return
         }
-        viewModel.expanded = !viewModel.expanded
-        bottomBorder.isHidden = !viewModel.expanded
-        updateHeightConstraint()
+        let isPickerExpanded = viewModel.expanded
+        viewModel.expanded = !isPickerExpanded
+        bottomBorder.isHidden = !isPickerExpanded
+        updatePickerStatus(isExpanded: isPickerExpanded)
         SwiftEventBus.postToMainThread("updateMySize")
     }
 
-    func updateHeightConstraint() {
-        pickerHeightConstraint.constant = !viewModel.expanded ? 0 : 150
+    func updatePickerStatus(isExpanded: Bool) {
+        pickerHeightConstraint.constant = isExpanded ? 150 : 0
+        picker.isHidden = !isExpanded
+        updateAccessibility(isExpanded: isExpanded)
+    }
+
+    func updateAccessibility(isExpanded: Bool) {
+        picker.isAccessibilityElement = isExpanded
+        self.accessibilityElements = isExpanded ? [pickerButton, picker] : [pickerButton]
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, isExpanded ? picker : nil)
     }
 
     // MARK: Delegate

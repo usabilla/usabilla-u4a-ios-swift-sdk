@@ -75,9 +75,9 @@ class AnimationManager {
         keyTimes.append(0.0)
 
         for index in 1...bounces {
-            let i = CGFloat(index)
-            let scale = (i.truncatingRemainder(dividingBy: 2) != 0) ? (1 + amplitude / i) : (1 - amplitude / i)
-            let time = i * 1.0 / CGFloat(bounces + 1)
+            let floatIndex = CGFloat(index)
+            let scale = (floatIndex.truncatingRemainder(dividingBy: 2) != 0) ? (1 + amplitude / floatIndex) : (1 - amplitude / floatIndex)
+            let time = floatIndex * 1.0 / CGFloat(bounces + 1)
 
             values.append(NSValue(caTransform3D: CATransform3DMakeScale(scale, scale, scale)))
             keyTimes.append(NSNumber(value: Float(time)))

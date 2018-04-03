@@ -144,9 +144,9 @@ class UBFormViewModel {
         self.pageViewModels = []
         self.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
         model.pages.forEach {
-            let vm = PageViewModel(page: $0, theme: model.theme)
-            vm.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
-            self.pageViewModels.append(vm)
+            let pageViewModel = PageViewModel(page: $0, theme: model.theme)
+            pageViewModel.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
+            self.pageViewModels.append(pageViewModel)
         }
     }
 
@@ -164,9 +164,9 @@ class UBFormViewModel {
         self.pageViewModels = []
 
         model.pages.forEach {
-            let vm = PageViewModel(page: $0, theme: model.theme)
-            vm.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
-            self.pageViewModels.append(vm)
+            let pageViewModel = PageViewModel(page: $0, theme: model.theme)
+            pageViewModel.shouldAddMarginWhenKeyboardIsShown = shouldAddMarginWhenKeyboardIsShown
+            self.pageViewModels.append(pageViewModel)
         }
     }
 

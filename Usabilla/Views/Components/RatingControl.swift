@@ -123,15 +123,15 @@ class RatingControl: UIControl {
         contentView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         var prevbutton: UIButton?
 
-        for i in 0..<maxValue {
+        for index in 0..<maxValue {
 
             let button = UIButton()
             button.contentMode = .scaleAspectFill
             button.imageView?.contentMode = .scaleAspectFit
             button.contentHorizontalAlignment = .fill
             button.contentVerticalAlignment = .fill
-            let selected = imageForButton(i, selected: true)
-            let unselected = imageForButton(i, selected: false) ?? selected?.alpha(value: 0.4)
+            let selected = imageForButton(index, selected: true)
+            let unselected = imageForButton(index, selected: false) ?? selected?.alpha(value: 0.4)
             button.setImage(unselected, for: .normal)
             button.setImage(selected, for: .selected)
             button.isUserInteractionEnabled = false
