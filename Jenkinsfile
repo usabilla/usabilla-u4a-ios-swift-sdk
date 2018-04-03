@@ -31,9 +31,6 @@ node('mac') {
         }
 
         if(env.BRANCH_NAME == 'master') {   
-            stage('UI Tests') {
-                uiTest()
-            }
             stage('System tests') {
                 systemTest()
             }
