@@ -119,8 +119,8 @@ open class Usabilla {
     /**
      Preloads a list of forms to make them available to the user even without network connectivity.
      */
-    open class func preloadForms(withFormIDs formIDs: [String]) {
-        UsabillaInternal.preloadForms(withFormIDs: formIDs)
+    open class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
+        UsabillaInternal.preloadFeedbackForms(withFormIDs: formIDs)
     }
 
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {

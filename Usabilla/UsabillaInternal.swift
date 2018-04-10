@@ -75,7 +75,7 @@ class UsabillaInternal {
         campaignManager?.resetData(completion: completion)
     }
 
-    class func preloadForms(withFormIDs formIDs: [String]) {
+    class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
             return
