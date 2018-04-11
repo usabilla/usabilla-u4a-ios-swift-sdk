@@ -269,7 +269,7 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 If you know you will need to display a feedback form when the user is offline, you can preload and cache it to make it available at any given moment.   
 To preload a form use
 ```
-UsabillaFeedbackForm.preloadForms(withFormIDs: ["myId", "myOtherId"])
+UsabillaFeedbackForm.preloadFeedbackForms(withFormIDs: ["FORM_ID_1", "FORM_ID_2"])
 ```
 This will fetch the latest version of the form and cache it in the SDK.    
  When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
