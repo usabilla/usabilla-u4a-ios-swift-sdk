@@ -21,7 +21,6 @@ class UsabillaInternal {
             defaultLocalisationFile = false
         }
     }
-    static var hideGiveMoreFeedback: Bool = true
     static var dismissAutomatically: Bool = true
     static var canDisplayCampaigns: Bool = true
     static var debugEnabled: Bool = false

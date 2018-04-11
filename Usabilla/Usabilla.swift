@@ -49,15 +49,6 @@ open class Usabilla {
         }
     }
 
-    open static var hideGiveMoreFeedback: Bool {
-        get {
-            return UsabillaInternal.hideGiveMoreFeedback
-        }
-        set {
-            UsabillaInternal.hideGiveMoreFeedback = newValue
-        }
-    }
-
     open static var dismissAutomatically: Bool {
         get {
             return UsabillaInternal.dismissAutomatically
@@ -167,8 +158,7 @@ public protocol UsabillaDelegate: class {
      - Parameter withFeedbackResults: Array of FeedbackResult
      - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
      
-     If Usabilla.**hideGiveMoreFeedback** is set to **false**, the **withFeedbackResults** array will always contains only one value.
-     Otherwise the withFeedbackResults can contains between 1 and n FeedbackResult
+     withFeedbackResults can contain between 1 and n FeedbackResult
      */
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 

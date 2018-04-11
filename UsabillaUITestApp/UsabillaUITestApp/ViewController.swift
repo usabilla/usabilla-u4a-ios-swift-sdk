@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Usabilla.delegate = self
-        Usabilla.hideGiveMoreFeedback = false
         Usabilla.dismissAutomatically = false
     }
 

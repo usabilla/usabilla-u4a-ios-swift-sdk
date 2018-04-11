@@ -12,7 +12,6 @@ class CopyModel {
     var navigationNext: String?
     var cancelButton: String?
     var screenshotTitle: String?
-    var moreFeedback: String?
     var appTitle: String?
     var navigationSubmit: String?
     var errorMessage: String?
@@ -24,7 +23,6 @@ class CopyModel {
     init() {
         cancelButton = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         navigationNext = LocalisationHandler.getLocalisedStringForKey("usa_form_continue_button")
-        moreFeedback = LocalisationHandler.getLocalisedStringForKey("usa_more_feedback")
         requiredFieldError = LocalisationHandler.getLocalisedStringForKey("usa_form_required_field_error")
         screenshotPlaceholder = LocalisationHandler.getLocalisedStringForKey("usa_screnshot_placeholder")
     }
@@ -38,7 +36,6 @@ class CopyModel {
         errorMessage = data["errorMessage"].string
 
         let loc = json["localization"]
-        self.moreFeedback = loc["moreFeedback"].string ?? self.moreFeedback
         self.screenshotTitle = loc["screenshotTitle"].string ?? self.screenshotTitle
         self.cancelButton = loc["cancelButton"].string ?? self.cancelButton
         self.navigationNext = loc["navigationNext"].string ?? self.navigationNext

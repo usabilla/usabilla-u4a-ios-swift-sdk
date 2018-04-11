@@ -31,8 +31,6 @@ class UBEndPageViewModelTests: QuickSpec {
                     let stringFieldModel = self.endPageModel.fields[1] as? StringFieldModel
                     expect(viewModel.headerText).to(equal(headerFieldModel?.fieldValue))
                     expect(viewModel.thankyouText).to(equal(stringFieldModel?.fieldValue))
-                    expect(viewModel.moreFeedbackText).to(equal(self.endPageModel.copy?.moreFeedback))
-                    expect(viewModel.canGiveMoreFeedback).to(beFalse())
                     expect(viewModel.theme).toNot(beNil())
                 }
             }
