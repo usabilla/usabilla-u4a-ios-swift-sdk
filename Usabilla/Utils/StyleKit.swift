@@ -605,10 +605,15 @@ class Icons: NSObject {
 
     class func imageOfPoweredBy(color: UIColor) -> UIImage {
         struct LocalCache {
+            static var lastColor: UIColor!
             static var image: UIImage!
         }
+
         if LocalCache.image != nil {
-            return LocalCache.image
+            if LocalCache.lastColor == color {
+                return LocalCache.image
+            }
+            LocalCache.lastColor = color
         }
         var image: UIImage
 
