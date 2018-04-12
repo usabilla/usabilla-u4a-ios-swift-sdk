@@ -18,6 +18,8 @@
 "usa_choose_from_options" = "Choose from %d options";
 "usa_delete_screenshot" = "delete screenshot";
 "usa_edit_screenshot" = "change screenshot";
+"usa_powered_by_usabilla" = "powered by usabilla";
+"usa_tap_to_visit_usabilla" = "tap to visit usabilla.com";
 
 // Emoticons
 "usa_mood_hate" = "Hate";

@@ -12,6 +12,7 @@ import UIKit
 class PoweredByUsabillaView: UIView {
 
     init(theme: UsabillaTheme) {
+        // Setup
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
         self.backgroundColor = UIColor.clear
 
@@ -21,10 +22,15 @@ class PoweredByUsabillaView: UIView {
         logo.accessibilityIdentifier = "powered-by-id"
         self.addSubview(logo)
 
+        // Layout
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         logo.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         logo.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+
+        // Accessibility
+        logo.accessibilityLabel = LocalisationHandler.getLocalisedStringForKey("usa_powered_by_usabilla")
+        logo.accessibilityHint = LocalisationHandler.getLocalisedStringForKey("usa_tap_to_visit_usabilla")
     }
 
     required init?(coder aDecoder: NSCoder) {
