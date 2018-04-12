@@ -280,7 +280,7 @@ extension PageViewController: UITableViewDataSource {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
             if let cell = cell as? FooterTableViewCell {
-                cell.footerView = ViewUtils.generateFooter(theme: viewModel.theme)
+                cell.footerView = PoweredByUsabillaView(theme: viewModel.theme)
             }
             cell.backgroundColor = viewModel.theme.colors.background
             return cell
