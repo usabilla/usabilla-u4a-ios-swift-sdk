@@ -81,7 +81,8 @@ class PickerComponent: PickerParentComponent {
     func customizeView() {
         let theme = viewModel.theme
         pickerButton.setTitleColor(theme.colors.text, for: .normal)
-        pickerButton.titleLabel?.font = theme.fonts.font
+        pickerButton.titleLabel?.lineBreakMode = .byTruncatingTail
+        pickerButton.titleLabel?.applyFontWithDynamicTypeEnabled(font: theme.fonts.font)
         pickerButton.contentHorizontalAlignment = .left
 
         picker.backgroundColor = theme.colors.background

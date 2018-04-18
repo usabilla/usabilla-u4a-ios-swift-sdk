@@ -43,7 +43,6 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         slider.addTarget(self, action: #selector(SliderComponent.barChangedValue), for: .valueChanged)
 
         // positioning
-
         slider.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         slider.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         slider.rightAnchor.constraint(equalTo: valueLabel.leftAnchor, constant: -6).isActive = true
@@ -100,9 +99,9 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
 
         valueLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
         valueLabel.textColor = theme.colors.text
-        rightLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        rightLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
         rightLabel.textColor = theme.colors.text
-        leftLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
         leftLabel.textColor = theme.colors.text
 
     }

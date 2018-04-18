@@ -133,7 +133,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
         addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.text), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.colors.title, for: .normal)
-        addScreenshotLabel.titleLabel?.font = theme.fonts.font
+        addScreenshotLabel.titleLabel?.applyFontWithDynamicTypeEnabled(font: theme.fonts.font)
+        addScreenshotLabel.titleLabel?.lineBreakMode = .byTruncatingTail
         screenShotView.layer.borderColor = theme.colors.hint.cgColor
     }
 

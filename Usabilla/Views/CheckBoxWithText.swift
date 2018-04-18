@@ -60,7 +60,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         checkBox.tintColor = color
         checkBox.onTintColor = color
         checkBox.onCheckColor = color
-        label.font = theme.fonts.font.withSize(theme.fonts.textSize)
+        label.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.textSize))
         label.textColor = theme.colors.text
         let spaceAvailable = (checkboxSize - label.font.lineHeight)
         labelTopConstraint.constant = spaceAvailable / 2
