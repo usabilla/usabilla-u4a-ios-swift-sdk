@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum UBToastDuration: Int {
+    case short = 1
+    case normal = 2
+    case long = 4
+}
+
 class UBToast: UIView {
 
     private let opacity: CGFloat = 0.6
@@ -41,11 +47,11 @@ class UBToast: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(delegate: UIViewController, text: String? = nil, duration: Int = 2) {
+    init(delegate: UIViewController, text: String? = nil, duration: UBToastDuration = .normal) {
         super.init(frame: .zero)
         self.accessibilityIdentifier = "toast"
         self.delegate = delegate
-        self.duration = duration
+        self.duration = duration.rawValue
         self.text = text
 
         label = UILabel()
