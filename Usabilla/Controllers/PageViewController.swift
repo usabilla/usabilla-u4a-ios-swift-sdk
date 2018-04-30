@@ -26,6 +26,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.isAccessibilityElement = false
         if #available(iOS 10.0, *) {
             label.adjustsFontForContentSizeCategory = true
         }
