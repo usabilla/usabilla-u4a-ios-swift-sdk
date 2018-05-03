@@ -127,13 +127,17 @@ class UBIntroOutroView: UIView {
 
         buttonsStackView.addArrangedSubview(cancelButton)
 
-        if viewModel.hasContinueButton {
+        if viewModel.hasContinueButton || UIAccessibilityIsVoiceOverRunning() {
             continueButton = UIButton(type: .system)
             //swiftlint:disable:next force_unwrapping
             buttonsStackView.addArrangedSubview(continueButton!)
-            continueButton?.setTitle(viewModel.continueLabelText, for: .normal)
+            // In case voice over is activated we want to add a continue button even if it does not exist
+            var continueText = viewModel.continueLabelText
+            if UIAccessibilityIsVoiceOverRunning() && (continueText?.isEmpty)! {
+                continueText = LocalisationHandler.getLocalisedStringForKey("usa_accessibility_button_label_continue")
+            }
+            continueButton?.setTitle(continueText, for: .normal)
             continueButton?.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
-
         }
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
         updateContinueButton()
@@ -143,7 +147,7 @@ class UBIntroOutroView: UIView {
         if let componentViewModel = viewModel.componentViewModel {
             componentView = ComponentFactory.component(viewModel: componentViewModel)
 
-            if !viewModel.hasContinueButton {
+            if !viewModel.hasContinueButton && !UIAccessibilityIsVoiceOverRunning() {
                 componentView?.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
             }
             //swiftlint:disable:next force_unwrapping
