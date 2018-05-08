@@ -18,11 +18,6 @@ extension UILabel {
      
      */
     func applyFontWithDynamicTypeEnabled(font: UIFont) {
-        if #available(iOS 11.0, *) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .body)
-            self.font = fontMetrics.scaledFont(for: font)
-        } else {
-            self.font = font
-        }
+        self.font = font.getDynamicTypeFont()
     }
 }

@@ -30,4 +30,13 @@ extension UIFont {
         let uWeight = (weight == .semiBold) ? UIFontWeightSemibold : UIFontWeightRegular
         return UIFont.systemFont(ofSize: ofSize, weight: uWeight)
     }
+
+    func getDynamicTypeFont(forTextStyle style: UIFontTextStyle = .body) -> UIFont {
+        if #available(iOS 11, *) {
+            let fontMetrics = UIFontMetrics(forTextStyle: style)
+            return fontMetrics.scaledFont(for: self)
+        }
+
+        return self
+    }
 }
