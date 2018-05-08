@@ -60,7 +60,7 @@ class UBToast: UIView {
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 18).getDynamicTypeFont()
         addSubview(label)
 
         label.translatesAutoresizingMaskIntoConstraints = false

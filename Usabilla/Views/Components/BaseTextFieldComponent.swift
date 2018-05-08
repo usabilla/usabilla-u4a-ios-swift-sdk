@@ -51,7 +51,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
 
         let theme = viewModel.theme
         textField.tintColor = theme.colors.hint
-        textField.font = theme.fonts.font
+        textField.font = theme.fonts.font.getDynamicTypeFont()
         textField.textColor = theme.colors.text
         textField.backgroundColor = theme.colors.background
         line.backgroundColor = theme.colors.hint

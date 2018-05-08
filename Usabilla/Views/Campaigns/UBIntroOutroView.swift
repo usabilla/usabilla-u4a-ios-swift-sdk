@@ -172,7 +172,7 @@ class UBIntroOutroView: UIView {
         cancelButton.titleLabel?.font = viewModel.font
         continueButton?.titleLabel?.font = viewModel.boldFont
 
-        titleLabel.font = viewModel.boldFont
+        titleLabel.font = viewModel.boldFont.getDynamicTypeFont()
         titleLabel.textColor = viewModel.titleColor
 
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)

@@ -41,12 +41,12 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
 
         // customization
         let theme = viewModel.theme
-        textView.font = theme.fonts.font
+        textView.font = theme.fonts.font.getDynamicTypeFont()
         textView.textColor = theme.colors.text
         textView.tintColor = theme.colors.hint
         textView.backgroundColor = theme.colors.background
 
-        labelPlaceHolder.font = theme.fonts.font
+        labelPlaceHolder.font = theme.fonts.font.getDynamicTypeFont()
         labelPlaceHolder.textColor = theme.colors.hint
         labelPlaceHolder.backgroundColor = .clear
     }
