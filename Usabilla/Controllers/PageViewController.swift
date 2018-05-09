@@ -210,9 +210,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }
 
     func scrollToTop() {
-        DispatchQueue.main.async {
-            self.tableView.contentOffset.y = 0
-        }
+        tableView.scrollTo(indexPath: IndexPath(row: 0, section: 0), animated: true)
     }
 
     func reloadTableWithAnimation() {
