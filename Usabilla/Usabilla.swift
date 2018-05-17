@@ -49,15 +49,6 @@ open class Usabilla {
         }
     }
 
-    open static var hideGiveMoreFeedback: Bool {
-        get {
-            return UsabillaInternal.hideGiveMoreFeedback
-        }
-        set {
-            UsabillaInternal.hideGiveMoreFeedback = newValue
-        }
-    }
-
     open static var dismissAutomatically: Bool {
         get {
             return UsabillaInternal.dismissAutomatically
@@ -119,8 +110,8 @@ open class Usabilla {
     /**
      Preloads a list of forms to make them available to the user even without network connectivity.
      */
-    open class func preloadForms(withFormIDs formIDs: [String]) {
-        UsabillaInternal.preloadForms(withFormIDs: formIDs)
+    open class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
+        UsabillaInternal.preloadFeedbackForms(withFormIDs: formIDs)
     }
 
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
@@ -167,8 +158,7 @@ public protocol UsabillaDelegate: class {
      - Parameter withFeedbackResults: Array of FeedbackResult
      - Parameter isRedirectToAppStoreEnabled: Indicates whether or not the form is set to redirect to the App Store
      
-     If Usabilla.**hideGiveMoreFeedback** is set to **false**, the **withFeedbackResults** array will always contains only one value.
-     Otherwise the withFeedbackResults can contains between 1 and n FeedbackResult
+     withFeedbackResults can contain between 1 and n FeedbackResult
      */
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 

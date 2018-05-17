@@ -26,6 +26,10 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.isAccessibilityElement = false
+        if #available(iOS 10.0, *) {
+            label.adjustsFontForContentSizeCategory = true
+        }
         return label
     }()
     lazy var headerView: UIView = {
@@ -81,8 +85,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         view.backgroundColor = viewModel.theme.colors.background
         tableView.backgroundColor = viewModel.theme.colors.background
 
+        requiredLabel.applyFontWithDynamicTypeEnabled(font: viewModel.theme.fonts.font)
         requiredLabel.textColor = viewModel.theme.colors.text
-        requiredLabel.font = viewModel.theme.fonts.font.withSize(viewModel.theme.fonts.miniSize)
         requiredLabel.backgroundColor = viewModel.theme.colors.background
     }
 
@@ -90,10 +94,10 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         if tableView.tableHeaderView == nil {
             tableView.tableHeaderView = headerView
             headerView.heightAnchor.constraint(equalToConstant: 40).activate()
-            constraintHeaderLeft = headerView.leftAnchor.constraint(equalTo: tableView.leftAnchor).activate()
-            constraintHeaderRight = headerView.rightAnchor.constraint(equalTo: tableView.rightAnchor).activate()
+            constraintHeaderLeft = headerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
+            constraintHeaderRight = headerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
             requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).activate()
-            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor).activate()
+            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -16).activate()
             requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).activate()
             updateHeaderMargins()
             tableView.tableHeaderView?.layoutIfNeeded()
@@ -206,9 +210,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }
 
     func scrollToTop() {
-        DispatchQueue.main.async {
-            self.tableView.contentOffset.y = 0
-        }
+        tableView.scrollTo(indexPath: IndexPath(row: 0, section: 0), animated: true)
     }
 
     func reloadTableWithAnimation() {
@@ -280,7 +282,7 @@ extension PageViewController: UITableViewDataSource {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
             if let cell = cell as? FooterTableViewCell {
-                cell.footerView = ViewUtils.generateFooter(theme: viewModel.theme)
+                cell.footerView = PoweredByUsabillaView(theme: viewModel.theme)
             }
             cell.backgroundColor = viewModel.theme.colors.background
             return cell

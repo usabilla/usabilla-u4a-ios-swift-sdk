@@ -26,9 +26,6 @@ class ThankYouViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    var moreFeedBackButton: UIButton = {
-        return UIButton(type: UIButtonType.system)
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,18 +60,6 @@ class ThankYouViewController: UIViewController {
         messageLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
         messageLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -sideMargin).isActive = true
         messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalMargin).isActive = true
-
-        // buttons
-        if viewModel.canGiveMoreFeedback {
-            view.addSubview(moreFeedBackButton)
-            moreFeedBackButton.translatesAutoresizingMaskIntoConstraints = false
-            moreFeedBackButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 2 * sideMargin).isActive = true
-            moreFeedBackButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -(2 * sideMargin)).isActive = true
-            moreFeedBackButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: verticalMargin).isActive = true
-
-            moreFeedBackButton.setTitle(viewModel.moreFeedbackText, for: .normal)
-            moreFeedBackButton.addTarget(self, action: #selector(reloadForm), for: .touchUpInside)
-        }
     }
 
     func customizeView() {
@@ -86,11 +71,6 @@ class ThankYouViewController: UIViewController {
             let font = configuration.fonts.font
             messageLabel.textColor = configuration.colors.text
             messageLabel.font = font
-
-            if viewModel.canGiveMoreFeedback {
-                moreFeedBackButton.setTitleColor(configuration.colors.accent, for: .normal)
-                moreFeedBackButton.titleLabel?.font = font
-            }
         }
     }
 

@@ -54,7 +54,6 @@ class PageControllerTest: QuickSpec {
                 expect(header).toNot(beNil())
                 expect(header?.text).to(equal(viewController.viewModel.copy.errorMessage))
                 expect(header?.textColor).to(equal(viewController.viewModel.theme.colors.text))
-                expect(header?.font).to(equal(viewController.viewModel.theme.fonts.font.withSize(viewController.viewModel.theme.fonts.miniSize)))
                 expect(header?.backgroundColor).to(equal(viewController.viewModel.theme.colors.background))
             }
 

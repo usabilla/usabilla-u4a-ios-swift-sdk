@@ -23,11 +23,6 @@ class CampaignViewModel {
         self.formViewModel.isCampaignForm = true
         self.manager = manager
 
-        // disable giveMoreFeedback for end pages
-        form.pages.forEach {
-            ($0 as? UBEndPageModel)?.giveMoreFeedback = false
-        }
-
         // instanciate the intro pageViewModel
         let introPageModel = form.pages.first {
             $0 is IntroPageModel

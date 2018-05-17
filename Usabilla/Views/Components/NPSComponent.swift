@@ -29,6 +29,8 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
 
     private func setupView() {
         addSubviews(nps, leftLabel, rightLabel)
+        leftLabel.text = viewModel.lowLabel
+        rightLabel.text = viewModel.highLabel
     }
 
     private func setupLayout() {
@@ -53,13 +55,14 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
     }
 
     private func customizeView() {
-        nps.font = viewModel.theme.fonts.boldFont
-        nps.tintColor = viewModel.theme.colors.accent
-        nps.toolTipTextColor = viewModel.theme.colors.textOnAccent
+        let theme = viewModel.theme
+        nps.font = theme.fonts.boldFont
+        nps.tintColor = theme.colors.accent
+        nps.toolTipTextColor = theme.colors.textOnAccent
 
-        leftLabel.text = viewModel.lowLabel
-        leftLabel.textColor = viewModel.theme.colors.text
+        leftLabel.textColor = theme.colors.text
+        leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
         rightLabel.textColor = viewModel.theme.colors.text
-        rightLabel.text = viewModel.highLabel
+        rightLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
     }
 }

@@ -15,14 +15,6 @@ class UBEndPageViewModel {
 
     var formRating: Int = 0
 
-    var canGiveMoreFeedback: Bool {
-        return model.giveMoreFeedback
-    }
-
-    var moreFeedbackText: String? {
-        return model.copy?.moreFeedback
-    }
-
     var thankyouText: String?
     var headerText: String?
 

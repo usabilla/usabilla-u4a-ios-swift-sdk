@@ -14,10 +14,14 @@ class RootCellView: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 3
         return label
     }()
-    let errorLabel: UILabel = UILabel()
+    let errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        return label
+    }()
     var component: UIControl?
 
     var cellViewModel: CellViewModel! {
@@ -54,7 +58,6 @@ class RootCellView: UITableViewCell {
         contentView.addSubview(errorLabel)
         contentView.addSubview(rootCellContainerView)
 
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
         rootCellContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
@@ -128,13 +131,13 @@ class RootCellView: UITableViewCell {
 
     private func applyCustomisations() {
         let theme = cellViewModel.theme
-        let copy = cellViewModel.copy
         titleLabel.textColor = theme.colors.title
-        titleLabel.font = theme.fonts.boldFont
-        errorLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
         errorLabel.textColor = theme.colors.error
-        errorLabel.text = copy.requiredFieldError
+        titleLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.boldFont)
+        errorLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
         backgroundColor = theme.colors.background
+
+        errorLabel.text = cellViewModel.copy.requiredFieldError
     }
 
     @discardableResult func updateValidStatus() -> Bool {

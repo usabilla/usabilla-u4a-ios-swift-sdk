@@ -15,7 +15,7 @@ class CopyModelTests: QuickSpec {
 
     var copyModelJson: [String: Any] = [:]
     let appTitle = "appTitle", appSubmit = "appSubmit", errorMessage = "errorMessage"
-    let navigationNext = "navigationNext", cancelButton = "cancelButton", screenshotTitle = "screenshotTitle", moreFeedback = "moreFeedback", appStore = "appStore"
+    let navigationNext = "navigationNext", cancelButton = "cancelButton", screenshotTitle = "screenshotTitle", appStore = "appStore"
     let introCancel = "introCancelButton", introContinue = "introContinueButton"
 
     override func spec() {
@@ -23,7 +23,7 @@ class CopyModelTests: QuickSpec {
         describe("") {
             beforeEach {
                 self.copyModelJson["data"] = [self.appTitle: "title", self.appSubmit: "submit", self.errorMessage: "error"]
-                self.copyModelJson["localization"] = [self.navigationNext: "Next", self.cancelButton: "Cancel", self.screenshotTitle: "Screenshot", self.moreFeedback: "Give more feedback", self.appStore: "Go to the app store", self.introCancel: "Cancel", self.introContinue: "Continue"]
+                self.copyModelJson["localization"] = [self.navigationNext: "Next", self.cancelButton: "Cancel", self.screenshotTitle: "Screenshot", self.appStore: "Go to the app store", self.introCancel: "Cancel", self.introContinue: "Continue"]
             }
 
             context("When CopyModel is initialized", {
@@ -35,7 +35,6 @@ class CopyModelTests: QuickSpec {
                     expect(copyModel.navigationNext).to(equal("Next"))
                     expect(copyModel.cancelButton).to(equal("Cancel"))
                     expect(copyModel.screenshotTitle).to(equal("Screenshot"))
-                    expect(copyModel.moreFeedback).to(equal("Give more feedback"))
                     expect(copyModel.cancelButton).to(equal("Cancel"))
                     expect(copyModel.introCancelButton).to(equal("Cancel"))
                     expect(copyModel.introContinueButton).to(equal("Continue"))

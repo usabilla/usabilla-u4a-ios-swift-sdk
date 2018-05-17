@@ -1,6 +1,6 @@
 Closes: T.
 
-Reviewers: @usabilla/sdk
+Reviewers: @usabilla/bliss
 
 ### Changelog:
 - 

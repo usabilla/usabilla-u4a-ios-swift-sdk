@@ -21,7 +21,6 @@ class UsabillaInternal {
             defaultLocalisationFile = false
         }
     }
-    static var hideGiveMoreFeedback: Bool = true
     static var dismissAutomatically: Bool = true
     static var canDisplayCampaigns: Bool = true
     static var debugEnabled: Bool = false
@@ -75,7 +74,7 @@ class UsabillaInternal {
         campaignManager?.resetData(completion: completion)
     }
 
-    class func preloadForms(withFormIDs formIDs: [String]) {
+    class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
             return

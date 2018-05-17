@@ -10,5 +10,4 @@ import Foundation
 
 class UBEndPageModel: PageModel {
     var redirectToAppStore: Bool = false
-    var giveMoreFeedback: Bool = false
 }
