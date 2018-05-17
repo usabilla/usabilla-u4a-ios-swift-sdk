@@ -211,8 +211,8 @@ class CampaignViewController: UIViewController {
     }
 
     func showToast() {
-        let thankYoutext = viewModel.toastPageViewModel?.text
-        let estimatedDuration: UBToastDuration = thankYoutext!.characters.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
+        let thankYoutext = viewModel.toastPageViewModel?.text ?? ""
+        let estimatedDuration: UBToastDuration = thankYoutext.characters.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
         toast = UBToast(delegate: self, text: thankYoutext, duration: estimatedDuration)
         toast?.show {
             self.closeCampaign()
