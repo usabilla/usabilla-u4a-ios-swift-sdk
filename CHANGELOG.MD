@@ -1,3 +1,15 @@
+## 5.0.0
+#### Added
+- Accessibility/VoiceOver: Support Dynamic type only for iOS 11+. 
+- Accessibility/VoiceOver: Toast duration is increased depending on the text length.
+#### Fixed
+- Accessibility/VoiceOver: Fix the banner mood component moving to the next page when the campaign has no continue button.
+- Fix the color of `Powered by usabilla` to be setup by the theme.
+#### Updated
+- Rename `preloadFroms` to `preloadFeedbackForms`
+#### Removed
+- Remove `giveMoreFeedback` option from the SDK interface.
+
 ## 4.1.2
 #### Added
 - Support for **Xcode 9.3**

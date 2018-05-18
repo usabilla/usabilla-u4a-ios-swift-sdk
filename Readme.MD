@@ -45,8 +45,8 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8.3.3 or 9+
-- Swift 3.1, 3.2, 4.0
+- Xcode 9.0+
+- Swift 3.1, 3.2, 4.0, 4.1
 
 ## Installation
 
@@ -90,7 +90,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.1.2"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.0"
 ```
 
 ### Manual
@@ -129,7 +129,7 @@ The **initialize** method will take care of:
 * Fetching and updating all campaigns associated with the app ID.
 * Initializing a few background processes of the SDK.
 
->⚠️  **Failure to call this method will prevent the SDK from running. No functionalities at all will be available.**
+>⚠️ **Failure to call this method will prevent the SDK from running. No functionalities at all will be available.**
 
 ### DebugMode
 In order to have more insights from the SDK while developing, you can enable logging with:
@@ -269,7 +269,7 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 If you know you will need to display a feedback form when the user is offline, you can preload and cache it to make it available at any given moment.   
 To preload a form use
 ```
-UsabillaFeedbackForm.preloadForms(withFormIDs: ["myId", "myOtherId"])
+UsabillaFeedbackForm.preloadFeedbackForms(withFormIDs: ["FORM_ID_1", "FORM_ID_2"])
 ```
 This will fetch the latest version of the form and cache it in the SDK.    
  When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
@@ -496,8 +496,7 @@ If you want to provide your own translation, you need to override **all** the ke
 The default file with the keys and the default text is the following:
 
 ```
-// Default usabilla english localisation
-"usa_more_feedback" = "Give more feedback";
+///Default usabilla english localisation
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
@@ -509,6 +508,9 @@ The default file with the keys and the default text is the following:
 "usa_choose_from_options" = "Choose from %d options";
 "usa_delete_screenshot" = "delete screenshot";
 "usa_edit_screenshot" = "change screenshot";
+"usa_powered_by_usabilla" = "powered by usabilla";
+"usa_tap_to_visit_usabilla" = "tap to visit usabilla.com";
+"usa_accessibility_button_label_continue" = "Continue";
 
 // Emoticons
 "usa_mood_hate" = "Hate";
