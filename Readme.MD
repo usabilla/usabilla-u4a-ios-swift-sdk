@@ -13,12 +13,13 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Carthage](#carthage)
     - [Manual](#manual)
 - [Initialization](#initialization)
-    - [DebugMode](#debugmode)
+    - [Debug mode](#debugmode)
 - [Campaigns](#campaigns)
     - [The App Id](#the-app-id)
     - [Targeting options](#targeting-options)
     - [Campaign toggling](#campaign-toggling)
     - [Campaign submission callback](#campaign-submission-callback)
+    - [Resetting all campaigns](#resetting-all-campaigns)
     - [Managing an existing campaign](#managing-an-existing-campaign)
     - [Campaign results](#campaign-results)
 - [Passive feedback](#passive-feedback)
@@ -34,20 +35,22 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Custom Emoticons Rating](#custom-emoticons-rating)
     - [Custom Star Rating](#custom-star-rating)
     - [Custom Fonts](#custom-fonts)
+    - [Custom Colors](#custom-colors)
 - [Localisation](#localisation)
     - [String file contents](#string-file-contents)
+- [Permissions](#permissions)
 - [Integration with Obj-C applications](#integration-with-obj-c-applications)
 
 * * *
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8.3.3 or 9+
-- Swift 3.1, 3.2, 4.0
+- Xcode 9.0+
+- Swift 3.1, 3.2, 4.0, 4.1
 
 ## Installation
 
-Since 4.0.0 our **master** branch contains the framework built with **swift 3.2** and **Xcode 9**
+Since version 4.0.0, our **master** branch contains the framework built with **swift 3.2** and **Xcode 9**
 If you are using **Xcode 8** please use or `Xcode8` branch or our releases tags that end with `-Xcode8` for example: `v4.0.0-Xcode8`
 
 ### CocoaPods
@@ -87,7 +90,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.1.2"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.0"
 ```
 
 ### Manual
@@ -183,7 +186,7 @@ Usabilla.canDisplayCampaigns = false
 Setting it to `true` will allow the SDK to display any campaign when it triggers.
 Setting it to `false` will prevent all campaigns from being displayed.
 
-**Even though `canDisplayCampaigns` is set to `false`, the SDK continues to receive the events sent and if a campaign happens to trigger, it won't be displayed nor delayed: That event instance will be lost.**
+**Even when `canDisplayCampaigns` is set to `false`, the SDK continues to receive all events. If a campaign happens to trigger, it won't be displayed nor delayed: that event instance will be lost.**
 
 By default, `canDisplayCampaigns` is set to `true`.
 
@@ -194,11 +197,16 @@ If one or more of your campaigns trigger when the `canDisplayCampaigns` property
 It is possible to get information about the feedback the user has left and you will also be notified if the user has left the form without submitting it, simply by implementing:
 
 ```swift
-func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {
-    //...
-}
+func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {}
 ```
 Unlike the Passive feedback method, the campaigns method only returns one [FeedbackResult](#feedbackresult) and is called only once.
+
+### Resetting all campaigns
+
+During development and testing, it might be useful to reset the status of your campaigns and allow them to be displayed again.    
+You can do so by calling `Usabilla.resetCampaignData(completion: nil)`.    
+You can include a closure that will be executed when the SDK is done resetting campaign data.    
+This method will synchronize your data with the Usabilla server, so it will fetch all the new campaigns and remove the deactivated ones as well.
 
 ### Managing an existing campaign
 
@@ -256,13 +264,12 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 }
 ```
 
-
 ### Preloading a form
 
 If you know you will need to display a feedback form when the user is offline, you can preload and cache it to make it available at any given moment.   
 To preload a form use
 ```
-UsabillaFeedbackForm.preloadForms(withFormIDs: ["myId", "myOtherId"])
+UsabillaFeedbackForm.preloadFeedbackForms(withFormIDs: ["FORM_ID_1", "FORM_ID_2"])
 ```
 This will fetch the latest version of the form and cache it in the SDK.    
  When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
@@ -308,24 +315,6 @@ Pass `nil` as the `screenshot` parameter if you don't want to have a screenshot 
 Instead of taking the screenshot using the `Usabilla.takeScreenshot()` method, you can provide any image you wish by passing it as the `image` parameter when calling `Usabilla.loadFeedbackForm()`
 
 This will allow you to hide any user sensitive information by, for example, taking the screenshot yourself, removing all unwanted information and submitting the censored version.
-
-
-<!-- ### Preloading a form
-If you know you will need to display a feedback form when the user is offline, you can preload it a cache it in the SDK to make it available at any given moment.
-To preload a form use
-```
-Usabilla.preloadForms(withIds: ["myId", "myOtherId"])
-```
-This will fetch the latest version of the form and cache it in the SDK.
-When you will request that form, if there is no network connectivity, the SDK will use the cached version and your user will be able to submit his feedback
-
-Feedback submitted while offline will be sent when connectivity is restored.
-
-If you wish, you can empty the cache using
-```
-Usabilla.removeCachedForms()
-``` -->
-
 
 ### Feedback submission callback
 It is possible to get information about the feedback the user has left and you will also be notified if the user has left the form without submitting it, simply by implementing:
@@ -449,7 +438,7 @@ let b = UIImage(named: "2")!
 let c = UIImage(named: "3")!
 let d = UIImage(named: "4")!
 let e = UIImage(named: "5")!
-Usabilla.theme.images.enabledEmoticons = [a,b,c,d,e]
+Usabilla.theme.images.enabledEmoticons = [a, b, c, d, e]
 ```
 
 #### Provide both the selected and unselected version
@@ -486,19 +475,63 @@ Usabilla.theme.fonts.regular = UIFont(name: "Helvetica-LightOblique", size: 20)
 Usabilla.theme.fonts.bold = UIFont(name: "Helvetica-Bold", size: 20)
 ```
 
+### Custom colors
+
+All colors are set from the Usabilla website and not from the SDK. You can find a detailed explanation of the color's name and role in our [knowledge base](https://support.usabilla.com/hc/en-us/articles/211588989-How-do-I-change-the-feedback-form-colors-in-Usabilla-for-Apps).    
+
+
+The only exception is for the `header` color, used to change the color of the navigation bar.    
+You can set the header color by calling `Usabilla.theme.colors.header = UIColor.red` before displaying the form.
+
 ## Localisation
 
-For all the text that is not customizable in the web interface, you can provide your own translation using a .string localized file inside your application.
+For all the text that is not customizable in the web interface, you can provide your own translation using a `.string` localized file inside your application.
+
+This file also includes all the accessibility labels read when VoiceOver is enabled.
 
 ### String file contents
 If you want to provide your own translation, you need to override **all** the keys in the default .string file.
 
 
 The default file with the keys and the default text is the following:
-```swift
-//Default Usabilla English localization
+
+```
+///Default usabilla english localisation
+"usa_form_continue_button" = "Next";
+"usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
 "usa_screnshot_placeholder" = "Add screenshot";
+
+// Accessiblity labels
+"usa_mood_select_a_rating_out_of" = "select a rating out of";
+"usa_accessibility_field_required" = "This field is required";
+"usa_choose_from_options" = "Choose from %d options";
+"usa_delete_screenshot" = "delete screenshot";
+"usa_edit_screenshot" = "change screenshot";
+"usa_powered_by_usabilla" = "powered by usabilla";
+"usa_tap_to_visit_usabilla" = "tap to visit usabilla.com";
+"usa_accessibility_button_label_continue" = "Continue";
+
+// Emoticons
+"usa_mood_hate" = "Hate";
+"usa_mood_dislike" = "Dislike";
+"usa_mood_neutral" = "Neutral";
+"usa_mood_like" = "Like";
+"usa_mood_love" = "Love";
+
+// Stars
+"usa_mood_one_star" = "1 star";
+"usa_mood_two_star" = "2 stars";
+"usa_mood_three_star" = "3 stars";
+"usa_mood_four_star" = "4 stars";
+"usa_mood_five_star" = "5 stars";
+
+// checkbox & radio button
+"usa_multiple_options_possible" = "Multiple options possible";
+"usa_one_option_possible" = "One option possible";
+"usa_selected" = "selected";
+"usa_unselected" = "unselected";
+
 ```
 
 Failure to override a key will display the key itself instead as the text.
@@ -510,6 +543,10 @@ Usabilla.localizedStringFile = "your_localization_file_name"
 ```
 
 With the name of your file, without the .string extension.
+
+## Permissions
+If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery.    
+No other permission is needed to run the SDK.
 
 ## Integration with Obj-C applications
 
@@ -547,7 +584,7 @@ import Usabilla
 
 extension ViewController : UsabillaDelegate {
 
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         Usabilla.delegate = self
     }
@@ -560,7 +597,7 @@ extension ViewController : UsabillaDelegate {
         //...
     }
 
-    @objc public func showForm(){
+    @objc public func showForm() {
         Usabilla.loadFeedbackForm("Form ID")
     }
 }
