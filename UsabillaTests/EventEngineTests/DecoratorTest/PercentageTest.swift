@@ -31,6 +31,7 @@ class PercentageDecoratorTests: QuickSpec {
                     expect(decorator.ruleID).to(equal("id1"))
                     expect(decorator.rule).to(be(self.leafEvent1))
                     expect(decorator.percentage).to(equal(50))
+                    expect(decorator.diceAlreadyRolled).to(beFalse())
                 }
             })
 
@@ -51,23 +52,32 @@ class PercentageDecoratorTests: QuickSpec {
                     expect(decorator).toNot(beNil())
                     expect(decorator?.type).to(equal(RuleType.event))
                     expect(decorator?.percentage).to(equal(20))
+                    expect(decorator?.diceAlreadyRolled).to(beFalse())
                 }
             }
 
             context("When throwing a dice", {
-                it("should trigger if the dice is bigger than the chance") {
+                it("should not trigger if the dice is bigger than the chance") {
                     let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
                     expect(decorator.checkIfTriggers(triggered: true, diceRoll: 51)).to(beFalse())
                 }
-                it("should trigger if the dice is equal than the chance") {
+                it("should trigger if the dice is equal to the chance") {
                     let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
                     expect(decorator.checkIfTriggers(triggered: true, diceRoll: 50)).to(beTrue())
                 }
-                it("should not trigger if the dice is lower than the chance") {
+                it("should trigger if the dice is lower than the chance") {
                     let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
                     expect(decorator.checkIfTriggers(triggered: true, diceRoll: 49)).to(beTrue())
                 }
             })
+
+            context("When the rule is satisfied and the dice is rolled") {
+                it("should trigger only the first time") {
+                    let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
+                    expect(decorator.checkIfTriggers(triggered: true, diceRoll: 10)).to(beTrue())
+                    expect(decorator.checkIfTriggers(triggered: true, diceRoll: 10)).to(beFalse())
+                }
+            }
 
             context("When the rule is not satisfied", {
                 it("should not trigger if the rule is not satisfied") {
@@ -84,19 +94,19 @@ class PercentageDecoratorTests: QuickSpec {
                 }
             })
 
-            it("should serialize correctly") {
-                let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
+            context("When initializing via NSCoder") {
+                it("should serialize and deserialize correctly") {
+                    let decorator = PercentageDecorator(percentage: 50, rule: self.leafEvent1)
+                    decorator.diceAlreadyRolled = true
+                    let data = NSKeyedArchiver.archivedData(withRootObject: decorator)
+                    expect(data).toNot(beNil())
 
-                let data = NSKeyedArchiver.archivedData(withRootObject: decorator)
-
-                expect(data).toNot(beNil())
-                // swiftlint:disable force_cast
-                let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! PercentageDecorator
-
-                expect(unserialised.percentage).to(equal(50))
-
+                    // swiftlint:disable force_cast
+                    let unserialised = NSKeyedUnarchiver.unarchiveObject(with: data) as! PercentageDecorator
+                    expect(unserialised.percentage).to(equal(50))
+                    expect(unserialised.diceAlreadyRolled).to(beTrue())
+                }
             }
-
         }
     }
 }
