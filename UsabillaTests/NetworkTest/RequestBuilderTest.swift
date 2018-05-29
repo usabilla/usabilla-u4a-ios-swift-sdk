@@ -79,7 +79,7 @@ class RequestBuilderTest: QuickSpec {
             context("When called") {
                 it("Builds the passive form request correctly") {
                     let get = RequestBuilder.requestGetPassiveForm(withID: "myformId")
-                    expect(get?.url?.absoluteString).to(equal("https://api-staging.usabilla.com/live/mobile/app/forms/myformId"))
+                    expect(get?.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/app/forms/myformId"))
                     expect(get?.cachePolicy).to(equal(self.correctGet.cachePolicy))
                     expect(get?.httpMethod).to(equal("GET"))
                     expect(get?.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
