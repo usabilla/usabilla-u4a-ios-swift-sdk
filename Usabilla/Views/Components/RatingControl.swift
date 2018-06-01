@@ -56,7 +56,7 @@ class RatingControl: UIControl {
     }
     var rating: Int? {
         get {
-            return selectedIndex > -1 ? selectedIndex + 1: nil
+            return selectedIndex > -1 ? selectedIndex + 1 : nil
         }
         set {
             guard let v = newValue, v > 0 && v <= maxValue else {
@@ -160,8 +160,41 @@ class RatingControl: UIControl {
             case .star:
                 button?.isSelected = index <= selectedIndex
             case .emoticon:
-                button?.isSelected = selectedIndex > -1 ? index == selectedIndex: true
+                if selectedIndex > -1 {
+                    let state: Bool = index == selectedIndex
+                    setupBorderForButton(button: button, setBorder: state)
+
+                    button?.isSelected = state
+                }
             }
+        }
+    }
+
+    private func setupBorderForButton(button: UIButton?, setBorder: Bool) {
+        guard let button = button else {
+            return
+        }
+
+        if setBorder {
+            button.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+
+            UIView.animate(withDuration: 1.0,
+                           delay: 0,
+                           usingSpringWithDamping: CGFloat(0.20),
+                           initialSpringVelocity: CGFloat(6.0),
+                           options: UIViewAnimationOptions.allowUserInteraction,
+                           animations: {
+                               button.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                           },
+                           completion: { _ in
+
+                           }
+            )
+        }
+
+
+            else {
+                button.transform = CGAffineTransform.identity
         }
     }
 
