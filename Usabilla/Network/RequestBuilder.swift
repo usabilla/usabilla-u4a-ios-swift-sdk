@@ -12,12 +12,12 @@ import UIKit
 class RequestBuilder {
 
     enum Endpoints: String {
+        case passiveForm = "/app/forms"
         case campaignForm = "/forms"
-        case passiveForm = "/live/mobile/app/forms"
         case campaignsList = "/campaigns?app_id={app_id}"
-        case targetingOptions = "/targeting-options"
         case campaignSubmission = "/v2/sdk/campaigns/{campaign_id}/feedback"
         case campaignViews = "/v2/sdk/campaigns/{campaign_id}/views"
+        case targetingOptions = "/targeting-options"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -142,7 +142,7 @@ class RequestBuilder {
     // MARK: Reading
 
     class func requestGetPassiveForm(withID id: String) -> URLRequest? {
-        guard let url = buildURL(withBaseUrl: apiUrl, withEndpoint: .passiveForm, withURLParam: id) else {
+        guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .passiveForm, withURLParam: id) else {
             return nil
         }
         return requestForGet(withURL: url)
