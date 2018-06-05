@@ -1,3 +1,8 @@
+## 5.0.1
+#### Added
+- Support for **Xcode 9.4**
+- Minor improvements in the SDK.
+
 ## 5.0.0
 #### Added
 - Accessibility/VoiceOver: Support Dynamic type only for iOS 11+. 
