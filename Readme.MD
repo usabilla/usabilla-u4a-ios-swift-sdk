@@ -46,12 +46,11 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 ## Requirements
 - iOS 9.0+
 - Xcode 9.0+
-- Swift 3.1, 3.2, 4.0, 4.1
+- Swift 3.2+
 
 ## Installation
 
-Since version 4.0.0, our **master** branch contains the framework built with **swift 3.2** and **Xcode 9**
-If you are using **Xcode 8** please use or `Xcode8` branch or our releases tags that end with `-Xcode8` for example: `v4.0.0-Xcode8`
+You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
 ### CocoaPods
 
@@ -68,7 +67,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 4.0'
+pod 'Usabilla', '~> 5.0'
 
 End
 ```
@@ -90,7 +89,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.0"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.1"
 ```
 
 ### Manual
