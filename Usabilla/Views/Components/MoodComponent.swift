@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 class MoodComponent: UBComponent<MoodComponentViewModel> {
 
     var moodControl: RatingControl!
+    let moodComponentOffset: CGFloat = 7
+    let starComponentOffset: CGFloat = 0
 
     override func build() {
         moodControl = RatingControl()
@@ -24,7 +27,8 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         addSubview(moodControl)
 
         // positioning
-        moodControl.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        let offset: CGFloat = (viewModel.ratingMode == .emoticon) ? moodComponentOffset : starComponentOffset
+        moodControl.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
         moodControl.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         moodControl.topAnchor.constraint(equalTo: topAnchor).isActive = true
         moodControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true

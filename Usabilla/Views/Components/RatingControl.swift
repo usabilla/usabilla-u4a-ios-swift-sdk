@@ -19,6 +19,8 @@ class RatingControl: UIControl {
 
     private let size: CGFloat = 44
     private let spacing: CGFloat = 22
+    private let moodZoomScale: CGFloat = 1.3
+    private let starZoomScale: CGFloat = 1.0
 
     private var initialTouchIndex = -1
     private var selectedIndex = -1 {
@@ -153,51 +155,24 @@ class RatingControl: UIControl {
         refreshSelection()
     }
 
-    private func refreshSelection() {
+    private func refreshSelection(animated: Bool = true) {
         for (index, subView) in contentView.arrangedSubviews.enumerated() {
             let button = (subView as? UIButton)
-            switch mode {
-            case .star:
-                button?.isSelected = index <= selectedIndex
-            case .emoticon:
-                if selectedIndex > -1 {
-                    let state: Bool = index == selectedIndex
-                    setupBorderForButton(button: button, setBorder: state)
+            var state: Bool = false
 
-                    button?.isSelected = state
+            state = mode == .star ? index <= selectedIndex: index == selectedIndex
+            let zoomScale = mode == .star ? starZoomScale : moodZoomScale
+
+            if selectedIndex > -1 {
+                if animated {
+                    animateMood(button: button, canBeZoomed: state, startScale: 0.8, endScale: zoomScale)
                 }
+                button?.isSelected = state
             }
         }
     }
 
-    private func setupBorderForButton(button: UIButton?, setBorder: Bool) {
-        guard let button = button else {
-            return
-        }
-
-        if setBorder {
-            button.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-
-            UIView.animate(withDuration: 1.0,
-                           delay: 0,
-                           usingSpringWithDamping: CGFloat(0.20),
-                           initialSpringVelocity: CGFloat(6.0),
-                           options: UIViewAnimationOptions.allowUserInteraction,
-                           animations: {
-                               button.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-                           },
-                           completion: { _ in
-
-                           }
-            )
-        }
-
-
-            else {
-                button.transform = CGAffineTransform.identity
-        }
-    }
-
+    // MARK: UIResponder methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         initialTouchIndex = selectedIndex
         handleTouches(touches: touches, withEvent: event)
@@ -214,6 +189,7 @@ class RatingControl: UIControl {
         }
     }
 
+    // MARK: Handle touch events
     private func handleTouches(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch = touches.first {
             let position = touch.location(in: self)
@@ -234,6 +210,27 @@ class RatingControl: UIControl {
             return
         }
         selectedIndex = newIndex
+    }
+
+    private func animateMood(button: UIButton?, canBeZoomed: Bool, startScale: CGFloat, endScale: CGFloat) {
+        guard let button = button else {
+            return
+        }
+
+        if canBeZoomed {
+            button.transform = CGAffineTransform(scaleX: startScale, y: startScale)
+            UIView.animate(withDuration: 0.8,
+                           delay: 0,
+                           usingSpringWithDamping: CGFloat(0.20),
+                           initialSpringVelocity: CGFloat(6.0),
+                           options: UIViewAnimationOptions.allowUserInteraction,
+                           animations: {
+                               button.transform = CGAffineTransform(scaleX: endScale, y: endScale)
+                           },
+                           completion: { _ in })
+        } else {
+            button.transform = CGAffineTransform.identity
+        }
     }
 
     // MARK: Accessibility
