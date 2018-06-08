@@ -227,7 +227,7 @@ class RatingControl: UIControl {
                            animations: {
                                button.transform = CGAffineTransform(scaleX: endScale, y: endScale)
                            },
-                           completion: { _ in })
+                           completion: nil)
         } else {
             button.transform = CGAffineTransform.identity
         }

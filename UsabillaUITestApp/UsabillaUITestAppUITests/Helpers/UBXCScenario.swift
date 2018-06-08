@@ -10,7 +10,18 @@ import XCTest
 
 extension XCUIElement {
 
-    open func adjust(toIndex index: Int, withScale scale:Int = 5, withCorrection correction: CGFloat = 2) {
+    open func adjust(toIndex index: Int, withScale scale:Int = 6, withCorrection correction: CGFloat = 2) {
+        
+        // These positions are calculated and adjusted to work for all devices starting from iPhone 6.
+        let positions: [CGFloat] = [40.0, 100.0, 160.0, 220.0, 280.0]
+        let centerY = frame.size.height / 2
+        let centerX = positions[index]
+        
+        let cooridnate = self.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0)).withOffset(CGVector(dx: centerX, dy: centerY))
+        cooridnate.press(forDuration: 0.1)
+    }
+    
+    open func adjustNps(toIndex index: Int, withScale scale:Int = 5, withCorrection correction: CGFloat = 2) {
         let centerY = frame.size.height / 2
         let elementSize = frame.size.width / CGFloat(scale)
         let centerX = (elementSize * CGFloat(index)) + elementSize / correction
