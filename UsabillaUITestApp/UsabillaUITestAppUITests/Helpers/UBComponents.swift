@@ -86,7 +86,7 @@ struct NPSComponent {
 
     // selects an NPS value
     func select(index: Int) {
-        element.adjust(toIndex: index, withScale: 11)
+        element.adjustNps(toIndex: index, withScale: 11)
     }
 }
 

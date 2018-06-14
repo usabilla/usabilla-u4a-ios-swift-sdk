@@ -45,13 +45,12 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 8.3.3 or 9+
-- Swift 3.1, 3.2, 4.0
+- Xcode 9.0+
+- Swift 3.2+
 
 ## Installation
 
-Since version 4.0.0, our **master** branch contains the framework built with **swift 3.2** and **Xcode 9**
-If you are using **Xcode 8** please use or `Xcode8` branch or our releases tags that end with `-Xcode8` for example: `v4.0.0-Xcode8`
+You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
 ### CocoaPods
 
@@ -68,7 +67,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 4.0'
+pod 'Usabilla', '~> 5.0'
 
 End
 ```
@@ -90,7 +89,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v4.1.2"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.2"
 ```
 
 ### Manual
@@ -496,8 +495,7 @@ If you want to provide your own translation, you need to override **all** the ke
 The default file with the keys and the default text is the following:
 
 ```
-// Default usabilla english localisation
-"usa_more_feedback" = "Give more feedback";
+///Default usabilla english localisation
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
@@ -509,6 +507,9 @@ The default file with the keys and the default text is the following:
 "usa_choose_from_options" = "Choose from %d options";
 "usa_delete_screenshot" = "delete screenshot";
 "usa_edit_screenshot" = "change screenshot";
+"usa_powered_by_usabilla" = "powered by usabilla";
+"usa_tap_to_visit_usabilla" = "tap to visit usabilla.com";
+"usa_accessibility_button_label_continue" = "Continue";
 
 // Emoticons
 "usa_mood_hate" = "Hate";
