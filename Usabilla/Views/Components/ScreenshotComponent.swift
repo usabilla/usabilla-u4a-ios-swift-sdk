@@ -70,7 +70,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addConstraints()
 
         SwiftEventBus.onMainThread(self, name: "imagePicked") { result in
-            if let image = result.object as? UIImage {
+            if let image = result?.object as? UIImage {
                 self.imagePicked(image)
             }
         }

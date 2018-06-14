@@ -137,7 +137,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
         SwiftEventBus.onMainThread(self, name: "iPadPickerButtonTapped") { sender in
             if DeviceInfo.isIPad() {
-                guard let pickerComponent = sender.object as? PickerComponent else {
+                guard let pickerComponent = sender?.object as? PickerComponent else {
                     return
                 }
                 self.showPickerViewForiPad(pickerComponent: pickerComponent)
