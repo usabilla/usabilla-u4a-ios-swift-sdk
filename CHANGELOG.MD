@@ -1,3 +1,8 @@
+## 5.0.2
+#### Added
+- Support for **Xcode 10 beta**
+- Add animations to the Mood component.
+
 ## 5.0.1
 #### Added
 - Support for **Xcode 9.4**

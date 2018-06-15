@@ -71,6 +71,17 @@ pod 'Usabilla', '~> 5.0'
 
 End
 ```
+To use a specific tag of the repo for examlple `v5.0.2-Xcode-9.0`:
+```ruby
+use_frameworks!
+
+target 'YourProjectTarget' do
+  
+pod 'Usabilla', :git => 'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git', :tag => 'v5.0.2-Xcode-9.0'
+
+End
+```
+
 
 Then, run the following command:
 
@@ -89,7 +100,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.1"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.2"
 ```
 
 ### Manual
