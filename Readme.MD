@@ -89,7 +89,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.1"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.2-Xcode-10"
 ```
 
 ### Manual
