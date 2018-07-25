@@ -11,8 +11,8 @@ import UIKit
 
 class SliderComponent: UBComponent<SliderComponentViewModel> {
 
-    lazy var slider: UISlider = {
-        let slider = UISlider()
+    lazy var slider: UBSlider = {
+        let slider = UBSlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(slider)
         return slider
@@ -103,17 +103,24 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         rightLabel.textColor = theme.colors.text
         leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
         leftLabel.textColor = theme.colors.text
-
     }
 
     func barChangedValue() {
-        let fieldValue = Int(slider.value)
+        // rounded value
+        let fieldValue: Int = Int(slider.value)
+        // actual value
+        let offset: Float = slider.value - Float(fieldValue)
+        // snap the slider value the nearest round value
+        let selectedValue: Int = (offset >= 0.5) ? fieldValue + 1 : fieldValue
+        slider.value = Float(selectedValue)
+
         if let scale = viewModel?.scale {
-            valueLabel.text = "\(fieldValue)/\(scale)"
+            valueLabel.text = "\(selectedValue)/\(scale)"
         } else {
-            valueLabel.text = "\(fieldValue)/10"
+            valueLabel.text = "\(selectedValue)/10"
         }
-        viewModel.value = fieldValue
+
+        viewModel.value = Int(selectedValue)
         valueChanged()
     }
 }

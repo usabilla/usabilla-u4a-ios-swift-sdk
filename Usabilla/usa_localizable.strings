@@ -21,6 +21,7 @@
 "usa_powered_by_usabilla" = "powered by usabilla";
 "usa_tap_to_visit_usabilla" = "tap to visit usabilla.com";
 "usa_accessibility_button_label_continue" = "Continue";
+"usa_accessibility_slider_value_over" = "over";
 
 // Emoticons
 "usa_mood_hate" = "Hate";
