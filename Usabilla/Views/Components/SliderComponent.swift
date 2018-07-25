@@ -108,19 +108,16 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
     func barChangedValue() {
         // rounded value
         let fieldValue: Int = Int(slider.value)
-        // actual value
-        let offset: Float = slider.value - Float(fieldValue)
-        // snap the slider value the nearest round value
-        let selectedValue: Int = (offset >= 0.5) ? fieldValue + 1 : fieldValue
-        slider.value = Float(selectedValue)
+        // snap the slider value to the rounded value
+        slider.value = Float(fieldValue)
 
         if let scale = viewModel?.scale {
-            valueLabel.text = "\(selectedValue)/\(scale)"
+            valueLabel.text = "\(fieldValue)/\(scale)"
         } else {
-            valueLabel.text = "\(selectedValue)/10"
+            valueLabel.text = "\(fieldValue)/10"
         }
 
-        viewModel.value = Int(selectedValue)
+        viewModel.value = fieldValue
         valueChanged()
     }
 }
