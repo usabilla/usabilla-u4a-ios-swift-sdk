@@ -24,11 +24,11 @@
 "usa_accessibility_slider_value_over" = "over";
 
 // Emoticons
-"usa_mood_hate" = "Hate";
-"usa_mood_dislike" = "Dislike";
-"usa_mood_neutral" = "Neutral";
-"usa_mood_like" = "Like";
-"usa_mood_love" = "Love";
+"usa_mood_hate" = "I really don't like it";
+"usa_mood_dislike" = "I don't like it";
+"usa_mood_neutral" = "I feel neutral";
+"usa_mood_like" = "I like it";
+"usa_mood_love" = "I love it";
 
 // Stars
 "usa_mood_one_star" = "1 star";
