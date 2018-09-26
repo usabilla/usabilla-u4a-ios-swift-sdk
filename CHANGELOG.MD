@@ -1,3 +1,9 @@
+## 5.1.0
+#### Added
+- Support for **Xcode 10**
+- Accessibility/VoiceOver: Better Accessibilty for the slider component.
+- Accessibility/VoiceOver: Change the mood component labels.
+
 ## 5.0.2
 #### Added
 - Support for **Xcode 10 beta**

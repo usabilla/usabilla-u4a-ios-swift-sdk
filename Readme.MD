@@ -45,7 +45,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 9.0+
+- Xcode 9.4+
 - Swift 3.2+
 
 ## Installation
@@ -100,7 +100,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.2"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.1.0"
 ```
 
 ### Manual
