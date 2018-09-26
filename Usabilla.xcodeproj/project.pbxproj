@@ -431,6 +431,8 @@
 		C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
 		C5D1CE741F9E1963007B098E /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
 		C5D1CE751F9E1963007B098E /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
+		C5D7DB8B21060A8A00EFCF73 /* UBSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */; };
+		C5D7DB8C21060A8A00EFCF73 /* UBSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */; };
 		C5DC40861F7BDCAE00FA89B8 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
 		C5DC40A11F7BEA3D00FA89B8 /* Usabilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041275D71F792BF700A12E09 /* Usabilla.swift */; };
 		C5E06EBF1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */; };
@@ -718,6 +720,7 @@
 		C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerIPadComponent.swift; sourceTree = "<group>"; };
 		C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerParentComponent.swift; sourceTree = "<group>"; };
 		C5D1CE731F9E1963007B098E /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBSlider.swift; sourceTree = "<group>"; };
 		C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		C5E06EBE1F3CA04100DDCAA7 /* ShouldShowRequiredFieldHeader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShouldShowRequiredFieldHeader.json; sourceTree = "<group>"; };
 		C5E456FB1EA8A2480078D324 /* MoodFieldModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodFieldModelTests.swift; sourceTree = "<group>"; };
@@ -1087,6 +1090,7 @@
 				0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */,
 				430669961E76B4B30078E3B3 /* ComponentFactory.swift */,
 				04F54DE71CD75BA8002F501E /* Components */,
+				C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1625,6 +1629,7 @@
 				43CCD4561E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift in Sources */,
 				41AC38411F68814700F0DFC6 /* NPSComponent.swift in Sources */,
 				43AC10B31E1D09880064D758 /* AnimationManager.swift in Sources */,
+				C5D7DB8B21060A8A00EFCF73 /* UBSlider.swift in Sources */,
 				044204E01DCC94C1004FA09F /* CopyModel.swift in Sources */,
 				04F54E501CD76717002F501E /* JumpRule.swift in Sources */,
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
@@ -1890,6 +1895,7 @@
 				43B04F351F1F7EEF0032F057 /* BaseOptionsComponentViewModel.swift in Sources */,
 				41AC38451F68848500F0DFC6 /* NPSComponent.swift in Sources */,
 				43B04F361F1F7EEF0032F057 /* AnimationManager.swift in Sources */,
+				C5D7DB8C21060A8A00EFCF73 /* UBSlider.swift in Sources */,
 				43B04F371F1F7EEF0032F057 /* CopyModel.swift in Sources */,
 				43B04F381F1F7EEF0032F057 /* JumpRule.swift in Sources */,
 				43B04F391F1F7EEF0032F057 /* HTTPClient.swift in Sources */,

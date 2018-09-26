@@ -47,7 +47,7 @@ platform :ios do
 
     desc "Unit tests for all device model specified in fastlane/unit-tests.json"
     lane :unitTestAllDevices do
-        xcversion(version: "9.2")
+        xcversion(version: "9.4")
         versions = readUnitTestDevices
         versions.each do |deviceModel|
             unitTest(deviceModel: deviceModel)
@@ -85,7 +85,7 @@ platform :ios do
             workspace: 'Usabilla.xcworkspace',
             scheme: 'UsabillaUITestApp',
             test_without_building: true,            
-            devices: ["iPhone 6s (11.1)", "iPhone X (11.2)", "iPhone 7 (10.3.1)"]
+            devices: ["iPhone 6s (11.1)", "iPhone X (11.4)", "iPhone 7 (10.3.1)"]
         )
     end
 

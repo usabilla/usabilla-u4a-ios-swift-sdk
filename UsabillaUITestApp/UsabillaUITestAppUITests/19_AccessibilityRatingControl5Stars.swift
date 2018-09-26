@@ -20,15 +20,15 @@ class AccessibilityRatingControl5Stars: UBXCScenario {
         XCTAssertEqual(moodComponent.mood!.label, "select a rating out of 5")
 
         moodComponent.selectMood(atIndex: 0)
-        XCTAssertEqual(moodComponent.mood!.value as! String, "1 star")
+        XCTAssertEqual(moodComponent.mood!.value as! String, Star.oneStar.rawValue)
         moodComponent.selectMood(atIndex: 1)
-        XCTAssertEqual(moodComponent.mood!.value as! String, "2 stars")
+        XCTAssertEqual(moodComponent.mood!.value as! String, Star.twoStars.rawValue)
         moodComponent.selectMood(atIndex: 2)
-        XCTAssertEqual(moodComponent.mood!.value as! String, "3 stars")
+        XCTAssertEqual(moodComponent.mood!.value as! String, Star.threeStars.rawValue)
         moodComponent.selectMood(atIndex: 3)
-        XCTAssertEqual(moodComponent.mood!.value as! String, "4 stars")
+        XCTAssertEqual(moodComponent.mood!.value as! String, Star.fourStars.rawValue)
         moodComponent.selectMood(atIndex: 4)
-        XCTAssertEqual(moodComponent.mood!.value as! String, "5 stars")
+        XCTAssertEqual(moodComponent.mood!.value as! String, Star.fiveStars.rawValue)
     }
 }
 
