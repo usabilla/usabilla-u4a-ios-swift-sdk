@@ -1,11 +1,13 @@
 desc "Build framework For XCode 10"
 private_lane :buildXcode10FrameWork do |options|
     target = "Release"
+    version = options[:version]
     if options[:target] == nil
        UI.message("Version not specified in 'buildXcode10FrameWork, USING 'Release'")
     else 
 	   UI.message("Version not specified in 'buildXcode10FrameWork, USING 'Release'")
     end
+ 	xcversion(version: version)
     xcode_directory = "Xcode-10"
     project_directory = options[:project_directory]
     pod_framework_path = "Usabilla.xcarchive/Products/Library/Frameworks/Usabilla.framework"
@@ -29,6 +31,10 @@ private_lane :buildXcode10FrameWork do |options|
 	sh("cp -rf #{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/Modules #{project_directory}#{xcode_directory}/Pods/#{framework_name}/." )
 	sh("cp -rf #{project_directory}/build/Build/Products/#{target}-iphonesimulator/#{framework_name}/Modules/* #{project_directory}#{xcode_directory}/Pods/#{framework_name}/Modules/." )
 
+	#this should be done somewhere else
+	sh("rm -rf #{project_directory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{framework_name}")
+	sh("cp -rf #{project_directory}#{xcode_directory}/Pods/#{framework_name} #{project_directory}/automation/UsabillaSystemTest/UsabillaSystemTest/.")
+	
 end
 
 #desc "Create Release Directory"
