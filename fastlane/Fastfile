@@ -1,6 +1,7 @@
 fastlane_version "2.64.1"
 import "./CarthageFastFile.rb"
 import "./BuildFastFile.rb"
+import "./buildFramework.rb"
 
 default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
@@ -33,6 +34,15 @@ platform :ios do
        sh("killall -9 'Simulator' || echo 'No simulator launched'")
        sh("launchctl remove com.apple.CoreSimulator.CoreSimulatorService || true")
     end
+
+    desc "Builds the framework with XCode 10"
+    lane :buildXcode10 do 
+        buildXcode10FrameWork(
+            version: "Release",
+            project_directory: projectDirectory
+        )
+    end
+
 
     desc "Build for Unit Testing"
     lane :buildForUnitTesting do
@@ -159,7 +169,7 @@ platform :ios do
             project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
             scheme: "UsabillaSystemTest",
             clean: true,
-            devices: [ "iPhone 7 (11.1)"]
+            devices: [ "iPhone X (12.0)"]
         )
     end
 end

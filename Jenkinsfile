@@ -23,7 +23,7 @@ node('mac') {
         }
         // Everyone gets unit and code integration tests
         stage('Build') {
-            sh "bundle exec fastlane buildForUnitTesting"
+            sh "bundle exec fastlane buildXcode10"
             sh "bundle exec fastlane buildForUITesting"
         }
         stage('Unit Tests') {

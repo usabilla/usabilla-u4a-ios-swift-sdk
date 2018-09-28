@@ -2226,6 +2226,7 @@
 		04F54DDE1CD75A3F002F501E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = arm64;
 				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -2239,6 +2240,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2249,7 +2252,7 @@
 				USABILLA_API_HOST = "https://api.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
 		};

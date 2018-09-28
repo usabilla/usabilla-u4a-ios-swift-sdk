@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/Jack/Usabilla/iOS/UsabillaFeedbackForm/automation/UsabillaIntegrationTest/UsabillaSystemTest.xcodeproj">
+      location = "group:../UsabillaSystemTest/Usabilla.framework">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
