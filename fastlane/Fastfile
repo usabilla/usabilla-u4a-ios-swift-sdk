@@ -47,6 +47,7 @@ platform :ios do
 
     desc "Build for Unit Testing"
     lane :buildForUnitTesting do
+        xcversion(version: "10")
         scan(
             workspace: 'Usabilla.xcworkspace',
             scheme: 'Usabilla',
@@ -58,7 +59,7 @@ platform :ios do
 
     desc "Unit tests for all device model specified in fastlane/unit-tests.json"
     lane :unitTestAllDevices do
-        xcversion(version: "9.4")
+        xcversion(version: "10")
         versions = readUnitTestDevices
         versions.each do |deviceModel|
             unitTest(deviceModel: deviceModel)

@@ -26,9 +26,13 @@ node('mac') {
             sh "bundle exec fastlane buildXcode10"
             sh "bundle exec fastlane buildForUITesting"
         }
-        stage('Unit Tests') {
-            unitTest()
-        }
+        stage('System tests') {
+          systemTest()
+         }
+
+//        stage('Unit Tests') {
+//            unitTest()
+//        }
 
         if(env.BRANCH_NAME == 'master') {   
             stage('System tests') {
@@ -49,6 +53,11 @@ node('mac') {
 
         if(env.BRANCH_NAME ==~ '(develop|release|hotfix|feature|task)/?.*') {
             if(env.BRANCH_NAME ==~ 'task/.*') {
+                //Task does not get UI or system tests
+                currentBuild.result = 'SUCCESS'
+                return
+            }
+            if(env.BRANCH_NAME ==~ 'jenkins*') {
                 //Task does not get UI or system tests
                 currentBuild.result = 'SUCCESS'
                 return
