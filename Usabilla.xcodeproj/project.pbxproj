@@ -2195,6 +2195,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2226,6 +2227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2360,6 +2362,7 @@
 					x86_64,
 				);
 				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
