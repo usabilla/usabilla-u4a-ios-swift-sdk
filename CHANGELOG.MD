@@ -1,3 +1,7 @@
+## 5.1.2
+#### Fixed
+- Issue with LLVM while submitting to app store
+
 ## 5.1.1
 #### Fixed
 - Issue with LLVM while submitting to app store
