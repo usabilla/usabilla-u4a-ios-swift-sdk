@@ -94,6 +94,7 @@
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
 		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
+		102D809621637CA9003A3901 /* UsabillaLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 102D809421637CA9003A3901 /* UsabillaLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41AC383F1F6880D400F0DFC6 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
 		41AC38411F68814700F0DFC6 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
 		41AC38431F6883EF00F0DFC6 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
@@ -548,6 +549,9 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
+		102D809221637CA9003A3901 /* UsabillaLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		102D809421637CA9003A3901 /* UsabillaLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsabillaLib.h; sourceTree = "<group>"; };
+		102D809521637CA9003A3901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41AC383E1F6880D400F0DFC6 /* NPSControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSControl.swift; sourceTree = "<group>"; };
 		41AC38401F68814700F0DFC6 /* NPSComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponent.swift; sourceTree = "<group>"; };
 		41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
@@ -746,6 +750,13 @@
 				434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */,
 				434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */,
 				04F54DD31CD75A3F002F501E /* Usabilla.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		102D808F21637CA9003A3901 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,6 +999,7 @@
 			children = (
 				04575B5B1D997868001E0EC3 /* UsabillaTest */,
 				04F54DCA1CD75A3F002F501E /* Usabilla */,
+				102D809321637CA9003A3901 /* UsabillaLib */,
 				04F54DC91CD75A3F002F501E /* Products */,
 				F08DB90AC856170888540D82 /* Frameworks */,
 			);
@@ -999,6 +1011,7 @@
 				04F54DC81CD75A3F002F501E /* Usabilla.framework */,
 				04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */,
 				43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */,
+				102D809221637CA9003A3901 /* UsabillaLib.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1160,6 +1173,15 @@
 				04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		102D809321637CA9003A3901 /* UsabillaLib */ = {
+			isa = PBXGroup;
+			children = (
+				102D809421637CA9003A3901 /* UsabillaLib.h */,
+				102D809521637CA9003A3901 /* Info.plist */,
+			);
+			path = UsabillaLib;
 			sourceTree = "<group>";
 		};
 		4304B03E1E390E8D007C8796 /* Views */ = {
@@ -1424,6 +1446,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		102D808D21637CA9003A3901 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				102D809621637CA9003A3901 /* UsabillaLib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43B04FC11F1F7EEF0032F057 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1475,6 +1505,24 @@
 			productReference = 04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		102D809121637CA9003A3901 /* UsabillaLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 102D809A21637CA9003A3901 /* Build configuration list for PBXNativeTarget "UsabillaLib" */;
+			buildPhases = (
+				102D808D21637CA9003A3901 /* Headers */,
+				102D808E21637CA9003A3901 /* Sources */,
+				102D808F21637CA9003A3901 /* Frameworks */,
+				102D809021637CA9003A3901 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UsabillaLib;
+			productName = UsabillaLib;
+			productReference = 102D809221637CA9003A3901 /* UsabillaLib.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		43B04F331F1F7EEF0032F057 /* UsabillaInternal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43B04FCB1F1F7EEF0032F057 /* Build configuration list for PBXNativeTarget "UsabillaInternal" */;
@@ -1514,6 +1562,10 @@
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 					};
+					102D809121637CA9003A3901 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 04F54DC21CD75A3F002F501E /* Build configuration list for PBXProject "Usabilla" */;
@@ -1531,6 +1583,7 @@
 				04F54DC71CD75A3F002F501E /* Usabilla */,
 				43B04F331F1F7EEF0032F057 /* UsabillaInternal */,
 				04F54DD11CD75A3F002F501E /* UsabillaTests */,
+				102D809121637CA9003A3901 /* UsabillaLib */,
 			);
 		};
 /* End PBXProject section */
@@ -1560,6 +1613,13 @@
 				04575B791D99799C001E0EC3 /* test.json in Resources */,
 				0439437D1F99F55B008E1356 /* CampaignServiceTestBroken.json in Resources */,
 				047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		102D809021637CA9003A3901 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1885,6 +1945,13 @@
 				C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */,
 				43B0A2121E2CC4FF00879E5F /* IntFieldModelTest.swift in Sources */,
 				C5223B391F322318003CF696 /* ActiveStatusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		102D808E21637CA9003A3901 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2294,6 +2361,98 @@
 			};
 			name = Release;
 		};
+		102D809721637CA9003A3901 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UsabillaLib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		102D809821637CA9003A3901 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UsabillaLib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		102D809921637CA9003A3901 /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UsabillaLib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Production;
+		};
 		439AAD1C1FAB702E00DF6D9E /* Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2535,6 +2694,16 @@
 				04F54DE01CD75A3F002F501E /* Debug */,
 				04F54DE11CD75A3F002F501E /* Release */,
 				439AAD1F1FAB702E00DF6D9E /* Production */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		102D809A21637CA9003A3901 /* Build configuration list for PBXNativeTarget "UsabillaLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				102D809721637CA9003A3901 /* Debug */,
+				102D809821637CA9003A3901 /* Release */,
+				102D809921637CA9003A3901 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

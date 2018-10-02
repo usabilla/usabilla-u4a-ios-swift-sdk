@@ -42,6 +42,7 @@ platform :ios do
             version: "10",
             project_directory: projectDirectory
         )
+        buildCarthage
     end
 
 
@@ -110,7 +111,7 @@ platform :ios do
         UI.message("Building for Xcode-#{version}")
         xcversion(version: version)
         buildFramework
-        buildCarthage
+#        buildCarthage
         crateReleaseDirectory(
             version: version,
             project_directory: projectDirectory

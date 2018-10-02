@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>20</string>
+	<string>19</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pick a screenshot to submit from your gallery</string>
 	<key>NSPrincipalClass</key>

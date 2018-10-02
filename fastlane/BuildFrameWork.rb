@@ -20,9 +20,9 @@ private_lane :buildXcode10FrameWork do |options|
     sh("mkdir -p #{project_directory}#{xcode_directory}/Pods/#{framework_name}")
     sh("mkdir -p #{project_directory}#{xcode_directory}/Carthage")
 
-	sh("xcodebuild -derivedDataPath #{project_directory}/build -project #{project_directory}/UsabillaLib.xcodeproj -scheme Usabilla -configuration Release -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode")
-	sh("xcodebuild -derivedDataPath #{project_directory}/build -project #{project_directory}/UsabillaLib.xcodeproj -scheme Usabilla -configuration Release -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
-  
+	sh("xcodebuild -derivedDataPath #{project_directory}/build -project #{project_directory}/UsabillaLib/UsabillaLib.xcodeproj -scheme Usabilla -configuration Release -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode")
+	sh("xcodebuild -derivedDataPath #{project_directory}/build -project #{project_directory}/UsabillaLib/UsabillaLib.xcodeproj -scheme Usabilla -configuration Release -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
+  # CARTHAGE=YES
 #   sh("xcodebuild -derivedDataPath #{project_directory}/build -workspace #{project_directory}/Usabilla.xcworkspace -scheme Usabilla -configuration Release -sdk iphoneos")
 #	sh("xcodebuild -derivedDataPath #{project_directory}/build -workspace #{project_directory}/Usabilla.xcworkspace -scheme Usabilla -configuration Release -sdk iphonesimulator")
 
