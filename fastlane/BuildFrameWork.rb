@@ -1,72 +1,109 @@
-desc "Build framework For XCode 10"
-private_lane :buildXcode10FrameWork do |options|
-    target = "Release"
-    version = options[:version]
-    if options[:target] == nil
-       UI.message("Version not specified in 'buildXcode10FrameWork, USING 'Release'")
-    else 
-	   UI.message("Version not specified in 'buildXcode10FrameWork, USING 'Release'")
-    end
+import "./propertiesFile.rb"
+
+desc "Build framework For a given XCode version"
+private_lane :buildForXcodeVersion do |options|
+  if options[:version] == nil	
+    UI.message("'version' not specified in 'buildForXcodeVersion")
+  end
+	if options[:project_directory] == nil	
+    UI.message("'project_directory' not specified in 'buildForXcodeVersion")
+  end   
+
+  version = options[:version]
+  project_directory = options[:project_directory]
+
+  paths = Paths.new(version, project_directory)
  	xcversion(version: version)
-    xcode_directory = "Xcode-10"
-    project_directory = options[:project_directory]
-    pod_framework_path = "Usabilla.xcarchive/Products/Library/Frameworks/Usabilla.framework"
-    pod_symbols_path = "Usabilla.xcarchive/dSYMS/Usabilla.framework.dSYM"
-    framework_name = "Usabilla.framework"
-    framework_execFile = "Usabilla"
-    carthage_framework_path = "Usabilla.framework.zip"
-	sh("rm -rf #{project_directory}#{xcode_directory}")
-    sh("mkdir -p #{project_directory}#{xcode_directory}/Pods")
-    sh("mkdir -p #{project_directory}#{xcode_directory}/Pods/#{framework_name}")
-    sh("mkdir -p #{project_directory}#{xcode_directory}/Carthage")
-
-	sh("xcodebuild -derivedDataPath #{project_directory}/build -project #{project_directory}/UsabillaLib/UsabillaLib.xcodeproj -scheme Usabilla -configuration Release -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode")
-	sh("xcodebuild -derivedDataPath #{project_directory}/build -project #{project_directory}/UsabillaLib/UsabillaLib.xcodeproj -scheme Usabilla -configuration Release -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
-  # CARTHAGE=YES
-#   sh("xcodebuild -derivedDataPath #{project_directory}/build -workspace #{project_directory}/Usabilla.xcworkspace -scheme Usabilla -configuration Release -sdk iphoneos")
-#	sh("xcodebuild -derivedDataPath #{project_directory}/build -workspace #{project_directory}/Usabilla.xcworkspace -scheme Usabilla -configuration Release -sdk iphonesimulator")
-
-	sh("lipo -create -output \"#{project_directory}#{xcode_directory}/Pods/#{framework_name}/#{framework_execFile}\" \"#{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/#{framework_execFile}\" \"#{project_directory}/build/Build/Products/#{target}-iphonesimulator/#{framework_name}/#{framework_execFile}\"")
-	sh("dsymutil -o=\"#{project_directory}#{xcode_directory}/Pods/#{framework_name}.dSYM\" \"#{project_directory}#{xcode_directory}/Pods/#{framework_name}/Usabilla\"")
-	sh("cp #{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/Assets.car #{project_directory}#{xcode_directory}/Pods/#{framework_name}/." )
-	sh("cp #{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/Info.plist #{project_directory}#{xcode_directory}/Pods/#{framework_name}/." )
-	sh("cp #{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/usa_localizable.strings #{project_directory}#{xcode_directory}/Pods/#{framework_name}/." )
-	sh("cp -rf #{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/Headers #{project_directory}#{xcode_directory}/Pods/#{framework_name}/." )
-	sh("cp -rf #{project_directory}/build/Build/Products/#{target}-iphoneos/#{framework_name}/Modules #{project_directory}#{xcode_directory}/Pods/#{framework_name}/." )
-	sh("cp -rf #{project_directory}/build/Build/Products/#{target}-iphonesimulator/#{framework_name}/Modules/* #{project_directory}#{xcode_directory}/Pods/#{framework_name}/Modules/." )
-
-	sh("sh validateLLVM_NO_GCC.sh #{project_directory}#{xcode_directory}/Pods/#{framework_name}/")
-
-
-	#this should be done somewhere else
-	sh("rm -rf #{project_directory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{framework_name}")
-	sh("cp -rf #{project_directory}#{xcode_directory}/Pods/#{framework_name} #{project_directory}/automation/UsabillaSystemTest/UsabillaSystemTest/.")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
 end
 
-#desc "Create Release Directory"
-#private_lane :crateReleaseDirectory do |options|
-#    unless options[:version]
-#        UI.error("missing Xcode version")
-#    end
-#    unless options[:project_directory]
-#        UI.error("missing project directory path")
-#    end
-#    xcode_directory = "Xcode-#{options[:version]}"
-#    project_directory = options[:project_directory]
-#    pod_framework_path = "Usabilla.xcarchive/Products/Library/Frameworks/Usabilla.framework"
-#    pod_symbols_path = "Usabilla.xcarchive/dSYMS/Usabilla.framework.dSYM" 
-#    carthage_framework_path = "Usabilla.framework.zip"
-#    sh("rm -rf #{project_directory}#{xcode_directory}")
-#    sh("mkdir -p #{project_directory}#{xcode_directory}/Pods")
-#    sh("mkdir -p #{project_directory}#{xcode_directory}/Carthage")
-#    sh("cp -r #{project_directory}#{pod_framework_path} #{project_directory}#{xcode_directory}/Pods/")
-#    sh("cp -r #{project_directory}#{pod_symbols_path} #{project_directory}#{xcode_directory}/Pods/")
-#    sh("cp -r #{project_directory}#{carthage_framework_path} #{project_directory}#{xcode_directory}/Carthage/Carthage.framework.zip")
-#end
+desc "Vallidate build with UsabillaSystemTest app" 
+private_lane :systemTestsAfterBuild do |options|
+	if options[:version] == nil	
+       UI.message("'version' not specified in 'validateBuildLLVMGCC")
+    end   
+	if options[:project_directory] == nil	
+       UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
+    end   
 
-#desc "Clean Project folder"
-#private_lane :cleanProject do 
-#   sh("rm -f ../Usabilla.framework.zip")
-#    sh("rm -rf ../Usabilla.xcarchive")
-#    sh("rm -rf ../Usabilla.framework")
-#end
+    version = options[:version]
+    project_directory = options[:project_directory]
+    paths = Paths.new(version, project_directory)
+
+	#Copy the newly created artefacts to the UsabillaSystemTest direcotry
+	sh("rm -rf #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{paths.framework_name}")
+	sh("cp -rf #{paths.projectDirectory}#{paths.xcode_directory}/Pods/#{paths.framework_name} #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/.")
+    xcversion(version: version)
+        scan(
+            project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
+            scheme: "UsabillaSystemTest",
+            clean: true,        
+            devices: [ "iPhone X (11.3)"]
+    )
+end
+
+desc "Vallidate build for non LLVM and GCC code" 
+private_lane :validateBuildLLVMGCC do |options|
+	if options[:version] == nil	
+       UI.message("'version' not specified in 'validateBuildLLVMGCC")
+    end   
+	if options[:project_directory] == nil	
+       UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
+    end  
+     
+    version = options[:version]
+    project_directory = options[:project_directory]
+    paths = Paths.new(version, project_directory)
+
+	sh("sh validateLLVM_NO_GCC.sh #{paths.framework_path}/")
+
+end
+
+desc "Copy artefacts to the Pods directory"
+private_lane :copyToPodsFromBuild do |options|
+    if options[:version] == nil	
+       UI.message("'version' not specified in 'copyToPodsFromBuild")
+    end   
+	if options[:project_directory] == nil	
+       UI.message("'project_directory' not specified in 'copyToPodsFromBuild")
+    end   
+    
+    version = options[:version]
+    project_directory = options[:project_directory]
+    paths = Paths.new(version, project_directory)
+	sh("rm -rf #{projectDirectory}#{paths.xcode_directory}")
+#    sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Pods/")
+    sh("mkdir -p #{paths.framework_path}")
+
+	sh("lipo -create -output \"#{paths.framework_outputFile}\" \"#{paths.iphoneos_outputFile}\" \"#{paths.simulator_outputFile}\"")
+	sh("dsymutil -o=\"#{paths.framework_path}.dSYM\" \"#{paths.framework_outputFile}\"")
+	sh("cp #{paths.iphoneos_path}/Assets.car #{paths.framework_path}/." )
+	sh("cp #{paths.iphoneos_path}/Info.plist #{paths.framework_path}/." )
+	sh("cp #{paths.iphoneos_path}/usa_localizable.strings #{paths.framework_path}/." )
+	sh("cp -rf #{paths.iphoneos_path}/Headers #{paths.framework_path}/." )
+	sh("cp -rf #{paths.iphoneos_path}/Modules #{paths.framework_path}/." )
+	sh("cp -rf #{paths.simulator_path}/Modules/* #{paths.framework_path}/Modules/." )
+end
+
+desc "Copy artefacts to the Carthage directory"
+private_lane :copyToCarthageFromBuild do |options|
+    if options[:version] == nil	
+       UI.message("'version' not specified in 'copyToCarthageFromBuild")
+    end   
+	if options[:project_directory] == nil	
+       UI.message("'project_directory' not specified in 'copyToPodsFromBuild")
+    end   
+    
+    version = options[:version]
+    project_directory = options[:project_directory]
+    paths = Paths.new(version, project_directory)
+    sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Carthage/Carthage/Build/iOS")
+
+	sh("cp -rf #{paths.framework_path} #{paths.carthage_outputPath}/." )
+	sh("cp -rf #{paths.carthage_dSYMPath}/*.dSYM #{paths.carthage_outputPath}/." )
+	sh("cp #{paths.carthage_symbolsPath}/*.bcsymbolmap #{paths.carthage_outputPath}/." )
+	sh("cd #{paths.carthage_path}/ && zip -r #{paths.carthage_path}/#{paths.carthageFileName} Carthage/")
+	sh("rm -rf #{paths.carthage_path}/Carthage")
+end
+

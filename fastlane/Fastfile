@@ -1,68 +1,69 @@
 fastlane_version "2.64.1"
+import "./propertiesFile.rb"
 import "./CarthageFastFile.rb"
 import "./BuildFastFile.rb"
 import "./buildFramework.rb"
-
 default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
 
-    # def xcode_version 
-    #     sh("xcodebuild -version | head -1 | sed -e 's@.*\([0-9]..\).*@\1@'")
-    # end
-    def projectDirectory
-        "#{File.expand_path(File.dirname(__FILE__))}/../"
-    end
-
-    def cleanReleaseProject
-        sh("rm -rf #{projectDirectory}automation/ReleaseValidator/Usabilla.Framework")        
-    end
-
-    def readXcodeVersions
-        JSON.parse(File.read("versions.json"), {:symbolize_names => true})
-    end
-
-    def readXcodeVersionsValidation
-        JSON.parse(File.read("versions-validate.json"), {:symbolize_names => true})
-    end
-
-    def readUnitTestDevices
-        JSON.parse(File.read("unit-test-devices.json"), {:symbolize_names => true})
-    end
-
-    def resetSimulator
-       sh("killall -9 'Simulator' || echo 'No simulator launched'")
-       sh("launchctl remove com.apple.CoreSimulator.CoreSimulatorService || true")
-    end
-
     desc "Builds the framework with XCode 10"
     lane :buildXcode10 do 
-        buildXcode10FrameWork(
-            target: "Release",
-            version: "10",
+        buildForXcodeVersion(
+            version: "10.0",
             project_directory: projectDirectory
         )
-        buildCarthage
+   		
     end
 
-
-    desc "Build for Unit Testing"
-    lane :buildForUnitTesting do
-        xcversion(version: "10")
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'Usabilla',
-            clean: true,
-            build_for_testing: true,
-            derived_data_path: './derivedData'
+    desc "Create Artefacts (Pods and Carthage)"
+    lane :createArteFacts do 
+		copyToPodsFromBuild(
+            version: "10.0",
+            project_directory: projectDirectory
         )
+		copyToCarthageFromBuild(
+            version: "10.0",
+            project_directory: projectDirectory
+        )
+    end
+
+    # desc "Build for Unit Testing"
+    # lane :buildForUnitTesting do
+    #     xcversion(version: "10")
+    #     scan(
+    #         workspace: 'Usabilla.xcworkspace',
+    #         scheme: 'Usabilla',
+    #         clean: true,
+    #         build_for_testing: true,
+    #         derived_data_path: './derivedData'
+    #     )
+    # end
+
+    # runUnitTests
+
+    desc "Run unit tests for all xcode versions"
+    lane :runUnitTests do
+        versions = checkXcodeVersions
+        versions.each do |version|
+            xcversion(version: version)
+            # Build for given xcode version
+            scan(
+                workspace: 'Usabilla.xcworkspace',
+                scheme: 'Usabilla',
+                clean: true,
+                build_for_testing: true,
+                derived_data_path: './derivedData'
+            )
+            # Unit test for all devices
+            unitTestAllDevices(version: version)
+        end
     end
 
     desc "Unit tests for all device model specified in fastlane/unit-tests.json"
-    lane :unitTestAllDevices do
-        xcversion(version: "10")
-        versions = readUnitTestDevices
-        versions.each do |deviceModel|
+    lane :unitTestAllDevices do |version|
+        deviceModels = readUnitTestDevices
+        deviceModels.each do |deviceModel|
             unitTest(deviceModel: deviceModel)
         end
     end
@@ -111,7 +112,6 @@ platform :ios do
         UI.message("Building for Xcode-#{version}")
         xcversion(version: version)
         buildFramework
-#        buildCarthage
         crateReleaseDirectory(
             version: version,
             project_directory: projectDirectory
@@ -132,10 +132,22 @@ platform :ios do
     lane :buildAll do
         versions = checkXcodeVersions
         versions.each do |version|
-            buildSDK(version: version)
+        buildForXcodeVersion(
+            version: version,
+            project_directory: projectDirectory
+        )
+        #buildSDK(version: version)
         end
     end
 
+	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
+	lane :validateFrameWork do
+			validateBuildLLVMGCC(
+            version: "10.0",
+            project_directory: projectDirectory
+        )
+	end
+	
     desc "Validate integrating the framework (with specified version) into a sample project"
     lane :validateSDK do |options|
         unless options[:version]
@@ -168,14 +180,9 @@ platform :ios do
 
     desc "Run System tests"
     lane :systemTests do 
-    	version = "10"
-        xcversion(version: version)
-        scan(
-            project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
-            scheme: "UsabillaSystemTest",
-            clean: true,
-            
-            devices: [ "iPhone X (11.3)"]
-        )
+        systemTestsAfterBuild(
+    	    version: "10.0",
+            project_directory: projectDirectory
+    	)
     end
 end

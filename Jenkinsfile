@@ -22,10 +22,19 @@ node('mac') {
             sh "bin/bootstrap-if-needed"
         }
         // Everyone gets unit and code integration tests
-        stage('Build') {
-            sh "bundle exec fastlane buildXcode10"
-            sh "bundle exec fastlane buildForUITesting"
+
+        stage('Run UT') {
+            sh "bundle exec fastlane runUnitTests"
+            sh "bundle exec fastlane buildAll"
         }
+
+		stage("Create Artefacts") {
+			sh "bundle exec fastlane createArteFacts"
+		} 
+		stage("Validate framework") {
+			sh "bundle exec fastlane validateFrameWork"
+		} 
+
         stage('System tests') {
           systemTest()
          }
@@ -53,11 +62,6 @@ node('mac') {
 
         if(env.BRANCH_NAME ==~ '(develop|release|hotfix|feature|task)/?.*') {
             if(env.BRANCH_NAME ==~ 'task/.*') {
-                //Task does not get UI or system tests
-                currentBuild.result = 'SUCCESS'
-                return
-            }
-            if(env.BRANCH_NAME ==~ 'jenkins*') {
                 //Task does not get UI or system tests
                 currentBuild.result = 'SUCCESS'
                 return
