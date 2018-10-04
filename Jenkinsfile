@@ -39,22 +39,10 @@ node('mac') {
           systemTest()
          }
 
-//        stage('Unit Tests') {
-//            unitTest()
-//        }
 
         if(env.BRANCH_NAME == 'master') {   
-            stage('System tests') {
-                systemTest()
-            }
-            stage('Package frameworks') {
-                sh "bundle exec fastlane buildAll"
-            }
             stage('Validation'){
                 sh "bundle exec fastlane validateAll"
-            }
-            stage('Save Artifacts') {
-                archiveArtifacts 'Xcode*/**'
             }
             currentBuild.result = 'SUCCESS'
             return
@@ -69,15 +57,12 @@ node('mac') {
             stage('UI Tests') {
                 uiTest()
             }
-            if(env.BRANCH_NAME ==~ 'feature/.*') {
-                //Feature does not get system tests
-                currentBuild.result = 'SUCCESS'
-                return
-            }
-            stage('System tests') {
-                systemTest()
-            }
+            currentBuild.result = 'SUCCESS'
+            return
         }
+        currentBuild.result = 'SUCCESS'
+        return
+
     }
 }
 

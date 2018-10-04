@@ -7,15 +7,21 @@ default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
 
-    desc "Builds the framework with XCode 10"
-    lane :buildXcode10 do 
+#used in STAGE  "Run UT"	
+    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+    lane :buildAll do
+        versions = checkXcodeVersions
+        versions.each do |version|
         buildForXcodeVersion(
-            version: "10.0",
+            version: version,
             project_directory: projectDirectory
         )
-   		
+        #buildSDK(version: version)
+        end
     end
 
+
+#used in STAGE  "Create Artefacts"	
     desc "Create Artefacts (Pods and Carthage)"
     lane :createArteFacts do 
 		copyToPodsFromBuild(
@@ -28,20 +34,7 @@ platform :ios do
         )
     end
 
-    # desc "Build for Unit Testing"
-    # lane :buildForUnitTesting do
-    #     xcversion(version: "10")
-    #     scan(
-    #         workspace: 'Usabilla.xcworkspace',
-    #         scheme: 'Usabilla',
-    #         clean: true,
-    #         build_for_testing: true,
-    #         derived_data_path: './derivedData'
-    #     )
-    # end
-
-    # runUnitTests
-
+#used in STAGE  "Run UT"
     desc "Run unit tests for all xcode versions"
     lane :runUnitTests do
         versions = checkXcodeVersions
@@ -60,16 +53,61 @@ platform :ios do
         end
     end
 
+#used in STAGE  "UI Tests"
+    desc "UI test"
+    lane :uiTest do
+        scan(
+            workspace: 'Usabilla.xcworkspace',
+            scheme: 'UsabillaUITestApp',
+            test_without_building: true,            
+            devices: ["iPhone 6s (11.1)", "iPhone X (11.2)", "iPhone 7 (10.3.1)"]
+        )
+    end
+
+#NOT USED
+    desc "Check that all required xcode versions are installed"
+    lane :checkXcodeVersions do
+        versions = readXcodeVersions
+        versions.each do |version|
+            xcversion(version: version)         
+        end
+        versions
+    end
+
+#used in STAGE  "System tests"
+    desc "Run System tests"
+    lane :systemTests do 
+        systemTestsAfterBuild(
+    	    version: "10.0",
+            project_directory: projectDirectory
+    	)
+    end
+
+#used in STAGE  "Validate framework"
+	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
+	lane :validateFrameWork do
+			validateBuildLLVMGCC(
+            version: "10.0",
+            project_directory: projectDirectory
+        )
+	end
+
+##############################################
+########       PRIVATE LANES          ########
+##############################################
+
+#used in  lane "runUnitTests"
     desc "Unit tests for all device model specified in fastlane/unit-tests.json"
-    lane :unitTestAllDevices do |version|
+    private_lane :unitTestAllDevices do |version|
         deviceModels = readUnitTestDevices
         deviceModels.each do |deviceModel|
             unitTest(deviceModel: deviceModel)
         end
     end
 
+#used in lane "unitTestAllDevices"
     desc "Unit test"
-    lane :unitTest do |options|
+    private_lane :unitTest do |options|
         unless options[:deviceModel]
             UI.error("missing device model")
         end
@@ -82,74 +120,10 @@ platform :ios do
             device: options[:deviceModel]
         )
     end
-
-    desc "Build for UI Testing"
-    lane :buildForUITesting do
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'UsabillaUITestApp',
-            clean: true,
-            build_for_testing: true,
-        )
-    end
-
-    desc "UI test"
-    lane :uiTest do
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'UsabillaUITestApp',
-            test_without_building: true,            
-            devices: ["iPhone 6s (11.1)", "iPhone X (11.4)", "iPhone 7 (10.3.1)"]
-        )
-    end
-
-    desc "Builds the framework for the specified framework"
-    lane :buildSDK do |options|
-        unless options[:version]
-            UI.error("missing Xcode version")
-        end
-        version = options[:version]
-        UI.message("Building for Xcode-#{version}")
-        xcversion(version: version)
-        buildFramework
-        crateReleaseDirectory(
-            version: version,
-            project_directory: projectDirectory
-        )
-        cleanProject
-    end
-
-    desc "Check that all required xcode versions are installed"
-    lane :checkXcodeVersions do
-        versions = readXcodeVersions
-        versions.each do |version|
-            xcversion(version: version)         
-        end
-        versions
-    end
-
-    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-    lane :buildAll do
-        versions = checkXcodeVersions
-        versions.each do |version|
-        buildForXcodeVersion(
-            version: version,
-            project_directory: projectDirectory
-        )
-        #buildSDK(version: version)
-        end
-    end
-
-	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
-	lane :validateFrameWork do
-			validateBuildLLVMGCC(
-            version: "10.0",
-            project_directory: projectDirectory
-        )
-	end
-	
+    
+#used in lane  "validateAll"	
     desc "Validate integrating the framework (with specified version) into a sample project"
-    lane :validateSDK do |options|
+    private_lane :validateSDK do |options|
         unless options[:version]
             UI.error("missing Xcode version")
         end
@@ -170,19 +144,13 @@ platform :ios do
         resetSimulator
     end
 
+#used in STAGE  "Validation"	
     desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
-    lane :validateAll do
+    private_lane :validateAll do
         versions = readXcodeVersionsValidation
         versions.each do |version|
             validateSDK(version: version)
         end
     end
 
-    desc "Run System tests"
-    lane :systemTests do 
-        systemTestsAfterBuild(
-    	    version: "10.0",
-            project_directory: projectDirectory
-    	)
-    end
 end
