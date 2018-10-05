@@ -36,23 +36,20 @@ platform :ios do
         end
     end
 
-#used in STAGE  "Run UT"
+#used in STAGE  "Run Unit Tests"
     desc "Run unit tests for all xcode versions"
     lane :runUnitTests do
-        versions = checkXcodeVersions
-        versions.each do |version|
-            xcversion(version: version)
-            # Build for given xcode version
-            scan(
-                workspace: 'Usabilla.xcworkspace',
-                scheme: 'Usabilla',
-                clean: true,
-                build_for_testing: true,
-                derived_data_path: './derivedData'
-            )
-            # Unit test for all devices
-            unitTestAllDevices(version: version)
-        end
+        version = "10"
+        # Build for given xcode version
+        scan(
+            workspace: 'Usabilla.xcworkspace',
+            scheme: 'Usabilla',
+            clean: true,
+            build_for_testing: true,
+            derived_data_path: './derivedData'
+        )
+        # Unit test for all devices
+        unitTestAllDevices(version: version)
     end
 
 #used in STAGE  "UI Tests"
