@@ -41,7 +41,7 @@ private_lane :buildAndRunUITest do |options|
  	xcversion(version: version)
 
 	sh("xcodebuild clean -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator")
-	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
+	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator")
 
     devices.each do |deviceModel|
 		sh("xcodebuild  test -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme UsabillaUITestApp -destination '#{deviceModel}'")

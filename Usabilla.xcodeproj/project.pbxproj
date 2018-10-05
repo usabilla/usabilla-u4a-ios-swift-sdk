@@ -548,8 +548,6 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
-		102D809421637CA9003A3901 /* UsabillaLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsabillaLib.h; sourceTree = "<group>"; };
-		102D809521637CA9003A3901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41AC383E1F6880D400F0DFC6 /* NPSControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSControl.swift; sourceTree = "<group>"; };
 		41AC38401F68814700F0DFC6 /* NPSComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponent.swift; sourceTree = "<group>"; };
 		41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
@@ -990,7 +988,6 @@
 			children = (
 				04575B5B1D997868001E0EC3 /* UsabillaTest */,
 				04F54DCA1CD75A3F002F501E /* Usabilla */,
-				102D809321637CA9003A3901 /* UsabillaLib */,
 				04F54DC91CD75A3F002F501E /* Products */,
 				F08DB90AC856170888540D82 /* Frameworks */,
 			);
@@ -1163,15 +1160,6 @@
 				04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		102D809321637CA9003A3901 /* UsabillaLib */ = {
-			isa = PBXGroup;
-			children = (
-				102D809421637CA9003A3901 /* UsabillaLib.h */,
-				102D809521637CA9003A3901 /* Info.plist */,
-			);
-			path = UsabillaLib;
 			sourceTree = "<group>";
 		};
 		4304B03E1E390E8D007C8796 /* Views */ = {
@@ -2238,7 +2226,7 @@
 		04F54DDE1CD75A3F002F501E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
