@@ -2,6 +2,7 @@ import "./propertiesFile.rb"
 
 desc "Build framework For a given XCode version"
 private_lane :buildForXcodeVersion do |options|
+
   if options[:version] == nil	
     UI.message("'version' not specified in 'buildForXcodeVersion")
   end
@@ -20,18 +21,12 @@ end
 
 desc "Vallidate build with UsabillaSystemTest app" 
 private_lane :systemTestsAfterBuild do |options|
-	if options[:version] == nil	
-       UI.message("'version' not specified in 'validateBuildLLVMGCC")
-    end   
-	if options[:project_directory] == nil	
-       UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
-    end   
+  version = options[:version]
+  validateBuildLLVMGCC(version: version)
+  project_directory = options[:project_directory]
+  paths = Paths.new(version, project_directory)
 
-    version = options[:version]
-    project_directory = options[:project_directory]
-    paths = Paths.new(version, project_directory)
-
-	#Copy the newly created artefacts to the UsabillaSystemTest direcotry
+#Copy the newly created artefacts to the UsabillaSystemTest direcotry
 	sh("rm -rf #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{paths.framework_name}")
 	sh("cp -rf #{paths.projectDirectory}#{paths.xcode_directory}/Pods/#{paths.framework_name} #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/.")
     xcversion(version: version)
@@ -45,36 +40,37 @@ end
 
 desc "Vallidate build for non LLVM and GCC code" 
 private_lane :validateBuildLLVMGCC do |options|
+
 	if options[:version] == nil	
-       UI.message("'version' not specified in 'validateBuildLLVMGCC")
-    end   
+     UI.message("'version' not specified in 'validateBuildLLVMGCC")
+  end   
 	if options[:project_directory] == nil	
-       UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
-    end  
+     UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
+  end  
      
     version = options[:version]
     project_directory = options[:project_directory]
     paths = Paths.new(version, project_directory)
 
 	sh("sh validateLLVM_NO_GCC.sh #{paths.framework_path}/")
-
 end
 
 desc "Copy artefacts to the Pods directory"
 private_lane :copyToPodsFromBuild do |options|
-    if options[:version] == nil	
-       UI.message("'version' not specified in 'copyToPodsFromBuild")
-    end   
+
+  if options[:version] == nil	
+     UI.message("'version' not specified in 'copyToPodsFromBuild")
+  end   
 	if options[:project_directory] == nil	
-       UI.message("'project_directory' not specified in 'copyToPodsFromBuild")
-    end   
+     UI.message("'project_directory' not specified in 'copyToPodsFromBuild")
+  end   
     
-    version = options[:version]
-    project_directory = options[:project_directory]
-    paths = Paths.new(version, project_directory)
+  version = options[:version]
+  project_directory = options[:project_directory]
+  paths = Paths.new(version, project_directory)
+
 	sh("rm -rf #{projectDirectory}#{paths.xcode_directory}")
-#    sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Pods/")
-    sh("mkdir -p #{paths.framework_path}")
+  sh("mkdir -p #{paths.framework_path}")
 
 	sh("lipo -create -output \"#{paths.framework_outputFile}\" \"#{paths.iphoneos_outputFile}\" \"#{paths.simulator_outputFile}\"")
 	sh("dsymutil -o=\"#{paths.framework_path}.dSYM\" \"#{paths.framework_outputFile}\"")
@@ -92,13 +88,13 @@ private_lane :copyToCarthageFromBuild do |options|
        UI.message("'version' not specified in 'copyToCarthageFromBuild")
     end   
 	if options[:project_directory] == nil	
-       UI.message("'project_directory' not specified in 'copyToPodsFromBuild")
+       UI.message("'project_directory' not specified in 'copyToCarthageFromBuild")
     end   
-    
-    version = options[:version]
-    project_directory = options[:project_directory]
-    paths = Paths.new(version, project_directory)
-    sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Carthage/Carthage/Build/iOS")
+
+  version = options[:version]
+  project_directory = options[:project_directory]
+  paths = Paths.new(version, project_directory)
+  sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Carthage/Carthage/Build/iOS")
 
 	sh("cp -rf #{paths.framework_path} #{paths.carthage_outputPath}/." )
 	sh("cp -rf #{paths.carthage_dSYMPath}/*.dSYM #{paths.carthage_outputPath}/." )

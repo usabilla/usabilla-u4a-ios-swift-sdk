@@ -15,30 +15,31 @@ node('mac') {
                 userRemoteConfigs: [[credentialsId: 'jenkins-github-user', url: 'git@github.com:usabilla/usabilla-u4a-ios-swift.git']]
             ])
         }
+
         stage('Install') {
             sh "env"
             sh "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3"
             sh "bundle update fastlane"
             sh "bin/bootstrap-if-needed"
         }
-        // Everyone gets unit and code integration tests
 
-        stage('Run UT') {
+        //All branches gets unit and code integration tests
+        stage('Run Unit Tests') {
             sh "bundle exec fastlane runUnitTests"
             sh "bundle exec fastlane buildAll"
         }
 
 		stage("Create Artefacts") {
-			sh "bundle exec fastlane createArteFacts"
-		} 
+			sh "bundle exec fastlane createArtefacts"
+		}
+
 		stage("Validate framework") {
 			sh "bundle exec fastlane validateFrameWork"
 		} 
 
         stage('System tests') {
           systemTest()
-         }
-
+        }
 
         if(env.BRANCH_NAME == 'master') {   
             stage('Validation'){
@@ -62,7 +63,6 @@ node('mac') {
         }
         currentBuild.result = 'SUCCESS'
         return
-
     }
 }
 

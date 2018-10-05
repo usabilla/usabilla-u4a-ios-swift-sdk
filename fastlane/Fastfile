@@ -20,10 +20,9 @@ platform :ios do
         end
     end
 
-
 #used in STAGE  "Create Artefacts"	
     desc "Create Artefacts (Pods and Carthage)"
-    lane :createArteFacts do 
+    lane :createArtefacts do 
         versions = checkXcodeVersions
         versions.each do |version|
 			copyToPodsFromBuild(
