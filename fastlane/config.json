@@ -1,0 +1,6 @@
+{
+	"lastXcodeVersion" 	: "10",
+	"xcodeVersions" 	: ["10", "9.4"],
+	"uiTestDevices"		: ["iPhone 6s (11.1)", "iPhone X (11.2)", "iPhone 7 (10.3.1)"],
+	"unitTestDevices"	: ["iPhone X (12.0)"]
+}

@@ -7,18 +7,25 @@
 
     def cleanReleaseProject
         sh("rm -rf #{projectDirectory}automation/ReleaseValidator/Usabilla.Framework")        
+    end 
+
+	def config
+        JSON.parse(File.read("config.json"), {:symbolize_names => true})
     end
 
-    def readXcodeVersions
-        JSON.parse(File.read("versions.json"), {:symbolize_names => true})
+    def xcodeVersions
+		config[:xcodeVersions]
     end
 
-    def readXcodeVersionsValidation
-        JSON.parse(File.read("versions-validate.json"), {:symbolize_names => true})
+    def lastXcodeVersion
+        config[:lastXcodeVersion]
+    end
+    def uiTestDevices
+        config[:uiTestDevices]
     end
 
-    def readUnitTestDevices
-        JSON.parse(File.read("unit-test-devices.json"), {:symbolize_names => true})
+    def unitTestDevices
+        config[:unitTestDevices]
     end
 
     def resetSimulator

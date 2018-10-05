@@ -1,186 +1,99 @@
-fastlane_version "2.64.1"
-import "./propertiesFile.rb"
-import "./CarthageFastFile.rb"
-import "./BuildFastFile.rb"
-import "./buildFramework.rb"
-default_platform :ios
-actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
-platform :ios do
+node('mac') {
+    withEnv(['RBENV_VERSION=2.4.2','SWIFTLINT_VERSION=0.24.0']) {
+        stage('Checkout') {
+            checkout([
+                $class: 'GitSCM',
+                branches: scm.branches,
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'SubmoduleOption',
+                disableSubmodules: false,
+                parentCredentials: true,
+                recursiveSubmodules: true,
+                reference: '',
+                trackingSubmodules: false]],
+                submoduleCfg: [],
+                userRemoteConfigs: [[credentialsId: 'jenkins-github-user', url: 'git@github.com:usabilla/usabilla-u4a-ios-swift.git']]
+            ])
+        }
 
+        stage('Install') {
+            sh "env"
+            sh "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3"
+            sh "bundle update fastlane"
+            sh "bin/bootstrap-if-needed"
+        }
 
-#used in STAGE  "Run UT"    
-    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-    lane :buildAll do
-        versions = checkXcodeVersions
-        versions.each do |version|
-        buildForXcodeVersion(
-            version: version,
-            project_directory: projectDirectory
-        )
+        //All branches gets unit and code integration tests
+        stage('Run Unit Tests') {
+            sh "bundle exec fastlane runUnitTests"
+        }
 
-        end
-    end
+        stage("Build All & Generate artefacts") {
+            sh "bundle exec fastlane buildAllAndGenerateArtefacts"
+        }
 
-#used in STAGE  "Generate Artefacts"
-    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-    lane :buildAllAndGenerateArtefacts do
-        versions = checkXcodeVersions
-        versions.each do |version|
-        # Build for xcode version
-        buildForXcodeVersion(
-            version: version,
-            project_directory: projectDirectory
-        )
-        # Copy generated artefacts for carthage and pods
-        copyToPodsFromBuild(
-            version: version,
-            project_directory: projectDirectory
-        )
-        copyToCarthageFromBuild(
-            version: version,
-            project_directory: projectDirectory
-        )
-        end
-    end
+        stage("Validate framework") {
+            sh "bundle exec fastlane validateFrameWork"
+        } 
 
-#used in STAGE  "Create Artefacts"	
-    desc "Create Artefacts (Pods and Carthage)"
-    lane :createArtefacts do 
-        versions = checkXcodeVersions
-        versions.each do |version|
-			copyToPodsFromBuild(
-    	        version: version,
-        	    project_directory: projectDirectory
-        	)
-			copyToCarthageFromBuild(
-    	        version: version,
-        	    project_directory: projectDirectory
-	        )
-        end
-    end
+        if(env.BRANCH_NAME == 'master') {   
+            stage('Validation'){
+                sh "bundle exec fastlane validateAll"
+            }
 
+            currentBuild.result = 'SUCCESS'
+            return
+        }
 
+        if(env.BRANCH_NAME ==~ '(develop|release|hotfix|feature|task)/?.*') {
+            if(env.BRANCH_NAME ==~ 'task/.*') {
+                //Task does not get UI or system tests
+                currentBuild.result = 'SUCCESS'
+                return
+            }
 
-#used in STAGE  "Run Unit Tests"
-    desc "Run unit tests for all xcode versions"
-    lane :runUnitTests do
-        version = "10"
-        # Build for given xcode version
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'Usabilla',
-            clean: true,
-            build_for_testing: true,
-            derived_data_path: './derivedData'
-        )
-        # Unit test for all devices
-        unitTestAllDevices(version: version)
-    end
+            stage('UI Tests') {
+                uiTest()
+            }
 
-#used in STAGE  "UI Tests"
-    desc "UI test"
-    lane :uiTest do
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'UsabillaUITestApp',
-            test_without_building: true,            
-            devices: ["iPhone 6s (11.1)", "iPhone X (11.2)", "iPhone 7 (10.3.1)"]
-        )
-    end
+            if(env.BRANCH_NAME ==~ 'feature/.*') {
+                //Feature does not get system tests
+                currentBuild.result = 'SUCCESS'
+                return
+            }
 
-#NOT USED
-    desc "Check that all required xcode versions are installed"
-    lane :checkXcodeVersions do
-        versions = readXcodeVersions
-        versions.each do |version|
-            xcversion(version: version)         
-        end
-        versions
-    end
+            stage('System tests') {
+                systemTest()
+            }
+            currentBuild.result = 'SUCCESS'
+            return
+        }
+    }
+}
 
-#used in STAGE  "System tests"
-    desc "Run System tests"
-    lane :systemTests do 
-        versions = checkXcodeVersions
-        versions.each do |version|
-	        systemTestsAfterBuild(
-    		    version: version,
-        	    project_directory: projectDirectory
-    		)
-    	end
-    end
+def unitTest() {
+    sh "bundle exec fastlane unitTestAllDevices"
+    withCredentials(
+        [usernamePassword(credentialsId: '34dc9a59-1608-4470-9860-bd19030cadbb',
+                          passwordVariable: 'DANGER_GITHUB_API_TOKEN',
+                          usernameVariable: 'JENKINS_USER')]) {
+        sh "./automation/danger.sh"
+    }
+    sh "bundle exec slather coverage --html --output-directory slather-coverage"
+    publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'slather-coverage',
+                reportFiles: 'index.html',
+                reportName: 'Coverage Report'
+    ])
+}
 
-#used in STAGE  "Validate framework"
-	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
-	lane :validateFrameWork do
-      versions = checkXcodeVersions
-        versions.each do |version|
-			validateBuildLLVMGCC(
-	            version: version,
-	            project_directory: projectDirectory
-    	    )
-    	end
-	end
+def uiTest() {
+    sh "bundle exec fastlane uiTest"
+}
 
-##############################################
-########       PRIVATE LANES          ########
-##############################################
-
-#used in  lane "runUnitTests"
-    desc "Unit tests for all device model specified in fastlane/unit-tests.json"
-    private_lane :unitTestAllDevices do |version|
-        deviceModels = readUnitTestDevices
-        deviceModels.each do |deviceModel|
-            unitTest(deviceModel: deviceModel)
-        end
-    end
-
-#used in lane "unitTestAllDevices"
-    desc "Unit test"
-    private_lane :unitTest do |options|
-        unless options[:deviceModel]
-            UI.error("missing device model")
-        end
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'Usabilla',
-            test_without_building: true,
-            derived_data_path: './derivedData',
-            code_coverage: true,
-            device: options[:deviceModel]
-        )
-    end
-    
-#used in lane  "validateAll"	
-    desc "Validate integrating the framework (with specified version) into a sample project"
-    private_lane :validateSDK do |options|
-        unless options[:version]
-            UI.error("missing Xcode version")
-        end
-        version = options[:version]
-        UI.message("Validating for Xcode-#{version}")
-
-        resetSimulator
-        xcversion(version: version)
-        framework_path = "#{projectDirectory}Xcode-#{version}/Pods/Usabilla.Framework"
-        cleanReleaseProject
-        sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/")
-	    scan(
-            project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
-            clean: true,
-            device: "iPhone SE"
-        )
-        cleanReleaseProject
-        resetSimulator
-    end
-
-#used in STAGE  "Validation"	
-    desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
-    private_lane :validateAll do
-        versions = readXcodeVersionsValidation
-        versions.each do |version|
-            validateSDK(version: version)
-        end
-    end
-
-end
+def systemTest() {
+    sh "bundle exec fastlane systemTests"
+}
