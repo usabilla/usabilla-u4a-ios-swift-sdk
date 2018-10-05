@@ -26,19 +26,18 @@ node('mac') {
         //All branches gets unit and code integration tests
         stage('Run Unit Tests') {
             sh "bundle exec fastlane runUnitTests"
-            sh "bundle exec fastlane buildAll"
         }
 
-		stage("Create Artefacts") {
-			sh "bundle exec fastlane createArtefacts"
+		stage("Build All & Generate artefacts") {
+            sh "bundle exec fastlane buildAllAndGenerateArtefacts"
 		}
 
 		stage("Validate framework") {
-			sh "bundle exec fastlane validateFrameWork"
+            sh "bundle exec fastlane validateFrameWork"
 		} 
 
         stage('System tests') {
-          systemTest()
+            systemTest()
         }
 
         if(env.BRANCH_NAME == 'master') {   

@@ -7,7 +7,8 @@ default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
 
-#used in STAGE  "Run UT"	
+
+#used in STAGE  "Run UT"    
     desc "Builds the framework for all xcode version specified in fastlane/versions.json"
     lane :buildAll do
         versions = checkXcodeVersions
@@ -16,7 +17,29 @@ platform :ios do
             version: version,
             project_directory: projectDirectory
         )
-        #buildSDK(version: version)
+
+        end
+    end
+
+#used in STAGE  "Generate Artefacts"
+    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+    lane :buildAllAndGenerateArtefacts do
+        versions = checkXcodeVersions
+        versions.each do |version|
+        # Build for xcode version
+        buildForXcodeVersion(
+            version: version,
+            project_directory: projectDirectory
+        )
+        # Copy generated artefacts for carthage and pods
+        copyToPodsFromBuild(
+            version: version,
+            project_directory: projectDirectory
+        )
+        copyToCarthageFromBuild(
+            version: version,
+            project_directory: projectDirectory
+        )
         end
     end
 
@@ -35,6 +58,8 @@ platform :ios do
 	        )
         end
     end
+
+
 
 #used in STAGE  "Run Unit Tests"
     desc "Run unit tests for all xcode versions"
