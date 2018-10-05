@@ -20,6 +20,35 @@ private_lane :buildForXcodeVersion do |options|
 	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
 end
 
+private_lane :buildAndRunUITest do |options|
+
+  if options[:version] == nil	
+    UI.message("'version' not specified in 'buildAndRunUITest")
+  end
+  if options[:devices] == nil	
+    UI.message("'devices' not specified in 'buildAndRunUITest")
+  end
+
+	if options[:project_directory] == nil	
+    UI.message("'project_directory' not specified in 'buildAndRunUITest")
+  end   
+
+  	version =  options[:version]
+ 	project_directory = options[:project_directory]
+	devices = options[:devices]
+	
+  	paths = Paths.new(version, project_directory)
+ 	xcversion(version: version)
+
+	sh("xcodebuild clean -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator")
+	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
+
+    devices.each do |deviceModel|
+		sh("xcodebuild  test -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme UsabillaUITestApp -destination '#{deviceModel}'")
+        end
+
+end
+
 private_lane :removeAllBuilds do |options|
   	if options[:version] == nil	
    	 	UI.message("'version' not specified in 'buildForXcodeVersion")
