@@ -15,8 +15,25 @@ private_lane :buildForXcodeVersion do |options|
 
   paths = Paths.new(version, project_directory)
  	xcversion(version: version)
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release clean -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode")
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release clean -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
+
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode")
+end
+
+private_lane :removeAllBuilds do |options|
+  	if options[:version] == nil	
+   	 	UI.message("'version' not specified in 'buildForXcodeVersion")
+  	end
+		if options[:project_directory] == nil	
+   	 	UI.message("'project_directory' not specified in 'buildForXcodeVersion")
+  	end   
+  	version = options[:version]
+  	project_directory = options[:project_directory]
+  	paths = Paths.new(version, project_directory)
+
+ 	UI.message("Remove all previous builds before build")
+	sh("rm -rf #{paths.projectDirectory}/build")
+
 end
 
 desc "Vallidate build with UsabillaSystemTest app" 
