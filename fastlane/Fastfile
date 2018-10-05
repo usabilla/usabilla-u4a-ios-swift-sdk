@@ -24,14 +24,17 @@ platform :ios do
 #used in STAGE  "Create Artefacts"	
     desc "Create Artefacts (Pods and Carthage)"
     lane :createArteFacts do 
-		copyToPodsFromBuild(
-            version: "10.0",
-            project_directory: projectDirectory
-        )
-		copyToCarthageFromBuild(
-            version: "10.0",
-            project_directory: projectDirectory
-        )
+        versions = checkXcodeVersions
+        versions.each do |version|
+			copyToPodsFromBuild(
+    	        version: version,
+        	    project_directory: projectDirectory
+        	)
+			copyToCarthageFromBuild(
+    	        version: version,
+        	    project_directory: projectDirectory
+	        )
+        end
     end
 
 #used in STAGE  "Run UT"
@@ -77,19 +80,25 @@ platform :ios do
 #used in STAGE  "System tests"
     desc "Run System tests"
     lane :systemTests do 
-        systemTestsAfterBuild(
-    	    version: "10.0",
-            project_directory: projectDirectory
-    	)
+        versions = checkXcodeVersions
+        versions.each do |version|
+	        systemTestsAfterBuild(
+    		    version: version,
+        	    project_directory: projectDirectory
+    		)
+    	end
     end
 
 #used in STAGE  "Validate framework"
 	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
 	lane :validateFrameWork do
+      versions = checkXcodeVersions
+        versions.each do |version|
 			validateBuildLLVMGCC(
-            version: "10.0",
-            project_directory: projectDirectory
-        )
+	            version: version,
+	            project_directory: projectDirectory
+    	    )
+    	end
 	end
 
 ##############################################
