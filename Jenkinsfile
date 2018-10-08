@@ -36,14 +36,11 @@ node('mac') {
             sh "bundle exec fastlane validateFrameWork"
 		} 
 
-        stage('System tests') {
-            systemTest()
-        }
-
         if(env.BRANCH_NAME == 'master') {   
             stage('Validation'){
                 sh "bundle exec fastlane validateAll"
             }
+
             currentBuild.result = 'SUCCESS'
             return
         }
@@ -54,14 +51,23 @@ node('mac') {
                 currentBuild.result = 'SUCCESS'
                 return
             }
+
             stage('UI Tests') {
                 uiTest()
+            }
+
+            if(env.BRANCH_NAME ==~ 'feature/.*') {
+                //Feature does not get system tests
+                currentBuild.result = 'SUCCESS'
+                return
+            }
+
+            stage('System tests') {
+                systemTest()
             }
             currentBuild.result = 'SUCCESS'
             return
         }
-        currentBuild.result = 'SUCCESS'
-        return
     }
 }
 
