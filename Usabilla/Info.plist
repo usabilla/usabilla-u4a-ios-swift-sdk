@@ -30,7 +30,5 @@
 	<string>$(USABILLA_CDN_HOST)</string>
 	<key>USABILLA_SUBMIT_ENDPOINT</key>
 	<string>$(USABILLA_SUBMIT_ENDPOINT)</string>
-	<key>USABILLA_GIT_BRANCH</key>
-	<string>develop</string>
 </dict>
 </plist>
