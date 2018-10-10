@@ -15,16 +15,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         Usabilla.customVariables = ["frequent flyer status": "sky elite"]
         textField.delegate = self
     }
 
     @IBAction func sendAction(_ sender: Any) {
+        textField.resignFirstResponder()
         let eventName = textField.text
         Usabilla.sendEvent(event: eventName!)
     }
 
     @IBAction func resetAction(_ sender: Any) {
+        textField.resignFirstResponder()
         Usabilla.resetCampaignData(completion: nil)
     }
 

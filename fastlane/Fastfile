@@ -1,41 +1,74 @@
 fastlane_version "2.64.1"
-import "./CarthageFastFile.rb"
+import "./propertiesFile.rb"
 import "./BuildFastFile.rb"
-
+import "./buildFramework.rb"
 default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
 
-    # def xcode_version 
-    #     sh("xcodebuild -version | head -1 | sed -e 's@.*\([0-9]..\).*@\1@'")
-    # end
-    def projectDirectory
-        "#{File.expand_path(File.dirname(__FILE__))}/../"
+
+#used in STAGE  "Run UT"    
+    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+    lane :buildAll do
+        versions = xcodeVersions
+        versions.each do |version|
+        buildForXcodeVersion(
+            version: version,
+            project_directory: projectDirectory
+        )
+        end
     end
 
-    def cleanReleaseProject
-        sh("rm -rf #{projectDirectory}automation/ReleaseValidator/Usabilla.Framework")        
+#used in STAGE  "Generate Artefacts"
+    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+    lane :buildAllAndGenerateArtefacts do
+        versions = checkXcodeVersions
+        versions.each do |version|
+        #first remove previous builds
+        removeAllBuilds(
+            version: version,
+            project_directory: projectDirectory
+        )
+        # Build for xcode version
+        buildForXcodeVersion(
+            version: version,
+            project_directory: projectDirectory
+        )
+        # Copy generated artefacts for carthage and pods
+        copyToPodsFromBuild(
+            version: version,
+            project_directory: projectDirectory
+        )
+        copyToCarthageFromBuild(
+            version: version,
+            project_directory: projectDirectory
+        )
+        end
     end
 
-    def readXcodeVersions
-        JSON.parse(File.read("versions.json"), {:symbolize_names => true})
+#used in STAGE  "Create Artefacts"	
+    desc "Create Artefacts (Pods and Carthage)"
+    lane :createArtefacts do 
+        versions = checkXcodeVersions
+        versions.each do |version|
+			copyToPodsFromBuild(
+    	        version: version,
+        	    project_directory: projectDirectory
+        	)
+			copyToCarthageFromBuild(
+    	        version: version,
+        	    project_directory: projectDirectory
+	        )
+        end
     end
 
-    def readXcodeVersionsValidation
-        JSON.parse(File.read("versions-validate.json"), {:symbolize_names => true})
-    end
 
-    def readUnitTestDevices
-        JSON.parse(File.read("unit-test-devices.json"), {:symbolize_names => true})
-    end
 
-    def resetSimulator
-       sh("killall -9 'Simulator' || echo 'No simulator launched'")
-       sh("launchctl remove com.apple.CoreSimulator.CoreSimulatorService || true")
-    end
-
-    desc "Build for Unit Testing"
-    lane :buildForUnitTesting do
+#used in STAGE  "Run Unit Tests"
+    desc "Run unit tests for all xcode versions"
+    lane :runUnitTests do
+        version = lastXcodeVersion
+        # Build for given xcode version
         scan(
             workspace: 'Usabilla.xcworkspace',
             scheme: 'Usabilla',
@@ -43,19 +76,70 @@ platform :ios do
             build_for_testing: true,
             derived_data_path: './derivedData'
         )
+        # Unit test for all devices
+        unitTestAllDevices(version: version)
     end
 
+#used in STAGE  "UI Tests"
+    desc "UI test"
+    lane :uiTest do
+    	buildAndRunUITest( 
+    		    version: lastXcodeVersion,
+        	    project_directory: projectDirectory,
+        	    devices: uiTestDevices
+    		)
+    end
+
+
+    desc "Check that all required xcode versions are installed"
+    lane :checkXcodeVersions do
+        versions = xcodeVersions
+        versions.each do |version|
+            xcversion(version: version)         
+        end
+        versions
+    end
+
+#used in STAGE  "System tests"
+    desc "Run System tests"
+    lane :systemTests do 
+        versions = checkXcodeVersions
+        versions.each do |version|
+	        systemTestsAfterBuild(
+    		    version: version,
+        	    project_directory: projectDirectory
+    		)
+    	end
+    end
+
+#used in STAGE  "Validate framework"
+	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
+	lane :validateFrameWork do
+      versions = checkXcodeVersions
+        versions.each do |version|
+			validateBuildLLVMGCC(
+	            version: version,
+	            project_directory: projectDirectory
+    	    )
+    	end
+	end
+
+##############################################
+########       PRIVATE LANES          ########
+##############################################
+
+#used in  lane "runUnitTests"
     desc "Unit tests for all device model specified in fastlane/unit-tests.json"
-    lane :unitTestAllDevices do
-        xcversion(version: "9.4")
-        versions = readUnitTestDevices
-        versions.each do |deviceModel|
+    private_lane :unitTestAllDevices do |version|
+        deviceModels = unitTestDevices
+        deviceModels.each do |deviceModel|
             unitTest(deviceModel: deviceModel)
         end
     end
 
+#used in lane "unitTestAllDevices"
     desc "Unit test"
-    lane :unitTest do |options|
+    private_lane :unitTest do |options|
         unless options[:deviceModel]
             UI.error("missing device model")
         end
@@ -69,62 +153,9 @@ platform :ios do
         )
     end
 
-    desc "Build for UI Testing"
-    lane :buildForUITesting do
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'UsabillaUITestApp',
-            clean: true,
-            build_for_testing: true,
-        )
-    end
-
-    desc "UI test"
-    lane :uiTest do
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'UsabillaUITestApp',
-            test_without_building: true,            
-            devices: ["iPhone 6s (11.1)", "iPhone X (11.4)", "iPhone 7 (10.3.1)"]
-        )
-    end
-
-    desc "Builds the framework for the specified framework"
-    lane :buildSDK do |options|
-        unless options[:version]
-            UI.error("missing Xcode version")
-        end
-        version = options[:version]
-        UI.message("Building for Xcode-#{version}")
-        xcversion(version: version)
-        buildFramework
-        buildCarthage
-        crateReleaseDirectory(
-            version: version,
-            project_directory: projectDirectory
-        )
-        cleanProject
-    end
-
-    desc "Check that all required xcode versions are installed"
-    lane :checkXcodeVersions do
-        versions = readXcodeVersions
-        versions.each do |version|
-            xcversion(version: version)         
-        end
-        versions
-    end
-
-    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-    lane :buildAll do
-        versions = checkXcodeVersions
-        versions.each do |version|
-            buildSDK(version: version)
-        end
-    end
-
+#used in lane  "validateAll"	
     desc "Validate integrating the framework (with specified version) into a sample project"
-    lane :validateSDK do |options|
+    private_lane :validateSDK do |options|
         unless options[:version]
             UI.error("missing Xcode version")
         end
@@ -145,21 +176,13 @@ platform :ios do
         resetSimulator
     end
 
+#used in STAGE  "Validation"	
     desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
-    lane :validateAll do
-        versions = readXcodeVersionsValidation
+    private_lane :validateAll do
+        versions = xcodeVersions
         versions.each do |version|
             validateSDK(version: version)
         end
     end
 
-    desc "Run System tests"
-    lane :systemTests do
-        scan(
-            project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
-            scheme: "UsabillaSystemTest",
-            clean: true,
-            devices: [ "iPhone 7 (11.1)"]
-        )
-    end
 end

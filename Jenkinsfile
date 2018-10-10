@@ -15,34 +15,32 @@ node('mac') {
                 userRemoteConfigs: [[credentialsId: 'jenkins-github-user', url: 'git@github.com:usabilla/usabilla-u4a-ios-swift.git']]
             ])
         }
+
         stage('Install') {
             sh "env"
             sh "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3"
             sh "bundle update fastlane"
             sh "bin/bootstrap-if-needed"
         }
-        // Everyone gets unit and code integration tests
-        stage('Build') {
-            sh "bundle exec fastlane buildForUnitTesting"
-            sh "bundle exec fastlane buildForUITesting"
-        }
-        stage('Unit Tests') {
-            unitTest()
+
+        //All branches gets unit and code integration tests
+        stage('Run Unit Tests') {
+            sh "bundle exec fastlane runUnitTests"
         }
 
+		stage("Build All & Generate artefacts") {
+            sh "bundle exec fastlane buildAllAndGenerateArtefacts"
+		}
+
+		stage("Validate framework") {
+            sh "bundle exec fastlane validateFrameWork"
+		} 
+
         if(env.BRANCH_NAME == 'master') {   
-            stage('System tests') {
-                systemTest()
-            }
-            stage('Package frameworks') {
-                sh "bundle exec fastlane buildAll"
-            }
             stage('Validation'){
                 sh "bundle exec fastlane validateAll"
             }
-            stage('Save Artifacts') {
-                archiveArtifacts 'Xcode*/**'
-            }
+
             currentBuild.result = 'SUCCESS'
             return
         }
@@ -53,17 +51,22 @@ node('mac') {
                 currentBuild.result = 'SUCCESS'
                 return
             }
+
             stage('UI Tests') {
                 uiTest()
             }
+
             if(env.BRANCH_NAME ==~ 'feature/.*') {
                 //Feature does not get system tests
                 currentBuild.result = 'SUCCESS'
                 return
             }
+
             stage('System tests') {
                 systemTest()
             }
+            currentBuild.result = 'SUCCESS'
+            return
         }
     }
 }

@@ -1587,7 +1587,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		434F3CFF1E2F84BD00F6FD38 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2195,6 +2195,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2225,7 +2226,9 @@
 		04F54DDE1CD75A3F002F501E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2237,6 +2240,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2247,7 +2252,7 @@
 				USABILLA_API_HOST = "https://api.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Release;
 		};
@@ -2360,6 +2365,7 @@
 					x86_64,
 				);
 				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2401,7 +2407,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "UsabillaInternal-Info.plist";
+				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2450,7 +2456,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "UsabillaInternal-Info.plist";
+				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2481,7 +2487,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "UsabillaInternal-Info.plist";
+				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

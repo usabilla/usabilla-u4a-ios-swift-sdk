@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		04073AF220482576008D5AA8 /* 27_AccessibilityPicker.json in Resources */ = {isa = PBXBuildFile; fileRef = 04073AF120482576008D5AA8 /* 27_AccessibilityPicker.json */; };
 		044A93472018F37A00D3420F /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A93452018F37A00D3420F /* TestExtensions.swift */; };
-		04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; };
-		04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04C464F31F799FB100FE43DB /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10F225372167B4EF00EA85F7 /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F225362167B4EF00EA85F7 /* Usabilla.framework */; };
+		10F225382167B4EF00EA85F7 /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10F225362167B4EF00EA85F7 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43120C9E1F027E5800802141 /* 01_FormAppearance.json in Resources */ = {isa = PBXBuildFile; fileRef = 43120C9D1F027E5800802141 /* 01_FormAppearance.json */; };
 		4356E98A1FBD828800B761CA /* 20_AccessibilityRequiredField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */; };
 		4356E98B1FBD832C00B761CA /* 20_AccessibilityRequiredField.json in Resources */ = {isa = PBXBuildFile; fileRef = 4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */; };
@@ -87,7 +87,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				04C464F51F799FB100FE43DB /* Usabilla.framework in Embed Frameworks */,
+				10F225382167B4EF00EA85F7 /* Usabilla.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,7 +100,7 @@
 		0460AD472046FD1000721BB5 /* 25_PlayStorePromptVisibility.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 25_PlayStorePromptVisibility.json; sourceTree = "<group>"; };
 		0460AD482046FD1000721BB5 /* 24_PlayStoreButtonVisibility.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 24_PlayStoreButtonVisibility.json; sourceTree = "<group>"; };
 		0460AD4A2046FD1000721BB5 /* 23_RadioButtonJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 23_RadioButtonJumpRules.json; sourceTree = "<group>"; };
-		04C464F31F799FB100FE43DB /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10F225362167B4EF00EA85F7 /* Usabilla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Usabilla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43120C9D1F027E5800802141 /* 01_FormAppearance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 01_FormAppearance.json; sourceTree = "<group>"; };
 		4356E9861FBD827100B761CA /* 20_AccessibilityRequiredField.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 20_AccessibilityRequiredField.json; sourceTree = "<group>"; };
 		4356E9891FBD828800B761CA /* 20_AccessibilityRequiredField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 20_AccessibilityRequiredField.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C464F41F799FB100FE43DB /* Usabilla.framework in Frameworks */,
+				10F225372167B4EF00EA85F7 /* Usabilla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +187,7 @@
 		437B96C41E266A8F00AA0A25 = {
 			isa = PBXGroup;
 			children = (
-				04C464F31F799FB100FE43DB /* Usabilla.framework */,
+				10F225362167B4EF00EA85F7 /* Usabilla.framework */,
 				43F951611F01116500FE23F8 /* SDK-UI-Scenarios */,
 				437B96CF1E266A8F00AA0A25 /* UsabillaUITestApp */,
 				437B96E41E266A8F00AA0A25 /* UsabillaUITestAppUITests */,
@@ -373,8 +373,7 @@
 				TargetAttributes = {
 					437B96CC1E266A8F00AA0A25 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 24ZZS38JW5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					437B96E01E266A8F00AA0A25 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -631,28 +630,46 @@
 		437B96EB1E266A8F00AA0A25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 24ZZS38JW5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UsabillaUITestApp",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/UsabillaUITestApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaUITestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "x86_64 arm64 i386";
 			};
 			name = Debug;
 		};
 		437B96EC1E266A8F00AA0A25 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 24ZZS38JW5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UsabillaUITestApp",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/UsabillaUITestApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaUITestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "x86_64 arm64 i386";
 			};
 			name = Release;
 		};
