@@ -26,6 +26,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.backgroundColor = .clear
         label.isAccessibilityElement = false
         if #available(iOS 10.0, *) {
             label.adjustsFontForContentSizeCategory = true
@@ -34,6 +35,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }()
     lazy var headerView: UIView = {
         let headerView = UIView()
+        headerView.backgroundColor = .clear
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(self.requiredLabel)
         return headerView
@@ -87,7 +89,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
         requiredLabel.applyFontWithDynamicTypeEnabled(font: viewModel.theme.fonts.font)
         requiredLabel.textColor = viewModel.theme.colors.text
-        requiredLabel.backgroundColor = viewModel.theme.colors.background
     }
 
     func handleHeaderViewVisibility() {
@@ -284,7 +285,7 @@ extension PageViewController: UITableViewDataSource {
             if let cell = cell as? FooterTableViewCell {
                 cell.footerView = PoweredByUsabillaView(theme: viewModel.theme)
             }
-            cell.backgroundColor = viewModel.theme.colors.background
+            cell.backgroundColor = .clear
             return cell
         }
 
