@@ -24,6 +24,7 @@ public struct UsabillaTheme {
         var accent: UIColor
         var textOnAccent: UIColor
         var background: UIColor
+        var cardColor: UIColor
         var error: UIColor
         var hint: UIColor {
             return text.withAlphaComponent(0.38)
@@ -36,6 +37,7 @@ public struct UsabillaTheme {
             title = UIColor(red: 65 / 255, green: 71 / 255, blue: 76 / 255, alpha: 1)
             error = UIColor(red: 244 / 255, green: 96 / 255, blue: 110 / 255, alpha: 1)
             background = UIColor.white
+            cardColor = UIColor.white
             header = nil
         }
 
@@ -46,6 +48,7 @@ public struct UsabillaTheme {
             error = UIColor(rgbao: json["group4"]["hash"].string) ?? error
             background = UIColor(rgbao: json["group5"]["hash"].string) ?? background
             textOnAccent = UIColor(rgbao: json["group6"]["hash"].string) ?? textOnAccent
+            cardColor = UIColor(rgbao: json["group7"]["hash"].string) ?? background
         }
     }
 
