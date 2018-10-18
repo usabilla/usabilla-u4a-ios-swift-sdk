@@ -44,7 +44,7 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
         textView.font = theme.fonts.font.getDynamicTypeFont()
         textView.textColor = theme.colors.text
         textView.tintColor = theme.colors.hint
-        textView.backgroundColor = theme.colors.background
+        textView.backgroundColor = .clear
 
         labelPlaceHolder.font = theme.fonts.font.getDynamicTypeFont()
         labelPlaceHolder.textColor = theme.colors.hint

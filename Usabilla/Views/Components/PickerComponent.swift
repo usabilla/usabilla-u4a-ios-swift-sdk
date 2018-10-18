@@ -85,7 +85,7 @@ class PickerComponent: PickerParentComponent {
         pickerButton.titleLabel?.applyFontWithDynamicTypeEnabled(font: theme.fonts.font)
         pickerButton.contentHorizontalAlignment = .left
 
-        picker.backgroundColor = theme.colors.background
+        picker.backgroundColor = theme.colors.cardColor
         picker.tintColor = theme.colors.text
 
         bottomBorder.backgroundColor = theme.colors.hint
