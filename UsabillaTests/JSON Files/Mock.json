@@ -1,5 +1,53 @@
 {
     "node": {
+        
+        "ThemeJsonWithCardColor": {
+            "colors": {
+                "group1": {
+                    "hash": "#111111"
+                },
+                "group2": {
+                    "hash": "#222222"
+                },
+                "group3": {
+                    "hash": "#333333"
+                },
+                "group4": {
+                    "hash": "#444444"
+                },
+                "group5": {
+                    "hash": "#555555"
+                },
+                "group6": {
+                    "hash": "#666666"
+                },
+                "group7": {
+                    "hash": "#777777"
+                }
+            }
+        },
+        "ThemeJsonNoCardColor": {
+            "colors": {
+                "group1": {
+                    "hash": "#111111"
+                },
+                "group2": {
+                    "hash": "#222222"
+                },
+                "group3": {
+                    "hash": "#333333"
+                },
+                "group4": {
+                    "hash": "#444444"
+                },
+                "group5": {
+                    "hash": "#555555"
+                },
+                "group6": {
+                    "hash": "#666666"
+                }
+            }
+        },
         "InvalidFormJsonNoForm": {
             "structure" : {
                 "colors":{

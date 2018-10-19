@@ -54,7 +54,7 @@ class PageControllerTest: QuickSpec {
                 expect(header).toNot(beNil())
                 expect(header?.text).to(equal(viewController.viewModel.copy.errorMessage))
                 expect(header?.textColor).to(equal(viewController.viewModel.theme.colors.text))
-                expect(header?.backgroundColor).to(equal(viewController.viewModel.theme.colors.background))
+                expect(header?.backgroundColor).to(equal(UIColor.clear))
             }
 
             it("sets up the variables") {
