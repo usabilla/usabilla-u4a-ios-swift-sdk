@@ -64,7 +64,7 @@ class RootCellView: UITableViewCell {
     }
 
     func setupView() {
-        // Add subviews
+        // add subviews
         contentView.addSubview(containerView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(errorLabel)
@@ -102,7 +102,6 @@ class RootCellView: UITableViewCell {
         componentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -sideMargin).isActive = true
         componentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
         componentViewTopConstraint = componentView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor).prioritize(UILayoutPriorityDefaultHigh).activate()
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -174,6 +173,7 @@ class RootCellView: UITableViewCell {
     @discardableResult func updateValidStatus() -> Bool {
         if !cellViewModel.showErrorLabel != errorLabelDismissConstraint.isActive {
             errorLabelDismissConstraint.isActive = !cellViewModel.showErrorLabel
+            cellViewModel.showErrorLabel ? showErrorBorder() : hideErrorBorder()
             return true
         }
         return false
@@ -184,5 +184,13 @@ class RootCellView: UITableViewCell {
         if updateValidStatus() {
             SwiftEventBus.postToMainThread("updateMySize")
         }
+    }
+
+    func showErrorBorder(animated: Bool = true) {
+        containerView.showBorder(width: 2, color: cellViewModel.theme.colors.error)
+    }
+
+    func hideErrorBorder(animated: Bool = true) {
+        containerView.showBorder(width: 0.0, color: .clear)
     }
 }
