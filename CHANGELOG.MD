@@ -1,3 +1,7 @@
+## 5.1.3
+#### Fixed
+- Paragraph component cells overlay on top of other cells.
+
 ## 5.1.0
 #### Added
 - Support for **Xcode 10**
