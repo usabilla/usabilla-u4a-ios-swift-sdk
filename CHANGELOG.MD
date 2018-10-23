@@ -1,3 +1,7 @@
+## 5.1.3
+#### Fixed
+- Paragraph component cells overlay on top of other cells.
+
 ## 5.1.2
 #### Fixed
 - Issue with LLVM while submitting to app store

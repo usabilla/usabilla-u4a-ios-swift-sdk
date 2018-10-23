@@ -1,19 +1,17 @@
 //
-//  UsabillaLib.h
-//  UsabillaLib
+//  Usabilla.h
+//  Usabilla
 //
-//  Created by Anders Liebl on 02/10/2018.
-//  Copyright © 2018 Usabilla. All rights reserved.
+//  Created by Giacomo Pinato on 02/05/16.
+//  Copyright © 2016 Usabilla. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for UsabillaLib.
-FOUNDATION_EXPORT double UsabillaLibVersionNumber;
+//! Project version number for Usabilla.
+FOUNDATION_EXPORT double UsabillaVersionNumber;
 
-//! Project version string for UsabillaLib.
-FOUNDATION_EXPORT const unsigned char UsabillaLibVersionString[];
+//! Project version string for Usabilla.
+FOUNDATION_EXPORT const unsigned char UsabillaVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <UsabillaLib/PublicHeader.h>
-
-
+// In this header, you should import all the public headers of your framework using statements like #import <Usabilla/PublicHeader.h>
