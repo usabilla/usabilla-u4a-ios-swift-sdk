@@ -1,6 +1,6 @@
 {
-	"lastXcodeVersion" 	: "10",
-	"xcodeVersions" 	: ["10", "9.4", "9.0"],
+	"lastXcodeVersion" 	: "10.1",
+	"xcodeVersions" 	: ["10.1", "10", "9.4"],
 	"uiTestDevices"		: ["platform=iOS Simulator,name=iPhone X,OS=12.0"],
 	"unitTestDevices"	: ["iPhone X (12.0)"]
 }
