@@ -1,3 +1,7 @@
+## 5.1.4
+#### Fixed
+- LLVM issue
+
 ## 5.1.3
 #### Fixed
 - Paragraph component cells overlay on top of other cells.
