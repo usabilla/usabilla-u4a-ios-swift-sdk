@@ -1,4 +1,18 @@
-## 5.0.1
+## 5.1.4
+#### Fixed
+- LLVM issue
+
+## 5.1.3
+#### Fixed
+- Paragraph component cells overlay on top of other cells.
+
+## 5.1.0
+#### Added
+- Support for Xcode 10
+- Accessibility/VoiceOver: Better Accessibilty for the slider component.
+- Accessibility/VoiceOver: Change the mood component labels.
+
+## 5.0.2
 #### Added
 - Support for **Xcode 10 beta**
 - Add animations to the Mood component.
