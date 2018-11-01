@@ -101,30 +101,34 @@ class Icons: NSObject {
 
         //// addScreenshotIcon.pdf Group
         //// Bezier Drawing
-        let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 17.37, y: 0))
-        bezierPath.addLine(to: CGPoint(x: 6.62, y: 0))
-        bezierPath.addCurve(to: CGPoint(x: 0.07, y: 6.59), controlPoint1: CGPoint(x: 3.01, y: 0), controlPoint2: CGPoint(x: 0.07, y: 2.95))
-        bezierPath.addLine(to: CGPoint(x: 0.07, y: 17.41))
-        bezierPath.addCurve(to: CGPoint(x: 6.62, y: 24), controlPoint1: CGPoint(x: 0.07, y: 21.05), controlPoint2: CGPoint(x: 3.01, y: 24))
-        bezierPath.addLine(to: CGPoint(x: 17.37, y: 24))
-        bezierPath.addCurve(to: CGPoint(x: 23.91, y: 17.41), controlPoint1: CGPoint(x: 20.98, y: 24), controlPoint2: CGPoint(x: 23.91, y: 21.05))
-        bezierPath.addLine(to: CGPoint(x: 23.91, y: 6.59))
-        bezierPath.addCurve(to: CGPoint(x: 17.37, y: 0), controlPoint1: CGPoint(x: 23.91, y: 2.95), controlPoint2: CGPoint(x: 20.98, y: 0))
-        bezierPath.close()
-        bezierPath.move(to: CGPoint(x: 22.66, y: 17.41))
-        bezierPath.addCurve(to: CGPoint(x: 17.37, y: 22.74), controlPoint1: CGPoint(x: 22.66, y: 20.35), controlPoint2: CGPoint(x: 20.29, y: 22.74))
-        bezierPath.addLine(to: CGPoint(x: 6.62, y: 22.74))
-        bezierPath.addCurve(to: CGPoint(x: 1.33, y: 17.41), controlPoint1: CGPoint(x: 3.7, y: 22.74), controlPoint2: CGPoint(x: 1.33, y: 20.35))
-        bezierPath.addLine(to: CGPoint(x: 1.33, y: 6.59))
-        bezierPath.addCurve(to: CGPoint(x: 6.62, y: 1.26), controlPoint1: CGPoint(x: 1.33, y: 3.65), controlPoint2: CGPoint(x: 3.7, y: 1.26))
-        bezierPath.addLine(to: CGPoint(x: 17.37, y: 1.26))
-        bezierPath.addCurve(to: CGPoint(x: 22.66, y: 6.59), controlPoint1: CGPoint(x: 20.29, y: 1.26), controlPoint2: CGPoint(x: 22.66, y: 3.65))
-        bezierPath.addLine(to: CGPoint(x: 22.66, y: 17.41))
-        bezierPath.close()
-        bezierPath.usesEvenOddFillRule = true
-        fillColor.setFill()
-        bezierPath.fill()
+        let rect = CGRect(x: 0, y: 0, width: 24, height: 24)
+        let bezierPath = UIBezierPath(arcCenter: CGPoint(x: 12, y: 12), radius: 11, startAngle: 0, endAngle: 360, clockwise: true)
+        
+//        let bezierPath = UIBezierPath()
+//        bezierPath.move(to: CGPoint(x: 17.37, y: 0))
+//        bezierPath.addLine(to: CGPoint(x: 6.62, y: 0))
+//        bezierPath.addCurve(to: CGPoint(x: 0.07, y: 6.59), controlPoint1: CGPoint(x: 3.01, y: 0), controlPoint2: CGPoint(x: 0.07, y: 2.95))
+//        bezierPath.addLine(to: CGPoint(x: 0.07, y: 17.41))
+//        bezierPath.addCurve(to: CGPoint(x: 6.62, y: 24), controlPoint1: CGPoint(x: 0.07, y: 21.05), controlPoint2: CGPoint(x: 3.01, y: 24))
+//        bezierPath.addLine(to: CGPoint(x: 17.37, y: 24))
+//        bezierPath.addCurve(to: CGPoint(x: 23.91, y: 17.41), controlPoint1: CGPoint(x: 20.98, y: 24), controlPoint2: CGPoint(x: 23.91, y: 21.05))
+//        bezierPath.addLine(to: CGPoint(x: 23.91, y: 6.59))
+//        bezierPath.addCurve(to: CGPoint(x: 17.37, y: 0), controlPoint1: CGPoint(x: 23.91, y: 2.95), controlPoint2: CGPoint(x: 20.98, y: 0))
+//        bezierPath.close()
+//        bezierPath.move(to: CGPoint(x: 22.66, y: 17.41))
+//        bezierPath.addCurve(to: CGPoint(x: 17.37, y: 22.74), controlPoint1: CGPoint(x: 22.66, y: 20.35), controlPoint2: CGPoint(x: 20.29, y: 22.74))
+//        bezierPath.addLine(to: CGPoint(x: 6.62, y: 22.74))
+//        bezierPath.addCurve(to: CGPoint(x: 1.33, y: 17.41), controlPoint1: CGPoint(x: 3.7, y: 22.74), controlPoint2: CGPoint(x: 1.33, y: 20.35))
+//        bezierPath.addLine(to: CGPoint(x: 1.33, y: 6.59))
+//        bezierPath.addCurve(to: CGPoint(x: 6.62, y: 1.26), controlPoint1: CGPoint(x: 1.33, y: 3.65), controlPoint2: CGPoint(x: 3.7, y: 1.26))
+//        bezierPath.addLine(to: CGPoint(x: 17.37, y: 1.26))
+//        bezierPath.addCurve(to: CGPoint(x: 22.66, y: 6.59), controlPoint1: CGPoint(x: 20.29, y: 1.26), controlPoint2: CGPoint(x: 22.66, y: 3.65))
+//        bezierPath.addLine(to: CGPoint(x: 22.66, y: 17.41))
+//        bezierPath.close()
+//        bezierPath.usesEvenOddFillRule = true
+        //bezierPath.lineWidth = 1.5;
+        color.setStroke()
+        bezierPath.stroke()
 
 
         //// Bezier 2 Drawing

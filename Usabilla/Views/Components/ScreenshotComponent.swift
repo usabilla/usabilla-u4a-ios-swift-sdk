@@ -87,10 +87,10 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         let editIconSize: CGFloat = 48
         let iconSpacing: CGFloat = 12
 
-        screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).activate()
-        screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).activate()
-        screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 12).activate()
-        screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).activate()
+        screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).activate()
+        screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).activate()
+        screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 0).activate()
+        screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).activate()
 
         iconContainerView.trailingAnchor.constraint(equalTo: screenShotView.trailingAnchor, constant: -16).isActive = true
         iconContainerView.topAnchor.constraint(equalTo: screenShotView.topAnchor, constant: 16).isActive = true
@@ -113,7 +113,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
         addScreenshotLabel.centerYAnchor.constraint(equalTo: addIcon.centerYAnchor).isActive = true
-        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 8).isActive = true
+        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 16).isActive = true
         addScreenshotLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).activate()
     }
 
@@ -131,11 +131,12 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         let theme = viewModel.theme
         deleteIcon.setImage(Icons.imageOfArtboard(color: UIColor.white), for: UIControlState())
         editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
-        addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.text), for: UIControlState())
+        addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.accent), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.colors.title, for: .normal)
         addScreenshotLabel.titleLabel?.applyFontWithDynamicTypeEnabled(font: theme.fonts.font)
         addScreenshotLabel.titleLabel?.lineBreakMode = .byTruncatingTail
         screenShotView.layer.borderColor = theme.colors.hint.cgColor
+        
     }
 
     func updateUI() {

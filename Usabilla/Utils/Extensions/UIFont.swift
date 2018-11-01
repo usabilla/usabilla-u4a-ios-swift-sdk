@@ -16,17 +16,21 @@ extension UIFont {
     }
 
     class func uSystemFont(ofSize: CGFloat, weight: FontWeight) -> UIFont {
-        if #available(iOS 11, *) {
-            // swiftlint:disable force_unwrapping
-            switch weight {
-            case .semiBold:
-                return UIFont(name: "HelveticaNeue-Medium", size: ofSize)!
-            default:
-                return UIFont(name: "HelveticaNeue", size: ofSize)!
-            }
-            // swiftlint:enable force_unwrapping
-        }
-
+//        if #available(iOS 11, *) {
+//            // swiftlint:disable force_unwrapping
+//            switch weight {
+//            case .semiBold:
+//                return UIFont.sy
+//                    UIFont(name: "SanFranciscoText-Semibold", size: ofSize)!
+//
+//                
+//                //systemFont(ofSize: ofSize, weight: UIFontWeightSemibold)//
+//            default:
+//                return UIFont.systemFont(ofSize: ofSize, weight: UIFontWeightRegular)//UIFont(name: "HelveticaNeue", size: ofSize)!
+//            }
+//            // swiftlint:enable force_unwrapping
+//        }
+//
         let uWeight = (weight == .semiBold) ? UIFontWeightSemibold : UIFontWeightRegular
         return UIFont.systemFont(ofSize: ofSize, weight: uWeight)
     }
