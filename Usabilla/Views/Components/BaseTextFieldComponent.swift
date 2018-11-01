@@ -53,7 +53,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
         textField.tintColor = theme.colors.hint
         textField.font = theme.fonts.font.getDynamicTypeFont()
         textField.textColor = theme.colors.text
-        textField.backgroundColor = theme.colors.background
+        textField.backgroundColor = .clear
         line.backgroundColor = theme.colors.hint
     }
 

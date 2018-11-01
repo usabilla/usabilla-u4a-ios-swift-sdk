@@ -35,7 +35,7 @@ extension UIView {
         subviews.forEach({ self.addSubview($0) })
     }
 
-    #if DEBUG
+//    #if DEBUG
         /**
          *  Add a border to all UI Components
          */
@@ -43,5 +43,5 @@ extension UIView {
             layer.borderColor = color.cgColor
             layer.borderWidth = width
         }
-    #endif
+//    #endif
 }

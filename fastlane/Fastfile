@@ -178,7 +178,7 @@ platform :ios do
 
 #used in STAGE  "Validation"	
     desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
-    private_lane :validateAll do
+    lane :validateAll do
         versions = xcodeVersions
         versions.each do |version|
             validateSDK(version: version)

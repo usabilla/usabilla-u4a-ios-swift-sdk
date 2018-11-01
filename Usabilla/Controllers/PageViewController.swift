@@ -22,10 +22,14 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         tableView.separatorStyle = .none
         return tableView
     }()
+
+    var alreadyAtTop: Bool = true
+
     var requiredLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.backgroundColor = .clear
         label.isAccessibilityElement = false
         if #available(iOS 10.0, *) {
             label.adjustsFontForContentSizeCategory = true
@@ -34,6 +38,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }()
     lazy var headerView: UIView = {
         let headerView = UIView()
+        headerView.backgroundColor = .clear
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(self.requiredLabel)
         return headerView
@@ -87,7 +92,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
         requiredLabel.applyFontWithDynamicTypeEnabled(font: viewModel.theme.fonts.font)
         requiredLabel.textColor = viewModel.theme.colors.text
-        requiredLabel.backgroundColor = viewModel.theme.colors.background
     }
 
     func handleHeaderViewVisibility() {
@@ -203,9 +207,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     func setupViewModel(_ viewModel: PageViewModel) {
         self.viewModel = viewModel
         cellHeights = [:]
-
+        alreadyAtTop = false
         tableView.reloadData()
-        scrollToTop()
         handleHeaderViewVisibility()
     }
 
@@ -235,9 +238,14 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     func gotToNextErrorField() {
         viewModel.verifyFields()
         if let index = viewModel.indexOfInvalidField() {
-            tableView.scrollTo(indexPath: IndexPath(row: index, section: 0), animated: true)
-            tableView.reloadData()
+            let cellIndexPath = IndexPath(row: index, section: 0)
+            tableView.scrollTo(indexPath: cellIndexPath, animated: true)
+            reloadCellAt(indexPath: cellIndexPath)
         }
+    }
+
+    func reloadCellAt(indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 
     //Image handling stuff
@@ -284,7 +292,7 @@ extension PageViewController: UITableViewDataSource {
             if let cell = cell as? FooterTableViewCell {
                 cell.footerView = PoweredByUsabillaView(theme: viewModel.theme)
             }
-            cell.backgroundColor = viewModel.theme.colors.background
+            cell.backgroundColor = .clear
             return cell
         }
 
@@ -302,6 +310,14 @@ extension PageViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeights[indexPath] = cell.frame.size.height
+        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
+            if indexPath == lastVisibleIndexPath {
+                if !alreadyAtTop {
+                    scrollToTop()
+                    alreadyAtTop = true
+                }
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
