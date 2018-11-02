@@ -87,9 +87,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
         screenShotView.addSubview(iconContainerView)
 
-//        editIconBackGroundView.addSubview(editIcon)
-//        deleteIconBackGroundView.addSubview(deleteIcon)
-
         iconContainerView.addSubview(editIconBackGroundView)
         iconContainerView.addSubview(deleteIconBackGroundView)
         iconContainerView.addSubview(editIcon)
