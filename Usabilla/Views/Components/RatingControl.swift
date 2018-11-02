@@ -17,8 +17,8 @@ class RatingControl: UIControl {
 
     private let contentView = UIStackView()
 
-    private let size: CGFloat = 44
-    private let spacing: CGFloat = 22
+    private let size: CGFloat = 42
+    private let spacing: CGFloat = 25
     private let moodZoomScale: CGFloat = 1.3
     private let starZoomScale: CGFloat = 1.0
 
@@ -98,6 +98,7 @@ class RatingControl: UIControl {
         contentView.heightAnchor.constraint(equalToConstant: size).isActive = true
         contentView.distribution = .fillEqually
         contentView.isMultipleTouchEnabled = false
+        contentView.alignment = UIStackViewAlignment.leading
         if !centered {
             contentView.distribution = .fill
             contentView.spacing = spacing
