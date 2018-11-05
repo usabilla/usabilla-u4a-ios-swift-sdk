@@ -60,9 +60,9 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
         nps.tintColor = theme.colors.accent
         nps.toolTipTextColor = theme.colors.textOnAccent
 
-        leftLabel.textColor = theme.colors.text
+        leftLabel.textColor = theme.colors.text.withAlphaComponent(0.5)
         leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        rightLabel.textColor = viewModel.theme.colors.text
+        rightLabel.textColor = viewModel.theme.colors.text.withAlphaComponent(0.5)
         rightLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
     }
 }
