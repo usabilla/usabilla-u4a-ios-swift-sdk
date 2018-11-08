@@ -18,72 +18,147 @@ class Icons: NSObject {
 
     //MARK: - Canvas Drawings
 
-    /// Icons
-
-    private class func drawEdit(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
+    /// -Form copy
+    private class func drawIconCamera(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 64, height: 64), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
-
-        /// Resize to Target Frame
+        
+        
+        //// Resize to Target Frame
         context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 300, height: 300), target: targetFrame)
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 64, height: 64), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 300, y: resizedFrame.height / 300)
-
-        /// ic_mode_edit_black_24px
-        do {
-            context.saveGState()
-
-            /// Group
-            do {
-                context.saveGState()
-
-                /// Shape
-                let shape = UIBezierPath()
-                shape.move(to: CGPoint(x: 0, y: 178.16))
-                shape.addLine(to: CGPoint(x: 0, y: 225.03))
-                shape.addLine(to: CGPoint(x: 46.88, y: 225.03))
-                shape.addLine(to: CGPoint(x: 185.13, y: 86.78))
-                shape.addLine(to: CGPoint(x: 138.25, y: 39.91))
-                shape.addLine(to: CGPoint(x: 0, y: 178.16))
-                shape.close()
-                shape.move(to: CGPoint(x: 221.38, y: 50.53))
-                shape.addCurve(to: CGPoint(x: 221.38, y: 32.91), controlPoint1: CGPoint(x: 226.25, y: 45.66), controlPoint2: CGPoint(x: 226.25, y: 37.78))
-                shape.addLine(to: CGPoint(x: 192.13, y: 3.66))
-                shape.addCurve(to: CGPoint(x: 174.5, y: 3.66), controlPoint1: CGPoint(x: 187.25, y: -1.22), controlPoint2: CGPoint(x: 179.38, y: -1.22))
-                shape.addLine(to: CGPoint(x: 151.63, y: 26.53))
-                shape.addLine(to: CGPoint(x: 198.5, y: 73.41))
-                shape.addLine(to: CGPoint(x: 221.38, y: 50.53))
-                shape.close()
-                shape.move(to: CGPoint(x: 221.38, y: 50.53))
-                context.saveGState()
-                context.translateBy(x: 37.5, y: 37.47)
-                shape.usesEvenOddFillRule = true
-                color.setFill()
-                shape.fill()
-                context.restoreGState()
-
-                /// Shape
-                let shape2 = UIBezierPath()
-                shape2.move(to: CGPoint.zero)
-                shape2.addLine(to: CGPoint(x: 300, y: 0))
-                shape2.addLine(to: CGPoint(x: 300, y: 300))
-                shape2.addLine(to: CGPoint(x: 0, y: 300))
-                shape2.addLine(to: CGPoint.zero)
-                shape2.close()
-                shape2.move(to: CGPoint.zero)
-
-                context.restoreGState()
-            }
-
-            context.restoreGState()
-        }
-
+        context.scaleBy(x: resizedFrame.width / 32, y: resizedFrame.height / 32)
+        
+        
+        //// Color Declarations
+        let strokeColor = color
+        let fillColor = color
+        
+        //// Symbols
+        //// icon/camera
+        //// Group 4
+        //// Path Drawing
+        let pathPath = UIBezierPath()
+        pathPath.move(to: CGPoint(x: 13, y: 3))
+        pathPath.addLine(to: CGPoint(x: 19.5, y: 3))
+        pathPath.addCurve(to: CGPoint(x: 20.5, y: 3.5), controlPoint1: CGPoint(x: 19.98, y: 3), controlPoint2: CGPoint(x: 20.24, y: 3.11))
+        pathPath.addCurve(to: CGPoint(x: 22.5, y: 6.7), controlPoint1: CGPoint(x: 21.66, y: 5.37), controlPoint2: CGPoint(x: 22.32, y: 6.44))
+        pathPath.addCurve(to: CGPoint(x: 24, y: 7), controlPoint1: CGPoint(x: 22.76, y: 7.09), controlPoint2: CGPoint(x: 23.52, y: 7))
+        pathPath.addCurve(to: CGPoint(x: 28, y: 7), controlPoint1: CGPoint(x: 24.32, y: 7), controlPoint2: CGPoint(x: 25.65, y: 7))
+        pathPath.addCurve(to: CGPoint(x: 31, y: 10), controlPoint1: CGPoint(x: 29.58, y: 7), controlPoint2: CGPoint(x: 31, y: 8.44))
+        pathPath.addLine(to: CGPoint(x: 31, y: 24))
+        pathPath.addCurve(to: CGPoint(x: 28, y: 27), controlPoint1: CGPoint(x: 31, y: 25.56), controlPoint2: CGPoint(x: 29.58, y: 27))
+        pathPath.addLine(to: CGPoint(x: 4, y: 27))
+        pathPath.addCurve(to: CGPoint(x: 1, y: 24), controlPoint1: CGPoint(x: 2.42, y: 27), controlPoint2: CGPoint(x: 1, y: 25.56))
+        pathPath.addLine(to: CGPoint(x: 1, y: 10))
+        pathPath.addCurve(to: CGPoint(x: 4, y: 7), controlPoint1: CGPoint(x: 1, y: 8.44), controlPoint2: CGPoint(x: 2.42, y: 7))
+        pathPath.addLine(to: CGPoint(x: 8.5, y: 7))
+        strokeColor.setStroke()
+        pathPath.lineWidth = 2
+        pathPath.miterLimit = 4
+        pathPath.lineCapStyle = .round
+        pathPath.lineJoinStyle = .round
+        pathPath.stroke()
+        
+        
+        //// Rectangle 2 Drawing
+        let rectangle2Path = UIBezierPath(roundedRect: CGRect(x: 4, y: 10, width: 2, height: 2), cornerRadius: 1)
+        fillColor.setFill()
+        rectangle2Path.fill()
+        
+        
+        //// Oval 2 Drawing
+        let oval2Path = UIBezierPath(ovalIn: CGRect(x: 10, y: 10, width: 13, height: 13))
+        strokeColor.setStroke()
+        oval2Path.lineWidth = 2
+        oval2Path.stroke()
+        
         context.restoreGState()
+        
+    }
+    private class func drawIconTrashCan(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 32, height: 32), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 32, y: resizedFrame.height / 32)
+        
+        
+        //// Color Declarations
+        let strokeColor = color
+        let fillColor = color
+        
+        //// Symbols
+        //// icon/delete
+        //// Group 4
+        //// Rectangle-4 Drawing
+        let rectangle4Path = UIBezierPath()
+        rectangle4Path.move(to: CGPoint(x: 6.12, y: 7))
+        rectangle4Path.addLine(to: CGPoint(x: 8.55, y: 29.11))
+        rectangle4Path.addCurve(to: CGPoint(x: 9.54, y: 30), controlPoint1: CGPoint(x: 8.6, y: 29.62), controlPoint2: CGPoint(x: 9.03, y: 30))
+        rectangle4Path.addLine(to: CGPoint(x: 22.46, y: 30))
+        rectangle4Path.addCurve(to: CGPoint(x: 23.45, y: 29.11), controlPoint1: CGPoint(x: 22.97, y: 30), controlPoint2: CGPoint(x: 23.4, y: 29.62))
+        rectangle4Path.addLine(to: CGPoint(x: 25.88, y: 7))
+        rectangle4Path.addLine(to: CGPoint(x: 6.12, y: 7))
+        rectangle4Path.close()
+        strokeColor.setStroke()
+        rectangle4Path.lineWidth = 2
+        rectangle4Path.miterLimit = 4
+        rectangle4Path.stroke()
+        
+        
+        //// Rectangle-6 Drawing
+        let rectangle6Path = UIBezierPath(roundedRect: CGRect(x: 3, y: 7, width: 26, height: 1), cornerRadius: 0.5)
+        fillColor.setFill()
+        rectangle6Path.fill()
+        strokeColor.setStroke()
+        rectangle6Path.lineWidth = 2
+        rectangle6Path.stroke()
+        
+        
+        //// Path Drawing
+        let pathPath = UIBezierPath()
+        pathPath.move(to: CGPoint(x: 21, y: 7))
+        pathPath.addLine(to: CGPoint(x: 11, y: 7))
+        pathPath.addLine(to: CGPoint(x: 11, y: 4))
+        pathPath.addCurve(to: CGPoint(x: 13, y: 2), controlPoint1: CGPoint(x: 11, y: 2.9), controlPoint2: CGPoint(x: 11.9, y: 2))
+        pathPath.addLine(to: CGPoint(x: 19, y: 2))
+        strokeColor.setStroke()
+        pathPath.lineWidth = 2
+        pathPath.miterLimit = 4
+        pathPath.lineCapStyle = .round
+        pathPath.stroke()
+        
+        
+        //// Rectangle-3 Drawing
+        let rectangle3Path = UIBezierPath(roundedRect: CGRect(x: 12, y: 12, width: 1, height: 12), cornerRadius: 0.5)
+        strokeColor.setStroke()
+        rectangle3Path.lineWidth = 2
+        rectangle3Path.stroke()
+        
+        
+        //// Rectangle- 7 Drawing
+        let rectangle7Path = UIBezierPath(roundedRect: CGRect(x: 20, y: 12, width: 1, height: 12), cornerRadius: 0.5)
+        strokeColor.setStroke()
+        rectangle7Path.lineWidth = 2
+        rectangle7Path.stroke()
+        
+        
+        //// Rectangle- 9 Drawing
+        let rectangle9Path = UIBezierPath(roundedRect: CGRect(x: 16, y: 12, width: 1, height: 12), cornerRadius: 0.5)
+        strokeColor.setStroke()
+        rectangle9Path.lineWidth = 2
+        rectangle9Path.stroke()
+        
+        context.restoreGState()
+        
     }
 
-    /// -Form copy
-
+    
     private class func drawAddImage(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
 
         //// General Declarations
@@ -452,78 +527,7 @@ class Icons: NSObject {
         context.restoreGState()
     }
 
-    private class func drawArtboard(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 21, height: 30), resizing: ResizingBehavior = .aspectFit) {
-        /// General Declarations
-        let context = UIGraphicsGetCurrentContext()!
-
-        /// Resize to Target Frame
-        context.saveGState()
-        let resizedFrame = resizing.apply(rect: CGRect(x: 0, y: 0, width: 20, height: 28), target: targetFrame)
-        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 20, y: resizedFrame.height / 28)
-
-        /// Icon
-        let icon = UIBezierPath()
-        icon.move(to: CGPoint(x: 1, y: 5))
-        icon.addLine(to: CGPoint(x: 19, y: 5))
-        icon.addLine(to: CGPoint(x: 17.66, y: 25.51))
-        icon.addCurve(to: CGPoint(x: 15.01, y: 28), controlPoint1: CGPoint(x: 17.57, y: 26.88), controlPoint2: CGPoint(x: 16.37, y: 28))
-        icon.addLine(to: CGPoint(x: 4.99, y: 28))
-        icon.addCurve(to: CGPoint(x: 2.34, y: 25.51), controlPoint1: CGPoint(x: 3.62, y: 28), controlPoint2: CGPoint(x: 2.43, y: 26.89))
-        icon.addLine(to: CGPoint(x: 1, y: 5))
-        icon.close()
-        icon.move(to: CGPoint(x: 0, y: 3))
-        icon.addCurve(to: CGPoint(x: 1.01, y: 2), controlPoint1: CGPoint(x: 0, y: 2.45), controlPoint2: CGPoint(x: 0.45, y: 2))
-        icon.addLine(to: CGPoint(x: 4.99, y: 2))
-        icon.addCurve(to: CGPoint(x: 5.8, y: 1.6), controlPoint1: CGPoint(x: 5.27, y: 2), controlPoint2: CGPoint(x: 5.64, y: 1.82))
-        icon.addLine(to: CGPoint(x: 6.7, y: 0.4))
-        icon.addCurve(to: CGPoint(x: 7.49, y: 0), controlPoint1: CGPoint(x: 6.86, y: 0.18), controlPoint2: CGPoint(x: 7.23, y: 0))
-        icon.addLine(to: CGPoint(x: 12.51, y: 0))
-        icon.addCurve(to: CGPoint(x: 13.3, y: 0.4), controlPoint1: CGPoint(x: 12.78, y: 0), controlPoint2: CGPoint(x: 13.14, y: 0.18))
-        icon.addLine(to: CGPoint(x: 14.2, y: 1.6))
-        icon.addCurve(to: CGPoint(x: 15.01, y: 2), controlPoint1: CGPoint(x: 14.36, y: 1.82), controlPoint2: CGPoint(x: 14.72, y: 2))
-        icon.addLine(to: CGPoint(x: 18.99, y: 2))
-        icon.addCurve(to: CGPoint(x: 20, y: 3), controlPoint1: CGPoint(x: 19.55, y: 2), controlPoint2: CGPoint(x: 20, y: 2.44))
-        icon.addLine(to: CGPoint(x: 20, y: 3.5))
-        icon.addCurve(to: CGPoint(x: 19.51, y: 4), controlPoint1: CGPoint(x: 20, y: 3.77), controlPoint2: CGPoint(x: 19.78, y: 4))
-        icon.addLine(to: CGPoint(x: 0.49, y: 4))
-        icon.addCurve(to: CGPoint(x: 0, y: 3.5), controlPoint1: CGPoint(x: 0.22, y: 4), controlPoint2: CGPoint(x: 0, y: 3.79))
-        icon.addLine(to: CGPoint(x: 0, y: 3))
-        icon.close()
-        icon.move(to: CGPoint(x: 9.5, y: 7))
-        icon.addLine(to: CGPoint(x: 10.5, y: 7))
-        icon.addLine(to: CGPoint(x: 10.5, y: 24))
-        icon.addLine(to: CGPoint(x: 9.5, y: 24))
-        icon.addLine(to: CGPoint(x: 9.5, y: 7))
-        icon.close()
-        icon.move(to: CGPoint(x: 14, y: 7))
-        icon.addLine(to: CGPoint(x: 15, y: 7))
-        icon.addLine(to: CGPoint(x: 14, y: 24))
-        icon.addLine(to: CGPoint(x: 13, y: 24))
-        icon.addLine(to: CGPoint(x: 14, y: 7))
-        icon.close()
-        icon.move(to: CGPoint(x: 5, y: 7))
-        icon.addLine(to: CGPoint(x: 6, y: 7))
-        icon.addLine(to: CGPoint(x: 7, y: 24))
-        icon.addLine(to: CGPoint(x: 6, y: 24))
-        icon.addLine(to: CGPoint(x: 5, y: 7))
-        icon.close()
-        icon.move(to: CGPoint(x: 5, y: 7))
-        context.saveGState()
-        icon.usesEvenOddFillRule = true
-        color.setFill()
-        icon.fill()
-        context.restoreGState()
-
-        context.restoreGState()
-    }
-
-
-    //MARK: - Canvas Images
-
-    /// Page 1
-
-    class func imageOfArtboard(color: UIColor) -> UIImage {
+    class func deleteIcon(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
             static var color: UIColor!
@@ -532,9 +536,9 @@ class Icons: NSObject {
             return LocalCache.image
         }
         var image: UIImage
-        let size = CGSize(width: 26, height: 38)
+        let size = CGSize(width: 64, height: 64)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        Icons.drawArtboard(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
+        Icons.drawIconTrashCan(color: color, frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size))
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
@@ -553,8 +557,9 @@ class Icons: NSObject {
         }
         var image: UIImage
 
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 300, height: 300), false, 0)
-        Icons.drawEdit(color: color)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 64, height: 64), false, 0)
+        Icons.drawIconCamera(color: color)
+
         image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 

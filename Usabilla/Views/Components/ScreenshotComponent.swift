@@ -109,8 +109,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     }
 
     func addConstraints() {
-        let editIconSize: CGFloat = 48
-
+        let editIconSize: CGFloat = 32
+        let deleteIconSize: CGFloat = 30
         screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).activate()
         screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).activate()
         hasScreenShootTopConstraint = screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: -4)
@@ -130,8 +130,8 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
         deleteIcon.centerYAnchor.constraint(equalTo: deleteIconBackGroundView.centerYAnchor).isActive = true
         deleteIcon.centerXAnchor.constraint(equalTo: deleteIconBackGroundView.centerXAnchor).isActive = true
-        deleteIcon.heightAnchor.constraint(equalToConstant: editIconSize).isActive = true
-        deleteIcon.widthAnchor.constraint(equalToConstant: editIconSize).isActive = true
+        deleteIcon.heightAnchor.constraint(equalToConstant: deleteIconSize).isActive = true
+        deleteIcon.widthAnchor.constraint(equalToConstant: deleteIconSize).isActive = true
 
         editIconBackGroundView.trailingAnchor.constraint(equalTo: deleteIconBackGroundView.leadingAnchor, constant: -16).isActive = true
         editIconBackGroundView.widthAnchor.constraint(equalToConstant: 64).isActive = true
@@ -166,7 +166,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     func applyCustomisations() {
         let theme = viewModel.theme
         deleteIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.5)
-        deleteIcon.setImage(Icons.imageOfArtboard(color: theme.colors.textOnAccent), for: UIControlState())
+        deleteIcon.setImage(Icons.deleteIcon(color: theme.colors.textOnAccent), for: UIControlState())
         editIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.5)
         editIcon.setImage(Icons.imageOfEdit(color: theme.colors.textOnAccent), for: UIControlState())
         addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.accent), for: UIControlState())
