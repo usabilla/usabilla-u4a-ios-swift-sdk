@@ -94,6 +94,8 @@
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
 		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
+		1082683821998FDF00A3820B /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
+		10826839219990C300A3820B /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
 		41AC383F1F6880D400F0DFC6 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
 		41AC38411F68814700F0DFC6 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
 		41AC38431F6883EF00F0DFC6 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
@@ -548,6 +550,7 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
+		1082683721998FDF00A3820B /* BaseParagraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParagraphComponent.swift; sourceTree = "<group>"; };
 		41AC383E1F6880D400F0DFC6 /* NPSControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSControl.swift; sourceTree = "<group>"; };
 		41AC38401F68814700F0DFC6 /* NPSComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponent.swift; sourceTree = "<group>"; };
 		41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
@@ -1110,6 +1113,7 @@
 				430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */,
 				430669911E76B4B30078E3B3 /* BaseComponent.swift */,
 				430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */,
+				1082683721998FDF00A3820B /* BaseParagraphComponent.swift */,
 				4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */,
 				430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */,
 				430669971E76B4B30078E3B3 /* EmailComponent.swift */,
@@ -1683,6 +1687,7 @@
 				04ECD31A1EF9206C0024D24A /* UBCampaignFeedbackRequest.swift in Sources */,
 				C555E9A61EE9A41500F84B51 /* UBToast.swift in Sources */,
 				04F54E201CD76708002F501E /* DeviceInfo.swift in Sources */,
+				1082683821998FDF00A3820B /* BaseParagraphComponent.swift in Sources */,
 				0483E9D61CDCDF86004EC234 /* FieldFactory.swift in Sources */,
 				43BFD4271EFBDF0200AD47AE /* UBToastPageViewModel.swift in Sources */,
 				434A27861E2F5FFD002864C6 /* Promise.swift in Sources */,
@@ -1949,6 +1954,7 @@
 				43B04F621F1F7EEF0032F057 /* UBCampaignFeedbackRequest.swift in Sources */,
 				43B04F631F1F7EEF0032F057 /* UBToast.swift in Sources */,
 				43B04F641F1F7EEF0032F057 /* DeviceInfo.swift in Sources */,
+				10826839219990C300A3820B /* BaseParagraphComponent.swift in Sources */,
 				43B04F651F1F7EEF0032F057 /* FieldFactory.swift in Sources */,
 				43B04F661F1F7EEF0032F057 /* UBToastPageViewModel.swift in Sources */,
 				43B04F671F1F7EEF0032F057 /* Promise.swift in Sources */,

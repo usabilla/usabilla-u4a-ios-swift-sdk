@@ -159,8 +159,11 @@ class RootCellView: UITableViewCell {
         errorLabel.textColor = theme.colors.error
         titleLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.boldFont)
         errorLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        containerView.backgroundColor = theme.colors.cardColor
-
+        if let color = cellViewModel.componentViewModel?.cardBackGroundColor {
+            containerView.backgroundColor = color
+        } else {
+            containerView.backgroundColor = theme.colors.cardColor
+        }
         errorLabel.text = cellViewModel.copy.requiredFieldError
 
         if cellViewModel.required {
