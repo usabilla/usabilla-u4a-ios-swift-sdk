@@ -135,12 +135,6 @@ class RootCellView: UITableViewCell {
         if cellViewModel.required {
             let requiredTitle = String(format: "%@ *", cellViewModel.title) as String
             titleLabel.text = requiredTitle
-            if let attributedText = self.titleLabel.attributedText {
-                let text = NSMutableAttributedString(attributedString: attributedText)
-                text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.colors.hint,
-                                  range: NSRange.init(location: requiredTitle.count - 1, length: 1))
-                titleLabel.attributedText = text
-            }
             return
         }
         self.titleLabel.text = cellViewModel.title
@@ -168,6 +162,19 @@ class RootCellView: UITableViewCell {
         containerView.backgroundColor = theme.colors.cardColor
 
         errorLabel.text = cellViewModel.copy.requiredFieldError
+
+        if cellViewModel.required {
+            if let attributedText = titleLabel.attributedText,
+                let requiredTitle = titleLabel.text {
+                let text = NSMutableAttributedString(attributedString: attributedText)
+                // Current design requires a alpha of 50% on the asterix
+                let requiredColor = cellViewModel.theme.colors.hint.withAlphaComponent(0.5)
+                text.addAttribute(NSForegroundColorAttributeName, value: requiredColor,
+                                  range: NSRange.init(location: requiredTitle.count - 1, length: 1))
+                titleLabel.attributedText = text
+            }
+            return
+        }
     }
 
     @discardableResult func updateValidStatus() -> Bool {
