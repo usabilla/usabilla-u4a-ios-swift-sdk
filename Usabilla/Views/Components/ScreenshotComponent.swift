@@ -28,7 +28,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         view.layer.cornerRadius = 32
         view.layer.masksToBounds = false
         view.backgroundColor = UIColor.blue
-        view.alpha = 0.50
+        view.alpha = 0.90
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -37,7 +37,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         view.layer.cornerRadius = 32
         view.layer.masksToBounds = false
         view.backgroundColor = UIColor.blue
-        view.alpha = 0.50
+        view.alpha = 0.90
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
