@@ -12,30 +12,34 @@ import UIKit
 class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T>, UITextFieldDelegate {
 
     var textField: UITextField!
-    var line: UIView!
+    var borderView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 3.0
+        view.layer.borderWidth = 1.0
+        view.layer.masksToBounds = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func build() {
 
         textField = UITextField()
-        line = UIView()
-
         textField.translatesAutoresizingMaskIntoConstraints = false
-        line.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(textField)
-        addSubview(line)
+        addSubview(borderView)
+        borderView.addSubview(textField)
+
+        borderView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        borderView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
+        borderView.topAnchor.constraint(equalTo: topAnchor, constant: -8).isActive = true
+        borderView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+
+        textField.leftAnchor.constraint(equalTo: borderView.leftAnchor, constant: 10).isActive = true
+        textField.rightAnchor.constraint(equalTo: borderView.rightAnchor, constant: -10).isActive = true
+        textField.topAnchor.constraint(equalTo: borderView.topAnchor, constant: 5).isActive = true
+        textField.bottomAnchor.constraint(equalTo: borderView.bottomAnchor, constant: -5).isActive = true
 
         textField.delegate = self
-
-        textField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        textField.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        textField.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-
-        line.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).isActive = true
-        line.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).isActive = true
-        line.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 2).isActive = true
-        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
 
         textField.text = viewModel.value
 
@@ -54,7 +58,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
         textField.font = theme.fonts.font.getDynamicTypeFont()
         textField.textColor = theme.colors.text
         textField.backgroundColor = .clear
-        line.backgroundColor = theme.colors.hint
+        borderView.layer.borderColor = theme.colors.hint.cgColor
     }
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
