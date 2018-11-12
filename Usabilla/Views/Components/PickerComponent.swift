@@ -11,36 +11,47 @@ import UIKit
 
 class PickerComponent: PickerParentComponent {
 
+    var borderView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 3.0
+        view.layer.borderWidth = 1.0
+        view.layer.masksToBounds = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     var pickerButton = UIButton(type: .custom)
-    var topBorder = UIView()
-    var bottomBorder = UIView()
-    var pickerHeightConstraint: NSLayoutConstraint!
+    var borderViewHeight: NSLayoutConstraint!
     var imageViewArrow: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.getImageFromSDKBundle(name: "picker_arrow")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    let buttonHeight: CGFloat = 42
 
     override func build() {
         accessibilityIdentifier = "pickerComponent"
 
-        topBorder.translatesAutoresizingMaskIntoConstraints = false
         pickerButton.translatesAutoresizingMaskIntoConstraints = false
         picker.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(pickerButton)
-        addSubview(topBorder)
-        addSubview(picker)
-        addSubview(bottomBorder)
+        addSubview(borderView)
+        borderView.addSubview(pickerButton)
+        borderView.addSubview(picker)
         pickerButton.addSubview(imageViewArrow)
 
+        // borderView
+        borderView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        borderView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
+        borderView.topAnchor.constraint(equalTo: topAnchor, constant: -8).isActive = true
+        borderView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        borderViewHeight = borderView.heightAnchor.constraint(equalToConstant: buttonHeight).activate()
+
         // button
-        pickerButton.topAnchor.constraint(equalTo: topAnchor).withID("PickerComponent button top constraint").activate()
-        pickerButton.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent button right constraint").activate()
-        pickerButton.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent button left constraint").activate()
-        pickerButton.heightAnchor.constraint(equalToConstant: 42).activate()
+        pickerButton.topAnchor.constraint(equalTo: borderView.topAnchor).withID("PickerComponent button top constraint").activate()
+        pickerButton.trailingAnchor.constraint(equalTo: borderView.trailingAnchor, constant: -11).withID("PickerComponent button right constraint").activate()
+        pickerButton.leadingAnchor.constraint(equalTo: borderView.leadingAnchor, constant: 11).withID("PickerComponent button left constraint").activate()
+        pickerButton.heightAnchor.constraint(equalToConstant: buttonHeight).activate()
 
         // arrow
         imageViewArrow.widthAnchor.constraint(equalToConstant: 10).activate()
@@ -48,28 +59,14 @@ class PickerComponent: PickerParentComponent {
         imageViewArrow.rightAnchor.constraint(equalTo: pickerButton.rightAnchor).activate()
         imageViewArrow.centerYAnchor.constraint(equalTo: pickerButton.centerYAnchor).activate()
 
-        // top border
-        topBorder.topAnchor.constraint(equalTo: pickerButton.bottomAnchor).withID("PickerComponent bottom border top constraint").activate()
-        topBorder.trailingAnchor.constraint(equalTo: trailingAnchor).withID("PickerComponent bottom border right constraint").activate()
-        topBorder.leadingAnchor.constraint(equalTo: leadingAnchor).withID("PickerComponent bottom border left constraint").activate()
-        topBorder.heightAnchor.constraint(equalToConstant: 1).withID("PickerComponent bottom border height constraint").activate()
-
         // picker
         picker.dataSource = self
         picker.delegate = self
 
-        picker.topAnchor.constraint(equalTo: topBorder.bottomAnchor).withID("PickerComponent picker top constraint").activate()
-        picker.bottomAnchor.constraint(equalTo: bottomBorder.topAnchor).withID("PickerComponent picker bottom constraint").activate()
-        picker.leftAnchor.constraint(equalTo: leftAnchor, constant: -16).withID("PickerComponent picker right constraint").activate()
-        picker.rightAnchor.constraint(equalTo: rightAnchor, constant: 16).withID("PickerComponent picker right constraint").activate()
-
-        // bottom border
-        bottomBorder.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-        bottomBorder.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
-        bottomBorder.leadingAnchor.constraint(equalTo: leadingAnchor).activate()
-        bottomBorder.heightAnchor.constraint(equalToConstant: 1).activate()
-
-        pickerHeightConstraint = picker.heightAnchor.constraint(equalToConstant: 0).activate()
+        picker.topAnchor.constraint(equalTo: borderView.topAnchor, constant: buttonHeight).withID("PickerComponent picker top constraint").activate()
+        picker.bottomAnchor.constraint(equalTo: borderView.bottomAnchor).withID("PickerComponent picker bottom constraint").activate()
+        picker.leftAnchor.constraint(equalTo: borderView.leftAnchor, constant: 8).withID("PickerComponent picker right constraint").activate()
+        picker.rightAnchor.constraint(equalTo: borderView.rightAnchor, constant: -8).withID("PickerComponent picker right constraint").activate()
         updatePickerStatus(isExpanded: false)
 
         // configuration
@@ -88,16 +85,13 @@ class PickerComponent: PickerParentComponent {
         picker.backgroundColor = theme.colors.cardColor
         picker.tintColor = theme.colors.text
 
-        bottomBorder.backgroundColor = theme.colors.hint
-        topBorder.backgroundColor = theme.colors.hint
-
+        borderView.layer.borderColor = theme.colors.hint.cgColor
         imageViewArrow.tintWithColor(color: theme.colors.text)
 
         configure()
     }
 
     func configure() {
-        bottomBorder.isHidden = true
         if let buttonTitle = viewModel.pickerButtonTitle {
             pickerButton.setTitle(buttonTitle, for: .normal)
         }
@@ -119,13 +113,12 @@ class PickerComponent: PickerParentComponent {
         }
         let isPickerExpanded = viewModel.expanded
         viewModel.expanded = !isPickerExpanded
-        bottomBorder.isHidden = !isPickerExpanded
         updatePickerStatus(isExpanded: isPickerExpanded)
         SwiftEventBus.postToMainThread("updateMySize")
     }
 
     func updatePickerStatus(isExpanded: Bool) {
-        pickerHeightConstraint.constant = isExpanded ? 150 : 0
+        borderViewHeight.constant = isExpanded ? 150 : buttonHeight
         picker.isHidden = !isExpanded
         updateAccessibility(isExpanded: isExpanded)
     }
