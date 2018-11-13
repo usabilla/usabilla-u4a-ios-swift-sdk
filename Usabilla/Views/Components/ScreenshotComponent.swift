@@ -19,9 +19,9 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     var iconContainerView: UIView!
     var ratioConstraint: NSLayoutConstraint!
     var hasScreenShootTopConstraint: NSLayoutConstraint!
-    var noScreenShootTopConstraint: NSLayoutConstraint!
-    var hasScreenShootBottomConstraint: NSLayoutConstraint!
-    var noScreenShootBottomConstraint: NSLayoutConstraint!
+    var noScreenshotTopConstraint: NSLayoutConstraint!
+    var hasScreenshotBottomConstraint: NSLayoutConstraint!
+    var noScreenshotBottomConstraint: NSLayoutConstraint!
 
     var editIconBackGroundView: UIView = {
         let view = UIView()
@@ -114,9 +114,9 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).activate()
         screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).activate()
         hasScreenShootTopConstraint = screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: -4)
-        noScreenShootTopConstraint  = screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 12)
-        hasScreenShootBottomConstraint = screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-        noScreenShootBottomConstraint  = screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
+        noScreenshotTopConstraint  = screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 12)
+        hasScreenshotBottomConstraint = screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+        noScreenshotBottomConstraint  = screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
 
         iconContainerView.trailingAnchor.constraint(equalTo: screenShotView.trailingAnchor, constant: -16).isActive = true
         iconContainerView.topAnchor.constraint(equalTo: screenShotView.topAnchor, constant: 17).isActive = true
@@ -177,32 +177,30 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     }
 
     fileprivate func positionWithImage() {
-        noScreenShootTopConstraint.isActive = false
+        noScreenshotTopConstraint.isActive = false
         hasScreenShootTopConstraint.isActive = true
-        noScreenShootBottomConstraint.isActive = false
-        hasScreenShootBottomConstraint.isActive = true
+        noScreenshotBottomConstraint.isActive = false
+        hasScreenshotBottomConstraint.isActive = true
     }
-    
+
     fileprivate func positionWithOutImage() {
-        noScreenShootTopConstraint.isActive = true
+        noScreenshotTopConstraint.isActive = true
         hasScreenShootTopConstraint.isActive = false
-        hasScreenShootBottomConstraint.isActive = false
-        noScreenShootBottomConstraint.isActive = true
+        hasScreenshotBottomConstraint.isActive = false
+        noScreenshotBottomConstraint.isActive = true
     }
-    
+
     func updateUI() {
         let hasScreenShot = viewModel.value != nil
         addIcon.isHidden = hasScreenShot
         addScreenshotLabel.isHidden = hasScreenShot
         screenShotView.isHidden = !hasScreenShot
         self.accessibilityElements = hasScreenShot ? [editIcon, deleteIcon] : [addScreenshotLabel]
-        
         if hasScreenShot {
             positionWithImage()
             return
         }
         positionWithOutImage()
-        
     }
 
     func deleteScreenshot() {
