@@ -77,7 +77,7 @@ class Icons: NSObject {
         context.restoreGState()
         
     }
-    private class func drawIconTrashCan(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
+    private class func drawIconTrashCan(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 64, height: 64), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         

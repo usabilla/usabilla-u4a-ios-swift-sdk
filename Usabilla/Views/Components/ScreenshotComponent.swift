@@ -176,23 +176,33 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         screenShotView.layer.borderColor = theme.colors.hint.cgColor
     }
 
+    fileprivate func positionWithImage() {
+        noScreenShootTopConstraint.isActive = false
+        hasScreenShootTopConstraint.isActive = true
+        noScreenShootBottomConstraint.isActive = false
+        hasScreenShootBottomConstraint.isActive = true
+    }
+    
+    fileprivate func positionWithOutImage() {
+        noScreenShootTopConstraint.isActive = true
+        hasScreenShootTopConstraint.isActive = false
+        hasScreenShootBottomConstraint.isActive = false
+        noScreenShootBottomConstraint.isActive = true
+    }
+    
     func updateUI() {
         let hasScreenShot = viewModel.value != nil
         addIcon.isHidden = hasScreenShot
         addScreenshotLabel.isHidden = hasScreenShot
         screenShotView.isHidden = !hasScreenShot
         self.accessibilityElements = hasScreenShot ? [editIcon, deleteIcon] : [addScreenshotLabel]
+        
         if hasScreenShot {
-            noScreenShootTopConstraint.isActive = false
-            hasScreenShootTopConstraint.isActive = true
-            noScreenShootBottomConstraint.isActive = false
-            hasScreenShootBottomConstraint.isActive = true
-        } else {
-            hasScreenShootTopConstraint.isActive = false
-            noScreenShootTopConstraint.isActive = true
-            hasScreenShootBottomConstraint.isActive = false
-            noScreenShootBottomConstraint.isActive = true
+            positionWithImage()
+            return
         }
+        positionWithOutImage()
+        
     }
 
     func deleteScreenshot() {
