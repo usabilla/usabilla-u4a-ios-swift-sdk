@@ -27,13 +27,9 @@ class PathManager {
             path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: 3.0)
             path.apply(CGAffineTransform.identity.rotated(by: CGFloat( Double.pi * 2.5)))
             path.apply(CGAffineTransform(translationX: size, y: 0))
-
-            break
-
         default:
             let radius: CGFloat = self.size / 2
             path = UIBezierPath.init(arcCenter: CGPoint(x: size / 2, y: size / 2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
-            break
         }
         return path
     }

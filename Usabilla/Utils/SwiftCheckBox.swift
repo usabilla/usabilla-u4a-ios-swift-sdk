@@ -159,7 +159,7 @@ extension SwiftCheckBox {
         self.offBoxLayer = CAShapeLayer(layer: layer)
         self.offBoxLayer.frame = self.bounds
         self.offBoxLayer.path = pathManager.pathForBox().cgPath
-        self.offBoxLayer.fillColor = UIColor.clear.cgColor
+        self.offBoxLayer.fillColor =  UIColor.clear.cgColor
         self.offBoxLayer.strokeColor = self.tintColor.cgColor
         self.offBoxLayer.lineWidth = self.lineWidth
         self.offBoxLayer.rasterizationScale = 2.0 * UIScreen.main.scale
