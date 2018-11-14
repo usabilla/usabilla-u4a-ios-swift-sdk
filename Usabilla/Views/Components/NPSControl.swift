@@ -39,6 +39,7 @@ class NPSControl: UIControl {
         }
     }
 
+    private var selectedLabel: NPSLabel = NPSLabel()
     private let borderedView = UIView()
     private let contentStackView = UIStackView()
     private var labels: [NPSLabel] {
@@ -63,11 +64,11 @@ class NPSControl: UIControl {
     // MARK: Configuration
     private let numberOfValues = 11
 
-    private let npsHeight: CGFloat = 35
-    private let sideContentStackViewPadding: CGFloat = 14
+    private let npsHeight: CGFloat = 32
+    private let sideContentStackViewPadding: CGFloat = 3//14
     private let minimumChoiceWidth: CGFloat = 20
     private let maximiumChoiceWidth: CGFloat = 50
-    private let progressViewMargins: CGFloat = 1.0 * UIScreen.main.scale
+    private let progressViewMargins: CGFloat = 0.55 * UIScreen.main.scale
     private let transitionDuration: TimeInterval = 0.15
 
     // MARK: Customization
@@ -80,6 +81,7 @@ class NPSControl: UIControl {
     var toolTipTextColor: UIColor? {
         didSet {
             labels.forEach { $0.hightlightedTextColor = toolTipTextColor }
+            selectedLabel.hightlightedTextColor = toolTipTextColor
             toolTip.label.textColor = toolTipTextColor
         }
     }
@@ -115,8 +117,10 @@ class NPSControl: UIControl {
     override func tintColorDidChange() {
         labels.forEach { $0.tintColor = tintColor }
         toolTip.tintColor = tintColor
-        progressView.backgroundColor = tintColor
+        progressView.backgroundColor = tintColor.withAlphaComponent(0.5)
         borderedView.layer.borderColor = tintColor.cgColor
+        selectedLabel.tintColor = tintColor
+        selectedLabel.backgroundColor = tintColor
     }
 
     override func layoutSubviews() {
@@ -126,6 +130,7 @@ class NPSControl: UIControl {
     }
 
     private func internalInit() {
+        createCircleLable()
         setupView()
         setupLayout()
         refreshSelection()
@@ -138,18 +143,22 @@ class NPSControl: UIControl {
         translatesAutoresizingMaskIntoConstraints = false
 
         borderedView.isMultipleTouchEnabled = false
-        borderedView.layer.borderWidth = 1
+        borderedView.layer.borderWidth = 0
         borderedView.layer.cornerRadius = npsHeight / 2
         borderedView.layer.masksToBounds = true
         borderedView.layer.shouldRasterize = true
         borderedView.layer.rasterizationScale = UIScreen.main.scale
+        borderedView.clipsToBounds = false
+
+        selectedLabel.layer.cornerRadius = 18
+        selectedLabel.layer.masksToBounds = true
 
         progressView.isHidden = true
 
         toolTip.alpha = 0.0
 
         addSubviews(borderedView, toolTip)
-        borderedView.addSubviews(progressView, contentStackView)
+        borderedView.addSubviews(progressView, contentStackView, selectedLabel)
         createLabels(inContentView: contentStackView, count: numberOfValues)
     }
 
@@ -200,9 +209,18 @@ class NPSControl: UIControl {
             firstLabel = label
             label.widthAnchor.constraint(lessThanOrEqualToConstant: maximiumChoiceWidth).activate()
             label.widthAnchor.constraint(greaterThanOrEqualToConstant: minimumChoiceWidth).activate()
+            label.topAnchor.constraint(equalTo: borderedView.topAnchor, constant: -4)
         }
+
     }
 
+    private func createCircleLable() {
+        let label = NPSLabel()
+        label.textAlignment = .center
+        selectedLabel = label
+        selectedLabel.isHidden = true
+
+    }
     private func refreshSelection() {
         accessibilityValue = rating?.description
         accessibilityLabel = "Select a score"
@@ -219,6 +237,7 @@ class NPSControl: UIControl {
 
         moveTooltip(toIndex: selectedIndex)
         moveProgressBar(toIndex: selectedIndex)
+        highlightSelectedLabel(atIndex: selectedIndex)
     }
 
     private func moveTooltip(toIndex index: Int) {
@@ -246,6 +265,23 @@ class NPSControl: UIControl {
         }
         progressViewTrailingAnchor?.isActive = false
         progressViewTrailingAnchor = progressView.trailingAnchor.constraint(equalTo: choiceLabel.trailingAnchor, constant: progressViewTrailingOffset).activate()
+    }
+
+    private func highlightSelectedLabel(atIndex index: Int) {
+        guard index >= 0 && index < labels.count else {
+            return
+        }
+        let choiceLabel = labels[index]
+        let choiceframe = choiceLabel.frame
+        var selectedFrame = selectedLabel.frame
+        selectedLabel.text = choiceLabel.text
+        selectedFrame.origin = choiceframe.origin
+        selectedFrame.size.width = choiceframe.size.height + 4
+        selectedFrame.size.height = choiceframe.size.height + 4
+        selectedLabel.frame = selectedFrame
+        selectedLabel.center = choiceLabel.center
+        selectedLabel.isHidden = false
+        selectedLabel.isLower = true
     }
 
     // MARK: Haptic Feedback
