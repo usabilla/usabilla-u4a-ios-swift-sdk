@@ -151,9 +151,19 @@ class UsabillaInternal {
         let navigationController = UINavigationController(rootViewController: formController)
         if DeviceInfo.isIPad() {
             navigationController.modalPresentationStyle = .formSheet
+            navigationController.preferredContentSize = preferedFormSize()
         }
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         return navigationController
+    }
+
+    private static func preferedFormSize() -> CGSize {
+        let formWidth: CGFloat = 540 // apple default widht for popUpForms
+        let formHeight: CGFloat = 620 // apple default height for popUpForms
+        let screen = UIScreen.main.bounds
+        let margin = (screen.size.width - formWidth) / 2
+        let height = screen.size.height - 2 * margin
+        return CGSize(width: formWidth, height: (height<formHeight ? formHeight : height))
     }
 
     class func takeScreenshot(_ view: UIView) -> UIImage? {
