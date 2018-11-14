@@ -11,22 +11,10 @@ import UIKit
 
 class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
 
-    var line: UIView!
-
     override func build() {
         super.build()
-        line = UIView()
 
         textView.dataDetectorTypes = .link
-        line.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(line)
-
-        // positioning
-        line.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).activate()
-        line.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).activate()
-        line.heightAnchor.constraint(equalToConstant: 1).activate()
-        line.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 2).activate()
-
         labelPlaceHolder.lineBreakMode = .byWordWrapping
         labelPlaceHolder.numberOfLines = 0
         labelPlaceHolder.sizeToFit()
@@ -38,8 +26,6 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
             labelPlaceHolder.isHidden = false
             labelPlaceHolder.text = viewModel.placeHolder
         }
-
-        line.backgroundColor = viewModel.theme.colors.hint
     }
 
     // MARK: TextField delegates
