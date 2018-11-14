@@ -16,17 +16,6 @@ extension UIFont {
     }
 
     class func uSystemFont(ofSize: CGFloat, weight: FontWeight) -> UIFont {
-//        if #available(iOS 11, *) {
-//            // swiftlint:disable force_unwrapping
-//            switch weight {
-//            case .semiBold:
-//                return UIFont(name: "HelveticaNeue-Medium", size: ofSize)!
-//            default:
-//                return UIFont(name: "HelveticaNeue", size: ofSize)!
-//            }
-//            // swiftlint:enable force_unwrapping
-//        }
-//
         let uWeight = (weight == .semiBold) ? UIFontWeightSemibold : UIFontWeightRegular
         return UIFont.systemFont(ofSize: ofSize, weight: uWeight)
     }

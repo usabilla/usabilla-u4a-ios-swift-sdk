@@ -94,7 +94,6 @@
 		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
 		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
-		10793CA6218CA253008CA593 /* NPSToolTipSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10793CA5218CA253008CA593 /* NPSToolTipSelected.swift */; };
 		41AC383F1F6880D400F0DFC6 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
 		41AC38411F68814700F0DFC6 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
 		41AC38431F6883EF00F0DFC6 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
@@ -549,7 +548,6 @@
 		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
-		10793CA5218CA253008CA593 /* NPSToolTipSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPSToolTipSelected.swift; sourceTree = "<group>"; };
 		41AC383E1F6880D400F0DFC6 /* NPSControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSControl.swift; sourceTree = "<group>"; };
 		41AC38401F68814700F0DFC6 /* NPSComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponent.swift; sourceTree = "<group>"; };
 		41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
@@ -1128,7 +1126,6 @@
 				432A8A0A1E89184E00928F54 /* HeaderComponent.swift */,
 				41AC383E1F6880D400F0DFC6 /* NPSControl.swift */,
 				41C4C7621F69DD490043A844 /* NPSToolTip.swift */,
-				10793CA5218CA253008CA593 /* NPSToolTipSelected.swift */,
 				41AC38401F68814700F0DFC6 /* NPSComponent.swift */,
 			);
 			path = Components;
@@ -1736,7 +1733,6 @@
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
 				C59F73BE1F97748200447B2C /* UIImageView.swift in Sources */,
 				C52550541ED43EF6005658F5 /* FormService.swift in Sources */,
-				10793CA6218CA253008CA593 /* NPSToolTipSelected.swift in Sources */,
 				4390C0F41E97BEC500092977 /* UBFileStorageDAO.swift in Sources */,
 				04DC25B31E8BB347002962A3 /* Decorator.swift in Sources */,
 				04F54E261CD76708002F501E /* UsabillaTheme.swift in Sources */,
