@@ -18,6 +18,29 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     var addScreenshotLabel: UIButton!
     var iconContainerView: UIView!
     var ratioConstraint: NSLayoutConstraint!
+    var hasScreenShootTopConstraint: NSLayoutConstraint!
+    var noScreenshotTopConstraint: NSLayoutConstraint!
+    var hasScreenshotBottomConstraint: NSLayoutConstraint!
+    var noScreenshotBottomConstraint: NSLayoutConstraint!
+
+    var editIconBackGroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 32
+        view.layer.masksToBounds = false
+        view.backgroundColor = UIColor.blue
+        view.alpha = 0.90
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var deleteIconBackGroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 32
+        view.layer.masksToBounds = false
+        view.backgroundColor = UIColor.blue
+        view.alpha = 0.90
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func build() {
         //View init
@@ -31,7 +54,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
         iconContainerView = UIView()
         iconContainerView.translatesAutoresizingMaskIntoConstraints = false
-        iconContainerView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         iconContainerView.layer.cornerRadius = 5
         iconContainerView.layer.masksToBounds = true
 
@@ -64,8 +86,11 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addSubview(addScreenshotLabel)
 
         screenShotView.addSubview(iconContainerView)
-        iconContainerView.addSubview(deleteIcon)
+
+        iconContainerView.addSubview(editIconBackGroundView)
+        iconContainerView.addSubview(deleteIconBackGroundView)
         iconContainerView.addSubview(editIcon)
+        iconContainerView.addSubview(deleteIcon)
 
         addConstraints()
 
@@ -84,28 +109,39 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     }
 
     func addConstraints() {
-        let editIconSize: CGFloat = 48
-        let iconSpacing: CGFloat = 12
-
-        screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).activate()
-        screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).activate()
-        screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 12).activate()
-        screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).activate()
+        let editIconSize: CGFloat = 32
+        let deleteIconSize: CGFloat = 30
+        screenShotView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).activate()
+        screenShotView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).activate()
+        hasScreenShootTopConstraint = screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: -4)
+        noScreenshotTopConstraint  = screenShotView.topAnchor.constraint(equalTo: topAnchor, constant: 12)
+        hasScreenshotBottomConstraint = screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+        noScreenshotBottomConstraint  = screenShotView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
 
         iconContainerView.trailingAnchor.constraint(equalTo: screenShotView.trailingAnchor, constant: -16).isActive = true
-        iconContainerView.topAnchor.constraint(equalTo: screenShotView.topAnchor, constant: 16).isActive = true
-        iconContainerView.heightAnchor.constraint(equalToConstant: iconSpacing * 2 + editIconSize).isActive = true
-        iconContainerView.widthAnchor.constraint(equalToConstant: iconSpacing * 5 + editIconSize * 2).isActive = true
+        iconContainerView.topAnchor.constraint(equalTo: screenShotView.topAnchor, constant: 17).isActive = true
+        iconContainerView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        iconContainerView.widthAnchor.constraint(equalToConstant: 16 + 64 * 2).isActive = true
 
-        deleteIcon.trailingAnchor.constraint(equalTo: iconContainerView.trailingAnchor, constant: -iconSpacing).isActive = true
-        deleteIcon.heightAnchor.constraint(equalToConstant: editIconSize).isActive = true
-        deleteIcon.widthAnchor.constraint(equalToConstant: editIconSize).isActive = true
-        deleteIcon.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
+        deleteIconBackGroundView.trailingAnchor.constraint(equalTo: iconContainerView.trailingAnchor, constant: 0).isActive = true
+        deleteIconBackGroundView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+        deleteIconBackGroundView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        deleteIconBackGroundView.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
 
-        editIcon.leadingAnchor.constraint(equalTo: iconContainerView.leadingAnchor, constant: iconSpacing).isActive = true
+        deleteIcon.centerYAnchor.constraint(equalTo: deleteIconBackGroundView.centerYAnchor).isActive = true
+        deleteIcon.centerXAnchor.constraint(equalTo: deleteIconBackGroundView.centerXAnchor).isActive = true
+        deleteIcon.heightAnchor.constraint(equalToConstant: deleteIconSize).isActive = true
+        deleteIcon.widthAnchor.constraint(equalToConstant: deleteIconSize).isActive = true
+
+        editIconBackGroundView.trailingAnchor.constraint(equalTo: deleteIconBackGroundView.leadingAnchor, constant: -16).isActive = true
+        editIconBackGroundView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+        editIconBackGroundView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        editIconBackGroundView.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
+
+        editIcon.centerYAnchor.constraint(equalTo: editIconBackGroundView.centerYAnchor).isActive = true
+        editIcon.centerXAnchor.constraint(equalTo: editIconBackGroundView.centerXAnchor).isActive = true
         editIcon.widthAnchor.constraint(equalToConstant: editIconSize).isActive = true
         editIcon.heightAnchor.constraint(equalToConstant: editIconSize).isActive = true
-        editIcon.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor).isActive = true
 
         addIcon.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         addIcon.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -113,7 +149,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addIcon.heightAnchor.constraint(equalToConstant: 25).isActive = true
 
         addScreenshotLabel.centerYAnchor.constraint(equalTo: addIcon.centerYAnchor).isActive = true
-        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 8).isActive = true
+        addScreenshotLabel.leadingAnchor.constraint(equalTo: addIcon.trailingAnchor, constant: 16).isActive = true
         addScreenshotLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).activate()
     }
 
@@ -129,13 +165,29 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
     func applyCustomisations() {
         let theme = viewModel.theme
-        deleteIcon.setImage(Icons.imageOfArtboard(color: UIColor.white), for: UIControlState())
-        editIcon.setImage(Icons.imageOfEdit(color: UIColor.white), for: UIControlState())
-        addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.text), for: UIControlState())
+        deleteIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.5)
+        deleteIcon.setImage(Icons.deleteIcon(color: theme.colors.textOnAccent), for: UIControlState())
+        editIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.5)
+        editIcon.setImage(Icons.imageOfEdit(color: theme.colors.textOnAccent), for: UIControlState())
+        addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.accent), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.colors.title, for: .normal)
         addScreenshotLabel.titleLabel?.applyFontWithDynamicTypeEnabled(font: theme.fonts.font)
         addScreenshotLabel.titleLabel?.lineBreakMode = .byTruncatingTail
         screenShotView.layer.borderColor = theme.colors.hint.cgColor
+    }
+
+    fileprivate func positionWithImage() {
+        noScreenshotTopConstraint.isActive = false
+        hasScreenShootTopConstraint.isActive = true
+        noScreenshotBottomConstraint.isActive = false
+        hasScreenshotBottomConstraint.isActive = true
+    }
+
+    fileprivate func positionWithOutImage() {
+        noScreenshotTopConstraint.isActive = true
+        hasScreenShootTopConstraint.isActive = false
+        hasScreenshotBottomConstraint.isActive = false
+        noScreenshotBottomConstraint.isActive = true
     }
 
     func updateUI() {
@@ -144,6 +196,11 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         addScreenshotLabel.isHidden = hasScreenShot
         screenShotView.isHidden = !hasScreenShot
         self.accessibilityElements = hasScreenShot ? [editIcon, deleteIcon] : [addScreenshotLabel]
+        if hasScreenShot {
+            positionWithImage()
+            return
+        }
+        positionWithOutImage()
     }
 
     func deleteScreenshot() {
