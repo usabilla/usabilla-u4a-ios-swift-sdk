@@ -150,7 +150,7 @@ class NPSControl: UIControl {
         borderedView.layer.rasterizationScale = UIScreen.main.scale
         borderedView.clipsToBounds = false
 
-        selectedLabel.layer.cornerRadius = 20
+        selectedLabel.layer.cornerRadius = 18
         selectedLabel.layer.masksToBounds = true
 
         progressView.isHidden = true
@@ -276,8 +276,8 @@ class NPSControl: UIControl {
         var selectedFrame = selectedLabel.frame
         selectedLabel.text = choiceLabel.text
         selectedFrame.origin = choiceframe.origin
-        selectedFrame.size.width = choiceframe.size.height + 5
-        selectedFrame.size.height = choiceframe.size.height + 5
+        selectedFrame.size.width = choiceframe.size.height + 4
+        selectedFrame.size.height = choiceframe.size.height + 4
         selectedLabel.frame = selectedFrame
         selectedLabel.center = choiceLabel.center
         selectedLabel.isHidden = false
