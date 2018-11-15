@@ -175,8 +175,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         let popController = pickerController.popoverPresentationController
         popController?.permittedArrowDirections = .up
         popController?.delegate = self
-        popController?.sourceView = pickerComponent.topBorder
-        popController?.sourceRect = CGRect(x: 134, y: 4, width: 0, height: 0)
+        popController?.sourceView = pickerComponent.borderView
+        popController?.sourceRect = CGRect(x: 134, y: 44, width: 0, height: 0)
 
         // present the pop over
         self.present(pickerController, animated: true, completion: nil)
