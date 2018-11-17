@@ -43,25 +43,27 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         slider.addTarget(self, action: #selector(SliderComponent.barChangedValue), for: .valueChanged)
 
         // positioning
-        slider.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
+        slider.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
         slider.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
-        slider.rightAnchor.constraint(equalTo: valueLabel.leftAnchor, constant: -6).isActive = true
-
-        valueLabel.centerYAnchor.constraint(equalTo: slider.centerYAnchor).isActive = true
+        slider.rightAnchor.constraint(equalTo: rightAnchor, constant: -57).isActive = true
+        //valueLabel.leftAnchor.constraint(equalTo: slider.rightAnchor).isActive = true
         valueLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         valueLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        valueLabel.topAnchor.constraint(lessThanOrEqualTo: topAnchor, constant: 15).isActive = true
+        valueLabel.centerYAnchor.constraint(equalTo: slider.centerYAnchor).isActive = true
+        valueLabel.textAlignment = .right
 
         leftLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         leftLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
-        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriorityDefaultLow).isActive = true
         leftLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
-        leftLabel.numberOfLines = 0
+        leftLabel.numberOfLines = 1
 
         rightLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         rightLabel.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: 0).isActive = true
-        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriorityDefaultLow).isActive = true
         rightLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
-        rightLabel.numberOfLines = 0
+        rightLabel.numberOfLines = 1
         rightLabel.textAlignment = .right
 
         // configuration
@@ -93,16 +95,16 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
 
         // customization
         let theme = viewModel.theme
-
-        slider.tintColor = theme.colors.accent
+        slider.minimumTrackTintColor = theme.colors.accent.withAlphaComponent(0.5)
+        slider.maximumTrackTintColor = theme.colors.accent.withAlphaComponent(0.2)
         slider.thumbTintColor = theme.colors.accent
 
-        valueLabel.font = theme.fonts.font.withSize(theme.fonts.miniSize)
+        valueLabel.font = theme.fonts.font.withSize(theme.fonts.titleSize)
         valueLabel.textColor = theme.colors.text
         rightLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        rightLabel.textColor = theme.colors.text
+        rightLabel.textColor = theme.colors.hint.withAlphaComponent(0.5)
         leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        leftLabel.textColor = theme.colors.text
+        leftLabel.textColor = theme.colors.hint.withAlphaComponent(0.5)
     }
 
     func barChangedValue() {
