@@ -1110,18 +1110,18 @@
 		04F54DE71CD75BA8002F501E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */,
 				430669911E76B4B30078E3B3 /* BaseComponent.swift */,
 				430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */,
 				1082683721998FDF00A3820B /* BaseParagraphComponent.swift */,
 				4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */,
-				430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */,
 				430669971E76B4B30078E3B3 /* EmailComponent.swift */,
 				430669991E76B4B30078E3B3 /* MoodComponent.swift */,
 				4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */,
 				C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */,
 				430669951E76B4B30078E3B3 /* PickerComponent.swift */,
 				C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */,
+				430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */,
+				430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */,
 				4306699B1E76B4B30078E3B3 /* RadioComponent.swift */,
 				4331DA401E27B362009C97B6 /* RatingControl.swift */,
 				4306699C1E76B4B30078E3B3 /* SliderComponent.swift */,

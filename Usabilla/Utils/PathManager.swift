@@ -14,7 +14,6 @@ class PathManager {
     var boxType: BoxType
     var size: CGFloat!
     var lineWidth: CGFloat!
-
     init() {
         boxType = BoxType.square
     }
@@ -27,28 +26,28 @@ class PathManager {
             path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size, height: size), cornerRadius: 3.0)
             path.apply(CGAffineTransform.identity.rotated(by: CGFloat( Double.pi * 2.5)))
             path.apply(CGAffineTransform(translationX: size, y: 0))
-
-            break
-
         default:
             let radius: CGFloat = self.size / 2
             path = UIBezierPath.init(arcCenter: CGPoint(x: size / 2, y: size / 2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
-            break
         }
         return path
     }
 
     func pathForCheckMark() -> UIBezierPath {
-        let checkMarkPath = UIBezierPath()
+        var checkMarkPath = UIBezierPath()
 
-        checkMarkPath.move(to: CGPoint(x: self.size / 3.1578, y: self.size / 2))
-        checkMarkPath.addLine(to: CGPoint(x: self.size / 2.0618, y: self.size / 1.57894))
-        checkMarkPath.addLine(to: CGPoint(x: self.size / 1.3953, y: self.size / 2.7272))
-
-        if self.boxType == .square {
+        switch self.boxType {
+        case .square:
+            checkMarkPath.move(to: CGPoint(x: self.size / 3.1578, y: self.size / 2))
+            checkMarkPath.addLine(to: CGPoint(x: self.size / 2.0618, y: self.size / 1.57894))
+            checkMarkPath.addLine(to: CGPoint(x: self.size / 1.3953, y: self.size / 2.7272))
             // If we use a square box, the check mark should be a little bit bigger
             checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
             checkMarkPath.apply(CGAffineTransform(translationX: -self.size / 4, y: -self.size / 4))
+        case .circle:
+            let radius: CGFloat = self.size / 5
+            checkMarkPath = UIBezierPath.init(arcCenter: CGPoint(x: size / 2, y: size / 2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
+            checkMarkPath.fill()
 
         }
 
@@ -67,7 +66,7 @@ class PathManager {
             checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
             checkMarkPath.apply(CGAffineTransform(translationX: -self.size / 4, y: -self.size / 4))
         } else {
-            checkMarkPath.addLine(to: CGPoint(x: self.size / 1.1553, y: self.size / 5.9272))
+           // checkMarkPath.addLine(to: CGPoint(x: self.size / 1.1553, y: self.size / 5.9272))
         }
 
         return checkMarkPath
