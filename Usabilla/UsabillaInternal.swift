@@ -158,12 +158,12 @@ class UsabillaInternal {
     }
 
     private static func preferedFormSize() -> CGSize {
-        let formWidth: CGFloat = 540 // apple default widht for popUpForms
-        let formHeight: CGFloat = 620 // apple default height for popUpForms
+        let formWidth: CGFloat = 640 // default width
+        let formHeight: CGFloat = 1000 // default maks height
         let screen = UIScreen.main.bounds
-        let margin = (screen.size.width - formWidth) / 2
+        let margin: CGFloat = 50 // default minimum margin
         let height = screen.size.height - 2 * margin
-        return CGSize(width: formWidth, height: (height<formHeight ? formHeight : height))
+        return CGSize(width: formWidth, height: (height > formHeight ? formHeight : height))
     }
 
     class func takeScreenshot(_ view: UIView) -> UIImage? {
