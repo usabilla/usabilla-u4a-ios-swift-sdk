@@ -570,7 +570,6 @@ class Icons: NSObject {
 
 
     /// -Form copy
-
     class func imageOfAddImage(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
