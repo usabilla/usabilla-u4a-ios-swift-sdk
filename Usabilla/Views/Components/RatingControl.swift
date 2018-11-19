@@ -18,7 +18,7 @@ class RatingControl: UIControl {
     private let contentView = UIStackView()
 
     private let size: CGFloat = 42
-    private let spacing: CGFloat = 25
+    private let spacing: CGFloat = 0
     private let moodZoomScale: CGFloat = 1.3
     private let starZoomScale: CGFloat = 1.0
 
@@ -30,7 +30,14 @@ class RatingControl: UIControl {
             }
 
             let index = rating > 0 ? rating - 1: 0
-            accessibilityValue = accessibilityLabels[index]
+
+            // handle the extra spaceing added to satisfy design..
+            var num = index
+            if maxValue == 2 && index > maxValue {
+                num = maxValue-1
+            }
+
+            accessibilityValue = accessibilityLabels[num]
             refreshSelection()
         }
     }
@@ -98,7 +105,7 @@ class RatingControl: UIControl {
         contentView.heightAnchor.constraint(equalToConstant: size).isActive = true
         contentView.distribution = .fillEqually
         contentView.isMultipleTouchEnabled = false
-        contentView.alignment = UIStackViewAlignment.leading
+        contentView.alignment = UIStackViewAlignment.fill//leading
         if !centered {
             contentView.distribution = .fill
             contentView.spacing = spacing
@@ -119,25 +126,82 @@ class RatingControl: UIControl {
         super.draw(rect)
         reload()
     }
-
+    private func createSpaceButton() -> UIButton {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        button.contentMode = .scaleAspectFill
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.isUserInteractionEnabled = false
+        return button
+    }
     private func reload() {
         isExclusiveTouch = true
         accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_mood_select_a_rating_out_of")) \(maxValue)"
         contentView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+
+        switch maxValue {
+        case 2:
+            configureStackViewForTwoMoods()
+        default:
+            configureStackViewForMoreMoods()
+        }
+        if !centered { // add blank view to fill stackview
+            let stretchingView = UIView()
+            stretchingView.setContentHuggingPriority(1, for: .horizontal)
+            stretchingView.backgroundColor = .clear
+            contentView.addArrangedSubview(stretchingView)
+        }
+        refreshSelection()
+    }
+
+    private func configureStackViewForTwoMoods() {
+        var prevbutton: UIButton?
+
+        // first spacer
+        var aButton = createSpaceButton()
+        contentView.addArrangedSubview(aButton)
+        prevbutton = aButton
+        // first mood
+        var button = buttonForStackView(index: 0)
+        contentView.addArrangedSubview(button)
+
+        button.setContentHuggingPriority(999, for: .horizontal)
+        if let prev = prevbutton {
+            button.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
+        }
+        prevbutton = button
+        //middel spacer
+        aButton = createSpaceButton()
+        contentView.addArrangedSubview(aButton)
+        if let prev = prevbutton {
+            aButton.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
+        }
+        prevbutton = aButton
+
+        // second mood
+        button = buttonForStackView(index: 1)
+        contentView.addArrangedSubview(button)
+
+        button.setContentHuggingPriority(999, for: .horizontal)
+        if let prev = prevbutton {
+            button.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
+        }
+        prevbutton = aButton
+
+        //last spacer
+        aButton = createSpaceButton()
+        contentView.addArrangedSubview(aButton)
+        if let prev = prevbutton {
+            aButton.widthAnchor.constraint(equalTo: prev.widthAnchor).isActive = true
+        }
+    }
+
+    private func configureStackViewForMoreMoods() {
         var prevbutton: UIButton?
 
         for index in 0..<maxValue {
-
-            let button = UIButton()
-            button.contentMode = .scaleAspectFill
-            button.imageView?.contentMode = .scaleAspectFit
-            button.contentHorizontalAlignment = .fill
-            button.contentVerticalAlignment = .fill
-            let selected = imageForButton(index, selected: true)
-            let unselected = imageForButton(index, selected: false) ?? selected?.alpha(value: 0.4)
-            button.setImage(unselected, for: .normal)
-            button.setImage(selected, for: .selected)
-            button.isUserInteractionEnabled = false
+            let button = buttonForStackView(index: index)
             contentView.addArrangedSubview(button)
 
             button.setContentHuggingPriority(999, for: .horizontal)
@@ -146,14 +210,20 @@ class RatingControl: UIControl {
             }
             prevbutton = button
         }
+    }
 
-        if !centered { // add blank view to fill stackview
-            let stretchingView = UIView()
-            stretchingView.setContentHuggingPriority(1, for: .horizontal)
-            stretchingView.backgroundColor = .clear
-            contentView.addArrangedSubview(stretchingView)
-        }
-        refreshSelection()
+    private func buttonForStackView(index: Int) -> UIButton {
+        let button = UIButton()
+        button.contentMode = .scaleAspectFill
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        let selected = imageForButton(index, selected: true)
+        let unselected = imageForButton(index, selected: false) ?? selected?.alpha(value: 0.4)
+        button.setImage(unselected, for: .normal)
+        button.setImage(selected, for: .selected)
+        button.isUserInteractionEnabled = false
+        return button
     }
 
     private func refreshSelection(animated: Bool = true) {
@@ -208,6 +278,10 @@ class RatingControl: UIControl {
         } ?? selectedIndex
 
         guard newIndex != selectedIndex else {
+            return
+        }
+        // this  statements handles the mood aacesibilty for 2 moods setup (or actually) ignores it
+        if maxValue == 2 && newIndex == 2 {
             return
         }
         selectedIndex = newIndex
