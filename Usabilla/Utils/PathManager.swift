@@ -38,13 +38,10 @@ class PathManager {
 
         switch self.boxType {
         case .square:
-            checkMarkPath.move(to: CGPoint(x: self.size / 3.1578, y: self.size / 2))
-            checkMarkPath.addLine(to: CGPoint(x: self.size / 2.0618, y: self.size / 1.57894))
-            checkMarkPath.addLine(to: CGPoint(x: self.size / 1.3953, y: self.size / 2.7272))
-            // If we use a square box, the check mark should be a little bit bigger
-            checkMarkPath.apply(CGAffineTransform(scaleX: 1.5, y: 1.5))
-            checkMarkPath.apply(CGAffineTransform(translationX: -self.size / 4, y: -self.size / 4))
-        case .circle:
+            checkMarkPath.move(to: CGPoint(x: 20.25, y: 7.19))
+            checkMarkPath.addCurve(to: CGPoint(x: 11.53, y: 16.81), controlPoint1: CGPoint(x: 16.17, y: 9.92), controlPoint2: CGPoint(x: 13.27, y: 13.13))
+            checkMarkPath.addCurve(to: CGPoint(x: 7.19, y: 12.96), controlPoint1: CGPoint(x: 10.38, y: 15.34), controlPoint2: CGPoint(x: 9, y: 13.79))
+         case .circle:
             let radius: CGFloat = self.size / 5
             checkMarkPath = UIBezierPath.init(arcCenter: CGPoint(x: size / 2, y: size / 2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
             checkMarkPath.fill()
