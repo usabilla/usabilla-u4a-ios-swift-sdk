@@ -29,6 +29,7 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         // positioning
 
         let offset: CGFloat = (viewModel.ratingMode == .emoticon) ? moodComponentOffset : starComponentOffset
+        moodControl.offset = offset
         moodControl.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
         moodControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -offset).isActive = true
         moodControl.topAnchor.constraint(equalTo: topAnchor).isActive = true

@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 class DeviceInfo {
+    class func getMaxFormWidth() -> CGFloat {
+        if DeviceInfo.isIPad() {
+            return 540
+        }
+        return UIScreen.main.bounds.size.width
+    }
 
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
