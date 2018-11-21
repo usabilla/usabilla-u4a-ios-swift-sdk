@@ -158,8 +158,8 @@ class UsabillaInternal {
     }
 
     private static func preferedFormSize() -> CGSize {
-        let formWidth: CGFloat = 640 // default width
-        let formHeight: CGFloat = 1000 // default maks height
+        let formWidth: CGFloat = DeviceInfo.getMaxFormWidth() // default width
+        let formHeight: CGFloat = DeviceInfo.getMaxFormHeight() // default maks height
         let screen = UIScreen.main.bounds
         let margin: CGFloat = 50 // default minimum margin
         let height = screen.size.height - 2 * margin

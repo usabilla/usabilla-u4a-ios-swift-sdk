@@ -12,11 +12,18 @@ import UIKit
 class DeviceInfo {
     class func getMaxFormWidth() -> CGFloat {
         if DeviceInfo.isIPad() {
-            return 540
+            return 640
         }
         return UIScreen.main.bounds.size.width
     }
+    class func getMaxFormHeight() -> CGFloat {
+        if DeviceInfo.isIPad() {
+            return 1000
+        }
+        return UIScreen.main.bounds.size.height
+    }
 
+    
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
