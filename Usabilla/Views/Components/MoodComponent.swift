@@ -23,13 +23,15 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl.accessibilityLabels = viewModel.accessibilityLabels
         moodControl.translatesAutoresizingMaskIntoConstraints = false
         moodControl.addTarget(self, action: #selector(MoodComponent.pickMood(sender:)), for: [.valueChanged])
-
+        moodControl.centered = true
         addSubview(moodControl)
 
         // positioning
+
         let offset: CGFloat = (viewModel.ratingMode == .emoticon) ? moodComponentOffset : starComponentOffset
+        moodControl.offset = offset
         moodControl.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
-        moodControl.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        moodControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -offset).isActive = true
         moodControl.topAnchor.constraint(equalTo: topAnchor).isActive = true
         moodControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
