@@ -22,6 +22,7 @@ class CampaignViewController: UIViewController {
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     var backgroundLayer: UIView?
+    var containerView: UIView?
     var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
@@ -71,7 +72,7 @@ class CampaignViewController: UIViewController {
             return
         }
     }
-
+    
     override func loadView() {
         self.view = UBCustomTouchableView()
         self.view.frame = UIScreen.main.bounds
@@ -229,7 +230,7 @@ class CampaignViewController: UIViewController {
         modalTopConstraint?.constant = modalsMargin.top
         modalLeftConstraint?.constant = modalsMargin.left
         modalRightConstraint?.constant = -modalsMargin.right
-        modalBottomConstraint?.constant = -modalsMargin.bottom
+        modalBottomConstraint?.constant = -modalsMargin.bottom+50
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

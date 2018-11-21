@@ -31,8 +31,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
             view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
         } else {
-            view.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
-            view.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
+            view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: 16).activate()
+            view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: -16).activate()
         }
         inView.layoutIfNeeded()
 
@@ -48,8 +48,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
 
         UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.topConstraint.constant = -UBBannerDisplay.kBannerExtraSpace
-            self.bottomConstraint.constant = UBBannerDisplay.kBannerExtraSpace - UIView.safeAreaEdgeInsets.bottom
+            
+            self.topConstraint.constant = 16//-UBBannerDisplay.kBannerExtraSpace
+            //self.bottomConstraint.constant = -16//UIView.safeAreaEdgeInsets.bottom
             inView.layoutIfNeeded()
         })
     }
