@@ -57,7 +57,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
             return
         }
         let color = theme.colors.accent
-        checkBox.tintColor = color
+        checkBox.tintColor = theme.colors.cardColor
         checkBox.onTintColor = color
         checkBox.onCheckColor = theme.colors.textOnAccent
         checkBox.onFillColor = color
