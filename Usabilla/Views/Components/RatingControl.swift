@@ -67,7 +67,7 @@ class RatingControl: UIControl {
                 selectedIndex = -1
                 return
             }
-            selectedIndex = v - 1
+            selectedIndex = getSelectedIndexBase(v)
         }
     }
     var centered = false {
@@ -86,7 +86,15 @@ class RatingControl: UIControl {
         internalInit()
     }
 
-    private func getSelectedIndexBase() -> Int {
+    private func
+        getSelectedIndexBase(_ selected: Int? = nil) -> Int {
+        if let selectedIndex = selected {
+            if selectedIndex*2 <= contentView.subviews.count {
+                return selectedIndex*2-1
+            }
+            return selectedIndex
+        }
+
         guard selectedIndex > -1 else {
             return -1
         }
@@ -186,15 +194,19 @@ class RatingControl: UIControl {
     }
 
     private func refreshSelection(animated: Bool = true) {
-        for (index, subView) in contentView.subviews.enumerated() {
+
+        // get the moodview
+        let moodviews = contentView.subviews.filter { $0 is UIButton }
+
+        for (index, subView) in moodviews.enumerated() {
             let button = (subView as? UIButton)
 
             var state: Bool = false
 
-            state = mode == .star ? index <= selectedIndex: index == selectedIndex
+            state = mode == .star ? index <= getSelectedIndexBase(): index == getSelectedIndexBase()
             let zoomScale = mode == .star ? starZoomScale : moodZoomScale
 
-            if selectedIndex > -1 {
+            if getSelectedIndexBase() > -1 {
                 if animated {
                     animateMood(button: button, canBeZoomed: state, startScale: 0.8, endScale: zoomScale)
                 }
