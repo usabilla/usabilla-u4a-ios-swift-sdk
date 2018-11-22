@@ -41,7 +41,7 @@ class PathManager {
             checkMarkPath.move(to: CGPoint(x: 20.25, y: 7.19))
             checkMarkPath.addCurve(to: CGPoint(x: 11.53, y: 16.81), controlPoint1: CGPoint(x: 16.17, y: 9.92), controlPoint2: CGPoint(x: 13.27, y: 13.13))
             checkMarkPath.addCurve(to: CGPoint(x: 7.19, y: 12.96), controlPoint1: CGPoint(x: 10.38, y: 15.34), controlPoint2: CGPoint(x: 9, y: 13.79))
-         case .circle:
+        case .circle:
             let radius: CGFloat = self.size / 5
             checkMarkPath = UIBezierPath.init(arcCenter: CGPoint(x: size / 2, y: size / 2), radius: radius, startAngle: CGFloat(-Double.pi / 4), endAngle: CGFloat(2 * Double.pi - Double.pi / 4), clockwise: true)
             checkMarkPath.fill()

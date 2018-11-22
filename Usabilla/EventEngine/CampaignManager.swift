@@ -53,7 +53,7 @@ class CampaignManager {
         guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
             return
         }
-        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme).then { form in
+        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position).then { form in
             let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
             if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
@@ -98,13 +98,14 @@ class CampaignManager {
     }
 
     #if INTERNAL_USE || DEBUG
-        @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignID: String = "id") -> Bool {
+    @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignID: String = "id") -> Bool {
+        let displayMode: IntroPageDisplayMode = .bannerBottom
             var manager = manager
             if manager == nil {
                 manager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaignID, formVersion: form.version, userContext: ["debug": "debug"], campaignSubmissionManager: self.submissionManager)
             }
             //swiftlint:disable:next force_unwrapping
-            let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
+            let campaignViewModel = CampaignViewModel(form: form, displayMode: displayMode,manager: manager!)
             return CampaignWindow.shared.showCampaign(campaignViewModel)
         }
 

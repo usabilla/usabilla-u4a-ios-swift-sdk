@@ -10,11 +10,11 @@ import Foundation
 
 enum IntroPageDisplayMode: String {
     case alert
-    case bannerBottom
-    case bannerTop
+    case bannerBottom = "bottom"
+    case bannerTop = "top"
 }
 
 class IntroPageModel: PageModel {
     var hasContinueButton: Bool = false
-    var displayMode: IntroPageDisplayMode = .bannerTop//.bannerBottom
+    var displayMode: IntroPageDisplayMode = .bannerBottom
 }

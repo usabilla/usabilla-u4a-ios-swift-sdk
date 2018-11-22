@@ -24,6 +24,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
+        
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
         bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
 
@@ -45,12 +46,12 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         topConstraint.isActive = style != .bannerBottom
         bottomConstraint.isActive = style == .bannerBottom
         inView.layoutIfNeeded()
+        
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
-
         UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
-            self.topConstraint.constant = 16//-UBBannerDisplay.kBannerExtraSpace
-            //self.bottomConstraint.constant = -16//UIView.safeAreaEdgeInsets.bottom
+
+            self.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : self.topConstraint.constant)
+            self.bottomConstraint.constant = (style == .bannerTop ? self.bottomConstraint.constant : -16)
             inView.layoutIfNeeded()
         })
     }

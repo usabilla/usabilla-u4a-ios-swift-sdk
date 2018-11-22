@@ -29,7 +29,7 @@ protocol FormViewControllerDelegate: class {
 protocol ComponentViewModel: Accessible {
     var theme: UsabillaTheme { get }
     var cardBackGroundColor: UIColor? {get set}
-    weak var delegate: ComponentViewModelDelegate? { get set }
+    var delegate: ComponentViewModelDelegate? { get set }
     func reset()
 }
 

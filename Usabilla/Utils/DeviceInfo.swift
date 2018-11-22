@@ -60,13 +60,29 @@ class DeviceInfo {
         return CGSize(width: formWidth, height: (height > formHeight ? formHeight : height))
     }
 
+    static var topMargin: CGFloat {
+        get {
+            if DeviceInfo.hasTopNotch {
+                return 35
+            }
+            return 16
+        }
+        set {}
+    }
+
+    static var hasTopNotch: Bool {
+        if #available(iOS 11.0, *) {
+            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20
+        }
+        return false
+    }
+
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
 
-    class func isIphoneX() -> Bool {
-        let deviceType = UIDevice.current.modelName
-        return deviceType.range(of: "iPhone10,3") != nil || deviceType.range(of: "iPhone10,6") != nil || UIScreen.main.nativeBounds.height == 2436
+    class func isIphoneWithNotch() -> Bool {
+        return DeviceInfo.hasTopNotch
     }
 
     class func isJailbroken() -> Bool {

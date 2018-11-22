@@ -47,7 +47,7 @@ class CampaignViewController: UIViewController {
     }
 
     private var modalsMargin: UIEdgeInsets {
-        if DeviceInfo.isIphoneX() {
+        if DeviceInfo.isIphoneWithNotch() {
             return iphoneXModalsMargin
         }
         return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
@@ -213,7 +213,7 @@ class CampaignViewController: UIViewController {
 
     func showToast() {
         let thankYoutext = viewModel.toastPageViewModel?.text ?? ""
-        let estimatedDuration: UBToastDuration = thankYoutext.characters.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
+        let estimatedDuration: UBToastDuration = thankYoutext.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
         toast = UBToast(delegate: self, text: thankYoutext, duration: estimatedDuration)
         toast?.show {
             self.closeCampaign()
