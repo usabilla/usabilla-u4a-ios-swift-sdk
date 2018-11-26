@@ -95,7 +95,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
 
         // customization
         let theme = viewModel.theme
-        slider.minimumTrackTintColor = theme.colors.accent.withAlphaComponent(0.5)
+        slider.minimumTrackTintColor = theme.colors.accent
         slider.maximumTrackTintColor = theme.colors.accent.withAlphaComponent(0.2)
         slider.thumbTintColor = theme.colors.accent
 
