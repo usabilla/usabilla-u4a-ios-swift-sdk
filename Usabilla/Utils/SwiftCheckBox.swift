@@ -191,7 +191,7 @@ extension SwiftCheckBox {
         self.checkMarkLayer?.frame = self.bounds
         self.checkMarkLayer?.path = pathManager.pathForCheckMark().cgPath
         self.checkMarkLayer?.strokeColor = self.onCheckColor.cgColor
-        self.checkMarkLayer?.lineWidth = self.lineWidth
+        self.checkMarkLayer?.lineWidth = self.lineWidth*1.5
 
         var fillColor = self.onCheckColor.cgColor
         if boxType == .square {

@@ -88,6 +88,9 @@ class PickerComponent: PickerParentComponent {
         borderView.layer.borderColor = theme.colors.hint.cgColor
         imageViewArrow.tintWithColor(color: theme.colors.text)
 
+        let spacing: CGFloat = 10; // the amount of spacing to appear between image and title
+        pickerButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: 0)
+        pickerButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: spacing)
         configure()
     }
 

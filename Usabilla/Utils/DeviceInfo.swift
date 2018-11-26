@@ -23,7 +23,6 @@ class DeviceInfo {
         return UIScreen.main.bounds.size.height
     }
 
-    
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
