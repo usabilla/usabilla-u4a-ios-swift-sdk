@@ -23,6 +23,43 @@ class DeviceInfo {
         return UIScreen.main.bounds.size.height
     }
 
+    class func getLeftCardBorder() -> CGFloat {
+        if DeviceInfo.isIPad() {
+            return 23
+        }
+        return 16
+    }
+
+    class func getRightCardBorder() -> CGFloat {
+        if DeviceInfo.isIPad() {
+            return 23
+        }
+        return 16
+    }
+
+    class func getTopCardBorder() -> CGFloat {
+        if DeviceInfo.isIPad() {
+            return 23
+        }
+        return 16
+    }
+
+    class func getBottomCardBorder() -> CGFloat {
+        if DeviceInfo.isIPad() {
+            return 23
+        }
+        return 16
+    }
+
+    class func preferedFormSize(_ screenSize: CGSize = UIScreen.main.bounds.size) -> CGSize {
+        let formWidth: CGFloat = DeviceInfo.getMaxFormWidth() // default width
+        let formHeight: CGFloat = DeviceInfo.getMaxFormHeight() // default maks height
+        //let screen = UIScreen.main.bounds
+        let margin: CGFloat = 50 // default minimum margin
+        let height = screenSize.height - 2 * margin
+        return CGSize(width: formWidth, height: (height > formHeight ? formHeight : height))
+    }
+
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }

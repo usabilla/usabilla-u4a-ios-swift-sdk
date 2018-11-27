@@ -35,7 +35,6 @@ class UsabillaInternal {
     private static var formStore: FormStore?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
-
     class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event, customVariables: customVariables)
     }
@@ -148,22 +147,13 @@ class UsabillaInternal {
             return nil
         }
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
-        let navigationController = UINavigationController(rootViewController: formController)
+        let navigationController = UBNavigationController(rootViewController: formController)
         if DeviceInfo.isIPad() {
             navigationController.modalPresentationStyle = .formSheet
-            navigationController.preferredContentSize = preferedFormSize()
+            navigationController.preferredContentSize = DeviceInfo.preferedFormSize()
         }
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         return navigationController
-    }
-
-    private static func preferedFormSize() -> CGSize {
-        let formWidth: CGFloat = DeviceInfo.getMaxFormWidth() // default width
-        let formHeight: CGFloat = DeviceInfo.getMaxFormHeight() // default maks height
-        let screen = UIScreen.main.bounds
-        let margin: CGFloat = 50 // default minimum margin
-        let height = screen.size.height - 2 * margin
-        return CGSize(width: formWidth, height: (height > formHeight ? formHeight : height))
     }
 
     class func takeScreenshot(_ view: UIView) -> UIImage? {
