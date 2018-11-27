@@ -256,13 +256,9 @@ class NPSControl: UIControl {
             return
         }
         let choiceLabel = labels[index]
-        let labelWidth: CGFloat = contentStackView.frame.width / CGFloat(numberOfValues)
-        let defaultOffsetProgressbarOffset = labelWidth * 0.07 // add an offset of 7% of a label width
-        var progressViewTrailingOffset = defaultOffsetProgressbarOffset
-        //if this is the last label of the nps, then the progress bar should reach the end
-        if index == labels.count - 1 {
-            progressViewTrailingOffset = sideContentStackViewPadding - progressViewMargins
-        }
+        //let labelWidth: CGFloat = contentStackView.frame.width / CGFloat(numberOfValues)
+        //Hide the progressbar under the circle-indication label
+        let progressViewTrailingOffset: CGFloat = -12
         progressViewTrailingAnchor?.isActive = false
         progressViewTrailingAnchor = progressView.trailingAnchor.constraint(equalTo: choiceLabel.trailingAnchor, constant: progressViewTrailingOffset).activate()
     }
