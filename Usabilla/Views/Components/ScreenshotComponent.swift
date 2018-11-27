@@ -165,9 +165,9 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
     func applyCustomisations() {
         let theme = viewModel.theme
-        deleteIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.5)
+        deleteIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.9)
         deleteIcon.setImage(Icons.deleteIcon(color: theme.colors.textOnAccent), for: UIControlState())
-        editIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.5)
+        editIconBackGroundView.backgroundColor = theme.colors.accent.withAlphaComponent(0.9)
         editIcon.setImage(Icons.imageOfEdit(color: theme.colors.textOnAccent), for: UIControlState())
         addIcon.setImage(Icons.imageOfAddImage(color: theme.colors.accent), for: UIControlState())
         addScreenshotLabel.setTitleColor(theme.colors.title, for: .normal)

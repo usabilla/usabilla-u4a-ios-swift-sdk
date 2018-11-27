@@ -116,7 +116,7 @@ class Icons: NSObject {
         fillColor.setFill()
         rectangle6Path.fill()
         strokeColor.setStroke()
-        rectangle6Path.lineWidth = 2
+        rectangle6Path.lineWidth = 1
         rectangle6Path.stroke()
         
         
@@ -128,7 +128,7 @@ class Icons: NSObject {
         pathPath.addCurve(to: CGPoint(x: 13, y: 2), controlPoint1: CGPoint(x: 11, y: 2.9), controlPoint2: CGPoint(x: 11.9, y: 2))
         pathPath.addLine(to: CGPoint(x: 19, y: 2))
         strokeColor.setStroke()
-        pathPath.lineWidth = 2
+        pathPath.lineWidth = 1
         pathPath.miterLimit = 4
         pathPath.lineCapStyle = .round
         pathPath.stroke()
@@ -137,21 +137,21 @@ class Icons: NSObject {
         //// Rectangle-3 Drawing
         let rectangle3Path = UIBezierPath(roundedRect: CGRect(x: 12, y: 12, width: 1, height: 12), cornerRadius: 0.5)
         strokeColor.setStroke()
-        rectangle3Path.lineWidth = 2
+        rectangle3Path.lineWidth = 1
         rectangle3Path.stroke()
         
         
         //// Rectangle- 7 Drawing
         let rectangle7Path = UIBezierPath(roundedRect: CGRect(x: 20, y: 12, width: 1, height: 12), cornerRadius: 0.5)
         strokeColor.setStroke()
-        rectangle7Path.lineWidth = 2
+        rectangle7Path.lineWidth = 1
         rectangle7Path.stroke()
         
         
         //// Rectangle- 9 Drawing
         let rectangle9Path = UIBezierPath(roundedRect: CGRect(x: 16, y: 12, width: 1, height: 12), cornerRadius: 0.5)
         strokeColor.setStroke()
-        rectangle9Path.lineWidth = 2
+        rectangle9Path.lineWidth = 1
         rectangle9Path.stroke()
         
         context.restoreGState()
