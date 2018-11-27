@@ -8,7 +8,7 @@
 
 import UIKit
 
-let footerHeight: CGFloat = 80.0
+let footerHeight: CGFloat = 90.0
 
 class PageViewController: UIViewController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate {
 
@@ -97,12 +97,13 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     func handleHeaderViewVisibility() {
         if tableView.tableHeaderView == nil {
             tableView.tableHeaderView = headerView
-            headerView.heightAnchor.constraint(equalToConstant: 40).activate()
+            //headerView.heightAnchor.constraint(equalToConstant: 60).activate()
             constraintHeaderLeft = headerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
             constraintHeaderRight = headerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
-            requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).activate()
-            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -16).activate()
-            requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).activate()
+            requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: DeviceInfo.getLeftCardBorder()).activate()
+            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -DeviceInfo.getRightCardBorder()).activate()
+            requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: DeviceInfo.getTopCardBorder()+5).activate()
+            requiredLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -DeviceInfo.getBottomCardBorder()).activate()
             updateHeaderMargins()
             tableView.tableHeaderView?.layoutIfNeeded()
         }
