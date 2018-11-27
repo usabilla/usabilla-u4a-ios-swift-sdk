@@ -26,7 +26,7 @@ class BaseParagraphComponent<T: StringComponentViewModel>: UBComponent<T>, UITex
         textView.leftAnchor.constraint(equalTo: leftAnchor, constant: -16).isActive = true
         textView.rightAnchor.constraint(equalTo: rightAnchor, constant: 16).isActive = true
         textView.topAnchor.constraint(equalTo: topAnchor, constant: 6).isActive = true
-        textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6).isActive = true
+        textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8).isActive = true
 
         // customization
         let theme = viewModel.theme
