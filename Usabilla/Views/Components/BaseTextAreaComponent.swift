@@ -50,8 +50,8 @@ class BaseTextAreaComponent<T: StringComponentViewModel>: UBComponent<T>, UIText
 
         textView.leftAnchor.constraint(equalTo: borderView.leftAnchor, constant: 10).isActive = true
         textView.rightAnchor.constraint(equalTo: borderView.rightAnchor, constant: -10).isActive = true
-        textView.topAnchor.constraint(equalTo: borderView.topAnchor, constant: 5).isActive = true
-        textView.bottomAnchor.constraint(equalTo: borderView.bottomAnchor, constant: -5).isActive = true
+        textView.topAnchor.constraint(equalTo: borderView.topAnchor, constant: 7).isActive = true
+        textView.bottomAnchor.constraint(equalTo: borderView.bottomAnchor, constant: -7).isActive = true
 
         // customization
         let theme = viewModel.theme

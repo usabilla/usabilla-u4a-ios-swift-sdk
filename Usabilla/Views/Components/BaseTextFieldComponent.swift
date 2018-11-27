@@ -36,8 +36,8 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
 
         textField.leftAnchor.constraint(equalTo: borderView.leftAnchor, constant: 10).isActive = true
         textField.rightAnchor.constraint(equalTo: borderView.rightAnchor, constant: -10).isActive = true
-        textField.topAnchor.constraint(equalTo: borderView.topAnchor, constant: 5).isActive = true
-        textField.bottomAnchor.constraint(equalTo: borderView.bottomAnchor, constant: -5).isActive = true
+        textField.topAnchor.constraint(equalTo: borderView.topAnchor, constant: 7).isActive = true
+        textField.bottomAnchor.constraint(equalTo: borderView.bottomAnchor, constant: -7).isActive = true
 
         textField.delegate = self
 
