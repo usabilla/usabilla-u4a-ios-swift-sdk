@@ -63,16 +63,30 @@ class DeviceInfo {
     static var topMargin: CGFloat {
         get {
             if DeviceInfo.hasTopNotch {
-                return 35
+                return 50
+            }
+            if DeviceInfo.isIPad() {
+                return 23
             }
             return 16
         }
         set {}
     }
 
+    static var bottomMargin: CGFloat {
+        get {
+            if DeviceInfo.isIPad() {
+                return 23
+            }
+            return 16
+        }
+        set {}
+    }
+
+    
     static var hasTopNotch: Bool {
         if #available(iOS 11.0, *) {
-            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20
+            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 24
         }
         return false
     }
