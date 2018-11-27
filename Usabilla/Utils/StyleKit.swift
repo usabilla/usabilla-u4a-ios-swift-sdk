@@ -159,6 +159,33 @@ class Icons: NSObject {
     }
 
     
+    private class func drawIconCircle(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 36, height: 36), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 36, height: 36), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 36, y: resizedFrame.height / 36)
+        
+        
+        //// Color Declarations
+        let strokeColor = color
+        let fillColor = color
+        
+        let path = UIBezierPath(roundedRect: CGRect(x: 4, y: 4, width: 28, height: 28), cornerRadius: 28/2)
+
+        strokeColor.setStroke()
+        fillColor.setFill()
+        path.lineWidth = 1
+        path.stroke()
+        path.fill()
+        context.restoreGState()
+        
+    }
+
+    
     private class func drawAddImage(color: UIColor, frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 300), resizing: ResizingBehavior = .aspectFit) {
 
         //// General Declarations
@@ -615,6 +642,29 @@ class Icons: NSObject {
         return image
     }
 
+    class func imageOfCircle( color: UIColor) -> UIImage {
+        struct LocalCache {
+            static var lastColor: UIColor!
+            static var image: UIImage!
+        }
+        
+        if LocalCache.image != nil {
+            if LocalCache.lastColor == color {
+                return LocalCache.image
+            }
+            LocalCache.lastColor = color
+        }
+        var image: UIImage
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 36, height: 36), false, 0)
+        Icons.drawIconCircle(color: color)
+        image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        LocalCache.image = image
+        return image
+   }
+    
     //MARK: - Resizing Behavior
 
     enum ResizingBehavior {

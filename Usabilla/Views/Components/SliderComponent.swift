@@ -97,14 +97,17 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         let theme = viewModel.theme
         slider.minimumTrackTintColor = theme.colors.accent
         slider.maximumTrackTintColor = theme.colors.accent.withAlphaComponent(0.2)
-        slider.thumbTintColor = theme.colors.accent
+
+        let image = Icons.imageOfCircle(color: theme.colors.accent)
+        slider.setThumbImage(image, for: UIControlState.normal)
+        slider.setThumbImage(image, for: UIControlState.selected)
 
         valueLabel.font = theme.fonts.font.withSize(theme.fonts.titleSize)
         valueLabel.textColor = theme.colors.text
         rightLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        rightLabel.textColor = theme.colors.hint.withAlphaComponent(0.5)
+        rightLabel.textColor = theme.colors.text.withAlphaComponent(0.5)
         leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        leftLabel.textColor = theme.colors.hint.withAlphaComponent(0.5)
+        leftLabel.textColor = theme.colors.text.withAlphaComponent(0.5)
     }
 
     func barChangedValue() {
