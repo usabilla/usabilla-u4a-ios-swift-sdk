@@ -145,7 +145,8 @@ class CampaignViewController: UIViewController {
 
         if DeviceInfo.isIPad() {
             base.modalPresentationStyle = .formSheet
-            // swiftlint:disable:next force_unwrapping
+            base.preferredContentSize = DeviceInfo.preferedFormSize()
+
             viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
                 self.introView?.alpha = 0
             }, completion: {
