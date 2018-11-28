@@ -12,7 +12,7 @@ import UIKit
 extension UIView {
 
     class var safeAreaEdgeInsets: UIEdgeInsets {
-        guard DeviceInfo.isIphoneWithNotch() else {
+        guard DeviceInfo.hasTopNotch else {
             switch UIDevice.current.orientation {
             case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
                 return UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)

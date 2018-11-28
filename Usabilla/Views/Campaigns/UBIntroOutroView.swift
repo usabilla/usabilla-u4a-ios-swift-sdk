@@ -94,7 +94,7 @@ class UBIntroOutroView: UIView {
         wrapper = UIView()
         wrapper.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wrapper)
-        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor, constant: (bottomDisplay ? 120 : 0)).activate()//120
+        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor, constant: (bottomDisplay ? 120 : 0)).activate()
         wrapper.topAnchor.constraint(equalTo: topAnchor, constant: (bottomDisplay ? 0 : -120) ).activate()
         wrapperLeftConstraint = wrapper.leftAnchor.constraint(equalTo: leftAnchor).activate()
         wrapperRightConstraint = wrapper.rightAnchor.constraint(equalTo: rightAnchor).activate()

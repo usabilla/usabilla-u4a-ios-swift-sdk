@@ -95,9 +95,9 @@ class DeviceInfo {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
 
-    class func isIphoneWithNotch() -> Bool {
-        return DeviceInfo.hasTopNotch
-    }
+//    class func isIphoneWithNotch() -> Bool {
+//        return DeviceInfo.hasTopNotch
+//    }
 
     class func isJailbroken() -> Bool {
         let str = "Jailbreak test string"

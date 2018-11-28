@@ -47,7 +47,7 @@ class CampaignViewController: UIViewController {
     }
 
     private var modalsMargin: UIEdgeInsets {
-        if DeviceInfo.isIphoneWithNotch() {
+        if DeviceInfo.hasTopNotch {
             return iphoneXModalsMargin
         }
         return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
@@ -72,7 +72,7 @@ class CampaignViewController: UIViewController {
             return
         }
     }
-    
+
     override func loadView() {
         self.view = UBCustomTouchableView()
         self.view.frame = UIScreen.main.bounds
@@ -230,7 +230,7 @@ class CampaignViewController: UIViewController {
         modalTopConstraint?.constant = modalsMargin.top
         modalLeftConstraint?.constant = modalsMargin.left
         modalRightConstraint?.constant = -modalsMargin.right
-        modalBottomConstraint?.constant = -modalsMargin.bottom+50
+        modalBottomConstraint?.constant = -modalsMargin.bottom + 50
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
