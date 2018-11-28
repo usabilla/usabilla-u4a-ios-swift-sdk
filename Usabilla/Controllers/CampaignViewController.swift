@@ -32,20 +32,6 @@ class CampaignViewController: UIViewController {
     var modalBottomConstraint: NSLayoutConstraint?
     var modalLeftConstraint: NSLayoutConstraint?
 
-    private var iphoneXModalsMargin: UIEdgeInsets {
-        var margins = UIView.safeAreaEdgeInsets
-        switch UIDevice.current.orientation {
-        case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
-            margins.top -= 88
-        case .landscapeLeft, .landscapeRight:
-            break
-        }
-        margins.left += sideMargin
-        margins.right += sideMargin
-        margins.bottom += sideMargin
-        return margins
-    }
-
     private var modalsMargin: UIEdgeInsets {
         return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
     }
@@ -139,15 +125,20 @@ class CampaignViewController: UIViewController {
 
     func showModalForm() {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
+        let rect = introView?.frame ?? CGRect()
+        formController.initialRect = rect
         let base = UINavigationController(rootViewController: formController)
         formController.delegate = self
         formNavigationController = base
+        guard let introview = introView else {
+            return
+        }
 
         if DeviceInfo.isIPad() {
             base.modalPresentationStyle = .formSheet
             base.preferredContentSize = DeviceInfo.preferedFormSize()
 
-            viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
+            viewModel.introPresenter?.dismiss(view: introview, inView: view, animations: {
                 self.introView?.alpha = 0
             }, completion: {
                 self.introView?.removeFromSuperview()
@@ -165,26 +156,30 @@ class CampaignViewController: UIViewController {
         base.view.layer.masksToBounds = true
 
         base.view.translatesAutoresizingMaskIntoConstraints = false
-
-        modalTopConstraint = base.view.topAnchor.constraint(equalTo: view.topAnchor).activate()
-        modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
-        modalRightConstraint = base.view.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
-        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
-        updateModalConstraints()
         createBackgroundLayer()
 
-        base.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        base.view.frame = rect
+        base.view.alpha = 1
+        self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
-        // swiftlint:disable:next force_unwrapping
-        viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
-            base.view.alpha = 1
-            self.backgroundLayer?.alpha = 1
+        UIView.animate(withDuration: 0.5, animations: {
             self.introView?.alpha = 0
-            base.view.transform = CGAffineTransform.identity
+            base.view.frame = UIScreen.main.bounds
             base.view.layoutIfNeeded()
-        }, completion: {
-            self.introView?.removeFromSuperview()
+
+        }, completion: { _ in
+            self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
+            }, completion: {
+                self.modalTopConstraint = base.view.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
+                self.modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).activate()
+                self.modalRightConstraint = base.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).activate()
+                self.modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
+                self.updateModalConstraints()
+
+                self.introView?.removeFromSuperview()
+            })
+
         })
     }
 
