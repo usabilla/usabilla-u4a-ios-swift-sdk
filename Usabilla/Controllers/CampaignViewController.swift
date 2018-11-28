@@ -15,8 +15,8 @@ protocol CampaignViewControllerDelegate: class {
 
 class CampaignViewController: UIViewController {
 
-    let sideMargin: CGFloat = 16
-    let topMargin: CGFloat = 20
+    let sideMargin: CGFloat = 0
+    let topMargin: CGFloat = 0
     let viewModel: CampaignViewModel
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
@@ -36,7 +36,7 @@ class CampaignViewController: UIViewController {
         var margins = UIView.safeAreaEdgeInsets
         switch UIDevice.current.orientation {
         case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
-            margins.top -= 56 - topMargin // 88 - 56 = iphone X notch height
+            margins.top -= 88
         case .landscapeLeft, .landscapeRight:
             break
         }
@@ -47,9 +47,6 @@ class CampaignViewController: UIViewController {
     }
 
     private var modalsMargin: UIEdgeInsets {
-        if DeviceInfo.hasTopNotch {
-            return iphoneXModalsMargin
-        }
         return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
     }
 
@@ -163,7 +160,7 @@ class CampaignViewController: UIViewController {
         view.addSubview(base.view)
 
         base.view.alpha = 0
-        base.view.layer.cornerRadius = 14
+        base.view.layer.cornerRadius = 0
         base.view.layer.masksToBounds = true
 
         base.view.translatesAutoresizingMaskIntoConstraints = false
