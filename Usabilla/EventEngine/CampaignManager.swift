@@ -99,13 +99,12 @@ class CampaignManager {
 
     #if INTERNAL_USE || DEBUG
     @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager? = nil, campaignID: String = "id") -> Bool {
-        let displayMode: IntroPageDisplayMode = .bannerBottom
             var manager = manager
             if manager == nil {
                 manager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaignID, formVersion: form.version, userContext: ["debug": "debug"], campaignSubmissionManager: self.submissionManager)
             }
             //swiftlint:disable:next force_unwrapping
-            let campaignViewModel = CampaignViewModel(form: form, displayMode: displayMode, manager: manager!)
+            let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
             return CampaignWindow.shared.showCampaign(campaignViewModel)
         }
 
