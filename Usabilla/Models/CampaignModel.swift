@@ -59,10 +59,11 @@ class CampaignModel: NSObject, NSCoding {
             let formID = json["form_id"].string,
             let targetingID = json["targeting_options_id"].string,
             let status = Status(rawValue: json["status"].stringValue),
-            let position = IntroPageDisplayMode.init(rawValue: json["position"].stringValue),
             let createdAt = json["created_at"].string?.dateFromRFC3339 else {
                 return nil
         }
+
+        let position = IntroPageDisplayMode.init(rawValue: json["position"].stringValue ) ?? .bannerBottom
 
         self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt, position: position)
     }

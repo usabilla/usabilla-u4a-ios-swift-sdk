@@ -83,7 +83,6 @@ class DeviceInfo {
         set {}
     }
 
-    
     static var hasTopNotch: Bool {
         if #available(iOS 11.0, *) {
             return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 24
@@ -94,10 +93,6 @@ class DeviceInfo {
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
-
-//    class func isIphoneWithNotch() -> Bool {
-//        return DeviceInfo.hasTopNotch
-//    }
 
     class func isJailbroken() -> Bool {
         let str = "Jailbreak test string"

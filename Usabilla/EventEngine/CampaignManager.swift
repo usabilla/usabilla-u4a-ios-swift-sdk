@@ -105,7 +105,7 @@ class CampaignManager {
                 manager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaignID, formVersion: form.version, userContext: ["debug": "debug"], campaignSubmissionManager: self.submissionManager)
             }
             //swiftlint:disable:next force_unwrapping
-            let campaignViewModel = CampaignViewModel(form: form, displayMode: displayMode,manager: manager!)
+            let campaignViewModel = CampaignViewModel(form: form, displayMode: displayMode, manager: manager!)
             return CampaignWindow.shared.showCampaign(campaignViewModel)
         }
 
