@@ -18,7 +18,8 @@ class CampaignViewController: UIViewController {
     let sideMargin: CGFloat = 0
     let topMargin: CGFloat = 0
     let viewModel: CampaignViewModel
-
+    let transition = CampaignAnimator()
+    
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     var backgroundLayer: UIView?
@@ -127,24 +128,29 @@ class CampaignViewController: UIViewController {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
         let rect = introView?.frame ?? CGRect()
         formController.initialRect = rect
-        let base = UINavigationController(rootViewController: formController)
+        let base = UBNavigationController(rootViewController: formController)
         formController.delegate = self
+        base.transitioningDelegate = self
+
         formNavigationController = base
         guard let introview = introView else {
             return
         }
 
         if DeviceInfo.isIPad() {
+            base.view.alpha = 1
             base.modalPresentationStyle = .formSheet
             base.preferredContentSize = DeviceInfo.preferedFormSize()
-
-            viewModel.introPresenter?.dismiss(view: introview, inView: view, animations: {
+            transition.originFrame = rect
+            self.present(base, animated: true, completion: nil)
+            UIView.animate(withDuration: 0.2, animations: {
                 self.introView?.alpha = 0
-            }, completion: {
-                self.introView?.removeFromSuperview()
-                self.present(base, animated: true, completion: nil)
+            }, completion: { _ in
+                self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
+                }, completion: {
+                    self.introView?.removeFromSuperview()
+                })
             })
-
             return
         }
 
@@ -185,10 +191,9 @@ class CampaignViewController: UIViewController {
 
     func removeFormController(completion: (() -> Void)?) {
         if DeviceInfo.isIPad() {
-            formNavigationController?.dismiss(animated: true, completion: {
+            self.formNavigationController?.dismiss(animated: true, completion: {
                 completion?()
             })
-
             return
         }
 
@@ -278,5 +283,16 @@ extension CampaignViewController: FormViewControllerDelegate {
                 self.showToast()
             }
         }
+    }
+}
+
+extension CampaignViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }

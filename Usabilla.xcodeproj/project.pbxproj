@@ -96,6 +96,8 @@
 		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
 		104FFEA121AD5318004034A5 /* UBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FFEA021AD5318004034A5 /* UBNavigationController.swift */; };
 		104FFEA221AD533A004034A5 /* UBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FFEA021AD5318004034A5 /* UBNavigationController.swift */; };
+		10627BDA21B0385B00E49DD2 /* CampaingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */; };
+		10627BDB21B0387B00E49DD2 /* CampaingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */; };
 		1082683821998FDF00A3820B /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
 		10826839219990C300A3820B /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
 		41AC383F1F6880D400F0DFC6 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
@@ -553,6 +555,7 @@
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
 		104FFEA021AD5318004034A5 /* UBNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBNavigationController.swift; sourceTree = "<group>"; };
+		10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaingAnimator.swift; sourceTree = "<group>"; };
 		1082683721998FDF00A3820B /* BaseParagraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParagraphComponent.swift; sourceTree = "<group>"; };
 		41AC383E1F6880D400F0DFC6 /* NPSControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSControl.swift; sourceTree = "<group>"; };
 		41AC38401F68814700F0DFC6 /* NPSComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponent.swift; sourceTree = "<group>"; };
@@ -1044,6 +1047,7 @@
 				04F54E551CD76789002F501E /* ThankYouViewController.swift */,
 				43127EBF1E71B57500E3011A /* PassiveFormController.swift */,
 				436F55471E8178D500E91E58 /* CampaignViewController.swift */,
+				10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1787,6 +1791,7 @@
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* PickerFieldModel.swift in Sources */,
 				436C2B7E1E85187000741E10 /* UBBannerPresenter.swift in Sources */,
+				10627BDA21B0385B00E49DD2 /* CampaingAnimator.swift in Sources */,
 				04F54E221CD76708002F501E /* JSONFormParser.swift in Sources */,
 				41AC38431F6883EF00F0DFC6 /* NPSComponentViewModel.swift in Sources */,
 				436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */,
@@ -2055,6 +2060,7 @@
 				C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */,
 				43B04FB71F1F7EEF0032F057 /* TextAreaFieldModel.swift in Sources */,
 				43B04FB81F1F7EEF0032F057 /* PickerFieldModel.swift in Sources */,
+				10627BDB21B0387B00E49DD2 /* CampaingAnimator.swift in Sources */,
 				43B04FB91F1F7EEF0032F057 /* UBBannerPresenter.swift in Sources */,
 				43B04FBA1F1F7EEF0032F057 /* JSONFormParser.swift in Sources */,
 				43B04FBB1F1F7EEF0032F057 /* UBCustomTouchableView.swift in Sources */,
