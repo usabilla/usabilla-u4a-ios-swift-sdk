@@ -70,7 +70,7 @@ class IntroPageViewModelTests: QuickSpec {
             context("when using default font") {
                 it("customization should match") {
                     let introPageViewModel = IntroPageViewModel(introPage: introPage, theme: configurator)
-                    expect(introPageViewModel.backgroundColor).to(equal(configurator.colors.cardColor))
+                    expect(introPageViewModel.backgroundColor).to(equal(configurator.colors.background))
                     expect(introPageViewModel.titleColor).to(equal(configurator.colors.title))
                     expect(introPageViewModel.hintColor).to(equal(configurator.colors.hint))
                     expect(introPageViewModel.barButtonItemColor).to(equal(configurator.colors.textOnAccent))
