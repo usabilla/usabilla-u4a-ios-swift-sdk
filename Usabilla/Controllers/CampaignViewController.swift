@@ -19,7 +19,7 @@ class CampaignViewController: UIViewController {
     let topMargin: CGFloat = 0
     let viewModel: CampaignViewModel
     let transition = CampaignAnimator()
-    
+
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     var backgroundLayer: UIView?
@@ -27,6 +27,7 @@ class CampaignViewController: UIViewController {
     var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
+    var animationSpeed = 0.3
 
     var modalTopConstraint: NSLayoutConstraint?
     var modalRightConstraint: NSLayoutConstraint?
@@ -130,7 +131,6 @@ class CampaignViewController: UIViewController {
         formController.initialRect = rect
         let base = UBNavigationController(rootViewController: formController)
         formController.delegate = self
-        base.transitioningDelegate = self
 
         formNavigationController = base
         guard let introview = introView else {
@@ -138,10 +138,12 @@ class CampaignViewController: UIViewController {
         }
 
         if DeviceInfo.isIPad() {
+            base.transitioningDelegate = self
             base.view.alpha = 1
             base.modalPresentationStyle = .formSheet
             base.preferredContentSize = DeviceInfo.preferedFormSize()
             transition.originFrame = rect
+            transition.duration = animationSpeed
             self.present(base, animated: true, completion: nil)
             UIView.animate(withDuration: 0.2, animations: {
                 self.introView?.alpha = 0
@@ -166,23 +168,29 @@ class CampaignViewController: UIViewController {
 
         base.view.frame = rect
         base.view.alpha = 1
+        modalTopConstraint = base.view.topAnchor.constraint(equalTo: introview.topAnchor).activate()
+        modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
+        modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
+        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
+        updateModalConstraints()
+
         self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: animationSpeed, animations: {
             self.introView?.alpha = 0
             base.view.frame = UIScreen.main.bounds
             base.view.layoutIfNeeded()
+            self.modalTopConstraint = base.view.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
+            self.modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).activate()
+            self.modalRightConstraint = base.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).activate()
+            self.modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).activate()
+            self.updateModalConstraints()
 
         }, completion: { _ in
             self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
             }, completion: {
-                self.modalTopConstraint = base.view.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
-                self.modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).activate()
-                self.modalRightConstraint = base.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).activate()
-                self.modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
-                self.updateModalConstraints()
-
+  
                 self.introView?.removeFromSuperview()
             })
 
@@ -196,8 +204,11 @@ class CampaignViewController: UIViewController {
             })
             return
         }
+        let position = (viewModel.form.pages[0] as? IntroPageModel)?.displayMode ?? .bannerBottom
+        let calculatedY = position == .bannerTop ? -view.frame.size.height : view.frame.size.height
 
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: animationSpeed, animations: {
+            self.formNavigationController?.view.frame = CGRect(x: 0, y: calculatedY, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.formNavigationController?.view.alpha = 0
             self.backgroundLayer?.alpha = 0
@@ -210,10 +221,11 @@ class CampaignViewController: UIViewController {
     }
 
     func showToast() {
+        let bannerPosition = (viewModel.form.pages[0] as? IntroPageModel)?.displayMode ?? IntroPageDisplayMode.bannerBottom
         let thankYoutext = viewModel.toastPageViewModel?.text ?? ""
         let estimatedDuration: UBToastDuration = thankYoutext.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
         toast = UBToast(delegate: self, text: thankYoutext, duration: estimatedDuration)
-        toast?.show {
+        toast?.show(position: bannerPosition) {
             self.closeCampaign()
         }
     }

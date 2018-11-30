@@ -8,10 +8,10 @@
 
 import UIKit
 class CampaignAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    let duration = 0.5
+    var duration = 0.5
     var presenting = true
     var originFrame = CGRect.zero
-    
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
@@ -21,7 +21,7 @@ class CampaignAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let fromView = transitionContext.view(forKey: .from)
 
         if let toview = toView { // We are animating in
-            var initialFrame = originFrame
+            let initialFrame = originFrame
             let finalFrame = UIScreen.main.bounds
             let xScaleFactor = initialFrame.width / finalFrame.width
             let yScaleFactor = initialFrame.height / finalFrame.height
