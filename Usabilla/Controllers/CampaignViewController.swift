@@ -136,7 +136,6 @@ class CampaignViewController: UIViewController {
         guard let introview = introView else {
             return
         }
-
         if DeviceInfo.isIPad() {
             base.transitioningDelegate = self
             base.view.alpha = 1
@@ -157,7 +156,8 @@ class CampaignViewController: UIViewController {
         }
 
         addChildViewController(base)
-        view.addSubview(base.view)
+        view.insertSubview(base.view, belowSubview: self.introView!)
+        //view.addSubview(base.view)
 
         base.view.alpha = 0
         base.view.layer.cornerRadius = 0
@@ -167,7 +167,7 @@ class CampaignViewController: UIViewController {
         createBackgroundLayer()
 
         base.view.frame = rect
-        base.view.alpha = 1
+        base.view.alpha = 0
         modalTopConstraint = base.view.topAnchor.constraint(equalTo: introview.topAnchor).activate()
         modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
         modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
@@ -177,23 +177,22 @@ class CampaignViewController: UIViewController {
         self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
-        UIView.animate(withDuration: animationSpeed, animations: {
-            self.introView?.alpha = 0
-            base.view.frame = UIScreen.main.bounds
-            base.view.layoutIfNeeded()
-            self.modalTopConstraint = base.view.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
-            self.modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).activate()
-            self.modalRightConstraint = base.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).activate()
-            self.modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).activate()
-            self.updateModalConstraints()
 
-        }, completion: { _ in
-            self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
-            }, completion: {
-  
-                self.introView?.removeFromSuperview()
-            })
+        let scaleTransform = CGAffineTransform(scaleX: 0.3, y: 0.3)
 
+        base.view.transform = scaleTransform
+        base.view.center = CGPoint( x: rect.midX, y: rect.midY)
+        base.view.alpha = 1
+
+        UIView.animate(withDuration: 0.4, delay: 0.0,
+                       usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6,
+                       animations: {
+                        base.view.transform = CGAffineTransform.identity
+                        base.view.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+                        base.view .frame = UIScreen.main.bounds
+                        self.introView?.alpha = 0
+        },
+                       completion: { _ in
         })
     }
 

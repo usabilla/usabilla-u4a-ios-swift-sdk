@@ -11,7 +11,7 @@ class CampaignAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var duration = 0.5
     var presenting = true
     var originFrame = CGRect.zero
-
+    var container: UIView?
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
@@ -30,8 +30,12 @@ class CampaignAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             toview.transform = scaleTransform
             toview.center = CGPoint( x: initialFrame.midX, y: initialFrame.midY)
             toview.clipsToBounds = true
-            containerView.addSubview(toview)
-
+            if let aContainer = container {
+                aContainer.addSubview(toview)
+            }
+            else  {
+                containerView.addSubview(toview)
+            }
             UIView.animate(withDuration: duration, delay: 0.0,
                            usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
                            animations: {

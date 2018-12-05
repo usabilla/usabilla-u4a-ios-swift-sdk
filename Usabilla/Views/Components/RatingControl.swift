@@ -18,7 +18,7 @@ class RatingControl: UIControl {
     private let contentView = UIView()
     private let size: CGFloat = 42
     private let spacing: CGFloat = 0
-    private let moodZoomScale: CGFloat = 1.3
+    private let moodZoomScale: CGFloat = 1.1
     private let starZoomScale: CGFloat = 1.0
 
     private var initialTouchIndex = -1
@@ -266,9 +266,9 @@ class RatingControl: UIControl {
 
         if canBeZoomed {
             button.transform = CGAffineTransform(scaleX: startScale, y: startScale)
-            UIView.animate(withDuration: 0.8,
+            UIView.animate(withDuration: 0.3,
                            delay: 0,
-                           usingSpringWithDamping: CGFloat(0.20),
+                           usingSpringWithDamping: CGFloat(0.60),
                            initialSpringVelocity: CGFloat(6.0),
                            options: UIViewAnimationOptions.allowUserInteraction,
                            animations: {

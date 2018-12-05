@@ -166,12 +166,12 @@ class UBIntroOutroView: UIView {
         }
         self.layer.cornerRadius = 8.0
         backgroundColor = viewModel.backgroundColor
-        cancelButton.setTitleColor(viewModel.buttonColor, for: .normal)
+        cancelButton.setTitleColor(viewModel.cancelButtonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor.withAlphaComponent(0.5), for: .disabled)
 
         cancelButton.titleLabel?.font = viewModel.font
-        continueButton?.titleLabel?.font = viewModel.boldFont
+        continueButton?.titleLabel?.font = viewModel.font
 
         titleLabel.font = viewModel.boldFont.getDynamicTypeFont()
         titleLabel.textColor = viewModel.titleColor

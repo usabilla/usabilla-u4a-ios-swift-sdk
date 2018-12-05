@@ -47,7 +47,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         inView.layoutIfNeeded()
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
-        UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        // Design requested slower animation on ipad
+        let animationTime = (DeviceInfo.isIPad() ? 0.6 : 1.0)
+        UIView.animate(withDuration: animationTime, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
 
             self.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : self.topConstraint.constant)
             self.bottomConstraint.constant = (style == .bannerTop ? self.bottomConstraint.constant : -DeviceInfo.bottomMargin)
