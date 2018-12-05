@@ -126,38 +126,56 @@ class CampaignViewController: UIViewController {
     }
 
     func showModalForm() {
+        if DeviceInfo.isIPad() {
+            showModalFormiPad()
+            return
+        }
+        showModalFormiPhone()
+    }
+
+    private func showModalFormiPad () {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
         let rect = introView?.frame ?? CGRect()
         formController.initialRect = rect
         let base = UBNavigationController(rootViewController: formController)
         formController.delegate = self
 
-        formNavigationController = base
         guard let introview = introView else {
             return
         }
-        if DeviceInfo.isIPad() {
-            base.transitioningDelegate = self
-            base.view.alpha = 1
-            base.modalPresentationStyle = .formSheet
-            base.preferredContentSize = DeviceInfo.preferedFormSize()
-            transition.originFrame = rect
-            transition.duration = animationSpeed
-            self.present(base, animated: true, completion: nil)
-            UIView.animate(withDuration: 0.2, animations: {
-                self.introView?.alpha = 0
-            }, completion: { _ in
-                self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
-                }, completion: {
-                    self.introView?.removeFromSuperview()
-                })
+        formNavigationController = base
+
+        base.transitioningDelegate = self
+        base.view.alpha = 1
+        base.modalPresentationStyle = .formSheet
+        base.preferredContentSize = DeviceInfo.preferedFormSize()
+        transition.originFrame = rect
+        transition.duration = animationSpeed
+        self.present(base, animated: true, completion: nil)
+        UIView.animate(withDuration: 0.2, animations: {
+            introview.alpha = 0
+        }, completion: { _ in
+            self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
+            }, completion: {
+                introview.removeFromSuperview()
             })
+        })
+    }
+
+    private func showModalFormiPhone() {
+        let formController = FormViewController(viewModel: viewModel.formViewModel)
+        let rect = introView?.frame ?? CGRect()
+        formController.initialRect = rect
+        let base = UBNavigationController(rootViewController: formController)
+        formController.delegate = self
+
+        guard let introview = introView else {
             return
         }
+        formNavigationController = base
 
         addChildViewController(base)
-        view.insertSubview(base.view, belowSubview: self.introView!)
-        //view.addSubview(base.view)
+        view.insertSubview(base.view, belowSubview: introview)
 
         base.view.alpha = 0
         base.view.layer.cornerRadius = 0
