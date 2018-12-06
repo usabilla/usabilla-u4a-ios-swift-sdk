@@ -23,31 +23,31 @@ class JumpRulesOneControl: UBXCScenario {
     }
 
     func testSelecting1InMoodControlTakesToPage2() {
-        moodComponent.selectMood(atIndex: 0)
+        moodComponent.selectMood(atIndex: 0, totalMoods: 5)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display Page 2")
     }
 
     func testSelecting2InMoodControlTakesToTheNextPage() {
-        moodComponent.selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1, totalMoods: 5)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }
 
     func testSelecting3InMoodControlTakesToPage3() {
-        moodComponent.selectMood(atIndex: 2)
+        moodComponent.selectMood(atIndex: 2, totalMoods: 5)
         tapNext()
         XCTAssert(getTextViewText() == "Page 3", "It should display 'Page 3'")
     }
 
     func testSelecting4InMoodControlTakesToPage4() {
-        moodComponent.selectMood(atIndex: 3)
+        moodComponent.selectMood(atIndex: 3, totalMoods: 5)
         tapNext()
         XCTAssert(getTextViewText() == "Page 4", "It should display 'Page 4'")
     }
 
     func testSelecting5InMoodControlTakesToTheNextPage() {
-        moodComponent.selectMood(atIndex: 4)
+        moodComponent.selectMood(atIndex: 4, totalMoods: 5)
         tapNext()
         XCTAssert(getTextViewText() == "Page 2", "It should display 'Page 2'")
     }

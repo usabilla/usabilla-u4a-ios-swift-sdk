@@ -10,16 +10,33 @@ import XCTest
 
 extension XCUIElement {
 
-    open func adjust(toIndex index: Int, withScale scale:Int = 6, withCorrection correction: CGFloat = 2) {
+    
+    open func adjust(toIndex index: Int, withScale scale:Int = 6, withCorrection correction: CGFloat = 2, totalMoods: Int) {
         
-        // These positions are calculated and adjusted to work for all devices starting from iPhone 6.
-        let positions: [CGFloat] = [40.0, 100.0, 160.0, 220.0, 280.0]
+        var positions: [CGFloat] = createArrayOfMoodsPostions(totalMoods)
         let centerY = frame.size.height / 2
         let centerX = positions[index]
         
         let cooridnate = self.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0)).withOffset(CGVector(dx: centerX, dy: centerY))
         cooridnate.press(forDuration: 0.1)
     }
+    
+    
+    private func createArrayOfMoodsPostions(_ moodCount: Int) -> [CGFloat] {
+        switch moodCount {
+        case 2:
+            return [frame.size.width/2-25-21,frame.size.width/2+25+21]
+        case 3:
+            let space = (frame.size.width-3*42)/5
+            return [frame.size.width/2-space-42,frame.size.width/2,frame.size.width/2+space+42]
+        default:
+            let space = CGFloat((Int(frame.size.width)-5*42)/5)
+
+            return [frame.size.width/2-(space+42)*2,frame.size.width/2-space-42,frame.size.width/2, frame.size.width/2+space+42, frame.size.width/2+(space+42)*2]  
+        }
+
+    }
+
     
     open func adjustNps(toIndex index: Int, withScale scale:Int = 5, withCorrection correction: CGFloat = 2) {
         let centerY = frame.size.height / 2
@@ -38,7 +55,8 @@ extension XCUIElement {
     
     func visible() -> Bool {
         guard self.exists && !self.frame.isEmpty else { return false }
-        return XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
+        return self.frame.size.height > 5
+            //XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
     }
 }
 

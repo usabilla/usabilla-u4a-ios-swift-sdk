@@ -17,27 +17,27 @@ class BannerMoodJumpRulesNoPagesToToast: UBXCScenario {
     }
 
     func testMood1GoestToToast1() {
-        moodComponent.selectMood(atIndex: 0)
+        moodComponent.selectMood(atIndex: 0, totalMoods: 5)
         verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood2GoestToToast1() {
-        moodComponent.selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1, totalMoods: 5)
         verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood3GoestToToast1() {
-        moodComponent.selectMood(atIndex: 2)
+        moodComponent.selectMood(atIndex: 2, totalMoods: 5)
         verify(app.staticTexts["Toast 1"].exists, "It should display 'Toast 1'")
     }
 
     func testMood4GoestToToast2() {
-        moodComponent.selectMood(atIndex: 3)
+        moodComponent.selectMood(atIndex: 3, totalMoods: 5)
         verify(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 
     func testMood5GoestToToast2() {
-        moodComponent.selectMood(atIndex: 4)
+        moodComponent.selectMood(atIndex: 4, totalMoods: 5)
         verify(app.staticTexts["Toast 2"].exists, "It should display 'Toast 2'")
     }
 }

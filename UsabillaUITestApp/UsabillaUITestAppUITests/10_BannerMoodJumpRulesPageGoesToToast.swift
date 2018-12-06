@@ -17,7 +17,7 @@ class BannerMoodJumpRulesPageGoesToToast: UBXCScenario {
     override func setUp() {
         super.setUp(type: .campaignForm, scenario: "10_BannerMoodJumpRulesPageGoesToToast")
         // select first index
-        moodComponent.selectMood(atIndex: 0)
+        moodComponent.selectMood(atIndex: 0, totalMoods: 5)
     }
 
     func testOption1GoestToToast2() {

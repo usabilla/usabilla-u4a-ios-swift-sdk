@@ -94,8 +94,8 @@ struct NPSComponent {
 class MoodComponent {
     var mood: XCUIElement!
 
-    func selectMood(atIndex index: UInt) {
-        mood.adjust(toIndex: Int(index), withCorrection: 2.5)
+    func selectMood(atIndex index: UInt, totalMoods: Int) {
+        mood.adjust(toIndex: Int(index), withCorrection: 2.5, totalMoods: totalMoods)
     }
 }
 

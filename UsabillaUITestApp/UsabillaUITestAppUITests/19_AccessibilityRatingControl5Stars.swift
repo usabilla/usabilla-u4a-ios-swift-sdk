@@ -19,15 +19,15 @@ class AccessibilityRatingControl5Stars: UBXCScenario {
     func testMoodComponentLabelAndValues() {
         XCTAssertEqual(moodComponent.mood!.label, "select a rating out of 5")
 
-        moodComponent.selectMood(atIndex: 0)
+        moodComponent.selectMood(atIndex: 0, totalMoods: 5)
         XCTAssertEqual(moodComponent.mood!.value as! String, Star.oneStar.rawValue)
-        moodComponent.selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1, totalMoods: 5)
         XCTAssertEqual(moodComponent.mood!.value as! String, Star.twoStars.rawValue)
-        moodComponent.selectMood(atIndex: 2)
+        moodComponent.selectMood(atIndex: 2, totalMoods: 5)
         XCTAssertEqual(moodComponent.mood!.value as! String, Star.threeStars.rawValue)
-        moodComponent.selectMood(atIndex: 3)
+        moodComponent.selectMood(atIndex: 3, totalMoods: 5)
         XCTAssertEqual(moodComponent.mood!.value as! String, Star.fourStars.rawValue)
-        moodComponent.selectMood(atIndex: 4)
+        moodComponent.selectMood(atIndex: 4, totalMoods: 5)
         XCTAssertEqual(moodComponent.mood!.value as! String, Star.fiveStars.rawValue)
     }
 }
