@@ -51,6 +51,11 @@ class FormViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // set the status bar color
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return previousStatusBarColor ?? (viewModel.statusBarColor ?? .lightContent)
+    }
+    
     // MARK: ViewController cycle
     override func loadView() {
         super.loadView()
@@ -115,8 +120,12 @@ class FormViewController: UIViewController {
 
     func customizeView() {
         if let statusBarColor = viewModel.statusBarColor {
-            previousStatusBarColor = UIApplication.shared.statusBarStyle
-            UIApplication.shared.statusBarStyle = statusBarColor
+            if #available(iOS 11.0, *) {
+                setNeedsStatusBarAppearanceUpdate()
+            } else {
+                previousStatusBarColor = UIApplication.shared.statusBarStyle
+                UIApplication.shared.statusBarStyle = statusBarColor
+            }
         }
 
         let textOnAccentedColor = viewModel.textOnAccentColor
@@ -151,7 +160,12 @@ class FormViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         if let previousStatusColor = previousStatusBarColor {
-            UIApplication.shared.statusBarStyle = previousStatusColor
+            if #available(iOS 11.0, *) {
+                setNeedsStatusBarAppearanceUpdate()
+            } else {
+                UIApplication.shared.statusBarStyle = previousStatusColor
+            }
+
         }
     }
 

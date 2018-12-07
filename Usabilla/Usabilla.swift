@@ -9,7 +9,7 @@ import UIKit
 
 open class Usabilla {
 
-    open static var customVariables: [String: Any] {
+    public static var customVariables: [String: Any] {
         get {
             return UsabillaInternal.customVariables
         }
@@ -22,7 +22,7 @@ open class Usabilla {
         }
     }
 
-    open static var localizedStringFile: String {
+    public static var localizedStringFile: String {
         get {
             return UsabillaInternal.localizedStringFile
         }
@@ -31,7 +31,7 @@ open class Usabilla {
         }
     }
 
-    open static var theme: UsabillaTheme {
+    public static var theme: UsabillaTheme {
         get {
             return UsabillaInternal.theme
         }
@@ -40,7 +40,7 @@ open class Usabilla {
         }
     }
 
-    open static var delegate: UsabillaDelegate? {
+    public static var delegate: UsabillaDelegate? {
         get {
             return UsabillaInternal.delegate
         }
@@ -49,7 +49,7 @@ open class Usabilla {
         }
     }
 
-    open static var dismissAutomatically: Bool {
+    public static var dismissAutomatically: Bool {
         get {
             return UsabillaInternal.dismissAutomatically
         }
@@ -58,7 +58,7 @@ open class Usabilla {
         }
     }
 
-    open static var canDisplayCampaigns: Bool {
+    public static var canDisplayCampaigns: Bool {
         get {
             return UsabillaInternal.canDisplayCampaigns
         }
@@ -70,7 +70,7 @@ open class Usabilla {
     /**
      A Boolean value that determines whether the SDK should display logs.
      */
-    open static var debugEnabled: Bool {
+    public static var debugEnabled: Bool {
         get {
             return UsabillaInternal.debugEnabled
         }
