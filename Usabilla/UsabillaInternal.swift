@@ -62,6 +62,8 @@ class UsabillaInternal {
         submissionManager = SubmissionManager(formService: formService!)
         // swiftlint:enable force_unwrapping
 
+        // preload the poweredby icon, to increase responsivenes....
+        Icons.imageOfPoweredBy(color: theme.colors.hint)
         Swift.debugPrint("Usabilla: SDK finished initializing")
     }
 

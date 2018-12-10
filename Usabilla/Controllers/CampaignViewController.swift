@@ -150,9 +150,9 @@ class CampaignViewController: UIViewController {
         base.modalPresentationStyle = .formSheet
         base.preferredContentSize = DeviceInfo.preferedFormSize()
         transition.originFrame = rect
-        transition.duration = animationSpeed
+        transition.duration = 0.4
         self.present(base, animated: true, completion: nil)
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.0, delay: 0.2, options: [], animations: {
             introview.alpha = 0
         }, completion: { _ in
             self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
@@ -209,8 +209,6 @@ class CampaignViewController: UIViewController {
                         base.view.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
                         base.view .frame = UIScreen.main.bounds
                         self.introView?.alpha = 0
-        },
-                       completion: { _ in
         })
     }
 
