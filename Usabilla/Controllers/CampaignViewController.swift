@@ -224,7 +224,6 @@ class CampaignViewController: UIViewController {
 
         UIView.animate(withDuration: animationSpeed, animations: {
             self.formNavigationController?.view.frame = CGRect(x: 0, y: calculatedY, width: self.view.frame.size.width, height: self.view.frame.size.height)
-            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             self.formNavigationController?.view.alpha = 0
             self.backgroundLayer?.alpha = 0
             // swiftlint:disable:next multiple_closures_with_trailing_closure
