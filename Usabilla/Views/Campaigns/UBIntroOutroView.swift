@@ -121,7 +121,7 @@ class UBIntroOutroView: UIView {
         buttonsStackViewBottomContraint = buttonsStackView?.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor).activate()
         buttonsStackView.heightAnchor.constraint(equalToConstant: 44).activate()
         buttonsStackView.axis = .horizontal
-        buttonsStackView.distribution = .fillEqually
+        buttonsStackView.distribution = .fillProportionally
 
         cancelButton = UIButton(type: .system)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
