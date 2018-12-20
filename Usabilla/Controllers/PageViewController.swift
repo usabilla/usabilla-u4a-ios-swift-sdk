@@ -8,7 +8,7 @@
 
 import UIKit
 
-let footerHeight: CGFloat = 80.0
+let footerHeight: CGFloat = 90.0
 
 class PageViewController: UIViewController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate {
 
@@ -29,6 +29,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.backgroundColor = .clear
         label.isAccessibilityElement = false
         if #available(iOS 10.0, *) {
             label.adjustsFontForContentSizeCategory = true
@@ -37,6 +38,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }()
     lazy var headerView: UIView = {
         let headerView = UIView()
+        headerView.backgroundColor = .clear
         headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(self.requiredLabel)
         return headerView
@@ -90,18 +92,18 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
         requiredLabel.applyFontWithDynamicTypeEnabled(font: viewModel.theme.fonts.font)
         requiredLabel.textColor = viewModel.theme.colors.text
-        requiredLabel.backgroundColor = viewModel.theme.colors.background
     }
 
     func handleHeaderViewVisibility() {
         if tableView.tableHeaderView == nil {
             tableView.tableHeaderView = headerView
-            headerView.heightAnchor.constraint(equalToConstant: 40).activate()
+            //headerView.heightAnchor.constraint(equalToConstant: 60).activate()
             constraintHeaderLeft = headerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
             constraintHeaderRight = headerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
-            requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 16).activate()
-            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -16).activate()
-            requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).activate()
+            requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: DeviceInfo.getLeftCardBorder()).activate()
+            requiredLabel.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -DeviceInfo.getRightCardBorder()).activate()
+            requiredLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: DeviceInfo.getTopCardBorder()+5).activate()
+            requiredLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -DeviceInfo.getBottomCardBorder()).activate()
             updateHeaderMargins()
             tableView.tableHeaderView?.layoutIfNeeded()
         }
@@ -174,8 +176,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         let popController = pickerController.popoverPresentationController
         popController?.permittedArrowDirections = .up
         popController?.delegate = self
-        popController?.sourceView = pickerComponent.topBorder
-        popController?.sourceRect = CGRect(x: 134, y: 4, width: 0, height: 0)
+        popController?.sourceView = pickerComponent.borderView
+        popController?.sourceRect = CGRect(x: 134, y: 44, width: 0, height: 0)
 
         // present the pop over
         self.present(pickerController, animated: true, completion: nil)
@@ -291,7 +293,7 @@ extension PageViewController: UITableViewDataSource {
             if let cell = cell as? FooterTableViewCell {
                 cell.footerView = PoweredByUsabillaView(theme: viewModel.theme)
             }
-            cell.backgroundColor = viewModel.theme.colors.background
+            cell.backgroundColor = .clear
             return cell
         }
 

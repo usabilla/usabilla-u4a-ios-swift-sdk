@@ -10,7 +10,7 @@ import Foundation
 
 protocol UBCampaignStoreProtocol {
     func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]>
-    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme) -> Promise<FormModel>
+    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode) -> Promise<FormModel>
 }
 
 class UBCampaignStore: UBCampaignStoreProtocol {
@@ -125,9 +125,12 @@ class UBCampaignStore: UBCampaignStoreProtocol {
         return campaigns
     }
 
-    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme) -> Promise<FormModel> {
+    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             self.campaignService.getCampaignForm(withID: formID).then { formModel in
+                if let model = formModel.pages[0] as? IntroPageModel {
+                   model.displayMode = position
+                }
                 formModel.theme = theme
                 formModel.updateTheme()
                 fulfill(formModel)

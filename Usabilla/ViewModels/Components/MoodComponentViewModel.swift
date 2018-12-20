@@ -77,7 +77,7 @@ class MoodComponentViewModel: BaseIntComponentViewModel<MoodFieldModel>, Centera
     }
 
     var backgroundColor: UIColor {
-        return theme.colors.background
+        return .clear // so it could reflect what ever color is in the background
     }
 
     var tintColor: UIColor {

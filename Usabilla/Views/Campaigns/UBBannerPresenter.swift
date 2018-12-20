@@ -31,8 +31,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
             view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
         } else {
-            view.leftAnchor.constraint(equalTo: inView.leftAnchor).activate()
-            view.rightAnchor.constraint(equalTo: inView.rightAnchor).activate()
+            view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: 16).activate()
+            view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: -16).activate()
         }
         inView.layoutIfNeeded()
 
@@ -45,11 +45,14 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         topConstraint.isActive = style != .bannerBottom
         bottomConstraint.isActive = style == .bannerBottom
         inView.layoutIfNeeded()
-        CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
 
-        UIView.animate(withDuration: 0.40, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.topConstraint.constant = -UBBannerDisplay.kBannerExtraSpace
-            self.bottomConstraint.constant = UBBannerDisplay.kBannerExtraSpace - UIView.safeAreaEdgeInsets.bottom
+        CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
+        // Design requested slower animation on ipad
+        let animationTime = (DeviceInfo.isIPad() ? 0.5 : 0.7)
+        UIView.animate(withDuration: animationTime, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+
+            self.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : self.topConstraint.constant)
+            self.bottomConstraint.constant = (style == .bannerTop ? self.bottomConstraint.constant : -DeviceInfo.bottomMargin)
             inView.layoutIfNeeded()
         })
     }

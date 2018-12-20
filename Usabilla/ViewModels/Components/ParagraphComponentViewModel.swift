@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldModel> {
     override var value: String? {
         get {
@@ -22,4 +22,10 @@ class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldMo
         }
         set {}
     }
-}
+
+    override var cardBackGroundColor: UIColor? {
+        get {
+            return .clear
+        }
+        set {}
+    }}

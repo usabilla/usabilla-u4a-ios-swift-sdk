@@ -10,8 +10,8 @@ import Foundation
 
 enum IntroPageDisplayMode: String {
     case alert
-    case bannerBottom
-    case bannerTop
+    case bannerBottom = "bottom"
+    case bannerTop = "top"
 }
 
 class IntroPageModel: PageModel {

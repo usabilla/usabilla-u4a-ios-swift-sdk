@@ -19,9 +19,10 @@ class AccessibilityRatingControl2Moods: UBXCScenario {
     func testMoodComponentLabelAndValues() {
         XCTAssertEqual(moodComponent.mood!.label, "select a rating out of 2")
 
-        moodComponent.selectMood(atIndex: 0)
+ //       XCUIApplication()/*@START_MENU_TOKEN@*/.buttons["01_FormAppearance"]/*[[".buttons[\"Scenario 1\"]",".buttons[\"01_FormAppearance\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        moodComponent.selectMood(atIndex: 0, totalMoods: 2)
         XCTAssertEqual(moodComponent.mood!.value as! String, Mood.hate.rawValue)
-        moodComponent.selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1, totalMoods: 2)
         XCTAssertEqual(moodComponent.mood!.value as! String, Mood.love.rawValue)
     }
 }

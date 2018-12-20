@@ -19,11 +19,11 @@ class AccessibilityRatingControl3Moods: UBXCScenario {
     func testMoodComponentLabelAndValues() {
         XCTAssertEqual(moodComponent.mood!.label, "select a rating out of 3")
 
-        moodComponent.selectMood(atIndex: 0)
+        moodComponent.selectMood(atIndex: 0, totalMoods: 3)
         XCTAssertEqual(moodComponent.mood!.value as! String, Mood.hate.rawValue)
-        moodComponent.selectMood(atIndex: 1)
+        moodComponent.selectMood(atIndex: 1, totalMoods: 3)
         XCTAssertEqual(moodComponent.mood!.value as! String, Mood.neutral.rawValue)
-        moodComponent.selectMood(atIndex: 2)
+        moodComponent.selectMood(atIndex: 2, totalMoods: 3)
         XCTAssertEqual(moodComponent.mood!.value as! String, Mood.love.rawValue)
     }
 }

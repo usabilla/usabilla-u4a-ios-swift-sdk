@@ -23,20 +23,20 @@ class StyleKitTest: QuickSpec {
                 expect(a).to(equal(b))
             }
 
-            it("StyleKit icons imageOfEdit") {
+            it("StyleKit icons imageOfAdd") {
                 let a = Icons.imageOfAddImage(color: .white)
                 let b = Icons.imageOfAddImage(color: .white) // second time for the cache
 
                 expect(a).to(equal(b))
             }
 
-            it("StyleKit icons imageOfEdit") {
-                let a = Icons.imageOfArtboard(color: .white)
-                let b = Icons.imageOfArtboard(color: .white) // second time for the cache
+            it("StyleKit icons imageOfDelete") {
+                let a = Icons.deleteIcon(color: .white)
+                let b = Icons.deleteIcon(color: .white) // second time for the cache
 
                 expect(a).to(equal(b))
             }
-            it("StyleKit icons imageOfEdit") {
+            it("StyleKit icons imageOfLogo") {
                 let a = Icons.imageOfPoweredBy(color: .white)
                 let b = Icons.imageOfPoweredBy(color: .white) // second time for the cache
 

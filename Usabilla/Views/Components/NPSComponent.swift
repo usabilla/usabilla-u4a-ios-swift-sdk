@@ -56,13 +56,13 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
 
     private func customizeView() {
         let theme = viewModel.theme
-        nps.font = theme.fonts.boldFont
+        nps.font = theme.fonts.font
         nps.tintColor = theme.colors.accent
         nps.toolTipTextColor = theme.colors.textOnAccent
 
-        leftLabel.textColor = theme.colors.text
+        leftLabel.textColor = theme.colors.text.withAlphaComponent(0.5)
         leftLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        rightLabel.textColor = viewModel.theme.colors.text
+        rightLabel.textColor = viewModel.theme.colors.text.withAlphaComponent(0.5)
         rightLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
     }
 }

@@ -35,7 +35,6 @@ class UsabillaInternal {
     private static var formStore: FormStore?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
-
     class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event, customVariables: customVariables)
     }
@@ -63,6 +62,8 @@ class UsabillaInternal {
         submissionManager = SubmissionManager(formService: formService!)
         // swiftlint:enable force_unwrapping
 
+        // preload the poweredby icon, to increase responsivenes....
+        Icons.imageOfPoweredBy(color: theme.colors.hint)
         Swift.debugPrint("Usabilla: SDK finished initializing")
     }
 
@@ -148,9 +149,10 @@ class UsabillaInternal {
             return nil
         }
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
-        let navigationController = UINavigationController(rootViewController: formController)
+        let navigationController = UBNavigationController(rootViewController: formController)
         if DeviceInfo.isIPad() {
             navigationController.modalPresentationStyle = .formSheet
+            navigationController.preferredContentSize = DeviceInfo.preferedFormSize()
         }
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         return navigationController

@@ -27,7 +27,7 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
         }
     }
 
-    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme) -> Promise<FormModel> {
+    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             getCampaignFormHasBeenCalled = true
             if let form = self.form {
@@ -334,7 +334,7 @@ class CampaignManagerTests: QuickSpec {
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
                     campaignManager.displayCampaign(campaign, withUserContext: [:])
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
-                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, manager: manager))).to(beFalse())
+                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, displayMode: campaign.position, manager: manager))).to(beFalse())
                 }
                 it("should not diplay the campaign form when the form does not exist") {
                     let formMock = UBMock.formMock()
@@ -343,7 +343,7 @@ class CampaignManagerTests: QuickSpec {
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beFalse())
                     campaignManager.displayCampaign(campaign, withUserContext: [:])
                     expect(storeMock.getCampaignFormHasBeenCalled).to(beTrue())
-                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, manager: manager))).to(beTrue())
+                    expect(CampaignWindow.shared.showCampaign(CampaignViewModel(form: formMock, displayMode: campaign.position, manager: manager))).to(beTrue())
                 }
 
                 it("should increment the number of views when it is displayed") {

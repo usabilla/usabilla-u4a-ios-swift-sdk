@@ -31,7 +31,7 @@ class PickerIPadComponent: PickerParentComponent {
     func customizeView() {
         let theme = viewModel.theme
 
-        picker.backgroundColor = theme.colors.background
+        picker.backgroundColor = theme.colors.cardColor
         picker.tintColor = theme.colors.text
 
         configure()

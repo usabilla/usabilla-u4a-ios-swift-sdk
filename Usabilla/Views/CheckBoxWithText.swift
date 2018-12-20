@@ -43,7 +43,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
 
         checkBox.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         checkBox.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 8).isActive = true
+        label.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 16).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
         labelTopConstraint = label.topAnchor.constraint(equalTo: checkBox.topAnchor)
         labelTopConstraint.isActive = true
@@ -57,9 +57,10 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
             return
         }
         let color = theme.colors.accent
-        checkBox.tintColor = color
+        checkBox.tintColor = theme.colors.cardColor
         checkBox.onTintColor = color
-        checkBox.onCheckColor = color
+        checkBox.onCheckColor = theme.colors.textOnAccent
+        checkBox.onFillColor = color
         label.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.textSize))
         label.textColor = theme.colors.text
         let spaceAvailable = (checkboxSize - label.font.lineHeight)

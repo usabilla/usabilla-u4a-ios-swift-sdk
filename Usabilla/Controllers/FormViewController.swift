@@ -15,6 +15,7 @@ class FormViewController: UIViewController {
     var reachability: Reachability!
     var pageViewController: PageViewController!
     var thankYouViewController: ThankYouViewController!
+    var initialRect: CGRect?
     // swiftlint:disable:next weak_delegate
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
@@ -83,7 +84,6 @@ class FormViewController: UIViewController {
         SwiftEventBus.unregister(self)
         pageViewController?.deinitPageController()
     }
-
     // MARK: View setup
     func setUpView() {
         title = viewModel.navigationBarTitle
@@ -154,6 +154,12 @@ class FormViewController: UIViewController {
         cancelButton.setFont(font: viewModel.navBarItemsFontNormal)
         nextButton.setFont(font: viewModel.navBarItemsFontBold)
         submitButton.setFont(font: viewModel.navBarItemsFontBold)
+//        if initialRect != nil {
+//            pageViewController.view.frame = initialRect!
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.pageViewController.view.frame = self.containerView.bounds
+//            })
+//        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

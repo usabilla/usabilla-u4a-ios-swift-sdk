@@ -18,7 +18,7 @@ class PassivePagesNoControls: UBXCScenario {
 
     func testPagesNoControls() {
         XCTAssert(form.element.exists)
-        mood.selectMood(atIndex: 0)
+        mood.selectMood(atIndex: 0, totalMoods: 5)
         form.navigationBar.nextButton.tap() // Displays Page 2
         form.navigationBar.submitButton.tap() // Displays End Page
     }

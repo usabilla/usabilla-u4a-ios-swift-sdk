@@ -7,12 +7,13 @@
 //
 
 import Foundation
-
+import UIKit
 class BaseComponentViewModel<T, V: ComponentModel>: ComponentViewModel {
     var accessibilityExtraInfo: String?
 
     var model: V
     let theme: UsabillaTheme
+    var cardBackGroundColor: UIColor?
     weak var delegate: ComponentViewModelDelegate?
 
     var value: T?

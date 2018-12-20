@@ -19,6 +19,7 @@ class CampaignModel: NSObject, NSCoding {
         static let targeting = "targeting"
         static let status = "status"
         static let targetingID = "targetingID"
+        static let position = "position"
     }
 
     enum Status: String {
@@ -36,11 +37,12 @@ class CampaignModel: NSObject, NSCoding {
     var status: Status
     let createdAt: Date
     var form: FormModel?
+    var position: IntroPageDisplayMode
     var canBeDisplayed: Bool {
         return maximumDisplays == 0 || maximumDisplays > numberOfTimesTriggered
     }
 
-    init(id: String, targeting: TargetingOptionsModel, formID: String, targetingID: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status, createdAt: Date) {
+    init(id: String, targeting: TargetingOptionsModel, formID: String, targetingID: String, maximumDisplays: Int, numberOfTimesTriggered: Int, status: Status, createdAt: Date, position: IntroPageDisplayMode = .bannerBottom ) {
         self.identifier = id
         self.targeting = targeting
         self.formID = formID
@@ -49,6 +51,7 @@ class CampaignModel: NSObject, NSCoding {
         self.maximumDisplays = maximumDisplays
         self.status = status
         self.createdAt = createdAt
+        self.position = position
     }
 
     convenience init?(json: JSON, targeting: TargetingOptionsModel) {
@@ -60,7 +63,9 @@ class CampaignModel: NSObject, NSCoding {
                 return nil
         }
 
-        self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt)
+        let position = IntroPageDisplayMode.init(rawValue: json["position"].stringValue ) ?? .bannerBottom
+
+        self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: json["maximumDisplays"].int ?? 1, numberOfTimesTriggered: 0, status: status, createdAt: createdAt, position: position)
     }
 
     func respondToEvents(event: Event) -> Bool {
@@ -82,11 +87,15 @@ class CampaignModel: NSObject, NSCoding {
             let status = Status(rawValue: statusStr) else {
                 return nil
         }
-
+        let aPosition = aDecoder.decodeObject(forKey: Archiving.position) as? String
+        var position: IntroPageDisplayMode = .bannerBottom
+        if let pos = aPosition {
+            position = IntroPageDisplayMode(rawValue: pos) ?? .bannerBottom
+        }
         let maximumDisplays = aDecoder.decodeInteger(forKey: Archiving.maximumDisplays)
         let numberOfTimesTriggered = aDecoder.decodeInteger(forKey: Archiving.numberOfTimesTriggered)
 
-        self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status, createdAt: createdAt)
+        self.init(id: identifier, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: maximumDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: status, createdAt: createdAt, position: position)
     }
 
     func encode(with aCoder: NSCoder) {
@@ -98,5 +107,6 @@ class CampaignModel: NSObject, NSCoding {
         aCoder.encode(self.maximumDisplays, forKey: Archiving.maximumDisplays)
         aCoder.encode(self.status.rawValue, forKey: Archiving.status)
         aCoder.encode(self.createdAt, forKey: Archiving.createdAt)
+        aCoder.encode(self.position.rawValue, forKey: Archiving.position)
     }
 }

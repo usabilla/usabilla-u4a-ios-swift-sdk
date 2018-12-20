@@ -22,7 +22,8 @@ class CampaignViewControllerTests: QuickSpec {
         beforeEach {
             submissionManager = CampaignSubmissionRequestManagerMock()
             let formModel = UBMock.formMock()
-            let viewModel = CampaignViewModel(form: formModel, manager: submissionManager)
+            let displayMode: IntroPageDisplayMode = .bannerBottom
+            let viewModel = CampaignViewModel(form: formModel, displayMode: displayMode, manager: submissionManager)
             viewController = CampaignViewController(viewModel: viewModel, delegate: self)
             // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
             _ = viewController.view

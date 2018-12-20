@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ParagraphComponent: BaseTextAreaComponent<ParagraphComponentViewModel> {
+class ParagraphComponent: BaseParagraphComponent<ParagraphComponentViewModel> {
 
     override func build() {
         super.build()

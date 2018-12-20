@@ -21,6 +21,7 @@ class UBToast: UIView {
     private let margin: CGFloat = 18
     private var widthConstraint: NSLayoutConstraint?
     private var bottomConstraint: NSLayoutConstraint?
+    private var topConstraint: NSLayoutConstraint?
 
     var duration: Int = 2
 
@@ -74,13 +75,20 @@ class UBToast: UIView {
         layer.masksToBounds = true
     }
 
-    func show(completion: (() -> Void)?) {
+    func show(position: IntroPageDisplayMode = .bannerBottom, completion: (() -> Void)?) {
         delegate.view.addSubview(self)
         alpha = 0
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: delegate.view.centerXAnchor).activate()
         widthConstraint = widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor).activate()
+
         bottomConstraint = bottomAnchor.constraint(equalTo: delegate.view.bottomAnchor).activate()
+        topConstraint?.isActive = false
+        if position == .bannerTop {
+            topConstraint = topAnchor.constraint(equalTo: delegate.view.topAnchor, constant: DeviceInfo.topMargin).activate()
+            bottomConstraint?.isActive = false
+
+        }
 
         UIView.animate(withDuration: 0.33, delay: 0.5, options: .curveEaseOut, animations: {
             self.alpha = 1

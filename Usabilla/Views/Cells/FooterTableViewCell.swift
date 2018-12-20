@@ -13,13 +13,17 @@ class FooterTableViewCell: UITableViewCell {
     var footerView: UIView? {
         didSet {
             if let footerView = footerView, contentView.subviews.count == 0 {
+                var bottomSpacer: CGFloat = -20
+                if DeviceInfo.isIPad() {
+                    bottomSpacer = -40
+                }
                 selectionStyle = .none
                 contentView.addSubview(footerView)
                 footerView.translatesAutoresizingMaskIntoConstraints = false
                 footerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
                 footerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
                 footerView.heightAnchor.constraint(equalToConstant: footerHeight)
-                footerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+                footerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: bottomSpacer).isActive = true
             }
         }
     }

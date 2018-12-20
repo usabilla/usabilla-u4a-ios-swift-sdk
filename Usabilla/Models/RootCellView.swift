@@ -10,7 +10,16 @@ import UIKit
 
 class RootCellView: UITableViewCell {
 
-    let rootCellContainerView: UIView
+    // containterView: the main view that contains the `titleLabel`, `errorLabel` and the `componentView`
+    let containerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5.0
+        view.layer.masksToBounds = false
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    var componentView: UIView!
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -35,43 +44,64 @@ class RootCellView: UITableViewCell {
         }
     }
 
-    let errorLabelDismissConstraint: NSLayoutConstraint
-    let titleLabelDismissConstraint: NSLayoutConstraint
+    var errorLabelDismissConstraint: NSLayoutConstraint!
+    var titleLabelDismissConstraint: NSLayoutConstraint!
     var errorLabelTopConstraint: NSLayoutConstraint!
-    var containerTopConstraint: NSLayoutConstraint!
+    var componentViewTopConstraint: NSLayoutConstraint!
 
     //Layout config
-    let sideMargin: CGFloat = 16
-    let verticalMargin: CGFloat = 20
+    let sideMargin: CGFloat = DeviceInfo.getLeftCardBorder()
+    let verticalMargin: CGFloat = DeviceInfo.getRightCardBorder()
     let errorLabelTopMargin: CGFloat = 5
-    let containerTopMargin: CGFloat = 13
+    let componentViewTopMargin: CGFloat = 13
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        rootCellContainerView = UIView()
-        errorLabelDismissConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
-        errorLabelDismissConstraint.isActive = true
-
-        titleLabelDismissConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 0)
+        componentView = UIView()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(errorLabel)
-        contentView.addSubview(rootCellContainerView)
+        setupView()
+        setupConstraints()
+    }
 
-        rootCellContainerView.translatesAutoresizingMaskIntoConstraints = false
+    func setupView() {
+        // add subviews
+        contentView.addSubview(containerView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(errorLabel)
+        containerView.addSubview(componentView)
 
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriorityDefaultHigh).activate()
+        // design
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+    }
 
-        errorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
-        errorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
+    func setupConstraints() {
+        errorLabelDismissConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
+        errorLabelDismissConstraint.isActive = true
+        titleLabelDismissConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 0)
+
+        // containerView
+        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).activate()
+        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).activate()
+        containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: sideMargin / 2).activate()
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -sideMargin / 2).activate()
+
+        // titleLabel
+        titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: sideMargin).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -sideMargin).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriorityDefaultHigh).activate()
+
+        // errorLabel
+        errorLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: sideMargin).isActive = true
+        errorLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -sideMargin).isActive = true
         errorLabelTopConstraint = errorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).activate()
 
-        rootCellContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: sideMargin).isActive = true
-        rootCellContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -sideMargin).isActive = true
-        containerTopConstraint = rootCellContainerView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor).prioritize(UILayoutPriorityDefaultHigh).activate()
-        rootCellContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
+        // componentView
+        componentView.translatesAutoresizingMaskIntoConstraints = false
+        componentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: sideMargin).isActive = true
+        componentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -sideMargin).isActive = true
+        componentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
+        componentViewTopConstraint = componentView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor).prioritize(UILayoutPriorityDefaultHigh).activate()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -85,11 +115,11 @@ class RootCellView: UITableViewCell {
             component = ComponentFactory.component(viewModel: componentViewModel)
             if let comp = component {
                 comp.translatesAutoresizingMaskIntoConstraints = false
-                rootCellContainerView.addSubview(comp)
-                comp.leadingAnchor.constraint(equalTo: rootCellContainerView.leadingAnchor).withID("RootCellView component left constraint").activate()
-                comp.trailingAnchor.constraint(equalTo: rootCellContainerView.trailingAnchor).withID("RootCellView component right constraint").activate()
-                comp.topAnchor.constraint(equalTo: rootCellContainerView.topAnchor).withID("RootCellView component top constraint").activate()
-                comp.bottomAnchor.constraint(equalTo: rootCellContainerView.bottomAnchor).withID("RootCellView component bottom constraint").activate()
+                componentView.addSubview(comp)
+                comp.leadingAnchor.constraint(equalTo: componentView.leadingAnchor).withID("RootCellView component left constraint").activate()
+                comp.trailingAnchor.constraint(equalTo: componentView.trailingAnchor).withID("RootCellView component right constraint").activate()
+                comp.topAnchor.constraint(equalTo: componentView.topAnchor).withID("RootCellView component top constraint").activate()
+                comp.bottomAnchor.constraint(equalTo: componentView.bottomAnchor).withID("RootCellView component bottom constraint").activate()
                 comp.addTarget(self, action: #selector(RootCellView.componentValueChanged), for: .valueChanged)
             }
         }
@@ -100,17 +130,11 @@ class RootCellView: UITableViewCell {
         let isTitleDefined = !cellViewModel.title.isEmpty
         titleLabelDismissConstraint.isActive = !isTitleDefined
         errorLabelTopConstraint.constant = isTitleDefined ? errorLabelTopMargin : 0
-        containerTopConstraint.constant = isTitleDefined ? containerTopMargin : 0
+        componentViewTopConstraint.constant = isTitleDefined ? componentViewTopMargin : 0
 
         if cellViewModel.required {
             let requiredTitle = String(format: "%@ *", cellViewModel.title) as String
             titleLabel.text = requiredTitle
-            if let attributedText = self.titleLabel.attributedText {
-                let text = NSMutableAttributedString(attributedString: attributedText)
-                text.addAttribute(NSForegroundColorAttributeName, value: cellViewModel.theme.colors.hint,
-                                  range: NSRange.init(location: requiredTitle.characters.count - 1, length: 1))
-                titleLabel.attributedText = text
-            }
             return
         }
         self.titleLabel.text = cellViewModel.title
@@ -135,14 +159,31 @@ class RootCellView: UITableViewCell {
         errorLabel.textColor = theme.colors.error
         titleLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.boldFont)
         errorLabel.applyFontWithDynamicTypeEnabled(font: theme.fonts.font.withSize(theme.fonts.miniSize))
-        backgroundColor = theme.colors.background
-
+        if let color = cellViewModel.componentViewModel?.cardBackGroundColor {
+            containerView.backgroundColor = color
+        } else {
+            containerView.backgroundColor = theme.colors.cardColor
+        }
         errorLabel.text = cellViewModel.copy.requiredFieldError
+
+        if cellViewModel.required {
+            if let attributedText = titleLabel.attributedText,
+                let requiredTitle = titleLabel.text {
+                let text = NSMutableAttributedString(attributedString: attributedText)
+                // Current design requires a alpha of 50% on the asterix
+                let requiredColor = cellViewModel.theme.colors.hint.withAlphaComponent(0.5)
+                text.addAttribute(NSForegroundColorAttributeName, value: requiredColor,
+                                  range: NSRange.init(location: requiredTitle.count - 1, length: 1))
+                titleLabel.attributedText = text
+            }
+            return
+        }
     }
 
     @discardableResult func updateValidStatus() -> Bool {
         if !cellViewModel.showErrorLabel != errorLabelDismissConstraint.isActive {
             errorLabelDismissConstraint.isActive = !cellViewModel.showErrorLabel
+            cellViewModel.showErrorLabel ? showErrorBorder() : hideErrorBorder()
             return true
         }
         return false
@@ -153,5 +194,13 @@ class RootCellView: UITableViewCell {
         if updateValidStatus() {
             SwiftEventBus.postToMainThread("updateMySize")
         }
+    }
+
+    func showErrorBorder(animated: Bool = true) {
+        containerView.showBorder(width: 2, color: cellViewModel.theme.colors.error)
+    }
+
+    func hideErrorBorder(animated: Bool = true) {
+        containerView.showBorder(width: 0.0, color: .clear)
     }
 }

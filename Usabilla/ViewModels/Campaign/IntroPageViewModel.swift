@@ -37,7 +37,7 @@ class IntroPageViewModel {
         return introPage.displayMode
     }
     var backgroundColor: UIColor {
-        return theme.colors.background
+        return theme.colors.cardColor
     }
     var titleColor: UIColor {
         return theme.colors.title
@@ -48,6 +48,10 @@ class IntroPageViewModel {
     var buttonColor: UIColor {
         return theme.colors.accent
     }
+    var cancelButtonColor: UIColor {
+        return theme.colors.hint
+    }
+
     var barButtonItemColor: UIColor {
         return theme.colors.textOnAccent
     }

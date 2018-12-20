@@ -15,40 +15,26 @@ protocol CampaignViewControllerDelegate: class {
 
 class CampaignViewController: UIViewController {
 
-    let sideMargin: CGFloat = 16
-    let topMargin: CGFloat = 20
+    let sideMargin: CGFloat = 0
+    let topMargin: CGFloat = 0
     let viewModel: CampaignViewModel
+    let transition = CampaignAnimator()
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     var backgroundLayer: UIView?
+    var containerView: UIView?
     var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
+    var animationSpeed = 0.3
 
     var modalTopConstraint: NSLayoutConstraint?
     var modalRightConstraint: NSLayoutConstraint?
     var modalBottomConstraint: NSLayoutConstraint?
     var modalLeftConstraint: NSLayoutConstraint?
 
-    private var iphoneXModalsMargin: UIEdgeInsets {
-        var margins = UIView.safeAreaEdgeInsets
-        switch UIDevice.current.orientation {
-        case .portrait, .portraitUpsideDown, .faceUp, .faceDown, .unknown:
-            margins.top -= 56 - topMargin // 88 - 56 = iphone X notch height
-        case .landscapeLeft, .landscapeRight:
-            break
-        }
-        margins.left += sideMargin
-        margins.right += sideMargin
-        margins.bottom += sideMargin
-        return margins
-    }
-
     private var modalsMargin: UIEdgeInsets {
-        if DeviceInfo.isIphoneX() {
-            return iphoneXModalsMargin
-        }
         return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
     }
 
@@ -140,66 +126,104 @@ class CampaignViewController: UIViewController {
     }
 
     func showModalForm() {
-        let formController = FormViewController(viewModel: viewModel.formViewModel)
-        let base = UINavigationController(rootViewController: formController)
-        formController.delegate = self
-        formNavigationController = base
-
         if DeviceInfo.isIPad() {
-            base.modalPresentationStyle = .formSheet
-            // swiftlint:disable:next force_unwrapping
-            viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
-                self.introView?.alpha = 0
-            }, completion: {
-                self.introView?.removeFromSuperview()
-                self.present(base, animated: true, completion: nil)
-            })
-
+            showModalFormiPad()
             return
         }
+        showModalFormiPhone()
+    }
+
+    private func showModalFormiPad () {
+        let formController = FormViewController(viewModel: viewModel.formViewModel)
+        let rect = introView?.frame ?? CGRect()
+        formController.initialRect = rect
+        let base = UBNavigationController(rootViewController: formController)
+        formController.delegate = self
+
+        guard let introview = introView else {
+            return
+        }
+        formNavigationController = base
+
+        base.transitioningDelegate = self
+        base.view.alpha = 1
+        base.modalPresentationStyle = .formSheet
+        base.preferredContentSize = DeviceInfo.preferedFormSize()
+        transition.originFrame = rect
+        transition.duration = 0.4
+        self.present(base, animated: true, completion: nil)
+        UIView.animate(withDuration: 0.0, delay: 0.2, options: [], animations: {
+            introview.alpha = 0
+        }, completion: { _ in
+            self.viewModel.introPresenter?.dismiss(view: introview, inView: self.view, animations: {
+            }, completion: {
+                introview.removeFromSuperview()
+            })
+        })
+    }
+
+    private func showModalFormiPhone() {
+        let formController = FormViewController(viewModel: viewModel.formViewModel)
+        let rect = introView?.frame ?? CGRect()
+        formController.initialRect = rect
+        let base = UBNavigationController(rootViewController: formController)
+        formController.delegate = self
+
+        guard let introview = introView else {
+            return
+        }
+        formNavigationController = base
 
         addChildViewController(base)
-        view.addSubview(base.view)
+        view.insertSubview(base.view, belowSubview: introview)
 
         base.view.alpha = 0
-        base.view.layer.cornerRadius = 14
+        base.view.layer.cornerRadius = 0
         base.view.layer.masksToBounds = true
 
         base.view.translatesAutoresizingMaskIntoConstraints = false
-
-        modalTopConstraint = base.view.topAnchor.constraint(equalTo: view.topAnchor).activate()
-        modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
-        modalRightConstraint = base.view.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
-        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
-        updateModalConstraints()
         createBackgroundLayer()
 
-        base.view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        base.view.frame = rect
+        base.view.alpha = 0
+        modalTopConstraint = base.view.topAnchor.constraint(equalTo: introview.topAnchor).activate()
+        modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
+        modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
+        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
+        updateModalConstraints()
+
+        self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
-        // swiftlint:disable:next force_unwrapping
-        viewModel.introPresenter?.dismiss(view: introView!, inView: view, animations: {
-            base.view.alpha = 1
-            self.backgroundLayer?.alpha = 1
-            self.introView?.alpha = 0
-            base.view.transform = CGAffineTransform.identity
-            base.view.layoutIfNeeded()
-        }, completion: {
-            self.introView?.removeFromSuperview()
+
+        let scaleTransform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+
+        base.view.transform = scaleTransform
+        base.view.center = CGPoint( x: rect.midX, y: rect.midY)
+        base.view.alpha = 1
+
+        UIView.animate(withDuration: 0.4, delay: 0.0,
+                       usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6,
+                       animations: {
+                        base.view.transform = CGAffineTransform.identity
+                        base.view.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+                        base.view .frame = UIScreen.main.bounds
+                        self.introView?.alpha = 0
         })
     }
 
     func removeFormController(completion: (() -> Void)?) {
         if DeviceInfo.isIPad() {
-            formNavigationController?.dismiss(animated: true, completion: {
+            self.formNavigationController?.dismiss(animated: true, completion: {
                 completion?()
             })
-
             return
         }
+        let position = (viewModel.form.pages[0] as? IntroPageModel)?.displayMode ?? .bannerBottom
+        let calculatedY = position == .bannerTop ? -view.frame.size.height : view.frame.size.height
 
-        UIView.animate(withDuration: 0.2, animations: {
-            self.formNavigationController?.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: animationSpeed, animations: {
+            self.formNavigationController?.view.frame = CGRect(x: 0, y: calculatedY, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.formNavigationController?.view.alpha = 0
             self.backgroundLayer?.alpha = 0
             // swiftlint:disable:next multiple_closures_with_trailing_closure
@@ -211,10 +235,11 @@ class CampaignViewController: UIViewController {
     }
 
     func showToast() {
+        let bannerPosition = (viewModel.form.pages[0] as? IntroPageModel)?.displayMode ?? IntroPageDisplayMode.bannerBottom
         let thankYoutext = viewModel.toastPageViewModel?.text ?? ""
-        let estimatedDuration: UBToastDuration = thankYoutext.characters.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
+        let estimatedDuration: UBToastDuration = thankYoutext.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
         toast = UBToast(delegate: self, text: thankYoutext, duration: estimatedDuration)
-        toast?.show {
+        toast?.show(position: bannerPosition) {
             self.closeCampaign()
         }
     }
@@ -229,7 +254,7 @@ class CampaignViewController: UIViewController {
         modalTopConstraint?.constant = modalsMargin.top
         modalLeftConstraint?.constant = modalsMargin.left
         modalRightConstraint?.constant = -modalsMargin.right
-        modalBottomConstraint?.constant = -modalsMargin.bottom
+        modalBottomConstraint?.constant = -modalsMargin.bottom + 50
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -284,5 +309,16 @@ extension CampaignViewController: FormViewControllerDelegate {
                 self.showToast()
             }
         }
+    }
+}
+
+extension CampaignViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
     }
 }

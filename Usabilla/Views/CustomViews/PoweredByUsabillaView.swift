@@ -18,7 +18,7 @@ class PoweredByUsabillaView: UIView {
 
         let logo = UIButton(type: UIButtonType.custom)
         logo.addTarget(PageViewController.self, action: #selector(PageViewController.openUsabilla), for: .touchUpInside)
-        logo.setImage(Icons.imageOfPoweredBy(color: theme.colors.text.withAlphaComponent(0.5)), for: UIControlState())
+        logo.setImage(Icons.imageOfPoweredBy(color: theme.colors.hint), for: UIControlState())
         logo.accessibilityIdentifier = "powered-by-id"
         self.addSubview(logo)
 

@@ -90,11 +90,12 @@ class UBIntroOutroView: UIView {
     }
 
     private func setupWrapper() {
+        let bottomDisplay = (viewModel.displayMode == .bannerBottom)
         wrapper = UIView()
         wrapper.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wrapper)
-        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-        wrapper.topAnchor.constraint(equalTo: topAnchor).activate()
+        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor, constant: (bottomDisplay ? 120 : 0)).activate()
+        wrapper.topAnchor.constraint(equalTo: topAnchor, constant: (bottomDisplay ? 0 : -120) ).activate()
         wrapperLeftConstraint = wrapper.leftAnchor.constraint(equalTo: leftAnchor).activate()
         wrapperRightConstraint = wrapper.rightAnchor.constraint(equalTo: rightAnchor).activate()
     }
@@ -120,7 +121,7 @@ class UBIntroOutroView: UIView {
         buttonsStackViewBottomContraint = buttonsStackView?.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor).activate()
         buttonsStackView.heightAnchor.constraint(equalToConstant: 44).activate()
         buttonsStackView.axis = .horizontal
-        buttonsStackView.distribution = .fillEqually
+        buttonsStackView.distribution = .fillProportionally
 
         cancelButton = UIButton(type: .system)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
@@ -163,14 +164,14 @@ class UBIntroOutroView: UIView {
         if DeviceInfo.isIPad() {
             self.layer.cornerRadius = 8.0
         }
-
+        self.layer.cornerRadius = 8.0
         backgroundColor = viewModel.backgroundColor
-        cancelButton.setTitleColor(viewModel.buttonColor, for: .normal)
+        cancelButton.setTitleColor(viewModel.cancelButtonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor.withAlphaComponent(0.5), for: .disabled)
 
         cancelButton.titleLabel?.font = viewModel.font
-        continueButton?.titleLabel?.font = viewModel.boldFont
+        continueButton?.titleLabel?.font = viewModel.font
 
         titleLabel.font = viewModel.boldFont.getDynamicTypeFont()
         titleLabel.textColor = viewModel.titleColor

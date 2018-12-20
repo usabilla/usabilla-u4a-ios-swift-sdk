@@ -73,6 +73,42 @@ class UsabillaThemeTests: QuickSpec {
                     expect(theme?.emoticons(size: 5, emoticons: theme.images.enabledEmoticons)?.count).to(equal(5))
                 })
             })
+
+            context("When parsing theme colors from OLD json without card design color") {
+                // Arrange
+                var uTheme = UsabillaTheme()
+                let colorsJson = UBMock.json("ThemeJsonNoCardColor")?["colors"]
+                uTheme.updateColors(json: colorsJson!)
+
+                it("should parse the correct colors") {
+                    expect(uTheme.colors.title).to(equal(UIColor(rgbao: "#111111")))
+                    expect(uTheme.colors.accent).to(equal(UIColor(rgbao: "#222222")))
+                    expect(uTheme.colors.text).to(equal(UIColor(rgbao: "#333333")))
+                    expect(uTheme.colors.error).to(equal(UIColor(rgbao: "#444444")))
+                    expect(uTheme.colors.background).to(equal(UIColor(rgbao: "#555555")))
+                    expect(uTheme.colors.textOnAccent).to(equal(UIColor(rgbao: "#666666")))
+                }
+                it("should assign background color to cardColor") {
+                    expect(uTheme.colors.cardColor).to(equal(uTheme.colors.background))
+                }
+            }
+
+            context("When parsing theme colors from NEW json with card design color") {
+                // Arrange
+                var uTheme = UsabillaTheme()
+                let colorsJson = UBMock.json("ThemeJsonWithCardColor")?["colors"]
+                uTheme.updateColors(json: colorsJson!)
+
+                it("should parse the correct colors") {
+                    expect(uTheme.colors.title).to(equal(UIColor(rgbao: "#111111")))
+                    expect(uTheme.colors.accent).to(equal(UIColor(rgbao: "#222222")))
+                    expect(uTheme.colors.text).to(equal(UIColor(rgbao: "#333333")))
+                    expect(uTheme.colors.error).to(equal(UIColor(rgbao: "#444444")))
+                    expect(uTheme.colors.background).to(equal(UIColor(rgbao: "#555555")))
+                    expect(uTheme.colors.textOnAccent).to(equal(UIColor(rgbao: "#666666")))
+                    expect(uTheme.colors.cardColor).to(equal(UIColor(rgbao: "#777777")))
+                }
+            }
         }
     }
 }
