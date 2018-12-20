@@ -26,6 +26,7 @@ class CampaignPageToastNoControls: UBXCScenario {
         verify(modal.form.navigationBar.submitButton.exists)
 
         modal.form.navigationBar.submitButton.tap()
+        sleep(1)
         verify(toast.element.exists)
         verify(toast.text == nil || toast.text! == "")
     }
