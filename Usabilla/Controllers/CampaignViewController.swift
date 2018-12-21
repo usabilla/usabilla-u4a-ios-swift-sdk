@@ -68,41 +68,6 @@ class CampaignViewController: UIViewController {
         self.delegate = delegate
 
         super.init(nibName: nil, bundle: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(CampaignViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CampaignViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-
-    func keyboardWillShow(notification: NSNotification) {
-        guard let info: [AnyHashable: Any] = notification.userInfo,
-            let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let bottomConstraint = modalBottomConstraint else { return }
-
-        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
-        let curve = UIViewAnimationOptions(rawValue: UInt(duration))
-        let offset = -sideMargin - keyboardFrame.height
-        let form = self.formNavigationController?.childViewControllers[0] as? FormViewController
-
-        UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
-            bottomConstraint.constant = offset
-            self.view.layoutIfNeeded()
-            form?.pageViewController.tableView.beginUpdates()
-            form?.pageViewController.tableView.endUpdates()
-        })
-    }
-
-    func keyboardWillHide(notification: NSNotification) {
-        guard let _: [AnyHashable: Any] = notification.userInfo, let bottomConstraint = modalBottomConstraint else { return }
-
-        let duration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue ?? 0.5
-        let curve = UIViewAnimationOptions(rawValue: UInt(duration))
-        let offset = -sideMargin
-
-        UIView.animate(withDuration: duration, delay: 0, options: curve, animations: {
-            bottomConstraint.constant = offset
-            self.view.layoutIfNeeded()
-
-        })
     }
 
     func createBackgroundLayer() {
