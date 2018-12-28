@@ -67,7 +67,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 5.0'
+pod 'Usabilla', '~> 6.0'
 
 End
 ```
@@ -100,7 +100,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.1.4"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.0"
 ```
 
 ### Manual
@@ -360,7 +360,7 @@ func formDidClose(formID: String, with feedbackResults: [FeedbackResult], isRedi
 
     if feedback.sent == false {
         let abandonedPageIndex = feedback.abandonedPageIndex
-        print("Hey why did you left the form here \(abandonedPageIndex)")
+        print("Hey why did you leave the form here \(abandonedPageIndex)")
         return
     }
 
