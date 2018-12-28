@@ -1,3 +1,10 @@
+## 6.0.0
+#### Fixed
+- Support for 32 and 64 bit
+- Code changed to handle statusBarStyle under iOS 12 as well
+#### Change
+- Design changes to Forms and Campaigns
+
 ## 5.1.4
 #### Fixed
 - Issue with LLVM while submitting to app store
