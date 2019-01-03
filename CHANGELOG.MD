@@ -1,3 +1,10 @@
+## 6.0.1
+#### Fixed
+- Release issue
+#### Change
+- Minor change to podspec file
+
+
 ## 6.0.0
 #### Fixed
 - Support for 32 and 64 bit
