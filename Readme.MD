@@ -45,7 +45,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 9.0+
+- Xcode 9.4+
 - Swift 3.2+
 
 ## Installation
@@ -67,10 +67,21 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.0.0'
+pod 'Usabilla', '~> 6.0.1'
 
 End
 ```
+To use a specific tag of the repo for examlple `v5.0.2-Xcode-9.0`:
+```ruby
+use_frameworks!
+
+target 'YourProjectTarget' do
+  
+pod 'Usabilla', :git => 'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git', :tag => 'v5.0.2-Xcode-9.0'
+
+End
+```
+
 
 Then, run the following command:
 
@@ -89,7 +100,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.2-Xcode-10"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.1"
 ```
 
 ### Manual
@@ -349,7 +360,7 @@ func formDidClose(formID: String, with feedbackResults: [FeedbackResult], isRedi
 
     if feedback.sent == false {
         let abandonedPageIndex = feedback.abandonedPageIndex
-        print("Hey why did you left the form here \(abandonedPageIndex)")
+        print("Hey why did you leave the form here \(abandonedPageIndex)")
         return
     }
 

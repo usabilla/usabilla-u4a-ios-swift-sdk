@@ -1,3 +1,10 @@
+## 6.0.1
+#### Fixed
+- Release issue
+#### Change
+- Minor change to podspec file
+
+
 ## 6.0.0
 #### Fixed
 - Support for 32 and 64 bit
@@ -15,7 +22,7 @@
 
 ## 5.1.0
 #### Added
-- Support for Xcode 10
+- Support for **Xcode 10**
 - Accessibility/VoiceOver: Better Accessibilty for the slider component.
 - Accessibility/VoiceOver: Change the mood component labels.
 
