@@ -1,3 +1,10 @@
+## 6.0.1
+#### Fixed
+- Release issue
+#### Change
+- Minor change to podspec file
+
+
 ## 6.0.0
 #### Fixed
 - Support for 32 and 64 bit
@@ -7,21 +14,11 @@
 
 ## 5.1.4
 #### Fixed
-- Issue with LLVM while submitting to app store
-#### Added
-- Support for **Xcode 10.1**
+- LLVM issue
 
 ## 5.1.3
 #### Fixed
 - Paragraph component cells overlay on top of other cells.
-
-## 5.1.2
-#### Fixed
-- Issue with LLVM while submitting to app store
-
-## 5.1.1
-#### Fixed
-- Issue with LLVM while submitting to app store
 
 ## 5.1.0
 #### Added
