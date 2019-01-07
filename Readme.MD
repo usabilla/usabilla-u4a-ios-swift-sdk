@@ -165,6 +165,8 @@ The most important aspect of running a mobile campaign is 'Events'. Events are c
 The app Id is an identifier used to associate campaigns to a mobile app.
 By loading the SDK with a specific app Id, it will fetch all the campaigns connected to the given app Id.
 
+If you wonder how you can find the App ID, then please take a look at our support article here: https://support.usabilla.com/hc/en-us/articles/360021618151-How-to-find-the-App-ID
+
 It is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App) by associating it with multiple App Ids.
 
 ### Targeting options
