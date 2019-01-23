@@ -49,4 +49,8 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
 
         valueChanged()
     }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        moodControl.layoutSubviews()
+    }
 }

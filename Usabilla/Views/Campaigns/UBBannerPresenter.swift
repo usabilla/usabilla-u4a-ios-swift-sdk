@@ -106,7 +106,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         leftConstraint?.isActive = false
         leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: 16)
         leftConstraint?.isActive = true
-        superview.layoutIfNeeded()
+        superview.updateConstraints()
     }
 
     private func setConstraintsForLandscape(_ orientation: UIInterfaceOrientation) {
@@ -122,8 +122,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -offset)
         rightConstraint?.isActive = true
 
-        widthConstraint = aView.widthAnchor.constraint(lessThanOrEqualToConstant: kWidthiPhone)
+        widthConstraint = aView.widthAnchor.constraint(equalToConstant: kWidthiPhone)
         widthConstraint?.isActive  = true
-        superview.layoutIfNeeded()
+        superview.updateConstraints()
     }
 }
