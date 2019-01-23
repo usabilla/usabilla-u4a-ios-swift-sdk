@@ -41,4 +41,5 @@ class UBAlertPresenter: UBIntroOutroPresenter {
             completion?()
         }
     }
+    func updateConstraints(to size: CGSize, orientation: UIInterfaceOrientation) {}
 }

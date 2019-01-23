@@ -53,10 +53,10 @@ class FormViewController: UIViewController {
     }
 
     // set the status bar color
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return previousStatusBarColor ?? (viewModel.statusBarColor ?? .lightContent)
     }
-    
+
     // MARK: ViewController cycle
     override func loadView() {
         super.loadView()

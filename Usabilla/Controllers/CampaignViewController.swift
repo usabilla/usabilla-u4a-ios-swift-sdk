@@ -223,7 +223,11 @@ class CampaignViewController: UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        introView?.setNeedsUpdateConstraints()
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
+            let orientation = UIApplication.shared.statusBarOrientation
+            self?.viewModel.introPresenter?.updateConstraints(to: size, orientation: orientation)
+        })
         toast?.setNeedsUpdateConstraints()
         updateModalConstraints()
     }

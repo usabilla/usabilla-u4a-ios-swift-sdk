@@ -87,6 +87,7 @@ class UBIntroOutroView: UIView {
         super.updateConstraints()
         wrapperRightConstraint?.constant = -UIView.safeAreaEdgeInsets.right
         wrapperLeftConstraint?.constant = UIView.safeAreaEdgeInsets.left
+
     }
 
     private func setupWrapper() {

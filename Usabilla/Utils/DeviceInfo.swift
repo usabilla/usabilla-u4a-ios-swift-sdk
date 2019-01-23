@@ -90,6 +90,14 @@ class DeviceInfo {
         return false
     }
 
+    static var offsetRightNotch: CGFloat {
+        if #available(iOS 11.0, *) {
+            let value: CGFloat = UIApplication.shared.delegate?.window??.safeAreaInsets.right ?? 0
+            return value
+        }
+        return 0
+    }
+
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }

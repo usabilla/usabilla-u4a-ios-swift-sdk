@@ -112,7 +112,13 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             tableView.tableHeaderView = nil
         }
     }
-
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("landscape")
+        } else {
+            print("portrait")
+        }
+    }
     func keyboardWillShow(notification: NSNotification) {
         guard viewModel.shouldAddMarginWhenKeyboardIsShown,
             var userInfo = notification.userInfo,
