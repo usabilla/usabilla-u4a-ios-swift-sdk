@@ -84,6 +84,14 @@ class FormViewController: UIViewController {
         SwiftEventBus.unregister(self)
         pageViewController?.deinitPageController()
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
+            self?.pageViewController.tableView.reloadData()
+        })
+
+    }
+
     // MARK: View setup
     func setUpView() {
         title = viewModel.navigationBarTitle

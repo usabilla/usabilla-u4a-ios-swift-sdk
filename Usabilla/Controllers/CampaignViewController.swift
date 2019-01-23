@@ -155,8 +155,6 @@ class CampaignViewController: UIViewController {
         modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
         modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
         modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
-        updateModalConstraints()
-
         self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
@@ -216,20 +214,33 @@ class CampaignViewController: UIViewController {
     }
 
     private func updateModalConstraints() {
-        modalTopConstraint?.constant = modalsMargin.top
-        modalLeftConstraint?.constant = modalsMargin.left
-        modalRightConstraint?.constant = -modalsMargin.right
-        modalBottomConstraint?.constant = -modalsMargin.bottom + 50
+        modalTopConstraint?.isActive = false
+        modalLeftConstraint?.isActive = false
+        modalRightConstraint?.isActive = false
+        modalBottomConstraint?.isActive = false
+        modalTopConstraint = formNavigationController?.view.topAnchor.constraint(equalTo: view.topAnchor)
+        modalLeftConstraint = formNavigationController?.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+        modalRightConstraint = formNavigationController?.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+        modalBottomConstraint = formNavigationController?.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+        modalTopConstraint?.isActive = true
+        modalLeftConstraint?.isActive = true
+        modalRightConstraint?.isActive = true
+        modalBottomConstraint?.isActive = true
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
-            let orientation = UIApplication.shared.statusBarOrientation
-            self?.viewModel.introPresenter?.updateConstraints(to: size, orientation: orientation)
-        })
-        toast?.setNeedsUpdateConstraints()
-        updateModalConstraints()
+        if viewModel.currentPageType == PageType.banner {
+            coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
+                let orientation = UIApplication.shared.statusBarOrientation
+                self?.viewModel.introPresenter?.updateConstraints(to: size, orientation: orientation)
+            })
+        } else if viewModel.currentPageType == PageType.toast {
+            toast?.setNeedsUpdateConstraints()
+        } else {
+            updateModalConstraints()
+        }
     }
 }
 
