@@ -255,7 +255,16 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
                 self.backgroundLayer?.alpha = 0.0
             }
         }
+        let completion: ((Bool) -> Void) = { _ in
+            self.backgroundLayer?.removeFromSuperview()
+            introView.removeFromSuperview()
+            self.closeCampaign(atPageIndex: 0)
 
+        }
+        removeBannerView(introView: introView, completion: completion)
+    }
+
+    private func removeBannerView(introView: UBIntroOutroView, completion: ((Bool) -> Void)?) {
         var fra = introView.frame
         if fra.origin.y > CGFloat(distanceFromTop) { // indicates bottom....
             fra.origin.y = view.frame.size.height + offset
@@ -264,19 +273,17 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         }
         UIView.animate(withDuration: 0.3, animations: {
             introView.frame = fra
-        }, completion: {_ in
-            self.backgroundLayer?.removeFromSuperview()
-            introView.removeFromSuperview()
-            self.closeCampaign(atPageIndex: 0)
-        })
+        }, completion: completion)
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {
         viewModel.introViewDidContinue()
         if viewModel.currentPageType == .toast {
-            viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: {
+            let completion: ((Bool) -> Void) = { _ in
+                introView.removeFromSuperview()
                 self.showToast()
-            })
+            }
+            removeBannerView(introView: introView, completion: completion)
             return
         }
         showModalForm()
