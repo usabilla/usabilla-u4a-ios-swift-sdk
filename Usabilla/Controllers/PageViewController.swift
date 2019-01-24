@@ -112,7 +112,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             tableView.tableHeaderView = nil
         }
     }
-
     func keyboardWillShow(notification: NSNotification) {
         guard viewModel.shouldAddMarginWhenKeyboardIsShown,
             var userInfo = notification.userInfo,

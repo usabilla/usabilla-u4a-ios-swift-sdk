@@ -135,6 +135,12 @@ class RatingControl: UIControl {
         super.draw(rect)
         reload()
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        reload()
+    }
+
     private func createSpaceView( width: CGFloat, xPos: CGFloat) -> UIView {
         let aView = UIView(frame: CGRect(x: xPos, y: 0, width: width, height: 42))
         aView.backgroundColor = UIColor.clear
@@ -151,8 +157,8 @@ class RatingControl: UIControl {
 
     private func configureStackViewForMoreMoods() {
         var screenWidth = DeviceInfo.getMaxFormWidth()
-        let margins = DeviceInfo.getRightCardBorder()*4
-        screenWidth -=  (margins + offset * 2)
+        let width: CGFloat = contentView.frame.size.width
+        screenWidth = min(width, screenWidth)
         let numberOfMoods: CGFloat = CGFloat(maxValue)
         let moodsMaxWidth: CGFloat = numberOfMoods*42
         var spaceing = (screenWidth-moodsMaxWidth)/(numberOfMoods-1)

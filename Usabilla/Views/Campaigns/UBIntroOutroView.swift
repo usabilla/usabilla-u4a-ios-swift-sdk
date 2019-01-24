@@ -82,11 +82,16 @@ class UBIntroOutroView: UIView {
     private func updateContinueButton() {
         continueButton?.isEnabled = viewModel.canContinue
     }
-
+ 
+    override func layoutSubviews() {
+        componentView?.layoutSubviews()
+    }
+    
     override func updateConstraints() {
         super.updateConstraints()
         wrapperRightConstraint?.constant = -UIView.safeAreaEdgeInsets.right
         wrapperLeftConstraint?.constant = UIView.safeAreaEdgeInsets.left
+
     }
 
     private func setupWrapper() {

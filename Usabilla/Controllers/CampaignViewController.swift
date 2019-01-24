@@ -19,6 +19,8 @@ class CampaignViewController: UIViewController {
     let topMargin: CGFloat = 0
     let viewModel: CampaignViewModel
     let transition = CampaignAnimator()
+    internal let distanceFromTop: CGFloat = 100.0
+    internal let offset: CGFloat = 10
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
@@ -155,8 +157,6 @@ class CampaignViewController: UIViewController {
         modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
         modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
         modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
-        updateModalConstraints()
-
         self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
@@ -216,16 +216,33 @@ class CampaignViewController: UIViewController {
     }
 
     private func updateModalConstraints() {
-        modalTopConstraint?.constant = modalsMargin.top
-        modalLeftConstraint?.constant = modalsMargin.left
-        modalRightConstraint?.constant = -modalsMargin.right
-        modalBottomConstraint?.constant = -modalsMargin.bottom + 50
+        modalTopConstraint?.isActive = false
+        modalLeftConstraint?.isActive = false
+        modalRightConstraint?.isActive = false
+        modalBottomConstraint?.isActive = false
+        modalTopConstraint = formNavigationController?.view.topAnchor.constraint(equalTo: view.topAnchor)
+        modalLeftConstraint = formNavigationController?.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+        modalRightConstraint = formNavigationController?.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+        modalBottomConstraint = formNavigationController?.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+        modalTopConstraint?.isActive = true
+        modalLeftConstraint?.isActive = true
+        modalRightConstraint?.isActive = true
+        modalBottomConstraint?.isActive = true
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        introView?.setNeedsUpdateConstraints()
-        toast?.setNeedsUpdateConstraints()
-        updateModalConstraints()
+        super.viewWillTransition(to: size, with: coordinator)
+        if viewModel.currentPageType == PageType.banner {
+            coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
+                let orientation = UIApplication.shared.statusBarOrientation
+                self?.viewModel.introPresenter?.updateConstraints(to: size, orientation: orientation)
+            })
+        } else if viewModel.currentPageType == PageType.toast {
+            toast?.setNeedsUpdateConstraints()
+        } else {
+            updateModalConstraints()
+        }
     }
 }
 
@@ -238,20 +255,35 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
                 self.backgroundLayer?.alpha = 0.0
             }
         }
-
-        viewModel.introPresenter?.dismiss(view: introView, inView: self.view, animations: animations) {
+        let completion: ((Bool) -> Void) = { _ in
             self.backgroundLayer?.removeFromSuperview()
             introView.removeFromSuperview()
             self.closeCampaign(atPageIndex: 0)
+
         }
+        removeBannerView(introView: introView, completion: completion)
+    }
+
+    private func removeBannerView(introView: UBIntroOutroView, completion: ((Bool) -> Void)?) {
+        var fra = introView.frame
+        if fra.origin.y > CGFloat(distanceFromTop) { // indicates bottom....
+            fra.origin.y = view.frame.size.height + offset
+        } else {
+            fra.origin.y = -(fra.size.height + offset)
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+            introView.frame = fra
+        }, completion: completion)
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {
         viewModel.introViewDidContinue()
         if viewModel.currentPageType == .toast {
-            viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: {
+            let completion: ((Bool) -> Void) = { _ in
+                introView.removeFromSuperview()
                 self.showToast()
-            })
+            }
+            removeBannerView(introView: introView, completion: completion)
             return
         }
         showModalForm()

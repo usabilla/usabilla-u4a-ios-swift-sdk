@@ -15,13 +15,22 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var bottomConstraint: NSLayoutConstraint!
 
     private var kWidthTablet: CGFloat = 350.0
+    private var kWidthiPhone: CGFloat = 382
     private var kRightOffsetTablet: CGFloat = -25.0
     private var kShadowOffset: CGFloat = 5.0
+    private weak var inView: UIView?
+    private weak var introView: UBIntroOutroView?
+
+    private var leftConstraint: NSLayoutConstraint?
+    private var rightConstraint: NSLayoutConstraint?
+    private var widthConstraint: NSLayoutConstraint?
+
     var offset: CGFloat = 0.0
 
     func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
         let style = view.viewModel.displayMode
-
+        self.inView = inView
+        self.introView = view
         view.translatesAutoresizingMaskIntoConstraints = false
 
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
@@ -31,12 +40,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
             view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
         } else {
-            view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: 16).activate()
-            view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: -16).activate()
+            setConstraints()
         }
         inView.layoutIfNeeded()
-
-        offset = view.bounds.height
 
         topConstraint.constant = -offset
         bottomConstraint.constant = offset
@@ -69,5 +75,56 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         }) { _ in
             completion?()
         }
+    }
+
+    func updateConstraints(to size: CGSize, orientation: UIInterfaceOrientation) {
+        if size.width > size.height {
+            setConstraintsForLandscape(orientation)
+            return
+        }
+        setConstraintsForPortrait()
+    }
+
+    private func setConstraints() {
+        let orientation = UIApplication.shared.statusBarOrientation
+        if orientation == UIInterfaceOrientation.landscapeLeft || orientation == UIInterfaceOrientation.landscapeRight {
+            setConstraintsForLandscape(orientation)
+            return
+        }
+        setConstraintsForPortrait()
+    }
+
+    private func setConstraintsForPortrait() {
+        guard let superview = inView, let aView = introView else {
+            return
+        }
+        rightConstraint?.isActive = false
+        rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -16)
+        rightConstraint?.isActive = true
+
+        widthConstraint?.isActive  = false
+
+        leftConstraint?.isActive = false
+        leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: 16)
+        leftConstraint?.isActive = true
+        superview.updateConstraints()
+    }
+
+    private func setConstraintsForLandscape(_ orientation: UIInterfaceOrientation) {
+        guard let superview = inView, let aView = introView else {
+            return
+        }
+        rightConstraint?.isActive = false
+        leftConstraint?.isActive = false
+        var offset: CGFloat = 16
+        if orientation == .landscapeLeft {
+            offset = DeviceInfo.offsetRightNotch
+        }
+        rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -offset)
+        rightConstraint?.isActive = true
+
+        widthConstraint = aView.widthAnchor.constraint(equalToConstant: kWidthiPhone)
+        widthConstraint?.isActive  = true
+        superview.updateConstraints()
     }
 }

@@ -53,10 +53,10 @@ class FormViewController: UIViewController {
     }
 
     // set the status bar color
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return previousStatusBarColor ?? (viewModel.statusBarColor ?? .lightContent)
     }
-    
+
     // MARK: ViewController cycle
     override func loadView() {
         super.loadView()
@@ -84,6 +84,13 @@ class FormViewController: UIViewController {
         SwiftEventBus.unregister(self)
         pageViewController?.deinitPageController()
     }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
+            self?.pageViewController.tableView.reloadData()
+        })
+    }
+
     // MARK: View setup
     func setUpView() {
         title = viewModel.navigationBarTitle

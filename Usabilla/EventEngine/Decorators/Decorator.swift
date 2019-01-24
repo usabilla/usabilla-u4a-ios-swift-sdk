@@ -31,14 +31,14 @@ class Decorator: NSObject, Rule {
         self.alreadyTriggered = false
     }
 
-    func triggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    func triggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         if !alreadyTriggered {
             alreadyTriggered = customTriggersWith(event: event, activeStatuses: activeStatuses)
         }
         return alreadyTriggered
     }
 
-    func customTriggersWith(event: Event, activeStatuses: [String : String]) -> Bool {
+    func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         fatalError("Abstract method not implemented")
     }
 

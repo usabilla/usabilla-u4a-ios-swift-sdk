@@ -41,4 +41,6 @@ class UBAlertPresenter: UBIntroOutroPresenter {
             completion?()
         }
     }
+    // protocol requirement
+    func updateConstraints(to size: CGSize, orientation: UIInterfaceOrientation) {}
 }
