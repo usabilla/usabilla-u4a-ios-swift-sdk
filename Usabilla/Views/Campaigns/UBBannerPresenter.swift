@@ -21,9 +21,9 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     private weak var inView: UIView?
     private weak var introView: UBIntroOutroView?
 
-    var leftConstraint: NSLayoutConstraint?
-    var rightConstraint: NSLayoutConstraint?
-    var widthConstraint: NSLayoutConstraint?
+    private var leftConstraint: NSLayoutConstraint?
+    private var rightConstraint: NSLayoutConstraint?
+    private var widthConstraint: NSLayoutConstraint?
 
     var offset: CGFloat = 0.0
 
@@ -76,6 +76,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             completion?()
         }
     }
+
     func updateConstraints(to size: CGSize, orientation: UIInterfaceOrientation) {
         if size.width > size.height {
             setConstraintsForLandscape(orientation)
@@ -90,7 +91,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             setConstraintsForLandscape(orientation)
             return
         }
-            setConstraintsForPortrait()
+        setConstraintsForPortrait()
     }
 
     private func setConstraintsForPortrait() {

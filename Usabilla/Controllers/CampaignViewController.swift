@@ -19,6 +19,8 @@ class CampaignViewController: UIViewController {
     let topMargin: CGFloat = 0
     let viewModel: CampaignViewModel
     let transition = CampaignAnimator()
+    internal let distanceFromTop: CGFloat = 100.0
+    internal let offset: CGFloat = 10
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
@@ -255,10 +257,10 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         }
 
         var fra = introView.frame
-        if fra.origin.y > CGFloat(100.0) { // indicates bottom....
-            fra.origin.y = view.frame.size.height+10
+        if fra.origin.y > CGFloat(distanceFromTop) { // indicates bottom....
+            fra.origin.y = view.frame.size.height + offset
         } else {
-            fra.origin.y = -(fra.size.height+10)
+            fra.origin.y = -(fra.size.height + offset)
         }
         UIView.animate(withDuration: 0.3, animations: {
             introView.frame = fra

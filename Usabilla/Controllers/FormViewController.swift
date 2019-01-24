@@ -89,7 +89,6 @@ class FormViewController: UIViewController {
         coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
             self?.pageViewController.tableView.reloadData()
         })
-
     }
 
     // MARK: View setup
