@@ -254,11 +254,19 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
             }
         }
 
-        viewModel.introPresenter?.dismiss(view: introView, inView: self.view, animations: animations) {
+        var fra = introView.frame
+        if fra.origin.y > CGFloat(100.0) { // indicates bottom....
+            fra.origin.y = view.frame.size.height+10
+        } else {
+            fra.origin.y = -(fra.size.height+10)
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+            introView.frame = fra
+        }, completion: {_ in
             self.backgroundLayer?.removeFromSuperview()
             introView.removeFromSuperview()
             self.closeCampaign(atPageIndex: 0)
-        }
+        })
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {
