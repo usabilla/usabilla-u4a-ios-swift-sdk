@@ -1,3 +1,7 @@
+## 6.0.2
+#### Fixed
+- Fixing rotation issue, that could occur in Campaigns 
+
 ## 6.0.1
 #### Fixed
 - Release issue
