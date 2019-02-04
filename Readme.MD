@@ -67,7 +67,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.0.1'
+pod 'Usabilla', '~> 6.0.2'
 
 End
 ```
@@ -100,7 +100,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.1"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.2"
 ```
 
 ### Manual
