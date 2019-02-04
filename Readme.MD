@@ -67,7 +67,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.0.1'
+pod 'Usabilla', '~> 6.0.2'
 
 End
 ```
@@ -100,7 +100,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.1"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.2"
 ```
 
 ### Manual
@@ -163,7 +163,9 @@ The most important aspect of running a mobile campaign is 'Events'. Events are c
 
 ### The App Id
 The app Id is an identifier used to associate campaigns to a mobile app.
-By loading the SDK with a specific app Id, it will fetch all the campaigns connected to the given app Id.
+By loading the SDK with a specific app Id, it will fetch all the campaigns connected to the given app Id. If you need to know how to find the App Id please take a look at our support article here:
+
+https://support.usabilla.com/hc/en-us/articles/360021618151-How-to-find-the-App-ID
 
 It is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App) by associating it with multiple App Ids.
 
