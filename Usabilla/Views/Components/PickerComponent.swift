@@ -109,7 +109,7 @@ class PickerComponent: PickerParentComponent {
         }
     }
 
-    func pickerButtonClicked() {
+    @objc func pickerButtonClicked() {
         if DeviceInfo.isIPad() {
             SwiftEventBus.postToMainThread("iPadPickerButtonTapped", sender: self)
             return

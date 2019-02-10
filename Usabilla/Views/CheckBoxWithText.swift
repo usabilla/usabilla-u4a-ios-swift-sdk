@@ -75,7 +75,7 @@ class CheckboxWithText: UIView, SwiftCheckBoxDelegate {
         delegate?.didTapCheckBox(checkBox)
     }
 
-    func touchEvent() {
+    @objc func touchEvent() {
         self.checkBox.setOn(!self.checkBox.on, animated: true)
         delegate?.didTapCheckBox(checkBox)
     }

@@ -48,7 +48,7 @@ class BaseTextFieldComponent<T: EditableStringComponentViewModel>: UBComponent<T
         //placeholder
         if let placeHolder = viewModel.placeHolder {
             let theme = viewModel.theme
-            textField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSForegroundColorAttributeName: theme.colors.hint, NSFontAttributeName: theme.fonts.font])
+            textField.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSAttributedStringKey.foregroundColor: theme.colors.hint, NSAttributedStringKey.font: theme.fonts.font])
         }
 
         // customization

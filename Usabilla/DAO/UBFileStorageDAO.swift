@@ -97,17 +97,18 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         var result: DataType?
 
         fileStorageSerialQueue.sync {
-            do {
-                if let data = FileManager().contents(atPath: filePath) {
-                    result = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data as NSData) as? DataType
-                    if result == nil {
-                        delete(id: id)
+            if let data = FileManager().contents(atPath: filePath) {
+                do {
+                    result = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? DataType
+                if result == nil {
+                    DLogError("Couldn't load \(directory.description) with id: \(id) from database")
+                    PLog("Error ❌ during unarchiving: data not found")
+                    delete(id: id)
                     }
+                } catch {
+                    PLog("Error ❌ during unarchiving: \(error)")
+                    delete(id: id)
                 }
-            } catch let error {
-                DLogError("Couldn't load \(directory.description) with id: \(id) from database")
-                PLog("Error ❌ during unarchiving: \(error)")
-                delete(id: id)
             }
         }
 

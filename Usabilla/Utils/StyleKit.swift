@@ -246,9 +246,8 @@ class Icons: NSObject {
 
         /// Powered by
         let poweredBy2 = NSMutableAttributedString(string: "Powered by")
-
-        poweredBy2.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: poweredBy2.length))
-        poweredBy2.addAttribute(NSKernAttributeName, value: -0.24, range: NSRange(location: 0, length: poweredBy2.length))
+        poweredBy2.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: NSRange(location: 0, length: poweredBy2.length))
+        poweredBy2.addAttribute(NSAttributedStringKey.kern, value: -0.24, range: NSRange(location: 0, length: poweredBy2.length))
         context.saveGState()
         poweredBy2.draw(at: CGPoint(x: 1, y: 15))
         context.restoreGState()

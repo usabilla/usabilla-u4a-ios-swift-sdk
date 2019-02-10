@@ -158,7 +158,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         if let size = imageSize {
             let ratio = size.width / size.height
             ratioConstraint = screenShotView.widthAnchor.constraint(equalTo: screenShotView.heightAnchor, multiplier: ratio)
-            ratioConstraint.priority = 999
+            ratioConstraint.priority = UILayoutPriority(999)
             ratioConstraint.isActive = true
         }
     }
@@ -203,11 +203,11 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         positionWithOutImage()
     }
 
-    func deleteScreenshot() {
+    @objc func deleteScreenshot() {
         setImage(image: nil)
     }
 
-    func pickImage() {
+    @objc func pickImage() {
         SwiftEventBus.post("pick", sender: nil)
     }
 

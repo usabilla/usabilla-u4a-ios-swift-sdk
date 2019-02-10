@@ -15,7 +15,7 @@ extension String {
         return stride(from: 0, to: self.count, by: length).map {
             let start = self.index(self.startIndex, offsetBy: $0)
             let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
-            return self[start..<end]
+            return String(self[start..<end])
         }
     }
 
@@ -26,9 +26,9 @@ extension String {
             let attrStr = try NSAttributedString(
                                                 // swiftlint:disable:next force_unwrapping
                                                  data: modifiedFont.data(using: String.Encoding.utf8, allowLossyConversion: true)!,
-                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue],
+                                                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
                                                  documentAttributes: nil)
-            return attrStr
+                return attrStr
         } catch {
             return NSAttributedString(string: self)
         }

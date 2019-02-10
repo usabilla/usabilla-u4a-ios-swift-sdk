@@ -11,7 +11,7 @@ import UIKit
 extension UIBarButtonItem {
     func setFont(font: UIFont) {
         guard #available(iOS 11, *) else {
-            setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+            setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
             return
         }
         let states = [
@@ -23,13 +23,13 @@ extension UIBarButtonItem {
         ]
         // applying this for all the states (fix iOS 11 bug)
         for state in states {
-            setTitleTextAttributes([NSFontAttributeName: font], for: state)
+            setTitleTextAttributes([NSAttributedStringKey.font: font], for: state)
         }
     }
 
     func setTextForegroundColor(color: UIColor) {
         if #available(iOS 11, *) {
-            setTitleTextAttributes([NSForegroundColorAttributeName: color], for: .normal)
+            setTitleTextAttributes([NSAttributedStringKey.foregroundColor: color], for: .normal)
             return
         }
     }

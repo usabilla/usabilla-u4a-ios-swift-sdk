@@ -112,7 +112,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             tableView.tableHeaderView = nil
         }
     }
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         guard viewModel.shouldAddMarginWhenKeyboardIsShown,
             var userInfo = notification.userInfo,
             var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -125,7 +125,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         self.tableView.contentInset = contentInset
     }
 
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         let contentInset: UIEdgeInsets = UIEdgeInsets.zero
         self.tableView.contentInset = contentInset
     }
@@ -262,6 +262,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         }
     }
 
+    @objc
     static func openUsabilla() {
         // swiftlint:disable:next force_unwrapping
         UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
