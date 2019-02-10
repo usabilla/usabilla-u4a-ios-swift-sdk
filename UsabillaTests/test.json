@@ -3,7 +3,7 @@
     "form": {
         "pages": [
                   {
-                  "type": "form",
+                  "type": "banner",
                   "fields": [
                              {
                              "type": "mood",

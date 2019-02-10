@@ -34,7 +34,14 @@ class CampaignViewModelTests: QuickSpec {
 
             context("When initilized campaignViewModel") {
                 it("should not set introPageViewModel & introPresenter when json does not contain start page") {
-                    let formModel = FormModel(json: self.formJson!, id: "", screenshot: nil)
+                    // need to alter the test.json to have the fist page be a form not banner
+                    var dict = self.formJson.dictionaryValue
+                    var startDict = [String: Any]()
+                    startDict["type"] = "form"
+                    startDict["fields"] = []
+                    dict["form"]!["pages"].arrayObject![0] = startDict
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
+
                     self.campaignModel.form = formModel
 
                     expect(self.self.campaignModel).toNot(beNil())
@@ -44,6 +51,7 @@ class CampaignViewModelTests: QuickSpec {
                     expect(campaignViewModel.introPresenter).to(beNil())
                 }
                 it("should set introPageViewModel & introPresenter when json contains banner page") {
+                    // need to alter the test.json
                     // add start page to json form
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
@@ -60,13 +68,14 @@ class CampaignViewModelTests: QuickSpec {
                     expect(campaignViewModel.introPresenter is UBBannerPresenter).to(beTrue())
                 }
                 it("should set introPageViewModel & introPresenter when json contains start page and is an alert") {
-                    // add start page to json form
+                    // need to alter the test.json
+                    // set first page to be an alert not banner
                     var dict = self.formJson.dictionaryValue
                     var startDict = [String: Any]()
                     startDict["type"] = "banner"
                     startDict["fields"] = []
                     startDict["display"] = "alert"
-                    dict["form"]!["pages"].arrayObject!.append(startDict)
+                    dict["form"]!["pages"].arrayObject![0] = startDict
 
                     let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
                     self.campaignModel.form = formModel
