@@ -107,7 +107,7 @@ class CampaignManager {
      *  endpage
      */
     private func testIntegrityOfCampaginForm(_ form: FormModel?) -> Bool {
-        // must have a form, form must 2 pages
+        // A campaign must have a form, and a form must 2 pages
         guard let form = form,
             form.pages.count >= 2 else {
             return false
@@ -117,7 +117,7 @@ class CampaignManager {
             return false
         }
         if !(form.pages.last is UBEndPageModel) {
-            PLog("The Campaings last page isn't a endpage (splash)")
+            PLog("The Campaigns last page isn't a endpage (splash)")
             return false
         }
 
