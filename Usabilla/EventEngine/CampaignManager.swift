@@ -54,6 +54,10 @@ class CampaignManager {
             return
         }
         campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position).then { form in
+
+            guard self.testIntegrityOfCampaginForm(form) else {
+                return
+            }
             let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
             if self.displayCampaignForm(form, manager: submissionManager) {
                 campaign.numberOfTimesTriggered += 1
@@ -95,6 +99,29 @@ class CampaignManager {
             self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
             completion?()
         }
+    }
+
+    /*
+     *  Any given Campaign must have the following
+     *  bannerpage
+     *  endpage
+     */
+    private func testIntegrityOfCampaginForm(_ form: FormModel?) -> Bool {
+        // A campaign must have a form, and a form must 2 pages
+        guard let form = form,
+            form.pages.count >= 2 else {
+            return false
+        }
+        if !(form.pages.first is IntroPageModel) {
+            PLog("The Campaings first page isn't a start page (banner)")
+            return false
+        }
+        if !(form.pages.last is UBEndPageModel) {
+            PLog("The Campaigns last page isn't a endpage (splash)")
+            return false
+        }
+
+        return true
     }
 
     #if INTERNAL_USE || DEBUG

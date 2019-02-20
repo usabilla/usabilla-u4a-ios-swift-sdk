@@ -32,7 +32,7 @@ class FormModelTests: QuickSpec {
                     expect(self.formModel.version).to(equal(6))
                     expect(self.formModel.identifier).to(equal("mockFormId"))
                     expect(self.formModel.pages.count).to(equal(4))
-                    expect(self.formModel.pages[0].type).to(equal(PageType.form))
+                    expect(self.formModel.pages[0].type).to(equal(PageType.banner))
                     expect(self.formModel.pages[1].type).to(equal(PageType.form))
                     expect(self.formModel.pages[2].type).to(equal(PageType.form))
                     expect(self.formModel.pages[3].type).to(equal(PageType.end))
