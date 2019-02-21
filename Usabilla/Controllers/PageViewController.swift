@@ -16,7 +16,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
     private var constraintHeaderLeft: NSLayoutConstraint?
     private var constraintHeaderRight: NSLayoutConstraint?
-
+    private var pickController: UIViewController?
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
@@ -180,6 +180,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
         // present the pop over
         self.present(pickerController, animated: true, completion: nil)
+        self.pickController = pickerController
     }
 
     func tableViewContentHeight() -> CGFloat {
@@ -271,7 +272,14 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         constraintHeaderRight?.constant = UIView.safeAreaEdgeInsets.right
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+       super.viewWillTransition(to: size, with: coordinator)
+        if let pickController = pickController {
+            pickController.dismiss(animated: true, completion: nil)
+        }
+    }
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
         updateHeaderMargins()
         headerView.setNeedsUpdateConstraints()
     }
