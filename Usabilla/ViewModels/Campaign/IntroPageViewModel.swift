@@ -49,7 +49,7 @@ class IntroPageViewModel {
         return theme.colors.accent
     }
     var cancelButtonColor: UIColor {
-        return theme.colors.hint
+        return theme.colors.text
     }
 
     var barButtonItemColor: UIColor {
