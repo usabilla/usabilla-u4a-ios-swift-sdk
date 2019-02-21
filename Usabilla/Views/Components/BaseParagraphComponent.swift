@@ -23,8 +23,8 @@ class BaseParagraphComponent<T: StringComponentViewModel>: UBComponent<T>, UITex
         textView.textContainerInset = .zero
         addSubview(textView)
 
-        textView.leftAnchor.constraint(equalTo: leftAnchor, constant: -16).isActive = true
-        textView.rightAnchor.constraint(equalTo: rightAnchor, constant: 16).isActive = true
+        textView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        textView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
         textView.topAnchor.constraint(equalTo: topAnchor, constant: 6).isActive = true
         textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8).isActive = true
 
