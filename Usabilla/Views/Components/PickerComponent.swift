@@ -116,7 +116,7 @@ class PickerComponent: PickerParentComponent {
         }
         let isPickerExpanded = viewModel.expanded
         viewModel.expanded = !isPickerExpanded
-        updatePickerStatus(isExpanded: isPickerExpanded)
+        updatePickerStatus(isExpanded: viewModel.expanded)
         SwiftEventBus.postToMainThread("updateMySize")
     }
 
