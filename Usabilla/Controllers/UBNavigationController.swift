@@ -14,4 +14,11 @@ class UBNavigationController: UINavigationController {
         super.viewWillTransition(to: size, with: coordinator)
         preferredContentSize = DeviceInfo.preferedFormSize()
     }
+     override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return (visibleViewController?.supportedInterfaceOrientations)!
+    }
 }

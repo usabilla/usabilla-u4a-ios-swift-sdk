@@ -42,7 +42,14 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                 expect(screenshot).toNot(beNil())
                 expect(screenshot?.size).to(equal(powered.size))
             }
-
+            
+            it("UsabillaInternal orientation") {
+                let orientation: UIInterfaceOrientationMask = .landscapeRight
+                expectation(UsabillaInternal.orientation).to(equal(UIInterfaceOrientationMask.all))
+                UsabillaInternal.orientation = orientation
+                expectation(UsabillaInternal.orientation).to(!equal(UIInterfaceOrientationMask.all))
+            }
+            
             it("UsabillaInternal loadFeedbackForm shoud succeed") {
                 waitUntil(timeout: 5.0) { done in
                     self.succeed = {

@@ -61,6 +61,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             self.bottomConstraint.constant = (style == .bannerTop ? self.bottomConstraint.constant : -DeviceInfo.bottomMargin)
             inView.layoutIfNeeded()
         })
+        setFixedConstraints()
+
     }
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
@@ -74,6 +76,22 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { _ in
             completion?()
+        }
+    }
+
+    private func setFixedConstraints() {
+        if UsabillaInternal.supportedOrientations == .landscapeLeft {
+            setConstraintsForLandscape(.landscapeLeft)
+            return
+        }
+        if UsabillaInternal.supportedOrientations == .landscapeRight {
+            setConstraintsForLandscape(.landscapeRight)
+            return
+        }
+        if UsabillaInternal.supportedOrientations == .portrait ||
+            UsabillaInternal.supportedOrientations == .portraitUpsideDown {
+            setConstraintsForPortrait()
+            return
         }
     }
 

@@ -27,6 +27,7 @@ class UsabillaInternal {
     static weak var delegate: UsabillaDelegate?
     static var theme: UsabillaTheme = UsabillaTheme()
     static var defaultLocalisationFile = true
+    static var supportedOrientations: UIInterfaceOrientationMask = .all
     private static let campaignService = CampaignService()
     private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: campaignService)
     private (set) static var appID: String?

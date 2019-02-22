@@ -31,6 +31,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Handle manual dismiss](#handle-manual-dismiss)
 - [Custom variables](#custom-variables)
 - [App Store rating](#app-store-rating)
+- [Force specific interface orientation](#Force-specific-interface-orientation)
 - [UI Customisations](#ui-customisations)
     - [Custom Emoticons Rating](#custom-emoticons-rating)
     - [Custom Star Rating](#custom-star-rating)
@@ -415,6 +416,21 @@ Custom variables are added as extra feedback data with every feedback item sent 
 To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#feedback-submission-callback) or the [Campaign submission callback](#campaign-submission-callback)
 
 In the Usabilla web interface, it is possible to define whether a specific feedback form should prompt the user for a rating.
+
+## Force specific interface orientation
+
+It is possible to force a Campaign or Form to be presented in as specific orientation, regardless of the device orientation, or the supported orientations for the Application.
+
+```swift
+Usabilla.orientation = .landscapeLeft 
+```
+Set this properties before presenting a Campaign or Form. It defaults to 
+
+```swift
+Usabilla.orientation = .all
+```
+which should also be used to reset the properties, to follow the Applications settings for supported orientations.
+
 
 ## UI Customisations
 

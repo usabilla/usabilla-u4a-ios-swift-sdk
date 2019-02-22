@@ -20,6 +20,10 @@ class FormViewController: UIViewController {
     var delegate: FormViewControllerDelegate?
     fileprivate var results: [FeedbackResult] = []
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UsabillaInternal.supportedOrientations
+    }
+
     lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelButtonPressed(_:)))
     }()

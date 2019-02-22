@@ -22,6 +22,15 @@ open class Usabilla {
         }
     }
 
+    public static var orientation: UIInterfaceOrientationMask {
+        get {
+            return UsabillaInternal.supportedOrientations
+        }
+        set {
+            UsabillaInternal.supportedOrientations = newValue
+        }
+    }
+
     public static var localizedStringFile: String {
         get {
             return UsabillaInternal.localizedStringFile

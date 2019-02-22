@@ -91,6 +91,9 @@ class DeviceInfo {
     }
 
     static var offsetRightNotch: CGFloat {
+        if UsabillaInternal.supportedOrientations == .landscapeLeft {
+            return 64
+        }
         if #available(iOS 11.0, *) {
             let value: CGFloat = UIApplication.shared.delegate?.window??.safeAreaInsets.right ?? 0
             return value

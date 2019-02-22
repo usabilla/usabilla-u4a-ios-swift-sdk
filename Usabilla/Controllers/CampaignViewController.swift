@@ -40,6 +40,10 @@ class CampaignViewController: UIViewController {
         return UIEdgeInsets(top: topMargin, left: sideMargin, bottom: sideMargin, right: sideMargin)
     }
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UsabillaInternal.supportedOrientations
+    }
+
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
             let introView = UBIntroOutroView(viewModel: introPageViewModel)
