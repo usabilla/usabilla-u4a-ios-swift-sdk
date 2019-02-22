@@ -82,11 +82,11 @@ class UBIntroOutroView: UIView {
     private func updateContinueButton() {
         continueButton?.isEnabled = viewModel.canContinue
     }
- 
+
     override func layoutSubviews() {
         componentView?.layoutSubviews()
     }
-    
+
     override func updateConstraints() {
         super.updateConstraints()
         wrapperRightConstraint?.constant = -UIView.safeAreaEdgeInsets.right
@@ -182,19 +182,19 @@ class UBIntroOutroView: UIView {
         titleLabel.textColor = viewModel.titleColor
 
         let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
-        heightAnchor?.priority = 249
+        heightAnchor?.priority = UILayoutPriority(249)
         heightAnchor?.isActive = true
     }
 
-    func dismissAction() {
+    @objc func dismissAction() {
         delegate?.introViewDidCancel(introView: self)
     }
 
-    func continueAction() {
+    @objc func continueAction() {
         delegate?.introViewDidContinue(introView: self)
     }
 
-    func componentValueChanged() {
+    @objc func componentValueChanged() {
         delegate?.introViewDidContinue(introView: self)
     }
 }

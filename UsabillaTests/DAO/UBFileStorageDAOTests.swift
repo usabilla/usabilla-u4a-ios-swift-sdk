@@ -14,49 +14,49 @@ import Nimble
 @testable import Usabilla
 
 let kDirectoryName = MockDirectoryEnum.testDirectory
+class TestDAO: UBFileStorageDAO<DAOTestData> {
+    
+    static let shared = TestDAO()
+    
+    internal required init() {
+        super.init(directory: kDirectoryName)
+    }
+    
+    override func id(forObj: DAOTestData) -> String {
+        return forObj.id
+    }
+}
 
+class DAOTestData: NSObject, NSCoding {
+    static var decodingShouldFail = false
+    static var decodingShouldReturnNil = false
+    var id: String
+    var name: String
+    
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+        super.init()
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.id, forKey: "id")
+        aCoder.encode(self.name, forKey: "name")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        if DAOTestData.decodingShouldFail {
+            aDecoder.failWithError(NSError(domain: "", code: 0, userInfo: nil))
+        }
+        if DAOTestData.decodingShouldReturnNil {
+            return nil
+        }
+        id = aDecoder.decodeObject(forKey: "id") as? String ?? ""
+        name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
+        super.init()
+    }
+}
 class UBFileStorageDAOTests: QuickSpec {
-    class TestData: NSObject, NSCoding {
-        static var decodingShouldFail = false
-        static var decodingShouldReturnNil = false
-        var id: String
-        var name: String
-
-        init(id: String, name: String) {
-            self.id = id
-            self.name = name
-        }
-
-        func encode(with aCoder: NSCoder) {
-            aCoder.encode(self.id, forKey: "id")
-            aCoder.encode(self.name, forKey: "name")
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            if TestData.decodingShouldFail {
-                aDecoder.failWithError(NSError(domain: "", code: 0, userInfo: nil))
-            }
-            if TestData.decodingShouldReturnNil {
-                return nil
-            }
-            id = aDecoder.decodeObject(forKey: "id") as? String ?? ""
-            name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
-        }
-    }
-
-    class TestDAO: UBFileStorageDAO<TestData> {
-
-        static let shared = TestDAO()
-
-        internal required init() {
-            super.init(directory: kDirectoryName)
-        }
-
-        override func id(forObj: TestData) -> String {
-            return forObj.id
-        }
-    }
-
     override func spec() {
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -81,8 +81,8 @@ class UBFileStorageDAOTests: QuickSpec {
                 let exist = FileManager.default.fileExists(atPath: directoryUrl.path)
                 expect(exist).to(beFalse())
                 UBFileHelper.createDirectory(url: directoryUrl)
-                TestData.decodingShouldReturnNil = false
-                TestData.decodingShouldFail = false
+                DAOTestData.decodingShouldReturnNil = false
+                DAOTestData.decodingShouldFail = false
             }
 
             context("When there is no data") {
@@ -97,23 +97,23 @@ class UBFileStorageDAOTests: QuickSpec {
 
             context("When creating a data") {
                 it("should save it") {
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     let isCreated = TestDAO.shared.create(data)
                     expect(isCreated).to(beTrue())
                     let exist = FileManager.default.fileExists(atPath: directoryUrl.appendingPathComponent("testid").path)
                     expect(exist).to(beTrue())
                 }
                 it("should be able to read it") {
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     TestDAO.shared.create(data)
                     expect(TestDAO.shared.read(id: "testid")).toNot(beNil())
                     expect(TestDAO.shared.readAll().count).to(equal(1))
-                    let data2 = TestData(id: "testid2", name: "testname2")
+                    let data2 = DAOTestData(id: "testid2", name: "testname2")
                     TestDAO.shared.create(data2)
                     expect(TestDAO.shared.readAll().count).to(equal(2))
                 }
                 it("should fail when id is wrong") {
-                    let data = TestData(id: ".../..temp", name: "testname")
+                    let data = DAOTestData(id: ".../..temp", name: "testname")
                     let isCreated = TestDAO.shared.create(data)
                     expect(isCreated).to(beFalse())
                 }
@@ -121,39 +121,39 @@ class UBFileStorageDAOTests: QuickSpec {
 
             context("When reading a data") {
                 it("should return nil when unarchiving fails") {
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     let isCreated = TestDAO.shared.create(data)
                     expect(isCreated).to(beTrue())
                     var readValue = TestDAO.shared.read(id: "testid")
                     expect(readValue).toNot(beNil())
-                    TestData.decodingShouldFail = true
+                    DAOTestData.decodingShouldFail = true
                     readValue = TestDAO.shared.read(id: "testid")
                     expect(readValue).to(beNil())
                 }
 
                 it("should delete the data if the unarchiving fails") {
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     let isCreated = TestDAO.shared.create(data)
                     expect(isCreated).to(beTrue())
 
                     var readValue = TestDAO.shared.read(id: "testid")
                     expect(readValue).toNot(beNil())
                     expect(TestDAO.shared.readAll().count).to(equal(1))
-                    TestData.decodingShouldFail = true
+                    DAOTestData.decodingShouldFail = true
                     readValue = TestDAO.shared.read(id: "testid")
                     expect(readValue).to(beNil())
                     expect(TestDAO.shared.readAll().count).to(equal(0))
                 }
                 
                 it("should delete the data if the unarchiving returns nil") {
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     let isCreated = TestDAO.shared.create(data)
                     expect(isCreated).to(beTrue())
                     
                     var readValue = TestDAO.shared.read(id: "testid")
                     expect(readValue).toNot(beNil())
                     expect(TestDAO.shared.readAll().count).to(equal(1))
-                    TestData.decodingShouldReturnNil = true
+                    DAOTestData.decodingShouldReturnNil = true
                     readValue = TestDAO.shared.read(id: "testid")
                     expect(readValue).to(beNil())
                     expect(TestDAO.shared.readAll().count).to(equal(0))
@@ -163,7 +163,7 @@ class UBFileStorageDAOTests: QuickSpec {
             context("When removing data") {
                 it("should succeed when deleting one") {
                     // Create data
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     TestDAO.shared.create(data)
 
                     expect(TestDAO.shared.readAll().count).to(equal(1))
@@ -178,8 +178,8 @@ class UBFileStorageDAOTests: QuickSpec {
 
                 it("should succeed when deleting all") {
                     // Create data
-                    let data = TestData(id: "testid", name: "testname")
-                    let data2 = TestData(id: "testid2", name: "testname2")
+                    let data = DAOTestData(id: "testid", name: "testname")
+                    let data2 = DAOTestData(id: "testid2", name: "testname2")
                     TestDAO.shared.create(data)
                     TestDAO.shared.create(data2)
 
@@ -198,7 +198,7 @@ class UBFileStorageDAOTests: QuickSpec {
                 }
 
                 it("should fail when deleting one not exisiting") {
-                    let data = TestData(id: "testid", name: "testname")
+                    let data = DAOTestData(id: "testid", name: "testname")
                     expect(TestDAO.shared.readAll().count).to(equal(0))
                     let isDeleted = TestDAO.shared.delete(data)
                     expect(isDeleted).to(beFalse())

@@ -63,7 +63,7 @@ class UsabillaInternal {
         // swiftlint:enable force_unwrapping
 
         // preload the poweredby icon, to increase responsivenes....
-        Icons.imageOfPoweredBy(color: theme.colors.hint)
+        _ = Icons.imageOfPoweredBy(color: theme.colors.hint)
         Swift.debugPrint("Usabilla: SDK finished initializing")
     }
 

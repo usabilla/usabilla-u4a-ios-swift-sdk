@@ -43,7 +43,7 @@ class MoodComponent: UBComponent<MoodComponentViewModel> {
         moodControl?.tintColor = viewModel.tintColor
     }
 
-    func pickMood(sender: RatingControl) {
+    @objc func pickMood(sender: RatingControl) {
         viewModel.value = moodControl.rating
         PLog("You pick state \(String(describing: viewModel.value))")
 

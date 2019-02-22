@@ -106,7 +106,7 @@ class CampaignService: CampaignServiceProtocol {
                     reject(NSError(domain: "could not parse targeting", code: 0, userInfo: nil))
                     return
                 }
-                let targetings: [TargetingOptionsModel] = json.flatMap { TargetingOptionsModel(json: $0) }
+                let targetings: [TargetingOptionsModel] = json.compactMap { TargetingOptionsModel(json: $0) }
                 fulfill(targetings)
                 return
             })

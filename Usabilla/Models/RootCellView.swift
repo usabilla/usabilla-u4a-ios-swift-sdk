@@ -89,7 +89,7 @@ class RootCellView: UITableViewCell {
         // titleLabel
         titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: sideMargin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -sideMargin).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriorityDefaultHigh).activate()
+        titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: verticalMargin).prioritize(UILayoutPriority.defaultHigh).activate()
 
         // errorLabel
         errorLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: sideMargin).isActive = true
@@ -100,8 +100,8 @@ class RootCellView: UITableViewCell {
         componentView.translatesAutoresizingMaskIntoConstraints = false
         componentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: sideMargin).isActive = true
         componentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -sideMargin).isActive = true
-        componentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriorityDefaultHigh).isActive = true
-        componentViewTopConstraint = componentView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor).prioritize(UILayoutPriorityDefaultHigh).activate()
+        componentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -verticalMargin).prioritize(UILayoutPriority.defaultHigh).isActive = true
+        componentViewTopConstraint = componentView.topAnchor.constraint(equalTo: errorLabel.bottomAnchor).prioritize(UILayoutPriority.defaultHigh).activate()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -172,7 +172,7 @@ class RootCellView: UITableViewCell {
                 let text = NSMutableAttributedString(attributedString: attributedText)
                 // Current design requires a alpha of 50% on the asterix
                 let requiredColor = cellViewModel.theme.colors.hint.withAlphaComponent(0.5)
-                text.addAttribute(NSForegroundColorAttributeName, value: requiredColor,
+                text.addAttribute(NSAttributedStringKey.foregroundColor, value: requiredColor,
                                   range: NSRange.init(location: requiredTitle.count - 1, length: 1))
                 titleLabel.attributedText = text
             }
@@ -189,7 +189,7 @@ class RootCellView: UITableViewCell {
         return false
     }
 
-    func componentValueChanged() {
+    @objc func componentValueChanged() {
         cellViewModel.updateErrorLabel()
         if updateValidStatus() {
             SwiftEventBus.postToMainThread("updateMySize")

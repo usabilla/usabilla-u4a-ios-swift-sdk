@@ -98,7 +98,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     fulfill(Cachable(value: UBCampaignDAO.shared.readAll(), hasChanged: false))
                     return
                 }
-                let targetingIDs = cachableArray.value.flatMap { $0["targeting_options_id"].stringValue }
+                let targetingIDs: [String] = cachableArray.value.compactMap { $0["targeting_options_id"].stringValue}
                 guard cachableArray.value.count > 0 || targetingIDs.count > 0 else {
                     fulfill(Cachable(value: [], hasChanged: true))
                     return

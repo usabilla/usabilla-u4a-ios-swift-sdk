@@ -139,7 +139,7 @@ class FormViewController: UIViewController {
         let textOnAccentedColor = viewModel.textOnAccentColor
         navigationController?.navigationBar.barTintColor = viewModel.headerColor
         navigationController?.navigationBar.tintColor = textOnAccentedColor
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textOnAccentedColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textOnAccentedColor]
         cancelButton.setFont(font: viewModel.navBarItemsFontNormal)
         cancelButton.title = viewModel.cancelText
         nextButton.setFont(font: viewModel.navBarItemsFontBold)
@@ -228,11 +228,11 @@ class FormViewController: UIViewController {
         updateProgressBar()
     }
 
-    func cancelButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.formWillClose(self)
     }
 
-    func nextButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func nextButtonPressed(_ sender: UIBarButtonItem) {
         guard !viewModel.isItTheEnd else {
             delegate?.formWillClose(self)
             return

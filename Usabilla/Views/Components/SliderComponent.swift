@@ -55,13 +55,13 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
 
         leftLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         leftLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
-        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriority.defaultLow).isActive = true
         leftLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
         leftLabel.numberOfLines = 1
 
         rightLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         rightLabel.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: 0).isActive = true
-        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriority.defaultLow).isActive = true
         rightLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
         rightLabel.numberOfLines = 1
         rightLabel.textAlignment = .right
@@ -110,7 +110,7 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         leftLabel.textColor = theme.colors.text.withAlphaComponent(0.5)
     }
 
-    func barChangedValue() {
+    @objc func barChangedValue() {
         // rounded value
         let fieldValue: Int = Int(slider.value)
         // snap the slider value to the rounded value

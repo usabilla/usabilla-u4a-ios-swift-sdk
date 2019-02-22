@@ -16,7 +16,7 @@ extension UIFont {
     }
 
     class func uSystemFont(ofSize: CGFloat, weight: FontWeight) -> UIFont {
-        let uWeight = (weight == .semiBold) ? UIFontWeightSemibold : UIFontWeightRegular
+        let uWeight = (weight == .semiBold) ? UIFont.Weight.semibold : UIFont.Weight.regular
         return UIFont.systemFont(ofSize: ofSize, weight: uWeight)
     }
 

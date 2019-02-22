@@ -1519,12 +1519,15 @@
 					04F54DC71CD75A3F002F501E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 24ZZS38JW5;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0940;
 					};
 					04F54DD11CD75A3F002F501E = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Manual;
+					};
+					43B04F331F1F7EEF0032F057 = {
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -2235,7 +2238,8 @@
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				USABILLA_API_HOST = "https://api-staging.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out-staging.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
@@ -2268,7 +2272,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				USABILLA_API_HOST = "https://api.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
@@ -2293,7 +2298,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -2314,7 +2320,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -2413,7 +2420,8 @@
 				SKIP_INSTALL = NO;
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				USABILLA_API_HOST = "https://api.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
@@ -2444,7 +2452,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				USABILLA_API_HOST = "https://api.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
@@ -2469,7 +2478,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.UsabillaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Production;
 		};
@@ -2497,7 +2507,8 @@
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				USABILLA_API_HOST = "https://api-staging.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out-staging.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
@@ -2528,7 +2539,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				USABILLA_API_HOST = "https://api.usabilla.com";
 				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
 				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";

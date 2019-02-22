@@ -59,7 +59,7 @@ class ConcreteRule: NSObject, Rule {
         let childrenJson = json["children"].arrayValue
         self.ruleID = "Fake-rule-id"
         self.type = type
-        self.childRules = childrenJson.flatMap { TargetingFactory.createRule($0) }
+        self.childRules = childrenJson.compactMap { TargetingFactory.createRule($0) }
         self.alreadyTriggered = false
     }
 

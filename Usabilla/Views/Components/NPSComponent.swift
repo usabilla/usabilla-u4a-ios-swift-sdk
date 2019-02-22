@@ -22,7 +22,7 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
         nps.rating = viewModel.value
     }
 
-    func pickValue(sender: RatingControl) {
+    @objc func pickValue(sender: RatingControl) {
         viewModel.value = nps.rating
         valueChanged()
     }
@@ -36,19 +36,19 @@ class NPSComponent: UBComponent<NPSComponentViewModel> {
     private func setupLayout() {
         nps.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         nps.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        nps.rightAnchor.constraint(equalTo: rightAnchor).prioritize(UILayoutPriorityDefaultHigh).isActive = true
+        nps.rightAnchor.constraint(equalTo: rightAnchor).prioritize(UILayoutPriority.defaultHigh).isActive = true
 
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         leftLabel.topAnchor.constraint(equalTo: nps.bottomAnchor, constant: 6).isActive = true
         leftLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriority.defaultLow).isActive = true
         leftLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         leftLabel.numberOfLines = 0
 
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
         rightLabel.topAnchor.constraint(equalTo: nps.bottomAnchor, constant: 6).isActive = true
         rightLabel.trailingAnchor.constraint(equalTo: nps.trailingAnchor).isActive = true
-        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriorityDefaultLow).isActive = true
+        rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).prioritize(UILayoutPriority.defaultLow).isActive = true
         rightLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         rightLabel.numberOfLines = 0
         rightLabel.textAlignment = .right
