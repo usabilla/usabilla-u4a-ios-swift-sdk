@@ -41,15 +41,18 @@ class FormModel: NSObject, NSCoding {
                 return nil
         }
 
-        let data = jsonHolder["data"]
+        let data = jsonHolder[JSONConstant.data]
         self.copyModel = CopyModel(json: jsonHolder)
-        self.version = json["version"].intValue
+        self.version = json[JSONConstant.Data.version].intValue
         self.identifier = id
         self.formJsonString = json
         self.theme = UsabillaTheme()
-        self.showProgressBar = data["progressBar"].bool ?? true
-        self.hasScreenshot = data["screenshot"].boolValue
-        self.redirectToAppStore = data["appStoreRedirect"].boolValue
+        // campaigns return json where progressBar is lowercase all lowercase ~ progressbar
+        // forms return json where progressBar has the B capitalized ~ progressBar
+        // until backend makes a choice we have to have both
+        self.showProgressBar = data[JSONConstant.Data.progressBar].bool ?? data[JSONConstant.Data.progressBar.lowercased()].bool ?? false
+        self.hasScreenshot = data[JSONConstant.Data.screenShot].boolValue
+        self.redirectToAppStore = data[JSONConstant.Data.appStoreRedirect].boolValue
 
         var newPages: [PageModel] = []
 
