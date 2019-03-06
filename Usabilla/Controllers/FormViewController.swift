@@ -24,6 +24,12 @@ class FormViewController: UIViewController {
         return UsabillaInternal.supportedOrientations
     }
 
+    override var shouldAutorotate: Bool {
+        if UsabillaInternal.supportedOrientations == .all {
+            return true
+        }
+        return false
+    }
     lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelButtonPressed(_:)))
     }()

@@ -52,6 +52,15 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UsabillaInternal.supportedOrientations
+    }
+    override var shouldAutorotate: Bool {
+        if UsabillaInternal.supportedOrientations == .all {
+            return true
+        }
+        return false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

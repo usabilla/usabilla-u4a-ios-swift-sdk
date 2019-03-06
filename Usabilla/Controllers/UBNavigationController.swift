@@ -9,16 +9,17 @@
 import UIKit
 
 class UBNavigationController: UINavigationController {
-
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         preferredContentSize = DeviceInfo.preferedFormSize()
     }
-     override var shouldAutorotate: Bool {
-        return true
-    }
+
+    override var shouldAutorotate: Bool {
+        return (visibleViewController?.shouldAutorotate)!
+   }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return (visibleViewController?.supportedInterfaceOrientations)!
     }
+   
 }

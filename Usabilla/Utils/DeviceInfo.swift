@@ -14,13 +14,48 @@ class DeviceInfo {
         if DeviceInfo.isIPad() {
             return 640
         }
+        if UsabillaInternal.supportedOrientations == .landscape ||
+            UsabillaInternal.supportedOrientations == .landscapeLeft ||
+            UsabillaInternal.supportedOrientations == .landscapeRight {
+            return UIScreen.main.bounds.size.height
+        }
         return UIScreen.main.bounds.size.width
     }
+    
+    class func getBounds() -> CGRect {
+        if UsabillaInternal.supportedOrientations == .landscape ||
+            UsabillaInternal.supportedOrientations == .landscapeLeft ||
+            UsabillaInternal.supportedOrientations == .landscapeRight {
+            let width = max(UIScreen.main.bounds.size.height, UIScreen.main.bounds.size.width)
+            let height = min(UIScreen.main.bounds.size.height, UIScreen.main.bounds.size.width)
+            let rect = CGRect(x: 0, y: 0, width: width, height: height)
+            return rect
+        }
+        return UIScreen.main.bounds
+    }
+
+    class func getViewCenter() -> CGPoint {
+       //  return CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+        if UsabillaInternal.supportedOrientations == .landscape ||
+            UsabillaInternal.supportedOrientations == .landscapeLeft ||
+            UsabillaInternal.supportedOrientations == .landscapeRight {
+            let midx = max (UIScreen.main.bounds.midY, UIScreen.main.bounds.midX)
+            let midy = min (UIScreen.main.bounds.midY, UIScreen.main.bounds.midX)
+            return CGPoint(x: midx, y: midy)
+        }
+        return CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+    }
+
     class func getMaxFormHeight() -> CGFloat {
         if DeviceInfo.isIPad() {
             return 1000
         }
-        return UIScreen.main.bounds.size.height
+        if UsabillaInternal.supportedOrientations == .landscape ||
+            UsabillaInternal.supportedOrientations == .landscapeLeft ||
+            UsabillaInternal.supportedOrientations == .landscapeRight {
+            return UIScreen.main.bounds.size.width
+        }
+       return UIScreen.main.bounds.size.height
     }
 
     class func getLeftCardBorder() -> CGFloat {

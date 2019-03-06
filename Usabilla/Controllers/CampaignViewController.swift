@@ -43,6 +43,12 @@ class CampaignViewController: UIViewController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return UsabillaInternal.supportedOrientations
     }
+    override var shouldAutorotate: Bool {
+        if UsabillaInternal.supportedOrientations == .all {
+            return true
+        }
+        return false
+    }
 
     override func viewDidLoad() {
         if let introPageViewModel = viewModel.introPageViewModel {
@@ -134,12 +140,14 @@ class CampaignViewController: UIViewController {
     }
 
     private func showModalFormiPhone() {
+        if #available(iOS 11.0, *) {
+            additionalSafeAreaInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        }
         let formController = FormViewController(viewModel: viewModel.formViewModel)
         let rect = introView?.frame ?? CGRect()
         formController.initialRect = rect
         let base = UBNavigationController(rootViewController: formController)
         formController.delegate = self
-
         guard let introview = introView else {
             return
         }
@@ -175,8 +183,8 @@ class CampaignViewController: UIViewController {
                        usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6,
                        animations: {
                         base.view.transform = CGAffineTransform.identity
-                        base.view.center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
-                        base.view .frame = UIScreen.main.bounds
+                        base.view.center = DeviceInfo.getViewCenter()
+                        base.view .frame = DeviceInfo.getBounds()
                         self.introView?.alpha = 0
         })
     }
