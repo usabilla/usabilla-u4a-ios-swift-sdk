@@ -24,7 +24,7 @@ class CopyModel {
         cancelButton = LocalisationHandler.getLocalisedStringForKey("usa_form_close_button")
         navigationNext = LocalisationHandler.getLocalisedStringForKey("usa_form_continue_button")
         requiredFieldError = LocalisationHandler.getLocalisedStringForKey("usa_form_required_field_error")
-        screenshotPlaceholder = LocalisationHandler.getLocalisedStringForKey("usa_screnshot_placeholder")
+        screenshotPlaceholder = LocalisationHandler.getLocalisedStringForKey("usa_screenshot_placeholder")
     }
 
     convenience init(json: JSON) {

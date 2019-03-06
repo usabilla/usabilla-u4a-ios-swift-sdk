@@ -45,9 +45,9 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
             
             it("UsabillaInternal orientation") {
                 let orientation: UIInterfaceOrientationMask = .landscapeRight
-                expectation(UsabillaInternal.orientation).to(equal(UIInterfaceOrientationMask.all))
-                UsabillaInternal.orientation = orientation
-                expectation(UsabillaInternal.orientation).to(!equal(UIInterfaceOrientationMask.all))
+                expect(UsabillaInternal.supportedOrientations == UIInterfaceOrientationMask.all).to(beTrue())
+                UsabillaInternal.supportedOrientations = orientation
+                expect(UsabillaInternal.supportedOrientations == UIInterfaceOrientationMask.all).to(beFalse())
             }
             
             it("UsabillaInternal loadFeedbackForm shoud succeed") {

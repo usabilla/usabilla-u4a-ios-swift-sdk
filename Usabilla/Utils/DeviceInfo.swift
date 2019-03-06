@@ -17,11 +17,11 @@ class DeviceInfo {
         if UsabillaInternal.supportedOrientations == .landscape ||
             UsabillaInternal.supportedOrientations == .landscapeLeft ||
             UsabillaInternal.supportedOrientations == .landscapeRight {
-            return UIScreen.main.bounds.size.height
+            return max(UIScreen.main.bounds.size.height, UIScreen.main.bounds.size.width)
         }
-        return UIScreen.main.bounds.size.width
+        return min(UIScreen.main.bounds.size.height, UIScreen.main.bounds.size.width)
     }
-    
+
     class func getBounds() -> CGRect {
         if UsabillaInternal.supportedOrientations == .landscape ||
             UsabillaInternal.supportedOrientations == .landscapeLeft ||
