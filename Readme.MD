@@ -512,7 +512,7 @@ The default file with the keys and the default text is the following:
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
-"usa_screnshot_placeholder" = "Add screenshot";
+"usa_screenshot_placeholder" = "Add screenshot";
 
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
