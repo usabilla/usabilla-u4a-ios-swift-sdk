@@ -35,5 +35,13 @@ class BaseParagraphComponent<T: StringComponentViewModel>: UBComponent<T>, UITex
         textView.tintColor = .clear
         textView.backgroundColor = .clear
         backgroundColor = .clear
+        // Since the tincolor is set to .clear, and dataDetectorTypes is set to [link, .phoneNumber],
+        // the linkcolor must be set manually
+        let linkAttributes: [String: Any] = [
+            NSAttributedStringKey.foregroundColor.rawValue: theme.colors.accent,
+            NSAttributedStringKey.underlineColor.rawValue: theme.colors.accent,
+            NSAttributedStringKey.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue
+        ]
+        textView.linkTextAttributes = linkAttributes
     }
 }
