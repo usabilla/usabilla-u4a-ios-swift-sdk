@@ -29,19 +29,20 @@ class TextAreaComponent: BaseTextAreaComponent<TextAreaComponentViewModel> {
     }
 
     // MARK: TextField delegates
+    @objc
     func textViewDidBeginEditing(_ textView: UITextView) {
         if !labelPlaceHolder.isHidden {
             textView.text = nil
         }
     }
-
+    @objc
     func textViewDidChange(_ textView: UITextView) {
         viewModel.value = textView.text
         labelPlaceHolder.isHidden = !textView.text.isEmpty
         valueChanged()
         SwiftEventBus.postToMainThread("updateMySize")
     }
-
+    @objc
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             viewModel.value = nil
