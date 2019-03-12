@@ -7,7 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 class HeaderComponentViewModel: BaseStringComponentViewModel<HeaderFieldModel>, Centerable {
     var isCentered: Bool = false
+
+    override var cardBackGroundColor: UIColor? {
+        get {
+            return .clear
+        }
+        set {}
+    }
 }
