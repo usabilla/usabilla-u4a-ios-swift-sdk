@@ -100,6 +100,9 @@
 		10627BDB21B0387B00E49DD2 /* CampaingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */; };
 		1082683821998FDF00A3820B /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
 		10826839219990C300A3820B /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
+		10CA69A3221EEAA400D8D327 /* UBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CA69A2221EEAA400D8D327 /* UBConstants.swift */; };
+		10CA69A4221EEAA400D8D327 /* UBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CA69A2221EEAA400D8D327 /* UBConstants.swift */; };
+		10CA69A5221EEAA400D8D327 /* UBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CA69A2221EEAA400D8D327 /* UBConstants.swift */; };
 		41AC383F1F6880D400F0DFC6 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
 		41AC38411F68814700F0DFC6 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
 		41AC38431F6883EF00F0DFC6 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
@@ -557,6 +560,7 @@
 		104FFEA021AD5318004034A5 /* UBNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBNavigationController.swift; sourceTree = "<group>"; };
 		10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaingAnimator.swift; sourceTree = "<group>"; };
 		1082683721998FDF00A3820B /* BaseParagraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParagraphComponent.swift; sourceTree = "<group>"; };
+		10CA69A2221EEAA400D8D327 /* UBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBConstants.swift; sourceTree = "<group>"; };
 		41AC383E1F6880D400F0DFC6 /* NPSControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSControl.swift; sourceTree = "<group>"; };
 		41AC38401F68814700F0DFC6 /* NPSComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponent.swift; sourceTree = "<group>"; };
 		41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSComponentViewModel.swift; sourceTree = "<group>"; };
@@ -1088,6 +1092,7 @@
 				431F6B051E9F865800D5BF17 /* UBFileHelper.swift */,
 				C5780D1E1F22073B0016C519 /* TargetingFactory.swift */,
 				C55F8DDD1FB5CB5700AA51DC /* UBAccessibility.swift */,
+				10CA69A2221EEAA400D8D327 /* UBConstants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1777,6 +1782,7 @@
 				C5780D1F1F22073B0016C519 /* TargetingFactory.swift in Sources */,
 				04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */,
 				041AEE291F96485C00679C5D /* TargetingOptionsModel.swift in Sources */,
+				10CA69A3221EEAA400D8D327 /* UBConstants.swift in Sources */,
 				C54AD6D11EC9A98E007BE846 /* UIView.swift in Sources */,
 				43CCD45A1E78366A00B3E4FE /* ComponentViewModelFactory.swift in Sources */,
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
@@ -1846,6 +1852,7 @@
 				43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */,
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTests.swift in Sources */,
 				431718A01F2A15F000BF612E /* FormServiceTests.swift in Sources */,
+				10CA69A5221EEAA400D8D327 /* UBConstants.swift in Sources */,
 				433F1EC71EAE1F8000E4BBFA /* EventEngineTests.swift in Sources */,
 				C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */,
 				04575B741D99799C001E0EC3 /* FormControllerTest.swift in Sources */,
@@ -2046,6 +2053,7 @@
 				43B04FAA1F1F7EEF0032F057 /* PickerComponent.swift in Sources */,
 				C5780D201F2226FE0016C519 /* TargetingFactory.swift in Sources */,
 				43B04FAB1F1F7EEF0032F057 /* CampaignManager.swift in Sources */,
+				10CA69A4221EEAA400D8D327 /* UBConstants.swift in Sources */,
 				43B04FAC1F1F7EEF0032F057 /* UIView.swift in Sources */,
 				43B04FAD1F1F7EEF0032F057 /* ComponentViewModelFactory.swift in Sources */,
 				43B04FAE1F1F7EEF0032F057 /* ComponentViewModel.swift in Sources */,
