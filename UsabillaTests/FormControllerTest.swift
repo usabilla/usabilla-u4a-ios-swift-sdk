@@ -46,7 +46,7 @@ class FormControllerTest: QuickSpec {
                     it("sets the progress bar") {
                         // Since the label is only initialized when the view is loaded, this
                         // would fail if we didn't access the view in the `beforeEach` above.
-                        expect(viewController.progressBar.progress).to(equal(0.25))
+                        expect(viewController.progressBar.progress).to(equal(1.0/3.0))
                     }
 
                     it("sets the navigation buttons") {

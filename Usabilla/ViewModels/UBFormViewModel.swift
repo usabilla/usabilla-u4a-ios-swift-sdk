@@ -30,7 +30,13 @@ class UBFormViewModel {
         return model.pages.count == 2 || !model.showProgressBar
     }
     var progress: Float {
-        return Float(currentPageIndex + 1) / Float(model.pages.count)
+        // for campaigns startpage is second page; index 1,
+        // for forms startpage is first index 0, hence add 1
+        let calculatedStartPage = Float(currentPageIndex + (isCampaignForm ? 0 : 1) )
+        // for campaings number of pages are 2 lees than count (no banner & end page)
+        // for forms number of pages are 1 less than count (no end page)
+        let calculatedNumberOfPages = Float((model.pages.count-(isCampaignForm ? 2 : 1)))
+        return  calculatedStartPage / calculatedNumberOfPages
     }
     var accentColor: UIColor {
         return model.theme.colors.accent
