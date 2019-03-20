@@ -15,7 +15,7 @@ class IntroPageViewModel {
     private let field: BaseFieldModel?
     private let theme: UsabillaTheme
 
-    let componentViewModel: ComponentViewModel?
+    var componentViewModel: ComponentViewModel?
     var cancelLabelText: String? {
         // swiftlint:disable:next force_unwrapping
         return introPage.copy!.introCancelButton

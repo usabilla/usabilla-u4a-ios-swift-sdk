@@ -1,7 +1,7 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-The new Usabilla SDK Version 4 comes with two major advancements:
+In Usabilla SDK Version 4 there is two major advancements:
 1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred as **Campaigns** in this document).
 2. More stabilized [Passive feedback forms](#passive-feedback).
 
@@ -46,7 +46,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
 
 ## Requirements
 - iOS 9.0+
-- Xcode 9.0+
+- Xcode 9.4+
 - Swift 3.2+
 
 ## Installation
@@ -68,7 +68,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 5.0'
+pod 'Usabilla', '~> 6.1'
 
 End
 ```
@@ -90,7 +90,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v5.0.2"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.1"
 ```
 
 ### Manual
@@ -515,7 +515,7 @@ The default file with the keys and the default text is the following:
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
-"usa_screnshot_placeholder" = "Add screenshot";
+"usa_screenshot_placeholder" = "Add screenshot";
 
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
