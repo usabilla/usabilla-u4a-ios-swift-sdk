@@ -1,3 +1,20 @@
+## 6.1
+### Added
+- Support for **Xcode 10.2**
+- Developer can force a specific orientation for the SDK, overriding the device orientation
+#### Fixed
+- ProgressBar hides or shows, according to settings in Form or Campaign editor
+- ProgressBar displays progress correct
+- Drop-downs now react correctly on touch
+- Changed secondary button color to text color
+- Links in Paragraphs now appears with the right text color
+- Alignment issue on text in banner
+- Fixed an issue where a malformed Campaign could make the SDK crash
+- Header layout corrected
+- Typo in "usa_localizable.strings"; usa_screnshot_placeholder changed to usa_screenshot_placeholder
+### Change
+- Improved SDK documentation
+
 ## 6.0.2
 #### Fixed
 - Fixing rotation issue, that could occur in Campaigns 
