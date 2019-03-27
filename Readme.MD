@@ -1,7 +1,7 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-The new Usabilla SDK Version 4 comes with two major advancements:
+In Usabilla SDK Version 4 there is two major advancements:
 1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred as **Campaigns** in this document).
 2. More stabilized [Passive feedback forms](#passive-feedback).
 
@@ -31,6 +31,7 @@ The new Usabilla SDK Version 4 comes with two major advancements:
     - [Handle manual dismiss](#handle-manual-dismiss)
 - [Custom variables](#custom-variables)
 - [App Store rating](#app-store-rating)
+- [Force specific interface orientation](#Force-specific-interface-orientation)
 - [UI Customisations](#ui-customisations)
     - [Custom Emoticons Rating](#custom-emoticons-rating)
     - [Custom Star Rating](#custom-star-rating)
@@ -67,21 +68,10 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.0.2'
+pod 'Usabilla', '~> 6.1'
 
 End
 ```
-To use a specific tag of the repo for examlple `v5.0.2-Xcode-9.0`:
-```ruby
-use_frameworks!
-
-target 'YourProjectTarget' do
-  
-pod 'Usabilla', :git => 'https://github.com/usabilla/usabilla-u4a-ios-swift-sdk.git', :tag => 'v5.0.2-Xcode-9.0'
-
-End
-```
-
 
 Then, run the following command:
 
@@ -100,7 +90,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.0.2"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.1"
 ```
 
 ### Manual
@@ -163,9 +153,7 @@ The most important aspect of running a mobile campaign is 'Events'. Events are c
 
 ### The App Id
 The app Id is an identifier used to associate campaigns to a mobile app.
-By loading the SDK with a specific app Id, it will fetch all the campaigns connected to the given app Id. If you need to know how to find the App Id please take a look at our support article here:
-
-https://support.usabilla.com/hc/en-us/articles/360021618151-How-to-find-the-App-ID
+By loading the SDK with a specific app Id, it will fetch all the campaigns connected to the given app Id.
 
 It is possible to target a campaign to more than one app (e.g. iOS Production App, iOS Beta App) by associating it with multiple App Ids.
 
@@ -362,7 +350,7 @@ func formDidClose(formID: String, with feedbackResults: [FeedbackResult], isRedi
 
     if feedback.sent == false {
         let abandonedPageIndex = feedback.abandonedPageIndex
-        print("Hey why did you leave the form here \(abandonedPageIndex)")
+        print("Hey why did you left the form here \(abandonedPageIndex)")
         return
     }
 
@@ -428,6 +416,21 @@ Custom variables are added as extra feedback data with every feedback item sent 
 To decide whether or not to prompt the user for a rating, you can read the information regarding the user's activity passed in the [Submission callback](#feedback-submission-callback) or the [Campaign submission callback](#campaign-submission-callback)
 
 In the Usabilla web interface, it is possible to define whether a specific feedback form should prompt the user for a rating.
+
+## Force specific interface orientation
+
+It is possible to force a Campaign or Form to be presented in as specific orientation, regardless of the device orientation, or the supported orientations for the Application.
+
+```swift
+Usabilla.orientation = .landscapeLeft 
+```
+Set this properties before presenting a Campaign or Form. It defaults to 
+
+```swift
+Usabilla.orientation = .all
+```
+which should also be used to reset the properties, to follow the Applications settings for supported orientations.
+
 
 ## UI Customisations
 
@@ -512,7 +515,7 @@ The default file with the keys and the default text is the following:
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
-"usa_screnshot_placeholder" = "Add screenshot";
+"usa_screenshot_placeholder" = "Add screenshot";
 
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
