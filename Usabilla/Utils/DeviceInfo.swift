@@ -14,6 +14,9 @@ class DeviceInfo {
         if DeviceInfo.isIPad() {
             return 640
         }
+        if UsabillaInternal.supportedOrientations == .all {
+            return UIScreen.main.bounds.size.width
+        }
         if UsabillaInternal.supportedOrientations == .landscape ||
             UsabillaInternal.supportedOrientations == .landscapeLeft ||
             UsabillaInternal.supportedOrientations == .landscapeRight {
