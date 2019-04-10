@@ -29,7 +29,7 @@ class RequestBuilder {
 
     static let sdkBundle = Bundle(identifier: "com.usabilla.Usabilla")!
     static let headers: [String: String] = [
-        "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
+        "app-version": Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "",
         "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
         "sdk-version": sdkBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
         "os": "iOS",

@@ -29,7 +29,7 @@ class RequestBuilderTest: QuickSpec {
 
         beforeSuite {
             self.headers = [
-                "app-version": Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "",
+                "app-version": Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "",
                 "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
                 "sdk-version": Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
                 "os": "iOS",

@@ -94,7 +94,7 @@ class SubmissionManager {
         let screenBounds = UIScreen.main.bounds
         contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
 
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleVersion"] {
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] {
             contentDictionary["app_version"] = appVersion
         } else {
             PLog("❌ impossible to get host app version")

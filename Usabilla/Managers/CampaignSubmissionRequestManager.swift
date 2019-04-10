@@ -90,7 +90,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         payload["form_version"] = formVersion
         payload["complete"] = false
         // swiftlint:disable:next force_unwrapping
-        metadata["app_version"] = Bundle.main.infoDictionary!["CFBundleVersion"]
+        metadata["app_version"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         metadata["battery"] = abs(uiDevice.batteryLevel)
         metadata["network_connection"] = reachability.currentReachabilityStatus.description
         metadata["device"] = uiDevice.modelName
