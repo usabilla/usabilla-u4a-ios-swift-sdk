@@ -178,5 +178,6 @@ class UsabillaInternal {
         let mask = MaskModel(maskCharacter: maskCharacter,
                              masks: masks)
         UsabillaInternal.maskModel = mask
+        campaignManager?.maskModel = mask
     }
 }

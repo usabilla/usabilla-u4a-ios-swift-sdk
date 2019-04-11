@@ -29,6 +29,7 @@ In Usabilla SDK Version 4 there is two major advancements:
     - [Adding a screenshot](#adding-a-screenshot)
     - [Feedback submission callback](#feedback-submission-callback)
     - [Handle manual dismiss](#handle-manual-dismiss)
+    - [Masking Private Identifiable Information](#masking-data)
 - [Custom variables](#custom-variables)
 - [App Store rating](#app-store-rating)
 - [Force specific interface orientation](#Force-specific-interface-orientation)
@@ -381,6 +382,36 @@ func formWillClose(form: UINavigationController, formID: String, withFeedbackRes
 
 **Warning**: by doing this the form will not dismiss by itself and you will be the only one responsible for its correct behavior. Also, the delegate method `formDidClose` will not be called.
 
+## Masking Private Identifiable Information
+
+The SDK has an option to mask (on the back-end side) the data from input texts, specifically `Text Input` and `Text Area`. Please note that the an email input field is not being masked.
+
+It matches a list of RegEx and replaces them by the "X" character by default.
+
+The SDK has a `setDataMasking` method that can be used as:
+```swift
+Usabilla.setDataMasking()
+Usabilla.setDataMasking(masks: [String])
+Usabilla.setDataMasking(masks: [String], maskCharacter: Character)
+```
+`masks` is a list of RegExes to mask data in input fields. It uses the default RegExes that the SDK provides.
+`maskCharacter` is a character to replace the matched RegExes. By default it uses "X"".
+
+The default RegExes that the SDK provides are: Email Addresses & Numbers
+
+For email it uses:
+```swift
+[a-zA-Z0-9\+\.\_\%\-\+]{1,256}\@[a-zA-Z0-9][a-zA-Z0-9\-]{0,64}(\.[a-zA-Z0-9][a-zA-Z0-9\-]{0,25})+
+```
+For Numbers with the length 4 or more
+```swift
+[0-9]{4,}
+```
+The default RegEx can be accessed by:
+
+```swift
+Usabilla.defaultDataMasks
+```
 
 ## Custom variables
 
