@@ -13,11 +13,12 @@ protocol FormServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
-    func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel>
+    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?) -> Promise<FormModel>
     func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool>
 }
 
 class FormService: FormServiceProtocol {
+
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
 
@@ -26,7 +27,7 @@ class FormService: FormServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
+    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
             guard let request = request else {
@@ -36,9 +37,12 @@ class FormService: FormServiceProtocol {
             }
             httpClient.request(request: request, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {
-                    guard let formModel = FormModel(json: JSON(json), id: id, screenshot: screenShot) else {
-                        reject(NSError(domain: "form model is not valid", code: 0, userInfo: nil))
-                        return
+                    guard let formModel = FormModel(json: JSON(json),
+                                                    id: id,
+                                                    screenshot: screenShot,
+                                                    maskModel: maskModel) else {
+                                                        reject(NSError(domain: "form model is not valid", code: 0, userInfo: nil))
+                                                        return
                     }
                     fulfill(formModel)
                     return

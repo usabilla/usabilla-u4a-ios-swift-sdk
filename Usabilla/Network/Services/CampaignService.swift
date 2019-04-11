@@ -21,7 +21,7 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
-    func getCampaignForm(withID id: String) -> Promise<FormModel>
+    func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel>
     func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>>
     func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]>
     func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool>
@@ -37,7 +37,7 @@ class CampaignService: CampaignServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getCampaignForm(withID id: String) -> Promise<FormModel> {
+    func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetCampaignForm(withID: id)
         return Promise { fulfill, reject in
             guard let request = request else {
@@ -47,7 +47,7 @@ class CampaignService: CampaignServiceProtocol {
             }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
-                    guard let formModel = FormModel(json: JSON(json), id: id, screenshot: nil) else {
+                    guard let formModel = FormModel(json: JSON(json), id: id, screenshot: nil, maskModel: maskModel) else {
                         reject(NSError(domain: "form model is not valid", code: 0, userInfo: nil))
                         return
                     }

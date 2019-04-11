@@ -9,7 +9,7 @@
 import Foundation
 
 class FieldFactory {
-
+    
     enum FieldType: String {
         case header
         case paragraph
@@ -26,7 +26,7 @@ class FieldFactory {
     }
 
     // swiftlint:disable:next cyclomatic_complexity
-    class func createField(_ json: JSON) -> BaseFieldModel? {
+    class func createField(_ json: JSON, maskModel: MaskModel?) -> BaseFieldModel? {
         let type = json["type"].stringValue
 
         guard let fieldType = FieldType(rawValue: type) else {
@@ -39,13 +39,17 @@ class FieldFactory {
         case .paragraph, .titleParagraph:
             return ParagraphFieldModel(json: json)
         case .text:
-            return TextFieldModel(json: json)
+            let model = TextFieldModel(json: json)
+            model.masks = maskModel
+            return model
         case .choice:
             return PickerFieldModel(json: json)
         case .email:
             return EmailFieldModel(json: json)
         case .textArea:
-            return TextAreaFieldModel(json: json)
+            let model = TextAreaFieldModel(json: json)
+            model.masks = maskModel
+            return model
         case .nps:
             return NPSFieldModel(json: json)
         case .mood:

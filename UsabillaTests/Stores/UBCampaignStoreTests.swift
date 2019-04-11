@@ -339,7 +339,7 @@ class UBCampaignStoreTests: QuickSpec {
                     let campaignService = UBCampaignServiceMock()
                     store = UBCampaignStore(service: campaignService)
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaignForm(withFormID: "test", theme: UsabillaTheme(), position: IntroPageDisplayMode.bannerBottom)
+                        let promise = store.getCampaignForm(withFormID: "test", theme: UsabillaTheme(), position: IntroPageDisplayMode.bannerBottom, maskModel:  nil)
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { _ in
@@ -353,7 +353,7 @@ class UBCampaignStoreTests: QuickSpec {
                     campaignService.campaignForm = form
                     store = UBCampaignStore(service: campaignService)
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaignForm(withFormID: "test", theme: UsabillaTheme(), position: IntroPageDisplayMode.bannerBottom)
+                        let promise = store.getCampaignForm(withFormID: "test", theme: UsabillaTheme(), position: IntroPageDisplayMode.bannerBottom, maskModel:  nil)
                         promise.then { formResponse in
                             expect(formResponse).to(equal(form))
                             done()
@@ -370,7 +370,7 @@ class UBCampaignStoreTests: QuickSpec {
                     var theme = UsabillaTheme()
                     theme.colors.header = UIColor.purple
                     waitUntil(timeout: 2.0) { done in
-                        let promise = store.getCampaignForm(withFormID: "test", theme: theme, position: IntroPageDisplayMode.bannerBottom)
+                        let promise = store.getCampaignForm(withFormID: "test", theme: theme, position: IntroPageDisplayMode.bannerBottom, maskModel:  nil)
                         promise.then { formResponse in
                             expect(formResponse.theme.colors.header).to(equal(UIColor.purple))
                             done()

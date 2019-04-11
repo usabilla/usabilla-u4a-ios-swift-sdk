@@ -21,7 +21,7 @@ class FormModel: NSObject, NSCoding {
     var theme: UsabillaTheme
     let copyModel: CopyModel
 
-    init(identifier: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel) {
+    init(identifier: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel, maskModel: MaskModel?) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
@@ -34,7 +34,7 @@ class FormModel: NSObject, NSCoding {
         _ = pages.map { $0.copy = copyModel }
     }
 
-    init?(json: JSON, id: String, screenshot: UIImage?) {
+    init?(json: JSON, id: String, screenshot: UIImage?, maskModel: MaskModel?) {
         let jsonHolder = JSONFormParser.getStructureHolder(inJSON: json)
         guard let form = jsonHolder["form"].dictionary,
             let formPages = form["pages"] else {
@@ -58,7 +58,7 @@ class FormModel: NSObject, NSCoding {
 
         for (index, subJson): (String, JSON) in formPages {
             if let index = Int(index) {
-                let page = JSONFormParser.parsePage(subJson, pageNum: index)
+                let page = JSONFormParser.parsePage(subJson, pageNum: index, maskModel: maskModel)
                 page.errorMessage = copyModel.errorMessage
                 page.copy = copyModel
                 newPages.append(page)
@@ -93,7 +93,7 @@ class FormModel: NSObject, NSCoding {
 
     /**
         Create a FeedbackResult based on the currentState of the form
-        
+
         - parameter latestPageIndex: the higher page index of the form that has been shown to the user (starting from 0)
         - returns : FeedbackResult matching the input parameters
      
@@ -124,7 +124,7 @@ class FormModel: NSObject, NSCoding {
             let rawJson = aDecoder.decodeObject(forKey: "formJsonString") else {
                 return nil
         }
-        self.init(json: JSON(rawJson), id: identifier, screenshot: nil)
+        self.init(json: JSON(rawJson), id: identifier, screenshot: nil, maskModel: nil)
     }
 
     func encode(with aCoder: NSCoder) {

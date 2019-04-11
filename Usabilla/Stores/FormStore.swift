@@ -12,15 +12,14 @@ import UIKit
 class FormStore {
 
     let formService: FormServiceProtocol
-
     init(service: FormServiceProtocol) {
         self.formService = service
     }
 
     // Entry to laod a form from Network or try getting it from Cache
-    func loadForm(id: String, screenshot: UIImage?, theme: UsabillaTheme) -> Promise<FormModel> {
+    func loadForm(id: String, screenshot: UIImage?, theme: UsabillaTheme, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, reject in
-            self.formService.getForm(withID: id, screenShot: screenshot).then { form in
+            self.formService.getForm(withID: id, screenShot: screenshot, maskModel: maskModel).then { form in
                 UBFormDAO.shared.create(form)
                 form.theme = theme
                 form.updateTheme()

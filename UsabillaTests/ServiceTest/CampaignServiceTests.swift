@@ -24,7 +24,7 @@ class CampaignServiceTests: QuickSpec {
                     let validFormData = try! UBMock.json("FormWithStructure")?.rawData()
                     UBHTTPMock.response = HTTPClientResponse(data: validFormData, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a").then { _ in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a", maskModel:  nil).then { _ in
                             done()
                         }.catch { _ in
                             fail("should not go here")
@@ -33,7 +33,7 @@ class CampaignServiceTests: QuickSpec {
                 }
                 it("should fail if request fails") {
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMockFail.self).getCampaignForm(withID: "a").then { _ in
+                        CampaignService(httpClient: UBHTTPMockFail.self).getCampaignForm(withID: "a", maskModel:  nil).then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()
@@ -43,7 +43,7 @@ class CampaignServiceTests: QuickSpec {
                 it("should fail if there is no data nor error") {
                     UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a").then { _ in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a", maskModel:  nil).then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()
@@ -53,7 +53,7 @@ class CampaignServiceTests: QuickSpec {
                 it("should fail if url parameter is not valid = {") {
                     UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a{NotValidId").then { _ in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a{NotValidId", maskModel:  nil).then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()
@@ -63,7 +63,7 @@ class CampaignServiceTests: QuickSpec {
                 it("should fail if url parameter is not valid = }") {
                     UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "aNotVa}lidId").then { _ in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "aNotVa}lidId", maskModel:  nil).then { _ in
                             fail("should not go here")
                         }.catch { _ in
                             done()
@@ -74,7 +74,7 @@ class CampaignServiceTests: QuickSpec {
                     let invalidFormData = try! UBMock.json("InvalidFormJsonNoPages")?.rawData()
                     UBHTTPMock.response = HTTPClientResponse(data: invalidFormData, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a").then { _ in
+                        CampaignService(httpClient: UBHTTPMock.self).getCampaignForm(withID: "a", maskModel:  nil).then { _ in
                             fail("should not go here")
                             }.catch { _ in
                                 done()

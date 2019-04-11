@@ -27,7 +27,7 @@ class FormControllerTest: QuickSpec {
                 let path = Bundle(for: FormControllerTest.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
-                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil)
 
                 viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel))
                 viewController.delegate = self

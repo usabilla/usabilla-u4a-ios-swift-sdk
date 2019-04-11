@@ -162,6 +162,9 @@
 		434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
 		434A27861E2F5FFD002864C6 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
 		434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A278A1E2F6FE6002864C6 /* PromiseTest.swift */; };
+		434B7E7D225783BF00088CB8 /* MaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B7E7C225783BE00088CB8 /* MaskModel.swift */; };
+		434B7E7E225783BF00088CB8 /* MaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B7E7C225783BE00088CB8 /* MaskModel.swift */; };
+		434B7E81225799B500088CB8 /* MaskModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B7E80225799B500088CB8 /* MaskModelTests.swift */; };
 		434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */; };
 		434F3CFD1E2F847200F6FD38 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFB1E2F847200F6FD38 /* Nimble.framework */; };
 		434F3CFE1E2F847200F6FD38 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434F3CFC1E2F847200F6FD38 /* Quick.framework */; };
@@ -622,6 +625,8 @@
 		434A27831E2E8719002864C6 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClient.swift; path = ../Utils/HTTPClient.swift; sourceTree = "<group>"; };
 		434A27851E2F5FFD002864C6 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		434A278A1E2F6FE6002864C6 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
+		434B7E7C225783BE00088CB8 /* MaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskModel.swift; sourceTree = "<group>"; };
+		434B7E80225799B500088CB8 /* MaskModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskModelTests.swift; sourceTree = "<group>"; };
 		434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentFactoryTests.swift; sourceTree = "<group>"; };
 		434F3CFB1E2F847200F6FD38 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		434F3CFC1E2F847200F6FD38 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
@@ -1067,6 +1072,7 @@
 				0483E9C31CDCDF86004EC234 /* FieldFactory.swift */,
 				0483E9C51CDCDF86004EC234 /* FormModel.swift */,
 				0483E9C91CDCDF86004EC234 /* PageModel.swift */,
+				434B7E7C225783BE00088CB8 /* MaskModel.swift */,
 				4342CBA21E82C02000601F3D /* IntroPageModel.swift */,
 				436264131E92867A00A0533C /* UBEndPageModel.swift */,
 				04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */,
@@ -1235,6 +1241,7 @@
 				43B221E91F3096A80037987A /* PageModelTests.swift */,
 				433D25291F79947400B1D819 /* NPSFieldModelTests.swift */,
 				043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */,
+				434B7E80225799B500088CB8 /* MaskModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1541,6 +1548,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 04F54DBE1CD75A3F002F501E;
@@ -1792,6 +1800,7 @@
 				436C2B811E85187000741E10 /* UBIntroOutroView.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
+				434B7E7D225783BF00088CB8 /* MaskModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
 				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
@@ -1894,6 +1903,7 @@
 				04A0C1C21E8BBD0400A483AC /* LeafEventTests.swift in Sources */,
 				43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */,
 				04CAA1891EF7F74B00CFD539 /* CampaignSubmissionRequestManagerTests.swift in Sources */,
+				434B7E81225799B500088CB8 /* MaskModelTests.swift in Sources */,
 				4317189A1F2A15E900BF612E /* UBFormDAOTests.swift in Sources */,
 				4317189F1F2A15EE00BF612E /* CampaignServiceTests.swift in Sources */,
 				43B708421E7FE74800F05A40 /* PageViewModelTests.swift in Sources */,
@@ -2063,6 +2073,7 @@
 				43B04FB11F1F7EEF0032F057 /* UBIntroOutroView.swift in Sources */,
 				43B04FB31F1F7EEF0032F057 /* PathManager.swift in Sources */,
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
+				434B7E7E225783BF00088CB8 /* MaskModel.swift in Sources */,
 				43B04FB51F1F7EEF0032F057 /* MoodFieldModel.swift in Sources */,
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,

@@ -40,7 +40,7 @@ class CampaignViewModelTests: QuickSpec {
                     startDict["type"] = "form"
                     startDict["fields"] = []
                     dict["form"]!["pages"].arrayObject![0] = startDict
-                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil, maskModel: nil)
 
                     self.campaignModel.form = formModel
 
@@ -58,7 +58,7 @@ class CampaignViewModelTests: QuickSpec {
                     startDict["type"] = "banner"
                     dict["form"]!["pages"].arrayObject!.append(startDict)
 
-                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil, maskModel: nil)
                     self.campaignModel.form = formModel
                     expect(self.campaignModel).toNot(beNil())
                     campaignViewModel = CampaignViewModel(form: formModel!, displayMode: self.campaignModel.position, manager: self.manager)
@@ -77,7 +77,7 @@ class CampaignViewModelTests: QuickSpec {
                     startDict["display"] = "alert"
                     dict["form"]!["pages"].arrayObject![0] = startDict
 
-                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil)
+                    let formModel = FormModel(json: JSON(dict), id: "", screenshot: nil, maskModel: nil)
                     self.campaignModel.form = formModel
                     expect(self.campaignModel).toNot(beNil())
                     campaignViewModel = CampaignViewModel(form: formModel!, displayMode: self.campaignModel.position, manager: self.manager)
@@ -89,7 +89,7 @@ class CampaignViewModelTests: QuickSpec {
 
             context("When accessing formViewModel") {
                 it("should return a formViewModel with the right data") {
-                    let formModel = FormModel(json: self.formJson, id: "", screenshot: nil)
+                    let formModel = FormModel(json: self.formJson, id: "", screenshot: nil, maskModel: nil)
                     self.campaignModel.form = formModel
                     campaignViewModel = CampaignViewModel(form: formModel!, displayMode: self.campaignModel.position, manager: self.manager)
                     let formViewModel = campaignViewModel.formViewModel
@@ -103,7 +103,7 @@ class CampaignViewModelTests: QuickSpec {
             context("When accessing toastViewModel") {
                 beforeEach {
                     let json = UBTestHelper.getJSONFromFile(named: "CampaignForm")
-                    let formModel = FormModel(json: json, id: "", screenshot: nil)
+                    let formModel = FormModel(json: json, id: "", screenshot: nil, maskModel: nil)
                     self.campaignModel.form = formModel
                     campaignViewModel = CampaignViewModel(form: formModel!, displayMode: self.campaignModel.position, manager: self.manager)
                     
@@ -123,7 +123,7 @@ class CampaignViewModelTests: QuickSpec {
             context("When there are jump rules in a campaign") {
                 beforeEach {
                     let json = UBTestHelper.getJSONFromFile(named: "CampaignFormJumpRules")
-                    let formModel = FormModel(json: json, id: "", screenshot: nil)
+                    let formModel = FormModel(json: json, id: "", screenshot: nil, maskModel: nil)
                     self.campaignModel.form = formModel
                     campaignViewModel = CampaignViewModel(form: formModel!, displayMode: self.campaignModel.position, manager: self.manager)
 

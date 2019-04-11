@@ -21,9 +21,9 @@ class JSONFormParser {
         }
         return true
     }
-
-    class func parsePage(_ pageJson: JSON, pageNum: Int) -> PageModel {
-
+  
+    class func parsePage(_ pageJson: JSON, pageNum: Int, maskModel: MaskModel?) -> PageModel {
+        
         let pageName = pageJson["name"].stringValue
         // swiftlint:disable:next force_unwrapping
         let type = PageType(rawValue: pageJson["type"].stringValue)!
@@ -53,7 +53,7 @@ class JSONFormParser {
         var fields: [BaseFieldModel] = []
 
         for (_, subJson): (String, JSON) in pageJson["fields"] {
-            if let newField = parseFieldModel(subJson, pagemodel: currentPage) {
+            if let newField = parseFieldModel(subJson, pagemodel: currentPage, maskModel: maskModel) {
                 fields.append(newField)
             }
         }
@@ -85,8 +85,8 @@ class JSONFormParser {
         return JumpRule(jumpTo: setJumpTo, dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel)
     }
 
-    fileprivate class func parseFieldModel(_ json: JSON, pagemodel: PageModel) -> BaseFieldModel? {
-        if let field: BaseFieldModel = FieldFactory.createField(json) {
+    fileprivate class func parseFieldModel(_ json: JSON, pagemodel: PageModel, maskModel: MaskModel?) -> BaseFieldModel? {
+        if let field: BaseFieldModel = FieldFactory.createField(json, maskModel: maskModel) {
             if json["showHideRule"].exists() && !json["showHideRule"].isEmpty {
                 field.rule = parseShowHideRule(json["showHideRule"], pageModel: pagemodel)
             }
@@ -94,20 +94,19 @@ class JSONFormParser {
         }
         return nil
     }
-
+    
     fileprivate class func parseShowHideRule(_ json: JSON, pageModel: PageModel) -> ShowHideRule {
-
+        
         let setDependsOnID = json["control"].stringValue
-
+        
         var values: [String] = []
         for (_, subJson): (String, JSON) in json["value"] {
             values.append(subJson.stringValue)
         }
-
         //Set the default behaviour
         let setShowIfRuleIsSatisfied: Bool = json["action"].stringValue == "show"
-
+        
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)
     }
-
+    
 }

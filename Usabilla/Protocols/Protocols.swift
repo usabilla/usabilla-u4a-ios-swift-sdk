@@ -74,6 +74,10 @@ protocol ImageComponentModel: ComponentModel {
     var image: UIImage? { get set }
 }
 
+protocol MaskProtocol {
+    var masks: MaskModel? { get set }
+}
+
 protocol Reachable {
     func startNotifier() throws
     var whenReachable: ((Reachability) -> Void)? { get set }

@@ -16,59 +16,59 @@ class FieldFactoryTest: QuickSpec {
     override func spec() {
         describe("Field Factory") {
             it("paragraph type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"paragraph\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"paragraph\"}"), maskModel: nil)
                 expect(field is ParagraphFieldModel).to(beTrue())
             }
             it("titleParagraph type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"titleParagraph\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"titleParagraph\"}"), maskModel: nil)
                 expect(field is ParagraphFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"text\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"text\"}"), maskModel: nil)
                 expect(field is TextFieldModel).to(beTrue())
             }
             it("choice type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"choice\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"choice\"}"), maskModel: nil)
                 expect(field is PickerFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"email\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"email\"}"), maskModel: nil)
                 expect(field is EmailFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"textArea\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"textArea\"}"), maskModel: nil)
                 expect(field is TextAreaFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"mood\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"mood\"}"), maskModel: nil)
                 expect(field is MoodFieldModel).to(beTrue())
                 expect((field as? MoodFieldModel)?.mode).to(equal(RatingMode.emoticon))
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"mood\", \"mode\":\"star\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"mood\", \"mode\":\"star\"}"), maskModel: nil)
                 expect(field is MoodFieldModel).to(beTrue())
                 expect((field as? MoodFieldModel)?.mode).to(equal(RatingMode.star))
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"rating\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"rating\"}"), maskModel: nil)
                 expect(field is RatingFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"radio\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"radio\"}"), maskModel: nil)
                 expect(field is RadioFieldModel).to(beTrue())
             }
             it("text type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"checkbox\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"checkbox\"}"), maskModel: nil)
                 expect(field is CheckboxFieldModel).to(beTrue())
             }
 
             it("unknown type") {
-                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"unkown\"}"))
+                let field = FieldFactory.createField(JSON(parseJSON: "{\"type\":\"unkown\"}"), maskModel: nil)
                 expect(field).to(beNil())
             }
 
             it("unknown type") {
-                let field = FieldFactory.createField(JSON(parseJSON: ""))
+                let field = FieldFactory.createField(JSON(parseJSON: ""), maskModel: nil)
                 expect(field).to(beNil())
             }
         }

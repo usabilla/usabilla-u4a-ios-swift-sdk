@@ -30,7 +30,7 @@ class JSONParserTest: QuickSpec {
             var path = Bundle(for: JSONParserTest.self).path(forResource: "test", ofType: "json")!
             var data = try! NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
             jsonObj = JSON(data: data as Data)
-            formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+            formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel:  nil)
 
             // read OneButtonCampaign.json
             path = Bundle(for: JSONParserTest.self).path(forResource: "OneButtonCampaign", ofType: "json")!
@@ -157,28 +157,28 @@ class JSONParserTest: QuickSpec {
             context("When parsePage is called") {
                 it("should parse correctly page properties") {
                     let firstPage = oneButtonCampaign["structure"]["form"]["pages"].array?.first
-                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0, maskModel:  nil)
                     expect(firstPageModel.pageName).to(equal("Banner"))
                     expect(firstPageModel.type).to(equal(PageType.banner))
                     expect(firstPageModel.fields.count).to(equal(1))
                 }
                 it("should parse correctly the paragraph") {
                     let firstPage = paragraphCampaign["structure"]["form"]["pages"].array?.first
-                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0, maskModel:  nil)
                     let firstField = firstPageModel.fields.first
                     expect(firstField is ParagraphFieldModel).to(beTrue())
                     expect(firstField?.fieldTitle).toNot(beNil())
                 }
                 it("should parse correctly the paragraph") {
                     let firstPage = paragraphCampaign["structure"]["form"]["pages"].array?.first
-                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0, maskModel:  nil)
                     let firstField = firstPageModel.fields.first
                     expect(firstField is ParagraphFieldModel).to(beTrue())
                     expect(firstField?.fieldTitle).toNot(beNil())
                 }
                 it("should parse correctly the mood model") {
                     let firstPage = oneButtonCampaign["structure"]["form"]["pages"].array?.first
-                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0)
+                    let firstPageModel = JSONFormParser.parsePage(firstPage!, pageNum: 0, maskModel:  nil)
                     let firstField = firstPageModel.fields.first
                     expect(firstField is MoodFieldModel).to(beTrue())
                     expect(firstField?.fieldTitle).toNot(beNil())

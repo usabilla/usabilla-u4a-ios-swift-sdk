@@ -41,7 +41,7 @@ class Performance: XCTestCase {
     func testJSONParserPerformance() {
         // This is an example of a performance test case.
         self.measure {
-            _ = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
+            _ = FormModel(json: self.jsonObj, id: "a", screenshot: nil, maskModel: nil)
         }
     }
 
@@ -52,7 +52,7 @@ class Performance: XCTestCase {
             do {
                 let data = try NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: data as Data)
-                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil)
             } catch let error as NSError {
                 Swift.debugPrint(error.localizedDescription)
             }

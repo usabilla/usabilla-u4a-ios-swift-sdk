@@ -40,7 +40,7 @@ class UBMock {
         if formJson == nil {
             formJson = UBTestHelper.getJSONFromFile(named: "test")
         }
-        return FormModel(json: formJson!, id: "mockFormId", screenshot: nil)!
+        return FormModel(json: formJson!, id: "mockFormId", screenshot: nil, maskModel: nil)!
     }
 
     class func pageMock () -> PageModel {
@@ -68,13 +68,12 @@ class MockBaseComponentViewModelDelegate: ComponentViewModelDelegate {
 }
 
 class UBFormServiceMock: FormServiceProtocol {
-
     var requestBuilder: RequestBuilder.Type = RequestBuilder.self
     var httpClient: HTTPClientProtocol.Type = HTTPClient.self
 
-    func getForm(withID id: String, screenShot: UIImage?) -> Promise<FormModel> {
+    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, _ in
-            let formModel = FormModel(json: "", id: "a", screenshot: nil)
+            let formModel = FormModel(json: "", id: "a", screenshot: nil, maskModel: maskModel)
             fulfill(formModel!)
         }
     }
@@ -145,7 +144,7 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getCampaignForm(withID id: String) -> Promise<FormModel> {
+    func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             if campaignForm != nil {
                 return fulfill(campaignForm!)

@@ -43,7 +43,7 @@ class FormModelTests: QuickSpec {
                 }
                 it("Should set all properties successfully when it is a campaign form model") {
                     self.jsonObj = UBMock.json(fromFile: "CampaignForm")
-                    self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil)
+                    self.formModel = FormModel(json: self.jsonObj, id: "a", screenshot: nil, maskModel: nil)
 
                     expect(self.formModel).toNot(beNil())
                     expect(self.formModel.hasScreenshot).to(beFalse())
@@ -58,13 +58,13 @@ class FormModelTests: QuickSpec {
                 }
                 it("Should fail when form json does not contain \"form\" key") {
                     let json = UBMock.json("InvalidFormJsonNoForm")
-                    let form = FormModel(json: json!, id: "id", screenshot: nil)
+                    let form = FormModel(json: json!, id: "id", screenshot: nil, maskModel: nil)
 
                     expect(form).to(beNil())
                 }
                 it("Should fail when form json does not contain \"pages\" key") {
                     let json = UBMock.json("InvalidFormJsonNoPages")
-                    let form = FormModel(json: json!, id: "id", screenshot: nil)
+                    let form = FormModel(json: json!, id: "id", screenshot: nil, maskModel: nil)
                     
                     expect(form).to(beNil())
                 }
@@ -73,7 +73,7 @@ class FormModelTests: QuickSpec {
             context("When calling update theme") {
                 it("should get the right theme from json with Structure") {
                     let json = UBMock.json("FormWithStructure")
-                    let formModel = FormModel(json: json!, id: "id", screenshot: nil)
+                    let formModel = FormModel(json: json!, id: "id", screenshot: nil, maskModel: nil)
                     let previousTheme = formModel!.theme
                     expect(previousTheme).toNot(beNil())
                     formModel!.updateTheme()
@@ -82,7 +82,7 @@ class FormModelTests: QuickSpec {
                 }
                 it("should get the right theme from json without Structure") {
                     let json = UBMock.json("FormWithoutStructure")
-                    let formModel = FormModel(json: json!, id: "id", screenshot: nil)
+                    let formModel = FormModel(json: json!, id: "id", screenshot: nil, maskModel: nil)
                     let previousTheme = formModel!.theme
                     expect(previousTheme).toNot(beNil())
                     formModel!.updateTheme()

@@ -57,7 +57,7 @@ class PassiveFormControllerTest: QuickSpec {
                 let path = Bundle(for: PassiveFormControllerTest.self).path(forResource: "redirectEnabled", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj = JSON(data: (data as Data?)!)
-                let formModel = FormModel(json: jsonObj, id: "a", screenshot: nil)
+                let formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil)
 
 
                 viewController = FormViewController(viewModel: UBFormViewModel(formModel: formModel!))

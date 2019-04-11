@@ -38,7 +38,7 @@ class CampaignModelTests: QuickSpec {
                     let numberOfTimesTriggered = 0
                     let targeting = TargetingOptionsModel(rule: rule, targetingID: "tid", lastModifiedDate: nil)
                     let campaign = CampaignModel(id: campaignID, targeting: targeting, formID: formID, targetingID: targetingID, maximumDisplays: maxDisplays, numberOfTimesTriggered: numberOfTimesTriggered, status: .active, createdAt: Date())
-                    let formModel = FormModel(json: formJson, id: "", screenshot: nil)
+                    let formModel = FormModel(json: formJson, id: "", screenshot: nil, maskModel: nil)
                     campaign.form = formModel
 
                     expect(campaign.identifier).to(equal(campaignID))

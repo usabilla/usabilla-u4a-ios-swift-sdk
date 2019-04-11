@@ -8,13 +8,14 @@
 
 import Foundation
 
-class TextFieldModel: StringFieldModel, EditableStringComponentModel, Exportable {
+class TextFieldModel: StringFieldModel, EditableStringComponentModel, Exportable, MaskProtocol {
 
+    var masks: MaskModel?
     let placeHolder: String?
     let defaultValue: String?
 
     var exportableValue: Any? {
-        return fieldValue
+        return masks?.toMaskText(fieldValue) ?? fieldValue
     }
 
     override init(json: JSON) {

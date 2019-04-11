@@ -35,7 +35,7 @@ class SubmitServiceMock: CampaignServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getCampaignForm(withID id: String) -> Promise<FormModel> {
+    func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             if campaignForm != nil {
                 return fulfill(campaignForm!)

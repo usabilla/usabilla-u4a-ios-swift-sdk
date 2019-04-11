@@ -22,7 +22,7 @@ class UBToastPageViewModelTests: QuickSpec {
                 let path = Bundle(for: UBToastPageViewModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let json = JSON(data: (data as Data?)!)
-                self.formModel = FormModel(json: json, id: "a", screenshot: nil)
+                self.formModel = FormModel(json: json, id: "a", screenshot: nil, maskModel: nil)
                 self.endPageModel = self.formModel.pages.last as? UBEndPageModel
             }
 

@@ -27,7 +27,7 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
         }
     }
 
-    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode) -> Promise<FormModel> {
+    func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             getCampaignFormHasBeenCalled = true
             if let form = self.form {

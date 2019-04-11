@@ -156,7 +156,7 @@ class UBFormViewModelTests: QuickSpec {
                 context("When FormViewModel is initlialized with PageViewModels containing different required fields") {
                     it("should have correct values for showing the requiredFiled header") {
                         let formJson = UBTestHelper.getJSONFromFile(named: "ShouldShowRequiredFieldHeader")
-                        let formModel = FormModel(json: formJson, id: "", screenshot: nil)
+                        let formModel = FormModel(json: formJson, id: "", screenshot: nil, maskModel: nil)
                         let formViewModel = UBFormViewModel(formModel: formModel!)
                         expect(formViewModel).toNot(beNil())
 
@@ -179,7 +179,7 @@ class UBFormViewModelTests: QuickSpec {
                         let path = Bundle(for: UBFormViewModelTests.self).path(forResource: "CampaignForm", ofType: "json")!
                         let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                         let json = JSON(data: (data as Data?)!)
-                        let formModel = FormModel(json: json, id: "", screenshot: nil)
+                        let formModel = FormModel(json: json, id: "", screenshot: nil, maskModel: nil)
                         formViewModel = UBFormViewModel(formModel: formModel!)
 
                     }

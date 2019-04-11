@@ -15,7 +15,7 @@ class CampaignManager {
     private(set) var eventEngine: EventEngine
     private(set) var appID: String
     private let submissionManager: CampaignSubmissionManager
-
+    var maskModel: MaskModel?
     init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appID: String, completion: (() -> Void)? = nil) {
         self.campaignStore = campaignStore
         self.campaignService = campaignService
@@ -53,8 +53,8 @@ class CampaignManager {
         guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
             return
         }
-        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position).then { form in
-
+        campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position, maskModel: maskModel).then { form in
+     
             guard self.testIntegrityOfCampaginForm(form) else {
                 return
             }
