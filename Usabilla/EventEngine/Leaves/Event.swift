@@ -11,7 +11,7 @@ import Foundation
 class Event: NSObject, NSCoding {
 
     let name: String
-
+    @objc
     init(name: String) {
         self.name = name
     }
