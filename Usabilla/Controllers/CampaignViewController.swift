@@ -110,6 +110,18 @@ class CampaignViewController: UIViewController {
         showModalFormiPhone()
     }
 
+    func forceCloseCampaing() -> Bool {
+        if let introView = introView {
+            introViewDidCancel(introView: introView)
+            return true
+        }
+        if formNavigationController != nil {
+            removeFormController(completion: nil)
+            return true
+        }
+        return false
+    }
+
     private func showModalFormiPad () {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
         let rect = introView?.frame ?? CGRect()

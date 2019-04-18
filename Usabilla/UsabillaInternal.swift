@@ -35,12 +35,30 @@ class UsabillaInternal {
     private static var campaignManager: CampaignManager?
     private static var formService: FormService?
     private static var formStore: FormStore?
+    private static weak var formNavigationController: UINavigationController?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
     class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event, customVariables: customVariables)
     }
-    
+
+    class func dismiss() -> Bool {
+        if formNavigationController != nil {
+            return dismissForm()
+        }
+        return dismissCampaing()
+    }
+
+    private class func dismissCampaing() -> Bool {
+        guard let manager = campaignManager else {return false}
+        return manager.closeCampaign()
+    }
+    private class func dismissForm() -> Bool {
+        guard let controller = formNavigationController else {return false}
+        controller.dismiss(animated: true, completion: nil)
+        return true
+    }
+
     class func setCustomVariable(value: Any?, forKey key: String) {
         customVariables[key] = value
         PLog(customVariables)
@@ -138,6 +156,7 @@ class UsabillaInternal {
                 return
             }
             DispatchQueue.main.async {
+                formNavigationController = navigationController
                 delegate?.formDidLoad(form: navigationController)
             }
             

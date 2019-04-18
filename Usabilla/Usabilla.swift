@@ -110,7 +110,15 @@ open class Usabilla {
             completion?()
         }
     }
-    
+
+    /**
+     If it's needed to dismiss a campaign this method will dismiss the current presented campaign.
+     - Returns: true if there is a campaign and it's closed, false if there is no presented campaign
+     */
+    open class func dismiss() -> Bool {
+        return UsabillaInternal.dismiss()
+    }
+
     open class func removeCachedForms() {
         UsabillaInternal.removeCachedForms()
     }

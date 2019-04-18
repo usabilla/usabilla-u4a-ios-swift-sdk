@@ -28,7 +28,7 @@ class ViewController: UIViewController, UsabillaDelegate {
         customVariables["customerId"] = "As123Bc"
         customVariables["happynessRating"] = 100
         Usabilla.customVariables = customVariables
-        Usabilla.hideGiveMoreFeedback = false
+        //Usabilla.hideGiveMoreFeedback = false
     }
 
     @IBAction func otherShow(_ sender: AnyObject) {
@@ -40,10 +40,19 @@ class ViewController: UIViewController, UsabillaDelegate {
     }
 
     func formLoadedCorrectly(_ form: UINavigationController) {
-        present(form, animated: true, completion: nil)
+        
     }
 
     func formFailedLoading() {
 //        present(backupForm, animated: true, completion: nil)
     }
+    func formDidLoad(form: UINavigationController) {
+        present(form, animated: true, completion: nil)
+    }
+    
+    func formDidFailLoading(error: UBError) {
+        
+    }
+    
+
 }

@@ -81,8 +81,9 @@ class IntroPageViewModel {
                 componentViewModel = nil
                 return
             }
-            componentViewModel = ComponentViewModelFactory.component(field: field, theme: theme, copy: copy)
-            componentViewModel?.delegate = self
+            var viewModel = ComponentViewModelFactory.component(field: field, theme: theme, copy: copy)
+            componentViewModel = viewModel
+            viewModel?.delegate = self
             if displayMode == .alert, var cvm = componentViewModel as? Centerable {
                 cvm.isCentered = true
             }

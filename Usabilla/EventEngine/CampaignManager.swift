@@ -27,6 +27,14 @@ class CampaignManager {
         }
     }
 
+    func closeCampaign() -> Bool {
+        if let campaignViewController = CampaignWindow.shared.rootViewController as? CampaignViewController {
+            campaignViewController.forceCloseCampaing()
+            return true
+        }
+        return false
+    }
+
     // customVariables sent from the interface are the activeStatuses used inside our SDK.
     func sendEvent(event: String, customVariables: [String: Any]) {
         let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: filterActiveStatuses(fromCustomVariables: customVariables))
