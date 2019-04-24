@@ -1,20 +1,21 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-In Usabilla SDK Version 4 there is two major advancements:
-1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred as **Campaigns** in this document).
-2. More stabilized [Passive feedback forms](#passive-feedback).
-
+In Usabilla SDK Version 6.2 there are two new features
+1. ability to programmatically close a Form or a Campaign
+2. enable data masking, on text fields
 * * *
 
-- [Requirements](#requirements)
-- [Installation](#installation)
+- [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
+- [- UI Customisations](#ui-customisations)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
     - [CocoaPods](#cocoapods)
     - [Carthage](#carthage)
     - [Manual](#manual)
-- [Initialization](#initialization)
-    - [Debug mode](#debugmode)
-- [Campaigns](#campaigns)
+  - [Initialization](#initialization)
+    - [DebugMode](#debugmode)
+  - [Campaigns](#campaigns)
     - [The App Id](#the-app-id)
     - [Targeting options](#targeting-options)
     - [Campaign toggling](#campaign-toggling)
@@ -22,32 +23,58 @@ In Usabilla SDK Version 4 there is two major advancements:
     - [Resetting all campaigns](#resetting-all-campaigns)
     - [Managing an existing campaign](#managing-an-existing-campaign)
     - [Campaign results](#campaign-results)
-- [Passive feedback](#passive-feedback)
+  - [Passive feedback](#passive-feedback)
     - [Loading a form](#loading-a-form)
     - [Preloading a form](#preloading-a-form)
     - [iPad display](#ipad-display)
     - [Adding a screenshot](#adding-a-screenshot)
     - [Feedback submission callback](#feedback-submission-callback)
+      - [FeedbackResult](#feedbackresult)
     - [Handle manual dismiss](#handle-manual-dismiss)
+  - [Masking Private Identifiable Information](#masking-private-identifiable-information)
+  - [Custom variables](#custom-variables)
+  - [App Store rating](#app-store-rating)
+  - [Programmatically remove a Form or a Campaign](#programmatically-remove-a-form-or-a-campaign)
+  - [Force specific interface orientation](#force-specific-interface-orientation)
+  - [UI Customisations](#ui-customisations)
+    - [Custom Emoticons Rating](#custom-emoticons-rating)
+      - [Provide only the selected version](#provide-only-the-selected-version)
+      - [Provide both the selected and unselected version](#provide-both-the-selected-and-unselected-version)
+    - [Custom Star Rating](#custom-star-rating)
+    - [Custom Fonts](#custom-fonts)
+    - [Custom colors](#custom-colors)
+  - [Localization](#localization)
+    - [String file contents](#string-file-contents)
+  - [Permissions](#permissions)
+  - [Integration with Obj-C applications](#integration-with-obj-c-applications)
+    - [Masking Private Identifiable Information](#masking-data)
 - [Custom variables](#custom-variables)
 - [App Store rating](#app-store-rating)
 - [Force specific interface orientation](#Force-specific-interface-orientation)
 - [UI Customisations](#ui-customisations)
+  - [Masking Private Identifiable Information](#masking-private-identifiable-information)
+  - [Custom variables](#custom-variables)
+  - [App Store rating](#app-store-rating)
+  - [Programmatically remove a Form or a Campaign](#programmatically-remove-a-form-or-a-campaign)
+  - [Force specific interface orientation](#force-specific-interface-orientation)
+  - [UI Customisations](#ui-customisations)
     - [Custom Emoticons Rating](#custom-emoticons-rating)
+      - [Provide only the selected version](#provide-only-the-selected-version)
+      - [Provide both the selected and unselected version](#provide-both-the-selected-and-unselected-version)
     - [Custom Star Rating](#custom-star-rating)
     - [Custom Fonts](#custom-fonts)
-    - [Custom Colors](#custom-colors)
-- [Localisation](#localisation)
+    - [Custom colors](#custom-colors)
+  - [Localization](#localization)
     - [String file contents](#string-file-contents)
-- [Permissions](#permissions)
-- [Integration with Obj-C applications](#integration-with-obj-c-applications)
+  - [Permissions](#permissions)
+  - [Integration with Obj-C applications](#integration-with-obj-c-applications)
 
 * * *
 
 ## Requirements
 - iOS 9.0+
 - Xcode 9.4+
-- Swift 3.2+
+- Swift 4.0+
 
 ## Installation
 
@@ -68,7 +95,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.1'
+pod 'Usabilla', '~> 6.2.0'
 
 End
 ```
@@ -90,7 +117,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.1"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.2.0"
 ```
 
 ### Manual
@@ -251,7 +278,7 @@ class SomeViewController: UIViewController, UsabillaDelegate {
         Usabilla.loadFeedbackForm("Form ID")
     }
 
-    //Called when your form succesfully load
+    //Called when your form successfully load
     func formDidLoad(form: UINavigationController) {
         present(form, animated: true, completion: nil)
     }
@@ -285,7 +312,7 @@ UsabillaFeedbackForm.removeCachedForms()
 ### iPad display
 
 On iPad, the Passive feedback form has a presentation style set to [formSheet](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/1621491-formsheet) by default.
-If you want to override this behavior and have a fullscreen display you can achieve it with:
+If you want to override this behavior and have a full screen display you can achieve it with:
 
 ```swift
 func formDidLoad(form: UINavigationController) {
@@ -378,9 +405,38 @@ func formWillClose(form: UINavigationController, formID: String, withFeedbackRes
 // handle your custom dismiss e.g: dismiss(animated: true, completion: nil)
 }
 ```
-
 **Warning**: by doing this the form will not dismiss by itself and you will be the only one responsible for its correct behavior. Also, the delegate method `formDidClose` will not be called.
 
+## Masking Private Identifiable Information
+
+The SDK has an option to mask (on the back-end side) the data from input texts, specifically `Text Input` and `Text Area`. Please note that the an email input field is not being masked.
+
+It matches a list of RegEx and replaces them by the "X" character by default.
+
+The SDK has a `setDataMasking` method that can be used as:
+```swift
+Usabilla.setDataMasking()
+Usabilla.setDataMasking(masks: [String])
+Usabilla.setDataMasking(masks: [String], maskCharacter: Character)
+```
+`masks` is a list of RegExes to mask data in input fields. It uses the default RegExes that the SDK provides.
+`maskCharacter` is a character to replace the matched RegExes. By default it uses "X"".
+
+The default RegExes that the SDK provides are: Email Addresses & Numbers
+
+For email it uses:
+```swift
+[a-zA-Z0-9\+\.\_\%\-\+]{1,256}\@[a-zA-Z0-9][a-zA-Z0-9\-]{0,64}(\.[a-zA-Z0-9][a-zA-Z0-9\-]{0,25})+
+```
+For Numbers with the length 4 or more
+```swift
+[0-9]{4,}
+```
+The default RegEx can be accessed by:
+
+```swift
+Usabilla.defaultDataMasks
+```
 
 ## Custom variables
 
@@ -417,14 +473,24 @@ To decide whether or not to prompt the user for a rating, you can read the infor
 
 In the Usabilla web interface, it is possible to define whether a specific feedback form should prompt the user for a rating.
 
+## Programmatically remove a Form or a Campaign
+
+The SDK provides a way to programmatically dismiss all forms through the method:
+```swift
+let result = Usabilla.dismiss()
+```
+This will result in the Form or Campaign being removed. No delegate methods will get called eg. `formDidClose`
+
+If there is a Form or a Campaign the method will return true, false otherwise.
+
 ## Force specific interface orientation
 
-It is possible to force a Campaign or Form to be presented in as specific orientation, regardless of the device orientation, or the supported orientations for the Application.
+It is possible to force a Campaign or Form to be presented in specific orientation, regardless of the device orientation, or the supported orientations for the Application.
 
 ```swift
 Usabilla.orientation = .landscapeLeft 
 ```
-Set this properties before presenting a Campaign or Form. It defaults to 
+Set this property before presenting a Campaign or Form. It defaults to 
 
 ```swift
 Usabilla.orientation = .all
@@ -498,7 +564,7 @@ All colors are set from the Usabilla website and not from the SDK. You can find 
 The only exception is for the `header` color, used to change the color of the navigation bar.    
 You can set the header color by calling `Usabilla.theme.colors.header = UIColor.red` before displaying the form.
 
-## Localisation
+## Localization
 
 For all the text that is not customizable in the web interface, you can provide your own translation using a `.string` localized file inside your application.
 
@@ -511,13 +577,13 @@ If you want to provide your own translation, you need to override **all** the ke
 The default file with the keys and the default text is the following:
 
 ```
-///Default usabilla english localisation
+///Default usabilla english localization
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
 "usa_screenshot_placeholder" = "Add screenshot";
 
-// Accessiblity labels
+// Accessibility labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
 "usa_accessibility_field_required" = "This field is required";
 "usa_choose_from_options" = "Choose from %d options";
