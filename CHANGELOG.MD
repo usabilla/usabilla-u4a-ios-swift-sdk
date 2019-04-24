@@ -1,4 +1,11 @@
-## 6.1
+## 6.2.0
+### Added
+- Method to mask personal identifiable information in the public interface.
+- Method to remove a displayed form programmatically.
+### Fixed
+- Runtime warning
+
+## 6.1.0
 ### Added
 - Support for **Xcode 10.2**
 - Developer can force a specific orientation for the SDK, overriding the device orientation
