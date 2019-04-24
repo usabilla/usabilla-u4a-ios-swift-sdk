@@ -2,7 +2,7 @@
 
 # Installation
 ## Software requirements
-* Xcode 8.3.3 or Xcode 9+
+** Xcode 9.4+
 * ruby 2.4.2 (use [rbenv](https://github.com/rbenv/rbenv) to manage multiple versions)
 * [bundler](http://bundler.io)
 * [carthage 0.27.0](https://github.com/Carthage/Carthage)

@@ -1,10 +1,9 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-In Usabilla SDK Version 4 there are two major advancements:
-1. Introduces the new feature [Actively targeted surveys](#campaigns) (referred as **Campaigns** in this document).
-2. More stabilized [Passive feedback forms](#passive-feedback).
-
+In Usabilla SDK Version 6.2 there are two new features
+1. ability to programmatically close a Form or a Campaign
+2. enable data masking, on text fields
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
@@ -48,20 +47,17 @@ In Usabilla SDK Version 4 there are two major advancements:
     - [String file contents](#string-file-contents)
   - [Permissions](#permissions)
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
-<<<<<<< HEAD
     - [Masking Private Identifiable Information](#masking-data)
 - [Custom variables](#custom-variables)
 - [App Store rating](#app-store-rating)
 - [Force specific interface orientation](#Force-specific-interface-orientation)
 - [UI Customisations](#ui-customisations)
-=======
   - [Masking Private Identifiable Information](#masking-private-identifiable-information)
   - [Custom variables](#custom-variables)
   - [App Store rating](#app-store-rating)
   - [Programmatically remove a Form or a Campaign](#programmatically-remove-a-form-or-a-campaign)
   - [Force specific interface orientation](#force-specific-interface-orientation)
   - [UI Customisations](#ui-customisations)
->>>>>>> ef3e434... Update: PublicReadMe.md updated
     - [Custom Emoticons Rating](#custom-emoticons-rating)
       - [Provide only the selected version](#provide-only-the-selected-version)
       - [Provide both the selected and unselected version](#provide-both-the-selected-and-unselected-version)
@@ -78,7 +74,7 @@ In Usabilla SDK Version 4 there are two major advancements:
 ## Requirements
 - iOS 9.0+
 - Xcode 9.4+
-- Swift 3.2+
+- Swift 4.0+
 
 ## Installation
 
@@ -99,7 +95,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.1'
+pod 'Usabilla', '~> 6.2.0'
 
 End
 ```
@@ -121,7 +117,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.1"
+github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.2.0"
 ```
 
 ### Manual
