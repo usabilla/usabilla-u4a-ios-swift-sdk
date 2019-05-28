@@ -117,7 +117,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.2.0"
+binary "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/Usabilla.json"
 ```
 
 ### Manual
@@ -488,9 +488,9 @@ If there is a Form or a Campaign the method will return true, false otherwise.
 It is possible to force a Campaign or Form to be presented in specific orientation, regardless of the device orientation, or the supported orientations for the Application.
 
 ```swift
-Usabilla.orientation = .landscapeLeft 
+Usabilla.orientation = .landscapeLeft
 ```
-Set this property before presenting a Campaign or Form. It defaults to 
+Set this property before presenting a Campaign or Form. It defaults to
 
 ```swift
 Usabilla.orientation = .all
