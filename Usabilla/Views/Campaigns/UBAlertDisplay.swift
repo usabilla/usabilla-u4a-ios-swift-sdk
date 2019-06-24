@@ -34,8 +34,8 @@ class UBAlertDisplay: UBIntroOutroDisplay {
         horizontalLine.backgroundColor = view.viewModel.hintColor
         horizontalLine.widthAnchor.constraint(equalTo: view.buttonsStackView.widthAnchor).isActive = true
         horizontalLine.leftAnchor.constraint(equalTo: view.buttonsStackView.leftAnchor).isActive = true
-        horizontalLine.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor, constant: UBDimensions.AlertDisplay.topAnchor_horizontalLine).isActive = true
-        horizontalLine.heightAnchor.constraint(equalToConstant: UBDimensions.AlertDisplay.heightAnchor_horizontalLine).isActive = true
+        horizontalLine.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor, constant: UBDimensions.AlertDisplay.topAnchorHorizontalLine).isActive = true
+        horizontalLine.heightAnchor.constraint(equalToConstant: UBDimensions.AlertDisplay.heightAnchorHorizontalLine).isActive = true
         view.buttonsStackView?.clipsToBounds = true
     }
 
@@ -47,6 +47,6 @@ class UBAlertDisplay: UBIntroOutroDisplay {
         buttonsDividerLine.heightAnchor.constraint(equalTo: view.buttonsStackView.heightAnchor).isActive = true
         buttonsDividerLine.centerXAnchor.constraint(equalTo: view.buttonsStackView.centerXAnchor).isActive = true
         buttonsDividerLine.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor).isActive = true
-        buttonsDividerLine.widthAnchor.constraint(equalToConstant: UBDimensions.AlertDisplay.widthAnchor_btnDividerLine).isActive = true
+        buttonsDividerLine.widthAnchor.constraint(equalToConstant: UBDimensions.AlertDisplay.widthAnchorBtnDividerLine).isActive = true
     }
 }

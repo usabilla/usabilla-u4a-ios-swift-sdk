@@ -55,7 +55,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         line.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
         line.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
         line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor).activate()
-        line.heightAnchor.constraint(equalToConstant: UBDimensions.BannerDisplay.heightAnchor_horizontalLine).activate()
+        line.heightAnchor.constraint(equalToConstant: UBDimensions.BannerDisplay.heightAnchorHorizontalLine).activate()
     }
 
     static private func configureWithContinueButton(_ view: UBIntroOutroView) {
