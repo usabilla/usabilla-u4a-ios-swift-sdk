@@ -14,10 +14,10 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var topConstraint: NSLayoutConstraint!
     var bottomConstraint: NSLayoutConstraint!
 
-    private var kWidthTablet = UBDimensions.BannerPresenter.kWidthTablet
-    private var kWidthiPhone = UBDimensions.BannerPresenter.kWidthiPhone
-    private var kRightOffsetTablet = UBDimensions.BannerPresenter.kRightOffsetTablet
-    private var kShadowOffset = UBDimensions.BannerPresenter.kShadowOffset
+    private var kWidthTablet = UBDimensions.BannerPresenter.widthTablet
+    private var kWidthiPhone = UBDimensions.BannerPresenter.widthiPhone
+    private var kRightOffsetTablet = UBDimensions.BannerPresenter.rightOffsetTablet
+    private var kShadowOffset = UBDimensions.BannerPresenter.shadowOffset
     private weak var inView: UIView?
     private weak var introView: UBIntroOutroView?
 

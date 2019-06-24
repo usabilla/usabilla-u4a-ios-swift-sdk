@@ -27,7 +27,6 @@ struct JSONConstant {
 }
 
 struct UBDimensions {
-    
     // UBIntroOutroView
     struct IntroOutroView {
         static let sidesMargin: CGFloat = 16
@@ -38,7 +37,6 @@ struct UBDimensions {
         static let heightValue: CGFloat = 80 // #184 *setupCustomizations
         static let halfAlpha: CGFloat = 0.5 // #176 *setupCustomizations
     }
-    
     // UBAlertDisplay
     struct AlertDisplay {
         static let widthAnchor: CGFloat = 270
@@ -47,7 +45,6 @@ struct UBDimensions {
         static let heightAnchorHorizontalLine: CGFloat = 1.0
         static let topAnchorHorizontalLine: CGFloat = 0.0
     }
-    
     // UBAlertPresenter
     struct AlertPresenter {
         static let animateDuration: TimeInterval = 0.33
@@ -59,7 +56,6 @@ struct UBDimensions {
         static let tranformScaleX: CGFloat = 1.2
         static let tranformScaleY: CGFloat = 1.2
     }
-    
     // UBToast
     struct Toast {
         static let opacity: CGFloat = 0.6
@@ -79,13 +75,11 @@ struct UBDimensions {
     // UBBannerDisplay
     struct BannerDisplay {
         static let topBannerMargin: CGFloat = 10
-        static let kBannerExtraSpace: CGFloat = 120
-    
+        static let bannerExtraSpace: CGFloat = 120
         static let topEdgeBtnCancel: CGFloat = 0
         static let leftEdgeBtnCancel: CGFloat = 16
         static let bottomEdgeBtnCancel: CGFloat = 0
         static let rightEdgeBtnCancel: CGFloat = 0
-    
         static let topEdgeBtnContinue: CGFloat = 0
         static let leftEdgeBtnContinue: CGFloat = 16
         static let bottomEdgeBtnContinue: CGFloat = 0
@@ -99,18 +93,15 @@ struct UBDimensions {
         static let widthShadowOffset: CGFloat = 0.0
         static let heightShadowOffset: CGFloat = 1.0
     }
-    
     // UBBannerPresenter
     struct BannerPresenter {
-        static let kWidthTablet: CGFloat = 350.0
-        static let kWidthiPhone: CGFloat = 382
-        static let kRightOffsetTablet: CGFloat = -25.0
-        static let kShadowOffset: CGFloat = 5.0
-    
+        static let widthTablet: CGFloat = 350.0
+        static let widthiPhone: CGFloat = 382
+        static let rightOffsetTablet: CGFloat = -25.0
+        static let shadowOffset: CGFloat = 5.0
         static let leftConstraint: CGFloat = 16
         static let rightConstraint: CGFloat = 16
         static let animateDurationDismiss: TimeInterval = 0.3
-    
         static let animateDurationDefualt: TimeInterval = 0.7
         static let animateDurationTablet: TimeInterval = 0.5
         static let animateDelay: TimeInterval = 0.0

@@ -15,7 +15,7 @@ protocol UBIntroOutroDisplay {
 
 class UBBannerDisplay: UBIntroOutroDisplay {
     private static let topBannerMargin: CGFloat = UBDimensions.BannerDisplay.topBannerMargin
-    static let kBannerExtraSpace: CGFloat = UBDimensions.BannerDisplay.kBannerExtraSpace
+    static let kBannerExtraSpace: CGFloat = UBDimensions.BannerDisplay.bannerExtraSpace
 
     static func build(view: UBIntroOutroView) {
         view.accessibilityIdentifier = "banner"
