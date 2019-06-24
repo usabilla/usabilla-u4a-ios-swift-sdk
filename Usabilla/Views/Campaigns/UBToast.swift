@@ -9,21 +9,15 @@
 import Foundation
 import UIKit
 
-enum UBToastDuration: Int {
-    case short = 1
-    case normal = 2
-    case long = 4
-}
-
 class UBToast: UIView {
 
-    private let opacity: CGFloat = 0.6
-    private let margin: CGFloat = 18
+    private let opacity: CGFloat = UBDimensions.Toast.opacity
+    private let margin: CGFloat = UBDimensions.Toast.margin
     private var widthConstraint: NSLayoutConstraint?
     private var bottomConstraint: NSLayoutConstraint?
     private var topConstraint: NSLayoutConstraint?
 
-    var duration: Int = 2
+    var duration: Int = UBDimensions.Toast.duration
 
     var label: UILabel!
     var text: String! {
@@ -59,9 +53,9 @@ class UBToast: UIView {
         label.text = text
         label.textColor = toastTextColor
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+        label.numberOfLines = UBDimensions.Toast.labelNOL
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18).getDynamicTypeFont()
+        label.font = UIFont.systemFont(ofSize: UBDimensions.Toast.labelFont).getDynamicTypeFont()
         addSubview(label)
 
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -71,13 +65,13 @@ class UBToast: UIView {
         label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -margin).activate()
 
         backgroundColor = toastBackgroundColor.withAlphaComponent(opacity)
-        layer.cornerRadius = 14
+        layer.cornerRadius = UBDimensions.Toast.cornerRadius
         layer.masksToBounds = true
     }
 
     func show(position: IntroPageDisplayMode = .bannerBottom, completion: (() -> Void)?) {
         delegate.view.addSubview(self)
-        alpha = 0
+        alpha = UBDimensions.Toast.zeroAlpha
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: delegate.view.centerXAnchor).activate()
         widthConstraint = widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor).activate()
@@ -90,8 +84,8 @@ class UBToast: UIView {
 
         }
 
-        UIView.animate(withDuration: 0.33, delay: 0.5, options: .curveEaseOut, animations: {
-            self.alpha = 1
+        UIView.animate(withDuration: UBDimensions.Toast.animateDuration, delay: UBDimensions.Toast.animateDelay, options: .curveEaseOut, animations: {
+            self.alpha = UBDimensions.Toast.fullAlpha
         }, completion: nil)
 
         dismiss(completion: completion)
@@ -99,8 +93,8 @@ class UBToast: UIView {
 
     private func dismiss(completion: (() -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(self.duration)) {
-            UIView.animate(withDuration: 0.8, animations: {
-                self.alpha = 0
+            UIView.animate(withDuration: UBDimensions.Toast.animateDurationDismiss, animations: {
+                self.alpha = UBDimensions.Toast.zeroAlpha
             }, completion: { _ in
                 self.removeFromSuperview()
                 completion?()
@@ -110,7 +104,7 @@ class UBToast: UIView {
 
     override func updateConstraints() {
         super.updateConstraints()
-        widthConstraint?.constant = -(2 * margin) - UIView.safeAreaEdgeInsets.left - UIView.safeAreaEdgeInsets.right
+        widthConstraint?.constant = -(UBDimensions.Toast.widthConstraintWRTMargin * margin) - UIView.safeAreaEdgeInsets.left - UIView.safeAreaEdgeInsets.right
         bottomConstraint?.constant = -margin - UIView.safeAreaEdgeInsets.bottom
     }
 }

@@ -42,11 +42,6 @@ class UBIntroOutroView: UIView {
     var wrapperLeftConstraint: NSLayoutConstraint?
     var wrapperRightConstraint: NSLayoutConstraint?
 
-    // constants
-    let sidesMargin: CGFloat = 16
-    let outsideVerticalMargin: CGFloat = 20
-    let marginBetweenComponentAndTitle: CGFloat = 10
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,9 +56,9 @@ class UBIntroOutroView: UIView {
         setupButtons()
 
         if let componentView = componentView {
-            buttonsStackView?.topAnchor.constraint(equalTo: componentView.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+            buttonsStackView?.topAnchor.constraint(equalTo: componentView.bottomAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).isActive = true
         } else {
-            buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: outsideVerticalMargin).isActive = true
+            buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).isActive = true
         }
 
         setupCustomizations()
@@ -99,8 +94,8 @@ class UBIntroOutroView: UIView {
         wrapper = UIView()
         wrapper.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wrapper)
-        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor, constant: (bottomDisplay ? 120 : 0)).activate()
-        wrapper.topAnchor.constraint(equalTo: topAnchor, constant: (bottomDisplay ? 0 : -120) ).activate()
+        wrapper.bottomAnchor.constraint(equalTo: bottomAnchor, constant: (bottomDisplay ? UBDimensions.IntroOutroView.bottomWrapper : 0)).activate()
+        wrapper.topAnchor.constraint(equalTo: topAnchor, constant: (bottomDisplay ? 0 : -UBDimensions.IntroOutroView.bottomWrapper) ).activate()
         wrapperLeftConstraint = wrapper.leftAnchor.constraint(equalTo: leftAnchor).activate()
         wrapperRightConstraint = wrapper.rightAnchor.constraint(equalTo: rightAnchor).activate()
     }
@@ -111,9 +106,9 @@ class UBIntroOutroView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 0
         wrapper.addSubview(titleLabel)
-        titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: outsideVerticalMargin).activate()
-        titleLabel.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: sidesMargin).activate()
-        titleLabel.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -sidesMargin).activate()
+        titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).activate()
+        titleLabel.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: UBDimensions.IntroOutroView.sidesMargin).activate()
+        titleLabel.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -UBDimensions.IntroOutroView.sidesMargin).activate()
     }
 
     private func setupButtons() {
@@ -159,21 +154,21 @@ class UBIntroOutroView: UIView {
             //swiftlint:disable:next force_unwrapping
             wrapper.addSubview(componentView!)
             componentView?.translatesAutoresizingMaskIntoConstraints = false
-            componentView?.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: sidesMargin).isActive = true
-            componentView?.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -sidesMargin).isActive = true
-            componentView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: marginBetweenComponentAndTitle).isActive = true
+            componentView?.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: UBDimensions.IntroOutroView.sidesMargin).isActive = true
+            componentView?.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -UBDimensions.IntroOutroView.sidesMargin).isActive = true
+            componentView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.IntroOutroView.marginBetweenComponentAndTitle).isActive = true
         }
     }
 
     private func setupCustomizations() {
         if DeviceInfo.isIPad() {
-            self.layer.cornerRadius = 8.0
+            self.layer.cornerRadius = UBDimensions.IntroOutroView.cornerRadius
         }
-        self.layer.cornerRadius = 8.0
+        self.layer.cornerRadius = UBDimensions.IntroOutroView.cornerRadius
         backgroundColor = viewModel.backgroundColor
         cancelButton.setTitleColor(viewModel.cancelButtonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
-        continueButton?.setTitleColor(viewModel.buttonColor.withAlphaComponent(0.5), for: .disabled)
+        continueButton?.setTitleColor(viewModel.buttonColor.withAlphaComponent(UBDimensions.IntroOutroView.halfAlpha), for: .disabled)
 
         cancelButton.titleLabel?.font = viewModel.font
         continueButton?.titleLabel?.font = viewModel.font
@@ -181,7 +176,7 @@ class UBIntroOutroView: UIView {
         titleLabel.font = viewModel.boldFont.getDynamicTypeFont()
         titleLabel.textColor = viewModel.titleColor
 
-        let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: 80)
+        let heightAnchor = titleLabel?.heightAnchor.constraint(equalToConstant: UBDimensions.IntroOutroView.heightValue)
         heightAnchor?.priority = UILayoutPriority(249)
         heightAnchor?.isActive = true
     }
