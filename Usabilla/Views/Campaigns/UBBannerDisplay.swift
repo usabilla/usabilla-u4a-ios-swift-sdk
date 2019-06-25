@@ -41,7 +41,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
     }
 
     static private func buildShadow(_ view: UBIntroOutroView) {
-        view.layer.shadowColor = UIColor.black.withAlphaComponent(UBDimensions.BannerDisplay.shadowColorAlpha).cgColor
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(UBAlpha.shadowColorAlpha.rawValue).cgColor
         view.layer.shadowOffset = CGSize(width: UBDimensions.BannerDisplay.widthShadowOffset, height: view.viewModel.displayMode == .bannerBottom ? -UBDimensions.BannerDisplay.heightShadowOffset : UBDimensions.BannerDisplay.heightShadowOffset)
         view.layer.shadowOpacity = UBDimensions.BannerDisplay.shadowOpacity
         view.layer.shadowRadius = UBDimensions.BannerDisplay.shadowRadius
@@ -51,7 +51,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(line)
-        line.backgroundColor = UIColor.black.withAlphaComponent(UBDimensions.BannerDisplay.lineAlpha)
+        line.backgroundColor = UIColor.black.withAlphaComponent(UBAlpha.lineAlpha.rawValue)
         line.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
         line.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
         line.topAnchor.constraint(equalTo: view.buttonsStackView.topAnchor).activate()

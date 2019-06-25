@@ -71,7 +71,7 @@ class UBToast: UIView {
 
     func show(position: IntroPageDisplayMode = .bannerBottom, completion: (() -> Void)?) {
         delegate.view.addSubview(self)
-        alpha = UBDimensions.Toast.zeroAlpha
+        alpha = UBAlpha.zeroAlpha.rawValue
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: delegate.view.centerXAnchor).activate()
         widthConstraint = widthAnchor.constraint(lessThanOrEqualTo: delegate.view.widthAnchor).activate()
@@ -85,7 +85,7 @@ class UBToast: UIView {
         }
 
         UIView.animate(withDuration: UBDimensions.Toast.animateDuration, delay: UBDimensions.Toast.animateDelay, options: .curveEaseOut, animations: {
-            self.alpha = UBDimensions.Toast.fullAlpha
+            self.alpha = UBAlpha.fullAlpha.rawValue
         }, completion: nil)
 
         dismiss(completion: completion)
@@ -94,7 +94,7 @@ class UBToast: UIView {
     private func dismiss(completion: (() -> Void)?) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(self.duration)) {
             UIView.animate(withDuration: UBDimensions.Toast.animateDurationDismiss, animations: {
-                self.alpha = UBDimensions.Toast.zeroAlpha
+                self.alpha = UBAlpha.zeroAlpha.rawValue
             }, completion: { _ in
                 self.removeFromSuperview()
                 completion?()

@@ -13,7 +13,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
 
     func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = UBDimensions.AlertPresenter.zeroAlpha
+        view.alpha = UBAlpha.zeroAlpha.rawValue
 
         view.centerYAnchor.constraint(equalTo: inView.centerYAnchor).activate()
         view.centerXAnchor.constraint(equalTo: inView.centerXAnchor).activate()
@@ -25,7 +25,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
 
         UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration, delay: UBDimensions.AlertPresenter.animateDelay, usingSpringWithDamping: UBDimensions.AlertPresenter.springDamping, initialSpringVelocity: UBDimensions.AlertPresenter.springVelocity, options: .curveEaseInOut, animations: {
             view.transform = CGAffineTransform.identity
-            view.alpha = UBDimensions.AlertPresenter.fullAlpha
+            view.alpha = UBAlpha.fullAlpha.rawValue
             animations?()
             inView.layoutIfNeeded()
         })
@@ -33,7 +33,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
         UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration, animations: {
-            view.alpha = UBDimensions.AlertPresenter.zeroAlpha
+            view.alpha = UBAlpha.zeroAlpha.rawValue
             animations?()
             inView.layoutIfNeeded()
             // swiftlint:disable:next multiple_closures_with_trailing_closure

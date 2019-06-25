@@ -168,7 +168,7 @@ class UBIntroOutroView: UIView {
         backgroundColor = viewModel.backgroundColor
         cancelButton.setTitleColor(viewModel.cancelButtonColor, for: .normal)
         continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
-        continueButton?.setTitleColor(viewModel.buttonColor.withAlphaComponent(UBDimensions.IntroOutroView.halfAlpha), for: .disabled)
+        continueButton?.setTitleColor(viewModel.buttonColor.withAlphaComponent(UBAlpha.halfAlpha.rawValue), for: .disabled)
 
         cancelButton.titleLabel?.font = viewModel.font
         continueButton?.titleLabel?.font = viewModel.font
