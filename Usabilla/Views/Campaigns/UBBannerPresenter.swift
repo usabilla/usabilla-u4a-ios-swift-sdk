@@ -14,10 +14,10 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var topConstraint: NSLayoutConstraint!
     var bottomConstraint: NSLayoutConstraint!
 
-    private var kWidthTablet: CGFloat = 350.0
-    private var kWidthiPhone: CGFloat = 382
-    private var kRightOffsetTablet: CGFloat = -25.0
-    private var kShadowOffset: CGFloat = 5.0
+    private var kWidthTablet = UBDimensions.BannerPresenter.widthTablet
+    private var kWidthiPhone = UBDimensions.BannerPresenter.widthiPhone
+    private var kRightOffsetTablet = UBDimensions.BannerPresenter.rightOffsetTablet
+    private var kShadowOffset = UBDimensions.BannerPresenter.shadowOffset
     private weak var inView: UIView?
     private weak var introView: UBIntroOutroView?
 
@@ -54,8 +54,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
         // Design requested slower animation on ipad
-        let animationTime = (DeviceInfo.isIPad() ? 0.5 : 0.7)
-        UIView.animate(withDuration: animationTime, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        let animationTime = (DeviceInfo.isIPad() ? UBDimensions.BannerPresenter.animateDurationTablet : UBDimensions.BannerPresenter.animateDurationDefualt)
+        UIView.animate(withDuration: animationTime, delay: UBDimensions.BannerPresenter.animateDelay, usingSpringWithDamping: UBDimensions.BannerPresenter.springDamping, initialSpringVelocity: UBDimensions.BannerPresenter.springVelocity, options: .curveEaseOut, animations: {
 
             self.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : self.topConstraint.constant)
             self.bottomConstraint.constant = (style == .bannerTop ? self.bottomConstraint.constant : -DeviceInfo.bottomMargin)
@@ -67,7 +67,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
 
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: UBDimensions.BannerPresenter.animateDurationDismiss, animations: {
             animations?()
             self.topConstraint.constant = -self.offset - self.kShadowOffset
             self.bottomConstraint.constant = self.offset + self.kShadowOffset
@@ -117,13 +117,13 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             return
         }
         rightConstraint?.isActive = false
-        rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -16)
+        rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -UBDimensions.BannerPresenter.rightConstraint)
         rightConstraint?.isActive = true
 
         widthConstraint?.isActive  = false
 
         leftConstraint?.isActive = false
-        leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: 16)
+        leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: UBDimensions.BannerPresenter.leftConstraint)
         leftConstraint?.isActive = true
         superview.updateConstraints()
     }

@@ -13,7 +13,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
 
     func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = 0
+        view.alpha = UBAlpha.zeroAlpha.rawValue
 
         view.centerYAnchor.constraint(equalTo: inView.centerYAnchor).activate()
         view.centerXAnchor.constraint(equalTo: inView.centerXAnchor).activate()
@@ -21,19 +21,19 @@ class UBAlertPresenter: UBIntroOutroPresenter {
 
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar
 
-        view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        view.transform = CGAffineTransform(scaleX: UBDimensions.AlertPresenter.tranformScaleX, y: UBDimensions.AlertPresenter.tranformScaleY)
 
-        UIView.animate(withDuration: 0.33, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration, delay: UBDimensions.AlertPresenter.animateDelay, usingSpringWithDamping: UBDimensions.AlertPresenter.springDamping, initialSpringVelocity: UBDimensions.AlertPresenter.springVelocity, options: .curveEaseInOut, animations: {
             view.transform = CGAffineTransform.identity
-            view.alpha = 1
+            view.alpha = UBAlpha.fullAlpha.rawValue
             animations?()
             inView.layoutIfNeeded()
         })
     }
 
     func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
-        UIView.animate(withDuration: 0.33, animations: {
-            view.alpha = 0
+        UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration, animations: {
+            view.alpha = UBAlpha.zeroAlpha.rawValue
             animations?()
             inView.layoutIfNeeded()
             // swiftlint:disable:next multiple_closures_with_trailing_closure
