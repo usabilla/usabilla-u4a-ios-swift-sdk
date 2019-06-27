@@ -403,6 +403,9 @@
 		43ED68F61F86806B00C9D279 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED68F41F86806B00C9D279 /* Debug.swift */; };
 		43F838931F793B2A005109AA /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
+		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
+		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
+		4552C1B422C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
 		C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
 		C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
@@ -710,6 +713,7 @@
 		43ED68F41F86806B00C9D279 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignFormJumpRules.json; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
+		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatus.swift; sourceTree = "<group>"; };
 		C508684D1F320F38006CDA53 /* LeafActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatusTests.swift; sourceTree = "<group>"; };
@@ -1414,6 +1418,7 @@
 			isa = PBXGroup;
 			children = (
 				C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */,
+				4552C1B122C3748900814093 /* UBImageLibraryButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1802,6 +1807,7 @@
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
 				434B7E7D225783BF00088CB8 /* MaskModel.swift in Sources */,
 				0483E9DA1CDCDF86004EC234 /* MoodFieldModel.swift in Sources */,
+				4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */,
 				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
 				C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */,
@@ -1826,6 +1832,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4552C1B422C3748900814093 /* UBImageLibraryButton.swift in Sources */,
 				04DC25C31E8BB391002962A3 /* AndRuleTests.swift in Sources */,
 				4317189D1F2A15E900BF612E /* UBCampaignFeedbackRequestDAOTests.swift in Sources */,
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
@@ -2075,6 +2082,7 @@
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
 				434B7E7E225783BF00088CB8 /* MaskModel.swift in Sources */,
 				43B04FB51F1F7EEF0032F057 /* MoodFieldModel.swift in Sources */,
+				4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */,
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
 				C530A9631F7CFB3E007A701B /* UITableView.swift in Sources */,
