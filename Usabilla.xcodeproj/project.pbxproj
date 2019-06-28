@@ -456,6 +456,8 @@
 		C5EF69DC1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EF69DB1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift */; };
 		C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */; };
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
+		F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
+		F2D55E9122CA0C4C000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -751,6 +753,7 @@
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1054,6 +1057,7 @@
 		04F54DE21CD75A75002F501E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */,
 				04F54E531CD76789002F501E /* FormViewController.swift */,
 				104FFEA021AD5318004034A5 /* UBNavigationController.swift */,
 				04F54E541CD76789002F501E /* PageViewController.swift */,
@@ -1693,6 +1697,7 @@
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				C564D1911E799A190004705A /* FormStore.swift in Sources */,
 				046C3F9C1EAA14A000B0B190 /* HTTPClientProtocol.swift in Sources */,
+				F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
 				431F6B041E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift in Sources */,
 				04DC25AE1E8BB33E002962A3 /* SequenceRule.swift in Sources */,
@@ -1968,6 +1973,7 @@
 				43B04F4E1F1F7EEF0032F057 /* SliderComponent.swift in Sources */,
 				43B04F4F1F1F7EEF0032F057 /* FormStore.swift in Sources */,
 				43B04F501F1F7EEF0032F057 /* HTTPClientProtocol.swift in Sources */,
+				F2D55E9122CA0C4C000EEAB5 /* UBCameraViewController.swift in Sources */,
 				43B04F511F1F7EEF0032F057 /* RootCellView.swift in Sources */,
 				43B04F521F1F7EEF0032F057 /* UBFeedbackRequestDAO.swift in Sources */,
 				43B04F531F1F7EEF0032F057 /* SequenceRule.swift in Sources */,

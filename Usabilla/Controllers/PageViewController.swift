@@ -147,6 +147,9 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         SwiftEventBus.onMainThread(self, name: "pick") { _ in
             self.pickImageFromGallery()
         }
+        SwiftEventBus.onMainThread(self, name: "click") { _ in
+            self.clickImageFromCamera()
+        }
 
         SwiftEventBus.onMainThread(self, name: "iPadPickerButtonTapped") { sender in
             if DeviceInfo.isIPad() {
@@ -270,6 +273,14 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             present(imagePicker, animated: true, completion: nil)
         }
     }
+    func clickImageFromCamera() {
+        let cameraView = UBCameraViewController()
+        cameraView.delegate = self
+       // present(cameraView, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: cameraView)
+        present(navigationController, animated: true, completion: nil)
+        
+    }
 
     @objc
     static func openUsabilla() {
@@ -361,6 +372,13 @@ extension PageViewController: UITableViewDelegate {
 extension PageViewController: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
+        self.dismiss(animated: true, completion: nil)
+        SwiftEventBus.postToMainThread("imagePicked", sender: image)
+    }
+}
+
+extension PageViewController: CapturePhotoProtocol {
+    func pickPhotoCapturedFromCamera(image: UIImage) {
         self.dismiss(animated: true, completion: nil)
         SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
