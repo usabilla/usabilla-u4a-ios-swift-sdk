@@ -42,3 +42,6 @@
 "usa_one_option_possible" = "One option possible";
 "usa_selected" = "selected";
 "usa_unselected" = "unselected";
+
+//camera button
+"usa_camera_navbar_left_button" = "Cancel";

@@ -144,9 +144,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             self.reloadCellInTableAfterEvent()
         }
 
-        SwiftEventBus.onMainThread(self, name: "pick") { _ in
-            self.pickImageFromGallery()
-        }
         SwiftEventBus.onMainThread(self, name: "click") { _ in
             self.clickImageFromCamera()
         }
@@ -262,24 +259,11 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }
 
     //Image handling stuff
-    func pickImageFromGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            let imagePicker = UIImagePickerController()
-
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-            imagePicker.allowsEditing = false
-            imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
-            present(imagePicker, animated: true, completion: nil)
-        }
-    }
     func clickImageFromCamera() {
         let cameraView = UBCameraViewController()
         cameraView.delegate = self
-       // present(cameraView, animated: true, completion: nil)
-        let navigationController = UINavigationController(rootViewController: cameraView)
+        let navigationController = UBNavigationController(rootViewController: cameraView)
         present(navigationController, animated: true, completion: nil)
-        
     }
 
     @objc
@@ -366,14 +350,6 @@ extension PageViewController: UITableViewDelegate {
         guard indexPath.section == 0, let cell = viewModel.viewModelForCellAt(index: indexPath.row), !cell.shouldAppear else { return cellHeights[indexPath] ?? UITableViewAutomaticDimension
         }
         return 0
-    }
-}
-
-extension PageViewController: UIImagePickerControllerDelegate {
-
-    func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-        self.dismiss(animated: true, completion: nil)
-        SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
 }
 

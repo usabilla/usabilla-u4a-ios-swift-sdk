@@ -66,7 +66,6 @@ struct UBDimensions {
         static let animateDurationDismiss: TimeInterval = 0.8
         static let widthConstraintWRTMargin: CGFloat = 2
     }
-    
     // UBBannerDisplay
     struct BannerDisplay {
         static let topBannerMargin: CGFloat = 10
@@ -79,7 +78,6 @@ struct UBDimensions {
         static let leftEdgeBtnContinue: CGFloat = 16
         static let bottomEdgeBtnContinue: CGFloat = 0
         static let rightEdgeBtnContinue: CGFloat = 16
-    
         static let heightAnchorHorizontalLine: CGFloat = 1.0
         static let shadowRadius: CGFloat = 4
         static let shadowOpacity: Float = 0.6
@@ -100,6 +98,18 @@ struct UBDimensions {
         static let animateDelay: TimeInterval = 0.0
         static let springDamping: CGFloat = 0.60
         static let springVelocity: CGFloat = 1
+    }
+    // UBCameraViewController
+    struct UBCameraView {
+        static let bottomMarginBtnCamera: CGFloat = -29
+        static let bottomMarginPreviewCamera: CGFloat = -29
+        static let cameraBtnImageName: String = "camerabtn"
+        static let bottomMarginBtnImageLibrary: CGFloat = -38
+        static let leftMarginBtnImageLibrary: CGFloat = 16
+        static let widthBtnImageLibrary: CGFloat = 48
+        static let heightBtnImageLibrary: CGFloat = 48
+        static let leftBarBtnText: String = "usa_camera_navbar_left_button"
+        static let cornerRadiusBtnImageLibrary: CGFloat = 1
     }
 }
 

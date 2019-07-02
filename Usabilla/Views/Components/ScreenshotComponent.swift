@@ -66,21 +66,18 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
         editIcon = UIButton(type: UIButtonType.custom)
         editIcon.translatesAutoresizingMaskIntoConstraints = false
-        //editIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
         editIcon.addTarget(self, action: #selector(ScreenshotComponent.clickImage), for: .touchUpInside)
         editIcon.isAccessibilityElement = true
         editIcon.accessibilityLabel = "\(LocalisationHandler.getLocalisedStringForKey("usa_edit_screenshot"))"
 
         addIcon = UIButton(type: UIButtonType.custom)
         addIcon.translatesAutoresizingMaskIntoConstraints = false
-        //addIcon.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
         addIcon.addTarget(self, action: #selector(ScreenshotComponent.clickImage), for: .touchUpInside)
         addIcon.isAccessibilityElement = false
 
         addScreenshotLabel = UIButton(type: UIButtonType.system)
         addScreenshotLabel.translatesAutoresizingMaskIntoConstraints = false
         addScreenshotLabel.contentHorizontalAlignment = .left
-        //addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.pickImage), for: .touchUpInside)
         addScreenshotLabel.addTarget(self, action: #selector(ScreenshotComponent.clickImage), for: .touchUpInside)
         addScreenshotLabel.setTitle(viewModel.screenshotPlaceHolder, for: .normal)
 
@@ -208,10 +205,6 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
     @objc func deleteScreenshot() {
         setImage(image: nil)
-    }
-
-    @objc func pickImage() {
-        SwiftEventBus.post("pick", sender: nil)
     }
     
     @objc func clickImage() {

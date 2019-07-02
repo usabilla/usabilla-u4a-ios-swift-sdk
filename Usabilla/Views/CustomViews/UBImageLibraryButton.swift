@@ -24,7 +24,7 @@ protocol UBImageLibraryButtonProtocol: class {
 /// If the delegate is set it will respond to "touchUpInside" events
 
 class UBImageLibraryButton: UIView {
-    
+
     weak var delegate: UBImageLibraryButtonProtocol?
 
     fileprivate lazy var button: UIButton = {
@@ -59,9 +59,7 @@ class UBImageLibraryButton: UIView {
     }
 
     fileprivate func configureView () {
-        
         self.backgroundColor = .clear
-        
         image.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         image.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
         image.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
@@ -77,7 +75,7 @@ class UBImageLibraryButton: UIView {
     fileprivate func buttonTouchUpInside() {
         delegate?.UBtouchUpInside()
     }
-    
+
     /// Asks for acces to the photolibrary. If granted, fetches the newest photo from the camera roll
     /// and installs it in the button view
     fileprivate func testAndGetLibraryAccess() {
@@ -90,11 +88,13 @@ class UBImageLibraryButton: UIView {
         PHPhotoLibrary.requestAuthorization({ (newStatus) in
             if newStatus == PHAuthorizationStatus.authorized {
                 PHPhotoLibrary.shared().register(self)
-                self.queryForCameraRollPhoto(size: self.image.frame.size)
+                DispatchQueue.main.async {
+                    self.queryForCameraRollPhoto(size: self.image.frame.size)
+                }
             }
         })
     }
-    
+
     /// Retrieves the latest image from the Camera Roll,
     /// once found, it is set on the image of this class
     /// - Parameter size: size for the image, defaults to CGSize.zero
@@ -112,7 +112,9 @@ class UBImageLibraryButton: UIView {
             let options = PHImageRequestOptions()
             imgManager.requestImage(for: last, targetSize: calculatedSize, contentMode: PHImageContentMode.aspectFill, options: options, resultHandler: { (image, _) in
                 if let image = image {
-                    self.image.image = image
+                    DispatchQueue.main.async {
+                         self.image.image = image
+                    }
                 }
             })
         }
@@ -121,7 +123,9 @@ class UBImageLibraryButton: UIView {
 
 extension UBImageLibraryButton: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
-        queryForCameraRollPhoto(size: image.frame.size)
+        DispatchQueue.main.async {
+            self.queryForCameraRollPhoto(size: self.image.frame.size)
+        }
     }
 
 }
