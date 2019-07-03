@@ -166,7 +166,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             UIView.setAnimationsEnabled(true)
             self.tableView.setContentOffset(lastScrollOffset, animated: false)
         }
-
     }
 
     func showPickerViewForiPad(pickerComponent: PickerComponent) {
@@ -260,10 +259,9 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
     //Image handling stuff
     func clickImageFromCamera() {
-        let cameraView = UBCameraViewController()
-        cameraView.delegate = self
-        let navigationController = UBNavigationController(rootViewController: cameraView)
-        present(navigationController, animated: true, completion: nil)
+        let controller = UBEditImageMainViewController(theme: viewModel.theme)
+        navigationController?.isNavigationBarHidden = true
+        show(controller, sender: self)
     }
 
     @objc
@@ -350,12 +348,5 @@ extension PageViewController: UITableViewDelegate {
         guard indexPath.section == 0, let cell = viewModel.viewModelForCellAt(index: indexPath.row), !cell.shouldAppear else { return cellHeights[indexPath] ?? UITableViewAutomaticDimension
         }
         return 0
-    }
-}
-
-extension PageViewController: CapturePhotoProtocol {
-    func pickPhotoCapturedFromCamera(image: UIImage) {
-        self.dismiss(animated: true, completion: nil)
-        SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
 }

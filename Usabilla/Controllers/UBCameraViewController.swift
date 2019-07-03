@@ -16,6 +16,8 @@ import Photos
  */
 protocol CapturePhotoProtocol: class {
     func pickPhotoCapturedFromCamera(image: UIImage)
+    func cameraCanceled()
+    func librarySelected()
 }
 /*
  UBCameraViewController shows the imagepicker view
@@ -97,6 +99,11 @@ class UBCameraViewController: UIViewController {
         return .lightContent
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+            setupNavigationBar()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
@@ -115,7 +122,6 @@ class UBCameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setupNavigationBar()
         setupView()
     }
 
@@ -162,7 +168,10 @@ class UBCameraViewController: UIViewController {
 
     // setup and starting camera session
     private func setupCaptureSession() {
-        guard captureSession.inputs.isEmpty else { return }
+        guard captureSession.inputs.isEmpty else {
+                captureSession.startRunning()
+                return
+        }
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
             else {
                 print("Unable to access back camera!")
@@ -177,7 +186,7 @@ class UBCameraViewController: UIViewController {
             preview.videoGravity = .resizeAspectFill
             self.previewLayer = preview
             let rootLayer: CALayer = self.previewView.layer
-            rootLayer.masksToBounds=true
+            rootLayer.masksToBounds = true
             rootLayer.addSublayer(self.previewLayer)
             setImageOutput(session: captureSession)
             captureSession.startRunning()
@@ -221,11 +230,11 @@ class UBCameraViewController: UIViewController {
     }
 
     @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+        delegate?.cameraCanceled()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        super.viewDidDisappear(animated)
         self.stopCaptureSession()
     }
 
@@ -281,22 +290,8 @@ class UBCameraViewController: UIViewController {
 
     private func saveImage(imageData: Data) {
         guard let image = UIImage(data: imageData) else { return }
-        try? PHPhotoLibrary.shared().performChangesAndWait {
-            PHAssetChangeRequest.creationRequestForAsset(from: image)
-            self.stopCaptureSession()
-            self.delegate?.pickPhotoCapturedFromCamera(image: image)
-        }
-    }
-
-    private func pickImageFromGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-            imagePicker.allowsEditing = false
-            imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
-            present(imagePicker, animated: true, completion: nil)
-        }
+        self.stopCaptureSession()
+        self.delegate?.pickPhotoCapturedFromCamera(image: image)
     }
 
     deinit {
@@ -338,22 +333,8 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
 }
 
 extension UBCameraViewController: UBImageLibraryButtonProtocol {
-
     func UBtouchUpInside() {
-        self.pickImageFromGallery()
-    }
-
-}
-
-extension UBCameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.captureSession.startRunning()
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
-        self.delegate?.pickPhotoCapturedFromCamera(image: image)
+        self.delegate?.librarySelected()
     }
 
 }

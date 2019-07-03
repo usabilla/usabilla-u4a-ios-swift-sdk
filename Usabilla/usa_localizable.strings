@@ -45,3 +45,9 @@
 
 //camera button
 "usa_camera_navbar_left_button" = "Cancel";
+
+// Screenshot anotation
+"usa_retake_button_title" = "Retake";
+"usa_back_button_title" = "Back";
+"usa_add_button_title" = "Add";
+"usa_done_button_title" = "Done";

@@ -111,6 +111,24 @@ struct UBDimensions {
         static let leftBarBtnText: String = "usa_camera_navbar_left_button"
         static let cornerRadiusBtnImageLibrary: CGFloat = 1
     }
+    
+    struct UBEditImageMainView {
+        static let imageLeftSideMargin: CGFloat = 8
+        static let imageRightSideMargin: CGFloat = -8
+        static let imageTopMargin: CGFloat = 8
+        static let imageBottomMargin: CGFloat = -8
+        
+        static let buttonHeight: CGFloat = 21
+        static let buttonWidth: CGFloat = 60
+        
+        static let leftButtonLeftMargin: CGFloat = 16
+        static let leftButtonTopMargin: CGFloat = 16
+        
+        static let rightButtonRightMargin: CGFloat = -16
+        static let rightButtonTopMargin: CGFloat = 16
+    }
+    
+
 }
 
 enum UBAlpha: CGFloat {
