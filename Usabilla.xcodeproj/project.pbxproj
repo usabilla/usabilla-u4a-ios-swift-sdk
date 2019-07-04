@@ -461,6 +461,7 @@
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 		F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
 		F2D55E9122CA0C4C000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
+		F2E542E622CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -759,6 +760,7 @@
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCameraViewController.swift; sourceTree = "<group>"; };
+		F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBCameraViewControllerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1196,6 +1198,7 @@
 				43127EC11E71BBCC00E3011A /* PassiveFormControllerTest.swift */,
 				04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */,
 				45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */,
+				F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1898,6 +1901,7 @@
 				431718A21F2A15F500BF612E /* RequestBuilderTest.swift in Sources */,
 				040CDA611F2741750005F986 /* PickerFieldModelTests.swift in Sources */,
 				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */,
+				F2E542E622CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift in Sources */,
 				432BDE3E1E8BB906008100C7 /* MoodComponentViewModelTests.swift in Sources */,
 				04A0C1C81E8BD59500A483AC /* EventTests.swift in Sources */,
 				43B7083A1E7FD8F300F05A40 /* BaseImageComponentViewModelTests.swift in Sources */,
