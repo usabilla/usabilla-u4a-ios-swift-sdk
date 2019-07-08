@@ -407,6 +407,7 @@
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B422C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
+		45B60FC522D70F6B00711E64 /* ClientModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B60FC322D70F5E00711E64 /* ClientModelTest.swift */; };
 		45B8263122CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
 		45B8263222CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
@@ -459,9 +460,11 @@
 		C5EF69DC1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EF69DB1FDAA1B8000EBF99 /* CheckBoxComponentViewModelTests.swift */; };
 		C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */; };
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
+		F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
+		F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
 		F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
-		F2D55E9122CA0C4C000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
 		F2E542E622CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */; };
+		F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -721,6 +724,7 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
+		45B60FC322D70F5E00711E64 /* ClientModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModelTest.swift; sourceTree = "<group>"; };
 		45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageMainViewController.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatus.swift; sourceTree = "<group>"; };
@@ -761,6 +765,7 @@
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCameraViewController.swift; sourceTree = "<group>"; };
 		F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBCameraViewControllerTest.swift; sourceTree = "<group>"; };
+		F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1093,6 +1098,7 @@
 				436264131E92867A00A0533C /* UBEndPageModel.swift */,
 				04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */,
 				041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */,
+				F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1260,6 +1266,7 @@
 				433D25291F79947400B1D819 /* NPSFieldModelTests.swift */,
 				043461BC1F9798B5002604F7 /* TargetingOptionsModelTests.swift */,
 				434B7E80225799B500088CB8 /* MaskModelTests.swift */,
+				45B60FC322D70F5E00711E64 /* ClientModelTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1775,6 +1782,7 @@
 				4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */,
 				43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */,
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
+				F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
 				04F54E571CD76789002F501E /* PageViewController.swift in Sources */,
@@ -1914,6 +1922,7 @@
 				04DC25C41E8BB393002962A3 /* ConcreteRuleTests.swift in Sources */,
 				43BFD4291EFBE6B400AD47AE /* UBToastPageViewModelTests.swift in Sources */,
 				4304B0441E3A09AE007C8796 /* SubmissionManagerTests.swift in Sources */,
+				45B60FC522D70F6B00711E64 /* ClientModelTest.swift in Sources */,
 				04C6284B1F713DA400066A4D /* UBFeedbackIDDictionaryDAOTests.swift in Sources */,
 				C5EF69DA1FDA9503000EBF99 /* RadioComponentViewModelTests.swift in Sources */,
 				43A838DA1E2E0C7B00110916 /* UsabillaThemeTests.swift in Sources */,
@@ -1986,7 +1995,6 @@
 				43B04F4E1F1F7EEF0032F057 /* SliderComponent.swift in Sources */,
 				43B04F4F1F1F7EEF0032F057 /* FormStore.swift in Sources */,
 				43B04F501F1F7EEF0032F057 /* HTTPClientProtocol.swift in Sources */,
-				F2D55E9122CA0C4C000EEAB5 /* UBCameraViewController.swift in Sources */,
 				43B04F511F1F7EEF0032F057 /* RootCellView.swift in Sources */,
 				43B04F521F1F7EEF0032F057 /* UBFeedbackRequestDAO.swift in Sources */,
 				43B04F531F1F7EEF0032F057 /* SequenceRule.swift in Sources */,
@@ -2038,6 +2046,7 @@
 				43B04F7B1F1F7EEF0032F057 /* UBCampaignDAO.swift in Sources */,
 				43B04F7C1F1F7EEF0032F057 /* BaseStringComponentViewModel.swift in Sources */,
 				C50F2C3D2084EEFF00D77F37 /* UILabel.swift in Sources */,
+				F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */,
 				435D06F71FA8A11600D5A2F4 /* TargetingOptionsModel.swift in Sources */,
 				43B04F7D1F1F7EEF0032F057 /* HeaderComponent.swift in Sources */,
 				43B04F7E1F1F7EEF0032F057 /* BaseEditableStringComponentViewModel.swift in Sources */,
@@ -2101,6 +2110,7 @@
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
 				434B7E7E225783BF00088CB8 /* MaskModel.swift in Sources */,
 				43B04FB51F1F7EEF0032F057 /* MoodFieldModel.swift in Sources */,
+				F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */,
 				4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */,
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
@@ -2331,6 +2341,7 @@
 		04F54DE01CD75A3F002F501E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = "";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -2353,6 +2364,7 @@
 		04F54DE11CD75A3F002F501E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = "";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -2511,6 +2523,7 @@
 		439AAD1F1FAB702E00DF6D9E /* Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = "";
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;

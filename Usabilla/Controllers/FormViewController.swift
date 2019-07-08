@@ -130,6 +130,7 @@ class FormViewController: UIViewController {
 
         // Add PageController
         pageViewController = PageViewController(viewModel: viewModel.currentPageViewModel)
+        pageViewController.client = viewModel.model.client
         addChildViewController(pageViewController)
         containerView.addSubview(pageViewController.view)
         pageViewController.view.frame = containerView.bounds

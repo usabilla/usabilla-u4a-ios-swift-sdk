@@ -205,6 +205,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
 
     @objc func deleteScreenshot() {
         setImage(image: nil)
+        SwiftEventBus.postToMainThread("updateClientModel", sender: nil)
     }
     
     @objc func clickImage() {

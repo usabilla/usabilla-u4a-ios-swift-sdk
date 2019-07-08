@@ -19,7 +19,8 @@ class FormStore {
     // Entry to laod a form from Network or try getting it from Cache
     func loadForm(id: String, screenshot: UIImage?, theme: UsabillaTheme, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, reject in
-            self.formService.getForm(withID: id, screenShot: screenshot, maskModel: maskModel).then { form in
+            let client = ClientModel()
+            self.formService.getForm(withID: id, screenShot: screenshot, maskModel: maskModel, client: client).then { form in
                 UBFormDAO.shared.create(form)
                 form.theme = theme
                 form.updateTheme()

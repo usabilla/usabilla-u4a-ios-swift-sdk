@@ -67,7 +67,7 @@ class FormServiceTests: QuickSpec {
                         let response = HTTPClientResponse(data: data, headers: nil, error: nil, success: true, isChanged: true)
                         UBHTTPMock.onURLRequest[RequestBuilder.requestGetPassiveForm(withID: id)!.url!.absoluteString] = response
 
-                        let promise = self.formService.getForm(withID: id, screenShot: nil, maskModel: nil)
+                        let promise = self.formService.getForm(withID: id, screenShot: nil, maskModel: nil, client: ClientModel())
                         promise.then { _ in
                             done()
                         }.catch { _ in
@@ -80,7 +80,7 @@ class FormServiceTests: QuickSpec {
                     let response404 = HTTPClientResponse(data: nil, headers: nil, error: NSError.init(domain: "404", code: 404, userInfo: nil), success: false, isChanged: true)
                     UBHTTPMock.onURLRequest[RequestBuilder.requestGetPassiveForm(withID: id)!.url!.absoluteString] = response404
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withID: id, screenShot: nil, maskModel: nil)
+                        let promise = self.formService.getForm(withID: id, screenShot: nil, maskModel: nil, client: ClientModel())
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { _ in
@@ -90,7 +90,7 @@ class FormServiceTests: QuickSpec {
                 }
                 it("should fail when formid param contains {") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withID: "583c0d8ea935028{022c145f4", screenShot: nil, maskModel: nil)
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028{022c145f4", screenShot: nil, maskModel: nil, client: ClientModel())
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { error in
@@ -101,7 +101,7 @@ class FormServiceTests: QuickSpec {
                 }
                 it("should fail when formid param contains \\") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withID: "583c0d8ea935028\\022c145f4", screenShot: nil, maskModel: nil)
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028\\022c145f4", screenShot: nil, maskModel: nil, client: ClientModel())
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { error in
@@ -112,7 +112,7 @@ class FormServiceTests: QuickSpec {
                 }
                 it("should fail when formid param contains }") {
                     waitUntil(timeout: 2.0) { done in
-                        let promise = self.formService.getForm(withID: "583c0d8ea935028022c}145f4", screenShot: nil, maskModel: nil)
+                        let promise = self.formService.getForm(withID: "583c0d8ea935028022c}145f4", screenShot: nil, maskModel: nil, client: ClientModel())
                         promise.then { _ in
                             fail("should not go here")
                         }.catch { error in
@@ -125,7 +125,7 @@ class FormServiceTests: QuickSpec {
                     let validFormData = try! UBMock.json("InvalidFormJsonNoPages")?.rawData()
                     UBHTTPMock.response = HTTPClientResponse(data: validFormData, headers: nil, error: nil, success: true, isChanged: true)
                     waitUntil(timeout: 2.0) { done in
-                        FormService(httpClient: UBHTTPMock.self).getForm(withID: "a", screenShot: nil, maskModel: nil).then { _ in
+                        FormService(httpClient: UBHTTPMock.self).getForm(withID: "a", screenShot: nil, maskModel: nil, client: ClientModel()).then { _ in
                             fail("Should not go here")
                         }.catch { error in
                             expect((error as! NSError).domain).to(equal("form model is not valid"))

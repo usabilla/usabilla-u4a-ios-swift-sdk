@@ -12,6 +12,7 @@ let footerHeight: CGFloat = 90.0
 
 class PageViewController: UIViewController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate {
 
+    var client: ClientModel!
     var viewModel: PageViewModel!
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
     private var constraintHeaderLeft: NSLayoutConstraint?
@@ -62,9 +63,18 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         return false
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        SwiftEventBus.onMainThread(self, name: "updateClientModel") { result in
+            if result?.object == nil {
+                let imageTypeDict = ["image_type": nil as Any?]
+                self.client.addBehaviour("screenshot_annotations", imageTypeDict)
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpView()
         customizeView()
 
@@ -259,7 +269,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
     //Image handling stuff
     func clickImageFromCamera() {
-        let controller = UBEditImageMainViewController(theme: viewModel.theme)
+        let controller = UBEditImageMainViewController(theme: viewModel.theme, client: self.client)
         navigationController?.isNavigationBarHidden = true
         show(controller, sender: self)
     }

@@ -113,6 +113,7 @@ class SubmissionManager {
             }
         }
 
+        contentDictionary["client"] = formModel.client?.toJson()
         contentDictionary["custom_variables"] = userContext
 
         var payload: [String: Any] = [:]

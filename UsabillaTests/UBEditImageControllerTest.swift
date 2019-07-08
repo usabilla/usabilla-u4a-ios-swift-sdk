@@ -26,9 +26,9 @@ class UBEditImageControllerTest: QuickSpec {
                 let path = Bundle(for: UBEditImageControllerTest.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
-                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil, client: ClientModel())
                 let testImage = UIImage(named: "a") ?? UIImage()
-                viewController = UBEditImageMainViewController( theme: formModel!.theme)
+                viewController = UBEditImageMainViewController( theme: formModel!.theme, client: formModel.client!)
                 viewController.addBaseImage(image: testImage, source: .camera)
                 
                 // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
@@ -67,9 +67,9 @@ class UBEditImageControllerTest: QuickSpec {
                 let path = Bundle(for: UBEditImageControllerTest.self).path(forResource: "test", ofType: "json")!
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
-                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil)
+                formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil, client: ClientModel())
                 let testImage = UIImage(named: "a") ?? UIImage()
-                viewController = UBEditImageMainViewController(theme: formModel!.theme)
+                viewController = UBEditImageMainViewController( theme: formModel!.theme, client: formModel.client!)
                 viewController.addBaseImage(image: testImage, source: .library)
                 
                 // Method #1: Access the view to trigger BananaViewController.viewDidLoad().

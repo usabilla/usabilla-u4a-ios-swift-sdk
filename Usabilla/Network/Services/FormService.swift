@@ -13,7 +13,7 @@ protocol FormServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
-    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?) -> Promise<FormModel>
+    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?, client: ClientModel) -> Promise<FormModel>
     func submitForm(payload: [String: Any], screenshot: String?) -> Promise<Bool>
 }
 
@@ -27,7 +27,7 @@ class FormService: FormServiceProtocol {
         self.httpClient = httpClient
     }
 
-    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?) -> Promise<FormModel> {
+    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?, client: ClientModel) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
             guard let request = request else {
@@ -40,7 +40,7 @@ class FormService: FormServiceProtocol {
                     guard let formModel = FormModel(json: JSON(json),
                                                     id: id,
                                                     screenshot: screenShot,
-                                                    maskModel: maskModel) else {
+                                                    maskModel: maskModel, client: client) else {
                                                         reject(NSError(domain: "form model is not valid", code: 0, userInfo: nil))
                                                         return
                     }

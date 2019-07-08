@@ -9,16 +9,17 @@
 import Foundation
 import UIKit
 import Photos
-enum UBimageSource {
-    case camera
-    case library
-    case unknown
+enum UBimageSource: String {
+    case camera = "camera"
+    case library = "library"
+    case unknown = "default"
 }
 
 class UBEditImageMainViewController: UIViewController {
 
     var imageSource: UBimageSource = .unknown
     private var theme: UsabillaTheme?
+    var client: ClientModel
     lazy var cameraViewController: UBCameraViewController = UBCameraViewController()
     lazy var containerView: UIImageView = {
         let aView = UIImageView()
@@ -46,9 +47,18 @@ class UBEditImageMainViewController: UIViewController {
         return button
     }()
 
+    init(client: ClientModel) {
+        self.client = client
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Lifecylce methods
-    convenience init(theme: UsabillaTheme ) {
-        self.init()
+    convenience init(theme: UsabillaTheme, client: ClientModel ) {
+        self.init(client: client)
         self.theme = theme
     }
 
@@ -176,6 +186,8 @@ class UBEditImageMainViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationController?.popViewController(animated: true)
         if imageSource != .unknown {
+            let imageType = ["image_type": imageSource.rawValue]
+            client.addBehaviour("screenshot_annotations", imageType)
             SwiftEventBus.postToMainThread("imagePicked", sender: containerView.image)
         }
     }

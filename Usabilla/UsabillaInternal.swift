@@ -109,14 +109,14 @@ class UsabillaInternal {
         }
     }
     #if INTERNAL_USE || DEBUG
-    
+
     class func formViewController(forFormData data: Data, screenshot: UIImage? = nil) -> UINavigationController? {
         let json = JSON.init(data: data)
         // swiftlint:disable:next force_unwrapping
-        let form = FormModel(json: json, id: "", screenshot: screenshot, maskModel: UsabillaInternal.maskModel)!
+        let form = FormModel(json: json, id: "", screenshot: screenshot, maskModel: UsabillaInternal.maskModel, client: ClientModel())!
         return viewForForm(form: form)
     }
-    
+
     class func displayCampaignForm(withID formID: String, completion: ((UBCampaignFormDisplayError?) -> Void)? = nil) {
         guard let campaignManager = campaignManager else {
             completion?(.sdkNotInitialized)

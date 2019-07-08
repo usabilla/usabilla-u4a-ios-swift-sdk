@@ -71,9 +71,9 @@ class UBFormServiceMock: FormServiceProtocol {
     var requestBuilder: RequestBuilder.Type = RequestBuilder.self
     var httpClient: HTTPClientProtocol.Type = HTTPClient.self
 
-    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?) -> Promise<FormModel> {
+    func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?, client: ClientModel) -> Promise<FormModel> {
         return Promise { fulfill, _ in
-            let formModel = FormModel(json: "", id: "a", screenshot: nil, maskModel: maskModel)
+            let formModel = FormModel(json: "", id: "a", screenshot: nil, maskModel: maskModel, client: client)
             fulfill(formModel!)
         }
     }

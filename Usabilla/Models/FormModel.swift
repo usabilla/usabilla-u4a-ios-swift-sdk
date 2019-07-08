@@ -20,8 +20,9 @@ class FormModel: NSObject, NSCoding {
     let showProgressBar: Bool
     var theme: UsabillaTheme
     let copyModel: CopyModel
+    var client: ClientModel?
 
-    init(identifier: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel, maskModel: MaskModel?) {
+    init(identifier: String, hasScreenshot: Bool, version: Int, pages: [PageModel], jsonString: JSON, redirectToAppStore: Bool, showProgressBar: Bool?, copyModel: CopyModel, maskModel: MaskModel?, client: ClientModel? = nil) {
         self.copyModel = copyModel
         self.hasScreenshot = hasScreenshot
         self.version = version
@@ -32,9 +33,10 @@ class FormModel: NSObject, NSCoding {
         self.showProgressBar = showProgressBar ?? true
         self.redirectToAppStore = redirectToAppStore
         _ = pages.map { $0.copy = copyModel }
+        self.client = client
     }
 
-    init?(json: JSON, id: String, screenshot: UIImage?, maskModel: MaskModel?) {
+    init?(json: JSON, id: String, screenshot: UIImage?, maskModel: MaskModel?,client: ClientModel? = nil) {
         let jsonHolder = JSONFormParser.getStructureHolder(inJSON: json)
         guard let form = jsonHolder["form"].dictionary,
             let formPages = form["pages"] else {
@@ -72,9 +74,16 @@ class FormModel: NSObject, NSCoding {
         screenshotJson["title"] = copyModel.screenshotTitle
         screenshotJson["required"] = false
 
+        self.client = client
+
         if let firstPageModel = newPages.first, hasScreenshot {
             let screenshotModel = ScreenshotModel(json: JSON(screenshotJson), screenShot: screenshot)
             firstPageModel.fields.append(screenshotModel)
+            var imageTypeDict = ["image_type": nil as Any?]
+            if screenshot != nil {
+             imageTypeDict = ["image_type": "default"]
+            }
+            self.client?.addBehaviour("screenshot_annotations", imageTypeDict)
         }
 
         self.pages = newPages
