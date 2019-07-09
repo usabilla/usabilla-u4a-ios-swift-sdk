@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 class UBEndPageViewModel {
 
     private var model: UBEndPageModel
@@ -16,21 +16,57 @@ class UBEndPageViewModel {
     var formRating: Int = 0
 
     var thankyouText: String?
+    var thankyouFont: UIFont?
+    var thankyouColor: UIColor?
+
     var headerText: String?
+    var headerFont: UIFont?
+    var headerColor: UIColor?
+
+    fileprivate func setHeaderText(_ field: BaseFieldModel) {
+        if  let aField = field as? HeaderFieldModel {
+            headerText = aField.fieldValue
+            headerFont = theme.fonts.boldFont
+            headerColor = theme.colors.title
+        } else if let aField = field as? ParagraphFieldModel {
+            headerText = aField.fieldValue
+            headerFont = theme.fonts.font
+            headerColor = theme.colors.text
+        }
+    }
+
+    fileprivate func setThankyouText(_ field: BaseFieldModel) {
+        if  let aField = field as? HeaderFieldModel {
+            thankyouText = aField.fieldValue
+            thankyouFont = theme.fonts.boldFont
+            thankyouColor = theme.colors.title
+        } else if let aField = field as? ParagraphFieldModel {
+            thankyouText = aField.fieldValue
+            thankyouFont = theme.fonts.font
+            thankyouColor = theme.colors.text
+        }
+    }
 
     init(model: UBEndPageModel, theme: UsabillaTheme) {
         self.model = model
         self.theme = theme
-        if model.fields.count > 0 {
-            if let header: HeaderFieldModel = model.fields[0] as? HeaderFieldModel {
-                headerText = header.fieldValue
-            }
+        /*
+            Endpage can hold 2 types of elements, Header and paragraph
+            The first object shown is HeaderText, the second is ThankyouText
+            Set the to properties for both depeding on type in the formmodel
+         */
+        
+        // If only one field we use the ThankYouText, as it could be a campaing, but format it right
+        // the toast, takes no formating properties
+        if model.fields.count == 1 {
+            setThankyouText(model.fields[0])
+            return
         }
 
+        // we only have the abilty to show 2 fields on the endpage, so discard fields more than 2.....
         if model.fields.count > 1 {
-            if let thank: StringFieldModel = model.fields[1] as? StringFieldModel {
-                thankyouText = thank.fieldValue
-            }
+            setHeaderText(model.fields[0])
+            setThankyouText(model.fields[1])
         }
     }
 }

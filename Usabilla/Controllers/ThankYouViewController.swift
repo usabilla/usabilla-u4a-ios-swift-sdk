@@ -49,7 +49,12 @@ class ThankYouViewController: UIViewController {
         view.addSubview(messageLabel)
 
         titleLabel.text = viewModel.headerText
+        titleLabel.font = viewModel.headerFont
+        titleLabel.textColor = viewModel.headerColor
+
         messageLabel.text = viewModel.thankyouText
+        messageLabel.font = viewModel.thankyouFont
+        messageLabel.textColor = viewModel.thankyouColor
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
@@ -65,12 +70,6 @@ class ThankYouViewController: UIViewController {
     func customizeView() {
         if let configuration = viewModel?.theme {
             view.backgroundColor = configuration.colors.background
-            titleLabel.textColor = configuration.colors.title
-            titleLabel.font = configuration.fonts.boldFont
-
-            let font = configuration.fonts.font
-            messageLabel.textColor = configuration.colors.text
-            messageLabel.font = font
         }
     }
 
