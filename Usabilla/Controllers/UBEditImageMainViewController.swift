@@ -88,6 +88,7 @@ class UBEditImageMainViewController: UIViewController {
     }
 
     func presentCamera() {
+        cameraViewController.theme = theme
         cameraViewController.delegate = self
         DispatchQueue.main.async {
             let navController = UBNavigationController(rootViewController: self.cameraViewController)
@@ -176,12 +177,25 @@ class UBEditImageMainViewController: UIViewController {
         }
     }
 
+    private func checkPermissionAndSaveImage(_ imageData: UIImage) {
+        let status = PHPhotoLibrary.authorizationStatus()
+        if status == .authorized {
+            UIImageWriteToSavedPhotosAlbum(imageData, nil, nil, nil)
+        } else if status == .notDetermined {
+            PHPhotoLibrary.requestAuthorization { reqStatus in
+                if reqStatus == .authorized {
+                    UIImageWriteToSavedPhotosAlbum(imageData, nil, nil, nil)
+                }
+            }
+        }
+    }
+
     /// if the add button is pressed, we close the view, (expects to be inside a navigationcontroller)
     /// the submit the image throug the eventbus
     @objc
     fileprivate func addButtonTouchUpInside() {
         if imageSource == .camera, let image = self.containerView.image {
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            checkPermissionAndSaveImage(image)
         }
         navigationController?.isNavigationBarHidden = false
         navigationController?.popViewController(animated: true)

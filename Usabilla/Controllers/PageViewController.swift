@@ -269,7 +269,10 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
     //Image handling stuff
     func clickImageFromCamera() {
-        let controller = UBEditImageMainViewController(theme: viewModel.theme, client: self.client)
+        if client == nil { // if network is lost between form-presentastion and click on camera the clientModel is not properly init
+            client = ClientModel()
+        }
+        let controller = UBEditImageMainViewController(theme: viewModel.theme, client: client)
         navigationController?.isNavigationBarHidden = true
         show(controller, sender: self)
     }

@@ -10,7 +10,7 @@
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
-"usa_screenshot_placeholder" = "Add screenshot";
+"usa_screenshot_placeholder" = "Add a photo";
 
 // Accessiblity labels
 "usa_mood_select_a_rating_out_of" = "select a rating out of";
@@ -51,3 +51,6 @@
 "usa_back_button_title" = "Back";
 "usa_add_button_title" = "Add";
 "usa_done_button_title" = "Done";
+"usa_camera_error_title" = "No access to camera";
+"usa_camera_error_description" = "Allowing access lets you take photos to add to your feedback.";
+"usa_camera_settings_title" = "Allow access to camera";

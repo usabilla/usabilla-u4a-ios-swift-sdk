@@ -81,14 +81,23 @@ class UBImageLibraryButton: UIView {
     fileprivate func testAndGetLibraryAccess() {
         let status = PHPhotoLibrary.authorizationStatus()
         if status == PHAuthorizationStatus.authorized {
+            button.isEnabled = true
+            image.alpha = 1.0
             PHPhotoLibrary.shared().register(self)
             queryForCameraRollPhoto(size: image.frame.size)
             return
+        }
+        if status == PHAuthorizationStatus.denied {
+            PHPhotoLibrary.shared().unregisterChangeObserver(self)
+            button.isEnabled = false
+            image.alpha = 0
         }
         PHPhotoLibrary.requestAuthorization({ (newStatus) in
             if newStatus == PHAuthorizationStatus.authorized {
                 PHPhotoLibrary.shared().register(self)
                 DispatchQueue.main.async {
+                    self.button.isEnabled = true
+                    self.image.alpha = 1.0
                     self.queryForCameraRollPhoto(size: self.image.frame.size)
                 }
             }

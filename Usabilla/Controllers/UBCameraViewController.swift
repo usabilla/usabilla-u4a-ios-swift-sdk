@@ -26,7 +26,7 @@ protocol CapturePhotoProtocol: class {
 class UBCameraViewController: UIViewController {
 
     weak var delegate: CapturePhotoProtocol?
-
+    var theme: UsabillaTheme?
     // capture button default like ios camera
     fileprivate lazy var captureButton: UIButton = {
         let cameraImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBCameraView.cameraBtnImageName)
@@ -44,6 +44,42 @@ class UBCameraViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    /// Error view
+    fileprivate lazy var errorMessageView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.contentMode = .scaleAspectFill
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    fileprivate lazy var settingsButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_camera_settings_title"), for: UIControlState.normal)
+        button.layer.masksToBounds = true
+        button.setTitleColor(UIColor.init(rgba: "#5fc9f8"), for: UIControlState.normal)
+        button.addTarget(self, action: #selector(didPressSetting), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = NSTextAlignment.center
+        label.text = LocalisationHandler.getLocalisedStringForKey("usa_camera_error_title")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    let describtionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = NSTextAlignment.center
+        label.text = LocalisationHandler.getLocalisedStringForKey("usa_camera_error_description")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     /// imageLibraryButtonView contains preview image
     /// first captured image and on click opens image library (gallery)
     fileprivate lazy var imageLibraryButtonView: UBImageLibraryButton = {
@@ -108,14 +144,18 @@ class UBCameraViewController: UIViewController {
         super.viewDidAppear(animated)
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             setupCaptureSession()
-        } else {
+        } else if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined {
             AVCaptureDevice.requestAccess(for: .video, completionHandler: { (authorized) in
                 DispatchQueue.main.async {
                     if authorized {
                         self.setupCaptureSession()
+                        return
                     }
+                    self.addErrorView()
                 }
             })
+        } else if AVCaptureDevice.authorizationStatus(for: .video) == .denied {
+            self.addErrorView()
         }
     }
 
@@ -154,6 +194,40 @@ class UBCameraViewController: UIViewController {
             previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera)
             ])
+    }
+
+    func addErrorView() {
+        errorMessageView.addSubview(titleLabel)
+        errorMessageView.addSubview(describtionLabel)
+        errorMessageView.addSubview(settingsButton)
+
+        view.addSubview(errorMessageView)
+
+        if let theme = theme {
+            titleLabel.font = theme.fonts.boldFont
+        }
+        captureButton.isEnabled = false
+        addErrorViewConstraints()
+    }
+
+    func addErrorViewConstraints() {
+        errorMessageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        errorMessageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        errorMessageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+        titleLabel.topAnchor.constraint(equalTo: errorMessageView.topAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
+
+        describtionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        describtionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
+        describtionLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        describtionLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
+
+        settingsButton.topAnchor.constraint(equalTo: describtionLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        settingsButton.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
+        settingsButton.bottomAnchor.constraint(equalTo: errorMessageView.bottomAnchor, constant: -UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -204,8 +278,10 @@ class UBCameraViewController: UIViewController {
         } else {
             stillImageOutput = nil
         }
-        previewLayer.removeFromSuperlayer()
-        previewLayer = nil
+        if previewLayer != nil {
+            previewLayer.removeFromSuperlayer()
+            previewLayer = nil
+        }
     }
 
     private func stopCaptureSession() {
@@ -238,6 +314,16 @@ class UBCameraViewController: UIViewController {
         self.stopCaptureSession()
     }
 
+    @objc func didPressSetting(_ sender: Any) {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+
     @objc func didTakePhoto(_ sender: Any) {
         if #available(iOS 10.0, *) {
             takePictureWithPhotoOutput()
@@ -255,7 +341,7 @@ class UBCameraViewController: UIViewController {
                 if let sampleBuffer = imageDataSampleBuffer {
                     guard let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
                         else { return }
-                    self.checkPermissionAndSaveImage(imageData: imageData)
+                    self.saveImage(imageData: imageData)
                 }
             }
         }
@@ -271,21 +357,6 @@ class UBCameraViewController: UIViewController {
         }
         let settings = AVCapturePhotoSettings(format: outputFormat)
         photoOutput?.capturePhoto(with: settings, delegate: self)
-    }
-
-    private func checkPermissionAndSaveImage(imageData: Data) {
-        let status = PHPhotoLibrary.authorizationStatus()
-        if status == .authorized {
-            self.saveImage(imageData: imageData)
-        } else if status == .notDetermined {
-            PHPhotoLibrary.requestAuthorization { reqStatus in
-                if reqStatus == .authorized {
-                    self.saveImage(imageData: imageData)
-                } else {
-                }
-            }
-        } else {
-        }
     }
 
     private func saveImage(imageData: Data) {
@@ -316,7 +387,8 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
         } else if let buffer = photoSampleBuffer,
             let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer,
                 previewPhotoSampleBuffer: nil) {
-            self.checkPermissionAndSaveImage(imageData: imageData)
+            self.saveImage(imageData: imageData)
+            //self.checkPermissionAndSaveImage(imageData: imageData)
         }
     }
 
@@ -326,7 +398,8 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
             print("Error capture image: \(error.localizedDescription)")
         } else {
             guard let imageData = photo.fileDataRepresentation() else { return }
-            self.checkPermissionAndSaveImage(imageData: imageData)
+            self.saveImage(imageData: imageData)
+            //self.checkPermissionAndSaveImage(imageData: imageData)
         }
     }
 
