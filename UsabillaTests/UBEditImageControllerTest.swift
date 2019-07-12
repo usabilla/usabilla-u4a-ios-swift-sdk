@@ -27,11 +27,11 @@ class UBEditImageControllerTest: QuickSpec {
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
                 formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil, client: ClientModel())
-                let testImage = UIImage(named: "a") ?? UIImage()
-                viewController = UBEditImageMainViewController( theme: formModel!.theme, client: formModel.client!)
-                viewController.addBaseImage(image: testImage, source: .camera)
                 
-                // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
+                viewController = UBEditImageMainViewController( theme: formModel!.theme, client: formModel.client!)
+                
+                
+                // Method #1: Access the view to trigger viewDidLoad().
                 _ = viewController.view
                 
                 // Method #2: Triggers .viewDidLoad(), .viewWillAppear(), and .viewDidAppear() events.
@@ -40,17 +40,19 @@ class UBEditImageControllerTest: QuickSpec {
             }
             describe("viewDidLoad") {
                 
-                it("sets the buttons") {
+                it("sets the buttons correct when added from camera") {
+                    let testImage = UIImage(named: "a") ?? UIImage()
+                    viewController.addBaseImage(image: testImage, source: .camera)
                     expect(viewController.leftButton.titleLabel!.text).to(equal("Retake"))
                     expect(viewController.rightButton.titleLabel!.text).to(equal("Add"))
                 }
-                
-                it("sets the theme color") {
-                    expect(viewController.view.backgroundColor).to(equal(formModel.theme.colors.cardColor))
-                    expect(viewController.leftButton.titleLabel!.textColor).to(equal(formModel.theme.colors.text))
-                    expect(viewController.rightButton.titleLabel!.textColor).to(equal(formModel.theme.colors.text))
-                }
 
+                it("sets the buttons correct when added from library") {
+                    let testImage = UIImage(named: "a") ?? UIImage()
+                    viewController.addBaseImage(image: testImage, source: .library)
+                    expect(viewController.leftButton.titleLabel!.text).to(equal("Back"))
+                    expect(viewController.rightButton.titleLabel!.text).to(equal("Add"))
+                }
             }
             
             describe(".viewWillDisappear()") {
@@ -68,9 +70,7 @@ class UBEditImageControllerTest: QuickSpec {
                 let data = try? NSData(contentsOf: NSURL(fileURLWithPath: path) as URL, options: NSData.ReadingOptions.mappedIfSafe)
                 let jsonObj: JSON = JSON(data: (data as Data?)!)
                 formModel = FormModel(json: jsonObj, id: "a", screenshot: nil, maskModel: nil, client: ClientModel())
-                let testImage = UIImage(named: "a") ?? UIImage()
                 viewController = UBEditImageMainViewController( theme: formModel!.theme, client: formModel.client!)
-                viewController.addBaseImage(image: testImage, source: .library)
                 
                 // Method #1: Access the view to trigger BananaViewController.viewDidLoad().
                 _ = viewController.view
@@ -82,15 +82,13 @@ class UBEditImageControllerTest: QuickSpec {
             describe("viewDidLoad") {
                 
                 it("sets the  buttons") {
+                    let testImage = UIImage(named: "a") ?? UIImage()
+                    viewController.addBaseImage(image: testImage, source: .library)
+                    
                     expect(viewController.leftButton.titleLabel!.text).to(equal("Back"))
                     expect(viewController.rightButton.titleLabel!.text).to(equal("Add"))
                 }
                 
-                it("sets the theme color") {
-                    expect(viewController.view.backgroundColor).to(equal(formModel.theme.colors.cardColor))
-                    expect(viewController.leftButton.titleLabel!.textColor).to(equal(formModel.theme.colors.text))
-                    expect(viewController.rightButton.titleLabel!.textColor).to(equal(formModel.theme.colors.text))
-                }
             }
             
             describe(".viewWillDisappear()") {

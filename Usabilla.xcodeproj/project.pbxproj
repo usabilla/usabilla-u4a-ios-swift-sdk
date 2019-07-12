@@ -405,7 +405,6 @@
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
-		4552C1B422C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
 		45B60FC522D70F6B00711E64 /* ClientModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B60FC322D70F5E00711E64 /* ClientModelTest.swift */; };
 		45B8263122CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
@@ -1856,7 +1855,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4552C1B422C3748900814093 /* UBImageLibraryButton.swift in Sources */,
 				04DC25C31E8BB391002962A3 /* AndRuleTests.swift in Sources */,
 				4317189D1F2A15E900BF612E /* UBCampaignFeedbackRequestDAOTests.swift in Sources */,
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,

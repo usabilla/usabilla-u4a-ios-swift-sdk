@@ -638,6 +638,7 @@ class Icons: NSObject {
         UIGraphicsEndImageContext()
 
         LocalCache.image = image
+        LocalCache.lastColor = color
         return image
     }
 
