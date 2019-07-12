@@ -26,7 +26,7 @@ protocol UBImageLibraryButtonProtocol: class {
 class UBImageLibraryButton: UIView {
 
     weak var delegate: UBImageLibraryButtonProtocol?
-
+    private var libraryAccess = false
     fileprivate lazy var button: UIButton = {
         let button = UIButton()
         addSubview(button)
@@ -40,6 +40,7 @@ class UBImageLibraryButton: UIView {
         let image = UIImageView()
         image.backgroundColor = .clear
         addSubview(image)
+        image.contentMode = UIViewContentMode.center
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -73,7 +74,17 @@ class UBImageLibraryButton: UIView {
 
     @objc
     fileprivate func buttonTouchUpInside() {
-        delegate?.UBtouchUpInside()
+        if libraryAccess {
+            delegate?.UBtouchUpInside()
+            return
+        }
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 
     /// Asks for acces to the photolibrary. If granted, fetches the newest photo from the camera roll
@@ -81,23 +92,24 @@ class UBImageLibraryButton: UIView {
     fileprivate func testAndGetLibraryAccess() {
         let status = PHPhotoLibrary.authorizationStatus()
         if status == PHAuthorizationStatus.authorized {
-            button.isEnabled = true
-            image.alpha = 1.0
             PHPhotoLibrary.shared().register(self)
+            image.contentMode = UIViewContentMode.scaleAspectFill
             queryForCameraRollPhoto(size: image.frame.size)
+            libraryAccess = true
             return
         }
         if status == PHAuthorizationStatus.denied {
             PHPhotoLibrary.shared().unregisterChangeObserver(self)
-            button.isEnabled = false
-            image.alpha = 0
+            libraryAccess = false
+            image.contentMode = UIViewContentMode.center
+            image.image = UIImage.getImageFromSDKBundle(name: "ic_gallery")
         }
         PHPhotoLibrary.requestAuthorization({ (newStatus) in
             if newStatus == PHAuthorizationStatus.authorized {
+                self.libraryAccess = true
+                self.image.contentMode = UIViewContentMode.scaleAspectFill
                 PHPhotoLibrary.shared().register(self)
                 DispatchQueue.main.async {
-                    self.button.isEnabled = true
-                    self.image.alpha = 1.0
                     self.queryForCameraRollPhoto(size: self.image.frame.size)
                 }
             }

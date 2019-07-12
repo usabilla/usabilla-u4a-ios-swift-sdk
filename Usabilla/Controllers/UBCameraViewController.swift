@@ -23,6 +23,7 @@ protocol CapturePhotoProtocol: class {
  UBCameraViewController shows the imagepicker view
  with camera view
  */
+// swiftlint:disable:this file_length
 class UBCameraViewController: UIViewController {
 
     weak var delegate: CapturePhotoProtocol?

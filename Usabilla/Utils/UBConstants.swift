@@ -117,8 +117,8 @@ struct UBDimensions {
     }
 
     struct UBEditImageMainView {
-        static let imageLeftSideMargin: CGFloat = 8
-        static let imageRightSideMargin: CGFloat = -8
+        static let imageLeftSideMargin: CGFloat = 7
+        static let imageRightSideMargin: CGFloat = -7
         static let imageTopMargin: CGFloat = 8
         static let imageBottomMargin: CGFloat = -16
 
@@ -130,6 +130,8 @@ struct UBDimensions {
 
         static let rightButtonRightMargin: CGFloat = -16
         static let rightButtonTopMargin: CGFloat = 16
+        
+        static let titleLabelTopMargin: CGFloat = 24
     }
 }
 
