@@ -35,6 +35,7 @@ class UBEditImageMainViewController: UIViewController {
     lazy var leftButton: UIButton = {
         let button = UIButton()
         view.addSubview(button)
+        button.contentHorizontalAlignment = .left
         button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(UBEditImageMainViewController.backButtonTouchUpInside), for: .touchUpInside)
@@ -52,6 +53,7 @@ class UBEditImageMainViewController: UIViewController {
     lazy var rightButton: UIButton = {
         let button = UIButton()
         view.addSubview(button)
+        button.contentHorizontalAlignment = .right
         button.backgroundColor = .clear
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(UBEditImageMainViewController.addButtonTouchUpInside), for: .touchUpInside)
@@ -107,13 +109,15 @@ class UBEditImageMainViewController: UIViewController {
         presentAllViews()
     }
 
-    func presentCamera() {
+    func presentCamera(animated: Bool = true) {
         cameraViewController.theme = theme
         cameraViewController.delegate = self
-        cameraViewController.modalPresentationStyle = .overCurrentContext
+        //cameraViewController.modalPresentationStyle = .formSheet
         DispatchQueue.main.async {
             let navController = UBNavigationController(rootViewController: self.cameraViewController)
-            self.present(navController, animated: true, completion: nil)
+            navController.modalPresentationStyle = .formSheet
+            navController.preferredContentSize = DeviceInfo.preferedFormSize()
+            self.present(navController, animated: animated, completion: nil)
         }
     }
 
@@ -125,7 +129,7 @@ class UBEditImageMainViewController: UIViewController {
                 imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
                 imagePicker.allowsEditing = false
                 imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
-                self.present(imagePicker, animated: true, completion: nil)
+                self.present(imagePicker, animated: false, completion: nil)
             }
         }
     }
@@ -205,7 +209,7 @@ class UBEditImageMainViewController: UIViewController {
     fileprivate func backButtonTouchUpInside() {
         switch imageSource {
         case .camera:
-            presentCamera()
+            presentCamera(animated: false)
         case .library:
             pickImageFromGallery()
         default:
@@ -252,18 +256,18 @@ extension UBEditImageMainViewController: CapturePhotoProtocol {
 
     func pickPhotoCapturedFromCamera(image: UIImage) {
         addBaseImage(image: image, source: .camera)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false ,completion: nil)
     }
 
     func pickPhotoCapturedFromLibrary(image: UIImage) {
         hideAllSubViews()
         addBaseImage(image: image, source: .library)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 
     func librarySelected() {
         hideAllSubViews()
-        dismiss(animated: true, completion: {
+        dismiss(animated: false, completion: {
             self.pickImageFromGallery()
         })
     }
@@ -273,13 +277,13 @@ extension UBEditImageMainViewController: UIImagePickerControllerDelegate, UINavi
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         hideAllSubViews()
-        self.dismiss(animated: true, completion: nil)
-        presentCamera()
+        self.dismiss(animated: false, completion: nil)
+        presentCamera(animated: false)
     }
 
     func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         addBaseImage(image: image, source: .library)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 
 }

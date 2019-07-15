@@ -120,7 +120,7 @@ struct UBDimensions {
         static let imageLeftSideMargin: CGFloat = 7
         static let imageRightSideMargin: CGFloat = -7
         static let imageTopMargin: CGFloat = 8
-        static let imageBottomMargin: CGFloat = -16
+        static let imageBottomMargin: CGFloat = -7
 
         static let buttonHeight: CGFloat = 21
         static let buttonWidth: CGFloat = 60
