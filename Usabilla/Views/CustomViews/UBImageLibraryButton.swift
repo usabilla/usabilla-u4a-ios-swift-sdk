@@ -55,11 +55,11 @@ class UBImageLibraryButton: UIView {
         super.init(coder: aDecoder)
     }
 
-//    deinit {
-//        if PHPhotoLibrary.authorizationStatus() == .authorized {
-//            PHPhotoLibrary.shared().unregisterChangeObserver(self)
-//        }
-//    }
+    deinit {
+        if PHPhotoLibrary.authorizationStatus() == .authorized {
+            PHPhotoLibrary.shared().unregisterChangeObserver(self)
+        }
+    }
 
     fileprivate func configureView () {
         self.backgroundColor = .clear

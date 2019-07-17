@@ -123,31 +123,28 @@ class UBEditImageMainViewController: UIViewController {
     }
 
     fileprivate func configureFromCamera() {
-        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_retake_button_title"), for: UIControlState.normal)
-        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_add_button_title"), for: UIControlState.normal)
-        //titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.leftButtonText), for: UIControlState.normal)
+        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.rightButtonText), for: UIControlState.normal)
     }
 
     fileprivate func configureFromLibrary() {
-        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_back_button_title"), for: UIControlState.normal)
-        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_add_button_title"), for: UIControlState.normal)
-        //titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.backButtonText), for: UIControlState.normal)
+        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.addButtonText), for: UIControlState.normal)
     }
 
     fileprivate func configureForDefault() {
-        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_back_button_title"), for: UIControlState.normal)
-        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_done_button_title"), for: UIControlState.normal)
-        //titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.backButtonText), for: UIControlState.normal)
+        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.doneButtonText), for: UIControlState.normal)
     }
 
     fileprivate func setupUI() {
         view.backgroundColor = theme?.colors.cardColor
         leftButton.setTitleColor(theme?.colors.accent, for: UIControlState.normal)
-        leftButton.setTitleColor(theme?.colors.accent.withAlphaComponent(0.5), for: UIControlState.selected)
-        leftButton.setTitleColor(theme?.colors.accent.withAlphaComponent(0.5), for: UIControlState.highlighted)
+        leftButton.setTitleColor(theme?.colors.accent.withAlphaComponent(UBDimensions.UBEditImageMainView.leftButtonAlpha), for: UIControlState.selected)
+        leftButton.setTitleColor(theme?.colors.accent.withAlphaComponent(UBDimensions.UBEditImageMainView.leftButtonAlpha), for: UIControlState.highlighted)
         leftButton.titleLabel?.font = theme?.fonts.regular
-        rightButton.setTitleColor(theme?.colors.accent.withAlphaComponent(0.5), for: UIControlState.highlighted)
-        rightButton.setTitleColor(theme?.colors.accent.withAlphaComponent(0.5), for: UIControlState.selected)
+        rightButton.setTitleColor(theme?.colors.accent.withAlphaComponent(UBDimensions.UBEditImageMainView.rightButtonAlpha), for: UIControlState.highlighted)
+        rightButton.setTitleColor(theme?.colors.accent.withAlphaComponent(UBDimensions.UBEditImageMainView.rightButtonAlpha), for: UIControlState.selected)
         rightButton.setTitleColor(theme?.colors.accent, for: UIControlState.normal)
         rightButton.titleLabel?.font = theme?.fonts.regular
         titleLabel.font = theme?.fonts.boldFont

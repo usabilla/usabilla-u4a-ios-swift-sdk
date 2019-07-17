@@ -55,7 +55,7 @@ class UBCameraViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    fileprivate lazy var backButton: UIButton = {
+    lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         let title = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBCameraView.leftBarBtnText)
         button.contentHorizontalAlignment = .left
@@ -401,7 +401,6 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
             let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer,
                 previewPhotoSampleBuffer: nil) {
             self.saveImage(imageData: imageData)
-            //self.checkPermissionAndSaveImage(imageData: imageData)
         }
     }
 
@@ -412,7 +411,6 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
         } else {
             guard let imageData = photo.fileDataRepresentation() else { return }
             self.saveImage(imageData: imageData)
-            //self.checkPermissionAndSaveImage(imageData: imageData)
         }
     }
 

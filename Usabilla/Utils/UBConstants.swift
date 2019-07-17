@@ -132,11 +132,20 @@ struct UBDimensions {
         static let rightButtonTopMargin: CGFloat = 16
 
         static let titleLabelTopMargin: CGFloat = 24
+
+        static let rightButtonAlpha: CGFloat = UBAlpha.halfAlpha.rawValue
+        static let leftButtonAlpha: CGFloat = UBAlpha.halfAlpha.rawValue
+
+        static let leftButtonText: String = "usa_retake_button_title"
+        static let rightButtonText: String = "usa_add_button_title"
+        static let backButtonText: String = "usa_back_button_title"
+        static let addButtonText: String = "usa_add_button_title"
+        static let doneButtonText: String = "usa_done_button_title"
     }
 
     struct UBImagePickerView {
         static let imageBorder: CGFloat = 1
-        
+
         static let numberOfImagesPrRow: CGFloat = 4
 
         static let imageLeftSideMargin: CGFloat = 7

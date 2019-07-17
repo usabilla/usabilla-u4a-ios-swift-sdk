@@ -35,15 +35,8 @@ class UBCameraViewControllerTest: QuickSpec {
             
             describe("viewWillAppear") {
                 
-                it("sets the navigation buttons") {
-                    expect(viewController.navigationItem.leftBarButtonItem?.title).to(equal("Cancel"))
-                    expect(viewController.navigationItem.leftBarButtonItem!.isEnabled).to(equal(true))
-                }
-                
-                it("sets the navigation bar") {
-                    expect(navigationController?.navigationBar.isTranslucent).to(equal(false))
-                    expect(navigationController?.navigationBar.barTintColor).to(equal(UIColor.black))
-                    expect(navigationController?.navigationBar.tintColor).to(equal(UIColor.white))
+                it("sets the back buttons") {
+                    expect(viewController.backButton.titleLabel?.text).to(equal("Cancel"))
                 }
             }
             
