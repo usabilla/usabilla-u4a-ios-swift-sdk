@@ -23,11 +23,13 @@ protocol CapturePhotoProtocol: class {
  UBCameraViewController shows the imagepicker view
  with camera view
  */
-// swiftlint:disable:this file_length
+// swiftlint:disable file_length
 class UBCameraViewController: UIViewController {
 
     weak var delegate: CapturePhotoProtocol?
     var theme: UsabillaTheme?
+    private var _captureOutput: AVCaptureOutput!
+
     // capture button default like ios camera
     fileprivate lazy var captureButton: UIButton = {
         let cameraImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBCameraView.cameraBtnImageName)
@@ -53,6 +55,18 @@ class UBCameraViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    fileprivate lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let title = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBCameraView.leftBarBtnText)
+        button.contentHorizontalAlignment = .left
+        button.setTitle(title, for: UIControlState.normal)
+        button.setTitleColor(.white, for: UIControlState.normal)
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: UIControlState.highlighted)
+        button.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     fileprivate lazy var settingsButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_camera_settings_title"), for: UIControlState.normal)
@@ -92,8 +106,6 @@ class UBCameraViewController: UIViewController {
         return view
     }()
 
-    private var _captureOutput: AVCaptureOutput!
-
     @available(iOS 10.0, *)
     private var photoOutput: AVCapturePhotoOutput! {
         get {
@@ -114,7 +126,6 @@ class UBCameraViewController: UIViewController {
         }
     }
 
-    // MARK: - Properties
     lazy var captureSession: AVCaptureSession = {
         let session = AVCaptureSession()
         session.sessionPreset = .high
@@ -124,6 +135,12 @@ class UBCameraViewController: UIViewController {
     var previewLayer: AVCaptureVideoPreviewLayer!
     let sampleBufferQueue = DispatchQueue.global(qos: .userInteractive)
 
+    // set the status bar color
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    // MARK: - lifecycle methods
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -131,14 +148,14 @@ class UBCameraViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // set the status bar color
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+        setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-            setupNavigationBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -160,80 +177,13 @@ class UBCameraViewController: UIViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
-        setupView()
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.stopCaptureSession()
     }
 
-    private func setupNavigationBar() {
-        let title = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBCameraView.leftBarBtnText)
-        let backItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(cancelButtonPressed))
-        self.navigationItem.leftBarButtonItem = backItem
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = .black
-        navigationController?.navigationBar.tintColor = .white
-    }
-
-    func setupView() {
-        view.addSubview(imageLibraryButtonView)
-        view.addSubview(captureButton)
-        view.addSubview(previewView)
-        setConstraints()
-    }
-
-    private func setConstraints() {
-        NSLayoutConstraint.activate([
-            captureButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UBDimensions.UBCameraView.bottomMarginBtnCamera),
-            captureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageLibraryButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBCameraView.leftMarginBtnImageLibrary),
-            imageLibraryButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UBDimensions.UBCameraView.bottomMarginBtnImageLibrary),
-            imageLibraryButtonView.heightAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.heightBtnImageLibrary),
-            imageLibraryButtonView.widthAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.widthBtnImageLibrary),
-            previewView.topAnchor.constraint(equalTo: view.topAnchor),
-            previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera)
-            ])
-    }
-
-    func addErrorView() {
-        errorMessageView.addSubview(titleLabel)
-        errorMessageView.addSubview(describtionLabel)
-        errorMessageView.addSubview(settingsButton)
-
-        view.addSubview(errorMessageView)
-
-        if let theme = theme {
-            titleLabel.font = theme.fonts.boldFont
-        }
-        captureButton.isEnabled = false
-        addErrorViewConstraints()
-    }
-
-    func addErrorViewConstraints() {
-        errorMessageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        errorMessageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        errorMessageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-
-        titleLabel.topAnchor.constraint(equalTo: errorMessageView.topAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
-        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
-
-        describtionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
-        describtionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
-        describtionLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
-        describtionLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
-
-        settingsButton.topAnchor.constraint(equalTo: describtionLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
-        settingsButton.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
-        settingsButton.bottomAnchor.constraint(equalTo: errorMessageView.bottomAnchor, constant: -UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        previewLayer?.frame = view.bounds
+    deinit {
+        self.teardownAVCapture()
     }
 
     // MARK: - Rotation
@@ -241,7 +191,32 @@ class UBCameraViewController: UIViewController {
         return [.portrait]
     }
 
-    // setup and starting camera session
+    // MARK: - Actions
+    @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.cameraCanceled()
+    }
+
+    @objc func didPressSetting(_ sender: Any) {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+
+    @objc func didTakePhoto(_ sender: Any) {
+        if #available(iOS 10.0, *) {
+            takePictureWithPhotoOutput()
+        } else {
+            takePictureWithStillImageOutput()
+        }
+    }
+
+}
+// MARK: - camera session
+extension UBCameraViewController {
     private func setupCaptureSession() {
         guard captureSession.inputs.isEmpty else {
                 captureSession.startRunning()
@@ -306,33 +281,6 @@ class UBCameraViewController: UIViewController {
         }
     }
 
-    @objc func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        delegate?.cameraCanceled()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.stopCaptureSession()
-    }
-
-    @objc func didPressSetting(_ sender: Any) {
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
-    }
-
-    @objc func didTakePhoto(_ sender: Any) {
-        if #available(iOS 10.0, *) {
-            takePictureWithPhotoOutput()
-        } else {
-            takePictureWithStillImageOutput()
-        }
-    }
-
     private func takePictureWithStillImageOutput() {
         guard let stillImageConnection = stillImageOutput.connection(with: .video) else { return }
         stillImageOutput.captureStillImageAsynchronously(from: stillImageConnection) { imageDataSampleBuffer, error in
@@ -365,13 +313,77 @@ class UBCameraViewController: UIViewController {
         self.stopCaptureSession()
         self.delegate?.pickPhotoCapturedFromCamera(image: image)
     }
+}
+    // MARK: - layout
+extension UBCameraViewController {
+    func setupView() {
+        view.addSubview(backButton)
+        view.addSubview(imageLibraryButtonView)
+        view.addSubview(captureButton)
+        view.addSubview(previewView)
+        setConstraints()
+    }
 
-    deinit {
-        self.teardownAVCapture()
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonTopMargin ),
+            backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonLeftMargin),
+            backButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight),
+            backButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth),
+            captureButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UBDimensions.UBCameraView.bottomMarginBtnCamera),
+            captureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageLibraryButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBCameraView.leftMarginBtnImageLibrary),
+            imageLibraryButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UBDimensions.UBCameraView.bottomMarginBtnImageLibrary),
+            imageLibraryButtonView.heightAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.heightBtnImageLibrary),
+            imageLibraryButtonView.widthAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.widthBtnImageLibrary),
+            previewView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
+            previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera)
+            ])
+    }
+
+    func addErrorView() {
+        errorMessageView.addSubview(titleLabel)
+        errorMessageView.addSubview(describtionLabel)
+        errorMessageView.addSubview(settingsButton)
+
+        view.addSubview(errorMessageView)
+
+        if let theme = theme {
+            titleLabel.font = theme.fonts.boldFont
+        }
+        captureButton.isEnabled = false
+        addErrorViewConstraints()
+    }
+
+    func addErrorViewConstraints() {
+        errorMessageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        errorMessageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        errorMessageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+        titleLabel.topAnchor.constraint(equalTo: errorMessageView.topAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
+
+        describtionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        describtionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
+        describtionLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        describtionLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
+
+        settingsButton.topAnchor.constraint(equalTo: describtionLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        settingsButton.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
+        settingsButton.bottomAnchor.constraint(equalTo: errorMessageView.bottomAnchor, constant: -UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        previewLayer?.frame = view.bounds
     }
 
 }
-
+    // MARK: - AVCapture deleagte
 // swiftlint:disable function_parameter_count
 @available(iOS 10.0, *)
 extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
@@ -405,10 +417,9 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
     }
 
 }
-
+// MARK: - Library button delegate
 extension UBCameraViewController: UBImageLibraryButtonProtocol {
     func UBtouchUpInside() {
         self.delegate?.librarySelected()
     }
-
 }

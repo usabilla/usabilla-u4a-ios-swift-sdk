@@ -77,6 +77,7 @@ class UBEditImageMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.delegate = self
         view.backgroundColor = .clear
         view.isOpaque = false
         presentCamera()
@@ -88,50 +89,23 @@ class UBEditImageMainViewController: UIViewController {
             view.addSubview(containerView)
         }
     }
-    private func hideAllSubViews() {
-        view.backgroundColor = .black
-        containerView.alpha = 0
-        leftButton.alpha = 0
-        rightButton.alpha = 0
-        titleLabel.alpha = 0
-    }
-    private func presentAllViews() {
-        containerView.alpha = 1.0
-        leftButton.alpha = 1.0
-        rightButton.alpha = 1.0
-        titleLabel.alpha = 1.0
-    }
 
     func addBaseImage(image: UIImage, source: UBimageSource) {
         imageSource = source
         configureAllElements()
         containerView.image = image
-        presentAllViews()
     }
 
     func presentCamera(animated: Bool = true) {
         cameraViewController.theme = theme
         cameraViewController.delegate = self
-        //cameraViewController.modalPresentationStyle = .formSheet
-        DispatchQueue.main.async {
-            let navController = UBNavigationController(rootViewController: self.cameraViewController)
-            navController.modalPresentationStyle = .formSheet
-            navController.preferredContentSize = DeviceInfo.preferedFormSize()
-            self.present(navController, animated: animated, completion: nil)
-        }
+        navigationController?.pushViewController(cameraViewController, animated: animated)
     }
 
-    private func pickImageFromGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            DispatchQueue.main.async {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
-                imagePicker.allowsEditing = false
-                imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
-                self.present(imagePicker, animated: false, completion: nil)
-            }
-        }
+    private func presentImagePicker(animated: Bool = true) {
+        let viewController = UBImagePickerController(theme: theme)
+        viewController.delegate = self
+        navigationController?.pushViewController(viewController, animated: animated)
     }
 
     // MARK: - Configuration methods
@@ -151,19 +125,19 @@ class UBEditImageMainViewController: UIViewController {
     fileprivate func configureFromCamera() {
         leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_retake_button_title"), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_add_button_title"), for: UIControlState.normal)
-        titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
+        //titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
     }
 
     fileprivate func configureFromLibrary() {
         leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_back_button_title"), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_add_button_title"), for: UIControlState.normal)
-        titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
+        //titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
     }
 
     fileprivate func configureForDefault() {
         leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_back_button_title"), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_done_button_title"), for: UIControlState.normal)
-        titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
+        //titleLabel.text = LocalisationHandler.getLocalisedStringForKey("usa_edit_title")
     }
 
     fileprivate func setupUI() {
@@ -211,7 +185,8 @@ class UBEditImageMainViewController: UIViewController {
         case .camera:
             presentCamera(animated: false)
         case .library:
-            pickImageFromGallery()
+            presentCamera(animated: false)
+            presentImagePicker(animated: false)
         default:
             return
         }
@@ -247,43 +222,54 @@ class UBEditImageMainViewController: UIViewController {
 }
 extension UBEditImageMainViewController: CapturePhotoProtocol {
     func cameraCanceled() {
-        hideAllSubViews()
-        containerView.alpha = 0.0
-        view.alpha = 0.0
         dismiss(animated: true, completion: nil)
-        dismiss(animated: false, completion: nil)
     }
 
     func pickPhotoCapturedFromCamera(image: UIImage) {
         addBaseImage(image: image, source: .camera)
-        self.dismiss(animated: false ,completion: nil)
+        navigationController?.popToRootViewController(animated: false)
     }
 
     func pickPhotoCapturedFromLibrary(image: UIImage) {
-        hideAllSubViews()
         addBaseImage(image: image, source: .library)
         self.dismiss(animated: false, completion: nil)
     }
 
     func librarySelected() {
-        hideAllSubViews()
-        dismiss(animated: false, completion: {
-            self.pickImageFromGallery()
-        })
+        self.presentImagePicker()
     }
 }
 
-extension UBEditImageMainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UBEditImageMainViewController: UBImagePickerControllerDelegate {
 
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        hideAllSubViews()
-        self.dismiss(animated: false, completion: nil)
-        presentCamera(animated: false)
+    func imagePickerControllerDidCancel(_ picker: UBImagePickerController) {
+        navigationController?.popViewController(animated: true)
     }
-
-    func imagePickerController(_ picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
+    func imagePickerController(_ picker: UBImagePickerController, didFinishPickingImage image: UIImage!) {
         addBaseImage(image: image, source: .library)
-        self.dismiss(animated: false, completion: nil)
+        navigationController?.popToRootViewController(animated: false)
     }
+}
 
+extension UBEditImageMainViewController: UINavigationControllerDelegate {
+
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationControllerOperation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .push:
+            if toVC is UBCameraViewController {
+                return BottomUpTransistion()
+            }
+            return LeftToRightTransition()
+        case .pop:
+            if fromVC is UBImagePickerController {
+                return RightToLeftTransition()
+            }
+            return TopDownTransition()
+        default:
+            return nil
+        }
+    }
 }

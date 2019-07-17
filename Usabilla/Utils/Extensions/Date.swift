@@ -35,4 +35,23 @@ extension Date {
         let formatter = Date.RFC3339Formatter
         return formatter.string(from: self)
     }
+
+    func stripTime() -> Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        if let date = Calendar.current.date(from: components) {
+            return date
+        }
+        return self
+    }
+
+    func relativeDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.autoupdatingCurrent
+        dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .medium
+
+        let dateString: String = dateFormatter.string(from: self)
+        return dateString
+    }
 }

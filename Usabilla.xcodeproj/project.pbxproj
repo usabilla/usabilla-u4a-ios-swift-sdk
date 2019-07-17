@@ -409,6 +409,16 @@
 		45B60FC522D70F6B00711E64 /* ClientModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B60FC322D70F5E00711E64 /* ClientModelTest.swift */; };
 		45B8263122CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
 		45B8263222CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
+		45C620D722DCAE7F00CB95A9 /* UBImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */; };
+		45C620D822DCAE7F00CB95A9 /* UBImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */; };
+		45C620DA22DCB61800CB95A9 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D922DCB61800CB95A9 /* Transitions.swift */; };
+		45C620DB22DCB61800CB95A9 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D922DCB61800CB95A9 /* Transitions.swift */; };
+		45C620DD22DDAE7A00CB95A9 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */; };
+		45C620DE22DDAE7A00CB95A9 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */; };
+		45F0D41E22DDE9BD0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
+		45F0D41F22DDEE7A0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
+		45F0D42222DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		45F0D42322DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
 		C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
 		C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
@@ -725,6 +735,11 @@
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
 		45B60FC322D70F5E00711E64 /* ClientModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModelTest.swift; sourceTree = "<group>"; };
 		45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageMainViewController.swift; sourceTree = "<group>"; };
+		45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImagePickerController.swift; sourceTree = "<group>"; };
+		45C620D922DCB61800CB95A9 /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
+		45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
+		45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionCell.swift; sourceTree = "<group>"; };
+		45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatus.swift; sourceTree = "<group>"; };
 		C508684D1F320F38006CDA53 /* LeafActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatusTests.swift; sourceTree = "<group>"; };
@@ -1068,7 +1083,7 @@
 		04F54DE21CD75A75002F501E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */,
+				45C620D522DCAE4B00CB95A9 /* Screenshot */,
 				04F54E531CD76789002F501E /* FormViewController.swift */,
 				104FFEA021AD5318004034A5 /* UBNavigationController.swift */,
 				04F54E541CD76789002F501E /* PageViewController.swift */,
@@ -1076,7 +1091,6 @@
 				43127EBF1E71B57500E3011A /* PassiveFormController.swift */,
 				436F55471E8178D500E91E58 /* CampaignViewController.swift */,
 				10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */,
-				45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1108,6 +1122,7 @@
 				43E883E71E37B5AE00A97F1D /* Extensions */,
 				045E46441D1A8073007A1E48 /* CheckBox */,
 				04F54E181CD76708002F501E /* DeviceInfo.swift */,
+				45C620D922DCB61800CB95A9 /* Transitions.swift */,
 				04F54E1A1CD76708002F501E /* JSONFormParser.swift */,
 				04F54E1C1CD76708002F501E /* StyleKit.swift */,
 				04F54E1D1CD76708002F501E /* SwiftEventBus.swift */,
@@ -1120,6 +1135,7 @@
 				C5780D1E1F22073B0016C519 /* TargetingFactory.swift */,
 				C55F8DDD1FB5CB5700AA51DC /* UBAccessibility.swift */,
 				10CA69A2221EEAA400D8D327 /* UBConstants.swift */,
+				45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1141,6 +1157,8 @@
 		04F54DE61CD75AF3002F501E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */,
+				45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */,
 				0483E9CC1CDCDF86004EC234 /* RootCellView.swift */,
 				432D0B541E264940003BA70A /* FooterTableViewCell.swift */,
 			);
@@ -1434,6 +1452,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		45C620D522DCAE4B00CB95A9 /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */,
+				F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */,
+				45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */,
+			);
+			path = Screenshot;
+			sourceTree = "<group>";
+		};
 		C534D318207F5FAD009D06CF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1693,6 +1721,7 @@
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
 				04F54E561CD76789002F501E /* FormViewController.swift in Sources */,
 				040C97DD1EA6527200A59C95 /* CampaignService.swift in Sources */,
+				45C620DD22DDAE7A00CB95A9 /* GridViewCell.swift in Sources */,
 				436264121E92865000A0533C /* UBEndPageViewModel.swift in Sources */,
 				43CCD45D1E78366A00B3E4FE /* MoodComponentViewModel.swift in Sources */,
 				43CCD4581E78366A00B3E4FE /* PickerComponentViewModel.swift in Sources */,
@@ -1774,6 +1803,8 @@
 				0483E9E31CDCDF86004EC234 /* TextFieldModel.swift in Sources */,
 				43552B241F8CE82500BE657A /* UIBarButtonItem.swift in Sources */,
 				04A368461EF41CB100B88279 /* CampaignSubmissionManager.swift in Sources */,
+				45F0D41E22DDE9BD0052751C /* GridViewSectionCell.swift in Sources */,
+				45C620D722DCAE7F00CB95A9 /* UBImagePickerController.swift in Sources */,
 				04DC25B51E8BB347002962A3 /* RepetitionDecorator.swift in Sources */,
 				0483EA051CDCE01A004EC234 /* UsabillaInternal.swift in Sources */,
 				04DC25AC1E8BB33E002962A3 /* OrRule.swift in Sources */,
@@ -1797,6 +1828,7 @@
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
 				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
 				041275D81F792BF700A12E09 /* Usabilla.swift in Sources */,
+				45F0D42222DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
 				4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */,
 				43CCD4701E799AE500B3E4FE /* ParagraphComponentViewModel.swift in Sources */,
@@ -1833,6 +1865,7 @@
 				436C2B861E851EF300741E10 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80B1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
 				C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */,
+				45C620DA22DCB61800CB95A9 /* Transitions.swift in Sources */,
 				C54593B01F34A29F000C5090 /* LeafPassiveStatus.swift in Sources */,
 				0483EA091CDCE05A004EC234 /* TextAreaFieldModel.swift in Sources */,
 				0483E9D31CDCDF86004EC234 /* PickerFieldModel.swift in Sources */,
@@ -1973,6 +2006,7 @@
 				43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */,
 				43B04F3E1F1F7EEF0032F057 /* FormViewController.swift in Sources */,
 				41AC38441F6883F600F0DFC6 /* NPSComponentViewModel.swift in Sources */,
+				45C620DE22DDAE7A00CB95A9 /* GridViewCell.swift in Sources */,
 				43B04F3F1F1F7EEF0032F057 /* CampaignService.swift in Sources */,
 				43B04F401F1F7EEF0032F057 /* UBEndPageViewModel.swift in Sources */,
 				43B04F411F1F7EEF0032F057 /* MoodComponentViewModel.swift in Sources */,
@@ -2054,6 +2088,8 @@
 				43B04F821F1F7EEF0032F057 /* Logging.swift in Sources */,
 				43B04F831F1F7EEF0032F057 /* AndRule.swift in Sources */,
 				43552B251F8CE82700BE657A /* UIBarButtonItem.swift in Sources */,
+				45F0D41F22DDEE7A0052751C /* GridViewSectionCell.swift in Sources */,
+				45C620D822DCAE7F00CB95A9 /* UBImagePickerController.swift in Sources */,
 				43B04F841F1F7EEF0032F057 /* IntFieldModel.swift in Sources */,
 				43B04F851F1F7EEF0032F057 /* TextFieldModel.swift in Sources */,
 				43B04F861F1F7EEF0032F057 /* CampaignSubmissionManager.swift in Sources */,
@@ -2077,6 +2113,7 @@
 				43B04F981F1F7EEF0032F057 /* UBDAO.swift in Sources */,
 				43B04F991F1F7EEF0032F057 /* ComponentFactory.swift in Sources */,
 				43B04F9A1F1F7EEF0032F057 /* TextAreaComponent.swift in Sources */,
+				45F0D42322DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				43B04F9B1F1F7EEF0032F057 /* PassiveFormController.swift in Sources */,
 				43B04F9C1F1F7EEF0032F057 /* FooterTableViewCell.swift in Sources */,
 				43B04F9D1F1F7EEF0032F057 /* ParagraphComponentViewModel.swift in Sources */,
@@ -2113,6 +2150,7 @@
 				43B04FB61F1F7EEF0032F057 /* UBAlertPresenter.swift in Sources */,
 				C5B4B80C1F98F61800AA0780 /* PickerParentComponent.swift in Sources */,
 				C530A9631F7CFB3E007A701B /* UITableView.swift in Sources */,
+				45C620DB22DCB61800CB95A9 /* Transitions.swift in Sources */,
 				C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */,
 				C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */,
 				43B04FB71F1F7EEF0032F057 /* TextAreaFieldModel.swift in Sources */,

@@ -273,8 +273,10 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
             client = ClientModel()
         }
         let controller = UBEditImageMainViewController(theme: viewModel.theme, client: client)
-        controller.modalPresentationStyle = .overCurrentContext
-        present(controller, animated: true, completion: nil )
+        let navController = UBNavigationController(rootViewController: controller)
+        navController.modalPresentationStyle = .overCurrentContext
+        navController.isNavigationBarHidden = true
+        present(navController, animated: false, completion: nil )
     }
 
     @objc

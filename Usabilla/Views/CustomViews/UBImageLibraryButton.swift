@@ -55,9 +55,11 @@ class UBImageLibraryButton: UIView {
         super.init(coder: aDecoder)
     }
 
-    deinit {
-        PHPhotoLibrary.shared().unregisterChangeObserver(self)
-    }
+//    deinit {
+//        if PHPhotoLibrary.authorizationStatus() == .authorized {
+//            PHPhotoLibrary.shared().unregisterChangeObserver(self)
+//        }
+//    }
 
     fileprivate func configureView () {
         self.backgroundColor = .clear
@@ -74,17 +76,7 @@ class UBImageLibraryButton: UIView {
 
     @objc
     fileprivate func buttonTouchUpInside() {
-        if libraryAccess {
-            delegate?.UBtouchUpInside()
-            return
-        }
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
+        delegate?.UBtouchUpInside()
     }
 
     /// Asks for acces to the photolibrary. If granted, fetches the newest photo from the camera roll
@@ -99,7 +91,6 @@ class UBImageLibraryButton: UIView {
             return
         }
         if status == PHAuthorizationStatus.denied {
-            PHPhotoLibrary.shared().unregisterChangeObserver(self)
             libraryAccess = false
             image.contentMode = UIViewContentMode.center
             image.image = UIImage.getImageFromSDKBundle(name: "ic_gallery")

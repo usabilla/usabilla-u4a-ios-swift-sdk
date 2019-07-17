@@ -130,8 +130,55 @@ struct UBDimensions {
 
         static let rightButtonRightMargin: CGFloat = -16
         static let rightButtonTopMargin: CGFloat = 16
-        
+
         static let titleLabelTopMargin: CGFloat = 24
+    }
+
+    struct UBImagePickerView {
+        static let imageBorder: CGFloat = 1
+        
+        static let numberOfImagesPrRow: CGFloat = 4
+
+        static let imageLeftSideMargin: CGFloat = 7
+        static let imageRightSideMargin: CGFloat = -7
+        static let imageTopMargin: CGFloat = 8
+        static let imageBottomMargin: CGFloat = -7
+
+        static let buttonHeight: CGFloat = 21
+        static let buttonWidth: CGFloat = 60
+
+        static let leftButtonLeftMargin: CGFloat = 16
+        static let leftButtonTopMargin: CGFloat = 16
+
+        static let rightButtonRightMargin: CGFloat = -16
+        static let rightButtonTopMargin: CGFloat = 16
+
+        static let titleLabelTopMargin: CGFloat = 24
+
+        static let collectionLeftSideMargin: CGFloat = 0
+        static let collectionRightSideMargin: CGFloat = 1
+        static let collectionTopMargin: CGFloat = 8
+        static let collectionBottomMargin: CGFloat = -7
+
+        static let headerViewHegith: CGFloat = 60
+
+        static let errroViewMargin: CGFloat = 10
+        static let errroViewContentMargin: CGFloat = 30
+        static let errroViewContentHeight: CGFloat = 20
+    }
+
+    struct GridHeaderCell {
+        static let titleLeftSideMargin: CGFloat = 8
+        static let titleRightSideMargin: CGFloat = -8
+        static let titleBottomMargin: CGFloat = -8
+        static let titleHeigth: CGFloat = 20
+    }
+
+    struct GridCell {
+        static let imageLeftSideMargin: CGFloat = 0
+        static let imageRightSideMargin: CGFloat = -UBImagePickerView.imageBorder
+        static let imageBottomMargin: CGFloat = -UBImagePickerView.imageBorder
+        static let imageTopMargin: CGFloat = 0
     }
 }
 

@@ -55,3 +55,7 @@
 "usa_camera_error_title" = "No access to camera";
 "usa_camera_error_description" = "Allowing access lets you take photos to add to your feedback.";
 "usa_camera_settings_title" = "Allow access to camera";
+
+"usa_library_error_title" = "No access to library";
+"usa_library_error_description" = "Allowing access lets you select a photo to add to your feedback.";
+"usa_library_settings_title" = "Allow access to library";
