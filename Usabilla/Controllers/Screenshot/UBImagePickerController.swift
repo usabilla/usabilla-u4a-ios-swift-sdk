@@ -122,7 +122,8 @@ class UBImagePickerController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(GridViewCell.self, forCellWithReuseIdentifier: "girdcell")
         collectionView.register(GridViewSectionCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "girdcellsection")
-        thumbnailSize = CGSize(width: (view.frame.width/UBDimensions.UBImagePickerView.numberOfImagesPrRow), height: (view.frame.width/UBDimensions.UBImagePickerView.numberOfImagesPrRow))
+        let width: CGFloat = DeviceInfo.getMaxFormWidth()
+        thumbnailSize = CGSize(width: (width/UBDimensions.UBImagePickerView.numberOfImagesPrRow), height: (width/UBDimensions.UBImagePickerView.numberOfImagesPrRow))
         scrollToLastItem()
     }
 
@@ -268,6 +269,7 @@ class UBImagePickerController: UIViewController {
     }
     func scrollToLastItem() {
         let lastSection = collectionView.numberOfSections - 1
+        if lastSection < 0 { return }
         let lastRow = collectionView.numberOfItems(inSection: lastSection)
         let indexPath = IndexPath(row: lastRow - 1, section: lastSection)
         self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: false)

@@ -151,11 +151,12 @@ class UBCameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupView()
+        setConstraints()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -321,7 +322,6 @@ extension UBCameraViewController {
         view.addSubview(imageLibraryButtonView)
         view.addSubview(captureButton)
         view.addSubview(previewView)
-        setConstraints()
     }
 
     private func setConstraints() {

@@ -77,6 +77,11 @@ class UBEditImageMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if !DeviceInfo.isIPad() {
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
         navigationController?.delegate = self
         view.backgroundColor = .clear
         view.isOpaque = false
@@ -90,6 +95,15 @@ class UBEditImageMainViewController: UIViewController {
         }
     }
 
+    // MARK: - Rotation
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+
+//    override var shouldAutorotate: Bool {
+//        return true
+//    }
+
     func addBaseImage(image: UIImage, source: UBimageSource) {
         imageSource = source
         configureAllElements()
@@ -99,6 +113,9 @@ class UBEditImageMainViewController: UIViewController {
     func presentCamera(animated: Bool = true) {
         cameraViewController.theme = theme
         cameraViewController.delegate = self
+        // when the view is being presented, its not laid out, so frame is wrong size...
+        let aFrame = CGRect(x: 0, y: 0, width: DeviceInfo.getMaxFormWidth(), height: DeviceInfo.getMaxFormHeight())
+        cameraViewController.view.frame = aFrame
         navigationController?.pushViewController(cameraViewController, animated: animated)
     }
 

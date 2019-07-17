@@ -51,7 +51,7 @@ class DeviceInfo {
 
     class func getMaxFormHeight() -> CGFloat {
         if DeviceInfo.isIPad() {
-            return 1000
+            return 968
         }
         if UsabillaInternal.supportedOrientations == .landscape ||
             UsabillaInternal.supportedOrientations == .landscapeLeft ||
