@@ -1,7 +1,7 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-In Usabilla SDK Version 6.2 there are two new features
+In Usabilla SDK Version 6.3 there are two new features
 1. ability to programmatically close a Form or a Campaign
 2. enable data masking, on text fields
 * * *
@@ -627,7 +627,15 @@ With the name of your file, without the .string extension.
 
 ## Permissions
 If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery.    
-No other permission is needed to run the SDK.
+We now also ask for camera access.
+
+These privacy permissions are needed on the main app:
+	
+	NSCameraUsageDescription
+	NSPhotoLibraryUsageDescription
+
+Please make sure there is a description string for each of these properties
+
 
 ## Integration with Obj-C applications
 
