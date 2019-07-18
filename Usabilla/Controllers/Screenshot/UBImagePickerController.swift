@@ -108,8 +108,15 @@ class UBImagePickerController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Rotation
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let aFrame = CGRect(x: 0, y: 0, width: DeviceInfo.getMaxFormWidth(), height: DeviceInfo.getMaxFormHeight())
+        view.frame = aFrame
         layoutViews()
         setupUI()
         view.backgroundColor = theme.colors.cardColor
@@ -139,9 +146,9 @@ class UBImagePickerController: UIViewController {
     }
 
     fileprivate func setupUI() {
-        leftButton.setTitleColor(.blue, for: UIControlState.normal)
-        leftButton.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: UIControlState.selected)
-        leftButton.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: UIControlState.highlighted)
+        leftButton.setTitleColor(UIColor.init(rgba: "#5fc9f8"), for: UIControlState.normal)
+        leftButton.setTitleColor(UIColor.init(rgba: "#5fc9f8").withAlphaComponent(0.5), for: UIControlState.selected)
+        leftButton.setTitleColor(UIColor.init(rgba: "#5fc9f8"), for: UIControlState.highlighted)
         leftButton.titleLabel?.font = theme.fonts.regular
         titleLabel.font = theme.fonts.boldFont
         titleLabel.textColor = theme.colors.title
