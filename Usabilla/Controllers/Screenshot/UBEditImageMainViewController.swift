@@ -171,25 +171,27 @@ class UBEditImageMainViewController: UIViewController {
 
     fileprivate func layoutViews() {
 
-        leftButton.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonTopMargin ).isActive = true
+        containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight()).isActive = true
+        //containerView.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: UBDimensions.UBEditImageMainView.imageTopMargin).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.imageBottomMargin).isActive = true
+        containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.imageLeftSideMargin).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBEditImageMainView.imageRightSideMargin).isActive = true
+
+        leftButton.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonBottomMargin).isActive = true
         leftButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonLeftMargin).isActive = true
         leftButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
         leftButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: UBDimensions.UBEditImageMainView.titleLabelTopMargin).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: leftButton.centerYAnchor).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0).isActive = true
         titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0).isActive = true
 
-        rightButton.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonTopMargin ).isActive = true
+        rightButton.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonBottomMargin ).isActive = true
         rightButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonRightMargin).isActive = true
         rightButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
         rightButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
-        containerView.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: UBDimensions.UBEditImageMainView.imageTopMargin).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.imageBottomMargin).isActive = true
-        containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.imageLeftSideMargin).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBEditImageMainView.imageRightSideMargin).isActive = true
     }
 
     // MARK: - Action methods

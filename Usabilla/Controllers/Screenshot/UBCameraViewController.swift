@@ -43,6 +43,9 @@ class UBCameraViewController: UIViewController {
     // previewView contains camera frame
     fileprivate lazy var previewView: UIView = {
         let view = UIView()
+        #if targetEnvironment(simulator)
+            view.backgroundColor = .white
+        #endif
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -219,6 +222,9 @@ class UBCameraViewController: UIViewController {
 // MARK: - camera session
 extension UBCameraViewController {
     private func setupCaptureSession() {
+        #if targetEnvironment(simulator)
+            return
+        #else 
         guard captureSession.inputs.isEmpty else {
                 captureSession.startRunning()
                 return
@@ -246,6 +252,7 @@ extension UBCameraViewController {
             self.teardownAVCapture()
             return
         }
+        #endif
     }
 
     // clean up capture setup
@@ -326,7 +333,11 @@ extension UBCameraViewController {
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonTopMargin ),
+            previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight()),
+            previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera),
+            backButton.bottomAnchor.constraint(equalTo: previewView.topAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonBottomMargin ),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonLeftMargin),
             backButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight),
             backButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth),
@@ -335,11 +346,7 @@ extension UBCameraViewController {
             imageLibraryButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBCameraView.leftMarginBtnImageLibrary),
             imageLibraryButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: UBDimensions.UBCameraView.bottomMarginBtnImageLibrary),
             imageLibraryButtonView.heightAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.heightBtnImageLibrary),
-            imageLibraryButtonView.widthAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.widthBtnImageLibrary),
-            previewView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera)
+            imageLibraryButtonView.widthAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.widthBtnImageLibrary)
             ])
     }
 
@@ -369,9 +376,10 @@ extension UBCameraViewController {
 
         describtionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
         describtionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewContentHeight).isActive = true
-        describtionLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
-        describtionLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBCameraView.errroViewMargin).isActive = true
+        describtionLabel.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
+        describtionLabel.widthAnchor.constraint(lessThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewDescribtionMaxWidth).isActive = true
 
+        
         settingsButton.topAnchor.constraint(equalTo: describtionLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
         settingsButton.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
         settingsButton.bottomAnchor.constraint(equalTo: errorMessageView.bottomAnchor, constant: -UBDimensions.UBCameraView.errroViewContentHeight).isActive = true

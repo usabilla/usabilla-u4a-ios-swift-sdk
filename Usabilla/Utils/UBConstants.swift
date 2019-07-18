@@ -114,6 +114,7 @@ struct UBDimensions {
         static let errroViewMargin: CGFloat = 10
         static let errroViewContentMargin: CGFloat = 30
         static let errroViewContentHeight: CGFloat = 20
+        static let errroViewDescribtionMaxWidth: CGFloat = UBImagePickerView.errroViewDescribtionMaxWidth
     }
 
     struct UBEditImageMainView {
@@ -126,10 +127,10 @@ struct UBDimensions {
         static let buttonWidth: CGFloat = 60
 
         static let leftButtonLeftMargin: CGFloat = 16
-        static let leftButtonTopMargin: CGFloat = 16
+        static let leftButtonBottomMargin: CGFloat = -6
 
         static let rightButtonRightMargin: CGFloat = -16
-        static let rightButtonTopMargin: CGFloat = 16
+        static let rightButtonBottomMargin: CGFloat = -6
 
         static let titleLabelTopMargin: CGFloat = 24
 
@@ -157,7 +158,7 @@ struct UBDimensions {
         static let buttonWidth: CGFloat = 60
 
         static let leftButtonLeftMargin: CGFloat = 16
-        static let leftButtonTopMargin: CGFloat = 16
+        static let leftButtonBottomMargin: CGFloat = -6
 
         static let rightButtonRightMargin: CGFloat = -16
         static let rightButtonTopMargin: CGFloat = 16
@@ -167,17 +168,18 @@ struct UBDimensions {
         static let collectionLeftSideMargin: CGFloat = 0
         static let collectionRightSideMargin: CGFloat = 1
         static let collectionTopMargin: CGFloat = 8
-        static let collectionBottomMargin: CGFloat = -7
+        static let collectionBottomMargin: CGFloat = 0
 
-        static let headerViewHegith: CGFloat = 60
+        static let headerViewHeight: CGFloat = 50
 
         static let errroViewMargin: CGFloat = 10
         static let errroViewContentMargin: CGFloat = 30
         static let errroViewContentHeight: CGFloat = 20
+        static let errroViewDescribtionMaxWidth: CGFloat = 300
     }
 
     struct GridHeaderCell {
-        static let titleLeftSideMargin: CGFloat = 8
+        static let titleLeftSideMargin: CGFloat = 16
         static let titleRightSideMargin: CGFloat = -8
         static let titleBottomMargin: CGFloat = -8
         static let titleHeigth: CGFloat = 20

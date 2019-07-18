@@ -23,7 +23,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         tableView.separatorStyle = .none
         return tableView
     }()
-
     var alreadyAtTop: Bool = true
 
     var requiredLabel: UILabel = {
@@ -84,7 +83,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
         registerEventsBus()
     }
 
@@ -101,6 +99,10 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: "footer")
         tableView.canCancelContentTouches = false
         requiredLabel.text = viewModel.errorMessage
+
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .automatic
+        }
 
         handleHeaderViewVisibility()
     }

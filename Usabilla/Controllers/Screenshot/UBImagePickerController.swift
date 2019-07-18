@@ -139,9 +139,9 @@ class UBImagePickerController: UIViewController {
     }
 
     fileprivate func setupUI() {
-        leftButton.setTitleColor(theme.colors.accent, for: UIControlState.normal)
-        leftButton.setTitleColor(theme.colors.accent.withAlphaComponent(0.5), for: UIControlState.selected)
-        leftButton.setTitleColor(theme.colors.accent.withAlphaComponent(0.5), for: UIControlState.highlighted)
+        leftButton.setTitleColor(.blue, for: UIControlState.normal)
+        leftButton.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: UIControlState.selected)
+        leftButton.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: UIControlState.highlighted)
         leftButton.titleLabel?.font = theme.fonts.regular
         titleLabel.font = theme.fonts.boldFont
         titleLabel.textColor = theme.colors.title
@@ -150,8 +150,12 @@ class UBImagePickerController: UIViewController {
     }
 
     fileprivate func layoutViews() {
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight()).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBImagePickerView.collectionLeftSideMargin).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBImagePickerView.collectionRightSideMargin).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBImagePickerView.collectionBottomMargin).isActive = true
 
-        leftButton.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: UBDimensions.UBImagePickerView.leftButtonTopMargin ).isActive = true
+        leftButton.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: UBDimensions.UBImagePickerView.leftButtonBottomMargin ).isActive = true
         leftButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBImagePickerView.leftButtonLeftMargin).isActive = true
         leftButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBImagePickerView.buttonHeight).isActive = true
         leftButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBImagePickerView.buttonWidth).isActive = true
@@ -160,11 +164,6 @@ class UBImagePickerController: UIViewController {
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0).isActive = true
         titleLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 0).isActive = true
-
-        collectionView.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: UBDimensions.UBImagePickerView.collectionTopMargin).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBImagePickerView.collectionLeftSideMargin).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBImagePickerView.collectionRightSideMargin).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBImagePickerView.collectionBottomMargin).isActive = true
     }
     func addErrorViewConstraints() {
         errorMessageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -178,8 +177,8 @@ class UBImagePickerController: UIViewController {
 
         describtionErrorLabel.topAnchor.constraint(equalTo: titleErrorLabel.bottomAnchor, constant: UBDimensions.UBImagePickerView.errroViewMargin).isActive = true
         describtionErrorLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBImagePickerView.errroViewContentHeight).isActive = true
-        describtionErrorLabel.leadingAnchor.constraint(equalTo: errorMessageView.leadingAnchor, constant: UBDimensions.UBImagePickerView.errroViewMargin).isActive = true
-        describtionErrorLabel.trailingAnchor.constraint(equalTo: errorMessageView.trailingAnchor, constant: -UBDimensions.UBImagePickerView.errroViewMargin).isActive = true
+        describtionErrorLabel.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
+        describtionErrorLabel.widthAnchor.constraint(lessThanOrEqualToConstant: UBDimensions.UBImagePickerView.errroViewDescribtionMaxWidth).isActive = true
 
         settingsErrorButton.topAnchor.constraint(equalTo: describtionErrorLabel.bottomAnchor, constant: UBDimensions.UBImagePickerView.errroViewMargin).isActive = true
         settingsErrorButton.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
@@ -345,7 +344,7 @@ extension UBImagePickerController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: UBDimensions.UBImagePickerView.headerViewHegith)
+        return CGSize(width: collectionView.frame.size.width, height: UBDimensions.UBImagePickerView.headerViewHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
