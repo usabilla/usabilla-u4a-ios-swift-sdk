@@ -119,7 +119,7 @@ class UBImagePickerController: UIViewController {
         view.frame = aFrame
         layoutViews()
         setupUI()
-        view.backgroundColor = theme.colors.cardColor
+        view.backgroundColor = .white
         testAndGetLibraryAccess()
     }
 
