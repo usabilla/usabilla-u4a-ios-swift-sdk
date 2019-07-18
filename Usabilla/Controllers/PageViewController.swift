@@ -134,7 +134,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         }
     }
     @objc func keyboardWillShow(notification: NSNotification) {
-        guard viewModel.shouldAddMarginWhenKeyboardIsShown,
+        // This moodel is null, must figure out why this happens!!!
+        guard //viewModel.shouldAddMarginWhenKeyboardIsShown,
             var userInfo = notification.userInfo,
             var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
                 return
