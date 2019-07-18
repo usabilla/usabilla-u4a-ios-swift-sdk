@@ -1,3 +1,10 @@
+## 6.3.0
+### Added
+- User can choose between camera or image library as source when adding screenshot
+### Fixed
+- Issue where form didn't always scroll up when keyboard was presented
+- Issue where jump-rules on end page didn't work correctly 
+
 ## 6.2.0
 ### Added
 - Method to mask personal identifiable information in the public interface.

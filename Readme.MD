@@ -627,7 +627,14 @@ With the name of your file, without the .string extension.
 
 ## Permissions
 If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery.    
-No other permission is needed to run the SDK.
+We now also ask for camera access.
+
+These privacy permissions are needed on the main app:
+
+NSCameraUsageDescription
+NSPhotoLibraryUsageDescription
+
+Please make sure there is a description string for each of these properties
 
 ## Integration with Obj-C applications
 
