@@ -15,10 +15,10 @@ enum UBimageSource: String {
     case unknown = "default"
 }
 
-class UBEditImageMainViewController: UIViewController {
+class UBEditImageMainViewController: UBSAEditImageMasterView {
 
     var imageSource: UBimageSource = .unknown
-    private var theme: UsabillaTheme?
+
     var client: ClientModel
     lazy var cameraViewController: UBCameraViewController = UBCameraViewController()
     lazy var containerView: UIImageView = {
@@ -30,34 +30,6 @@ class UBEditImageMainViewController: UIViewController {
         aView.contentMode = UIViewContentMode.scaleAspectFill
         aView.translatesAutoresizingMaskIntoConstraints = false
         return aView
-    }()
-
-    lazy var leftButton: UIButton = {
-        let button = UIButton()
-        view.addSubview(button)
-        button.contentHorizontalAlignment = .left
-        button.backgroundColor = .clear
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(UBEditImageMainViewController.backButtonTouchUpInside), for: .touchUpInside)
-        return button
-    }()
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        view.addSubview(label)
-        label.backgroundColor = .clear
-        label.textAlignment = NSTextAlignment.center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    lazy var rightButton: UIButton = {
-        let button = UIButton()
-        view.addSubview(button)
-        button.contentHorizontalAlignment = .right
-        button.backgroundColor = .clear
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(UBEditImageMainViewController.addButtonTouchUpInside), for: .touchUpInside)
-        return button
     }()
 
     init(client: ClientModel) {
@@ -85,6 +57,7 @@ class UBEditImageMainViewController: UIViewController {
         navigationController?.delegate = self
         view.backgroundColor = .clear
         view.isOpaque = false
+        configurePlugins()
         presentCamera()
     }
 
@@ -167,13 +140,12 @@ class UBEditImageMainViewController: UIViewController {
         titleLabel.font = theme?.fonts.boldFont
         titleLabel.textColor = theme?.colors.title
 
+        
     }
 
     fileprivate func layoutViews() {
 
         containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight()).isActive = true
-        //containerView.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: UBDimensions.UBEditImageMainView.imageTopMargin).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.imageBottomMargin).isActive = true
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.imageLeftSideMargin).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBEditImageMainView.imageRightSideMargin).isActive = true
 
@@ -181,6 +153,16 @@ class UBEditImageMainViewController: UIViewController {
         leftButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonLeftMargin).isActive = true
         leftButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
         leftButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
+
+        doneButton.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonBottomMargin).isActive = true
+        doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonRightMargin).isActive = true
+        doneButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
+        doneButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
+
+        undoButton.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonBottomMargin).isActive = true
+        undoButton.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: 0).isActive = true
+        undoButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
+        undoButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
         titleLabel.centerYAnchor.constraint(equalTo: leftButton.centerYAnchor).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -192,11 +174,17 @@ class UBEditImageMainViewController: UIViewController {
         rightButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
         rightButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
+        toolBarView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarTopMarginHeigth).isActive = true
+        toolBarView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarBottomMarginHeigth).isActive = true
+        toolBarView.heightAnchor.constraint(greaterThanOrEqualToConstant:  UBDimensions.UBEditImageMainView.toolbarHeight).isActive = true
+        toolBarView.widthAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.toolbarWidth).isActive = true
+        toolBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
     }
 
     // MARK: - Action methods
     @objc
-    fileprivate func backButtonTouchUpInside() {
+    override func backButtonTouchUpInside() {
         switch imageSource {
         case .camera:
             presentCamera(animated: false)
@@ -224,7 +212,7 @@ class UBEditImageMainViewController: UIViewController {
     /// if the add button is pressed, we close the view, (expects to be inside a navigationcontroller)
     /// the submit the image throug the eventbus
     @objc
-    fileprivate func addButtonTouchUpInside() {
+    override func addButtonTouchUpInside() {
         if imageSource == .camera, let image = self.containerView.image {
             checkPermissionAndSaveImage(image)
         }
@@ -289,3 +277,9 @@ extension UBEditImageMainViewController: UINavigationControllerDelegate {
         }
     }
 }
+
+extension UBEditImageMainViewController {
+}
+
+//extension UBEditImageMainViewController: ToolBarButtonPluginProtocol {
+//}

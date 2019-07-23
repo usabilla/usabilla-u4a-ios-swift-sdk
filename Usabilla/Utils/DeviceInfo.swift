@@ -142,6 +142,14 @@ class DeviceInfo {
     class func isIPad() -> Bool {
         return UIDevice.current.userInterfaceIdiom == .pad
     }
+    class func getBottomSafeInsets() -> CGFloat {
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            return window?.safeAreaInsets.bottom ?? 0.0
+        }
+        return 0.0
+    }
+
 
     class func isJailbroken() -> Bool {
         let str = "Jailbreak test string"

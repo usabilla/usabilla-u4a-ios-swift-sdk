@@ -121,7 +121,7 @@ struct UBDimensions {
         static let imageLeftSideMargin: CGFloat = 7
         static let imageRightSideMargin: CGFloat = -7
         static let imageTopMargin: CGFloat = 8
-        static let imageBottomMargin: CGFloat = -7
+        static let imageBottomMargin: CGFloat = -84
 
         static let buttonHeight: CGFloat = 21
         static let buttonWidth: CGFloat = 60
@@ -131,6 +131,8 @@ struct UBDimensions {
 
         static let rightButtonRightMargin: CGFloat = -16
         static let rightButtonBottomMargin: CGFloat = -6
+
+        static let doneButtonSpace: CGFloat = 16
 
         static let titleLabelTopMargin: CGFloat = 24
 
@@ -142,8 +144,25 @@ struct UBDimensions {
         static let backButtonText: String = "usa_back_button_title"
         static let addButtonText: String = "usa_add_button_title"
         static let doneButtonText: String = "usa_done_button_title"
+        
+        static let toolbarHeight: CGFloat = 48
+        static let toolbarWidth: CGFloat = 32
+        static let toolbarTopMarginHeigth: CGFloat = 30
+        static let toolbarBottomMarginHeigth: CGFloat = 7
     }
 
+    struct UBSAEditImageMasterView {
+        static let editButtonName: String = "ic_check"
+        static let undoButtonName: String = "ic_undo"
+
+        static let bottomMenuHeight: CGFloat = 62.0
+        static let bottomMenuAnimationTime: TimeInterval = 0.3
+    }
+    
+    struct PluginViewController {
+        static let buttonWidth: CGFloat = 32.0
+        static let buttonHeight: CGFloat = 32.0
+    }
     struct UBImagePickerView {
         static let imageBorder: CGFloat = 1
 

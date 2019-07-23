@@ -86,19 +86,40 @@ extension UIImage {
                 posY = (contextSize.height - cropHeight) / 2
             }
         }
-
         let rect: CGRect = CGRect(x: posX, y: posY, width: cropWidth, height: cropHeight)
-        // Create bitmap image from context using the rect
-        let imageRef: CGImage = contextImage.cgImage!.cropping(to: rect)!
 
-        // Create a new image based on the imageRef and rotate back to the original orientation
-        let cropped: UIImage = UIImage(cgImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
-        
-        UIGraphicsBeginImageContextWithOptions(toSize, true, self.scale)
-        cropped.draw(in: CGRect(x: 0, y: 0, width: toSize.width, height: toSize.height))
-        let resized = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return resized!
+        if let imageRef: CGImage = contextImage.cgImage?.cropping(to: rect) {
+
+            let cropped: UIImage = UIImage(cgImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
+            UIGraphicsBeginImageContextWithOptions(toSize, true, self.scale)
+            cropped.draw(in: CGRect(x: 0, y: 0, width: toSize.width, height: toSize.height))
+            let resized = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return resized ?? self
+        }
+        return self
     }
+
+    /// maskWithColor: 
+    func maskWithColor(color: UIColor) -> UIImage {
+
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        guard  let context = UIGraphicsGetCurrentContext() else { return self }
+
+        let rect = CGRect(origin: CGPoint.zero, size: size)
+
+        color.setFill()
+        self.draw(in: rect)
+
+        context.setBlendMode(.sourceIn)
+        context.fill(rect)
+
+        if let resultImage = UIGraphicsGetImageFromCurrentImageContext() {
+            UIGraphicsEndImageContext()
+            return resultImage
+        }
+        UIGraphicsEndImageContext()
+        return self
+    }
+
 }
