@@ -9,7 +9,8 @@
 import UIKit
 
 class DrawingPlugin: UBSAPluginViewController {
-    
+    fileprivate var drawingView: UBSADrawingView?
+
     override var toolbarButtonImageName: String {
             return "ic_pencil"
     }
@@ -22,5 +23,14 @@ class DrawingPlugin: UBSAPluginViewController {
     override func topMenuType() -> UBSATopMenuType {
         return .iconsUndoDone
     }
+    
+    override func canvas(frame: CGRect) -> UIView {
+        let draw = UBSADrawingView(frame: frame)
+        drawingView = draw
+        return draw
+    }
 
+    override func undoAction() {
+        drawingView?.undo()
+    }
 }

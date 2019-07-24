@@ -53,6 +53,17 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
     var theme: UsabillaTheme?
     lazy var plugins: [UBSAPluginProtocol] = []
 
+    lazy var containerView: UIImageView = {
+        let aView = UIImageView()
+        aView.clipsToBounds = true
+        aView.backgroundColor = .clear
+        aView.layer.cornerRadius = 4
+        aView.layer.masksToBounds = true
+        aView.contentMode = UIViewContentMode.scaleAspectFill
+        aView.translatesAutoresizingMaskIntoConstraints = false
+        return aView
+    }()
+
     lazy var leftButton: UIButton = {
         let button = UIButton()
         view.addSubview(button)
@@ -147,6 +158,8 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
                                                    width: view.frame.size.width,
                                                    height: UBDimensions.UBSAEditImageMasterView.bottomMenuHeight + DeviceInfo.getBottomSafeInsets()))
         setTopMenu(type: sender.topMenuType())
+        setCanvasView(sender.canvas(frame: containerView.frame))
+        
         animateMenuIn(view: menu)
     }
 }
@@ -182,6 +195,10 @@ extension UBSAEditImageMasterView {
         rightButton.isEnabled = true
         titleLabel.isHidden = false
     }
+    fileprivate func setCanvasView(_ view: UIView) {
+        self.view.addSubview(view)
+    }
+
     fileprivate func setTopMenu(type: UBSATopMenuType) {
         switch type {
         case .iconsUndoDone:

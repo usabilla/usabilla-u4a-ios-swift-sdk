@@ -21,17 +21,6 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
 
     var client: ClientModel
     lazy var cameraViewController: UBCameraViewController = UBCameraViewController()
-    lazy var containerView: UIImageView = {
-        let aView = UIImageView()
-        aView.clipsToBounds = true
-        aView.backgroundColor = .clear
-        aView.layer.cornerRadius = 4
-        aView.layer.masksToBounds = true
-        aView.contentMode = UIViewContentMode.scaleAspectFill
-        aView.translatesAutoresizingMaskIntoConstraints = false
-        return aView
-    }()
-
     init(client: ClientModel) {
         self.client = client
         super.init(nibName: nil, bundle: nil)

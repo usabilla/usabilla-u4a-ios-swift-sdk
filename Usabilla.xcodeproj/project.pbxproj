@@ -408,6 +408,10 @@
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45553AE122E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
+		459678D922E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
+		459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
+		459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
+		459678DC22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
 		45B51EE022E7A00500122F44 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
 		45B51EE122E7A00500122F44 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
 		45B51EE322E7A01500122F44 /* UBSAPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */; };
@@ -741,6 +745,8 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
+		459678D722E878510043DE70 /* UBSADrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingView.swift; sourceTree = "<group>"; };
+		459678D822E878520043DE70 /* UBSADrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingTool.swift; sourceTree = "<group>"; };
 		45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingPlugin.swift; sourceTree = "<group>"; };
 		45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSAPluginViewController.swift; sourceTree = "<group>"; };
 		45B60FC322D70F5E00711E64 /* ClientModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModelTest.swift; sourceTree = "<group>"; };
@@ -1468,6 +1474,8 @@
 		45C620D522DCAE4B00CB95A9 /* Screenshot */ = {
 			isa = PBXGroup;
 			children = (
+				459678D822E878520043DE70 /* UBSADrawingTool.swift */,
+				459678D722E878510043DE70 /* UBSADrawingView.swift */,
 				45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */,
 				45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */,
 				45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */,
@@ -1732,6 +1740,7 @@
 				434A27841E2E8719002864C6 /* HTTPClient.swift in Sources */,
 				41AC38481F68867600F0DFC6 /* NPSFieldModel.swift in Sources */,
 				04DC25AB1E8BB33E002962A3 /* LeafEvent.swift in Sources */,
+				459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */,
 				431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
@@ -1865,6 +1874,7 @@
 				43CCD4451E7828DB00B3E4FE /* BaseTextAreaComponent.swift in Sources */,
 				43CCD45F1E78366A00B3E4FE /* TextFieldComponentViewModel.swift in Sources */,
 				43CCD4361E77E27A00B3E4FE /* PickerComponent.swift in Sources */,
+				459678D922E878520043DE70 /* UBSADrawingView.swift in Sources */,
 				C5780D1F1F22073B0016C519 /* TargetingFactory.swift in Sources */,
 				04C6BEEC1E9521B80078F6FC /* CampaignManager.swift in Sources */,
 				041AEE291F96485C00679C5D /* TargetingOptionsModel.swift in Sources */,
@@ -2021,6 +2031,7 @@
 				43B04F391F1F7EEF0032F057 /* HTTPClient.swift in Sources */,
 				41AC38491F6886EF00F0DFC6 /* NPSFieldModel.swift in Sources */,
 				43B04F3A1F1F7EEF0032F057 /* LeafEvent.swift in Sources */,
+				459678DC22E878520043DE70 /* UBSADrawingTool.swift in Sources */,
 				43B04F3B1F1F7EEF0032F057 /* UBFileHelper.swift in Sources */,
 				43B04F3C1F1F7EEF0032F057 /* StyleKit.swift in Sources */,
 				43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */,
@@ -2154,6 +2165,7 @@
 				43B04FA81F1F7EEF0032F057 /* BaseTextAreaComponent.swift in Sources */,
 				43B04FA91F1F7EEF0032F057 /* TextFieldComponentViewModel.swift in Sources */,
 				43B04FAA1F1F7EEF0032F057 /* PickerComponent.swift in Sources */,
+				459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */,
 				C5780D201F2226FE0016C519 /* TargetingFactory.swift in Sources */,
 				43B04FAB1F1F7EEF0032F057 /* CampaignManager.swift in Sources */,
 				10CA69A4221EEAA400D8D327 /* UBConstants.swift in Sources */,
