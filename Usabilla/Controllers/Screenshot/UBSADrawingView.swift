@@ -198,15 +198,62 @@ class UBSADrawingView: UIView {
     func done() {
         print("am here")
     }
-}
 
-extension UIView {
-    var screenCapture: UIImage {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
-        drawHierarchy(in: bounds, afterScreenUpdates: true)
-        // swiftlint:disable:next force_unwrapping
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
+    fileprivate func cropAlpha(_ image: UIImage) -> UIImageView {
+
+        let cgImage = image.cgImage!
+
+        let width = cgImage.width
+        let height = cgImage.height
+
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bytesPerPixel: Int = 4
+        let bytesPerRow = bytesPerPixel * width
+        let bitsPerComponent = 8
+        let bitmapInfo: UInt32 = CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue
+
+        guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo),
+            let ptr = context.data?.assumingMemoryBound(to: UInt8.self) else {
+                let imageview = UIImageView(image: image)
+                imageview.center  = CGPoint(x: CGFloat(width) / 2.0, y: CGFloat(height) / 2.0)
+                return imageview
+        }
+
+        context.draw(image.cgImage!, in: CGRect(x: 0, y: 0, width: width, height: height))
+
+        var minX = width
+        var minY = height
+        var maxX: Int = 0
+        var maxY: Int = 0
+
+        for xrow in 1 ..< width {
+            for yrow in 1 ..< height {
+
+                let integer = bytesPerRow * Int(yrow) + bytesPerPixel * Int(xrow)
+                let alpha = CGFloat(ptr[integer + 3]) / 255.0
+
+                if alpha > 0 {
+                    if xrow < minX { minX = xrow }
+                    if xrow > maxX { maxX = xrow }
+                    if yrow < minY { minY = yrow }
+                    if yrow > maxY { maxY = yrow }
+                }
+            }
+        }
+
+        let rect = CGRect(x: CGFloat(minX), y: CGFloat(minY), width: CGFloat(maxX-minX), height: CGFloat(maxY-minY))
+        let imageScale: CGFloat = image.scale
+        let croppedImage =  image.cgImage!.cropping(to: rect)!
+        let ret = UIImage(cgImage: croppedImage, scale: imageScale, orientation: image.imageOrientation)
+
+        let centerX = CGFloat(minX + ((maxX-minX)/2))
+        let centerY = CGFloat(minY + ((maxY-minY)/2))
+        let imageview = UIImageView(image: ret)
+        imageview.center = CGPoint(x: centerX, y: centerY)
+        return imageview
+    }
+
+    func cropedView() -> UIImageView {
+        return cropAlpha(self.screenCapture)
     }
 }

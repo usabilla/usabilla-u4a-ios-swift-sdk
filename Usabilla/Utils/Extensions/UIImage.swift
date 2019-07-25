@@ -121,5 +121,4 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return self
     }
-
 }

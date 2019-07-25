@@ -33,4 +33,10 @@ class DrawingPlugin: UBSAPluginViewController {
     override func undoAction() {
         drawingView?.undo()
     }
+    override func finalView() -> UIImageView {
+        if let view = drawingView?.cropedView() {
+            return view
+        }
+        return UIImageView()
+    }
 }

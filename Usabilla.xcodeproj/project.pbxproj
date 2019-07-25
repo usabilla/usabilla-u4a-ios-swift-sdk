@@ -408,6 +408,8 @@
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45553AE122E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
+		458D962322E8915A005BB98E /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D962222E8915A005BB98E /* UBSAContainerView.swift */; };
+		458D962422E8915A005BB98E /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D962222E8915A005BB98E /* UBSAContainerView.swift */; };
 		459678D922E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
 		459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
 		459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
@@ -745,6 +747,7 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
+		458D962222E8915A005BB98E /* UBSAContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UBSAContainerView.swift; path = "../../../../../../../../System/Volumes/Data/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/Usabilla/Views/CustomViews/UBSAContainerView.swift"; sourceTree = "<group>"; };
 		459678D722E878510043DE70 /* UBSADrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingView.swift; sourceTree = "<group>"; };
 		459678D822E878520043DE70 /* UBSADrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingTool.swift; sourceTree = "<group>"; };
 		45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingPlugin.swift; sourceTree = "<group>"; };
@@ -1491,6 +1494,7 @@
 			children = (
 				C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */,
 				4552C1B122C3748900814093 /* UBImageLibraryButton.swift */,
+				458D962222E8915A005BB98E /* UBSAContainerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1841,6 +1845,7 @@
 				43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */,
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
 				F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */,
+				458D962322E8915A005BB98E /* UBSAContainerView.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
 				04F54E571CD76789002F501E /* PageViewController.swift in Sources */,
@@ -2132,6 +2137,7 @@
 				43B04F891F1F7EEF0032F057 /* OrRule.swift in Sources */,
 				43B04F8B1F1F7EEF0032F057 /* CheckBoxComponent.swift in Sources */,
 				43B04F8C1F1F7EEF0032F057 /* BaseFieldModel.swift in Sources */,
+				458D962422E8915A005BB98E /* UBSAContainerView.swift in Sources */,
 				43B04F8D1F1F7EEF0032F057 /* BaseIntComponentViewModel.swift in Sources */,
 				43B04F8E1F1F7EEF0032F057 /* CellViewModel.swift in Sources */,
 				43B04F8F1F1F7EEF0032F057 /* UIColor.swift in Sources */,

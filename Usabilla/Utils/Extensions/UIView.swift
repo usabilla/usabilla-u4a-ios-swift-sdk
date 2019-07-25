@@ -71,4 +71,15 @@ extension UIView {
             layer.borderWidth = width
         }
 //    #endif
+
+    var screenCapture: UIImage {
+        UIGraphicsBeginImageContext(self.frame.size)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
+        // swiftlint:disable:next force_unwrapping
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
 }
+

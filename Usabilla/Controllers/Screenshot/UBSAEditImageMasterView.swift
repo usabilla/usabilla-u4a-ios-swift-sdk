@@ -30,7 +30,7 @@ protocol UBSAPluginProtocol {
     func menuButton() -> UIButton
 
     func pluginWillClose()
-    func finalView() -> UIView  // we need center as well as UIView   BLOCK ???
+    func finalView() -> UIImageView
     func pluginDidClose()
     func pluginWillShow()
     func pluginDidShow()
@@ -53,8 +53,8 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
     var theme: UsabillaTheme?
     lazy var plugins: [UBSAPluginProtocol] = []
 
-    lazy var containerView: UIImageView = {
-        let aView = UIImageView()
+    lazy var containerView: UBSAContainerView = {
+        let aView = UBSAContainerView(frame: .zero)
         aView.clipsToBounds = true
         aView.backgroundColor = .clear
         aView.layer.cornerRadius = 4
@@ -150,6 +150,8 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         draw.delegate = self
         plugins.append(draw)
         addButton(draw)
+    
+    
     }
 
     func didTouchUpInside(sender: UBSAPluginProtocol) {
@@ -158,8 +160,7 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
                                                    width: view.frame.size.width,
                                                    height: UBDimensions.UBSAEditImageMasterView.bottomMenuHeight + DeviceInfo.getBottomSafeInsets()))
         setTopMenu(type: sender.topMenuType())
-        setCanvasView(sender.canvas(frame: containerView.frame))
-        
+        containerView.addActionView(sender.canvas(frame: containerView.bounds))
         animateMenuIn(view: menu)
     }
 }
@@ -178,8 +179,11 @@ extension UBSAEditImageMasterView {
         currentPresentedPlugin?.pluginWillClose()
         setStandardMenu()
         animateMenuOut()
+        containerView.removeActionView()
         // get the view from the plugin
-        //let view = currentPresentedPlugin?.finalView()
+        if let view = currentPresentedPlugin?.finalView() {
+            containerView.addView(view)
+        }
     }
 
     @objc func undoButtonTouchUpInside() {
@@ -196,7 +200,7 @@ extension UBSAEditImageMasterView {
         titleLabel.isHidden = false
     }
     fileprivate func setCanvasView(_ view: UIView) {
-        self.view.addSubview(view)
+        //self.view.addSubview(view)
     }
 
     fileprivate func setTopMenu(type: UBSATopMenuType) {

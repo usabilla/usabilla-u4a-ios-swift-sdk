@@ -69,7 +69,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     func addBaseImage(image: UIImage, source: UBimageSource) {
         imageSource = source
         configureAllElements()
-        containerView.image = image
+        containerView.setBackgroundImage(image)
     }
 
     func presentCamera(animated: Bool = true) {
@@ -165,7 +165,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
 
         toolBarView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarTopMarginHeigth).isActive = true
         toolBarView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarBottomMarginHeigth).isActive = true
-        toolBarView.heightAnchor.constraint(greaterThanOrEqualToConstant:  UBDimensions.UBEditImageMainView.toolbarHeight).isActive = true
+        toolBarView.heightAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.toolbarHeight).isActive = true
         toolBarView.widthAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.toolbarWidth).isActive = true
         toolBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
@@ -174,6 +174,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     // MARK: - Action methods
     @objc
     override func backButtonTouchUpInside() {
+        containerView.reset()
         switch imageSource {
         case .camera:
             presentCamera(animated: false)
@@ -202,14 +203,14 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     /// the submit the image throug the eventbus
     @objc
     override func addButtonTouchUpInside() {
-        if imageSource == .camera, let image = self.containerView.image {
-            checkPermissionAndSaveImage(image)
+        if imageSource == .camera {
+            checkPermissionAndSaveImage(containerView.finalImage())
         }
         dismiss(animated: true, completion: nil)
         if imageSource != .unknown {
             let imageType = ["image_type": imageSource.rawValue]
             client.addBehaviour("screenshot_annotations", imageType)
-            SwiftEventBus.postToMainThread("imagePicked", sender: containerView.image)
+            SwiftEventBus.postToMainThread("imagePicked", sender: containerView.finalImage())
         }
     }
 }

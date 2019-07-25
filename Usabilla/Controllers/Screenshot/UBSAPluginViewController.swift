@@ -57,8 +57,8 @@ class UBSAPluginViewController: UIViewController, UBSAPluginProtocol {
 
     }
 
-    func finalView() -> UIView {
-        return UIView()
+    func finalView() -> UIImageView {
+        return UIImageView()
     }
 
     func pluginDidClose() {
