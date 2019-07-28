@@ -30,7 +30,7 @@ protocol UBSAPluginProtocol {
     func menuButton() -> UIButton
 
     func pluginWillClose()
-    func finalView() -> UIImageView
+    func finalView() -> UIImageView?
     func pluginDidClose()
     func pluginWillShow()
     func pluginDidShow()
@@ -59,6 +59,7 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         aView.backgroundColor = .clear
         aView.layer.cornerRadius = 4
         aView.layer.masksToBounds = true
+        aView.isUserInteractionEnabled = true
         aView.contentMode = UIViewContentMode.scaleAspectFill
         aView.translatesAutoresizingMaskIntoConstraints = false
         return aView
@@ -150,8 +151,6 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         draw.delegate = self
         plugins.append(draw)
         addButton(draw)
-    
-    
     }
 
     func didTouchUpInside(sender: UBSAPluginProtocol) {
@@ -228,10 +227,13 @@ extension UBSAEditImageMasterView {
             view.frame = startFrame
             self.view.addSubview(view)
             let endFrame = CGRect(x: 0, y: self.view.frame.size.height-view.frame.height, width: view.frame.size.width, height: view.frame.size.height)
+            self.currentPresentedPlugin?.pluginWillShow()
             UIView.animate(withDuration: UBDimensions.UBSAEditImageMasterView.bottomMenuAnimationTime, delay: 0, options: .curveEaseOut, animations: {
                 view.frame = endFrame
+            }, completion: {shown in
+                self.currentPresentedMenu = view
+                self.currentPresentedPlugin?.pluginDidShow()
             })
-            currentPresentedMenu = view
         }
     }
     fileprivate func animateMenuOut() {

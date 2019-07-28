@@ -26,7 +26,7 @@ class ColorPickerCell: UICollectionViewCell {
         super.init(frame: frame)
         addViews()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,13 +36,12 @@ class ColorPickerCell: UICollectionViewCell {
         colorView.layer.borderColor = UIColor.darkGray.cgColor
         colorView.layer.borderWidth = ColorPickerCellValues.borderWidth
     }
-    
+
     func addViews() {
         addSubview(colorView)
         colorView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         colorView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         colorView.widthAnchor.constraint(equalToConstant: ColorPickerCellValues.width).isActive = true
         colorView.heightAnchor.constraint(equalToConstant: ColorPickerCellValues.height).isActive = true
-        
     }
 }

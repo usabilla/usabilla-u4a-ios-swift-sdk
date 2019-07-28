@@ -20,6 +20,7 @@ class DrawingPlugin: UBSAPluginViewController {
         view.backgroundColor = .white
         let colorpicker = ColorPickerView(frame: frame)
         colorpicker.delegate = self
+        
         colorPickerView = colorpicker
         view.addSubview(colorpicker)
         return view
@@ -38,12 +39,18 @@ class DrawingPlugin: UBSAPluginViewController {
     override func undoAction() {
         drawingView?.undo()
     }
-    override func finalView() -> UIImageView {
+
+    override func finalView() -> UIImageView? {
         if let view = drawingView?.cropedView() {
             return view
         }
-        return UIImageView()
+        return nil
     }
+    override func pluginDidShow() {
+        super.pluginDidShow()
+        colorPickerView?.selectColor(at: 1, animated: false)
+    }
+
 }
 
 extension DrawingPlugin: ColorPickerViewDelegate {

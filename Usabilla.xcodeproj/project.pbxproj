@@ -408,8 +408,18 @@
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45553AE122E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
-		458D962322E8915A005BB98E /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D962222E8915A005BB98E /* UBSAContainerView.swift */; };
-		458D962422E8915A005BB98E /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D962222E8915A005BB98E /* UBSAContainerView.swift */; };
+		458FC5D822EE428200E198A7 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
+		458FC5D922EE428200E198A7 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
+		458FC5DA22EE428200E198A7 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D522EE428200E198A7 /* ColorPickerView.swift */; };
+		458FC5DB22EE428200E198A7 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D522EE428200E198A7 /* ColorPickerView.swift */; };
+		458FC5DC22EE428200E198A7 /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */; };
+		458FC5DD22EE428200E198A7 /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */; };
+		458FC5DE22EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */; };
+		458FC5DF22EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */; };
+		458FC5E222EE42AD00E198A7 /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */; };
+		458FC5E322EE42AD00E198A7 /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */; };
+		458FC5E422EE42AD00E198A7 /* UBSADragableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */; };
+		458FC5E522EE42AD00E198A7 /* UBSADragableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */; };
 		459678D922E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
 		459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
 		459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
@@ -429,14 +439,6 @@
 		45C620DE22DDAE7A00CB95A9 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */; };
 		45CB6F0122DFBE63007FEE38 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6F0022DFBE63007FEE38 /* UIViewController.swift */; };
 		45CB6F0222DFBE63007FEE38 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6F0022DFBE63007FEE38 /* UIViewController.swift */; };
-		45EDC6C422E9A77600DD6FAC /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6C322E9A77600DD6FAC /* ColorPickerCell.swift */; };
-		45EDC6C522E9A77600DD6FAC /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6C322E9A77600DD6FAC /* ColorPickerCell.swift */; };
-		45EDC6C722E9A79800DD6FAC /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6C622E9A79800DD6FAC /* ColorPickerView.swift */; };
-		45EDC6C822E9A79800DD6FAC /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6C622E9A79800DD6FAC /* ColorPickerView.swift */; };
-		45EDC6CA22E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6C922E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift */; };
-		45EDC6CB22E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6C922E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift */; };
-		45EDC6CD22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6CC22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift */; };
-		45EDC6CE22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EDC6CC22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift */; };
 		45F0D41E22DDE9BD0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
 		45F0D41F22DDEE7A0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
 		45F0D42222DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
@@ -755,7 +757,12 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
-		458D962222E8915A005BB98E /* UBSAContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UBSAContainerView.swift; path = "../../../../../../../../System/Volumes/Data/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/Usabilla/Views/CustomViews/UBSAContainerView.swift"; sourceTree = "<group>"; };
+		458FC5D422EE428200E198A7 /* ColorPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
+		458FC5D522EE428200E198A7 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewDelegate.swift; sourceTree = "<group>"; };
+		458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewDelegateFlowLayout.swift; sourceTree = "<group>"; };
+		458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSAContainerView.swift; sourceTree = "<group>"; };
+		458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADragableImageView.swift; sourceTree = "<group>"; };
 		459678D722E878510043DE70 /* UBSADrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingView.swift; sourceTree = "<group>"; };
 		459678D822E878520043DE70 /* UBSADrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingTool.swift; sourceTree = "<group>"; };
 		45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingPlugin.swift; sourceTree = "<group>"; };
@@ -767,10 +774,6 @@
 		45C620D922DCB61800CB95A9 /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
 		45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		45CB6F0022DFBE63007FEE38 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		45EDC6C322E9A77600DD6FAC /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPickerCell.swift; path = "../../../../../../../../../System/Volumes/Data/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/Usabilla/Views/Components/UBColorPicker/ColorPickerCell.swift"; sourceTree = "<group>"; };
-		45EDC6C622E9A79800DD6FAC /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPickerView.swift; path = "../../../../../../../../../System/Volumes/Data/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/Usabilla/Views/Components/UBColorPicker/ColorPickerView.swift"; sourceTree = "<group>"; };
-		45EDC6C922E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPickerViewDelegate.swift; path = "../../../../../../../../../System/Volumes/Data/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/Usabilla/Views/Components/UBColorPicker/ColorPickerViewDelegate.swift"; sourceTree = "<group>"; };
-		45EDC6CC22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPickerViewDelegateFlowLayout.swift; path = "../../../../../../../../../System/Volumes/Data/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/Usabilla/Views/Components/UBColorPicker/ColorPickerViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionCell.swift; sourceTree = "<group>"; };
 		45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
@@ -1201,7 +1204,7 @@
 		04F54DE71CD75BA8002F501E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				45EDC6C222E9A74200DD6FAC /* UBColorPicker */,
+				458FC5D322EE428200E198A7 /* UBColorPicker */,
 				430669911E76B4B30078E3B3 /* BaseComponent.swift */,
 				430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */,
 				1082683721998FDF00A3820B /* BaseParagraphComponent.swift */,
@@ -1487,6 +1490,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		458FC5D322EE428200E198A7 /* UBColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				458FC5D422EE428200E198A7 /* ColorPickerCell.swift */,
+				458FC5D522EE428200E198A7 /* ColorPickerView.swift */,
+				458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */,
+				458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */,
+			);
+			path = UBColorPicker;
+			sourceTree = "<group>";
+		};
 		45C620D522DCAE4B00CB95A9 /* Screenshot */ = {
 			isa = PBXGroup;
 			children = (
@@ -1502,23 +1516,13 @@
 			path = Screenshot;
 			sourceTree = "<group>";
 		};
-		45EDC6C222E9A74200DD6FAC /* UBColorPicker */ = {
-			isa = PBXGroup;
-			children = (
-				45EDC6C322E9A77600DD6FAC /* ColorPickerCell.swift */,
-				45EDC6C622E9A79800DD6FAC /* ColorPickerView.swift */,
-				45EDC6C922E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift */,
-				45EDC6CC22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift */,
-			);
-			path = UBColorPicker;
-			sourceTree = "<group>";
-		};
 		C534D318207F5FAD009D06CF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */,
+				458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */,
 				C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */,
 				4552C1B122C3748900814093 /* UBImageLibraryButton.swift */,
-				458D962222E8915A005BB98E /* UBSAContainerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1788,13 +1792,13 @@
 				43CCD4731E799DD300B3E4FE /* SliderComponentViewModel.swift in Sources */,
 				436C2B7F1E85187000741E10 /* UBIntroOutroPresenter.swift in Sources */,
 				C5DC40861F7BDCAE00FA89B8 /* UITableView.swift in Sources */,
+				458FC5D822EE428200E198A7 /* ColorPickerCell.swift in Sources */,
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				41C4C7631F69DD490043A844 /* NPSToolTip.swift in Sources */,
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
 				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				C564D1911E799A190004705A /* FormStore.swift in Sources */,
-				45EDC6CA22E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift in Sources */,
 				046C3F9C1EAA14A000B0B190 /* HTTPClientProtocol.swift in Sources */,
 				F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */,
 				0483E9DF1CDCDF86004EC234 /* RootCellView.swift in Sources */,
@@ -1814,6 +1818,7 @@
 				04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */,
 				43AE0AEA1E82B9A500B1441C /* CampaignViewModel.swift in Sources */,
 				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
+				458FC5DE22EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
 				04E20FFD1CF84E4E00488BE3 /* SwiftyJSON.swift in Sources */,
 				C536547A1F39DD1A00C51AD5 /* PassiveStatus.swift in Sources */,
 				430669B31E76D8E30078E3B3 /* PageViewModel.swift in Sources */,
@@ -1832,10 +1837,12 @@
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
 				432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */,
 				45B51EE022E7A00500122F44 /* DrawingPlugin.swift in Sources */,
+				458FC5E222EE42AD00E198A7 /* UBSAContainerView.swift in Sources */,
 				43B0EE701EA0E6AF00241D44 /* UBCampaignStore.swift in Sources */,
 				0483E9DD1CDCDF86004EC234 /* ParagraphFieldModel.swift in Sources */,
 				436C2B841E8518E600741E10 /* UBAlertDisplay.swift in Sources */,
 				04DC25AD1E8BB33E002962A3 /* Rules.swift in Sources */,
+				458FC5DC22EE428200E198A7 /* ColorPickerViewDelegate.swift in Sources */,
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
 				43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */,
 				43E883E41E37575B00A97F1D /* UBFeedbackRequest.swift in Sources */,
@@ -1853,7 +1860,6 @@
 				04B12F091E9FC8B400E65BE5 /* RequestBuilder.swift in Sources */,
 				04F54E521CD76717002F501E /* ShowHideRule.swift in Sources */,
 				43E883E91E37B5B800A97F1D /* String.swift in Sources */,
-				45EDC6CD22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
 				433794371E8A6C0100965EC8 /* Logging.swift in Sources */,
 				04DC25AA1E8BB33E002962A3 /* AndRule.swift in Sources */,
 				4334E85F1E2900B300AC895C /* IntFieldModel.swift in Sources */,
@@ -1871,14 +1877,12 @@
 				43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */,
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
 				F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */,
-				458D962322E8915A005BB98E /* UBSAContainerView.swift in Sources */,
 				43E883ED1E37B5C900A97F1D /* UIColor.swift in Sources */,
 				43E883EF1E37B61000A97F1D /* UIDevice.swift in Sources */,
 				04F54E571CD76789002F501E /* PageViewController.swift in Sources */,
 				0483E9DC1CDCDF86004EC234 /* PageModel.swift in Sources */,
 				43E883EB1E37B5C000A97F1D /* UIImage.swift in Sources */,
 				C59F73BE1F97748200447B2C /* UIImageView.swift in Sources */,
-				45EDC6C422E9A77600DD6FAC /* ColorPickerCell.swift in Sources */,
 				C52550541ED43EF6005658F5 /* FormService.swift in Sources */,
 				4390C0F41E97BEC500092977 /* UBFileStorageDAO.swift in Sources */,
 				04DC25B31E8BB347002962A3 /* Decorator.swift in Sources */,
@@ -1886,8 +1890,10 @@
 				047EE5A71F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift in Sources */,
 				4390C0F21E97BE9B00092977 /* UBDAO.swift in Sources */,
 				43CCD4351E77E23700B3E4FE /* ComponentFactory.swift in Sources */,
+				458FC5E422EE42AD00E198A7 /* UBSADragableImageView.swift in Sources */,
 				43CCD46A1E79541E00B3E4FE /* TextAreaComponent.swift in Sources */,
 				041275D81F792BF700A12E09 /* Usabilla.swift in Sources */,
+				458FC5DA22EE428200E198A7 /* ColorPickerView.swift in Sources */,
 				45F0D42222DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				43127EC01E71B57500E3011A /* PassiveFormController.swift in Sources */,
 				4306698F1E76B1F50078E3B3 /* FooterTableViewCell.swift in Sources */,
@@ -1940,7 +1946,6 @@
 				45B51EE322E7A01500122F44 /* UBSAPluginViewController.swift in Sources */,
 				C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */,
 				4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */,
-				45EDC6C722E9A79800DD6FAC /* ColorPickerView.swift in Sources */,
 				0483E9D21CDCDF86004EC234 /* CheckboxFieldModel.swift in Sources */,
 				45B8263122CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */,
 				04F54DF41CD766EC002F501E /* Protocols.swift in Sources */,
@@ -2084,13 +2089,13 @@
 				43B04F471F1F7EEF0032F057 /* Reachability.swift in Sources */,
 				43B04F481F1F7EEF0032F057 /* SliderComponentViewModel.swift in Sources */,
 				43B04F4A1F1F7EEF0032F057 /* UBIntroOutroPresenter.swift in Sources */,
+				458FC5D922EE428200E198A7 /* ColorPickerCell.swift in Sources */,
 				41C4C7641F69DD490043A844 /* NPSToolTip.swift in Sources */,
 				43B04F4B1F1F7EEF0032F057 /* OptionsFieldModel.swift in Sources */,
 				43B04F4C1F1F7EEF0032F057 /* CheckBoxComponentViewModel.swift in Sources */,
 				43B04F4D1F1F7EEF0032F057 /* IntroPageViewModel.swift in Sources */,
 				43B04F4E1F1F7EEF0032F057 /* SliderComponent.swift in Sources */,
 				43B04F4F1F1F7EEF0032F057 /* FormStore.swift in Sources */,
-				45EDC6CB22E9A7CE00DD6FAC /* ColorPickerViewDelegate.swift in Sources */,
 				43B04F501F1F7EEF0032F057 /* HTTPClientProtocol.swift in Sources */,
 				43B04F511F1F7EEF0032F057 /* RootCellView.swift in Sources */,
 				43B04F521F1F7EEF0032F057 /* UBFeedbackRequestDAO.swift in Sources */,
@@ -2110,6 +2115,7 @@
 				43B04F5F1F1F7EEF0032F057 /* RadioComponentViewModel.swift in Sources */,
 				43B04F601F1F7EEF0032F057 /* SwiftyJSON.swift in Sources */,
 				C536547E1F39E10000C51AD5 /* PassiveStatus.swift in Sources */,
+				458FC5DF22EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
 				43B04F611F1F7EEF0032F057 /* PageViewModel.swift in Sources */,
 				C5DC40A11F7BEA3D00FA89B8 /* Usabilla.swift in Sources */,
 				43B04F621F1F7EEF0032F057 /* UBCampaignFeedbackRequest.swift in Sources */,
@@ -2128,10 +2134,12 @@
 				43B04F6E1F1F7EEF0032F057 /* EmailComponent.swift in Sources */,
 				43B04F6F1F1F7EEF0032F057 /* HeaderComponentViewModel.swift in Sources */,
 				45B51EE122E7A00500122F44 /* DrawingPlugin.swift in Sources */,
+				458FC5E322EE42AD00E198A7 /* UBSAContainerView.swift in Sources */,
 				43B04F701F1F7EEF0032F057 /* UBCampaignStore.swift in Sources */,
 				43B04F711F1F7EEF0032F057 /* ParagraphFieldModel.swift in Sources */,
 				43B04F721F1F7EEF0032F057 /* UBAlertDisplay.swift in Sources */,
 				43B04F731F1F7EEF0032F057 /* Rules.swift in Sources */,
+				458FC5DD22EE428200E198A7 /* ColorPickerViewDelegate.swift in Sources */,
 				43B04F741F1F7EEF0032F057 /* HeaderFieldModel.swift in Sources */,
 				41AC38461F68848800F0DFC6 /* NPSControl.swift in Sources */,
 				C534D31B207F5FCB009D06CF /* PoweredByUsabillaView.swift in Sources */,
@@ -2149,7 +2157,6 @@
 				435D06F71FA8A11600D5A2F4 /* TargetingOptionsModel.swift in Sources */,
 				43B04F7D1F1F7EEF0032F057 /* HeaderComponent.swift in Sources */,
 				43B04F7E1F1F7EEF0032F057 /* BaseEditableStringComponentViewModel.swift in Sources */,
-				45EDC6CE22E9A7ED00DD6FAC /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
 				43B04F7F1F1F7EEF0032F057 /* RequestBuilder.swift in Sources */,
 				43B04F801F1F7EEF0032F057 /* ShowHideRule.swift in Sources */,
 				43B04F811F1F7EEF0032F057 /* String.swift in Sources */,
@@ -2167,14 +2174,12 @@
 				43B04F891F1F7EEF0032F057 /* OrRule.swift in Sources */,
 				43B04F8B1F1F7EEF0032F057 /* CheckBoxComponent.swift in Sources */,
 				43B04F8C1F1F7EEF0032F057 /* BaseFieldModel.swift in Sources */,
-				458D962422E8915A005BB98E /* UBSAContainerView.swift in Sources */,
 				43B04F8D1F1F7EEF0032F057 /* BaseIntComponentViewModel.swift in Sources */,
 				43B04F8E1F1F7EEF0032F057 /* CellViewModel.swift in Sources */,
 				43B04F8F1F1F7EEF0032F057 /* UIColor.swift in Sources */,
 				43B04F901F1F7EEF0032F057 /* UIDevice.swift in Sources */,
 				43B04F911F1F7EEF0032F057 /* PageViewController.swift in Sources */,
 				C59F73BF1F97748200447B2C /* UIImageView.swift in Sources */,
-				45EDC6C522E9A77600DD6FAC /* ColorPickerCell.swift in Sources */,
 				43B04F921F1F7EEF0032F057 /* PageModel.swift in Sources */,
 				43B04F931F1F7EEF0032F057 /* UIImage.swift in Sources */,
 				43B04F941F1F7EEF0032F057 /* FormService.swift in Sources */,
@@ -2182,8 +2187,10 @@
 				43B04F961F1F7EEF0032F057 /* Decorator.swift in Sources */,
 				43B04F971F1F7EEF0032F057 /* UsabillaTheme.swift in Sources */,
 				43B04F981F1F7EEF0032F057 /* UBDAO.swift in Sources */,
+				458FC5E522EE42AD00E198A7 /* UBSADragableImageView.swift in Sources */,
 				43B04F991F1F7EEF0032F057 /* ComponentFactory.swift in Sources */,
 				43B04F9A1F1F7EEF0032F057 /* TextAreaComponent.swift in Sources */,
+				458FC5DB22EE428200E198A7 /* ColorPickerView.swift in Sources */,
 				45F0D42322DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				43B04F9B1F1F7EEF0032F057 /* PassiveFormController.swift in Sources */,
 				43B04F9C1F1F7EEF0032F057 /* FooterTableViewCell.swift in Sources */,
@@ -2236,7 +2243,6 @@
 				45B51EE422E7A01500122F44 /* UBSAPluginViewController.swift in Sources */,
 				C51896CC1F2641C10083FF86 /* ActiveStatus.swift in Sources */,
 				43B04FBD1F1F7EEF0032F057 /* StringFieldModel.swift in Sources */,
-				45EDC6C822E9A79800DD6FAC /* ColorPickerView.swift in Sources */,
 				43B04FBE1F1F7EEF0032F057 /* CheckboxFieldModel.swift in Sources */,
 				45B8263222CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */,
 				43B04FBF1F1F7EEF0032F057 /* Protocols.swift in Sources */,

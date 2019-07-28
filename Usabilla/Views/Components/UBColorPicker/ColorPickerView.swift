@@ -32,7 +32,7 @@ class ColorPickerView: UIView {
             }
         }
     }
-    
+
     /// The object that acts as the layout delegate for the color picker
     weak var layoutDelegate: ColorPickerViewDelegateFlowLayout?
     /// The object that acts as the delegate for the color picker
@@ -41,7 +41,7 @@ class ColorPickerView: UIView {
     var indexOfSelectedColor: Int? {
         return _indexOfSelectedColor
     }
-    
+
     fileprivate var _indexOfSelectedColor: Int?
     fileprivate lazy var collectionView: UICollectionView = {
 
@@ -57,7 +57,7 @@ class ColorPickerView: UIView {
         collectionView.backgroundColor = .clear
         return collectionView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         prepareForInitial()
@@ -71,7 +71,7 @@ class ColorPickerView: UIView {
     private func prepareForInitial() {
         backgroundColor = UIColor.clear
     }
-    
+
     // MARK: - View management
     override func layoutSubviews() {
         self.addSubview(collectionView)
@@ -82,10 +82,10 @@ class ColorPickerView: UIView {
         self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0))
         
     }
-    
+
     // MARK: - Private Methods
     private func _selectColor(at indexPath: IndexPath, animated: Bool) {
-        
+
         guard let colorPickerCell = collectionView.cellForItem(at: indexPath) as? ColorPickerCell else { return }
         UIView.animate(withDuration: 0.2,
                        animations: {
@@ -101,7 +101,7 @@ class ColorPickerView: UIView {
         let color = colors[indexPath.item]
         delegate?.colorPockerView(self, didSelectColor: color)
     }
-    
+
     // MARK: - Public Methods
     func selectColor(at index: Int, animated: Bool) {
         if index < colors.count {
@@ -109,18 +109,17 @@ class ColorPickerView: UIView {
                               animated: animated)
         }
     }
-    
 }
 
 extension ColorPickerView: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let colorPickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorPickerCell", for: indexPath)
         guard let cell: ColorPickerCell = colorPickerCell as? ColorPickerCell else { return colorPickerCell}
@@ -152,7 +151,7 @@ extension ColorPickerView: UICollectionViewDelegateFlowLayout {
         }
         return ColorPickerValues.cellSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if let layoutDelegate = layoutDelegate, let minimumLineSpacingForSectionAt = layoutDelegate.colorPickerView?(self, minimumLineSpacingForSectionAt: section) {
             return minimumLineSpacingForSectionAt
@@ -179,7 +178,7 @@ extension UIView {
     struct Constants {
         static let ExternalBorderName = "externalBorder"
     }
-    
+
     func addExternalBorder(borderWidth: CGFloat = 2.0, borderColor: UIColor = UIColor.white) -> CALayer {
         let externalBorder = CALayer()
         let frameWidth = frame.size.width
@@ -194,16 +193,16 @@ extension UIView {
         
         return externalBorder
     }
-    
+
     func removeExternalBorders() {
         layer.sublayers?.filter() { $0.name == Constants.ExternalBorderName }.forEach() {
             $0.removeFromSuperlayer()
         }
     }
-    
+
     func removeExternalBorder(externalBorder: CALayer) {
         guard externalBorder.name == Constants.ExternalBorderName else { return }
         externalBorder.removeFromSuperlayer()
     }
-    
+
 }

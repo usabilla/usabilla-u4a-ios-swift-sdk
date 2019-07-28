@@ -54,7 +54,7 @@ class UBSADrawingView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+
         switch drawMode {
         case .original:
             image?.draw(at: CGPoint.zero)
@@ -214,7 +214,7 @@ class UBSADrawingView: UIView {
 
         guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo),
             let ptr = context.data?.assumingMemoryBound(to: UInt8.self) else {
-                let imageview = UIImageView(image: image)
+                let imageview = UBSADragableImageView(image: image)
                 imageview.center  = CGPoint(x: CGFloat(width) / 2.0, y: CGFloat(height) / 2.0)
                 return imageview
         }
@@ -248,12 +248,15 @@ class UBSADrawingView: UIView {
 
         let centerX = CGFloat(minX + ((maxX-minX)/2))
         let centerY = CGFloat(minY + ((maxY-minY)/2))
-        let imageview = UIImageView(image: ret)
+        let imageview = UBSADragableImageView(image: ret)
         imageview.center = CGPoint(x: centerX, y: centerY)
         return imageview
     }
 
-    func cropedView() -> UIImageView {
-        return cropAlpha(self.screenCapture)
+    func cropedView() -> UIImageView? {
+        if canUndo() {
+            return cropAlpha(self.screenCapture)
+        }
+        return nil
     }
 }
