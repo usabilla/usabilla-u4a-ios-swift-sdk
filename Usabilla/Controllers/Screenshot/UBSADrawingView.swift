@@ -27,7 +27,7 @@ class UBSADrawingView: UIView {
     var lineWidth = CGFloat(12)
     var lineAlpha = CGFloat(1)
     var drawTool: UBSADrawingToolType = .pen
-    var drawingPenType: PenType = .normal
+    var drawingPenType: PenType = .marker
     weak var sketchViewDelegate: UBSADrawingViewDelegate?
     private var currentTool: UBSADrawingTool?
     private let pathArray: NSMutableArray = NSMutableArray()
@@ -37,12 +37,12 @@ class UBSADrawingView: UIView {
     private var image: UIImage?
     private var backgroundImage: UIImage?
     private var drawMode: ImageRenderingMode = .original
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         prepareForInitial()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         prepareForInitial()
@@ -51,7 +51,7 @@ class UBSADrawingView: UIView {
     private func prepareForInitial() {
         backgroundColor = UIColor.clear
     }
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
@@ -67,7 +67,7 @@ class UBSADrawingView: UIView {
 
     private func updateCacheImage(_ isUpdate: Bool) {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
-        
+
         if isUpdate {
             image = nil
             switch drawMode {
@@ -141,7 +141,7 @@ class UBSADrawingView: UIView {
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        
+
         previousPoint2 = previousPoint1
         previousPoint1 = touch.previousLocation(in: self)
         currentPoint = touch.location(in: self)
@@ -177,7 +177,7 @@ class UBSADrawingView: UIView {
         resetTool()
         pathArray.removeAllObjects()
         updateCacheImage(true)
-        
+
         setNeedsDisplay()
     }
 

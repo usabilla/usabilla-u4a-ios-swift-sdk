@@ -11,6 +11,7 @@ import UIKit
 class DrawingPlugin: UBSAPluginViewController {
     fileprivate var drawingView: UBSADrawingView?
     fileprivate var colorPickerView: ColorPickerView?
+    fileprivate var drawingToolView: PenToolView?
 
     override var toolbarButtonImageName: String {
             return "ic_pencil"
@@ -20,9 +21,14 @@ class DrawingPlugin: UBSAPluginViewController {
         view.backgroundColor = .white
         let colorpicker = ColorPickerView(frame: frame)
         colorpicker.delegate = self
-        
         colorPickerView = colorpicker
         view.addSubview(colorpicker)
+        // Set the drawingToolView 🙋🏻‍♂️
+        let penToolView = PenToolView(frame: frame)
+        penToolView.delegate = self
+        drawingToolView = penToolView
+        view.addSubview(colorpicker)
+
         return view
     }
 
@@ -49,6 +55,7 @@ class DrawingPlugin: UBSAPluginViewController {
     override func pluginDidShow() {
         super.pluginDidShow()
         colorPickerView?.selectColor(at: 1, animated: false)
+        drawingToolView?.selectedTool = .marker
     }
 
 }
@@ -56,5 +63,17 @@ class DrawingPlugin: UBSAPluginViewController {
 extension DrawingPlugin: ColorPickerViewDelegate {
     func colorPockerView(_ colorPickerView: ColorPickerView, didSelectColor color: UIColor) {
         drawingView?.lineColor = color
+        drawingToolView?.togglePenColor(penColor: color)
+    }
+}
+
+extension DrawingPlugin: PenToolViewDelegate {
+    func selectedPenTool(penType: PenType) {
+        switch penType {
+        case .marker:
+            drawingView?.lineWidth = PenStrokeWidth.marker.rawValue
+        case .pencil:
+            drawingView?.lineWidth = PenStrokeWidth.pencil.rawValue
+        }
     }
 }

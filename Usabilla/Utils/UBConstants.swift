@@ -144,11 +144,11 @@ struct UBDimensions {
         static let backButtonText: String = "usa_back_button_title"
         static let addButtonText: String = "usa_add_button_title"
         static let doneButtonText: String = "usa_done_button_title"
-        
+
         static let toolbarHeight: CGFloat = 48
         static let toolbarWidth: CGFloat = 32
-        static let toolbarTopMarginHeigth: CGFloat = 30
-        static let toolbarBottomMarginHeigth: CGFloat = 7
+        static let toolbarTopMarginHeight: CGFloat = 30
+        static let toolbarBottomMarginHeight: CGFloat = 7
     }
 
     struct UBSAEditImageMasterView {

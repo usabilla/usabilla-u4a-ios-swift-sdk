@@ -163,8 +163,8 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         rightButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
         rightButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
-        toolBarView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarTopMarginHeigth).isActive = true
-        toolBarView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarBottomMarginHeigth).isActive = true
+        toolBarView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarTopMarginHeight).isActive = true
+        toolBarView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBEditImageMainView.toolbarBottomMarginHeight).isActive = true
         toolBarView.heightAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.toolbarHeight).isActive = true
         toolBarView.widthAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.toolbarWidth).isActive = true
         toolBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

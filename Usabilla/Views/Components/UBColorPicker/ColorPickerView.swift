@@ -67,7 +67,7 @@ class ColorPickerView: UIView {
         super.init(coder: aDecoder)
         prepareForInitial()
     }
-    
+
     private func prepareForInitial() {
         backgroundColor = UIColor.clear
     }
@@ -105,8 +105,11 @@ class ColorPickerView: UIView {
     // MARK: - Public Methods
     func selectColor(at index: Int, animated: Bool) {
         if index < colors.count {
-            self._selectColor(at: IndexPath(row: index, section: 0),
-                              animated: animated)
+            let indexPath = IndexPath(item: index, section: 0)
+            DispatchQueue.main.async {
+                self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+                self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+            }
         }
     }
 }
@@ -132,7 +135,7 @@ extension ColorPickerView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self._selectColor(at: indexPath, animated: true)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let oldColorCell = collectionView.cellForItem(at: indexPath) as? ColorPickerCell else {
             return
@@ -158,14 +161,14 @@ extension ColorPickerView: UICollectionViewDelegateFlowLayout {
         }
         return ColorPickerValues.minimumLineSpacingForSectionAt
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if let layoutDelegate = layoutDelegate, let minimumInteritemSpacingForSectionAt = layoutDelegate.colorPickerView?(self, minimumInteritemSpacingForSectionAt: section) {
             return minimumInteritemSpacingForSectionAt
         }
         return ColorPickerValues.minimumInteritemSpacingForSectionAt
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if let layoutDelegate = layoutDelegate, let insetForSectionAt = layoutDelegate.colorPickerView?(self, insetForSectionAt: section) {
             return insetForSectionAt
@@ -190,12 +193,12 @@ extension UIView {
         externalBorder.cornerRadius = cornerRadius
         layer.insertSublayer(externalBorder, at: 0)
         layer.masksToBounds = false
-        
+
         return externalBorder
     }
 
     func removeExternalBorders() {
-        layer.sublayers?.filter() { $0.name == Constants.ExternalBorderName }.forEach() {
+        layer.sublayers?.filter { $0.name == Constants.ExternalBorderName }.forEach {
             $0.removeFromSuperlayer()
         }
     }
