@@ -208,7 +208,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         }
         dismiss(animated: true, completion: nil)
         if imageSource != .unknown {
-            let imageType = ["image_type": imageSource.rawValue]
+            let imageType = ["image_type": imageSource.rawValue, "number_of_drawings": containerView.numbeOfDrawings()] as [String: Any]
             client.addBehaviour("screenshot_annotations", imageType)
             SwiftEventBus.postToMainThread("imagePicked", sender: containerView.finalImage())
         }

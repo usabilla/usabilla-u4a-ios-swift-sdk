@@ -66,7 +66,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         super.viewWillAppear(animated)
         SwiftEventBus.onMainThread(self, name: "updateClientModel") { result in
             if result?.object == nil {
-                let imageTypeDict = ["image_type": nil as Any?]
+                let imageTypeDict = ["image_type": nil as Any?, "number_of_drawings": nil]
                 self.client.addBehaviour("screenshot_annotations", imageTypeDict)
             }
         }

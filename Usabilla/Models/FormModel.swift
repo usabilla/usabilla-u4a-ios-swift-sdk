@@ -79,9 +79,9 @@ class FormModel: NSObject, NSCoding {
         if let firstPageModel = newPages.first, hasScreenshot {
             let screenshotModel = ScreenshotModel(json: JSON(screenshotJson), screenShot: screenshot)
             firstPageModel.fields.append(screenshotModel)
-            var imageTypeDict = ["image_type": nil as Any?]
+            var imageTypeDict = ["image_type": nil as Any?, "number_of_drawings": nil]
             if screenshot != nil {
-             imageTypeDict = ["image_type": "default"]
+             imageTypeDict = ["image_type": "default", "number_of_drawings": nil]
             }
             self.client?.addBehaviour("screenshot_annotations", imageTypeDict)
         }
