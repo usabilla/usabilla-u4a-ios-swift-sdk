@@ -126,8 +126,8 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         return button
     }()
 
-    lazy var toolBarView: UIView = {
-        let aView = UIView()
+    lazy var toolBarView: UIStackView = {
+        let aView = UIStackView()
         view.addSubview(aView)
         aView.clipsToBounds = true
         aView.backgroundColor = .clear
@@ -138,7 +138,7 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
 
     private func addButton(_ plugin: UBSAPluginProtocol) {
         buttons.append(plugin.menuButton())
-        toolBarView.addSubview(plugin.menuButton())
+        toolBarView.addArrangedSubview(plugin.menuButton())
     }
 
     /*

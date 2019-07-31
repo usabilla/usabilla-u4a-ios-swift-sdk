@@ -16,7 +16,6 @@ class UBSAPluginViewController: UIViewController, UBSAPluginProtocol {
         let button = UIButton(frame: CGRect(x: 0, y: 0,
                                             width: UBDimensions.PluginViewController.buttonWidth,
                                             height: UBDimensions.PluginViewController.buttonHeight))
-        view.addSubview(button)
         button.contentHorizontalAlignment = .center
         button.backgroundColor = .clear
         var buttonImage = UIImage.getImageFromSDKBundle(name: toolbarButtonImageName)

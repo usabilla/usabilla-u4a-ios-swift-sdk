@@ -148,7 +148,7 @@ struct UBDimensions {
         static let toolbarHeight: CGFloat = 48
         static let toolbarWidth: CGFloat = 32
         static let toolbarTopMarginHeight: CGFloat = 30
-        static let toolbarBottomMarginHeight: CGFloat = 7
+        static let toolbarBottomMarginHeight: CGFloat = -7
     }
 
     struct UBSAEditImageMasterView {
@@ -158,7 +158,7 @@ struct UBDimensions {
         static let bottomMenuHeight: CGFloat = 62.0
         static let bottomMenuAnimationTime: TimeInterval = 0.3
     }
-    
+
     struct PluginViewController {
         static let buttonWidth: CGFloat = 32.0
         static let buttonHeight: CGFloat = 32.0
