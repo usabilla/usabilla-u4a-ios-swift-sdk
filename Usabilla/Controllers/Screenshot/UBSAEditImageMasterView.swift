@@ -230,7 +230,7 @@ extension UBSAEditImageMasterView {
             self.currentPresentedPlugin?.pluginWillShow()
             UIView.animate(withDuration: UBDimensions.UBSAEditImageMasterView.bottomMenuAnimationTime, delay: 0, options: .curveEaseOut, animations: {
                 view.frame = endFrame
-            }, completion: {shown in
+            }, completion: { _ in
                 self.currentPresentedMenu = view
                 self.currentPresentedPlugin?.pluginDidShow()
             })

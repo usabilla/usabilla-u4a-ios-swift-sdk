@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum UBSADrawingToolType {
+enum UBSADrawingToolType: Int {
     case pen
 }
 

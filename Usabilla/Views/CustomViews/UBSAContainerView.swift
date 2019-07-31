@@ -28,7 +28,7 @@ class UBSAContainerView: UIView {
     private let trashAreaHeight: CGFloat = 0
     private let trashViewAnimationTime: TimeInterval = 0.3
     private let trashViewDelay: TimeInterval = 1.0
-    
+
     fileprivate lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: frame)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -199,13 +199,15 @@ extension UBSAContainerView {
         }
         stackView.addSubview(view)
     }
-    
+
     /**
      Works as  UIView addSubView method and adds the subview to stackview
      - Parameter view: the flatten view as UIImageView
+     - Parameter type: the drawingtool type of the view, defaults
      **/
 
-    func addView(_ view: UIView) {
+    func addView(_ view: UIView, type: UBSADrawingToolType = .pen) {
+        view.tag = type.rawValue
         if let theView =  view as? UBSADragableImageView {
             theView.delegate = self
             stackView.addSubview(theView)
@@ -220,5 +222,10 @@ extension UBSAContainerView {
      **/
     func finalImage() -> UIImage {
         return  self.screenCapture
+    }
+
+    func numbeOfDrawings() -> Int {
+        let array = stackView.subviews.compactMap({ $0.tag == UBSADrawingToolType.pen.rawValue})
+        return array.count
     }
 }
