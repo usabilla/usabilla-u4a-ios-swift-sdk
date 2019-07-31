@@ -18,10 +18,9 @@ extension UIImage {
     func alpha(value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
         UIGraphicsEndImageContext()
-        // swiftlint:disable:next force_unwrapping
-        return newImage!
+        return resultImage
     }
 
     func fixSizeAndOrientation() -> UIImage {

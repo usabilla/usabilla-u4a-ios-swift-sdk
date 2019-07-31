@@ -24,8 +24,8 @@ class UBSAContainerView: UIView {
     private var indexOfActionView = 3
     private var trashVisible = false
     
-    private let trashAreaWidth: CGFloat = 50
-    private let trashAreaHeight: CGFloat = 50
+    private let trashAreaWidth: CGFloat = 0
+    private let trashAreaHeight: CGFloat = 0
     private let trashViewAnimationTime: TimeInterval = 0.3
     private let trashViewDelay: TimeInterval = 1.0
     

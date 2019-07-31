@@ -102,13 +102,17 @@ protocol PenToolViewDelegate: class {
 }
 
 struct PenToolConfig {
-    static let inactiveMarker = UIImage(named: "marker_inactive") as UIImage?
-    static let inactivePencil = UIImage(named: "pencil_inactive") as UIImage?
-    static let activeMarker = UIImage(named: "marker_color") as UIImage?
-    static let activePencil = UIImage(named: "pencil_color") as UIImage?
-    static let activeOutlineMarker = UIImage(named: "marker_outline") as UIImage?
-    static let activeOutlinePencil = UIImage(named: "pencil_outline") as UIImage?
+    static let inactiveMarker = UIImage.getImageFromSDKBundle(name: "marker_inactive")
+    static let inactivePencil = UIImage.getImageFromSDKBundle(name: "pencil_inactive") as UIImage?
+    static let activeMarker = UIImage.getImageFromSDKBundle(name: "marker_color") as UIImage?
+    static let activePencil = UIImage.getImageFromSDKBundle(name: "pencil_color") as UIImage?
+    static let activeOutlineMarker = UIImage.getImageFromSDKBundle(name: "marker_outline") as UIImage?
+    static let activeOutlinePencil = UIImage.getImageFromSDKBundle(name: "pencil_outline") as UIImage?
     static let halfAlpha: CGFloat = 0.5
+    static let widthPenBtn: CGFloat = 30.0
+    static let heightPenBtn: CGFloat = 30.0
+    static let marginLeftMarker: CGFloat = 36.0
+    static let marginLeftPencil: CGFloat = 36.0
 }
 
 class PenToolView: UIView {
@@ -151,20 +155,20 @@ class PenToolView: UIView {
     func togglePenType (penType: PenType) {
         switch penType {
         case .marker:
-            guard let image = PenToolConfig.activeMarker?.withSelectedColor(color: selectedColor)
+            guard let image = PenToolConfig.activeMarker?.maskWithColor(color: selectedColor)
                 else { return }
-            let bgImage = PenToolConfig.activeOutlineMarker?.withSelectedColor(color: textColor)
+            let bgImage = PenToolConfig.activeOutlineMarker?.maskWithColor(color: textColor)
             let image2 = bgImage?.withSelectedImage(image: image)
             marker.setImage(image2, for: .normal)
-            let oldImage = PenToolConfig.inactivePencil?.alpha(PenToolConfig.halfAlpha)
+            let oldImage = PenToolConfig.inactivePencil?.alpha(value: PenToolConfig.halfAlpha)
             pencil.setImage(oldImage, for: .normal)
         case .pencil:
-            guard let image = PenToolConfig.activePencil?.withSelectedColor(color: selectedColor)
+            guard let image = PenToolConfig.activePencil?.maskWithColor(color: selectedColor)
                 else { return }
-            let bgImage = PenToolConfig.activeOutlinePencil?.withSelectedColor(color: textColor)
+            let bgImage = PenToolConfig.activeOutlinePencil?.maskWithColor(color: textColor)
             let image2 = bgImage?.withSelectedImage(image: image)
             pencil.setImage(image2, for: .normal)
-            let oldImage = PenToolConfig.inactiveMarker?.alpha(PenToolConfig.halfAlpha)
+            let oldImage = PenToolConfig.inactiveMarker?.alpha(value: PenToolConfig.halfAlpha)
             marker.setImage(oldImage, for: .normal)
         }
     }
@@ -190,15 +194,16 @@ class PenToolView: UIView {
         self.addSubview(marker)
         self.addSubview(pencil)
 
-        self.addConstraint(NSLayoutConstraint(item: marker, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: marker, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: marker, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: marker, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -40))
-
-        self.addConstraint(NSLayoutConstraint(item: pencil, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: pencil, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 40))
-        self.addConstraint(NSLayoutConstraint(item: pencil, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: pencil, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0))
+        NSLayoutConstraint.activate([
+            marker.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: PenToolConfig.marginLeftMarker),
+            marker.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            marker.widthAnchor.constraint(equalToConstant: PenToolConfig.widthPenBtn),
+            marker.heightAnchor.constraint(equalToConstant: PenToolConfig.heightPenBtn),
+            pencil.leadingAnchor.constraint(equalTo: marker.trailingAnchor, constant: PenToolConfig.marginLeftPencil),
+            pencil.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            pencil.widthAnchor.constraint(equalToConstant: PenToolConfig.widthPenBtn),
+            pencil.heightAnchor.constraint(equalToConstant: PenToolConfig.heightPenBtn)
+        ])
     }
 }
 
@@ -219,26 +224,5 @@ extension UIImage {
         UIGraphicsEndImageContext()
 
         return newImage
-    }
-
-    func withSelectedColor(color: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        let context = UIGraphicsGetCurrentContext()
-        let rect = CGRect(origin: CGPoint.zero, size: size)
-        color.setFill()
-        self.draw(in: rect)
-        context?.setBlendMode(.sourceIn)
-        context?.fill(rect)
-        guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
-        UIGraphicsEndImageContext()
-        return resultImage
-    }
-
-    func alpha(_ value: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-        guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
-        UIGraphicsEndImageContext()
-        return resultImage
     }
 }

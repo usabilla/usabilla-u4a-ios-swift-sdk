@@ -18,8 +18,8 @@ struct ColorPickerValues {
     static let clearColor: CGColor = UIColor.clear.cgColor
     static let cellSize: CGSize = CGSize(width: 30, height: 30)
     static let insets: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    static let minimumLineSpacingForSectionAt: CGFloat = 32
-    static let minimumInteritemSpacingForSectionAt: CGFloat = 32
+    static let minimumLineSpacingForSectionAt: CGFloat = 22
+    static let minimumInteritemSpacingForSectionAt: CGFloat = 22
 }
 
 class ColorPickerView: UIView {

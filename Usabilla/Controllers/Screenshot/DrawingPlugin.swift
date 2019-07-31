@@ -19,15 +19,17 @@ class DrawingPlugin: UBSAPluginViewController {
     override func bottomMenu(frame: CGRect) -> UIView {
         let view = UIView(frame: frame)
         view.backgroundColor = .white
-        let colorpicker = ColorPickerView(frame: frame)
+        
+        let colorpickerFrame = CGRect(x: 120, y: 21, width: frame.width - 90, height: frame.height - 21)
+        let colorpicker = ColorPickerView(frame: colorpickerFrame)
         colorpicker.delegate = self
         colorPickerView = colorpicker
         view.addSubview(colorpicker)
         // Set the drawingToolView 🙋🏻‍♂️
-        let penToolView = PenToolView(frame: frame)
+        let penToolView = PenToolView(frame: CGRect(x: 0, y: 0, width: 120, height: frame.height))
         penToolView.delegate = self
         drawingToolView = penToolView
-        view.addSubview(colorpicker)
+        view.addSubview(penToolView)
 
         return view
     }
