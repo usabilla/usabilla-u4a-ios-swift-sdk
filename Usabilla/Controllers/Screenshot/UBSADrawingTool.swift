@@ -108,11 +108,13 @@ struct PenToolConfig {
     static let activePencil = UIImage.getImageFromSDKBundle(name: "pencil_color") as UIImage?
     static let activeOutlineMarker = UIImage.getImageFromSDKBundle(name: "marker_outline") as UIImage?
     static let activeOutlinePencil = UIImage.getImageFromSDKBundle(name: "pencil_outline") as UIImage?
-    static let halfAlpha: CGFloat = 0.5
-    static let widthPenBtn: CGFloat = 30.0
-    static let heightPenBtn: CGFloat = 60.0
-    static let marginLeftMarker: CGFloat = 36.0
-    static let marginLeftPencil: CGFloat = 26.0
+    static let halfAlpha: CGFloat = 0.3
+    static let widthPenBtn: CGFloat = 48.0
+    static let heightPenBtn: CGFloat = 90.0
+    static let marginLeftMarker: CGFloat = 0
+    static let marginRightPencil: CGFloat = 0
+    static let marginBottomMarker: CGFloat = DeviceInfo.hasTopNotch ? 34.0 : 34.0
+    static let marginBottomPencil: CGFloat = DeviceInfo.hasTopNotch ? 34.0 : 34.0
 }
 
 class PenToolView: UIView {
@@ -195,14 +197,14 @@ class PenToolView: UIView {
         self.addSubview(pencil)
 
         NSLayoutConstraint.activate([
-            marker.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: PenToolConfig.marginLeftMarker),
-            marker.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
             marker.widthAnchor.constraint(equalToConstant: PenToolConfig.widthPenBtn),
             marker.heightAnchor.constraint(equalToConstant: PenToolConfig.heightPenBtn),
-            pencil.leadingAnchor.constraint(equalTo: marker.trailingAnchor, constant: PenToolConfig.marginLeftPencil),
-            pencil.bottomAnchor.constraint(equalTo: self.safeBottomAnchor),
+            marker.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: PenToolConfig.marginLeftMarker),
+            marker.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: PenToolConfig.marginBottomMarker),
             pencil.widthAnchor.constraint(equalToConstant: PenToolConfig.widthPenBtn),
-            pencil.heightAnchor.constraint(equalToConstant: PenToolConfig.heightPenBtn)
+            pencil.heightAnchor.constraint(equalToConstant: PenToolConfig.heightPenBtn),
+            pencil.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: PenToolConfig.marginRightPencil),
+            pencil.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: PenToolConfig.marginBottomPencil)
         ])
     }
 }

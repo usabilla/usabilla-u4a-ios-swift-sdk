@@ -16,14 +16,18 @@ struct ColorPickerValues {
     static let externalBorderColor: UIColor = UIColor(red: 0.34, green: 0.38, blue: 0.42, alpha: 1)
     static let borderColor: CGColor = externalBorderColor.withAlphaComponent(0.5).cgColor
     static let clearColor: CGColor = UIColor.clear.cgColor
-    static let cellSize: CGSize = CGSize(width: 30, height: 30)
-    static let insets: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    static let minimumLineSpacingForSectionAt: CGFloat = 22
-    static let minimumInteritemSpacingForSectionAt: CGFloat = 22
+    static let cellSize: CGSize = CGSize(width: 48, height: 48)
+    static let insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    static let minimumLineSpacingForSectionAt: CGFloat = 0
+    static let minimumInteritemSpacingForSectionAt: CGFloat = 0
+    static let marginLeftCVColorPicker: CGFloat = 0
+    static let marginRightCVColorPicker: CGFloat = 0
+    static let marginCenterCVColorPicker: CGFloat = DeviceInfo.hasTopNotch ? 0.0 : 0.0
+    static let heightCVColorPicker: CGFloat = 48.0
 }
 
 class ColorPickerView: UIView {
-    
+
     /// Array of UIColor you want to show in the color picker
     var colors: [UIColor] = ColorPickerValues.colorsArray {
         didSet {
@@ -62,7 +66,7 @@ class ColorPickerView: UIView {
         super.init(frame: frame)
         prepareForInitial()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         prepareForInitial()
@@ -76,11 +80,13 @@ class ColorPickerView: UIView {
     override func layoutSubviews() {
         self.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0))
-        
+
+        NSLayoutConstraint.activate([
+            collectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: ColorPickerValues.marginCenterCVColorPicker),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: ColorPickerValues.marginLeftCVColorPicker),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: ColorPickerValues.marginRightCVColorPicker),
+            collectionView.heightAnchor.constraint(equalToConstant: ColorPickerValues.heightCVColorPicker)
+        ])
     }
 
     // MARK: - Private Methods
@@ -96,7 +102,7 @@ class ColorPickerView: UIView {
                             _ = colorPickerCell.colorView.addExternalBorder(borderColor: ColorPickerValues.externalBorderColor)
                         }
         })
-        
+
         _indexOfSelectedColor = indexPath.item
         let color = colors[indexPath.item]
         delegate?.colorPockerView(self, didSelectColor: color)

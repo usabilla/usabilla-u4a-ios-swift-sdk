@@ -19,18 +19,29 @@ class DrawingPlugin: UBSAPluginViewController {
     override func bottomMenu(frame: CGRect) -> UIView {
         let view = UIView(frame: frame)
         view.backgroundColor = .white
-        
-        let colorpickerFrame = CGRect(x: 120, y: 21, width: frame.width - 90, height: frame.height - 21)
+
+        let drawContainerView = UIView(frame: .zero)
+        view.addSubview(drawContainerView)
+        drawContainerView.translatesAutoresizingMaskIntoConstraints = false
+
+        let colorpickerFrame = CGRect(x: 120, y: 0, width: 192, height: frame.height)
         let colorpicker = ColorPickerView(frame: colorpickerFrame)
         colorpicker.delegate = self
         colorPickerView = colorpicker
-        view.addSubview(colorpicker)
+        drawContainerView.addSubview(colorpicker)
         // Set the drawingToolView 🙋🏻‍♂️
-        let penToolView = PenToolView(frame: CGRect(x: 0, y: 0, width: 120, height: frame.height))
+        let penToolViewFrame = CGRect(x: 0, y: 0, width: 96, height: frame.height)
+        let penToolView = PenToolView(frame: penToolViewFrame)
         penToolView.delegate = self
         drawingToolView = penToolView
-        view.addSubview(penToolView)
-
+        drawContainerView.addSubview(penToolView)
+        
+        NSLayoutConstraint.activate([
+                drawContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                drawContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                drawContainerView.widthAnchor.constraint(equalToConstant: 312.0),
+                drawContainerView.heightAnchor.constraint(equalTo: view.heightAnchor)
+            ])
         return view
     }
 

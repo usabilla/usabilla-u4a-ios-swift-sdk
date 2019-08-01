@@ -10,7 +10,7 @@ import UIKit
 
 struct ColorPickerCellValues {
     static let width: CGFloat = 18.0
-    static let height: CGFloat = 18.0
+    static let height: CGFloat = width
     static let radius: CGFloat = width / 2
     static let borderWidth: CGFloat = 1.0
 }
