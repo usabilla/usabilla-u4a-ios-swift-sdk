@@ -13,8 +13,6 @@ struct ColorPickerValues {
     static let green: UIColor = UIColor(red: 0.32, green: 0.84, blue: 0.65, alpha: 1)
     static let red: UIColor = UIColor(red: 0.93, green: 0.29, blue: 0.35, alpha: 1)
     static let colorsArray: [UIColor] =  [UIColor.white, UIColor.black, red, green]
-    static let externalBorderColor: UIColor = UIColor(red: 0.34, green: 0.38, blue: 0.42, alpha: 1)
-    static let borderColor: CGColor = externalBorderColor.withAlphaComponent(0.5).cgColor
     static let clearColor: CGColor = UIColor.clear.cgColor
     static let cellSize: CGSize = CGSize(width: 48, height: 48)
     static let insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -36,7 +34,8 @@ class ColorPickerView: UIView {
             }
         }
     }
-
+    var internalBorderColor: UIColor = UIColor.white
+    var externalBorderColor: UIColor = UIColor(red: 0.34, green: 0.38, blue: 0.42, alpha: 1)
     /// The object that acts as the layout delegate for the color picker
     weak var layoutDelegate: ColorPickerViewDelegateFlowLayout?
     /// The object that acts as the delegate for the color picker
@@ -95,11 +94,11 @@ class ColorPickerView: UIView {
         guard let colorPickerCell = collectionView.cellForItem(at: indexPath) as? ColorPickerCell else { return }
         UIView.animate(withDuration: 0.2,
                        animations: {
-                        colorPickerCell.colorView.layer.borderColor = UIColor.white.cgColor
+                        colorPickerCell.colorView.layer.borderColor = self.internalBorderColor.cgColor
         },
                        completion: { _ in
                         UIView.animate(withDuration: 0.2) {
-                            _ = colorPickerCell.colorView.addExternalBorder(borderColor: ColorPickerValues.externalBorderColor)
+                            _ = colorPickerCell.colorView.addExternalBorder(borderColor: self.externalBorderColor)
                         }
         })
 
@@ -132,6 +131,7 @@ extension ColorPickerView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let colorPickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorPickerCell", for: indexPath)
         guard let cell: ColorPickerCell = colorPickerCell as? ColorPickerCell else { return colorPickerCell}
+        cell.colorView.layer.borderColor = externalBorderColor.withAlphaComponent(0.5).cgColor
         cell.colorView.backgroundColor = colors[indexPath.item]
         return cell
     }
@@ -147,7 +147,7 @@ extension ColorPickerView: UICollectionViewDelegate {
             return
         }
         oldColorCell.colorView.removeExternalBorders()
-        oldColorCell.colorView.layer.borderColor = ColorPickerValues.borderColor
+        oldColorCell.colorView.layer.borderColor = externalBorderColor.withAlphaComponent(0.5).cgColor
         delegate?.colorPickerView?(self, didDeselectItemAt: indexPath)
     }
 }

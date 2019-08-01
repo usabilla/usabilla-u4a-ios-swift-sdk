@@ -20,6 +20,7 @@ enum ImageRenderingMode {
 @objc protocol UBSADrawingViewDelegate: NSObjectProtocol {
     @objc optional func drawView(_ view: UBSADrawingView, willBeginDrawUsingTool tool: AnyObject)
     @objc optional func drawView(_ view: UBSADrawingView, didEndDrawUsingTool tool: AnyObject)
+    @objc optional func drawingViewIsNotEmpty(_ status: Bool)
 }
 
 class UBSADrawingView: UIView {
@@ -167,6 +168,9 @@ class UBSADrawingView: UIView {
         updateCacheImage(false)
         sketchViewDelegate?.drawView?(self, didEndDrawUsingTool: currentTool as AnyObject)
         currentTool = nil
+        if pathArray.count == 1 {
+            sketchViewDelegate?.drawingViewIsNotEmpty?(true)
+        }
     }
 
     private func resetTool() {
@@ -186,8 +190,11 @@ class UBSADrawingView: UIView {
             resetTool()
             pathArray.removeLastObject()
             updateCacheImage(true)
-
+            if pathArray.count == 0 {
+                sketchViewDelegate?.drawingViewIsNotEmpty?(false)
+            }
             setNeedsDisplay()
+
         }
     }
 

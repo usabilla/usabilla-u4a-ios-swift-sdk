@@ -21,6 +21,7 @@ enum UBSATopMenuType {
 
 protocol UBSAToolBarButtonPluginProtocol: class {
     func didTouchUpInside(sender: UBSAPluginProtocol)
+    func drawingModeOn(status: Bool)
 }
 protocol UBSAPluginProtocol {
     func canvas(frame: CGRect) -> UIView
@@ -96,15 +97,21 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         view.addSubview(button)
         button.contentHorizontalAlignment = .right
         button.backgroundColor = .clear
-        var buttonImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBSAEditImageMasterView.undoButtonName)
+        let buttonImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBSAEditImageMasterView.undoButtonName)
+        var buttonImageEnabled: UIImage!
+        var buttonImageDisabled: UIImage!
         if let color = theme?.colors.accent {
-            buttonImage = buttonImage?.maskWithColor(color: color)
+            buttonImageEnabled = buttonImage?.maskWithColor(color: color)
         }
-        button.setImage(buttonImage, for: UIControlState.normal)
-
+        if let disabledColor = theme?.colors.text {
+           buttonImageDisabled = buttonImage?.maskWithColor(color: disabledColor)
+        }
+        button.setImage(buttonImageEnabled, for: UIControlState.normal)
+        button.setImage(buttonImageDisabled.alpha(value: 0.3), for: UIControlState.disabled)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(undoButtonTouchUpInside), for: .touchUpInside)
         button.isHidden = true
+        button.isEnabled = false
         return button
     }()
 
@@ -161,6 +168,10 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         setTopMenu(type: sender.topMenuType())
         containerView.addActionView(sender.canvas(frame: containerView.bounds))
         animateMenuIn(view: menu)
+    }
+
+    func drawingModeOn(status: Bool) {
+       undoButton.isEnabled = status
     }
 }
 

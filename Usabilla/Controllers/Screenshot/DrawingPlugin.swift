@@ -12,7 +12,7 @@ class DrawingPlugin: UBSAPluginViewController {
     fileprivate var drawingView: UBSADrawingView?
     fileprivate var colorPickerView: ColorPickerView?
     fileprivate var drawingToolView: PenToolView?
-
+    
     override var toolbarButtonImageName: String {
             return "ic_pencil"
     }
@@ -35,7 +35,7 @@ class DrawingPlugin: UBSAPluginViewController {
         penToolView.delegate = self
         drawingToolView = penToolView
         drawContainerView.addSubview(penToolView)
-        
+
         NSLayoutConstraint.activate([
                 drawContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 drawContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -52,6 +52,7 @@ class DrawingPlugin: UBSAPluginViewController {
     override func canvas(frame: CGRect) -> UIView {
         let draw = UBSADrawingView(frame: frame)
         drawingView = draw
+        drawingView?.sketchViewDelegate = self
         return draw
     }
 
@@ -69,6 +70,13 @@ class DrawingPlugin: UBSAPluginViewController {
         super.pluginDidShow()
         colorPickerView?.selectColor(at: 1, animated: false)
         drawingToolView?.selectedTool = .marker
+        if let color = theme?.colors {
+            let text = color.text
+            let bgColor = color.cardColor
+            drawingToolView?.textColor = text
+            colorPickerView?.externalBorderColor = text
+            colorPickerView?.internalBorderColor = bgColor
+        }
     }
 
 }
@@ -88,5 +96,10 @@ extension DrawingPlugin: PenToolViewDelegate {
         case .pencil:
             drawingView?.lineWidth = PenStrokeWidth.pencil.rawValue
         }
+    }
+}
+extension DrawingPlugin: UBSADrawingViewDelegate {
+    func drawingViewIsNotEmpty(_ status: Bool) {
+            self.drawingModeOn(status)
     }
 }

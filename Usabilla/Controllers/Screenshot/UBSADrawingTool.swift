@@ -82,7 +82,6 @@ class PenTool: UIBezierPath, UBSADrawingTool {
             ctx.setLineCap(.round)
             ctx.setLineWidth(lineWidth)
             ctx.setStrokeColor(lineColor.cgColor)
-            ctx.setBlendMode(.normal)
             ctx.setAlpha(lineAlpha)
             ctx.strokePath()
         case .marker:
@@ -90,7 +89,6 @@ class PenTool: UIBezierPath, UBSADrawingTool {
             ctx.setLineCap(.round)
             ctx.setLineWidth(lineWidth)
             ctx.setStrokeColor(lineColor.cgColor)
-            ctx.setBlendMode(.screen)
             ctx.setAlpha(lineAlpha)
             ctx.strokePath()
         }
