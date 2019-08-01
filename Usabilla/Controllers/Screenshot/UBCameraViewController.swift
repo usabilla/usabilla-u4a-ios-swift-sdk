@@ -224,7 +224,7 @@ extension UBCameraViewController {
     private func setupCaptureSession() {
         #if targetEnvironment(simulator)
             return
-        #else 
+        #else
         guard captureSession.inputs.isEmpty else {
                 captureSession.startRunning()
                 return
@@ -317,7 +317,23 @@ extension UBCameraViewController {
     }
 
     private func saveImage(imageData: Data) {
-        guard let image = UIImage(data: imageData) else { return }
+
+        var imageOrientation: UIImageOrientation = UIImageOrientation.up
+        switch UIDevice.current.orientation {
+        case UIDeviceOrientation.portraitUpsideDown:
+            imageOrientation = UIImageOrientation.left
+        case UIDeviceOrientation.landscapeRight:
+            imageOrientation = UIImageOrientation.down
+        case UIDeviceOrientation.landscapeLeft:
+            imageOrientation = UIImageOrientation.up
+        case UIDeviceOrientation.portrait:
+            imageOrientation = UIImageOrientation.right
+        default:
+            imageOrientation = UIImageOrientation.right
+        }
+        guard  let aimage = UIImage(data: imageData),
+               let cgImage: CGImage = aimage.cgImage else { return }
+        let image = UIImage(cgImage: cgImage, scale: 1.0, orientation: imageOrientation)
         self.stopCaptureSession()
         self.delegate?.pickPhotoCapturedFromCamera(image: image)
     }
@@ -379,7 +395,6 @@ extension UBCameraViewController {
         describtionLabel.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
         describtionLabel.widthAnchor.constraint(lessThanOrEqualToConstant: UBDimensions.UBCameraView.errroViewDescribtionMaxWidth).isActive = true
 
-        
         settingsButton.topAnchor.constraint(equalTo: describtionLabel.bottomAnchor, constant: UBDimensions.UBCameraView.errroViewMargin).isActive = true
         settingsButton.centerXAnchor.constraint(equalTo: errorMessageView.centerXAnchor).isActive = true
         settingsButton.bottomAnchor.constraint(equalTo: errorMessageView.bottomAnchor, constant: -UBDimensions.UBCameraView.errroViewContentHeight).isActive = true

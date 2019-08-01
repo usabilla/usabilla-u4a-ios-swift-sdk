@@ -128,8 +128,6 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         rightButton.titleLabel?.font = theme?.fonts.regular
         titleLabel.font = theme?.fonts.boldFont
         titleLabel.textColor = theme?.colors.title
-
-        
     }
 
     fileprivate func layoutViews() {

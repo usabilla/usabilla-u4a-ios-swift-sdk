@@ -21,13 +21,13 @@ class UBSAContainerView: UIView {
     private let backgroundIndex = 0
     private var stackViewIndex = 1
     private var trashViewIndex = 2
-    private var indexOfActionView = 3
+    private var actionViewindex = 3
     private var trashVisible = false
     
     private let trashAreaWidth: CGFloat = 0
     private let trashAreaHeight: CGFloat = 0
     private let trashViewAnimationTime: TimeInterval = 0.3
-    private let trashViewDelay: TimeInterval = 1.0
+    private let trashViewDelay: TimeInterval = 0.5
 
     fileprivate lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: frame)
@@ -37,7 +37,7 @@ class UBSAContainerView: UIView {
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIViewContentMode.scaleAspectFit//scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
@@ -47,13 +47,29 @@ class UBSAContainerView: UIView {
         let stackView = UIView(frame: frame)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(stackView, at: stackViewIndex)
-        stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        stackView.clipsToBounds = true
+        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0)
+        stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0)
+
         stackView.contentMode = UIViewContentMode.scaleAspectFill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+
+    fileprivate lazy var actionView: UIView = {
+        let action = UIView(frame: frame)
+        action.translatesAutoresizingMaskIntoConstraints = false
+        insertSubview(action, at: actionViewindex)
+        action.clipsToBounds = true
+        action.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        action.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        action.heightAnchor.constraint(greaterThanOrEqualToConstant: 100.0)
+        action.widthAnchor.constraint(greaterThanOrEqualToConstant: 100.0)
+        action.contentMode = UIViewContentMode.scaleAspectFill
+        action.translatesAutoresizingMaskIntoConstraints = false
+        return action
     }()
 
     fileprivate lazy var trashView: UIImageView = {
@@ -61,10 +77,7 @@ class UBSAContainerView: UIView {
         let trashView = UIImageView(image: trashimage)
         trashView.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(trashView, at: trashViewIndex)
-        trashView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: UBDimensions.UBSAContainerView.trashViewTrailingMargin).isActive = true
-        trashView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UBDimensions.UBSAContainerView.trashViewBottomMargin ).isActive = true
-        trashView.heightAnchor.constraint(equalToConstant: UBDimensions.UBSAContainerView.trashViewHeight).isActive = true
-        trashView.widthAnchor.constraint(equalToConstant: UBDimensions.UBSAContainerView.trashViewWidth).isActive = true
+        trashView.backgroundColor = .clear
         trashView.translatesAutoresizingMaskIntoConstraints = false
         trashView.alpha = UBAlpha.zeroAlpha.rawValue
         return trashView
@@ -88,9 +101,10 @@ class UBSAContainerView: UIView {
         backgroundView.isHidden = false
         stackView.isHidden = false
         trashView.alpha = 0.0
+        actionView.isHidden = false
     }
     func reset() {
-        trashView.isHidden = true
+        trashView.alpha = 0.0
         if showTrashTimer != nil {
             showTrashTimer?.invalidate()
             showTrashTimer = nil
@@ -98,7 +112,6 @@ class UBSAContainerView: UIView {
         stackView.subviews.forEach { $0.removeFromSuperview() }
     }
 }
-
 
 extension UBSAContainerView: UBSADragableImageViewProtocol {
     func movedSubview(_ subview: UBSADragableImageView, center: CGPoint) {
@@ -120,8 +133,10 @@ extension UBSAContainerView: UBSADragableImageViewProtocol {
             let timer = Timer.scheduledTimer(timeInterval: trashViewDelay, target: self, selector: #selector(showTrash), userInfo: nil, repeats: false)
             showTrashTimer = timer
         }
-
-        if subview.frame.intersects(CGRect(x: trashView.frame.origin.x-trashAreaWidth, y: trashView.frame.origin.y-trashAreaHeight, width: trashAreaWidth, height: trashAreaHeight )) {
+        let fra1 = convert(trashView.frame, to: stackView)
+        let fra2 = convert(subview.frame, to: self)
+        // different coordinates systems, need to convert to same
+        if fra2.intersects(fra1) {
             enableTrash()
             return
         }
@@ -160,31 +175,66 @@ extension UBSAContainerView: UBSADragableImageViewProtocol {
         trashVisible = false
     }
 
+    /*
+      - this method resizes actionview, stackview and posistions the trash can, depending on the size of the background image
+      -  ist called when the actionView is added
+     */
+    fileprivate func sizeViewsCorrectly() {
+        actionView.frame = workingFrame()
+        stackView.frame = workingFrame()
+        trashView.frame = CGRect(x: stackView.frame.origin.x + stackView.frame.size.width - UBDimensions.UBSAContainerView.trashViewWidth - 10,
+                                 y: stackView.frame.origin.y + stackView.frame.size.height - UBDimensions.UBSAContainerView.trashViewHeight - 10,
+                                 width: UBDimensions.UBSAContainerView.trashViewWidth, height: UBDimensions.UBSAContainerView.trashViewHeight)
+
+    }
 }
 // MARK: - add / remove methods
 extension UBSAContainerView {
     func backgroundImage() -> UIImage? {
         return backgroundView.image
     }
+
     func setBackgroundImage(_ image: UIImage) {
-        backgroundView.image = image
+        backgroundView.image = image.fixSizeAndOrientation()
      }
+
+    func workingFrame() -> CGRect {
+        if let size = backgroundView.image?.size {
+            let scalex = frame.size.width/size.width
+            let scaley = frame.size.height/size.height
+            let scale = min(scalex, scaley)
+            let offsetX = CGFloat((frame.size.width-(size.width*scale))/2)
+            let offsetY = CGFloat((frame.size.height-(size.height*scale))/2)
+
+            let rect = CGRect(x: offsetX, y: offsetY, width: size.width*scale, height: size.height*scale)
+            return rect
+        }
+        return .zero
+    }
 
     /**
      Add the Action view on top of all views in the
      - Paramater view: actionview, the view to add on top of all viws
      **/
     func addActionView(_ view: UIView) {
-        insertSubview(view, at: indexOfActionView)
+        // the actionview is added as the first task in the process, therefor all the views should be size correct
+        // here.  Sized correct is dependent on the background images size.
+        sizeViewsCorrectly()
+
+        actionView.addSubview(view)
+        actionView.isHidden = false
     }
-    
+
     /**
      Remove the Action view. User is responsible for removeing the view whan
      action has ben completed inside the action view
      **/
     func removeActionView() {
-        let view = subviews[indexOfActionView]
-        view.removeFromSuperview()
+        if let view = actionView.subviews.last {
+            view.removeFromSuperview()
+            //sendSubview(toBack: actionView)
+        }
+        actionView.isHidden = true
     }
 
     /**
@@ -192,12 +242,7 @@ extension UBSAContainerView {
      - Parameter view: the flatten view as UIImageView
      **/
     override func addSubview(_ view: UIView) {
-        if let theView =  view as? UBSADragableImageView {
-            theView.delegate = self
-            stackView.addSubview(theView)
-            return
-        }
-        stackView.addSubview(view)
+        addView(view)
     }
 
     /**
@@ -208,6 +253,7 @@ extension UBSAContainerView {
 
     func addView(_ view: UIView, type: UBSADrawingToolType = .pen) {
         view.tag = type.rawValue
+        stackView.frame = workingFrame()
         if let theView =  view as? UBSADragableImageView {
             theView.delegate = self
             stackView.addSubview(theView)

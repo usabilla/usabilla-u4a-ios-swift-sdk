@@ -221,8 +221,8 @@ struct UBDimensions {
     struct UBSAContainerView {
         static let trashViewTrailingMargin: CGFloat = -20
         static let trashViewBottomMargin: CGFloat = -20
-        static let trashViewHeight: CGFloat = 75
-        static let trashViewWidth: CGFloat = 44
+        static let trashViewHeight: CGFloat = 37
+        static let trashViewWidth: CGFloat = 22
         static let cornerRadius: CGFloat = 44
     }
 }

@@ -181,7 +181,13 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
                                                    width: view.frame.size.width,
                                                    height: UBDimensions.UBSAEditImageMasterView.bottomMenuHeight + DeviceInfo.getBottomSafeInsets()))
         setTopMenu(type: sender.topMenuType())
-        containerView.addActionView(sender.canvas(frame: containerView.bounds))
+        // The conatinerview knows the size of the backaground imnage,
+        // its the only view that knows hwat frame we are working in
+        // pass that frame into to the plugin to allow actions only in that area
+        var aframe = containerView.workingFrame()
+        aframe.origin.x = 0
+        aframe.origin.y = 0
+        containerView.addActionView(sender.canvas(frame: aframe))
         animateMenuIn(view: menu)
     }
 

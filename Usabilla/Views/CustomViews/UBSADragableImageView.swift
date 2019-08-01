@@ -18,52 +18,49 @@ protocol UBSADragableImageViewProtocol: class {
 
 class UBSADragableImageView: UIImageView {
     weak var delegate: UBSADragableImageViewProtocol?
-    
+
     fileprivate var lastLocation = CGPoint(x: 0, y: 0)
     override init(image: UIImage?) {
         super.init(image: image)
         configurePan()
         isUserInteractionEnabled = true
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurePan()
         isUserInteractionEnabled = true
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
 
     fileprivate func configurePan() {
-        let panRecognizer = UIPanGestureRecognizer(target:self, action:#selector(UBSADragableImageView.detectPan(_:)))
-        self.gestureRecognizers = [panRecognizer]
-    }
-    
-    @objc func detectPan(_ recognizer:UIPanGestureRecognizer) {
-        if recognizer.state == UIGestureRecognizerState.ended {
-            delegate?.movedSubview(self, center: self.center)
-            return
-        }
-        
-        let translation  = recognizer.translation(in: self.superview)
-        self.center = CGPoint(x: lastLocation.x + translation.x, y: lastLocation.y + translation.y)
-        delegate?.draggingSubview(self, center: self.center)
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(UBSADragableImageView.detectPan(_: )))
+        gestureRecognizers = [panRecognizer]
     }
 
-    
-    override func touchesBegan(_ touches: Set<UITouch>,
-                      with event: UIEvent?) {
-        lastLocation = self.center
+    @objc func detectPan(_ recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizerState.ended {
+            delegate?.movedSubview(self, center: center)
+            return
+        }
+
+        let translation  = recognizer.translation(in: self.superview)
+        center = CGPoint(x: lastLocation.x + translation.x, y: lastLocation.y + translation.y)
+        delegate?.draggingSubview(self, center: center)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastLocation = center
         if let containerView = superview as? UBSAContainerView {
-            containerView.draggingSubview(self, center: self.center)
+            containerView.draggingSubview(self, center: center)
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let containerView = superview as? UBSAContainerView {
-            containerView.movedSubview(self, center: self.center)
+            containerView.movedSubview(self, center: center)
         }
     }
 

@@ -231,7 +231,6 @@ class UBImagePickerController: UIViewController {
     fileprivate func queryForCameraRollPhoto() {
 
         let cameraRoll = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
-        //let allPhotos = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .albumMyPhotoStream, options: nil)
         cameraRoll.enumerateObjects({ (object: AnyObject!, count: Int, _: UnsafeMutablePointer) in
             if object is PHAssetCollection {
                 if let obj: PHAssetCollection = object as? PHAssetCollection {
