@@ -12,7 +12,7 @@ struct ColorPickerValues {
 
     static let green: UIColor = UIColor(red: 0.32, green: 0.84, blue: 0.65, alpha: 1)
     static let red: UIColor = UIColor(red: 0.93, green: 0.29, blue: 0.35, alpha: 1)
-    static let colorsArray: [UIColor] =  [UIColor.white, UIColor.black, red, green]
+    static let colorsArray: [UIColor] =  [.black, .white, green, red]
     static let clearColor: CGColor = UIColor.clear.cgColor
     static let cellSize: CGSize = CGSize(width: 48, height: 48)
     static let insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

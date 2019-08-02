@@ -111,8 +111,8 @@ struct PenToolConfig {
     static let heightPenBtn: CGFloat = 90.0
     static let marginLeftMarker: CGFloat = 0
     static let marginRightPencil: CGFloat = 0
-    static let marginBottomMarker: CGFloat = DeviceInfo.hasTopNotch ? 34.0 : 34.0
-    static let marginBottomPencil: CGFloat = DeviceInfo.hasTopNotch ? 34.0 : 34.0
+    static let marginBottomMarker: CGFloat = 34.0
+    static let marginBottomPencil: CGFloat = 34.0
 }
 
 class PenToolView: UIView {
@@ -158,7 +158,7 @@ class PenToolView: UIView {
             guard let image = PenToolConfig.activeMarker?.maskWithColor(color: selectedColor)
                 else { return }
             let bgImage = PenToolConfig.activeOutlineMarker?.maskWithColor(color: textColor)
-            let image2 = bgImage?.withSelectedImage(image: image)
+            let image2 = bgImage?.mergeImage(with: image)
             marker.setImage(image2, for: .normal)
             let oldImage = PenToolConfig.inactivePencil?.alpha(value: PenToolConfig.halfAlpha)
             pencil.setImage(oldImage, for: .normal)
@@ -166,7 +166,7 @@ class PenToolView: UIView {
             guard let image = PenToolConfig.activePencil?.maskWithColor(color: selectedColor)
                 else { return }
             let bgImage = PenToolConfig.activeOutlinePencil?.maskWithColor(color: textColor)
-            let image2 = bgImage?.withSelectedImage(image: image)
+            let image2 = bgImage?.mergeImage(with: image)
             pencil.setImage(image2, for: .normal)
             let oldImage = PenToolConfig.inactiveMarker?.alpha(value: PenToolConfig.halfAlpha)
             marker.setImage(oldImage, for: .normal)
@@ -204,25 +204,5 @@ class PenToolView: UIView {
             pencil.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: PenToolConfig.marginRightPencil),
             pencil.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: PenToolConfig.marginBottomPencil)
         ])
-    }
-}
-
-extension UIImage {
-    func withSelectedImage(image: UIImage, posX: CGFloat = 0.0, posY: CGFloat = 0.0) -> UIImage {
-        let newWidth = posX < 0 ? abs(posX) + max(self.size.width, image.size.width) :
-            size.width < posX + image.size.width ? posX + image.size.width : size.width
-        let newHeight = posY < 0 ? abs(posY) + max(size.height, image.size.height) :
-            size.height < posY + image.size.height ? posY + image.size.height : size.height
-        let newSize = CGSize(width: newWidth, height: newHeight)
-
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        let originalPoint = CGPoint(x: posX < 0 ? abs(posX) : 0, y: posY < 0 ? abs(posY) : 0)
-        self.draw(in: CGRect(origin: originalPoint, size: self.size))
-        let overLayPoint = CGPoint(x: posX < 0 ? 0 : posX, y: posY < 0 ? 0 : posY)
-        image.draw(in: CGRect(origin: overLayPoint, size: image.size))
-        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage()}
-        UIGraphicsEndImageContext()
-
-        return newImage
     }
 }

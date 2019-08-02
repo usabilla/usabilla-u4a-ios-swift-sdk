@@ -18,7 +18,7 @@ extension UIImage {
     func alpha(value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-        guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
+        guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
         UIGraphicsEndImageContext()
         return resultImage
     }
@@ -40,10 +40,9 @@ extension UIImage {
 
             UIGraphicsBeginImageContext(CGSize(width: CGFloat(newWidth), height: CGFloat(newHeight)))
             draw(in: CGRect(x: 0, y: 0, width: CGFloat(newWidth), height: CGFloat(newHeight)))
-            let img = UIGraphicsGetImageFromCurrentImageContext()
+            guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
             UIGraphicsEndImageContext()
-            // swiftlint:disable:next force_unwrapping
-            return img!
+            return resultImage
         }
 
         return self
@@ -113,17 +112,14 @@ extension UIImage {
         context.setBlendMode(.sourceIn)
         context.fill(rect)
 
-        if let resultImage = UIGraphicsGetImageFromCurrentImageContext() {
-            UIGraphicsEndImageContext()
-            return resultImage
-        }
+        guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
         UIGraphicsEndImageContext()
-        return self
+        return resultImage
     }
 
     func cropAlpha() -> UIImage {
 
-        let cgImage = self.cgImage!
+        guard let cgImage = self.cgImage  else { return self }
 
         let width = cgImage.width
         let height = cgImage.height
@@ -139,7 +135,7 @@ extension UIImage {
                 return self
         }
 
-        context.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: width, height: height))
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
 
         var minX = width
         var minY = height
@@ -163,9 +159,25 @@ extension UIImage {
 
         let rect = CGRect(x: CGFloat(minX), y: CGFloat(minY), width: CGFloat(maxX-minX), height: CGFloat(maxY-minY))
         let imageScale: CGFloat = self.scale
-        let croppedImage =  self.cgImage!.cropping(to: rect)!
+        guard let croppedImage =  cgImage.cropping(to: rect) else { return self }
         let ret = UIImage(cgImage: croppedImage, scale: imageScale, orientation: self.imageOrientation)
         return ret
     }
 
+    func mergeImage(with image: UIImage, posX: CGFloat = 0.0, posY: CGFloat = 0.0) -> UIImage {
+        let newWidth = posX < 0 ? abs(posX) + max(self.size.width, image.size.width) :
+            size.width < posX + image.size.width ? posX + image.size.width : size.width
+        let newHeight = posY < 0 ? abs(posY) + max(size.height, image.size.height) :
+            size.height < posY + image.size.height ? posY + image.size.height : size.height
+        let newSize = CGSize(width: newWidth, height: newHeight)
+
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        let originalPoint = CGPoint(x: posX < 0 ? abs(posX) : 0, y: posY < 0 ? abs(posY) : 0)
+        self.draw(in: CGRect(origin: originalPoint, size: self.size))
+        let overLayPoint = CGPoint(x: posX < 0 ? 0 : posX, y: posY < 0 ? 0 : posY)
+        image.draw(in: CGRect(origin: overLayPoint, size: image.size))
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 }

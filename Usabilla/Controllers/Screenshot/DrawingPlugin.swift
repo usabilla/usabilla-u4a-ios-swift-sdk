@@ -8,6 +8,15 @@
 
 import UIKit
 
+struct DrawingPluginValues {
+    static let halfAlpha: CGFloat = 0.3
+    static let widthPenToolView: CGFloat = 96
+    static let distanceFromPenToolView: CGFloat = 24
+    static let startPtForColorPickerView: CGFloat = widthPenToolView + distanceFromPenToolView
+    static let widthColorPickerView: CGFloat = 192
+    static let widthDrawContainerView: CGFloat = startPtForColorPickerView + widthColorPickerView
+}
+
 class DrawingPlugin: UBSAPluginViewController {
     fileprivate var drawingView: UBSADrawingView?
     fileprivate var colorPickerView: ColorPickerView?
@@ -15,10 +24,11 @@ class DrawingPlugin: UBSAPluginViewController {
         override var toolbarButtonImageName: String {
             return "ic_pencil"
     }
+
     override func bottomMenu(frame: CGRect) -> UIView {
         let view = UIView(frame: frame)
         let bgcolor: UIColor =  theme?.colors.cardColor ?? .white
-        
+
         view.backgroundColor = bgcolor
 
         let drawContainerView = UIView(frame: .zero)
@@ -26,23 +36,24 @@ class DrawingPlugin: UBSAPluginViewController {
         view.addSubview(drawContainerView)
         drawContainerView.translatesAutoresizingMaskIntoConstraints = false
 
-        let colorpickerFrame = CGRect(x: 120, y: 0, width: 192, height: frame.height)
+        // Set the drawingToolView 🙋🏻‍♂️
+        let penToolViewFrame = CGRect(x: 0, y: 0, width: DrawingPluginValues.widthPenToolView, height: frame.height)
+        let penToolView = PenToolView(frame: penToolViewFrame)
+        penToolView.delegate = self
+        drawingToolView = penToolView
+        drawContainerView.addSubview(penToolView)
+        // Set the colorPickerView 🙋🏻‍♂️
+        let colorpickerFrame = CGRect(x: DrawingPluginValues.startPtForColorPickerView, y: 0, width: DrawingPluginValues.widthColorPickerView, height: frame.height)
         let colorpicker = ColorPickerView(frame: colorpickerFrame)
         colorpicker.backgroundColor = bgcolor
         colorpicker.delegate = self
         colorPickerView = colorpicker
         drawContainerView.addSubview(colorpicker)
-        // Set the drawingToolView 🙋🏻‍♂️
-        let penToolViewFrame = CGRect(x: 0, y: 0, width: 96, height: frame.height)
-        let penToolView = PenToolView(frame: penToolViewFrame)
-        penToolView.delegate = self
-        drawingToolView = penToolView
-        drawContainerView.addSubview(penToolView)
 
         NSLayoutConstraint.activate([
                 drawContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 drawContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                drawContainerView.widthAnchor.constraint(equalToConstant: 312.0),
+                drawContainerView.widthAnchor.constraint(equalToConstant: DrawingPluginValues.widthDrawContainerView),
                 drawContainerView.heightAnchor.constraint(equalTo: view.heightAnchor)
             ])
         return view
@@ -71,7 +82,7 @@ class DrawingPlugin: UBSAPluginViewController {
     }
     override func pluginDidShow() {
         super.pluginDidShow()
-        colorPickerView?.selectColor(at: 1, animated: false)
+        colorPickerView?.selectColor(at: 0, animated: false)
         drawingToolView?.selectedTool = .marker
         if let color = theme?.colors {
             let text = color.text
