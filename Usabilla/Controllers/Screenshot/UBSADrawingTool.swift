@@ -118,8 +118,8 @@ struct PenToolConfig {
 class PenToolView: UIView {
 
     weak var delegate: PenToolViewDelegate?
-    var selectedTool: PenType = PenType.marker
-    var selectedColor: UIColor = .black
+    var selectedTool: PenType
+    var selectedColor: UIColor
     var textColor: UIColor = .gray
 
     let marker: UIButton = {
@@ -178,12 +178,16 @@ class PenToolView: UIView {
         self.togglePenType (penType: selectedTool)
     }
 
-    override init(frame: CGRect) {
+    required init(frame: CGRect, penColor: UIColor = .black, penType: PenType = .marker) {
+        selectedTool = penType
+        selectedColor = penColor
         super.init(frame: frame)
         prepareForInitial()
     }
 
     required init?(coder aDecoder: NSCoder) {
+        selectedTool = .marker
+        selectedColor = .black
         super.init(coder: aDecoder)
         prepareForInitial()
     }
@@ -204,5 +208,7 @@ class PenToolView: UIView {
             pencil.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: PenToolConfig.marginRightPencil),
             pencil.bottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: PenToolConfig.marginBottomPencil)
         ])
+
+        togglePenColor(penColor: selectedColor)
     }
 }

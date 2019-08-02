@@ -83,7 +83,6 @@ class DrawingPlugin: UBSAPluginViewController {
     override func pluginDidShow() {
         super.pluginDidShow()
         colorPickerView?.selectColor(at: 0, animated: false)
-        drawingToolView?.selectedTool = .marker
         if let color = theme?.colors {
             let text = color.text
             let bgColor = color.cardColor
