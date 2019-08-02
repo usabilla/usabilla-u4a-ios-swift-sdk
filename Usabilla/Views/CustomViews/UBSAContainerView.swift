@@ -60,13 +60,14 @@ class UBSAContainerView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(stackView, at: stackViewIndex)
         stackView.clipsToBounds = true
-        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.stackViewWidth)
-        stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.stackViewWidth)
-
         stackView.contentMode = UIViewContentMode.scaleAspectFill
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.stackViewWidth),
+            stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.stackViewWidth)
+        ])
         return stackView
     }()
 
@@ -75,12 +76,14 @@ class UBSAContainerView: UIView {
         action.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(action, at: actionViewindex)
         action.clipsToBounds = true
-        action.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        action.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        action.heightAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.actionViewHeight)
-        action.widthAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.actionViewWidth)
         action.contentMode = UIViewContentMode.scaleAspectFill
         action.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            action.centerYAnchor.constraint(equalTo: centerYAnchor),
+            action.centerXAnchor.constraint(equalTo: centerXAnchor),
+            action.heightAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.actionViewHeight),
+            action.widthAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.actionViewWidth)
+        ])
         return action
     }()
 
@@ -244,7 +247,6 @@ extension UBSAContainerView {
     func removeActionView() {
         if let view = actionView.subviews.last {
             view.removeFromSuperview()
-            //sendSubview(toBack: actionView)
         }
         actionView.isHidden = true
     }
