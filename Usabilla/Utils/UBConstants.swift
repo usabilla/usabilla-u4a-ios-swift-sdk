@@ -157,6 +157,11 @@ struct UBDimensions {
 
         static let bottomMenuHeight: CGFloat = 62.0
         static let bottomMenuAnimationTime: TimeInterval = 0.3
+
+        static let buttoniconsInsect: CGFloat = 20.0
+        static let addButtonInsectTop: CGFloat = 5.0
+        static let addButtonInsectBottom: CGFloat = 5.0
+        static let addButtonInsectleft: CGFloat = 25.0
     }
 
     struct PluginViewController {

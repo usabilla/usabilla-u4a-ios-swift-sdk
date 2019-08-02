@@ -79,6 +79,11 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
     lazy var doneButton: UIButton = {
         let button = UIButton()
         view.addSubview(button)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
+                                              left: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
+                                              bottom: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
+                                              right: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect)
         button.contentHorizontalAlignment = .right
         button.backgroundColor = .clear
         var buttonImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBSAEditImageMasterView.editButtonName)
@@ -97,6 +102,11 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         view.addSubview(button)
         button.contentHorizontalAlignment = .right
         button.backgroundColor = .clear
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
+                                              left: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
+                                              bottom: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
+                                              right: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect)
         let buttonImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBSAEditImageMasterView.undoButtonName)
         var buttonImageEnabled: UIImage!
         var buttonImageDisabled: UIImage!
@@ -128,6 +138,11 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         view.addSubview(button)
         button.contentHorizontalAlignment = .right
         button.backgroundColor = .clear
+        // adding more space around the Add (to the left) allowing bigger touch area
+        button.contentEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.addButtonInsectTop,
+                                                left: UBDimensions.UBSAEditImageMasterView.addButtonInsectleft,
+                                                bottom: UBDimensions.UBSAEditImageMasterView.addButtonInsectBottom,
+                                                right: 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(addButtonTouchUpInside), for: .touchUpInside)
         return button
