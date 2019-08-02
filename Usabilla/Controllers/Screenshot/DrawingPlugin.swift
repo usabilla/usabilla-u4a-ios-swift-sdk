@@ -12,20 +12,23 @@ class DrawingPlugin: UBSAPluginViewController {
     fileprivate var drawingView: UBSADrawingView?
     fileprivate var colorPickerView: ColorPickerView?
     fileprivate var drawingToolView: PenToolView?
-    
-    override var toolbarButtonImageName: String {
+        override var toolbarButtonImageName: String {
             return "ic_pencil"
     }
     override func bottomMenu(frame: CGRect) -> UIView {
         let view = UIView(frame: frame)
-        view.backgroundColor = .white
+        let bgcolor: UIColor =  theme?.colors.cardColor ?? .white
+        
+        view.backgroundColor = bgcolor
 
         let drawContainerView = UIView(frame: .zero)
+        drawContainerView.backgroundColor = bgcolor
         view.addSubview(drawContainerView)
         drawContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         let colorpickerFrame = CGRect(x: 120, y: 0, width: 192, height: frame.height)
         let colorpicker = ColorPickerView(frame: colorpickerFrame)
+        colorpicker.backgroundColor = bgcolor
         colorpicker.delegate = self
         colorPickerView = colorpicker
         drawContainerView.addSubview(colorpicker)
