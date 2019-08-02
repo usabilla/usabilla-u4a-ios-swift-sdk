@@ -16,18 +16,30 @@
 //   The views will be merged and returned as one view calling the finalImage method
 import UIKit
 
+struct UBSAContainerViewValues {
+    static let trashViewHeight: CGFloat = 37
+    static let trashViewWidth: CGFloat = 22
+    static let cornerRadius: CGFloat = 44
+    static let trashAreaWidth: CGFloat = 0
+    static let trashAreaHeight: CGFloat = 0
+    static let trashViewWidthMargin: CGFloat = 10.0
+    static let trashViewHeightMargin: CGFloat = 10.0
+    static let trashViewAnimationTime: TimeInterval = 0.3
+    static let trashViewDelay: TimeInterval = 0.5
+    static let actionViewWidth: CGFloat = 100.0
+    static let actionViewHeight: CGFloat = 100.0
+    static let stackViewWidth: CGFloat = 0.0
+    static let stackViewHeight: CGFloat = 0.0
+    static let trashViewAlpha: CGFloat = 0.0
+}
+
 class UBSAContainerView: UIView {
     private var showTrashTimer: Timer?
-    private let backgroundIndex = 0
-    private var stackViewIndex = 1
-    private var trashViewIndex = 2
-    private var actionViewindex = 3
     private var trashVisible = false
-    
-    private let trashAreaWidth: CGFloat = 0
-    private let trashAreaHeight: CGFloat = 0
-    private let trashViewAnimationTime: TimeInterval = 0.3
-    private let trashViewDelay: TimeInterval = 0.5
+    private let backgroundIndex = 0
+    private let stackViewIndex = 1
+    private let trashViewIndex = 2
+    private let actionViewindex = 3
 
     fileprivate lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: frame)
@@ -50,8 +62,8 @@ class UBSAContainerView: UIView {
         stackView.clipsToBounds = true
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         stackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0.0)
-        stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0.0)
+        stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.stackViewWidth)
+        stackView.widthAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.stackViewWidth)
 
         stackView.contentMode = UIViewContentMode.scaleAspectFill
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,8 +77,8 @@ class UBSAContainerView: UIView {
         action.clipsToBounds = true
         action.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         action.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        action.heightAnchor.constraint(greaterThanOrEqualToConstant: 100.0)
-        action.widthAnchor.constraint(greaterThanOrEqualToConstant: 100.0)
+        action.heightAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.actionViewHeight)
+        action.widthAnchor.constraint(greaterThanOrEqualToConstant: UBSAContainerViewValues.actionViewWidth)
         action.contentMode = UIViewContentMode.scaleAspectFill
         action.translatesAutoresizingMaskIntoConstraints = false
         return action
@@ -96,15 +108,15 @@ class UBSAContainerView: UIView {
     fileprivate func configureView() {
         clipsToBounds = true
         backgroundColor = .clear
-        layer.cornerRadius = UBDimensions.UBSAContainerView.cornerRadius
+        layer.cornerRadius = UBSAContainerViewValues.cornerRadius
         layer.masksToBounds = true
         backgroundView.isHidden = false
         stackView.isHidden = false
-        trashView.alpha = 0.0
+        trashView.alpha = UBSAContainerViewValues.trashViewAlpha
         actionView.isHidden = false
     }
     func reset() {
-        trashView.alpha = 0.0
+        trashView.alpha = UBSAContainerViewValues.trashViewAlpha
         if showTrashTimer != nil {
             showTrashTimer?.invalidate()
             showTrashTimer = nil
@@ -130,7 +142,7 @@ extension UBSAContainerView: UBSADragableImageViewProtocol {
 
     func draggingSubview(_ subview: UBSADragableImageView, center: CGPoint) {
         if showTrashTimer == nil {
-            let timer = Timer.scheduledTimer(timeInterval: trashViewDelay, target: self, selector: #selector(showTrash), userInfo: nil, repeats: false)
+            let timer = Timer.scheduledTimer(timeInterval: UBSAContainerViewValues.trashViewDelay, target: self, selector: #selector(showTrash), userInfo: nil, repeats: false)
             showTrashTimer = timer
         }
         let fra1 = convert(trashView.frame, to: stackView)
@@ -146,7 +158,7 @@ extension UBSAContainerView: UBSADragableImageViewProtocol {
     @objc
     fileprivate func showTrash() {
         trashVisible = true
-        UIView.animate(withDuration: trashViewAnimationTime, animations: {
+        UIView.animate(withDuration: UBSAContainerViewValues.trashViewAnimationTime, animations: {
             self.trashView.alpha = UBAlpha.fullAlpha.rawValue
         })
     }
@@ -158,7 +170,7 @@ extension UBSAContainerView: UBSADragableImageViewProtocol {
         }
         showTrashTimer = nil
         trashVisible = false
-        UIView.animate(withDuration: trashViewAnimationTime, animations: {
+        UIView.animate(withDuration: UBSAContainerViewValues.trashViewAnimationTime, animations: {
             self.trashView.alpha = UBAlpha.zeroAlpha.rawValue
         })
 
@@ -182,9 +194,9 @@ extension UBSAContainerView: UBSADragableImageViewProtocol {
     fileprivate func sizeViewsCorrectly() {
         actionView.frame = workingFrame()
         stackView.frame = workingFrame()
-        trashView.frame = CGRect(x: stackView.frame.origin.x + stackView.frame.size.width - UBDimensions.UBSAContainerView.trashViewWidth - 10,
-                                 y: stackView.frame.origin.y + stackView.frame.size.height - UBDimensions.UBSAContainerView.trashViewHeight - 10,
-                                 width: UBDimensions.UBSAContainerView.trashViewWidth, height: UBDimensions.UBSAContainerView.trashViewHeight)
+        trashView.frame = CGRect(x: stackView.frame.origin.x + stackView.frame.size.width - UBSAContainerViewValues.trashViewWidth - UBSAContainerViewValues.trashViewWidthMargin,
+                                 y: stackView.frame.origin.y + stackView.frame.size.height - UBSAContainerViewValues.trashViewHeight - UBSAContainerViewValues.trashViewHeightMargin,
+                                 width: UBSAContainerViewValues.trashViewWidth, height: UBSAContainerViewValues.trashViewHeight)
 
     }
 }

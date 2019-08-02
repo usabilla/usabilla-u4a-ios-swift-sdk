@@ -217,14 +217,6 @@ struct UBDimensions {
         static let imageBottomMargin: CGFloat = -UBImagePickerView.imageBorder
         static let imageTopMargin: CGFloat = 0
     }
-
-    struct UBSAContainerView {
-        static let trashViewTrailingMargin: CGFloat = -20
-        static let trashViewBottomMargin: CGFloat = -20
-        static let trashViewHeight: CGFloat = 37
-        static let trashViewWidth: CGFloat = 22
-        static let cornerRadius: CGFloat = 44
-    }
 }
 
 enum UBAlpha: CGFloat {
