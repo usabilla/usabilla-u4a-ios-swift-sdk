@@ -124,7 +124,7 @@ class PenToolView: UIView {
 
     let marker: UIButton = {
         let image = PenToolConfig.inactiveMarker
-        let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(markerClicked), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -133,7 +133,7 @@ class PenToolView: UIView {
 
     let pencil: UIButton = {
         let image = PenToolConfig.inactivePencil
-        let button = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(pencilClicked), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

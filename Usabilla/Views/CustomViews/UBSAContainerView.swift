@@ -40,6 +40,7 @@ class UBSAContainerView: UIView {
     private let stackViewIndex = 1
     private let trashViewIndex = 2
     private let actionViewindex = 3
+    private var drawingModeOn = false
 
     fileprivate lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: frame)
@@ -234,8 +235,8 @@ extension UBSAContainerView {
     func addActionView(_ view: UIView) {
         // the actionview is added as the first task in the process, therefor all the views should be size correct
         // here.  Sized correct is dependent on the background images size.
+        drawingModeOn = true
         sizeViewsCorrectly()
-
         actionView.addSubview(view)
         actionView.isHidden = false
     }
@@ -284,8 +285,12 @@ extension UBSAContainerView {
         return  self.screenCapture
     }
 
-    func numbeOfDrawings() -> Int {
-        let array = stackView.subviews.compactMap({ $0.tag == UBSADrawingToolType.pen.rawValue})
-        return array.count
+    func numbeOfDrawings() -> Int? {
+        if drawingModeOn {
+            let array = stackView.subviews.compactMap({ $0.tag == UBSADrawingToolType.pen.rawValue})
+            return array.count
+        } else {
+            return nil
+        }
     }
 }
