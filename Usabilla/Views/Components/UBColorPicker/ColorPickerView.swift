@@ -36,6 +36,7 @@ class ColorPickerView: UIView {
     }
     var internalBorderColor: UIColor = UIColor.white
     var externalBorderColor: UIColor = UIColor(red: 0.34, green: 0.38, blue: 0.42, alpha: 1)
+    fileprivate var preSelectedIndex: Int = 0
     /// The object that acts as the layout delegate for the color picker
     weak var layoutDelegate: ColorPickerViewDelegateFlowLayout?
     /// The object that acts as the delegate for the color picker
@@ -61,7 +62,8 @@ class ColorPickerView: UIView {
         return collectionView
     }()
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, selectedIndex: Int = 0) {
+        preSelectedIndex = selectedIndex
         super.init(frame: frame)
         prepareForInitial()
     }
@@ -73,19 +75,17 @@ class ColorPickerView: UIView {
 
     private func prepareForInitial() {
         backgroundColor = UIColor.clear
-    }
-
-    // MARK: - View management
-    override func layoutSubviews() {
         self.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             collectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: ColorPickerValues.marginCenterCVColorPicker),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: ColorPickerValues.marginLeftCVColorPicker),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: ColorPickerValues.marginRightCVColorPicker),
             collectionView.heightAnchor.constraint(equalToConstant: ColorPickerValues.heightCVColorPicker)
-        ])
+            ])
+
+        self.selectColor(at: preSelectedIndex, animated: true)
+        self.layoutIfNeeded()
     }
 
     // MARK: - Private Methods

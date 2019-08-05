@@ -39,6 +39,9 @@ class DrawingPlugin: UBSAPluginViewController {
         // Set the drawingToolView 🙋🏻‍♂️
         let penToolViewFrame = CGRect(x: 0, y: 0, width: DrawingPluginValues.widthPenToolView, height: frame.height)
         let penToolView = PenToolView(frame: penToolViewFrame)
+        if let color = theme?.colors {
+            penToolView.textColor = color.text
+        }
         penToolView.delegate = self
         drawingToolView = penToolView
         drawContainerView.addSubview(penToolView)
@@ -46,6 +49,10 @@ class DrawingPlugin: UBSAPluginViewController {
         let colorpickerFrame = CGRect(x: DrawingPluginValues.startPtForColorPickerView, y: 0, width: DrawingPluginValues.widthColorPickerView, height: frame.height)
         let colorpicker = ColorPickerView(frame: colorpickerFrame)
         colorpicker.backgroundColor = bgcolor
+        if let color = theme?.colors {
+            colorpicker.externalBorderColor = color.text
+            colorpicker.internalBorderColor = color.cardColor
+        }
         colorpicker.delegate = self
         colorPickerView = colorpicker
         drawContainerView.addSubview(colorpicker)
@@ -82,14 +89,6 @@ class DrawingPlugin: UBSAPluginViewController {
     }
     override func pluginDidShow() {
         super.pluginDidShow()
-        colorPickerView?.selectColor(at: 0, animated: false)
-        if let color = theme?.colors {
-            let text = color.text
-            let bgColor = color.cardColor
-            drawingToolView?.textColor = text
-            colorPickerView?.externalBorderColor = text
-            colorPickerView?.internalBorderColor = bgColor
-        }
     }
 
 }

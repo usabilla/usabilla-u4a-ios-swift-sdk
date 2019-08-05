@@ -33,7 +33,6 @@ class ColorPickerCell: UICollectionViewCell {
     override func layoutSubviews() {
         colorView.layer.masksToBounds = false
         colorView.layer.cornerRadius = ColorPickerCellValues.radius
-        colorView.layer.borderColor = UIColor.darkGray.cgColor
         colorView.layer.borderWidth = ColorPickerCellValues.borderWidth
     }
 
