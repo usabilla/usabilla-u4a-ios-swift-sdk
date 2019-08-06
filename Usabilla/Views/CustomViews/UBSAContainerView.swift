@@ -45,6 +45,8 @@ class UBSAContainerView: UIView {
     fileprivate lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: frame)
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 4
+        imageView.layer.masksToBounds = true
         insertSubview(imageView, at: backgroundIndex)
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -211,7 +213,13 @@ extension UBSAContainerView {
     }
 
     func setBackgroundImage(_ image: UIImage) {
-        backgroundView.image = image.fixSizeAndOrientation()
+        let newImage = image.fixSizeAndOrientation()
+        if image.size.width > image.size.height {
+            backgroundView.contentMode = UIViewContentMode.scaleAspectFit
+        } else {
+            backgroundView.contentMode = UIViewContentMode.scaleAspectFill
+        }
+        backgroundView.image = newImage
      }
 
     func workingFrame() -> CGRect {
@@ -282,7 +290,7 @@ extension UBSAContainerView {
      - returns: the flatten view as UIImageView
      **/
     func finalImage() -> UIImage {
-        return  self.screenCapture
+        return  self.screenCapture.cropAlpha()
     }
 
     func numbeOfDrawings() -> Int? {
