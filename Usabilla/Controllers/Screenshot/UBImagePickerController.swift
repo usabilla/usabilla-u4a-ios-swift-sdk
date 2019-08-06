@@ -158,8 +158,8 @@ class UBImagePickerController: UIViewController {
         leftButton.titleLabel?.font = theme.fonts.regular
         titleLabel.font = theme.fonts.boldFont
         titleLabel.textColor = theme.colors.title
-
-        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey("usa_back_button_title"), for: UIControlState.normal)
+        titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBImagePickerView.libraryTitleText)
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBImagePickerView.backButtonText), for: UIControlState.normal)
     }
 
     fileprivate func layoutViews() {

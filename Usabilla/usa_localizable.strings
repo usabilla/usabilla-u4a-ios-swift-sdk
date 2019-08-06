@@ -51,7 +51,10 @@
 "usa_back_button_title" = "Back";
 "usa_add_button_title" = "Add";
 "usa_done_button_title" = "Done";
-"usa_edit_title" = "Add photo";
+"usa_back_button_library_title" = "Back";
+"usa_library_title" = "Moments";
+"usa_edit_title" = "Edit";
+"usa_add_title" = "Add photo";
 "usa_camera_error_title" = "No access to camera";
 "usa_camera_error_description" = "Allowing access lets you take photos to add to your feedback.";
 "usa_camera_settings_title" = "Allow access to camera";

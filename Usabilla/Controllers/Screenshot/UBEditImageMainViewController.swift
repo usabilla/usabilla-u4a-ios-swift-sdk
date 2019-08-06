@@ -104,16 +104,19 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     fileprivate func configureFromCamera() {
         leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.leftButtonText), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.rightButtonText), for: UIControlState.normal)
+        titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.editTitleText)
     }
 
     fileprivate func configureFromLibrary() {
-        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.backButtonText), for: UIControlState.normal)
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.backButtonLibraryText), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.addButtonText), for: UIControlState.normal)
+        titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.editTitleText)
     }
 
     fileprivate func configureForDefault() {
         leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.backButtonText), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.doneButtonText), for: UIControlState.normal)
+        titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.editTitleText)
     }
 
     fileprivate func setupUI() {

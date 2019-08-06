@@ -144,6 +144,8 @@ struct UBDimensions {
         static let backButtonText: String = "usa_back_button_title"
         static let addButtonText: String = "usa_add_button_title"
         static let doneButtonText: String = "usa_done_button_title"
+        static let editTitleText: String = "usa_edit_title"
+        static let backButtonLibraryText: String = "usa_back_button_library_title"
 
         static let toolbarHeight: CGFloat = 48
         static let toolbarWidth: CGFloat = 32
@@ -189,7 +191,7 @@ struct UBDimensions {
         static let rightButtonRightMargin: CGFloat = -16
         static let rightButtonTopMargin: CGFloat = 16
 
-        static let titleLabelTopMargin: CGFloat = 24
+        static let titleLabelTopMargin: CGFloat = 13
 
         static let collectionLeftSideMargin: CGFloat = 0
         static let collectionRightSideMargin: CGFloat = 1
@@ -202,6 +204,9 @@ struct UBDimensions {
         static let errroViewContentMargin: CGFloat = 30
         static let errroViewContentHeight: CGFloat = 20
         static let errroViewDescribtionMaxWidth: CGFloat = 300
+
+        static let backButtonText: String = "usa_back_button_title"
+        static let libraryTitleText: String = "usa_library_title"
     }
 
     struct GridHeaderCell {
