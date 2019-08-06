@@ -98,9 +98,9 @@ class UBImageLibraryButton: UIView {
         PHPhotoLibrary.requestAuthorization({ (newStatus) in
             if newStatus == PHAuthorizationStatus.authorized {
                 self.libraryAccess = true
-                self.image.contentMode = UIViewContentMode.scaleAspectFill
                 PHPhotoLibrary.shared().register(self)
                 DispatchQueue.main.async {
+                    self.image.contentMode = UIViewContentMode.scaleAspectFill
                     self.queryForCameraRollPhoto(size: self.image.frame.size)
                 }
             }

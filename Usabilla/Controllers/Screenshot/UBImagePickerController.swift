@@ -376,7 +376,9 @@ extension UBImagePickerController: UICollectionViewDelegate, UICollectionViewDat
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let asset = cameraRollAlbum?[indexPath.section].assets[indexPath.row] {
-            imageManager?.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil, resultHandler: { image, _ in
+            let option = PHImageRequestOptions()
+            option.isSynchronous = true
+            imageManager?.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: { image, _ in
                 if let aImage = image {
                     if self.fallBackMode {
                         self.fallBackSelection(image: aImage)
