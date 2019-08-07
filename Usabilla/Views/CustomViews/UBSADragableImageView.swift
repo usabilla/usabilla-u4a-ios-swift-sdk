@@ -12,6 +12,9 @@
 
 import UIKit
 protocol UBSADragableImageViewProtocol: class {
+    func startedTouchedSubView(_ subview: UBSADragableImageView)
+    func endedTouchedSubView(_ subview: UBSADragableImageView)
+
     func movedSubview(_ subview: UBSADragableImageView, center: CGPoint)
     func draggingSubview(_ subview: UBSADragableImageView, center: CGPoint)
 }
@@ -54,14 +57,10 @@ class UBSADragableImageView: UIImageView {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         lastLocation = center
-        if let containerView = superview as? UBSAContainerView {
-            containerView.draggingSubview(self, center: center)
-        }
-    }
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let containerView = superview as? UBSAContainerView {
-            containerView.movedSubview(self, center: center)
-        }
+        delegate?.startedTouchedSubView(self)
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.endedTouchedSubView(self)
+    }
 }

@@ -31,6 +31,7 @@ struct UBSAContainerViewValues {
     static let stackViewWidth: CGFloat = 0.0
     static let stackViewHeight: CGFloat = 0.0
     static let trashViewAlpha: CGFloat = 0.0
+    static let imageCornerRadius: CGFloat = 4.0
 }
 
 class UBSAContainerView: UIView {
@@ -45,7 +46,7 @@ class UBSAContainerView: UIView {
     fileprivate lazy var backgroundView: UIImageView = {
         let imageView = UIImageView(frame: frame)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 4
+        imageView.layer.cornerRadius = UBSAContainerViewValues.imageCornerRadius
         imageView.layer.masksToBounds = true
         insertSubview(imageView, at: backgroundIndex)
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -132,6 +133,21 @@ class UBSAContainerView: UIView {
 }
 
 extension UBSAContainerView: UBSADragableImageViewProtocol {
+    func startedTouchedSubView(_ subview: UBSADragableImageView) {
+        if showTrashTimer == nil {
+            let timer = Timer.scheduledTimer(timeInterval: UBSAContainerViewValues.trashViewDelay, target: self, selector: #selector(showTrash), userInfo: nil, repeats: false)
+            showTrashTimer = timer
+        }
+    }
+    // If the user touch down, and up ithout moving the view, it will not be removed
+    func endedTouchedSubView(_ subview: UBSADragableImageView) {
+        if showTrashTimer == nil {
+            showTrashTimer?.invalidate()
+            showTrashTimer = nil
+        }
+        hideTrash()
+    }
+
     func movedSubview(_ subview: UBSADragableImageView, center: CGPoint) {
         if showTrashTimer == nil {
             showTrashTimer?.invalidate()
@@ -213,7 +229,7 @@ extension UBSAContainerView {
     }
 
     func setBackgroundImage(_ image: UIImage) {
-        let newImage = image.fixSizeAndOrientation()
+        let newImage = image.fixSizeAndOrientation(cornerRadius: UBSAContainerViewValues.imageCornerRadius)
         if image.size.width > image.size.height {
             backgroundView.contentMode = UIViewContentMode.scaleAspectFit
         } else {

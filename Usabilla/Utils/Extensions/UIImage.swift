@@ -23,7 +23,7 @@ extension UIImage {
         return resultImage
     }
 
-    func fixSizeAndOrientation() -> UIImage {
+    func fixSizeAndOrientation(cornerRadius: CGFloat = 0.0) -> UIImage {
         let currentWidth = self.size.width
         let currentHeight = self.size.height
         var scaleFactor: CGFloat = 1
@@ -37,12 +37,16 @@ extension UIImage {
 
             let newHeight = Int(currentHeight * scaleFactor)
             let newWidth = Int(currentWidth * scaleFactor)
+            let size = CGSize(width: CGFloat(newWidth), height: CGFloat(newHeight))
+            let newImage = self.copy() as? UIImage
 
-            UIGraphicsBeginImageContext(CGSize(width: CGFloat(newWidth), height: CGFloat(newHeight)))
-            draw(in: CGRect(x: 0, y: 0, width: CGFloat(newWidth), height: CGFloat(newHeight)))
-            guard let resultImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
+            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+            let bounds = CGRect(origin: .zero, size: size)
+            UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).addClip()
+            newImage?.draw(in: bounds)
+            guard let finalImage = UIGraphicsGetImageFromCurrentImageContext() else { return self}
             UIGraphicsEndImageContext()
-            return resultImage
+            return finalImage
         }
 
         return self
