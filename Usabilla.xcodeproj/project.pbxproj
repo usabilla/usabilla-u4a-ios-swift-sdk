@@ -495,6 +495,9 @@
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 		F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 		F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
+		F2B7CFBD22FAED410088A9EF /* ColorPickerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */; };
+		F2B7CFBF22FB01880088A9EF /* UBSADrawingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */; };
+		F2B7CFC222FB0D460088A9EF /* PenToolViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */; };
 		F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
 		F2E542E622CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */; };
 		F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
@@ -813,6 +816,9 @@
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewTests.swift; sourceTree = "<group>"; };
+		F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBSADrawingViewTests.swift; sourceTree = "<group>"; };
+		F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenToolViewTests.swift; sourceTree = "<group>"; };
 		F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCameraViewController.swift; sourceTree = "<group>"; };
 		F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBCameraViewControllerTest.swift; sourceTree = "<group>"; };
 		F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
@@ -1266,6 +1272,7 @@
 		4304B03E1E390E8D007C8796 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2B7CFC022FB0D220088A9EF /* Screenshot */,
 				434E6C351E8008190087DB30 /* ComponentFactoryTests.swift */,
 				431578E51F7A6ADF00DFFBC6 /* NPSControlTests.swift */,
 			);
@@ -1544,6 +1551,16 @@
 				EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2B7CFC022FB0D220088A9EF /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */,
+				F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */,
+				F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */,
+			);
+			path = Screenshot;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1988,6 +2005,7 @@
 				43B221EA1F3096A90037987A /* PageModelTests.swift in Sources */,
 				433D252D1F79974800B1D819 /* NPSComponentViewModel.swift in Sources */,
 				434E6C361E8008190087DB30 /* ComponentFactoryTests.swift in Sources */,
+				F2B7CFC222FB0D460088A9EF /* PenToolViewTests.swift in Sources */,
 				43127EC21E71BBCC00E3011A /* PassiveFormControllerTest.swift in Sources */,
 				437BD7CE1E4B2CDF00E6FE2A /* FormModelTests.swift in Sources */,
 				431718A01F2A15F000BF612E /* FormServiceTests.swift in Sources */,
@@ -1998,6 +2016,7 @@
 				4304B03D1E38F1CA007C8796 /* DeviceInfoTest.swift in Sources */,
 				43A916E01ED868EA000A8873 /* CellViewModelTests.swift in Sources */,
 				45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */,
+				F2B7CFBD22FAED410088A9EF /* ColorPickerViewTests.swift in Sources */,
 				436264161E93A03200A0533C /* UBFormViewModelTests.swift in Sources */,
 				436264181E93F06E00A0533C /* UBEndPageViewModelTests.swift in Sources */,
 				434A278C1E2F6FFC002864C6 /* PromiseTest.swift in Sources */,
@@ -2048,6 +2067,7 @@
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4317189C1F2A15E900BF612E /* UBFeedbackRequestDAOTests.swift in Sources */,
 				431718991F2A15E900BF612E /* UBFileStorageDAOTests.swift in Sources */,
+				F2B7CFBF22FB01880088A9EF /* UBSADrawingViewTests.swift in Sources */,
 				4334E8661E29071F00AC895C /* BaseFieldModelTest.swift in Sources */,
 				43B9AF9B1E856467009EC83A /* IntroPageViewModelTests.swift in Sources */,
 				C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */,
