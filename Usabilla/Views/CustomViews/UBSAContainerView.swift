@@ -17,8 +17,8 @@
 import UIKit
 
 struct UBSAContainerViewValues {
-    static let trashViewHeight: CGFloat = 37
-    static let trashViewWidth: CGFloat = 22
+    static let trashViewHeight: CGFloat = 48
+    static let trashViewWidth: CGFloat = 48
     static let cornerRadius: CGFloat = 44
     static let trashAreaWidth: CGFloat = 0
     static let trashAreaHeight: CGFloat = 0

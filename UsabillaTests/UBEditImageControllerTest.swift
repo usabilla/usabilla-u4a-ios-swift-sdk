@@ -50,7 +50,7 @@ class UBEditImageControllerTest: QuickSpec {
                 it("sets the buttons correct when added from library") {
                     let testImage = UIImage(named: "a") ?? UIImage()
                     viewController.addBaseImage(image: testImage, source: .library)
-                    expect(viewController.leftButton.titleLabel!.text).to(equal("Back"))
+                    expect(viewController.leftButton.titleLabel!.text).to(equal("Library"))
                     expect(viewController.rightButton.titleLabel!.text).to(equal("Add"))
                 }
             }
@@ -85,7 +85,7 @@ class UBEditImageControllerTest: QuickSpec {
                     let testImage = UIImage(named: "a") ?? UIImage()
                     viewController.addBaseImage(image: testImage, source: .library)
                     
-                    expect(viewController.leftButton.titleLabel!.text).to(equal("Back"))
+                    expect(viewController.leftButton.titleLabel!.text).to(equal("Library"))
                     expect(viewController.rightButton.titleLabel!.text).to(equal("Add"))
                 }
                 
