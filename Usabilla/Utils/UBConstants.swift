@@ -147,7 +147,7 @@ struct UBDimensions {
         static let editTitleText: String = "usa_edit_title"
         static let backButtonLibraryText: String = "usa_back_button_library_title"
 
-        static let toolbarHeight: CGFloat = 48
+        static let toolbarHeight: CGFloat = 32
         static let toolbarWidth: CGFloat = 32
         static let toolbarTopMarginHeight: CGFloat = 30
         static let toolbarBottomMarginHeight: CGFloat = -7
@@ -160,7 +160,8 @@ struct UBDimensions {
         static let bottomMenuHeight: CGFloat = 62.0
         static let bottomMenuAnimationTime: TimeInterval = 0.3
 
-        static let buttoniconsInsect: CGFloat = 20.0
+        static let doneButtoniconsInsect: CGFloat = 20
+        static let undoButtoniconsInsect: CGFloat = 20
         static let addButtonInsectTop: CGFloat = 5.0
         static let addButtonInsectBottom: CGFloat = 5.0
         static let addButtonInsectleft: CGFloat = 25.0

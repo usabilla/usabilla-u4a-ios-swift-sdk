@@ -240,6 +240,13 @@ extension UBSAContainerView {
 
     func workingFrame() -> CGRect {
         if let size = backgroundView.image?.size {
+            // calculate iPad
+            if DeviceInfo.isIPad() {
+                if size.width < size.height { // If the device is in portrait, we use the whole frame as size
+                    return CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+                }
+                // if not protrait we will use the other calculation
+            }
             let scalex = frame.size.width/size.width
             let scaley = frame.size.height/size.height
             let scale = min(scalex, scaley)

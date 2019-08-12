@@ -80,11 +80,11 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         let button = UIButton()
         view.addSubview(button)
         button.imageView?.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
-                                              left: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
-                                              bottom: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
-                                              right: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect)
         button.contentHorizontalAlignment = .right
+        button.imageEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.doneButtoniconsInsect,
+                                              left: UBDimensions.UBSAEditImageMasterView.doneButtoniconsInsect,
+                                              bottom: UBDimensions.UBSAEditImageMasterView.doneButtoniconsInsect,
+                                              right: UBDimensions.UBSAEditImageMasterView.doneButtoniconsInsect)
         button.backgroundColor = .clear
         var buttonImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBSAEditImageMasterView.editButtonName)
         if let color = theme?.colors.accent {
@@ -103,10 +103,10 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
         button.contentHorizontalAlignment = .right
         button.backgroundColor = .clear
         button.imageView?.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
-                                              left: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
-                                              bottom: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect,
-                                              right: UBDimensions.UBSAEditImageMasterView.buttoniconsInsect)
+        button.imageEdgeInsets = UIEdgeInsets(top: UBDimensions.UBSAEditImageMasterView.undoButtoniconsInsect,
+                                              left: UBDimensions.UBSAEditImageMasterView.undoButtoniconsInsect,
+                                              bottom: UBDimensions.UBSAEditImageMasterView.undoButtoniconsInsect,
+                                              right: UBDimensions.UBSAEditImageMasterView.undoButtoniconsInsect)
         let buttonImage = UIImage.getImageFromSDKBundle(name: UBDimensions.UBSAEditImageMasterView.undoButtonName)
         var buttonImageEnabled: UIImage!
         var buttonImageDisabled: UIImage!

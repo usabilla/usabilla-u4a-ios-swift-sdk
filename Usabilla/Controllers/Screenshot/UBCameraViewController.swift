@@ -349,11 +349,11 @@ extension UBCameraViewController {
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight()),
+            previewView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera),
-            backButton.bottomAnchor.constraint(equalTo: previewView.topAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonBottomMargin ),
+            backButton.topAnchor.constraint(equalTo: view.safeTopAnchor),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonLeftMargin),
             backButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight),
             backButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth),

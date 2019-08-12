@@ -91,7 +91,6 @@
 		04F54E571CD76789002F501E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageViewController.swift */; };
 		04F54E581CD76789002F501E /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
 		04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
-		04F54E601CD76A21002F501E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
 		04FC74F51F3C805B006C4147 /* CampaignViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */; };
 		104FFEA121AD5318004034A5 /* UBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FFEA021AD5318004034A5 /* UBNavigationController.swift */; };
@@ -334,7 +333,6 @@
 		43B04FC21F1F7EEF0032F057 /* Usabilla.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* Usabilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC31F1F7EEF0032F057 /* UsabillaTheme.swift in Headers */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B04FC41F1F7EEF0032F057 /* UsabillaInternal.swift in Headers */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		43B04FC81F1F7EEF0032F057 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5B1CD76A21002F501E /* Assets.xcassets */; };
 		43B04FC91F1F7EEF0032F057 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20A1E2CBC3A00879E5F /* EmailFieldModelTest.swift */; };
 		43B0A20F1E2CC01A00879E5F /* StringFieldModeltest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0A20D1E2CBFDE00879E5F /* StringFieldModeltest.swift */; };
@@ -407,6 +405,9 @@
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45553AE122E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
+		45639DA523015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
+		45639DA623015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
+		45639DA723015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
 		458FC5D822EE428200E198A7 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
 		458FC5D922EE428200E198A7 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
@@ -605,7 +606,6 @@
 		04F54E541CD76789002F501E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		04F54E551CD76789002F501E /* ThankYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ThankYouViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F54E5A1CD76A21002F501E /* usa_localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = usa_localizable.strings; sourceTree = "<group>"; };
-		04F54E5B1CD76A21002F501E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CampaignSubmissionRequestManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04FC74F41F3C805B006C4147 /* CampaignViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampaignViewControllerTests.swift; sourceTree = "<group>"; };
 		104FFEA021AD5318004034A5 /* UBNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBNavigationController.swift; sourceTree = "<group>"; };
@@ -759,6 +759,7 @@
 		43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignFormJumpRules.json; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
+		45639DA423015BD600E7135C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
 		458FC5D422EE428200E198A7 /* ColorPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
 		458FC5D522EE428200E198A7 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
@@ -1112,10 +1113,10 @@
 				04F54DE21CD75A75002F501E /* Controllers */,
 				04F54DCB1CD75A3F002F501E /* Usabilla.h */,
 				04F54DCD1CD75A3F002F501E /* Info.plist */,
+				45639DA423015BD600E7135C /* Assets.xcassets */,
 				43B04FCF1F1F7EEF0032F057 /* UsabillaInternal-Info.plist */,
 				0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */,
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
-				04F54E5B1CD76A21002F501E /* Assets.xcassets */,
 				041275D71F792BF700A12E09 /* Usabilla.swift */,
 				43ED68F41F86806B00C9D279 /* Debug.swift */,
 			);
@@ -1694,7 +1695,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04F54E601CD76A21002F501E /* Assets.xcassets in Resources */,
+				45639DA523015BD600E7135C /* Assets.xcassets in Resources */,
 				04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1713,6 +1714,7 @@
 				43D2D1AE1F2F57E40059BB37 /* CampaignFormJumpRules.json in Resources */,
 				04575B791D99799C001E0EC3 /* test.json in Resources */,
 				0439437D1F99F55B008E1356 /* CampaignServiceTestBroken.json in Resources */,
+				45639DA723015BD600E7135C /* Assets.xcassets in Resources */,
 				047B7FE51EFBD77100AD43C1 /* OneButtonCampaign.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1721,7 +1723,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43B04FC81F1F7EEF0032F057 /* Assets.xcassets in Resources */,
+				45639DA623015BD600E7135C /* Assets.xcassets in Resources */,
 				43B04FC91F1F7EEF0032F057 /* usa_localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

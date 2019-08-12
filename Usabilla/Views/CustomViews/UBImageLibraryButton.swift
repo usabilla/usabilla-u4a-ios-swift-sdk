@@ -94,6 +94,8 @@ class UBImageLibraryButton: UIView {
             libraryAccess = false
             image.contentMode = UIViewContentMode.center
             image.image = UIImage.getImageFromSDKBundle(name: "ic_gallery")
+            layer.borderColor = UIColor.clear.cgColor
+            layer.borderWidth = 1.0
         }
         PHPhotoLibrary.requestAuthorization({ (newStatus) in
             if newStatus == PHAuthorizationStatus.authorized {
@@ -116,6 +118,8 @@ class UBImageLibraryButton: UIView {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         fetchOptions.fetchLimit = 1
+        layer.borderColor = UIColor.init(rgba: "#6C6C6C80", defaultColor: .white).cgColor
+        layer.borderWidth = 1.0
 
         let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         if let last = allPhotos.lastObject {

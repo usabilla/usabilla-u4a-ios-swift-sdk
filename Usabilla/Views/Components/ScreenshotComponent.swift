@@ -207,9 +207,9 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         setImage(image: nil)
         SwiftEventBus.postToMainThread("updateClientModel", sender: nil)
     }
-    
+
     @objc func clickImage() {
-        SwiftEventBus.post("click", sender: nil)
+        SwiftEventBus.postToMainThread("click", sender: nil)
     }
 
     func setImage(image: UIImage?, updateUI: Bool = true, updateModel: Bool = true) {

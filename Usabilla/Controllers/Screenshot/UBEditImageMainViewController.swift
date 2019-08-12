@@ -146,13 +146,13 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
 
         doneButton.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonBottomMargin).isActive = true
         doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonRightMargin).isActive = true
-        doneButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
-        doneButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
+        doneButton.widthAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
         undoButton.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: UBDimensions.UBEditImageMainView.rightButtonBottomMargin).isActive = true
         undoButton.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: 0).isActive = true
-        undoButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
-        undoButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
+        undoButton.heightAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.buttonHeight).isActive = true
+        undoButton.widthAnchor.constraint(equalToConstant: UBDimensions.UBEditImageMainView.buttonWidth).isActive = true
 
         titleLabel.centerYAnchor.constraint(equalTo: leftButton.centerYAnchor).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
