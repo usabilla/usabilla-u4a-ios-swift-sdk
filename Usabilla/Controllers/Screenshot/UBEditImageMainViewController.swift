@@ -18,7 +18,6 @@ enum UBimageSource: String {
 class UBEditImageMainViewController: UBSAEditImageMasterView {
 
     var imageSource: UBimageSource = .unknown
-
     var client: ClientModel
     lazy var cameraViewController: UBCameraViewController = UBCameraViewController()
     init(client: ClientModel) {
@@ -76,7 +75,9 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         cameraViewController.theme = theme
         cameraViewController.delegate = self
         // when the view is being presented, its not laid out, so frame is wrong size...
-        let aFrame = CGRect(x: 0, y: 0, width: DeviceInfo.getMaxFormWidth(), height: DeviceInfo.getMaxFormHeight())
+        let aFrame = CGRect(x: 0, y: 0,
+                            width: DeviceInfo.getMaxFormWidth(),
+                            height: DeviceInfo.getMaxFormHeight(adjustToCurrentOrientation: true))
         cameraViewController.view.frame = aFrame
         navigationController?.pushViewController(cameraViewController, animated: animated)
     }

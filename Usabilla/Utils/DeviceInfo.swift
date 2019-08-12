@@ -10,7 +10,28 @@ import Foundation
 import UIKit
 
 class DeviceInfo {
-    class func getMaxFormWidth() -> CGFloat {
+    
+    class func getMaxFormWidth(adjustToCurrentOrientation: Bool = false) -> CGFloat {
+        if !adjustToCurrentOrientation {
+            return DeviceInfo().getMaxFormWidth()
+        }
+        if UIDevice.current.orientation.isPortrait {
+            return 640
+        }
+        return 968
+    }
+
+    class func getMaxFormHeight(adjustToCurrentOrientation: Bool = false) -> CGFloat {
+        if !adjustToCurrentOrientation {
+            return DeviceInfo().getMaxFormHeight()
+        }
+        if UIDevice.current.orientation.isPortrait {
+            return DeviceInfo().getMaxFormHeight()
+        }
+        return UIScreen.main.bounds.size.height - (DeviceInfo.getTopCardBorder() + DeviceInfo.getBottomCardBorder())  
+    }
+
+    func getMaxFormWidth() -> CGFloat {
         if DeviceInfo.isIPad() {
             return 640
         }
@@ -49,7 +70,7 @@ class DeviceInfo {
         return CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
     }
 
-    class func getMaxFormHeight() -> CGFloat {
+    func getMaxFormHeight() -> CGFloat {
         if DeviceInfo.isIPad() {
             return 968
         }
