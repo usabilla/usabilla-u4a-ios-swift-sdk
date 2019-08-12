@@ -192,8 +192,9 @@ class UBCameraViewController: UIViewController {
     }
 
     // MARK: - Rotation
+    private var orientationPreference: UIInterfaceOrientationMask = DeviceInfo.isIPad() ? [.all] : [.portrait]
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        return orientationPreference
     }
 
     // MARK: - Actions
@@ -246,6 +247,7 @@ extension UBCameraViewController {
             let rootLayer: CALayer = self.previewView.layer
             rootLayer.masksToBounds = true
             rootLayer.addSublayer(self.previewLayer)
+            self.configureVideoOrientation()
             setImageOutput(session: captureSession)
             captureSession.startRunning()
         } catch let error {
@@ -254,6 +256,19 @@ extension UBCameraViewController {
             return
         }
         #endif
+    }
+
+    private func configureVideoOrientation() {
+        if let previewLayer = self.previewLayer,
+            let connection = previewLayer.connection {
+            let orientation = UIDevice.current.orientation
+
+            if connection.isVideoOrientationSupported,
+                let videoOrientation = AVCaptureVideoOrientation(rawValue: orientation.rawValue) {
+                previewLayer.frame = self.view.bounds
+                connection.videoOrientation = videoOrientation
+            }
+        }
     }
 
     // clean up capture setup
@@ -450,6 +465,7 @@ extension UBCameraViewController: UBImageLibraryButtonProtocol {
 
 extension UBCameraViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.configureVideoOrientation()
         self.previewConstraint?.isActive = false
         coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
             if let heigth = self?.barHeight(), let anchor = self?.view.topAnchor {

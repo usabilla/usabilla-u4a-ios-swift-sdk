@@ -57,8 +57,9 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     }
 
     // MARK: - Rotation
+    private var orientationPreference: UIInterfaceOrientationMask = DeviceInfo.isIPad() ? [.all] : [.portrait]
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        return orientationPreference
     }
 
 //    override var shouldAutorotate: Bool {
