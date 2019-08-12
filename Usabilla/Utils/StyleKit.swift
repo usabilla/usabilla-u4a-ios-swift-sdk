@@ -630,16 +630,21 @@ class Icons: NSObject {
             }
             LocalCache.lastColor = color
         }
-        var image: UIImage
-
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 149, height: 33), false, 0)
-        Icons.drawPoweredBy(color: color)
-        image = UIGraphicsGetImageFromCurrentImageContext()!
+        let image: UIImage = UIImage.getImageFromSDKBundle(name: "ic_poweredby")!
+        let size: CGSize = CGSize(width: 66, height: 40)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        let context = UIGraphicsGetCurrentContext()!
+        let rect = CGRect(origin: CGPoint.zero, size: size)
+        color.setFill()
+        image.draw(in: rect)
+        context.setBlendMode(.sourceIn)
+        context.fill(rect)
+        
+        let resultImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-
-        LocalCache.image = image
+        LocalCache.image = resultImage
         LocalCache.lastColor = color
-        return image
+        return resultImage
     }
 
     class func imageOfCircle( color: UIColor) -> UIImage {
