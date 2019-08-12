@@ -241,7 +241,7 @@ extension UBSAContainerView {
     func workingFrame() -> CGRect {
         if let size = backgroundView.image?.size {
             // calculate iPad
-            if DeviceInfo.isIPad() {
+            if DeviceInfo.isIPad() || UIDevice.current.orientation.isPortrait {
                 if size.width < size.height { // If the device is in portrait, we use the whole frame as size
                     return CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
                 }

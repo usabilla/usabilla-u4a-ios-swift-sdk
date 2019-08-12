@@ -28,6 +28,7 @@ class UBCameraViewController: UIViewController {
 
     weak var delegate: CapturePhotoProtocol?
     var theme: UsabillaTheme?
+    weak var previewConstraint: NSLayoutConstraint?
     private var _captureOutput: AVCaptureOutput!
 
     // capture button default like ios camera
@@ -348,12 +349,13 @@ extension UBCameraViewController {
     }
 
     private func setConstraints() {
+        previewConstraint = previewView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight())
+        previewConstraint?.isActive = true
         NSLayoutConstraint.activate([
-            previewView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             previewView.bottomAnchor.constraint(equalTo: captureButton.topAnchor, constant: UBDimensions.UBCameraView.bottomMarginPreviewCamera),
-            backButton.topAnchor.constraint(equalTo: view.safeTopAnchor),
+            backButton.bottomAnchor.constraint(equalTo: previewView.topAnchor, constant: UBDimensions.UBCameraView.cancelButtonBottomMargin ),
             backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: UBDimensions.UBEditImageMainView.leftButtonLeftMargin),
             backButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonHeight),
             backButton.widthAnchor.constraint(greaterThanOrEqualToConstant: UBDimensions.UBEditImageMainView.buttonWidth),
@@ -364,6 +366,7 @@ extension UBCameraViewController {
             imageLibraryButtonView.heightAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.heightBtnImageLibrary),
             imageLibraryButtonView.widthAnchor.constraint(equalToConstant: UBDimensions.UBCameraView.widthBtnImageLibrary)
             ])
+
     }
 
     func addErrorView() {
@@ -442,5 +445,18 @@ extension UBCameraViewController: AVCapturePhotoCaptureDelegate {
 extension UBCameraViewController: UBImageLibraryButtonProtocol {
     func UBtouchUpInside() {
         self.delegate?.librarySelected()
+    }
+}
+
+extension UBCameraViewController {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.previewConstraint?.isActive = false
+        coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
+            if let heigth = self?.barHeight(), let anchor = self?.view.topAnchor {
+                self?.previewConstraint = self?.previewView.topAnchor.constraint(equalTo: anchor, constant: heigth)
+                self?.previewConstraint?.isActive = true
+                self?.previewView.setNeedsLayout()
+            }
+        })
     }
 }

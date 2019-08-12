@@ -110,7 +110,8 @@ struct UBDimensions {
         static let heightBtnImageLibrary: CGFloat = 48
         static let leftBarBtnText: String = "usa_camera_navbar_left_button"
         static let cornerRadiusBtnImageLibrary: CGFloat = 1
-
+        static let cancelButtonBottomMargin: CGFloat = -6
+        
         static let errroViewMargin: CGFloat = 10
         static let errroViewContentMargin: CGFloat = 30
         static let errroViewContentHeight: CGFloat = 20
@@ -150,7 +151,7 @@ struct UBDimensions {
         static let toolbarHeight: CGFloat = 32
         static let toolbarWidth: CGFloat = 32
         static let toolbarTopMarginHeight: CGFloat = 30
-        static let toolbarBottomMarginHeight: CGFloat = -7
+        static let toolbarBottomMarginHeight: CGFloat = -14
     }
 
     struct UBSAEditImageMasterView {
