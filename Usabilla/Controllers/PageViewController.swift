@@ -271,15 +271,30 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
     }
 
     //Image handling stuff
-    func clickImageFromCamera() {
-        if client == nil { // if network is lost between form-presentastion and click on camera the clientModel is not properly init
-            client = ClientModel()
-        }
+    fileprivate func presentFullDrawSolution(with client: ClientModel) {
         let controller = UBEditImageMainViewController(theme: viewModel.theme, client: client)
         let navController = UBNavigationController(rootViewController: controller)
         navController.modalPresentationStyle = .overCurrentContext
         navController.isNavigationBarHidden = true
         present(navController, animated: false, completion: nil )
+    }
+
+    //Image handling stuff
+    fileprivate func presentLibraryOnlySolution(with client: ClientModel) {
+        let controller = UBImagePickerController(theme: viewModel.theme, fallBackMode: true)
+        controller.client = client
+        present(controller, animated: false, completion: nil )
+    }
+
+    func clickImageFromCamera() {
+        if client == nil { // if network is lost between form-presentastion and click on camera the clientModel is not properly init
+            client = ClientModel()
+        }
+        if DeviceInfo.requiredOrientationAvailable() {
+            presentFullDrawSolution(with: client)
+            return
+        }
+        presentLibraryOnlySolution(with: client)
     }
 
     @objc

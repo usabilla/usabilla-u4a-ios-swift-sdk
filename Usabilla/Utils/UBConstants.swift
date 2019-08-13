@@ -148,7 +148,9 @@ struct UBDimensions {
         static let imageBorder: CGFloat = 1
 
         static let numberOfImagesPrRow: CGFloat = 4
-
+        
+        static let fallBackNavBarHeigth: CGFloat = 44
+        
         static let imageLeftSideMargin: CGFloat = 7
         static let imageRightSideMargin: CGFloat = -7
         static let imageTopMargin: CGFloat = 8

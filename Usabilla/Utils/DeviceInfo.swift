@@ -167,4 +167,17 @@ class DeviceInfo {
             return try? FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
         }
     }
+    class func requiredOrientationAvailable() -> Bool {
+        // if this is iPhone only, then we require portrait
+        if isIPad() { return true }
+        if let test =  Bundle.main.infoDictionary?["UISupportedInterfaceOrientations"] as? [String] {
+            for orientation in test {
+                if orientation == "UIInterfaceOrientationPortrait"  ||
+                   orientation == "UIInterfaceOrientationPortraitUpsideDown" {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }

@@ -25,15 +25,17 @@ protocol UBImagePickerControllerDelegate: NSObjectProtocol {
 
 class UBImagePickerController: UIViewController {
 
+    fileprivate var orientationPreference: UIInterfaceOrientationMask = [.portrait]
     fileprivate var cameraRollAlbum: [AlbumModel]?
     fileprivate var thumbnailSize: CGSize!
     fileprivate var imageManager: PHCachingImageManager?
     fileprivate var libraryAcces = false
     fileprivate var userScrolled = false
 
+    fileprivate var fallBackMode = false
     weak var delegate: UBImagePickerControllerDelegate?
     let theme: UsabillaTheme
-
+    var client: ClientModel?
     lazy var collectionView: UICollectionView = {
         let layout = LeftAlignedCollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -99,9 +101,13 @@ class UBImagePickerController: UIViewController {
         return label
     }()
 
-    init(theme: UsabillaTheme?) {
+    init(theme: UsabillaTheme?, fallBackMode: Bool = false) {
         self.theme = theme ?? UsabillaTheme()
         super.init(nibName: nil, bundle: nil)
+        self.fallBackMode = fallBackMode
+        if fallBackMode {
+            orientationPreference = [UIInterfaceOrientationMask.all]
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -110,7 +116,7 @@ class UBImagePickerController: UIViewController {
 
     // MARK: - Rotation
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        return orientationPreference
     }
 
     override func viewDidLoad() {
@@ -157,7 +163,9 @@ class UBImagePickerController: UIViewController {
     }
 
     fileprivate func layoutViews() {
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: barHeight()).isActive = true
+        
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor,
+                                            constant: (fallBackMode ? UBDimensions.UBImagePickerView.fallBackNavBarHeigth: barHeight()) ).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBImagePickerView.collectionLeftSideMargin).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UBDimensions.UBImagePickerView.collectionRightSideMargin).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: UBDimensions.UBImagePickerView.collectionBottomMargin).isActive = true
@@ -271,6 +279,9 @@ class UBImagePickerController: UIViewController {
     // MARK: - Action methods
     @objc
     fileprivate func backButtonTouchUpInside() {
+        if fallBackMode {
+            dismiss(animated: true, completion: nil)
+        }
         delegate?.imagePickerControllerDidCancel?(self)
     }
     func scrollToLastItem() {
@@ -368,9 +379,20 @@ extension UBImagePickerController: UICollectionViewDelegate, UICollectionViewDat
         if let asset = cameraRollAlbum?[indexPath.section].assets[indexPath.row] {
             imageManager?.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil, resultHandler: { image, _ in
                 if let aImage = image {
+                    if self.fallBackMode {
+                        self.fallBackSelection(image: aImage)
+                        return
+                    }
                     self.delegate?.imagePickerController?(self, didFinishPickingImage: aImage)
                 }
             })
         }
+    }
+    // if we are in fallback mode we will send the image and statistics
+    fileprivate func fallBackSelection(image: UIImage) {
+        dismiss(animated: true, completion: nil)
+        let imageType = ["image_type": UBimageSource.library.rawValue]
+        client?.addBehaviour("screenshot_annotations", imageType)
+        SwiftEventBus.postToMainThread("imagePicked", sender: image)
     }
  }
