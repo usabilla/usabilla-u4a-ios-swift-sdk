@@ -269,11 +269,7 @@ extension UBSAContainerView {
 
     func setBackgroundImage(_ image: UIImage) {
         let newImage = image.fixSizeAndOrientation(cornerRadius: UBSAContainerViewValues.imageCornerRadius)
-        if image.size.width > image.size.height {
-            backgroundView.contentMode = UIViewContentMode.scaleAspectFit
-        } else {
-            backgroundView.contentMode = UIViewContentMode.scaleAspectFill
-        }
+        backgroundView.contentMode = UIViewContentMode.scaleAspectFit
         backgroundView.image = newImage
      }
 
