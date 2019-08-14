@@ -228,7 +228,8 @@ extension UBCameraViewController {
             return
         #else
         guard captureSession.inputs.isEmpty else {
-                captureSession.startRunning()
+            self.configureVideoOrientation()
+            captureSession.startRunning()
                 return
         }
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)

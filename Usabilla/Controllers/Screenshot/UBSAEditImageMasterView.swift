@@ -181,8 +181,8 @@ class UBSAEditImageMasterView: UIViewController, UBSAToolBarButtonPluginProtocol
                                                    width: view.frame.size.width,
                                                    height: UBDimensions.UBSAEditImageMasterView.bottomMenuHeight + DeviceInfo.getBottomSafeInsets()))
         setTopMenu(type: sender.topMenuType())
-        // The conatinerview knows the size of the backaground imnage,
-        // its the only view that knows hwat frame we are working in
+        // The containerview knows the size of the backaground image,
+        // its the only view that knows the frame we are working in
         // pass that frame into to the plugin to allow actions only in that area
         var aframe = containerView.workingFrame()
         aframe.origin.x = 0
@@ -238,6 +238,7 @@ extension UBSAEditImageMasterView {
         switch type {
         case .iconsUndoDone:
             undoButton.isHidden = false
+            undoButton.isEnabled = false
             rightButton.isHidden = true
             leftButton.isHidden = true
             titleLabel.isHidden = true
@@ -282,4 +283,17 @@ extension UBSAEditImageMasterView {
         }
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if let menuview = currentPresentedMenu {
+            coordinator.animate(alongsideTransition: { _ in
+                var frame = menuview.frame
+                frame.origin.y = self.view.frame.height-frame.size.height
+                self.currentPresentedMenu?.frame = frame
+            }, completion: { _ in
+                var frame = menuview.frame
+                frame.origin.y = self.view.frame.height-frame.size.height
+                self.currentPresentedMenu?.frame = frame
+            })
+        }
+    }
 }
