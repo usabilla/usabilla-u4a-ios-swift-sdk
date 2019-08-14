@@ -631,17 +631,7 @@ class Icons: NSObject {
             LocalCache.lastColor = color
         }
         let image: UIImage = UIImage.getImageFromSDKBundle(name: "ic_poweredby")!
-        let size: CGSize = CGSize(width: 66, height: 40)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        let context = UIGraphicsGetCurrentContext()!
-        let rect = CGRect(origin: CGPoint.zero, size: size)
-        color.setFill()
-        image.draw(in: rect)
-        context.setBlendMode(.sourceIn)
-        context.fill(rect)
-        
-        let resultImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        let resultImage = image.maskWithColor(color: color)
         LocalCache.image = resultImage
         LocalCache.lastColor = color
         return resultImage
