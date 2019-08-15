@@ -25,7 +25,7 @@ protocol UBImagePickerControllerDelegate: NSObjectProtocol {
 
 class UBImagePickerController: UIViewController {
 
-    fileprivate var orientationPreference: UIInterfaceOrientationMask = [.portrait]
+    fileprivate var orientationPreference: UIInterfaceOrientationMask = DeviceInfo.isIPad() ? [.all] : [.portrait]
     fileprivate var cameraRollAlbum: [AlbumModel]?
     fileprivate var thumbnailSize: CGSize!
     fileprivate var imageManager: PHCachingImageManager?
