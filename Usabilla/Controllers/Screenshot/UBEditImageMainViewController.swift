@@ -17,6 +17,7 @@ enum UBimageSource: String {
 
 class UBEditImageMainViewController: UBSAEditImageMasterView {
 
+    var currentOrientation: UIDeviceOrientation?
     var imageSource: UBimageSource = .unknown
     var client: ClientModel
     lazy var cameraViewController: UBCameraViewController = UBCameraViewController()
@@ -37,6 +38,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setCurrentOrientation()
 
         if !DeviceInfo.isIPad() {
             let value = UIInterfaceOrientation.portrait.rawValue
@@ -62,9 +64,11 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         return orientationPreference
     }
 
-//    override var shouldAutorotate: Bool {
-//        return true
-//    }
+    func setCurrentOrientation() {
+         if !DeviceInfo.isIPad() {
+            currentOrientation = UIDevice.current.orientation
+        }
+    }
 
     func addBaseImage(image: UIImage, source: UBimageSource) {
         imageSource = source
@@ -80,6 +84,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
                             width: DeviceInfo.getMaxFormWidth(),
                             height: DeviceInfo.getMaxFormHeight(adjustToCurrentOrientation: true))
         cameraViewController.view.frame = aFrame
+        cameraViewController.previousOrientationForIphone = currentOrientation
         navigationController?.pushViewController(cameraViewController, animated: animated)
     }
 
@@ -178,6 +183,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     @objc
     override func backButtonTouchUpInside() {
         containerView.reset()
+        self.setCurrentOrientation()
         switch imageSource {
         case .camera:
             presentCamera(animated: false)
@@ -270,9 +276,3 @@ extension UBEditImageMainViewController: UINavigationControllerDelegate {
         }
     }
 }
-
-extension UBEditImageMainViewController {
-}
-
-//extension UBEditImageMainViewController: ToolBarButtonPluginProtocol {
-//}

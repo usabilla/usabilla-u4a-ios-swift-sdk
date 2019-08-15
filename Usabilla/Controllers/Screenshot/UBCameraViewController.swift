@@ -30,6 +30,7 @@ class UBCameraViewController: UIViewController {
     var theme: UsabillaTheme?
     weak var previewConstraint: NSLayoutConstraint?
     private var _captureOutput: AVCaptureOutput!
+    var previousOrientationForIphone: UIDeviceOrientation!
 
     // capture button default like ios camera
     fileprivate lazy var captureButton: UIButton = {
@@ -228,7 +229,9 @@ extension UBCameraViewController {
             return
         #else
         guard captureSession.inputs.isEmpty else {
-            self.configureVideoOrientation()
+            if DeviceInfo.isIPad() {
+                self.configureVideoOrientation()
+            }
             captureSession.startRunning()
                 return
         }
@@ -242,13 +245,14 @@ extension UBCameraViewController {
             captureSession.addInput(cameraInput)
             let preview = AVCaptureVideoPreviewLayer(session: captureSession)
             preview.frame = view.bounds
-            //preview.backgroundColor = UIColor.gray.cgColor
             preview.videoGravity = .resizeAspectFill
             self.previewLayer = preview
             let rootLayer: CALayer = self.previewView.layer
             rootLayer.masksToBounds = true
             rootLayer.addSublayer(self.previewLayer)
-            self.configureVideoOrientation()
+            if DeviceInfo.isIPad() {
+                self.configureVideoOrientation()
+            }
             setImageOutput(session: captureSession)
             captureSession.startRunning()
         } catch let error {
@@ -335,24 +339,29 @@ extension UBCameraViewController {
 
     private func saveImage(imageData: Data) {
 
-        var imageOrientation: UIImageOrientation = UIImageOrientation.up
-        switch UIDevice.current.orientation {
-        case UIDeviceOrientation.portraitUpsideDown:
-            imageOrientation = UIImageOrientation.left
-        case UIDeviceOrientation.landscapeRight:
-            imageOrientation = UIImageOrientation.down
-        case UIDeviceOrientation.landscapeLeft:
-            imageOrientation = UIImageOrientation.up
-        case UIDeviceOrientation.portrait:
-            imageOrientation = UIImageOrientation.right
-        default:
-            imageOrientation = UIImageOrientation.right
+        let currentOrientation = UIDevice.current.orientation
+        var imageOrientation: UIImageOrientation = getUIImageOrientationFromDevice(currentOrientation: currentOrientation)
+        if previousOrientationForIphone != nil && currentOrientation == .portrait {
+            if previousOrientationForIphone != currentOrientation {
+                imageOrientation = getUIImageOrientationFromDevice(currentOrientation: previousOrientationForIphone)
+            }
         }
         guard  let aimage = UIImage(data: imageData),
                let cgImage: CGImage = aimage.cgImage else { return }
         let image = UIImage(cgImage: cgImage, scale: 1.0, orientation: imageOrientation)
         self.stopCaptureSession()
         self.delegate?.pickPhotoCapturedFromCamera(image: image)
+    }
+
+    func getUIImageOrientationFromDevice(currentOrientation: UIDeviceOrientation) -> UIImageOrientation {
+        // return CGImagePropertyOrientation based on Device Orientation
+        switch currentOrientation {
+        case .portrait, .faceUp: return UIImageOrientation.right
+        case .portraitUpsideDown, .faceDown: return UIImageOrientation.left
+        case .landscapeLeft: return UIImageOrientation.up // this is the base orientation
+        case .landscapeRight: return UIImageOrientation.down
+        case .unknown: return UIImageOrientation.up
+        }
     }
 }
     // MARK: - layout
@@ -466,7 +475,6 @@ extension UBCameraViewController: UBImageLibraryButtonProtocol {
 
 extension UBCameraViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.configureVideoOrientation()
         self.previewConstraint?.isActive = false
         coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
             if let heigth = self?.barHeight(), let anchor = self?.view.topAnchor {
@@ -474,6 +482,10 @@ extension UBCameraViewController {
                 self?.previewConstraint?.isActive = true
                 self?.previewView.setNeedsLayout()
             }
+            }, completion: { _ in
+                if DeviceInfo.isIPad() {
+                    self.configureVideoOrientation()
+                }
         })
     }
 }
