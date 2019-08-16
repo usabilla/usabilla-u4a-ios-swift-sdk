@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.3.0</string>
+	<string>6.4.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>29</string>
+	<string>30</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Pick a screenshot to submit from your gallery</string>
 	<key>NSPrincipalClass</key>
