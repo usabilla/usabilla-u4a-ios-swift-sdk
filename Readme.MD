@@ -1,9 +1,12 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-In Usabilla SDK Version 6.2 there are two new features
-1. ability to programmatically close a Form or a Campaign
-2. enable data masking, on text fields
+In Usabilla SDK Version 6.4 there are two new features in addition to screenshot
+1. ability to capture image using camera
+2. ability to draw over image using drawing tool
+Note : 
+1. For camera, iPad supports all orientations and iPhone supports portrait mode only. 
+2. iPhone with landscape only mode doesn't support this features but there is an ability to capture image using image library)
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
@@ -95,7 +98,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.2.0'
+pod 'Usabilla', '~> 6.4.0'
 
 End
 ```
@@ -117,7 +120,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.2.0"
+binary "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/Usabilla.json"
 ```
 
 ### Manual
@@ -488,9 +491,9 @@ If there is a Form or a Campaign the method will return true, false otherwise.
 It is possible to force a Campaign or Form to be presented in specific orientation, regardless of the device orientation, or the supported orientations for the Application.
 
 ```swift
-Usabilla.orientation = .landscapeLeft 
+Usabilla.orientation = .landscapeLeft
 ```
-Set this property before presenting a Campaign or Form. It defaults to 
+Set this property before presenting a Campaign or Form. It defaults to
 
 ```swift
 Usabilla.orientation = .all
@@ -630,11 +633,12 @@ If the user tries to set a custom screenshot, the SDK will ask for the permissio
 We now also ask for camera access.
 
 These privacy permissions are needed on the main app:
-
-NSCameraUsageDescription
-NSPhotoLibraryUsageDescription
+	
+	NSCameraUsageDescription
+	NSPhotoLibraryUsageDescription
 
 Please make sure there is a description string for each of these properties
+
 
 ## Integration with Obj-C applications
 
