@@ -1,3 +1,11 @@
+## 6.4.0
+### Added
+- User can, after selecting an image, draw on the image to mask or highlight features
+### Fixed 
+- crash when only landscape was selected in Device Orientation 
+### Change
+- Carthage changed to use binary (thanks to Igor Palaguta)  
+
 ## 6.3.0
 ### Added
 - User can choose between camera or image library as source when adding screenshot
