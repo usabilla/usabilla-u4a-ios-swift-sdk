@@ -80,7 +80,7 @@ private_lane :systemTestsAfterBuild do |options|
             project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
             scheme: "UsabillaSystemTest",
             clean: true,        
-            devices: [ "iPhone X (11.3)"]
+            devices: [ "iPhone X (11.4)"]
     )
 end
 

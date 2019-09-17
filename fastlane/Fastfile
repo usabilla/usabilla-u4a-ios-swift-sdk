@@ -175,7 +175,7 @@ end
 	    scan(
             project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
             clean: true,
-            device: "iPhone SE"
+            device: "iPhone SE (11.4)"
         )
         cleanReleaseProject
         resetSimulator
