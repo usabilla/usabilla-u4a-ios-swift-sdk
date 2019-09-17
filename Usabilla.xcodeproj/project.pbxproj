@@ -2435,9 +2435,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				USABILLA_API_HOST = "https://api-staging.usabilla.com";
-				USABILLA_CDN_HOST = "https://sdk.out-staging.usbla.net";
-				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
@@ -2469,9 +2466,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				USABILLA_API_HOST = "https://api.usabilla.com";
-				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
-				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 x86_64 armv7 armv7s";
 			};
 			name = Release;
@@ -2619,9 +2613,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				USABILLA_API_HOST = "https://api.usabilla.com";
-				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
-				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Production;
@@ -2651,9 +2642,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				USABILLA_API_HOST = "https://api.usabilla.com";
-				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
-				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Production;
@@ -2707,9 +2695,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				USABILLA_API_HOST = "https://api-staging.usabilla.com";
-				USABILLA_CDN_HOST = "https://sdk.out-staging.usbla.net";
-				USABILLA_SUBMIT_ENDPOINT = "https://w-staging.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
@@ -2739,9 +2724,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				USABILLA_API_HOST = "https://api.usabilla.com";
-				USABILLA_CDN_HOST = "https://sdk.out.usbla.net";
-				USABILLA_SUBMIT_ENDPOINT = "https://w.usabilla.com/incoming";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;

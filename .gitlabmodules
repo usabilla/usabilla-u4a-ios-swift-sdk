@@ -1,0 +1,3 @@
+[submodule "UsabillaUITestApp/SDK-UI-Scenarios"]
+	path = UsabillaUITestApp/SDK-UI-Scenarios
+	url = ../../SDK-UI-Scenarios.git

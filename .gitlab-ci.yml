@@ -1,0 +1,127 @@
+stages:
+  - install
+  - run-unit-test
+  - buildAll-and-GenerateArtefacts
+  - validate-framework
+  - validation
+  - ui-test
+  - system-test
+
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+before_script:
+  - cat .gitlabmodules > .gitmodules
+  - git submodule sync --recursive
+  - git submodule update --init --recursive 
+
+install:
+  stage: install
+  script:
+    - bundle install
+    - bin/bootstrap-if-needed
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+
+  tags:
+    - sdk
+
+run-unit-test:
+  stage: run-unit-test
+  script:
+    - bundle exec fastlane runUnitTests
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+
+  tags:
+    - sdk
+
+build:
+  stage: buildAll-and-GenerateArtefacts
+  script:
+    - bundle exec fastlane buildAllAndGenerateArtefacts
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+
+  tags:
+    - sdk
+
+validate-framework:
+  stage: validate-framework
+  script:
+    - bundle exec fastlane validateFrameWork
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+
+  tags:
+    - sdk
+
+validation:
+  stage: validation
+  script:
+    - bundle exec fastlane validateAll
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+
+  tags:
+    - sdk
+
+ui-test:
+  stage: ui-test
+  script:
+    - bundle exec fastlane uiTest
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+
+  tags:
+    - sdk
+
+system-test:
+  stage: system-test
+  script:
+    - bundle exec fastlane systemTests
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+
+  tags:
+    - sdk

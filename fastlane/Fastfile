@@ -6,6 +6,11 @@ default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
 
+#branchname
+def sdkBranchName()
+	branchname = sh 'git name-rev --name-only HEAD | sed -e "s/^remotes\/origin\///"'
+	return branchname
+end
 
 #used in STAGE  "Run UT"    
     desc "Builds the framework for all xcode version specified in fastlane/versions.json"
@@ -164,7 +169,7 @@ platform :ios do
 
         resetSimulator
         xcversion(version: version)
-        framework_path = "#{projectDirectory}Xcode-#{version}/Pods/Usabilla.Framework"
+        framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/Pods/Usabilla.Framework"
         cleanReleaseProject
         sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/")
 	    scan(
@@ -184,5 +189,21 @@ platform :ios do
             validateSDK(version: version)
         end
     end
+
+#test branch, and change URLS
+	desc "Check branch and change URLS"
+	private_lane :testAndChangeURLS do
+		branchname = sdkBranchName()
+        puts branchname
+		if index = branchname.downcase.index("master") 
+			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api.usabilla.com")
+			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out.usbla.net")
+			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w.usabilla.com/incoming")
+  		else
+			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api-staging.usabilla.com")
+			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out-staging.usbla.net")
+			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w-staging.usabilla.com/incoming")
+  		end
+	end
 
 end

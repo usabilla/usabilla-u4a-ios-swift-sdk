@@ -2,7 +2,7 @@ import "./propertiesFile.rb"
 
 desc "Build framework For a given XCode version"
 private_lane :buildForXcodeVersion do |options|
-
+  testAndChangeURLS
   if options[:version] == nil	
     UI.message("'version' not specified in 'buildForXcodeVersion")
   end

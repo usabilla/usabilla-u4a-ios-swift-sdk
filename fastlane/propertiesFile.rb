@@ -38,7 +38,7 @@ class Paths
 
 	def initialize(version, projectDirectory)
         @version = version
-		@xcode_directory = "Xcode-#{version}"
+		@xcode_directory = "XcodeBuilds/Xcode-#{version}"
 		@projectDirectory = projectDirectory
     end
     
