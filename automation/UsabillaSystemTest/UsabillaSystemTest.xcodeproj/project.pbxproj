@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		04F800FB1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */; };
-		103BE8DB215E278600349AC9 /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; };
-		103BE8DC215E278600349AC9 /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		433156E41FCC50000036F0A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156E31FCC50000036F0A5 /* AppDelegate.swift */; };
 		433156E61FCC50000036F0A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156E51FCC50000036F0A5 /* ViewController.swift */; };
 		433156E91FCC50000036F0A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433156E71FCC50000036F0A5 /* Main.storyboard */; };
 		433156EB1FCC50000036F0A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433156EA1FCC50000036F0A5 /* Assets.xcassets */; };
 		433156EE1FCC50000036F0A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 433156EC1FCC50000036F0A5 /* LaunchScreen.storyboard */; };
 		433156F91FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */; };
+		4525C15A23324CBF0020B5AA /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; };
+		4525C15B23324CBF0020B5AA /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +29,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		105749CE215CD95A00976D63 /* Embed Frameworks */ = {
+		4525C15C23324CC00020B5AA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				103BE8DC215E278600349AC9 /* Usabilla.framework in Embed Frameworks */,
+				4525C15B23324CBF0020B5AA /* Usabilla.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				103BE8DB215E278600349AC9 /* Usabilla.framework in Frameworks */,
+				4525C15A23324CBF0020B5AA /* Usabilla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +128,7 @@
 				433156DC1FCC4FFF0036F0A5 /* Sources */,
 				433156DD1FCC4FFF0036F0A5 /* Frameworks */,
 				433156DE1FCC4FFF0036F0A5 /* Resources */,
-				105749CE215CD95A00976D63 /* Embed Frameworks */,
+				4525C15C23324CC00020B5AA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,6 +185,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
