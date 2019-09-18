@@ -27,7 +27,6 @@ install:
     paths:
     - Carthage/
     - vendor/
-
   tags:
     - sdk
 
@@ -42,7 +41,6 @@ run-unit-test:
     - Carthage/
     - vendor/
     - derivedData/
-
   tags:
     - sdk
 
@@ -58,9 +56,11 @@ build:
     - vendor/
     - derivedData/
     - XcodeBuilds/
-
   tags:
     - sdk
+  only:
+    - develop|release|hotfix\*?
+    - master
 
 validate-framework:
   stage: validate-framework
@@ -74,9 +74,11 @@ validate-framework:
     - vendor/
     - derivedData/
     - XcodeBuilds/
-
   tags:
     - sdk
+  only:
+    - develop|release|hotfix\*?
+    - master
 
 validation:
   stage: validation
@@ -90,9 +92,10 @@ validation:
     - vendor/
     - derivedData/
     - XcodeBuilds/
-
   tags:
     - sdk
+  only:
+    - master
 
 ui-test:
   stage: ui-test
@@ -106,9 +109,10 @@ ui-test:
     - vendor/
     - derivedData/
     - XcodeBuilds/
-
   tags:
     - sdk
+  except:
+    - task\*?
 
 system-test:
   stage: system-test
@@ -122,6 +126,8 @@ system-test:
     - vendor/
     - derivedData/
     - XcodeBuilds/
-
   tags:
     - sdk
+  only:
+    - develop|release|hotfix\*?
+    - master
