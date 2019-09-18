@@ -195,7 +195,7 @@ end
 	private_lane :testAndChangeURLS do
 		branchname = sdkBranchName()
         puts branchname
-		if index = branchname.downcase.index("master") 
+		if index = branchname.downcase.index("release") 
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api.usabilla.com")
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out.usbla.net")
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w.usabilla.com/incoming")
