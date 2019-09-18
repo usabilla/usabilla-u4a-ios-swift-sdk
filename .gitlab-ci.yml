@@ -59,7 +59,7 @@ build:
   tags:
     - sdk
   only:
-    - develop|release|hotfix\*?
+    - /^(release|develop|hotfix|release).*$/
     - master
 
 validate-framework:
@@ -77,7 +77,7 @@ validate-framework:
   tags:
     - sdk
   only:
-    - develop|release|hotfix\*?
+    - /^(release|develop|hotfix|release).*$/
     - master
 
 validation:
@@ -112,7 +112,7 @@ ui-test:
   tags:
     - sdk
   except:
-    - task\*?
+    - /task.*$/
 
 system-test:
   stage: system-test
@@ -129,5 +129,5 @@ system-test:
   tags:
     - sdk
   only:
-    - develop|release|hotfix\*?
+    - /^(release|develop|hotfix|release).*$/
     - master
