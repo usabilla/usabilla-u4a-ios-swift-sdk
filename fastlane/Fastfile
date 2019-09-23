@@ -199,10 +199,17 @@ end
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api.usabilla.com")
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out.usbla.net")
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w.usabilla.com/incoming")
+			## set the app-id for the automation test app - production
+			set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "86a997ef-d452-4f46-b55d-53bce5bbb65a")
+			
   		else
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api-staging.usabilla.com")
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out-staging.usbla.net")
 			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w-staging.usabilla.com/incoming")
+			
+			## set the app-id for the automation test app - staging
+			set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "988f7efa-9eb8-4224-b2d3-58ff9615f62a")
+
   		end
 	end
 
