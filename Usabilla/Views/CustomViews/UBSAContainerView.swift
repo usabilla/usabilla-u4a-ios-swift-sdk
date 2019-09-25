@@ -42,7 +42,7 @@ class UBSAContainerView: UIView {
     private let trashViewIndex = 2
     private let actionViewindex = 3
     private var drawingModeOn = false
-    
+
     private var stackViewHeigthConstraint: NSLayoutConstraint?
     private var stackViewWidthConstraint: NSLayoutConstraint?
     private var actionViewHeigthConstraint: NSLayoutConstraint?

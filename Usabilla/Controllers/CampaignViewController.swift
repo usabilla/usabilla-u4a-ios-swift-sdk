@@ -273,12 +273,6 @@ class CampaignViewController: UIViewController {
 extension CampaignViewController: UBIntroOutroViewDelegate {
 
     func introViewDidCancel(introView: UBIntroOutroView) {
-        var animations: (() -> Void)?
-        if viewModel.introPageViewModel?.displayMode == .alert {
-            animations = {
-                self.backgroundLayer?.alpha = 0.0
-            }
-        }
         let completion: ((Bool) -> Void) = { _ in
             self.backgroundLayer?.removeFromSuperview()
             introView.removeFromSuperview()

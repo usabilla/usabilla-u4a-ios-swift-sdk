@@ -18,7 +18,7 @@ class UBSlider: UISlider {
             return "\(selectedValue) \(LocalisationHandler.getLocalisedStringForKey("usa_accessibility_slider_value_over")) \(maxValue)"
         }
         set {
-            accessibilityValue = newValue
+            self.accessibilityValue = newValue
         }
     }
 

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class DeviceInfo {
-    
+
     class func getMaxFormWidth(adjustToCurrentOrientation: Bool = false) -> CGFloat {
         if !adjustToCurrentOrientation {
             return DeviceInfo().getMaxFormWidth()
@@ -28,7 +28,7 @@ class DeviceInfo {
         if UIDevice.current.orientation.isPortrait {
             return DeviceInfo().getMaxFormHeight()
         }
-        return UIScreen.main.bounds.size.height - (DeviceInfo.getTopCardBorder() + DeviceInfo.getBottomCardBorder())  
+        return UIScreen.main.bounds.size.height - (DeviceInfo.getTopCardBorder() + DeviceInfo.getBottomCardBorder())
     }
 
     func getMaxFormWidth() -> CGFloat {
@@ -129,7 +129,9 @@ class DeviceInfo {
             }
             return 16
         }
-        set {}
+        set {
+            _ = newValue
+        }
     }
 
     static var bottomMargin: CGFloat {
@@ -139,7 +141,9 @@ class DeviceInfo {
             }
             return 16
         }
-        set {}
+        set {
+            _ = newValue
+        }
     }
 
     static var hasTopNotch: Bool {
@@ -170,7 +174,6 @@ class DeviceInfo {
         }
         return 0.0
     }
-
 
     class func isJailbroken() -> Bool {
         let str = "Jailbreak test string"

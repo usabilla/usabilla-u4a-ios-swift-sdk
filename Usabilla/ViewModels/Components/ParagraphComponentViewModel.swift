@@ -13,19 +13,25 @@ class ParagraphComponentViewModel: BaseStringComponentViewModel<ParagraphFieldMo
         get {
             return model.immutableParagraphValue
         }
-        set {}
+        set {
+            _ = newValue
+        }
     }
 
     var attributedValue: NSAttributedString? {
         get {
             return model.immutableParagraphValue?.parseHTMLString(font: theme.fonts.font.withSize(theme.fonts.textSize))
         }
-        set {}
+        set {
+            _ = newValue
+        }
     }
 
     override var cardBackGroundColor: UIColor? {
         get {
             return .clear
         }
-        set {}
+        set {
+            _ = newValue
+        }
     }}

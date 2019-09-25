@@ -208,7 +208,9 @@ class UBSADrawingView: UIView {
 
     fileprivate func cropAlpha(_ image: UIImage) -> UIImageView {
 
-        let cgImage = image.cgImage!
+        guard let cgImage = image.cgImage else {
+            return UIImageView()
+        }
 
         let width = cgImage.width
         let height = cgImage.height
@@ -226,7 +228,7 @@ class UBSADrawingView: UIView {
                 return imageview
         }
 
-        context.draw(image.cgImage!, in: CGRect(x: 0, y: 0, width: width, height: height))
+        context.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
 
         var minX = width
         var minY = height
@@ -250,14 +252,16 @@ class UBSADrawingView: UIView {
 
         let rect = CGRect(x: CGFloat(minX), y: CGFloat(minY), width: CGFloat(maxX-minX), height: CGFloat(maxY-minY))
         let imageScale: CGFloat = image.scale
-        let croppedImage =  image.cgImage!.cropping(to: rect)!
-        let ret = UIImage(cgImage: croppedImage, scale: imageScale, orientation: image.imageOrientation)
+        if let croppedImage =  cgImage.cropping(to: rect) {
+            let ret = UIImage(cgImage: croppedImage, scale: imageScale, orientation: image.imageOrientation)
 
-        let centerX = CGFloat(minX + ((maxX-minX)/2))
-        let centerY = CGFloat(minY + ((maxY-minY)/2))
-        let imageview = UBSADragableImageView(image: ret)
-        imageview.center = CGPoint(x: centerX, y: centerY)
-        return imageview
+            let centerX = CGFloat(minX + ((maxX-minX)/2))
+            let centerY = CGFloat(minY + ((maxY-minY)/2))
+            let imageview = UBSADragableImageView(image: ret)
+            imageview.center = CGPoint(x: centerX, y: centerY)
+            return imageview
+        }
+        return UIImageView()
     }
 
     func cropedView() -> UIImageView? {

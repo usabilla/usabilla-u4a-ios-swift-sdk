@@ -36,7 +36,7 @@ class FormModel: NSObject, NSCoding {
         self.client = client
     }
 
-    init?(json: JSON, id: String, screenshot: UIImage?, maskModel: MaskModel?,client: ClientModel? = nil) {
+    init?(json: JSON, id: String, screenshot: UIImage?, maskModel: MaskModel?, client: ClientModel? = nil) {
         let jsonHolder = JSONFormParser.getStructureHolder(inJSON: json)
         guard let form = jsonHolder["form"].dictionary,
             let formPages = form["pages"] else {

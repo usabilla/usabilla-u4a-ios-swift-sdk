@@ -163,7 +163,7 @@ class UBImagePickerController: UIViewController {
     }
 
     fileprivate func layoutViews() {
-        
+
         collectionView.topAnchor.constraint(equalTo: view.topAnchor,
                                             constant: (fallBackMode ? UBDimensions.UBImagePickerView.fallBackNavBarHeigth: barHeight()) ).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UBDimensions.UBImagePickerView.collectionLeftSideMargin).isActive = true

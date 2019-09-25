@@ -209,7 +209,7 @@ class NPSControl: UIControl {
             firstLabel = label
             label.widthAnchor.constraint(lessThanOrEqualToConstant: maximiumChoiceWidth).activate()
             label.widthAnchor.constraint(greaterThanOrEqualToConstant: minimumChoiceWidth).activate()
-            label.topAnchor.constraint(equalTo: borderedView.topAnchor, constant: -4)
+            label.topAnchor.constraint(equalTo: borderedView.topAnchor, constant: -4).activate()
         }
 
     }

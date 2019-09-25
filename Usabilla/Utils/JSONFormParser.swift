@@ -21,9 +21,9 @@ class JSONFormParser {
         }
         return true
     }
-  
+
     class func parsePage(_ pageJson: JSON, pageNum: Int, maskModel: MaskModel?) -> PageModel {
-        
+
         let pageName = pageJson["name"].stringValue
         // swiftlint:disable:next force_unwrapping
         let type = PageType(rawValue: pageJson["type"].stringValue)!
@@ -94,19 +94,19 @@ class JSONFormParser {
         }
         return nil
     }
-    
+
     fileprivate class func parseShowHideRule(_ json: JSON, pageModel: PageModel) -> ShowHideRule {
-        
+
         let setDependsOnID = json["control"].stringValue
-        
+
         var values: [String] = []
         for (_, subJson): (String, JSON) in json["value"] {
             values.append(subJson.stringValue)
         }
         //Set the default behaviour
         let setShowIfRuleIsSatisfied: Bool = json["action"].stringValue == "show"
-        
+
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)
     }
-    
+
 }

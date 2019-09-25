@@ -81,7 +81,7 @@ extension UBSAPluginViewController {
     @objc func touchUpInside() {
         delegate?.didTouchUpInside(sender: self)
     }
-    
+
     func drawingModeOn(_ status: Bool) {
         delegate?.drawingModeOn(status: status)
     }

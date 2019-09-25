@@ -39,7 +39,7 @@ class  GridViewSectionCell: UICollectionReusableView {
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UBDimensions.GridHeaderCell.titleLeftSideMargin).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: UBDimensions.GridHeaderCell.titleRightSideMargin).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UBDimensions.GridHeaderCell.titleBottomMargin).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: UBDimensions.GridHeaderCell.titleHeigth)
+        titleLabel.heightAnchor.constraint(equalToConstant: UBDimensions.GridHeaderCell.titleHeigth).isActive = true
         // subTitleLabel
     }
 }

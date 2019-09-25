@@ -134,7 +134,7 @@ class UBIntroOutroView: UIView {
             buttonsStackView.addArrangedSubview(continueButton!)
             // In case voice over is activated we want to add a continue button even if it does not exist
             var continueText = viewModel.continueLabelText
-            if UIAccessibilityIsVoiceOverRunning() && (continueText?.isEmpty)! {
+            if UIAccessibilityIsVoiceOverRunning() && (continueText?.isEmpty ?? true) {
                 continueText = LocalisationHandler.getLocalisedStringForKey("usa_accessibility_button_label_continue")
             }
             continueButton?.setTitle(continueText, for: .normal)

@@ -10,7 +10,7 @@ import UIKit
 
 let footerHeight: CGFloat = 90.0
 
-class PageViewController: UIViewController, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate {
+class PageViewController: UIViewController {
 
     var client: ClientModel!
     var viewModel: PageViewModel!
@@ -181,29 +181,6 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         }
     }
 
-    func showPickerViewForiPad(pickerComponent: PickerComponent) {
-        // Create picker ipad component
-        let picker = PickerIPadComponent(viewModel: pickerComponent.viewModel)
-        picker.delegate = pickerComponent
-
-        // Add picker component in a container view controller
-        let pickerController = UIViewController()
-        pickerController.view = picker
-        pickerController.modalPresentationStyle = .popover
-        pickerController.preferredContentSize = CGSize(width: 274, height: 200)
-
-        // Create the PopOverPresenter
-        let popController = pickerController.popoverPresentationController
-        popController?.permittedArrowDirections = .up
-        popController?.delegate = self
-        popController?.sourceView = pickerComponent.borderView
-        popController?.sourceRect = CGRect(x: 134, y: 44, width: 0, height: 0)
-
-        // present the pop over
-        self.present(pickerController, animated: true, completion: nil)
-        self.pickController = pickerController
-    }
-
     func tableViewContentHeight() -> CGFloat {
         let sectionFrame = tableView.rect(forSection: 0)
         let emptySpaceHeight = tableView.frame.size.height - (sectionFrame.origin.y + sectionFrame.size.height)
@@ -318,6 +295,30 @@ class PageViewController: UIViewController, UINavigationControllerDelegate, UIPo
         super.willTransition(to: newCollection, with: coordinator)
         updateHeaderMargins()
         headerView.setNeedsUpdateConstraints()
+    }
+}
+
+extension PageViewController: UIPopoverPresentationControllerDelegate {
+    func showPickerViewForiPad(pickerComponent: PickerComponent) {
+        // Create picker ipad component
+        let picker = PickerIPadComponent(viewModel: pickerComponent.viewModel)
+        picker.delegate = pickerComponent
+        // Add picker component in a container view controller
+        let pickerController = UIViewController()
+        pickerController.view = picker
+        pickerController.modalPresentationStyle = .popover
+        pickerController.preferredContentSize = CGSize(width: 274, height: 200)
+
+        // Create the PopOverPresenter
+        let popController = pickerController.popoverPresentationController
+        popController?.permittedArrowDirections = .up
+        popController?.delegate = self
+        popController?.sourceView = pickerComponent.borderView
+        popController?.sourceRect = CGRect(x: 134, y: 44, width: 0, height: 0)
+
+        // present the pop over
+        self.present(pickerController, animated: true, completion: nil)
+        self.pickController = pickerController
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class UsabillaInternal {
-    static let defaultDataMasks: [String] = ["[0-9]{4,}","[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"]
+    static let defaultDataMasks: [String] = ["[0-9]{4,}", "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"]
     private (set) static var maskModel: MaskModel?
     static var customVariables: [String: Any] = [:] {
         didSet {
@@ -63,7 +63,7 @@ class UsabillaInternal {
         customVariables[key] = value
         PLog(customVariables)
     }
-    
+
     class func initialize(appID: String?, completion: (() -> Void)? = nil) {
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
@@ -75,32 +75,32 @@ class UsabillaInternal {
                 completion?()
             })
         }
-        
+
         formService = FormService()
         // swiftlint:disable force_unwrapping
         formStore = FormStore(service: formService!)
         submissionManager = SubmissionManager(formService: formService!)
         // swiftlint:enable force_unwrapping
-        
+
         // preload the poweredby icon, to increase responsivenes....
         _ = Icons.imageOfPoweredBy(color: theme.colors.hint)
         Swift.debugPrint("Usabilla: SDK finished initializing")
     }
-    
+
     class func removeCachedForms() {
         UBFormDAO.shared.deleteAll()
     }
-    
+
     class func resetCampaignData(completion: (() -> Void)?) {
         campaignManager?.resetData(completion: completion)
     }
-    
+
     class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
             return
         }
-        
+
         for formID in formIDs {
             _ = formStore.loadForm(id: formID,
                                    screenshot: nil,
@@ -130,7 +130,7 @@ class UsabillaInternal {
                 completion?(.formFetchFailed)
         }
     }
-    
+
     class func displayCampaignForm(withData data: Data) {
         let json = JSON.init(data: data)
         guard json != JSON.null,
@@ -142,7 +142,7 @@ class UsabillaInternal {
         campaignManager.displayCampaignForm(formModel!)
     }
     #endif
-    
+
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
@@ -159,14 +159,14 @@ class UsabillaInternal {
                 formNavigationController = navigationController
                 delegate?.formDidLoad(form: navigationController)
             }
-            
+
             }.catch { _ in
                 DispatchQueue.main.async {
                     delegate?.formDidFailLoading(error: UBError(description: "Unable to load the form"))
                 }
         }
     }
-    
+
     private static func viewForForm(form: FormModel) -> UINavigationController? {
         guard let submissionManager = submissionManager else {
             print(errorSDKNotInitialized)
@@ -181,7 +181,7 @@ class UsabillaInternal {
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         return navigationController
     }
-    
+
     class func takeScreenshot(_ view: UIView) -> UIImage? {
         //Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)
@@ -191,7 +191,7 @@ class UsabillaInternal {
         UIGraphicsEndImageContext()
         return image
     }
-    
+
     class func setDataMasking(masks: [String],
                               maskCharacter: Character) {
         let mask = MaskModel(maskCharacter: maskCharacter,

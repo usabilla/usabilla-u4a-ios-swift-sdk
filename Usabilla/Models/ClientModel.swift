@@ -9,7 +9,7 @@
 import Foundation
 
 class ClientModel {
-    
+
     var behaviour: [String: Any] = [:]
 
     init() {

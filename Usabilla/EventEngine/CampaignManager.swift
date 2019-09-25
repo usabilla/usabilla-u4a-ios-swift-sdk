@@ -29,7 +29,7 @@ class CampaignManager {
 
     func closeCampaign() -> Bool {
         if let campaignViewController = CampaignWindow.shared.rootViewController as? CampaignViewController {
-            campaignViewController.forceCloseCampaing()
+            _  = campaignViewController.forceCloseCampaing()
             return true
         }
         return false
@@ -62,7 +62,7 @@ class CampaignManager {
             return
         }
         campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position, maskModel: maskModel).then { form in
-     
+
             guard self.testIntegrityOfCampaginForm(form) else {
                 return
             }

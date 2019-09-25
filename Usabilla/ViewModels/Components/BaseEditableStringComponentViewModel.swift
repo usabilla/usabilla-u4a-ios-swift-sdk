@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BaseEditableStringComponentViewModel<T: EditableStringComponentModel> : BaseStringComponentViewModel<T>, EditableStringComponentViewModel {
+class BaseEditableStringComponentViewModel<T: EditableStringComponentModel>: BaseStringComponentViewModel<T>, EditableStringComponentViewModel {
     var placeHolder: String? {
         return model.placeHolder
     }

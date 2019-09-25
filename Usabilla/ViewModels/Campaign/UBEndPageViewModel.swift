@@ -55,7 +55,7 @@ class UBEndPageViewModel {
             The first object shown is HeaderText, the second is ThankyouText
             Set the to properties for both depeding on type in the formmodel
          */
-        
+
         // If only one field we use the ThankYouText, as it could be a campaing, but format it right
         // the toast, takes no formating properties
         if model.fields.count == 1 {

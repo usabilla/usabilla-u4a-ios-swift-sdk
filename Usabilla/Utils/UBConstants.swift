@@ -111,7 +111,7 @@ struct UBDimensions {
         static let leftBarBtnText: String = "usa_camera_navbar_left_button"
         static let cornerRadiusBtnImageLibrary: CGFloat = 1
         static let cancelButtonBottomMargin: CGFloat = -6
-        
+
         static let errroViewMargin: CGFloat = 10
         static let errroViewContentMargin: CGFloat = 30
         static let errroViewContentHeight: CGFloat = 20
@@ -176,9 +176,9 @@ struct UBDimensions {
         static let imageBorder: CGFloat = 1
 
         static let numberOfImagesPrRow: CGFloat = 4
-        
+
         static let fallBackNavBarHeigth: CGFloat = 44
-        
+
         static let imageLeftSideMargin: CGFloat = 7
         static let imageRightSideMargin: CGFloat = -7
         static let imageTopMargin: CGFloat = 8

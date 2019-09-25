@@ -23,7 +23,11 @@ class UBAlertPresenter: UBIntroOutroPresenter {
 
         view.transform = CGAffineTransform(scaleX: UBDimensions.AlertPresenter.tranformScaleX, y: UBDimensions.AlertPresenter.tranformScaleY)
 
-        UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration, delay: UBDimensions.AlertPresenter.animateDelay, usingSpringWithDamping: UBDimensions.AlertPresenter.springDamping, initialSpringVelocity: UBDimensions.AlertPresenter.springVelocity, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration,
+            delay: UBDimensions.AlertPresenter.animateDelay,
+            usingSpringWithDamping: UBDimensions.AlertPresenter.springDamping,
+            initialSpringVelocity: UBDimensions.AlertPresenter.springVelocity,
+            options: .curveEaseInOut, animations: {
             view.transform = CGAffineTransform.identity
             view.alpha = UBAlpha.fullAlpha.rawValue
             animations?()

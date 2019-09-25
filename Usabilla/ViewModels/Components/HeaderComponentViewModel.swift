@@ -16,6 +16,8 @@ class HeaderComponentViewModel: BaseStringComponentViewModel<HeaderFieldModel>, 
         get {
             return .clear
         }
-        set {}
+        set {
+            _ = newValue
+        }
     }
 }

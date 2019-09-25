@@ -105,26 +105,26 @@ class LeftToRightTransition: NSObject, UIViewControllerAnimatedTransitioning {
 class RightToLeftTransition: NSObject, UIViewControllerAnimatedTransitioning {
     let presenting: Bool
     let duration: TimeInterval = TimeInterval(UINavigationControllerHideShowBarDuration)
-    
+
     init(presenting: Bool = false) {
         self.presenting = presenting
     }
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
-    
+
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let container = transitionContext.containerView
         guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) else { return }
         guard let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else { return }
-        
+
         if presenting {
             container.addSubview(toView)
         } else {
             container.insertSubview(toView, belowSubview: fromView)
         }
         fromView.frame.origin = CGPoint(x: 0, y: 0)
-        
+
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
             fromView.frame.origin = CGPoint(x: fromView.frame.width, y: 0)
         }, completion: { _ in

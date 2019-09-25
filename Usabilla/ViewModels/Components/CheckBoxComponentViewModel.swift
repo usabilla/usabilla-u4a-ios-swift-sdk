@@ -16,7 +16,7 @@ class CheckBoxComponentViewModel: BaseOptionsComponentViewModel<CheckboxFieldMod
             return formattedString
         }
         set {
-            self.accessibilityExtraInfo = newValue
+            _ = newValue
         }
     }
 }

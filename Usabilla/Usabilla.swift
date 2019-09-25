@@ -20,11 +20,11 @@ open class Usabilla {
             UsabillaInternal.customVariables = newValue
         }
     }
-    
+
     public static var defaultDataMasks: [String] {
         return UsabillaInternal.defaultDataMasks
     }
-    
+
     public static var orientation: UIInterfaceOrientationMask {
         get {
             return UsabillaInternal.supportedOrientations
@@ -33,7 +33,7 @@ open class Usabilla {
             UsabillaInternal.supportedOrientations = newValue
         }
     }
-    
+
     public static var localizedStringFile: String {
         get {
             return UsabillaInternal.localizedStringFile
@@ -42,7 +42,7 @@ open class Usabilla {
             UsabillaInternal.localizedStringFile = newValue
         }
     }
-    
+
     public static var theme: UsabillaTheme {
         get {
             return UsabillaInternal.theme
@@ -51,7 +51,7 @@ open class Usabilla {
             UsabillaInternal.theme = newValue
         }
     }
-    
+
     public static var delegate: UsabillaDelegate? {
         get {
             return UsabillaInternal.delegate
@@ -60,7 +60,7 @@ open class Usabilla {
             UsabillaInternal.delegate = newValue
         }
     }
-    
+
     public static var dismissAutomatically: Bool {
         get {
             return UsabillaInternal.dismissAutomatically
@@ -69,7 +69,7 @@ open class Usabilla {
             UsabillaInternal.dismissAutomatically = newValue
         }
     }
-    
+
     public static var canDisplayCampaigns: Bool {
         get {
             return UsabillaInternal.canDisplayCampaigns
@@ -78,7 +78,7 @@ open class Usabilla {
             UsabillaInternal.canDisplayCampaigns = newValue
         }
     }
-    
+
     /**
      A Boolean value that determines whether the SDK should display logs.
      */
@@ -90,11 +90,11 @@ open class Usabilla {
             UsabillaInternal.debugEnabled = newValue
         }
     }
-    
+
     open class func sendEvent(event: String) {
         UsabillaInternal.sendEvent(event: event)
     }
-    
+
     /**
      Initialize the **Usabilla SDK**
      
@@ -122,26 +122,26 @@ open class Usabilla {
     open class func removeCachedForms() {
         UsabillaInternal.removeCachedForms()
     }
-    
+
     open class func resetCampaignData(completion: (() -> Void)?) {
         UsabillaInternal.resetCampaignData(completion: completion)
     }
-    
+
     /**
      Preloads a list of forms to make them available to the user even without network connectivity.
      */
     open class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
         UsabillaInternal.preloadFeedbackForms(withFormIDs: formIDs)
     }
-    
+
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
         UsabillaInternal.loadFeedbackForm(formID, screenshot: screenshot, theme: theme)
     }
-    
+
     open class func takeScreenshot(_ view: UIView) -> UIImage? {
         return UsabillaInternal.takeScreenshot(view)
     }
-    
+
     open class func setDataMasking(masks: [String] = defaultDataMasks,
                                    maskCharacter: Character = "X") {
         UsabillaInternal.setDataMasking(
@@ -163,21 +163,21 @@ public struct UBError: Error {
 }
 
 public protocol UsabillaDelegate: class {
-    
+
     /**
      This method is called once a passive feedback form is correctly loaded
      
      - Parameter form: The view controller containing the form
      */
     func formDidLoad(form: UINavigationController)
-    
+
     /**
      This method is called if the SDK encountered an error while loading the passive feedback form
      
      - Parameter error: An error describing the issue encoutered
      */
     func formDidFailLoading(error: UBError)
-    
+
     /**
      This method is called once the form is closed
      
@@ -188,7 +188,7 @@ public protocol UsabillaDelegate: class {
      withFeedbackResults can contain between 1 and n FeedbackResult
      */
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
-    
+
     /**
      
      This method is called before the form is closed
@@ -201,7 +201,7 @@ public protocol UsabillaDelegate: class {
      This method should be used to dismiss the form if the Usabilla.**dismissAutomatically** attribute is set to **false**
      */
     func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
-    
+
     /**
      
      This method is called once a campaign form is closed

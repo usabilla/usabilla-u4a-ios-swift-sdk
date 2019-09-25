@@ -16,7 +16,7 @@ class RadioComponentViewModel: BaseOptionsComponentViewModel<RadioFieldModel> {
             return formattedString
         }
         set {
-            self.accessibilityExtraInfo = newValue
+            _ = newValue
         }
     }
 }

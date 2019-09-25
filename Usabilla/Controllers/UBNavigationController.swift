@@ -21,5 +21,5 @@ class UBNavigationController: UINavigationController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return (visibleViewController?.supportedInterfaceOrientations)!
     }
-   
+
 }

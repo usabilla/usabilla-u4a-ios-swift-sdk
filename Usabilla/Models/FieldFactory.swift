@@ -9,7 +9,7 @@
 import Foundation
 
 class FieldFactory {
-    
+
     enum FieldType: String {
         case header
         case paragraph
