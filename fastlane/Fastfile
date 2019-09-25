@@ -12,6 +12,15 @@ def sdkBranchName()
 	return branchname
 end
 
+#used in STAGE  "Run Lint"    
+    desc "Checks liniting"
+    lane :lint do
+        swiftlint(
+            reporter: "html",
+            output_file: "fastlane/swiftlint.html"
+        )
+    end
+
 #used in STAGE  "Run UT"    
     desc "Builds the framework for all xcode version specified in fastlane/versions.json"
     lane :buildAll do

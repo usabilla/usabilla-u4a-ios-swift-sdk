@@ -1,5 +1,6 @@
 stages:
   - install
+  - lint
   - run-unit-test
   - buildAll-and-GenerateArtefacts
   - validate-framework
@@ -29,6 +30,23 @@ install:
     - vendor/
   tags:
     - sdk
+
+lint:
+  stage: lint
+  script:
+    - bundle exec fastlane lint
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+  artifacts:
+    paths:
+      - fastlane/swiftlint.html
+  tags:
+    - sdk
+  allow_failure: false
 
 run-unit-test:
   stage: run-unit-test
