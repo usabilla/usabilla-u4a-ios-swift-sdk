@@ -173,3 +173,26 @@ trigger-test-app:
     - sdk
   only:
     - /^(develop|hotfix|feature|task).*$/
+  
+trigger-preview-app:
+  stage: deploy
+  script:
+    - echo "Build Preview App"
+    - >
+      curl -X POST
+      -F token=$TOKEN_TRIGGER_PREVIEW_APP
+      -F ref=develop
+      -F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID"
+      -F "variables[SDK_BRANCH]=$CI_BUILD_REF_NAME"
+      https://gitlab.usabilla.net/api/v4/projects/142/trigger/pipeline
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+  tags:
+    - sdk
+  only:
+    - /^(develop|hotfix|release).*$/
