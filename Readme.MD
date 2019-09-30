@@ -120,7 +120,7 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-binary "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
 
 ### Manual
