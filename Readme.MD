@@ -131,7 +131,6 @@ binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xc
 ```
 Only the SDK 6.4.0 is available for Xcode 11
 
-
 ### Manual
 
 You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
