@@ -125,7 +125,6 @@ class RootCellView: UITableViewCell {
         }
         titleLabel.text = cellViewModel.title
         titleLabel.numberOfLines = 5
-        titleLabel.sizeToFit()
 
         let isTitleDefined = !cellViewModel.title.isEmpty
         titleLabelDismissConstraint.isActive = !isTitleDefined
