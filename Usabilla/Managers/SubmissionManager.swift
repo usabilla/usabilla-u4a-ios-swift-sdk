@@ -113,6 +113,13 @@ class SubmissionManager {
             }
         }
 
+        // Add Xcode build version
+        if formModel.client == nil {
+            formModel.client = ClientModel()
+        }
+        if let data = Bundle.main.object(forInfoDictionaryKey: "DTXcode") as? String {
+            formModel.client?.addBehaviour("XCode", data)
+        }
         contentDictionary["client"] = formModel.client?.toJson()
         contentDictionary["custom_variables"] = userContext
 

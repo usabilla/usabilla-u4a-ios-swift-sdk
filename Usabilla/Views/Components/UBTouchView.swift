@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// this overrides the  iOS 13 issue with swipe to remove on madal-view
+// this overrides the  iOS 13 issue with swipe to remove on modal-view
 class UBTouchView: UIView {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false

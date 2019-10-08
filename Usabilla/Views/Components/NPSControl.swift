@@ -159,7 +159,7 @@ class NPSControl: UIControl {
         toolTip.alpha = 0.0
 
         addSubviews(borderedView, toolTip)
-        borderedView.addSubviews(progressView, contentStackView, selectedLabel,touchView)
+        borderedView.addSubviews(progressView, contentStackView, selectedLabel, touchView)
         createLabels(inContentView: contentStackView, count: numberOfValues)
     }
 
