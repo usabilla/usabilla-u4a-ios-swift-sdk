@@ -174,9 +174,11 @@ class UsabillaInternal {
         }
         let formController = FormViewController(viewModel: UBFormViewModel(formModel: form))
         let navigationController = UBNavigationController(rootViewController: formController)
+        navigationController.modalPresentationStyle = .fullScreen
         if DeviceInfo.isIPad() {
             navigationController.modalPresentationStyle = .formSheet
             navigationController.preferredContentSize = DeviceInfo.preferedFormSize()
+            navigationController.presentationController?.delegate = formController
         }
         formController.delegate = PassiveFormController(submissionManager: submissionManager)
         return navigationController
