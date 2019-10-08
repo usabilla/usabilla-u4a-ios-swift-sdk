@@ -47,6 +47,7 @@ class NPSControl: UIControl {
         return contentStackView.arrangedSubviews as! [NPSLabel]
     }
     private let progressView = UIView()
+    private let touchView = UBTouchView()
     private var toolTip = NPSToolTip()
 
     private var toolTipCenterXContraint: NSLayoutConstraint!
@@ -158,7 +159,7 @@ class NPSControl: UIControl {
         toolTip.alpha = 0.0
 
         addSubviews(borderedView, toolTip)
-        borderedView.addSubviews(progressView, contentStackView, selectedLabel)
+        borderedView.addSubviews(progressView, contentStackView, selectedLabel,touchView)
         createLabels(inContentView: contentStackView, count: numberOfValues)
     }
 
@@ -185,6 +186,12 @@ class NPSControl: UIControl {
         contentStackView.layoutMargins = UIEdgeInsets(top: 0, left: sideContentStackViewPadding, bottom: 0, right: sideContentStackViewPadding)
         contentStackView.isLayoutMarginsRelativeArrangement = true
 
+        touchView.translatesAutoresizingMaskIntoConstraints = false
+        touchView.topAnchor.constraint(equalTo: borderedView.topAnchor).activate()
+        touchView.leadingAnchor.constraint(equalTo: borderedView.leadingAnchor).activate()
+        touchView.trailingAnchor.constraint(equalTo: borderedView.trailingAnchor).activate()
+        touchView.bottomAnchor.constraint(equalTo: borderedView.bottomAnchor).activate()
+        
         toolTip.translatesAutoresizingMaskIntoConstraints = false
         toolTip.bottomAnchor.constraint(equalTo: topAnchor, constant: -10).activate()
         toolTip.widthAnchor.constraint(equalToConstant: 35).activate()
