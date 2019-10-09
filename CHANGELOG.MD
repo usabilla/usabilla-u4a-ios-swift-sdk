@@ -1,3 +1,9 @@
+## 6.4.1
+### Fixed
+- iPad iOS 13 issue
+- Font issue for title
+- Truncation of title in elements
+
 ## 6.4.0
 ### Added
 - User can, after selecting an image, draw on the image to mask or highlight features
