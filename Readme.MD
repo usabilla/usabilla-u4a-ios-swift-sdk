@@ -98,7 +98,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.0'
+pod 'Usabilla', '~> 6.4.1'
 
 End
 ```
@@ -122,14 +122,14 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 10.2.1
+The current Carthage release is build for Xcode 11
 
-For Xcode 11, use:
+For previous Xcode version, use:
  
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11/Usabilla.json"
 ```
-Only the SDK 6.4.0 is available for Xcode 11
+replace Xcode-11 with the required version eg. Xcode-10
 
 ### Manual
 
