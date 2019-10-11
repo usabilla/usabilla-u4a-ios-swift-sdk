@@ -30,6 +30,7 @@ class PageViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.backgroundColor = .clear
+        label.numberOfLines = 0
         label.isAccessibilityElement = false
         if #available(iOS 10.0, *) {
             label.adjustsFontForContentSizeCategory = true
