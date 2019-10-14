@@ -190,6 +190,54 @@ end
         resetSimulator
     end
 
+
+#used to crate all releases on the swift-sdk git
+# takes the version from  info.plist 
+# uploads correct assets (carthage zip file) 
+	desc "creating relase drafts"
+    lane :createDraftRelease do
+        versions = xcodeVersions
+        version = get_info_plist_value(path: "Usabilla/Info.plist", key: "CFBundleShortVersionString")
+		first = true
+		versions.each do |xcode|
+			branch = "Xcode-#{xcode}"
+			if first
+				branch = "master"
+				first = false
+			end
+        	createAReleaseDraft(version: version, xcode: xcode, branch: branch)
+        end
+    end
+
+
+#used to crate a releases on the swift-sdk git
+	
+	private_lane :createAReleaseDraft do |options|
+		unless options[:xcode]
+            UI.error("missing Xcode version")
+        end
+		unless options[:version]
+            UI.error("missing version")
+        end
+        xcode = options[:xcode]
+        version = options[:version] 
+        branch = options[:branch] 
+        name = "v#{version}-Xcode-#{xcode}"
+        UI.message("Creating for #{name}")
+        
+        set_github_release(
+        	repository_name: "usabilla/usabilla-u4a-ios-swift-sdk",
+			name: name,
+			tag_name: name,
+			is_draft: true,
+			description: (File.read("../changelog") rescue "No changelog provided"),
+			api_token: "2d12a433ea301e041de5dbdd82902a5108b7aee5",
+			commitish: branch,
+		    upload_assets: ["XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"]
+        )
+	end
+	
+
 #used in STAGE  "Validation"	
     desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
     lane :validateAll do

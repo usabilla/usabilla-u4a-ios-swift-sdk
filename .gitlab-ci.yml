@@ -8,6 +8,7 @@ stages:
   - ui-test
   - system-test
   - deploy
+  - release
 
 variables:
   LC_ALL: "en_US.UTF-8"
@@ -196,3 +197,19 @@ trigger-preview-app:
     - sdk
   only:
     - /^(develop|hotfix|release).*$/
+    
+create-release-versions:
+  stage: release
+  script:
+    - bundle exec fastlane createDraftRelease
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+  tags:
+    - sdk
+  only:
+    - release
