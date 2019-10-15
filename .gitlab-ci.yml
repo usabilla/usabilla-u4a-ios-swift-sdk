@@ -76,6 +76,9 @@ build:
     - vendor/
     - derivedData/
     - XcodeBuilds/
+  artifacts:
+    paths:
+      - XcodeBuilds
   tags:
     - sdk
   only:
@@ -172,8 +175,8 @@ trigger-test-app:
     - XcodeBuilds/
   tags:
     - sdk
-  only:
-    - /^(develop|hotfix|feature|task).*$/
+  except:
+    - master
   
 trigger-preview-app:
   stage: deploy
@@ -213,3 +216,4 @@ create-release-versions:
     - sdk
   only:
     - release
+  when: manual
