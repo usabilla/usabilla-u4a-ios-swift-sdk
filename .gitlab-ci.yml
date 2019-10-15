@@ -76,9 +76,6 @@ build:
     - vendor/
     - derivedData/
     - XcodeBuilds/
-  artifacts:
-    paths:
-      - XcodeBuilds
   tags:
     - sdk
   only:
