@@ -35,7 +35,15 @@ class CampaignWindow: UIWindow {
         guard currentCampaignViewModel == nil else {
             return false
         }
-
+        // Under iOS 13 the UIWindow has been moved out of UIApplication and into UIWindowScene
+        // So for the UIWindow to know where to display itself, the windowScene must be set
+        #if XCODE1100
+        if #available(iOS 13, *) {
+            if let currentWindowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                self.windowScene = currentWindowScene
+            }
+        }
+        #endif
         isHidden = false
         currentCampaignViewModel = campaignViewModel
         rootViewController = CampaignViewController(viewModel: campaignViewModel, delegate: self)
