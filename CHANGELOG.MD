@@ -1,3 +1,7 @@
+## 6.4.2
+### fix
+-  issue where error message is truncated
+
 ## 6.4.1
 ### Fixed
 - iPad iOS 13 issue
