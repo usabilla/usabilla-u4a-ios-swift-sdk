@@ -98,7 +98,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.0'
+pod 'Usabilla', '~> 6.4.2'
 
 End
 ```
@@ -122,14 +122,14 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 10.2.1
+The current Carthage release is build for Xcode 11
 
-For Xcode 11, use:
+For previous Xcode version, use:
  
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11/Usabilla.json"
 ```
-Only the SDK 6.4.0 is available for Xcode 11
+replace Xcode-11 with the required version eg. Xcode-10
 
 ### Manual
 
@@ -624,6 +624,27 @@ The default file with the keys and the default text is the following:
 "usa_selected" = "selected";
 "usa_unselected" = "unselected";
 
+// Added in SDK Version 6.4.0
+//camera button
+"usa_camera_navbar_left_button" = "Cancel";
+
+// Screenshot anotation
+"usa_retake_button_title" = "Retake";
+"usa_back_button_title" = "Back";
+"usa_add_button_title" = "Add";
+"usa_done_button_title" = "Done";
+"usa_back_button_library_title" = "Library";
+"usa_library_title" = "Library";
+"usa_edit_title" = "Edit";
+"usa_add_title" = "Add photo";
+"usa_camera_error_title" = "No access to camera";
+"usa_camera_error_description" = "Allowing access lets you take photos to add to your feedback.";
+"usa_camera_settings_title" = "Allow access to camera";
+
+"usa_library_error_title" = "No access to library";
+"usa_library_error_description" = "Allowing access lets you select a photo to add to your feedback.";
+"usa_library_settings_title" = "Allow access to library";
+
 ```
 
 Failure to override a key will display the key itself instead as the text.
@@ -647,6 +668,9 @@ These privacy permissions are needed on the main app:
 
 Please make sure there is a description string for each of these properties
 
+Refer to Apples [technical document](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html), on how to localize these 
+
+NOTE: If you haven’t enabled the ‘Show screenshot’ option in the Advanced settings panel of a form, the camera and the photo-library will not be displayed. But since your application (containing this SDK) has a feature that could use them, these privacy permissions must be include to pass App-store reviews. In that case, they will never be shown to your end users.
 
 ## Integration with Obj-C applications
 
