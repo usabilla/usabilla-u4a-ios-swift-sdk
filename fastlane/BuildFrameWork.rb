@@ -20,8 +20,8 @@ private_lane :buildForXcodeVersion do |options|
 	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
 
 	#remove Module name error in swiftinterface files
-	sh("find \"/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/fastlane/..//build/Build/Products/Release-iphoneos/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
-	sh("find \"/Users/aliebl/Usabilla/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/fastlane/..//build/Build/Products/Release-iphonesimulator/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("find \"#{paths.projectDirectory}/build/Build/Products/Release-iphoneos/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("find \"#{paths.projectDirectory}/build/Build/Products/Release-iphonesimulator/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
 	
 end
 
