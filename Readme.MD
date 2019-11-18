@@ -98,7 +98,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.2'
+pod 'Usabilla', '~> 6.4.3'
 
 End
 ```
