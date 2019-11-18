@@ -1,3 +1,7 @@
+## 6.4.3
+### Add
+-  Framework compiled for Module Format Stability
+
 ## 6.4.2
 ### fix
 -  issue where error message is truncated
