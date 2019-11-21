@@ -122,14 +122,14 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 11
+The current Carthage release is build for Xcode 11.1
 
-For previous Xcode version, use:
- 
+To use Xcode 11.2.1 Carthage users should point to :
 ```yaml
-binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/v6.4.3-Xcode-11.2.1/Usabilla.json"
 ```
-replace Xcode-11 with the required version eg. Xcode-10
+
+For previous Xcode version, replace Xcode-11.2.1 with the required version eg. Xcode-10
 
 ### Manual
 
