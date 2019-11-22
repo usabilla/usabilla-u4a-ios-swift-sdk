@@ -69,7 +69,6 @@ class CampaignWindow: UIWindow {
 extension CampaignWindow: CampaignViewControllerDelegate {
     func campaignDidEnd() {
         isHidden = true
-        rootViewController = nil
         currentCampaignViewModel = nil
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
     }
