@@ -131,6 +131,8 @@ binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xc
 ```
 replace Xcode-11 with the required version eg. Xcode-10
 
+**Compilation issue:** If you're running into a compilation versioning issue e.g. ```Incompatible Swift version - framework was built with X1 and the local version is X2```, then try to delete your local cache folder ```org.carthage.CarthageKit``` and then do a new ```carthage update --platform iOS```.
+
 ### Manual
 
 You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
