@@ -18,5 +18,7 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>USABILLA_APP_ID</key>
+	<string>89e7aecf-1c46-478e-90a3-758df0ccade2</string>
 </dict>
 </plist>

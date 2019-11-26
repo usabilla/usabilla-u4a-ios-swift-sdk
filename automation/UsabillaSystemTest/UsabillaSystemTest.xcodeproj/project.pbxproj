@@ -16,6 +16,7 @@
 		433156F91FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */; };
 		4525C15A23324CBF0020B5AA /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; };
 		4525C15B23324CBF0020B5AA /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		458F226D2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F226C2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		433156F41FCC50000036F0A5 /* UsabillaSystemTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsabillaSystemTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 01_TriggerAndDisplayCampaign.swift; sourceTree = "<group>"; };
 		433156FA1FCC50000036F0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458F226C2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 03_TestForMultipleCampaignsCrash.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */,
 				04F800FA1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift */,
+				458F226C2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift */,
 				433156FA1FCC50000036F0A5 /* Info.plist */,
 			);
 			path = UsabillaSystemTestUITests;
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				433156F91FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift in Sources */,
+				458F226D2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift in Sources */,
 				04F800FB1FEBF6FD005220D2 /* 02_PreventTriggeringCampaignMultipleTimes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
