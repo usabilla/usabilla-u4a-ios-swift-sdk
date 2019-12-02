@@ -239,3 +239,18 @@ enum MockDirectoryEnum: String, DirectoryProtocol {
         return "Testdirectory"
     }
 }
+
+class FeaturebillaServiceMock: FeaturebillaServiceProtocol {
+    var requestBuilder: RequestBuilder.Type = RequestBuilder.self
+    var httpClient: HTTPClientProtocol.Type = HTTPClient.self
+    var settingModel: SettingModel?
+    
+    func getSettings() -> Promise<SettingModel> {
+        return Promise { fulfill, reject in
+            if settingModel != nil {
+                return fulfill(settingModel!)
+            }
+            reject(NSError(domain: "", code: 500, userInfo: nil))
+        }
+    }
+}

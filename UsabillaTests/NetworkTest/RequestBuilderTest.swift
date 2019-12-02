@@ -77,6 +77,14 @@ class RequestBuilderTest: QuickSpec {
         describe("RequestBuilder") {
 
             context("When called") {
+                it("Builds the featurebilla request correctly") {
+                    let get = RequestBuilder.requestGetFeatureSettings()
+                    expect(get?.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/v1/featurebilla/config.json"))
+                    expect(get?.cachePolicy).to(equal(self.correctGet.cachePolicy))
+                    expect(get?.httpMethod).to(equal("GET"))
+                    expect(get?.allHTTPHeaderFields).to(equal(self.correctGet.allHTTPHeaderFields))
+                    expect(get?.timeoutInterval).to(equal(10))
+                }
                 it("Builds the passive form request correctly") {
                     let get = RequestBuilder.requestGetPassiveForm(withID: "myformId")
                     expect(get?.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/app/forms/myformId"))

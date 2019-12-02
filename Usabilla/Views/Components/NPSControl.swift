@@ -191,7 +191,7 @@ class NPSControl: UIControl {
         touchView.leadingAnchor.constraint(equalTo: borderedView.leadingAnchor).activate()
         touchView.trailingAnchor.constraint(equalTo: borderedView.trailingAnchor).activate()
         touchView.bottomAnchor.constraint(equalTo: borderedView.bottomAnchor).activate()
-        
+
         toolTip.translatesAutoresizingMaskIntoConstraints = false
         toolTip.bottomAnchor.constraint(equalTo: topAnchor, constant: -10).activate()
         toolTip.widthAnchor.constraint(equalToConstant: 35).activate()

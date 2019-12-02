@@ -18,6 +18,7 @@ class RequestBuilder {
         case campaignSubmission = "/v2/sdk/campaigns/{campaign_id}/feedback"
         case campaignViews = "/v2/sdk/campaigns/{campaign_id}/views"
         case targetingOptions = "/targeting-options"
+        case featurebilla = "/v1/featurebilla/config.json"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -212,5 +213,12 @@ class RequestBuilder {
             return nil
         }
         return requestForPatch(withURL: url, payload: ["view": viewCount])
+    }
+
+    class func requestGetFeatureSettings() -> URLRequest? {
+        guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .featurebilla) else {
+            return nil
+        }
+        return requestForGet(withURL: url)
     }
 }

@@ -30,6 +30,8 @@ class UsabillaInternal {
     static var defaultLocalisationFile = true
     static var supportedOrientations: UIInterfaceOrientationMask = .all
     private static let campaignService = CampaignService()
+
+    private static let telemetric = UBTelemetrics()
     private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: campaignService)
     private (set) static var appID: String?
     private static var campaignManager: CampaignManager?
@@ -38,6 +40,9 @@ class UsabillaInternal {
     private static weak var formNavigationController: UINavigationController?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
+    private static let featurebillaService = FeaturebillaService()
+    private static let featurebillaStore: FeaturebillaStoreProtocol = FeaturebillaStore(service: featurebillaService)
+    private static var featurebillaManager = UBFeaturebillaManager(featurebillaStore: featurebillaStore, featurebillaService: featurebillaService)
     class func sendEvent(event: String) {
         campaignManager?.sendEvent(event: event, customVariables: customVariables)
     }
@@ -64,14 +69,37 @@ class UsabillaInternal {
         PLog(customVariables)
     }
 
-    class func initialize(appID: String?, completion: (() -> Void)? = nil) {
+    class func initialize(appID: String?, completion: (() -> Void)? = nil
+                          ) {
+        let logid = telemetric.logStart(method: #function, logLevel: .interface )
+        let data = Thread.callStackSymbols
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
                 Swift.debugPrint("Usabilla: The appId \(appID) has wrong format (expected UUID)")
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.methodData.methodResult, value: false, logLevel: .interface)
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.methodData.methodMessage, value: "appId has wrong format", logLevel: .interface)
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.appId, value: appID, logLevel: .interface)
+
+                telemetric.logEnd(for: logid)
                 return
             }
             UsabillaInternal.appID = appID
-            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: {
+            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: { [logid] in
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.app.extra.methodStatus, value: true, logLevel: .interface)
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.app.extra.appId, value: appID, logLevel: .interface)
+            telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.appId, value: appID, logLevel: .interface)
+            //let newLogID = telemetric.logStart(method: "CampaignManager()", logLevel: .interface )
+            let sublogid = telemetric.logSubTask(for: logid, logLevel: .interface)
+            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: { [logid, sublogid] in
+                let value = campaignManager?.eventEngine.campaigns.count ?? 0
+
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.appIdCorrect, value: true, logLevel: .interface)
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.numberOfCampaigns, value: value, logLevel: .interface)
+                telemetric.alterData(for: logid, key: \UBTelemetricResponse.methodData.methodResult, value: true, logLevel: .interface)
+                telemetric.logEndSubTask(for: sublogid, parentId: logid, name: "getCampaigns")
+
+                telemetric.logEnd(for: logid)
+                telemetric.printlog()
                 completion?()
             })
         }
@@ -85,6 +113,21 @@ class UsabillaInternal {
         // preload the poweredby icon, to increase responsivenes....
         _ = Icons.imageOfPoweredBy(color: theme.colors.hint)
         Swift.debugPrint("Usabilla: SDK finished initializing")
+
+        //fixMe : temporary call can be removed based on telemetery
+        let telemetryContexts: [String: String] = ["platform": "ios"]
+
+        featurebillaManager.getSettingVariable(variableName: "telemetryLevel", defaultValue: 0, userContexts: telemetryContexts, completion: {(value: Any?) in
+            Swift.debugPrint("value : \(String(describing: value))")
+        })
+
+        //fixMe : temporary call can be removed based on telemetery
+        let telemetrySettingContext = UBSettingContext(appId: appID ?? "")
+
+        featurebillaManager.getSettingVariable(variableName: "telemetryLevel", defaultValue: 0, userContexts: telemetrySettingContext, completion: {(value: Any?) in
+            Swift.debugPrint("value : \(String(describing: value))")
+        })
+
     }
 
     class func removeCachedForms() {

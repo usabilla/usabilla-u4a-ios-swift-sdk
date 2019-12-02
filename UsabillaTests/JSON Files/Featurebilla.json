@@ -1,0 +1,32 @@
+{
+   "settings":[
+      {
+         "variable":"telemetryLevel",
+         "rules":[
+            {
+               "name":"platform",
+               "value":"ios"
+            },
+            {
+               "name":"percentage",
+               "value":"0.9"
+            }
+         ],
+         "value":"1"
+      },
+      {
+         "variable":"telemetryLevel",
+         "rules":[
+            {
+               "name":"platform",
+               "value":"android"
+            },
+            {
+               "name":"percentage",
+               "value":"0.9"
+            }
+         ],
+         "value":"0"
+      }
+   ]
+}

@@ -19,6 +19,7 @@ enum FileDirectory: String, DirectoryProtocol {
     case campaignFeedbackRequest = "UBCampaignFeedbackRequest"
     case passiveFeedbackRequest = "FeedbackRequests"
     case feedbackIds = "UBFeedbackIDDictionaryDAO"
+    case telemetric = "UBTelemetricResponse"
 
     var description: String {
         switch self {
@@ -32,6 +33,9 @@ enum FileDirectory: String, DirectoryProtocol {
             return "campaign feedback request"
         case .feedbackIds:
             return "submission feedback ids"
+        case .telemetric:
+                return "telemetric response"
+
         }
     }
 
