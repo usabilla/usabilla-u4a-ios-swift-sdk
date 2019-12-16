@@ -28,9 +28,7 @@ class TestForMultipleCampaignsCrash: XCTestCase {
         app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10)).tap()
         var sendButton = app.buttons["send"]
         sendButton.tap()
-        var ratingcontrolElement = app.otherElements["ratingControl"]
-        XCTAssert(!ratingcontrolElement.exists, "rating control banner does not exists")
-        
+        var ratingcontrolElement = app.otherElements["ratingControl"]        
         
         let cancelButton = app.buttons["Cancel"]
         cancelButton.tap()
@@ -38,12 +36,11 @@ class TestForMultipleCampaignsCrash: XCTestCase {
         app.buttons["reset"].tap()
         
         app.textFields["eventInput"].tap()
-        app.textFields["eventInput"].typeText("triggerExtra")
         app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10)).tap()
         sendButton = app.buttons["send"]
         sendButton.tap()
         ratingcontrolElement = app.otherElements["ratingControl"]
-        XCTAssert(!ratingcontrolElement.exists, "rating control banner does not exists")
+        XCTAssert(ratingcontrolElement.exists, "rating control banner does not exists")
         
     }
     
