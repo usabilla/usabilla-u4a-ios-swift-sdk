@@ -108,6 +108,24 @@ class PageViewController: UIViewController {
         handleHeaderViewVisibility()
     }
 
+    // iOS10 introduce som changes to autolayout, causing autolayout to calculate size later in the init process
+    // therefor this is needed
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let headerView = tableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            //Comparison necessary to avoid infinite loop
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
+    }
+
     func customizeView() {
         view.backgroundColor = viewModel.theme.colors.background
         tableView.backgroundColor = viewModel.theme.colors.background
