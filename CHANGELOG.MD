@@ -1,3 +1,8 @@
+## 6.4.4
+### Fix
+- Fixes issue where SDK, in some cases could crash if a campaign was canceled by user, and a new was triggered
+- Fixes issue where error-text in form could overlap card components (iOS 10+)
+
 ## 6.4.3
 ### Add
 -  Framework compiled for Module Format Stability

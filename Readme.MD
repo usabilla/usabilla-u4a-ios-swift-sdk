@@ -83,6 +83,9 @@ Note :
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
+The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
+Previous versions are available at our git-repository.
+ 
 ### CocoaPods
 
 The Usabilla SDK is available on [CocoaPods](http://cocoapods.org). You can install CocoaPods the following way:
@@ -98,7 +101,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.3'
+pod 'Usabilla', '~> 6.4.4'
 
 End
 ```
