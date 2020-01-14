@@ -25,10 +25,10 @@
 	<key>NSPrincipalClass</key>
 	<string></string>
 	<key>USABILLA_API_HOST</key>
-	<string>https://api-staging.usabilla.com</string>
+	<string>$(UB_USABILLA_API_HOST)</string>
 	<key>USABILLA_CDN_HOST</key>
-	<string>https://sdk.out-staging.usbla.net</string>
+	<string>$(UB_USABILLA_CDN_HOST)</string>
 	<key>USABILLA_SUBMIT_ENDPOINT</key>
-	<string>https://w-staging.usabilla.com/incoming</string>
+	<string>$(UB_USABILLA_SUBMIT_ENDPOINT)</string>
 </dict>
 </plist>
