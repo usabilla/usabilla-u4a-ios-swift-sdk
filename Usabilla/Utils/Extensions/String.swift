@@ -20,7 +20,7 @@ extension String {
     }
 
     func parseHTMLString(font: UIFont) -> NSAttributedString {
-        let modifiedFont = NSString(format: "<span style=\"font-family: '\(font.fontName)'; font-size: \(font.pointSize)\">%@</span>" as NSString, self) as String
+        let modifiedFont = NSString(format: "<span style=\"font-family: '-apple-system','HelveticaNeue'; font-size: \(font.pointSize)\">%@</span>" as NSString, self) as String
 
         do {
             let attrStr = try NSAttributedString(
