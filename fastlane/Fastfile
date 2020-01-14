@@ -12,6 +12,21 @@ def sdkBranchName()
 	return branchname
 end
 
+#configfilename
+ def configFileName()
+ branchname = sdkBranchName()
+  puts "configfilename - sdkbranchname - #{branchname}"
+    if index = branchname.downcase.index("release")
+      puts "configfilename - Release"
+      configfilename = "Release"
+      return configfilename
+    else
+      puts "configfilename - Debug"
+      configfilename = "Debug"
+      return configfilename
+    end
+ end
+
 #used in STAGE  "Run Lint"    
     desc "Checks liniting"
     lane :lint do
@@ -246,28 +261,5 @@ end
             validateSDK(version: version)
         end
     end
-
-#test branch, and change URLS
-	desc "Check branch and change URLS"
-	private_lane :testAndChangeURLS do
-		branchname = sdkBranchName()
-        puts branchname
-		if index = branchname.downcase.index("release")
-			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api.usabilla.com")
-			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out.usbla.net")
-			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w.usabilla.com/incoming")
-			## set the app-id for the automation test app - production
-			set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "89e7aecf-1c46-478e-90a3-758df0ccade2")
-			
-  		else
-			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_API_HOST", value: "https://api-staging.usabilla.com")
-			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_CDN_HOST", value: "https://sdk.out-staging.usbla.net")
-			set_info_plist_value(path: "Usabilla/Info.plist", key: "USABILLA_SUBMIT_ENDPOINT", value: "https://w-staging.usabilla.com/incoming")
-			
-			## set the app-id for the automation test app - staging
-			set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "2f033e04-4443-463c-8d72-2bc2b545868f")
-
-  		end
-	end
 
 end

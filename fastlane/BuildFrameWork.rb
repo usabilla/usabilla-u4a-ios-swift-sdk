@@ -1,8 +1,24 @@
 import "./propertiesFile.rb"
 
+#check branch, and change AppID
+desc "Check branch and change app id"
+private_lane :setUBSTAppID do
+  branchname = sdkBranchName()
+      puts branchname
+  if index = branchname.downcase.index("release")
+    ## set the app-id for the automation test app - production
+    set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "89e7aecf-1c46-478e-90a3-758df0ccade2")
+  else
+    ## set the app-id for the automation test app - staging
+    set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "2f033e04-4443-463c-8d72-2bc2b545868f")
+  end
+end
+
 desc "Build framework For a given XCode version"
 private_lane :buildForXcodeVersion do |options|
-  testAndChangeURLS
+  ## set the app-id for the automation test app
+  setUBSTAppID
+
   if options[:version] == nil	
     UI.message("'version' not specified in 'buildForXcodeVersion")
   end
@@ -76,15 +92,9 @@ private_lane :systemTestsAfterBuild do |options|
   validateBuildLLVMGCC(version: version)
   project_directory = options[:project_directory]
   paths = Paths.new(version, project_directory)
-  branchname = sdkBranchName()
-  puts branchname
-     if index = branchname.downcase.index("release") 
-	## set the app-id for the automation test app - production
-	set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "89e7aecf-1c46-478e-90a3-758df0ccade2")		
-     else
-	## set the app-id for the automation test app - staging
-	set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "2f033e04-4443-463c-8d72-2bc2b545868f")
-     end
+
+## set the app-id for the automation test app
+  setUBSTAppID
 
 #Copy the newly created artefacts to the UsabillaSystemTest direcotry
 	sh("rm -rf #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{paths.framework_name}")
