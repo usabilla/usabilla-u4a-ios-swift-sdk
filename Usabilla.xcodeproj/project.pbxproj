@@ -502,6 +502,8 @@
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
 		F27F14E623C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
+		F2A08B9823D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
+		F2A08B9923D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
 		F2B7CFBD22FAED410088A9EF /* ColorPickerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */; };
 		F2B7CFBF22FB01880088A9EF /* UBSADrawingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */; };
 		F2B7CFC222FB0D460088A9EF /* PenToolViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */; };
@@ -826,6 +828,7 @@
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
 		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
+		F2A08B9723D06FCF00A5F6F0 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewTests.swift; sourceTree = "<group>"; };
 		F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBSADrawingViewTests.swift; sourceTree = "<group>"; };
 		F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenToolViewTests.swift; sourceTree = "<group>"; };
@@ -1493,6 +1496,7 @@
 				C5D1CE731F9E1963007B098E /* UIFont.swift */,
 				C50F2C3B2084ED7D00D77F37 /* UILabel.swift */,
 				45CB6F0022DFBE63007FEE38 /* UIViewController.swift */,
+				F2A08B9723D06FCF00A5F6F0 /* Locale.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1897,6 +1901,7 @@
 				0483E9BB1CDCDED1004EC234 /* RatingFieldModel.swift in Sources */,
 				43CCD47C1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift in Sources */,
 				4390C0F61E97BEFC00092977 /* UBCampaignDAO.swift in Sources */,
+				F2A08B9823D06FCF00A5F6F0 /* Locale.swift in Sources */,
 				43CCD4571E78366A00B3E4FE /* BaseStringComponentViewModel.swift in Sources */,
 				432A8A0B1E89184E00928F54 /* HeaderComponent.swift in Sources */,
 				43CCD46E1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift in Sources */,
@@ -2198,6 +2203,7 @@
 				43B04F781F1F7EEF0032F057 /* EventEngine.swift in Sources */,
 				43B04F791F1F7EEF0032F057 /* RatingFieldModel.swift in Sources */,
 				43B04F7A1F1F7EEF0032F057 /* ScreenshotComponentViewModel.swift in Sources */,
+				F2A08B9923D06FCF00A5F6F0 /* Locale.swift in Sources */,
 				43B04F7B1F1F7EEF0032F057 /* UBCampaignDAO.swift in Sources */,
 				43B04F7C1F1F7EEF0032F057 /* BaseStringComponentViewModel.swift in Sources */,
 				C50F2C3D2084EEFF00D77F37 /* UILabel.swift in Sources */,

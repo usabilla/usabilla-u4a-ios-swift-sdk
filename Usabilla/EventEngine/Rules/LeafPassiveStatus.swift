@@ -40,11 +40,15 @@ class LeafPassiveStatus: ConcreteRule {
     }
 
     func languageMatches() -> Bool {
+        // Legacy Code;  The format of the "Show campaign when the device language is set to XX", has been
+        // changed on the frontend.  It now sets the language to eg.  "de"
+        // We keep this code for now, to support if it exists for legacy.
         if passiveStatus.value.contains("_") {
             return passiveStatus.value == Locale.current.identifier
         }
 
-        return passiveStatus.value.uppercased() == Locale.current.languageCode?.uppercased()
+        let localeLanguage = String(describing: Locale.preferredLocale()).prefix(2).uppercased()
+        return passiveStatus.value.uppercased() == localeLanguage
     }
 
     required init?(coder aDecoder: NSCoder) {
