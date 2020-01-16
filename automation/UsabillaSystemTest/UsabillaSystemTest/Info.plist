@@ -42,6 +42,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>USABILLA_APP_ID</key>
-	<string>89e7aecf-1c46-478e-90a3-758df0ccade2</string>
+	<string>$(UB_APP_ID)</string>
 </dict>
 </plist>

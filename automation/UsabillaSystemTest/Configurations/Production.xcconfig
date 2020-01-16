@@ -1,0 +1,12 @@
+//
+//  Production.xcconfig
+//  UsabillaSystemTest
+//
+//  Created by Hitesh Jain on 16/01/2020.
+//  Copyright © 2020 Usabilla. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+UB_APP_ID = 89e7aecf-1c46-478e-90a3-758df0ccade2

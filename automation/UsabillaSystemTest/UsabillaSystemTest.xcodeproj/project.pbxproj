@@ -17,6 +17,8 @@
 		4525C15A23324CBF0020B5AA /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; };
 		4525C15B23324CBF0020B5AA /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 103BE8D9215E278000349AC9 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		458F226D2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F226C2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift */; };
+		F2A08B9D23D0B9D000A5F6F0 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F2A08B9C23D0B9D000A5F6F0 /* Staging.xcconfig */; };
+		F2A08B9F23D0B9E400A5F6F0 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F2A08B9E23D0B9E400A5F6F0 /* Production.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		433156F81FCC50000036F0A5 /* 01_TriggerAndDisplayCampaign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 01_TriggerAndDisplayCampaign.swift; sourceTree = "<group>"; };
 		433156FA1FCC50000036F0A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458F226C2388141700CCD48C /* 03_TestForMultipleCampaignsCrash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 03_TestForMultipleCampaignsCrash.swift; sourceTree = "<group>"; };
+		F2A08B9C23D0B9D000A5F6F0 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		F2A08B9E23D0B9E400A5F6F0 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 		433156D71FCC4FFF0036F0A5 = {
 			isa = PBXGroup;
 			children = (
+				F2A08B9B23D0B96F00A5F6F0 /* Configurations */,
 				433156E21FCC50000036F0A5 /* UsabillaSystemTest */,
 				433156F71FCC50000036F0A5 /* UsabillaSystemTestUITests */,
 				433156E11FCC50000036F0A5 /* Products */,
@@ -119,6 +124,15 @@
 				433156FA1FCC50000036F0A5 /* Info.plist */,
 			);
 			path = UsabillaSystemTestUITests;
+			sourceTree = "<group>";
+		};
+		F2A08B9B23D0B96F00A5F6F0 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				F2A08B9C23D0B9D000A5F6F0 /* Staging.xcconfig */,
+				F2A08B9E23D0B9E400A5F6F0 /* Production.xcconfig */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +222,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2A08B9D23D0B9D000A5F6F0 /* Staging.xcconfig in Resources */,
+				F2A08B9F23D0B9E400A5F6F0 /* Production.xcconfig in Resources */,
 				433156EE1FCC50000036F0A5 /* LaunchScreen.storyboard in Resources */,
 				433156EB1FCC50000036F0A5 /* Assets.xcassets in Resources */,
 				433156E91FCC50000036F0A5 /* Main.storyboard in Resources */,
@@ -388,6 +404,7 @@
 		};
 		433156FE1FCC50000036F0A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2A08B9C23D0B9D000A5F6F0 /* Staging.xcconfig */;
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -410,6 +427,7 @@
 		};
 		433156FF1FCC50000036F0A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2A08B9E23D0B9E400A5F6F0 /* Production.xcconfig */;
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

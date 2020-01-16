@@ -1,0 +1,12 @@
+//
+//  Staging.xcconfig
+//  UsabillaSystemTest
+//
+//  Created by Hitesh Jain on 16/01/2020.
+//  Copyright © 2020 Usabilla. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+UB_APP_ID = 2f033e04-4443-463c-8d72-2bc2b545868f
