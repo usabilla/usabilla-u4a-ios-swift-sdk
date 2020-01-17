@@ -1,23 +1,24 @@
 import "./propertiesFile.rb"
 
-#check branch, and change AppID
-desc "Check branch and change app id"
-private_lane :setUBSTAppID do
+#getSchemeForSystemTest
+def getSchemeForSystemTest()
   branchname = sdkBranchName()
-      puts branchname
-  if index = branchname.downcase.index("release")
-    ## set the app-id for the automation test app - production
-    set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "89e7aecf-1c46-478e-90a3-758df0ccade2")
-  else
-    ## set the app-id for the automation test app - staging
-    set_info_plist_value(path: "automation/UsabillaSystemTest/UsabillaSystemTest/Info.plist", key: "USABILLA_APP_ID", value: "2f033e04-4443-463c-8d72-2bc2b545868f")
+   puts "schemename - sdkbranchname - #{branchname}"
+     if index = branchname.downcase.index("release")
+       puts "schemename - UsabillaSystemTestProd"
+       schemename = "UsabillaSystemTestProd"
+       return schemename
+     else
+       puts "schemename - UsabillaSystemTest"
+       schemename = "UsabillaSystemTest"
+       return schemename
+     end
   end
-end
 
 desc "Build framework For a given XCode version"
 private_lane :buildForXcodeVersion do |options|
-  ## set the app-id for the automation test app
-  setUBSTAppID
+  #configuration
+  config = configFileName()
 
   if options[:version] == nil	
     UI.message("'version' not specified in 'buildForXcodeVersion")
@@ -29,19 +30,22 @@ private_lane :buildForXcodeVersion do |options|
   version = options[:version]
   project_directory = options[:project_directory]
 
-  paths = Paths.new(version, project_directory)
+  paths = Paths.new(version, project_directory, config)
  	xcversion(version: version)
 
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration Release  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration #{config} -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration #{config}  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
 
 	#remove Module name error in swiftinterface files
-	sh("find \"#{paths.projectDirectory}/build/Build/Products/Release-iphoneos/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
-	sh("find \"#{paths.projectDirectory}/build/Build/Products/Release-iphonesimulator/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{config}-iphoneos/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{config}-iphonesimulator/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
 	
 end
 
 private_lane :buildAndRunUITest do |options|
+
+  #configuration
+  config = configFileName()
 
   if options[:version] == nil	
     UI.message("'version' not specified in 'buildAndRunUITest")
@@ -58,11 +62,11 @@ private_lane :buildAndRunUITest do |options|
  	project_directory = options[:project_directory]
 	devices = options[:devices]
 	
-  	paths = Paths.new(version, project_directory)
+  	paths = Paths.new(version, project_directory, config)
  	xcversion(version: version)
 
-	sh("xcodebuild clean -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator")
-	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration Debug -sdk iphonesimulator")
+	sh("xcodebuild clean -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration #{config} -sdk iphonesimulator")
+	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration #{config} -sdk iphonesimulator")
 
     devices.each do |deviceModel|
 		sh("xcodebuild  test -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme UsabillaUITestApp -destination '#{deviceModel}'")
@@ -71,6 +75,8 @@ private_lane :buildAndRunUITest do |options|
 end
 
 private_lane :removeAllBuilds do |options|
+  #configuration
+  config = configFileName()
   	if options[:version] == nil	
    	 	UI.message("'version' not specified in 'buildForXcodeVersion")
   	end
@@ -79,7 +85,7 @@ private_lane :removeAllBuilds do |options|
   	end   
   	version = options[:version]
   	project_directory = options[:project_directory]
-  	paths = Paths.new(version, project_directory)
+  	paths = Paths.new(version, project_directory, config)
 
  	UI.message("Remove all previous builds before build")
 	sh("rm -rf #{paths.projectDirectory}/build")
@@ -88,13 +94,15 @@ end
 
 desc "Vallidate build with UsabillaSystemTest app" 
 private_lane :systemTestsAfterBuild do |options|
+  #configuration
+  config = configFileName()
   version = options[:version]
   validateBuildLLVMGCC(version: version)
   project_directory = options[:project_directory]
-  paths = Paths.new(version, project_directory)
+  paths = Paths.new(version, project_directory, config)
 
-## set the app-id for the automation test app
-  setUBSTAppID
+## set the app-id by using configurations for the automation test app using corect scheme
+schemename = getSchemeForSystemTest()
 
 #Copy the newly created artefacts to the UsabillaSystemTest direcotry
 	sh("rm -rf #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{paths.framework_name}")
@@ -102,7 +110,7 @@ private_lane :systemTestsAfterBuild do |options|
     xcversion(version: version)
         scan(
             project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
-            scheme: "UsabillaSystemTest",
+            scheme: schemename,
             clean: true,        
             devices: [ "iPhone X (11.4)"]
     )
@@ -110,6 +118,8 @@ end
 
 desc "Vallidate build for non LLVM and GCC code" 
 private_lane :validateBuildLLVMGCC do |options|
+  #configuration
+  config = configFileName()
 
 	if options[:version] == nil	
      UI.message("'version' not specified in 'validateBuildLLVMGCC")
@@ -120,13 +130,15 @@ private_lane :validateBuildLLVMGCC do |options|
      
     version = options[:version]
     project_directory = options[:project_directory]
-    paths = Paths.new(version, project_directory)
+    paths = Paths.new(version, project_directory, config)
 
 	sh("sh validateLLVM_NO_GCC.sh #{paths.framework_path}/")
 end
 
 desc "Copy artefacts to the Pods directory"
 private_lane :copyToPodsFromBuild do |options|
+  #configuration
+  config = configFileName()
 
   if options[:version] == nil	
      UI.message("'version' not specified in 'copyToPodsFromBuild")
@@ -137,7 +149,7 @@ private_lane :copyToPodsFromBuild do |options|
     
   version = options[:version]
   project_directory = options[:project_directory]
-  paths = Paths.new(version, project_directory)
+  paths = Paths.new(version, project_directory, config)
 
 	sh("rm -rf #{projectDirectory}#{paths.xcode_directory}")
   sh("mkdir -p #{paths.framework_path}")
@@ -154,6 +166,8 @@ end
 
 desc "Copy artefacts to the Carthage directory"
 private_lane :copyToCarthageFromBuild do |options|
+  #configuration
+  config = configFileName()
     if options[:version] == nil	
        UI.message("'version' not specified in 'copyToCarthageFromBuild")
     end   
@@ -163,7 +177,7 @@ private_lane :copyToCarthageFromBuild do |options|
 
   version = options[:version]
   project_directory = options[:project_directory]
-  paths = Paths.new(version, project_directory)
+  paths = Paths.new(version, project_directory, config)
   sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Carthage/Carthage/Build/iOS")
 
 	sh("cp -rf #{paths.framework_path} #{paths.carthage_outputPath}/." )

@@ -36,10 +36,11 @@
     
 class Paths
 
-	def initialize(version, projectDirectory)
+	def initialize(version, projectDirectory, configuration)
         @version = version
 		@xcode_directory = "XcodeBuilds/Xcode-#{version}"
-		@projectDirectory = projectDirectory
+        @projectDirectory = projectDirectory
+        @target = configuration
     end
     
     def projectDirectory
@@ -47,7 +48,7 @@ class Paths
     end
 	
 	def target 
-		"Release"
+		@target
 	end
     def xcode_directory 
     	 @xcode_directory
