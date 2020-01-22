@@ -15,6 +15,7 @@ class CampaignManager {
     private(set) var eventEngine: EventEngine
     private(set) var appID: String
     private let submissionManager: CampaignSubmissionManager
+    weak var telemetric: UBTelemetrics?
     var maskModel: MaskModel?
     init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appID: String, completion: (() -> Void)? = nil) {
         self.campaignStore = campaignStore
@@ -36,7 +37,7 @@ class CampaignManager {
     }
 
     // customVariables sent from the interface are the activeStatuses used inside our SDK.
-    func sendEvent(event: String, customVariables: [String: Any]) {
+    func sendEvent(event: String, customVariables: [String: Any], logId: String? = nil) {
         let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: filterActiveStatuses(fromCustomVariables: customVariables))
 
         // Persist all updated campaigns
@@ -52,29 +53,59 @@ class CampaignManager {
         }
 
         guard let campaignToDisplay = displayableCampaign else {
+            if telemetric != nil {
+                if triggeredCampaigns.count == 0 {
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
+                } else {
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
+                }
+                telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
+                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+            }
             return
         }
-        displayCampaign(campaignToDisplay, withUserContext: customVariables)
+        displayCampaign(campaignToDisplay, withUserContext: customVariables, logId: logId)
     }
 
-    func displayCampaign(_ campaign: CampaignModel, withUserContext userContext: [String: Any]) {
+    func displayCampaign(_ campaign: CampaignModel, withUserContext userContext: [String: Any], logId: String? = nil) {
         guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
+            if telemetric != nil {
+                telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
+                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+            }
             return
         }
         campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position, maskModel: maskModel).then { form in
 
             guard self.testIntegrityOfCampaginForm(form) else {
+                let text = "form: \(campaign.formID) integrity incorrect"
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: text, logLevel: .methods)
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
+                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
                 return
             }
             let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
             if self.displayCampaignForm(form, manager: submissionManager) {
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: true, logLevel: .methods)
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
                 self.incrementViews(forCampaign: campaign)
+                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
                 return
             }
-            PLog("A campaign is already displayed")
+
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: TelemetryConstants.campaingAlreadyShowing, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
+            self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+
+            PLog(TelemetryConstants.campaingAlreadyShowing)
         }.catch { error in
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: error.localizedDescription, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
+            self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
             PLog(error)
         }
     }

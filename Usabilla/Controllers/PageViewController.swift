@@ -149,13 +149,12 @@ class PageViewController: UIViewController {
         }
 
         if !viewModel.shouldShowRequiredLabel {
-            tableView.tableHeaderView = nil
-        }
+            tableView.tableHeaderView = nil }
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         // This moodel is null, must figure out why this happens!!!
         guard //viewModel.shouldAddMarginWhenKeyboardIsShown,
-            var userInfo = notification.userInfo,
+            let userInfo = notification.userInfo,
             var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
                 return
         }
@@ -173,12 +172,10 @@ class PageViewController: UIViewController {
 
     func registerEventsBus() {
         SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
-            self.reloadCellInTableAfterEvent()
-        }
+            self.reloadCellInTableAfterEvent() }
 
         SwiftEventBus.onMainThread(self, name: "click") { _ in
-            self.clickImageFromCamera()
-        }
+            self.clickImageFromCamera() }
 
         SwiftEventBus.onMainThread(self, name: "iPadPickerButtonTapped") { sender in
             if DeviceInfo.isIPad() {
@@ -208,14 +205,11 @@ class PageViewController: UIViewController {
 
     func reloadCellInTableAfterEvent() {
         let listOfIndexes = viewModel.dynamicFields.filter {
-            viewModel.viewModelForCellAt(index: $0)?.isViewCurrentlyVisible != viewModel.viewModelForCellAt(index: $0)?.shouldAppear
-        }
+            viewModel.viewModelForCellAt(index: $0)?.isViewCurrentlyVisible != viewModel.viewModelForCellAt(index: $0)?.shouldAppear }
         let indexPaths: [IndexPath] = listOfIndexes.map {
-            IndexPath(row: $0, section: 0)
-        }
+            IndexPath(row: $0, section: 0) }
         if listOfIndexes.count > 0 {
-            self.reloadCellsWithAnimation(indexPaths)
-        }
+            self.reloadCellsWithAnimation(indexPaths) }
     }
 
     func deinitPageController() {
@@ -288,8 +282,7 @@ class PageViewController: UIViewController {
         }
         if DeviceInfo.requiredOrientationAvailable() {
             presentFullDrawSolution(with: client)
-            return
-        }
+            return }
         presentLibraryOnlySolution(with: client)
     }
 

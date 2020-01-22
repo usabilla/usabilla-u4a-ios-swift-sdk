@@ -401,10 +401,8 @@
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		4509CAF7237949F4003EC904 /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
 		4509CAF8237949F4003EC904 /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
-		4509CAF9237949F4003EC904 /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
 		4509CAFF237967E7003EC904 /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
 		4509CB00237967E7003EC904 /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
-		4509CB01237967E7003EC904 /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
@@ -412,8 +410,14 @@
 		45639DA523015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
 		45639DA623015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
 		45639DA723015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
-		4565AF99237ADD540083975F /* UBFeatureBillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565AF98237ADD540083975F /* UBFeatureBillaManager.swift */; };
-		4565AF9A237ADD540083975F /* UBFeatureBillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565AF98237ADD540083975F /* UBFeatureBillaManager.swift */; };
+		4573959023FED6E60086D8ED /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
+		4573959123FED6E90086D8ED /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
+		4573959223FED6EC0086D8ED /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
+		4573959323FED6F40086D8ED /* FeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29245072375A0F500401ADF /* FeatureModel.swift */; };
+		4573959423FED6F70086D8ED /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
+		4573959523FED6FA0086D8ED /* FeaturebillaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450A2379821900401ADF /* FeaturebillaStore.swift */; };
+		4573959623FED6FD0086D8ED /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
+		4573959723FED6FF0086D8ED /* UBFeaturebillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6DCEA238541DA0076319E /* UBFeaturebillaManager.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
 		4589E599234C73400092C8F0 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
 		4589E59A234C739C0092C8F0 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
@@ -450,13 +454,10 @@
 		45CB6F0222DFBE63007FEE38 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6F0022DFBE63007FEE38 /* UIViewController.swift */; };
 		45CDE6CB2374588D0015CD98 /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
 		45CDE6CC2374588D0015CD98 /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
-		45CDE6CD2374588D0015CD98 /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
 		45F0D41E22DDE9BD0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
 		45F0D41F22DDEE7A0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
 		45F0D42222DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		45F0D42322DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
-		45FE87BC237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE87BB237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift */; };
-		45FE87BD237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE87BB237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
 		C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
 		C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
@@ -515,6 +516,9 @@
 		F213104023EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
 		F213104123EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
 		F213104223EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
+		F21326E2238C1EDC00553358 /* FeaturebillaServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */; };
+		F21326E5238C22AE00553358 /* Featurebilla.json in Resources */ = {isa = PBXBuildFile; fileRef = F21326E3238C22A600553358 /* Featurebilla.json */; };
+		F2503FD5238EDA5A0027875A /* FeaturebillaStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */; };
 		F26922B323EB17B900E6A455 /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
 		F26922B423EB17B900E6A455 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
 		F26922B523EB17B900E6A455 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
@@ -707,23 +711,19 @@
 		F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
 		F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
+		F26E6C5A2379918B00BAE436 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
 		F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
 		F27F14E623C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
-		F2A08B9823D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
-		F2A08B9923D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
-		F21326E2238C1EDC00553358 /* FeaturebillaServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */; };
-		F21326E5238C22AE00553358 /* Featurebilla.json in Resources */ = {isa = PBXBuildFile; fileRef = F21326E3238C22A600553358 /* Featurebilla.json */; };
-		F2503FD5238EDA5A0027875A /* FeaturebillaStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */; };
-		F26E6C5A2379918B00BAE436 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
-		F26E6C5B2379918B00BAE436 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
 		F292450523759DF400401ADF /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
 		F292450623759DFD00401ADF /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
 		F29245082375A0F500401ADF /* FeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29245072375A0F500401ADF /* FeatureModel.swift */; };
 		F2924509237894E400401ADF /* FeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29245072375A0F500401ADF /* FeatureModel.swift */; };
 		F292450B2379821900401ADF /* FeaturebillaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450A2379821900401ADF /* FeaturebillaStore.swift */; };
 		F292450C2379821900401ADF /* FeaturebillaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450A2379821900401ADF /* FeaturebillaStore.swift */; };
+		F2A08B9823D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
+		F2A08B9923D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
 		F2B7CFBD22FAED410088A9EF /* ColorPickerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */; };
 		F2B7CFBF22FB01880088A9EF /* UBSADrawingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */; };
 		F2B7CFC222FB0D460088A9EF /* PenToolViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */; };
@@ -993,7 +993,6 @@
 		4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBTelemetricResponse.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45639DA423015BD600E7135C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4565AF98237ADD540083975F /* UBFeatureBillaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBFeatureBillaManager.swift; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
 		4589E598234C73400092C8F0 /* UBTouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBTouchView.swift; sourceTree = "<group>"; };
 		458FC5D422EE428200E198A7 /* ColorPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
@@ -1014,10 +1013,8 @@
 		45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		45CB6F0022DFBE63007FEE38 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBTelemetrics.swift; sourceTree = "<group>"; };
-		45E2968D2379A4BA00919761 /* UBTelemetricResponseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBTelemetricResponseDAO.swift; sourceTree = "<group>"; };
 		45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionCell.swift; sourceTree = "<group>"; };
 		45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		45FE87BB237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBFeatureBillaManagerProtocol.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatus.swift; sourceTree = "<group>"; };
 		C508684D1F320F38006CDA53 /* LeafActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatusTests.swift; sourceTree = "<group>"; };
@@ -1058,19 +1055,19 @@
 		F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarinDebug.swift; sourceTree = "<group>"; };
 		F213103C23EC022C0017B633 /* UsabillaDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaDebug.swift; sourceTree = "<group>"; };
 		F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaInternalDebug.swift; sourceTree = "<group>"; };
-		F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F269237D23EB17B900E6A455 /* UsabillaXamarin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UsabillaXamarin-Info.plist"; path = "/Users/hjain/Documents/Workspace/sdk_ios/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/UsabillaXamarin-Info.plist"; sourceTree = "<absolute>"; };
-		F269237E23EB190000E6A455 /* UsabillaXamarin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarin.swift; sourceTree = "<group>"; };
-		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
-		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
-		F2A08B9723D06FCF00A5F6F0 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaServiceTest.swift; sourceTree = "<group>"; };
 		F21326E3238C22A600553358 /* Featurebilla.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Featurebilla.json; sourceTree = "<group>"; };
 		F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturebillaStoreTests.swift; sourceTree = "<group>"; };
+		F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F269237D23EB17B900E6A455 /* UsabillaXamarin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UsabillaXamarin-Info.plist"; path = "/Users/hjain/Documents/Workspace/sdk_ios/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/UsabillaXamarin-Info.plist"; sourceTree = "<absolute>"; };
+		F269237E23EB190000E6A455 /* UsabillaXamarin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarin.swift; sourceTree = "<group>"; };
 		F26E6C592379918B00BAE436 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
+		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
 		F292450423759DF400401ADF /* FeaturebillaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaService.swift; sourceTree = "<group>"; };
 		F29245072375A0F500401ADF /* FeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureModel.swift; sourceTree = "<group>"; };
 		F292450A2379821900401ADF /* FeaturebillaStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaStore.swift; sourceTree = "<group>"; };
+		F2A08B9723D06FCF00A5F6F0 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 		F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewTests.swift; sourceTree = "<group>"; };
 		F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBSADrawingViewTests.swift; sourceTree = "<group>"; };
 		F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenToolViewTests.swift; sourceTree = "<group>"; };
@@ -1615,8 +1612,6 @@
 				04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */,
 				434085C01E36430D00B4A4B9 /* SubmissionManager.swift */,
 				04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */,
-				4565AF98237ADD540083975F /* UBFeatureBillaManager.swift */,
-				45FE87BB237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1660,7 +1655,6 @@
 				C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */,
 				431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */,
 				040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */,
-				45E2968D2379A4BA00919761 /* UBTelemetricResponseDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -2052,7 +2046,7 @@
 			files = (
 				45639DA523015BD600E7135C /* Assets.xcassets in Resources */,
 				F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */,
-				F26E6C5A2379918B00BAE436 /* Featurebilla.json in Resources */,
+				F26E6C5A2379918B00BAE436 /* config.json in Resources */,
 				F26E6C5A2379918B00BAE436 /* config.json in Resources */,
 				04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */,
 				F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */,
@@ -2085,8 +2079,6 @@
 			files = (
 				45639DA623015BD600E7135C /* Assets.xcassets in Resources */,
 				F27F14E623C781B8000E903D /* UBStaging.xcconfig in Resources */,
-				F26E6C5B2379918B00BAE436 /* Featurebilla.json in Resources */,
-				F26E6C5B2379918B00BAE436 /* config.json in Resources */,
 				43B04FC91F1F7EEF0032F057 /* usa_localizable.strings in Resources */,
 				F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */,
 			);
@@ -2098,6 +2090,7 @@
 			files = (
 				F269237323EB17B900E6A455 /* Assets.xcassets in Resources */,
 				F269237423EB17B900E6A455 /* UBStaging.xcconfig in Resources */,
+				4573959423FED6F70086D8ED /* config.json in Resources */,
 				F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */,
 				F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */,
 			);
@@ -2182,7 +2175,6 @@
 				41AC38481F68867600F0DFC6 /* NPSFieldModel.swift in Sources */,
 				04DC25AB1E8BB33E002962A3 /* LeafEvent.swift in Sources */,
 				459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */,
-				45FE87BC237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift in Sources */,
 				431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				436F55481E8178D500E91E58 /* CampaignViewController.swift in Sources */,
@@ -2211,7 +2203,6 @@
 				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
 				F213103D23EC022C0017B633 /* UsabillaDebug.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
-				4565AF99237ADD540083975F /* UBFeatureBillaManager.swift in Sources */,
 				C564D1911E799A190004705A /* FormStore.swift in Sources */,
 				4589E599234C73400092C8F0 /* UBTouchView.swift in Sources */,
 				046C3F9C1EAA14A000B0B190 /* HTTPClientProtocol.swift in Sources */,
@@ -2469,8 +2460,6 @@
 				C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */,
 				43B7083C1E7FDA6D00F05A40 /* ParagraphComponentViewModelTests.swift in Sources */,
 				043461BD1F9798B5002604F7 /* TargetingOptionsModelTests.swift in Sources */,
-				4509CAF9237949F4003EC904 /* UBTelemetricSDK.swift in Sources */,
-				4509CB01237967E7003EC904 /* UBTelemetricResponse.swift in Sources */,
 				43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */,
 				434085BE1E363BF800B4A4B9 /* StyleKitTest.swift in Sources */,
 				4317189C1F2A15E900BF612E /* UBFeedbackRequestDAOTests.swift in Sources */,
@@ -2480,7 +2469,6 @@
 				43B9AF9B1E856467009EC83A /* IntroPageViewModelTests.swift in Sources */,
 				C5F813D01F2236A900F994F9 /* TargetingFactoryTests.swift in Sources */,
 				43B0A2121E2CC4FF00879E5F /* IntFieldModelTest.swift in Sources */,
-				45CDE6CD2374588D0015CD98 /* UBTelemetrics.swift in Sources */,
 				C5223B391F322318003CF696 /* ActiveStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2500,7 +2488,6 @@
 				41AC38491F6886EF00F0DFC6 /* NPSFieldModel.swift in Sources */,
 				43B04F3A1F1F7EEF0032F057 /* LeafEvent.swift in Sources */,
 				459678DC22E878520043DE70 /* UBSADrawingTool.swift in Sources */,
-				45FE87BD237AB767003ABD5D /* UBFeatureBillaManagerProtocol.swift in Sources */,
 				43B04F3B1F1F7EEF0032F057 /* UBFileHelper.swift in Sources */,
 				43B04F3C1F1F7EEF0032F057 /* StyleKit.swift in Sources */,
 				43B04F3D1F1F7EEF0032F057 /* CampaignViewController.swift in Sources */,
@@ -2528,7 +2515,6 @@
 				43B04F4C1F1F7EEF0032F057 /* CheckBoxComponentViewModel.swift in Sources */,
 				43B04F4D1F1F7EEF0032F057 /* IntroPageViewModel.swift in Sources */,
 				43B04F4E1F1F7EEF0032F057 /* SliderComponent.swift in Sources */,
-				4565AF9A237ADD540083975F /* UBFeatureBillaManager.swift in Sources */,
 				43B04F4F1F1F7EEF0032F057 /* FormStore.swift in Sources */,
 				4589E59A234C739C0092C8F0 /* UBTouchView.swift in Sources */,
 				F213103E23EC022C0017B633 /* UsabillaDebug.swift in Sources */,
@@ -2660,7 +2646,6 @@
 				43B04FAE1F1F7EEF0032F057 /* ComponentViewModel.swift in Sources */,
 				43B04FAF1F1F7EEF0032F057 /* ParagraphComponent.swift in Sources */,
 				43B04FB01F1F7EEF0032F057 /* FieldModel.swift in Sources */,
-				43ED68F61F86806B00C9D279 /* Debug.swift in Sources */,
 				43B04FB11F1F7EEF0032F057 /* UBIntroOutroView.swift in Sources */,
 				43B04FB31F1F7EEF0032F057 /* PathManager.swift in Sources */,
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
@@ -2768,6 +2753,7 @@
 				F213104223EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */,
 				F26922F823EB17B900E6A455 /* ScreenshotModel.swift in Sources */,
 				F26922F923EB17B900E6A455 /* RadioFieldModel.swift in Sources */,
+				4573959723FED6FF0086D8ED /* UBFeaturebillaManager.swift in Sources */,
 				F26922FA23EB17B900E6A455 /* TextAreaComponentViewModel.swift in Sources */,
 				F26922FB23EB17B900E6A455 /* EmailComponent.swift in Sources */,
 				F26922FC23EB17B900E6A455 /* HeaderComponentViewModel.swift in Sources */,
@@ -2796,6 +2782,7 @@
 				F269231323EB17B900E6A455 /* RequestBuilder.swift in Sources */,
 				F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */,
 				F269231423EB17B900E6A455 /* ShowHideRule.swift in Sources */,
+				4573959123FED6E90086D8ED /* UBTelemetricResponse.swift in Sources */,
 				F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */,
 				F269231523EB17B900E6A455 /* String.swift in Sources */,
 				F269231623EB17B900E6A455 /* Logging.swift in Sources */,
@@ -2812,6 +2799,7 @@
 				F269232123EB17B900E6A455 /* OrRule.swift in Sources */,
 				F269232223EB17B900E6A455 /* CheckBoxComponent.swift in Sources */,
 				F269232323EB17B900E6A455 /* BaseFieldModel.swift in Sources */,
+				4573959023FED6E60086D8ED /* UBTelemetrics.swift in Sources */,
 				F269232423EB17B900E6A455 /* BaseIntComponentViewModel.swift in Sources */,
 				F269232523EB17B900E6A455 /* CellViewModel.swift in Sources */,
 				F269232623EB17B900E6A455 /* ClientModel.swift in Sources */,
@@ -2820,6 +2808,7 @@
 				F269232923EB17B900E6A455 /* PageViewController.swift in Sources */,
 				F269232A23EB17B900E6A455 /* PageModel.swift in Sources */,
 				F269232B23EB17B900E6A455 /* UIImage.swift in Sources */,
+				4573959323FED6F40086D8ED /* FeatureModel.swift in Sources */,
 				F269232C23EB17B900E6A455 /* UIImageView.swift in Sources */,
 				F269232D23EB17B900E6A455 /* FormService.swift in Sources */,
 				F269232E23EB17B900E6A455 /* UBFileStorageDAO.swift in Sources */,
@@ -2830,6 +2819,7 @@
 				F269233323EB17B900E6A455 /* ComponentFactory.swift in Sources */,
 				F269233423EB17B900E6A455 /* UBSADragableImageView.swift in Sources */,
 				F269233523EB17B900E6A455 /* TextAreaComponent.swift in Sources */,
+				4573959523FED6FA0086D8ED /* FeaturebillaStore.swift in Sources */,
 				F269233723EB17B900E6A455 /* ColorPickerView.swift in Sources */,
 				F269233823EB17B900E6A455 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				F269233923EB17B900E6A455 /* PassiveFormController.swift in Sources */,
@@ -2868,6 +2858,7 @@
 				F269235B23EB17B900E6A455 /* UBAlertPresenter.swift in Sources */,
 				F269235C23EB17B900E6A455 /* PickerParentComponent.swift in Sources */,
 				F269235D23EB17B900E6A455 /* LeafActiveStatus.swift in Sources */,
+				4573959623FED6FD0086D8ED /* FeaturebillaService.swift in Sources */,
 				F269235E23EB17B900E6A455 /* Transitions.swift in Sources */,
 				F269235F23EB17B900E6A455 /* LeafPassiveStatus.swift in Sources */,
 				F269236023EB17B900E6A455 /* TextAreaFieldModel.swift in Sources */,
@@ -2877,6 +2868,7 @@
 				F269236423EB17B900E6A455 /* JSONFormParser.swift in Sources */,
 				F269236523EB17B900E6A455 /* NPSComponentViewModel.swift in Sources */,
 				F269236623EB17B900E6A455 /* UBCustomTouchableView.swift in Sources */,
+				4573959223FED6EC0086D8ED /* UBTelemetricSDK.swift in Sources */,
 				F269236723EB17B900E6A455 /* UBNavigationController.swift in Sources */,
 				F269236823EB17B900E6A455 /* UBRule.swift in Sources */,
 				F269236923EB17B900E6A455 /* UBSAPluginViewController.swift in Sources */,

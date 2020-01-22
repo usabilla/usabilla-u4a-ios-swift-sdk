@@ -249,8 +249,7 @@ class NPSControl: UIControl {
 
     private func moveTooltip(toIndex index: Int) {
         guard index >= 0 && index < labels.count else {
-            return
-        }
+            return }
         let choiceLabel = labels[index]
         toolTipCenterXContraint?.isActive = false
         toolTipCenterXContraint = toolTip.centerXAnchor.constraint(equalTo: choiceLabel.centerXAnchor).activate()
@@ -260,8 +259,7 @@ class NPSControl: UIControl {
 
     private func moveProgressBar(toIndex index: Int) {
         guard index >= 0 && index < labels.count else {
-            return
-        }
+            return }
         let choiceLabel = labels[index]
         //let labelWidth: CGFloat = contentStackView.frame.width / CGFloat(numberOfValues)
         //Hide the progressbar under the circle-indication label
@@ -272,8 +270,7 @@ class NPSControl: UIControl {
 
     private func highlightSelectedLabel(atIndex index: Int) {
         guard index >= 0 && index < labels.count else {
-            return
-        }
+            return }
         let choiceLabel = labels[index]
         let choiceframe = choiceLabel.frame
         var selectedFrame = selectedLabel.frame
@@ -353,8 +350,7 @@ class NPSControl: UIControl {
         case numberOfValues - 1:
             return CGRect(x: vFrame.origin.x, y: vFrame.origin.y, width: vFrame.width + sideContentStackViewPadding, height: vFrame.height)
         default:
-            return vFrame
-        }
+            return vFrame }
     }
 
     private func ratingButtonSelected(position: CGPoint) {
@@ -367,8 +363,7 @@ class NPSControl: UIControl {
             }
         }
         guard newIndex != selectedIndex else {
-            return
-        }
+            return }
         selectedIndex = newIndex
 
         submitHapticFeedback()
@@ -382,16 +377,14 @@ class NPSControl: UIControl {
 
     override func accessibilityIncrement() {
         guard selectedIndex < numberOfValues - 1 else {
-            return
-        }
+            return }
         selectedIndex += 1
         sendActions(for: .valueChanged)
     }
 
     override func accessibilityDecrement() {
         guard selectedIndex > 0 else {
-            return
-        }
+            return }
         selectedIndex -= 1
         sendActions(for: .valueChanged)
     }

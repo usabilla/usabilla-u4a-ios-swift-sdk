@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UBTelemetricSDK: Codable {
+class UBTelemetricSDK: UBTelemetricProtocol {
     var system: String
     var osVersionMajor: String
     let osVersionMinor: String
@@ -16,7 +16,6 @@ class UBTelemetricSDK: Codable {
     let sdkVersionMajor: String
     let sdkVersionMinor: String
     let sdkVersionPatch: String
-    var bridge: String?
     var appVersion: String
     let appName: String
     let device: String

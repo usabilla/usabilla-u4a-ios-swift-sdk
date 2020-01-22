@@ -31,7 +31,6 @@ class UsabillaInternal {
     static var supportedOrientations: UIInterfaceOrientationMask = .all
     private static let campaignService = CampaignService()
 
-    private static let telemetric = UBTelemetrics()
     private static let campaignStore: UBCampaignStoreProtocol = UBCampaignStore(service: campaignService)
     private (set) static var appID: String?
     private static var campaignManager: CampaignManager?
@@ -43,8 +42,13 @@ class UsabillaInternal {
     private static let featurebillaService = FeaturebillaService()
     private static let featurebillaStore: FeaturebillaStoreProtocol = FeaturebillaStore(service: featurebillaService)
     private static var featurebillaManager = UBFeaturebillaManager(featurebillaStore: featurebillaStore, featurebillaService: featurebillaService)
+
+    private static let telemetric = UBTelemetrics(manager: featurebillaManager)
     class func sendEvent(event: String) {
-        campaignManager?.sendEvent(event: event, customVariables: customVariables)
+        campaignManager?.telemetric = telemetric
+        let logid = telemetric.logStart(method: UBTelemetricSendEvent(), logLevel: .methods )
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.event, value: event, logLevel: .methods)
+        campaignManager?.sendEvent(event: event, customVariables: customVariables, logId: logid)
     }
 
     class func dismiss() -> Bool {
@@ -68,38 +72,38 @@ class UsabillaInternal {
         customVariables[key] = value
         PLog(customVariables)
     }
+    // get the classname of the class before the UsabillaInternal.
+    // It's used to dertermine if the sdk was called from our bridge
+    private class func getCallingClass() -> String {
+        let data = Thread.callStackSymbols
+        let callname = data[3]   // the 3 line is the first time an external app / or library accesses the SDK
+        let replaced = callname.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil)
+        let components = replaced.split(separator: " ")
+        return String(components[1]) //element 1 is the classname of the caller
+    }
 
     class func initialize(appID: String?, completion: (() -> Void)? = nil
                           ) {
-        let logid = telemetric.logStart(method: #function, logLevel: .interface )
-        let data = Thread.callStackSymbols
+        let logid = telemetric.logStart(method: UBTelemetricInitMethod(), logLevel: .methods )
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricResponse.originClass, value: getCallingClass(), logLevel: .methods)
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
                 Swift.debugPrint("Usabilla: The appId \(appID) has wrong format (expected UUID)")
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.methodData.methodResult, value: false, logLevel: .interface)
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.methodData.methodMessage, value: "appId has wrong format", logLevel: .interface)
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.appId, value: appID, logLevel: .interface)
-
-                telemetric.logEnd(for: logid)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.methodResult, value: false, logLevel: .methods)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.methodMessage, value: "appId has wrong format", logLevel: .methods)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appId, value: appID, logLevel: .methods)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appIdCorrect, value: false, logLevel: .methods)
+                telemetric.logEnd(for: logid, keyPath: \UBTelemetricInitMethod.duration)
                 return
             }
             UsabillaInternal.appID = appID
             campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: { [logid] in
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.app.extra.methodStatus, value: true, logLevel: .interface)
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.app.extra.appId, value: appID, logLevel: .interface)
-            telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.appId, value: appID, logLevel: .interface)
-            //let newLogID = telemetric.logStart(method: "CampaignManager()", logLevel: .interface )
-            let sublogid = telemetric.logSubTask(for: logid, logLevel: .interface)
-            campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: { [logid, sublogid] in
-                let value = campaignManager?.eventEngine.campaigns.count ?? 0
-
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.appIdCorrect, value: true, logLevel: .interface)
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.initApp.numberOfCampaigns, value: value, logLevel: .interface)
-                telemetric.alterData(for: logid, key: \UBTelemetricResponse.methodData.methodResult, value: true, logLevel: .interface)
-                telemetric.logEndSubTask(for: sublogid, parentId: logid, name: "getCampaigns")
-
-                telemetric.logEnd(for: logid)
-                telemetric.printlog()
+                let numberOfCampaings = campaignManager?.eventEngine.campaigns.count ?? 0
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appIdCorrect, value: true, logLevel: .methods)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appId, value: appID, logLevel: .methods)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.methodResult, value: true, logLevel: .methods)
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.numberOfCampaigns, value: numberOfCampaings, logLevel: .methods)
+                telemetric.logEnd(for: logid, keyPath: \UBTelemetricInitMethod.duration)
                 completion?()
             })
         }
@@ -113,21 +117,6 @@ class UsabillaInternal {
         // preload the poweredby icon, to increase responsivenes....
         _ = Icons.imageOfPoweredBy(color: theme.colors.hint)
         Swift.debugPrint("Usabilla: SDK finished initializing")
-
-        //fixMe : temporary call can be removed based on telemetery
-        let telemetryContexts: [String: String] = ["platform": "ios"]
-
-        featurebillaManager.getSettingVariable(variableName: "telemetryLevel", defaultValue: 0, userContexts: telemetryContexts, completion: {(value: Any?) in
-            Swift.debugPrint("value : \(String(describing: value))")
-        })
-
-        //fixMe : temporary call can be removed based on telemetery
-        let telemetrySettingContext = UBSettingContext(appId: appID ?? "")
-
-        featurebillaManager.getSettingVariable(variableName: "telemetryLevel", defaultValue: 0, userContexts: telemetrySettingContext, completion: {(value: Any?) in
-            Swift.debugPrint("value : \(String(describing: value))")
-        })
-
     }
 
     class func removeCachedForms() {
@@ -135,7 +124,12 @@ class UsabillaInternal {
     }
 
     class func resetCampaignData(completion: (() -> Void)?) {
-        campaignManager?.resetData(completion: completion)
+        let logid = telemetric.logStart(method: UBTelemetricReset(), logLevel: .methods )
+        campaignManager?.resetData(completion: { [logid] in
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricReset.methodResult, value: true, logLevel: .methods)
+            telemetric.logEnd(for: logid, keyPath: \UBTelemetricReset.duration)
+            completion?()
+        })
     }
 
     class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
@@ -187,25 +181,38 @@ class UsabillaInternal {
     #endif
 
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
+        let logid = telemetric.logStart(method: UBTelemetricLoadForm(), logLevel: .methods )
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: false, logLevel: .methods)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodMessage, value: errorSDKNotInitialized, logLevel: .methods)
+            telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
             return
         }
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme, maskModel: UsabillaInternal.maskModel).then { form in
             guard let navigationController = viewForForm(form: form) else {
                 DispatchQueue.main.async {
                     delegate?.formDidFailLoading(error: UBError(description: errorSDKNotInitialized))
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: false, logLevel: .methods)
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodMessage, value: errorSDKNotInitialized, logLevel: .methods)
+                    self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
                 }
                 return
             }
             DispatchQueue.main.async {
                 formNavigationController = navigationController
                 delegate?.formDidLoad(form: navigationController)
+                self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: true, logLevel: .methods)
+                self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
             }
 
             }.catch { _ in
                 DispatchQueue.main.async {
                     delegate?.formDidFailLoading(error: UBError(description: "Unable to load the form"))
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: false, logLevel: .methods)
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodMessage, value: "Unable to load the form", logLevel: .methods)
+                    self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
+
                 }
         }
     }
@@ -239,9 +246,14 @@ class UsabillaInternal {
 
     class func setDataMasking(masks: [String],
                               maskCharacter: Character) {
+        let logid = telemetric.logStart(method: UBTelemetricSetDataMasking(), logLevel: .methods )
         let mask = MaskModel(maskCharacter: maskCharacter,
                              masks: masks)
         UsabillaInternal.maskModel = mask
         campaignManager?.maskModel = mask
+        telemetric.logEnd(for: logid, keyPath: \UBTelemetricSetDataMasking.duration)
+        let char = String(describing: maskCharacter)
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricSetDataMasking.masks, value: masks, logLevel: .methods)
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricSetDataMasking.maskCharacter, value: char, logLevel: .methods)
     }
 }

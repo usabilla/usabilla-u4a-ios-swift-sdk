@@ -188,7 +188,7 @@ public class FeedbackResult: NSObject {
             self.abandonedPageIndex = "\(aAbandonedPageIndex)" as NSString
         }
     }
-    
+
 }
 
 @objc(UBError)
@@ -228,7 +228,7 @@ public protocol UsabillaDelegate: class {
      
      withFeedbackResults can contain between 1 and n FeedbackResult
      */
-    
+
     @objc
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
@@ -256,7 +256,7 @@ public protocol UsabillaDelegate: class {
 }
 
 public extension UsabillaDelegate {
-    func formDidClose(formID: String,  withFeedbackResults results: [String], isRedirectToAppStoreEnabled: Bool) {}
+    func formDidClose(formID: String, withFeedbackResults results: [String], isRedirectToAppStoreEnabled: Bool) {}
     func formDidClose(formID: String, withFeedbackResults results: [Any], isRedirectToAppStoreEnabled: Bool) {
     }
     func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }

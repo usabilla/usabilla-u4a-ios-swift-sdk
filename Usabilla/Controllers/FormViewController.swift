@@ -299,9 +299,7 @@ class FormViewController: UIViewController {
 }
 
 extension FormViewController: UIAdaptivePresentationControllerDelegate {
-
     func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-
     }
 
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {

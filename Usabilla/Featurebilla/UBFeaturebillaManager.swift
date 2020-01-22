@@ -10,16 +10,33 @@ import Foundation
 import UIKit
 
 protocol UBSettingProtocol {
-    // var percentage: Double {get set}
-    // var sdkversion: String {get set}
 }
 
 private var featureSettings = [Setting]()
+
+// loglevels
+struct UBTelemetricLogLevel: OptionSet {
+    let rawValue: Int
+
+    static let methods = UBTelemetricLogLevel(rawValue: 1 << 0)
+    static let properties = UBTelemetricLogLevel(rawValue: 1 << 1)
+    static let networking = UBTelemetricLogLevel(rawValue: 1 << 2)
+    static let memmory = UBTelemetricLogLevel(rawValue: 1 << 3)
+
+    static let all: UBTelemetricLogLevel = [.methods, .properties, .networking, .memmory]
+}
+
+// The different Types of analytics that we support in FeatureBilla
+enum FeatureTypes: String {
+    case telemetryLevel
+}
 
 class UBFeaturebillaManager {
     private let featurebillaStore: FeaturebillaStoreProtocol
     private let featurebillaService: FeaturebillaServiceProtocol
     private let contextPercentage = "percentage"
+    private var logLevels: [FeatureTypes: Any] = [:]
+
     init(featurebillaStore: FeaturebillaStoreProtocol, featurebillaService: FeaturebillaServiceProtocol) {
         self.featurebillaStore = featurebillaStore
         self.featurebillaService = featurebillaService
@@ -39,33 +56,42 @@ class UBFeaturebillaManager {
         }
     }
 
-    func getSettingVariable(variableName: String, defaultValue: Any, userContexts: [String: String], completion:@escaping (_ value: Any?) -> Void ) {
+    func getSettingVariable(variableName: FeatureTypes, defaultValue: Any, userContexts: [String: String], completion:@escaping (_ value: Any?) -> Void ) {
         self.getSettingsList().then {_ in
             let result = featureSettings.filter {
-                $0.variable == variableName && self.checkRules(setting: $0, userContexts: userContexts)
+                $0.variable == variableName.rawValue && self.checkRules(setting: $0, userContexts: userContexts)
             }
+            self.logLevels[variableName] = (result.first?.value ?? defaultValue)
             completion(result.first?.value ?? defaultValue)
         }
     }
-    
+
+    func shouldLog(_ type: FeatureTypes, logLevel: UBTelemetricLogLevel) -> Bool {
+        var current: UBTelemetricLogLevel = [.methods, .memmory]
+        if let level = logLevels[type] as? Int {
+            current = UBTelemetricLogLevel(rawValue: level)
+        }
+        return current.contains(logLevel)
+    }
+
     private func isPartOfPercentage(variableName: String, percentageValue: Double) -> Bool {
         if percentageValue == 0.0 {
             return false
-        } else if percentageValue == 100.0 {
+        } else if percentageValue == 1.0 {
             return true
         } else {
             let computedPercentage = getComputedPercentage(variable: variableName)
             if computedPercentage <= percentageValue {
-                    return false
+                return true
             }
         }
         return false
     }
 
-    func getSettingVariable(variableName: String, defaultValue: Any, userContexts: UBSettingProtocol, completion:@escaping (_ value: Any?) -> Void ) {
+    func getSettingVariable(variableName: FeatureTypes, defaultValue: Any, userContexts: UBSettingProtocol, completion:@escaping (_ value: Any?) -> Void ) {
         self.getSettingsList().then {_ in
             let result = featureSettings.filter {
-                $0.variable == variableName && self.checkRules(setting: $0, userContexts: userContexts)
+                $0.variable == variableName.rawValue && self.checkRules(setting: $0, userContexts: userContexts)
             }
             completion(result.first?.value ?? defaultValue)
         }

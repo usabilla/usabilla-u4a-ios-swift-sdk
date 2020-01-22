@@ -13,10 +13,13 @@ class UBTelemetrics {
 
     private var startTime: [String: Date] = [:]
     private var log: [String: UBTelemetricResponse] = [:]
+    private let maxnumberOfEntries = 10  // the max number of entries, 0 equals no limit
 
-    private var featureBillaService: UBFeatureBillaManagerProtocol
-    init() {
-        self.featureBillaService =  UBFeatureBillaManager()
+    private var featureBillaService: UBFeaturebillaManager
+    init(manager: UBFeaturebillaManager) {
+        self.featureBillaService = manager
+        manager.getSettingVariable(variableName: .telemetryLevel, defaultValue: 0.5, userContexts: ["platform": "ios", "sdk": "6.4.3"], completion: {_ in
+        })
     }
     /// Starts the logging (time) for an event. The returned id, must be use in  calls to alterData or logEnd. If nil is returned,
     /// when the log is started, its checked towards the percentage, and if inside the envelope,  all logging will occur. There is no
@@ -25,13 +28,13 @@ class UBTelemetrics {
     ///    - Parameter file: the file where the method to log is called from (defaults to empty string)
     ///    - Parameter line: the line number where the method to log is called from (defaults to 0)
     ///    - Parameter logLevel: the loglevel this log entry belongs to
-    func logStart(method: String, logLevel: FeatureLogLevel) -> String? {
+    func logStart(method: UBTelemetricProtocol, logLevel: UBTelemetricLogLevel) -> String? {
         let date = Date()
-        if featureBillaService.shouldLog(.telemetrics, logLevel: logLevel) {
+        if featureBillaService.shouldLog(.telemetryLevel, logLevel: logLevel) {
             let logid = String(abs(date.hashValue))
             startTime[logid] = date
-            let dataStruct = UBTelemetricResponse(level: 2)
-            dataStruct.methodData.methodName = method
+            let dataStruct = UBTelemetricResponse(logLevel)
+            dataStruct.data.append(method)
             log[logid] = dataStruct
             return logid
         }
@@ -39,62 +42,96 @@ class UBTelemetrics {
     }
 
     /// This method accepts a keypath and value , and then updates the coressponing propeties in th UBAnalyticsRespons model and nested structs The loglevl could be lower than the main current log object.
-    ///    - Parameter for: the value reciede from the logStart.  If nill nothing will be logged
-    ///    - Parameter key: the property to alter in the UBAnalyticsRespons
+    ///    - Parameter for: the value provided from the logStart.  If nill nothing will be logged
+    ///    - Parameter keyPath: the property to alter in the UBAnalyticsRespons
     ///    - Parameter value:the value to set fot the ky
     ///    - Parameter logLevel: the loglevel this properties belongs to
-    func alterData<V>(for logId: String?, key: WritableKeyPath<UBTelemetricResponse, V>, value: V, logLevel: FeatureLogLevel) {
-        if featureBillaService.shouldLog(.telemetrics, logLevel: logLevel) {
-            guard let logId = logId, var dataToAlter = log[logId] else { return }
-                dataToAlter[keyPath: key] = value
-                log[logId] = dataToAlter
+    func alterData<Type, V>(for logId: String?, keyPath: WritableKeyPath<Type, V>, value: V, logLevel: UBTelemetricLogLevel) {
+        if featureBillaService.shouldLog(.telemetryLevel, logLevel: logLevel) {
+            guard let logId = logId, let dataToAlter = log[logId] else { return }
+
+            dataToAlter.data.forEach {
+                if var object = $0 as? Type {
+                    object[keyPath: keyPath] = value
+                }
+
+            }
+            log[logId] = dataToAlter
         }
     }
 
     /// finish the time-meassure started in the logStart method. If there is a logId, logging should be done
     /// - Parameter logId: the logId provided by the logStart method. If nil or not found, nothing is logged.
-    func logEnd(for logId: String?) {
+    /// - Parameter keyPath: the  keypath, where the duration should be written. Keypath must be a double
+    func logEnd<Type>(for logId: String?, keyPath: WritableKeyPath<Type, Double>) {
         guard let logId = logId else { return }
         if let startime = startTime[logId] {
             let endtime = Date()
-            alterData(for: logId, key: \UBTelemetricResponse.methodData.duration, value: endtime.timeIntervalSince(startime), logLevel: .all )
+            alterData(for: logId, keyPath: keyPath, value: endtime.timeIntervalSince(startime), logLevel: .all )
             startTime.removeValue(forKey: logId)
+            updateFileStorrage(with: logId)
             return
         }
     }
 
-    /// Log performance of subtask . provide the main logId for the current task, and data for the dub-task wil be added. Currently only non-closure operation will perform corret
-    ///    - Parameter for: the value reciede from the logStart.  If nill nothing will be logged
-    ///    - Parameter logLevel: the loglevel this properties belongs to
-    func logSubTask(for logId: String?, logLevel: FeatureLogLevel) -> String? {
-        let starttime = Date()
-        guard logId != nil else { return nil }
-        if featureBillaService.shouldLog(.telemetrics, logLevel: logLevel) {
-            let logid = String(abs(starttime.hashValue))
-            startTime[logid] = starttime
-            return logid
+    /// prints all data to the console
+    func printlog() {
+        do {
+            try log.forEach {
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted
+                let jsonData = try encoder.encode($1)
+                if let json = String(data: jsonData, encoding: String.Encoding.utf8) {
+                    print(json)
+                }
+            }
+        } catch {
+            print("Error while creating json")
+        }
+    }
+
+    fileprivate func updateFileStorrage(with logId: String) {
+        guard let objectToAlter = log[logId] else {return}
+        if saveToFile(component: objectToAlter) {
+            log.removeValue(forKey: logId)
+        }
+    }
+
+    fileprivate func getFileURL () -> URL? {
+        let file = TelemetryConstants.filename
+
+        let fileManager = FileManager.default
+        if let dir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let filepath = dir.appendingPathComponent(TelemetryConstants.filepath, isDirectory: true).appendingPathComponent(file)
+            return filepath
         }
         return nil
     }
 
-    /// finish the time-meassure started in the logSubTask method. It will only add en entry in the logid
-    /// - Parameter logId: the logId provided by the logSubTask method. If nil or not found, nothing is logged.
-    /// - Parameter parentId: the parent logId (retrieved from logStar)t. If nil or not found, nothing is logged.
-    /// - Parameter name: the name to record in the log
-    func logEndSubTask(for logId: String?, parentId: String?, name: String) {
-        guard let logId = logId, let parentId = parentId else { return }
-        guard let startime = startTime[logId],
-            let objectToAlter = log[parentId] else {return}
-        let endtime = Date()
-        objectToAlter.performane.append(UBTelemetricPerformance(duration: endtime.timeIntervalSince(startime), methodName: name))
-        startTime.removeValue(forKey: logId)
-        return
+    fileprivate func saveToFile(component: UBTelemetricResponse) -> Bool {
+        var currentData = loadFromJsonFile()
+        guard let fileURL = getFileURL() else { return false}
+        currentData.insert(component, at: 0)
+        while currentData.count >= maxnumberOfEntries {
+            currentData.remove(at: currentData.count-1)
+        }
+        do {
+            let data = try JSONEncoder().encode(currentData)
+            try data.write(to: fileURL)
+            return true
+        } catch {
+            return false
+        }
     }
 
-    /// prints all data to the console
-    func printlog() {
-        log.forEach {
-            print("JSON String : " + $0.value.description)
-        }
+    fileprivate func loadFromJsonFile() -> [UBTelemetricResponse] {
+        guard let fileURL = getFileURL() else { return [] }
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let decoder = JSONDecoder()
+            let product = try decoder.decode([UBTelemetricResponse].self, from: data)
+            return product
+        } catch {print("Error")}
+        return []
     }
 }

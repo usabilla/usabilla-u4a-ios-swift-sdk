@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 struct JSONConstant {
     static let data = "data"
 
@@ -25,6 +24,14 @@ struct JSONConstant {
         static let storeIp = "store_ip"
         static let storeLocation = "store_location"
     }
+}
+
+struct TelemetryConstants {
+    static let noCampaingFound = "No campaign found"
+    static let campaingAlraedyTriggered = "Campaign already triggered"
+    static let campaingAlreadyShowing = "A campaign is already displayed"
+    static let filename = "debug.data"
+    static let filepath = "UBSDK"
 }
 
 struct UBDimensions {
