@@ -137,9 +137,9 @@ class DeviceInfo {
     static var bottomMargin: CGFloat {
         get {
             if DeviceInfo.isIPad() {
-                return 23
+                return (getBottomSafeInsets() == 0) ? 23 : getBottomSafeInsets()
             }
-            return 16
+            return (getBottomSafeInsets() == 0) ? 16 : getBottomSafeInsets()
         }
         set {
             _ = newValue
