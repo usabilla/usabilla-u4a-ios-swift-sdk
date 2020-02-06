@@ -397,8 +397,6 @@
 		43E883F61E37B7B900A97F1D /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F51E37B7B900A97F1D /* StringTest.swift */; };
 		43E883F81E38A28A00A97F1D /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F71E38A28A00A97F1D /* UIColorTest.swift */; };
 		43E883FA1E38A91100A97F1D /* UIDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883F91E38A91100A97F1D /* UIDeviceTest.swift */; };
-		43ED68F51F86806B00C9D279 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED68F41F86806B00C9D279 /* Debug.swift */; };
-		43ED68F61F86806B00C9D279 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED68F41F86806B00C9D279 /* Debug.swift */; };
 		43F838931F793B2A005109AA /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
 		43F9B9AE1E38E18600C78051 /* UIImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9B9AD1E38E18600C78051 /* UIImageTest.swift */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
@@ -498,6 +496,206 @@
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 		F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 		F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
+		F213103A23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */; };
+		F213103B23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */; };
+		F213103D23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
+		F213103E23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
+		F213104023EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
+		F213104123EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
+		F213104223EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
+		F26922B323EB17B900E6A455 /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
+		F26922B423EB17B900E6A455 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
+		F26922B523EB17B900E6A455 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
+		F26922B623EB17B900E6A455 /* UBSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */; };
+		F26922B723EB17B900E6A455 /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
+		F26922B823EB17B900E6A455 /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
+		F26922B923EB17B900E6A455 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
+		F26922BA23EB17B900E6A455 /* NPSFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38471F68867600F0DFC6 /* NPSFieldModel.swift */; };
+		F26922BB23EB17B900E6A455 /* LeafEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafEvent.swift */; };
+		F26922BC23EB17B900E6A455 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
+		F26922BD23EB17B900E6A455 /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
+		F26922BE23EB17B900E6A455 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
+		F26922BF23EB17B900E6A455 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
+		F26922C023EB17B900E6A455 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormViewController.swift */; };
+		F26922C123EB17B900E6A455 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
+		F26922C223EB17B900E6A455 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */; };
+		F26922C323EB17B900E6A455 /* UBEndPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264111E92865000A0533C /* UBEndPageViewModel.swift */; };
+		F26922C423EB17B900E6A455 /* MoodComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */; };
+		F26922C523EB17B900E6A455 /* PickerComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44E1E78366A00B3E4FE /* PickerComponentViewModel.swift */; };
+		F26922C623EB17B900E6A455 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
+		F26922C723EB17B900E6A455 /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
+		F26922C823EB17B900E6A455 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
+		F26922C923EB17B900E6A455 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C2C80B1F39EB9E0082A1B9 /* Date.swift */; };
+		F26922CA23EB17B900E6A455 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
+		F26922CB23EB17B900E6A455 /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B771E85187000741E10 /* UBBannerDisplay.swift */; };
+		F26922CC23EB17B900E6A455 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F149DE1CE0B8D000D56B29 /* Reachability.swift */; };
+		F26922CD23EB17B900E6A455 /* SliderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */; };
+		F26922CE23EB17B900E6A455 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */; };
+		F26922CF23EB17B900E6A455 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
+		F26922D023EB17B900E6A455 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
+		F26922D123EB17B900E6A455 /* OptionsFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8601E29011E00AC895C /* OptionsFieldModel.swift */; };
+		F26922D223EB17B900E6A455 /* NPSToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4C7621F69DD490043A844 /* NPSToolTip.swift */; };
+		F26922D323EB17B900E6A455 /* CheckBoxComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */; };
+		F26922D423EB17B900E6A455 /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
+		F26922D523EB17B900E6A455 /* SliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699C1E76B4B30078E3B3 /* SliderComponent.swift */; };
+		F26922D623EB17B900E6A455 /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
+		F26922D723EB17B900E6A455 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
+		F26922D823EB17B900E6A455 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C3F9B1EAA14A000B0B190 /* HTTPClientProtocol.swift */; };
+		F26922D923EB17B900E6A455 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
+		F26922DA23EB17B900E6A455 /* RootCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CC1CDCDF86004EC234 /* RootCellView.swift */; };
+		F26922DB23EB17B900E6A455 /* UBFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */; };
+		F26922DC23EB17B900E6A455 /* SequenceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A91E8BB33E002962A3 /* SequenceRule.swift */; };
+		F26922DD23EB17B900E6A455 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
+		F26922DE23EB17B900E6A455 /* EmailFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */; };
+		F26922DF23EB17B900E6A455 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
+		F26922E023EB17B900E6A455 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */; };
+		F26922E123EB17B900E6A455 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
+		F26922E223EB17B900E6A455 /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
+		F26922E323EB17B900E6A455 /* MoodComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669991E76B4B30078E3B3 /* MoodComponent.swift */; };
+		F26922E423EB17B900E6A455 /* UBFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CC0161E92565100205D9D /* UBFormViewModel.swift */; };
+		F26922E523EB17B900E6A455 /* BaseTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */; };
+		F26922E623EB17B900E6A455 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
+		F26922E723EB17B900E6A455 /* EmailComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */; };
+		F26922E823EB17B900E6A455 /* SwiftCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */; };
+		F26922E923EB17B900E6A455 /* CampaignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */; };
+		F26922EA23EB17B900E6A455 /* RadioComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */; };
+		F26922EB23EB17B900E6A455 /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */; };
+		F26922EC23EB17B900E6A455 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
+		F26922ED23EB17B900E6A455 /* PassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */; };
+		F26922EE23EB17B900E6A455 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B21E76D8E30078E3B3 /* PageViewModel.swift */; };
+		F26922EF23EB17B900E6A455 /* UBCampaignFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */; };
+		F26922F023EB17B900E6A455 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
+		F26922F123EB17B900E6A455 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E181CD76708002F501E /* DeviceInfo.swift */; };
+		F26922F223EB17B900E6A455 /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
+		F26922F323EB17B900E6A455 /* FieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C31CDCDF86004EC234 /* FieldFactory.swift */; };
+		F26922F423EB17B900E6A455 /* UBToastPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BFD4261EFBDF0200AD47AE /* UBToastPageViewModel.swift */; };
+		F26922F523EB17B900E6A455 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
+		F26922F623EB17B900E6A455 /* PercentageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */; };
+		F26922F723EB17B900E6A455 /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C01E36430D00B4A4B9 /* SubmissionManager.swift */; };
+		F26922F823EB17B900E6A455 /* ScreenshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA021CDCE003004EC234 /* ScreenshotModel.swift */; };
+		F26922F923EB17B900E6A455 /* RadioFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */; };
+		F26922FA23EB17B900E6A455 /* TextAreaComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */; };
+		F26922FB23EB17B900E6A455 /* EmailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669971E76B4B30078E3B3 /* EmailComponent.swift */; };
+		F26922FC23EB17B900E6A455 /* HeaderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */; };
+		F26922FD23EB17B900E6A455 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
+		F26922FE23EB17B900E6A455 /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */; };
+		F26922FF23EB17B900E6A455 /* UBCampaignStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EE6F1EA0E6AF00241D44 /* UBCampaignStore.swift */; };
+		F269230023EB17B900E6A455 /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CA1CDCDF86004EC234 /* ParagraphFieldModel.swift */; };
+		F269230123EB17B900E6A455 /* UBAlertDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B831E8518E600741E10 /* UBAlertDisplay.swift */; };
+		F269230223EB17B900E6A455 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A81E8BB33E002962A3 /* Rules.swift */; };
+		F269230323EB17B900E6A455 /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */; };
+		F269230423EB17B900E6A455 /* HeaderFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */; };
+		F269230523EB17B900E6A455 /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
+		F269230623EB17B900E6A455 /* UBFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */; };
+		F269230723EB17B900E6A455 /* PoweredByUsabillaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */; };
+		F269230823EB17B900E6A455 /* UBEndPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264131E92867A00A0533C /* UBEndPageModel.swift */; };
+		F269230923EB17B900E6A455 /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
+		F269230A23EB17B900E6A455 /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
+		F269230B23EB17B900E6A455 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
+		F269230C23EB17B900E6A455 /* ScreenshotComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */; };
+		F269230D23EB17B900E6A455 /* UBCampaignDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */; };
+		F269230E23EB17B900E6A455 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
+		F269230F23EB17B900E6A455 /* BaseStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */; };
+		F269231023EB17B900E6A455 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0A1E89184E00928F54 /* HeaderComponent.swift */; };
+		F269231123EB17B900E6A455 /* BaseEditableStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46D1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift */; };
+		F269231223EB17B900E6A455 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F2C3B2084ED7D00D77F37 /* UILabel.swift */; };
+		F269231323EB17B900E6A455 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
+		F269231423EB17B900E6A455 /* ShowHideRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4F1CD76717002F501E /* ShowHideRule.swift */; };
+		F269231523EB17B900E6A455 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
+		F269231623EB17B900E6A455 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433794361E8A6C0100965EC8 /* Logging.swift */; };
+		F269231723EB17B900E6A455 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
+		F269231823EB17B900E6A455 /* IntFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85E1E2900B300AC895C /* IntFieldModel.swift */; };
+		F269231923EB17B900E6A455 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */; };
+		F269231A23EB17B900E6A455 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6F0022DFBE63007FEE38 /* UIViewController.swift */; };
+		F269231B23EB17B900E6A455 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43552B231F8CE82500BE657A /* UIBarButtonItem.swift */; };
+		F269231C23EB17B900E6A455 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
+		F269231D23EB17B900E6A455 /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
+		F269231E23EB17B900E6A455 /* UBImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */; };
+		F269231F23EB17B900E6A455 /* RepetitionDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */; };
+		F269232123EB17B900E6A455 /* OrRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A71E8BB33E002962A3 /* OrRule.swift */; };
+		F269232223EB17B900E6A455 /* CheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */; };
+		F269232323EB17B900E6A455 /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
+		F269232423EB17B900E6A455 /* BaseIntComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */; };
+		F269232523EB17B900E6A455 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B41E76D8EE0078E3B3 /* CellViewModel.swift */; };
+		F269232623EB17B900E6A455 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
+		F269232723EB17B900E6A455 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EC1E37B5C900A97F1D /* UIColor.swift */; };
+		F269232823EB17B900E6A455 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EE1E37B61000A97F1D /* UIDevice.swift */; };
+		F269232923EB17B900E6A455 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageViewController.swift */; };
+		F269232A23EB17B900E6A455 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C91CDCDF86004EC234 /* PageModel.swift */; };
+		F269232B23EB17B900E6A455 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
+		F269232C23EB17B900E6A455 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73BD1F97748200447B2C /* UIImageView.swift */; };
+		F269232D23EB17B900E6A455 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
+		F269232E23EB17B900E6A455 /* UBFileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */; };
+		F269232F23EB17B900E6A455 /* Decorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25AF1E8BB347002962A3 /* Decorator.swift */; };
+		F269233023EB17B900E6A455 /* UsabillaTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; };
+		F269233123EB17B900E6A455 /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
+		F269233223EB17B900E6A455 /* UBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F11E97BE9B00092977 /* UBDAO.swift */; };
+		F269233323EB17B900E6A455 /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669961E76B4B30078E3B3 /* ComponentFactory.swift */; };
+		F269233423EB17B900E6A455 /* UBSADragableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */; };
+		F269233523EB17B900E6A455 /* TextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */; };
+		F269233723EB17B900E6A455 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D522EE428200E198A7 /* ColorPickerView.swift */; };
+		F269233823EB17B900E6A455 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		F269233923EB17B900E6A455 /* PassiveFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EBF1E71B57500E3011A /* PassiveFormController.swift */; };
+		F269233A23EB17B900E6A455 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
+		F269233B23EB17B900E6A455 /* ParagraphComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */; };
+		F269233C23EB17B900E6A455 /* BaseCheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */; };
+		F269233D23EB17B900E6A455 /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
+		F269233E23EB17B900E6A455 /* UBCampaignFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */; };
+		F269233F23EB17B900E6A455 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C51CDCDF86004EC234 /* FormModel.swift */; };
+		F269234023EB17B900E6A455 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
+		F269234123EB17B900E6A455 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
+		F269234223EB17B900E6A455 /* RadioComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699B1E76B4B30078E3B3 /* RadioComponent.swift */; };
+		F269234323EB17B900E6A455 /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669911E76B4B30078E3B3 /* BaseComponent.swift */; };
+		F269234423EB17B900E6A455 /* IntroPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA21E82C02000601F3D /* IntroPageModel.swift */; };
+		F269234523EB17B900E6A455 /* BaseImageComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */; };
+		F269234623EB17B900E6A455 /* UBAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8DDD1FB5CB5700AA51DC /* UBAccessibility.swift */; };
+		F269234723EB17B900E6A455 /* BaseTextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */; };
+		F269234823EB17B900E6A455 /* TextFieldComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */; };
+		F269234923EB17B900E6A455 /* PickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669951E76B4B30078E3B3 /* PickerComponent.swift */; };
+		F269234A23EB17B900E6A455 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
+		F269234B23EB17B900E6A455 /* TargetingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5780D1E1F22073B0016C519 /* TargetingFactory.swift */; };
+		F269234C23EB17B900E6A455 /* CampaignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */; };
+		F269234D23EB17B900E6A455 /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
+		F269234E23EB17B900E6A455 /* UBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CA69A2221EEAA400D8D327 /* UBConstants.swift */; };
+		F269234F23EB17B900E6A455 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
+		F269235023EB17B900E6A455 /* ComponentViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */; };
+		F269235123EB17B900E6A455 /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */; };
+		F269235223EB17B900E6A455 /* ParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */; };
+		F269235323EB17B900E6A455 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8621E2901A700AC895C /* FieldModel.swift */; };
+		F269235523EB17B900E6A455 /* UBIntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* UBIntroOutroView.swift */; };
+		F269235623EB17B900E6A455 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
+		F269235723EB17B900E6A455 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
+		F269235823EB17B900E6A455 /* MaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B7E7C225783BE00088CB8 /* MaskModel.swift */; };
+		F269235923EB17B900E6A455 /* MoodFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C71CDCDF86004EC234 /* MoodFieldModel.swift */; };
+		F269235A23EB17B900E6A455 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
+		F269235B23EB17B900E6A455 /* UBAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B851E851EF300741E10 /* UBAlertPresenter.swift */; };
+		F269235C23EB17B900E6A455 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
+		F269235D23EB17B900E6A455 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
+		F269235E23EB17B900E6A455 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D922DCB61800CB95A9 /* Transitions.swift */; };
+		F269235F23EB17B900E6A455 /* LeafPassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */; };
+		F269236023EB17B900E6A455 /* TextAreaFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */; };
+		F269236123EB17B900E6A455 /* PickerFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C01CDCDF86004EC234 /* PickerFieldModel.swift */; };
+		F269236223EB17B900E6A455 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B781E85187000741E10 /* UBBannerPresenter.swift */; };
+		F269236323EB17B900E6A455 /* CampaingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */; };
+		F269236423EB17B900E6A455 /* JSONFormParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1A1CD76708002F501E /* JSONFormParser.swift */; };
+		F269236523EB17B900E6A455 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
+		F269236623EB17B900E6A455 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */; };
+		F269236723EB17B900E6A455 /* UBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FFEA021AD5318004034A5 /* UBNavigationController.swift */; };
+		F269236823EB17B900E6A455 /* UBRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4E1CD76717002F501E /* UBRule.swift */; };
+		F269236923EB17B900E6A455 /* UBSAPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */; };
+		F269236A23EB17B900E6A455 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
+		F269236B23EB17B900E6A455 /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
+		F269236C23EB17B900E6A455 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
+		F269236D23EB17B900E6A455 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
+		F269236E23EB17B900E6A455 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
+		F269237123EB17B900E6A455 /* Usabilla.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* Usabilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F269237323EB17B900E6A455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
+		F269237423EB17B900E6A455 /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
+		F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
+		F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
+		F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
+		F269238123EB190E00E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
+		F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
 		F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
@@ -763,7 +961,6 @@
 		43E883F51E37B7B900A97F1D /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		43E883F71E38A28A00A97F1D /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		43E883F91E38A91100A97F1D /* UIDeviceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceTest.swift; sourceTree = "<group>"; };
-		43ED68F41F86806B00C9D279 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		43F242D61F2F521C00601EAE /* CampaignFormJumpRules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CampaignFormJumpRules.json; sourceTree = "<group>"; };
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
@@ -826,6 +1023,12 @@
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarinDebug.swift; sourceTree = "<group>"; };
+		F213103C23EC022C0017B633 /* UsabillaDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaDebug.swift; sourceTree = "<group>"; };
+		F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaInternalDebug.swift; sourceTree = "<group>"; };
+		F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F269237D23EB17B900E6A455 /* UsabillaXamarin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UsabillaXamarin-Info.plist"; path = "/Users/hjain/Documents/Workspace/sdk_ios/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/UsabillaXamarin-Info.plist"; sourceTree = "<absolute>"; };
+		F269237E23EB190000E6A455 /* UsabillaXamarin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarin.swift; sourceTree = "<group>"; };
 		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
 		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
 		F2A08B9723D06FCF00A5F6F0 /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
@@ -856,6 +1059,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		43B04FC01F1F7EEF0032F057 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F269236F23EB17B900E6A455 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1106,6 +1316,7 @@
 				04F54DC81CD75A3F002F501E /* Usabilla.framework */,
 				04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */,
 				43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */,
+				F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1128,10 +1339,14 @@
 				04F54DCD1CD75A3F002F501E /* Info.plist */,
 				45639DA423015BD600E7135C /* Assets.xcassets */,
 				43B04FCF1F1F7EEF0032F057 /* UsabillaInternal-Info.plist */,
+				F269237D23EB17B900E6A455 /* UsabillaXamarin-Info.plist */,
 				0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */,
+				F269237E23EB190000E6A455 /* UsabillaXamarin.swift */,
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
 				041275D71F792BF700A12E09 /* Usabilla.swift */,
-				43ED68F41F86806B00C9D279 /* Debug.swift */,
+				F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */,
+				F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */,
+				F213103C23EC022C0017B633 /* UsabillaDebug.swift */,
 			);
 			path = Usabilla;
 			sourceTree = "<group>";
@@ -1609,6 +1824,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F269237023EB17B900E6A455 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F269237123EB17B900E6A455 /* Usabilla.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1669,6 +1892,25 @@
 			productReference = 43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F26922B123EB17B900E6A455 /* UsabillaXamarin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F269237823EB17B900E6A455 /* Build configuration list for PBXNativeTarget "UsabillaXamarin" */;
+			buildPhases = (
+				F26922B223EB17B900E6A455 /* Sources */,
+				F269236F23EB17B900E6A455 /* Frameworks */,
+				F269237023EB17B900E6A455 /* Headers */,
+				F269237223EB17B900E6A455 /* Resources */,
+				F269237723EB17B900E6A455 /* Linter */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UsabillaXamarin;
+			productName = Usabilla;
+			productReference = F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1710,6 +1952,7 @@
 				04F54DC71CD75A3F002F501E /* Usabilla */,
 				43B04F331F1F7EEF0032F057 /* UsabillaInternal */,
 				04F54DD11CD75A3F002F501E /* UsabillaTests */,
+				F26922B123EB17B900E6A455 /* UsabillaXamarin */,
 			);
 		};
 /* End PBXProject section */
@@ -1753,6 +1996,17 @@
 				F27F14E623C781B8000E903D /* UBStaging.xcconfig in Resources */,
 				43B04FC91F1F7EEF0032F057 /* usa_localizable.strings in Resources */,
 				F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F269237223EB17B900E6A455 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F269237323EB17B900E6A455 /* Assets.xcassets in Resources */,
+				F269237423EB17B900E6A455 /* UBStaging.xcconfig in Resources */,
+				F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */,
+				F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1803,6 +2057,20 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		F269237723EB17B900E6A455 /* Linter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Linter;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1844,6 +2112,7 @@
 				41C4C7631F69DD490043A844 /* NPSToolTip.swift in Sources */,
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
 				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
+				F213103D23EC022C0017B633 /* UsabillaDebug.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,
 				C564D1911E799A190004705A /* FormStore.swift in Sources */,
 				4589E599234C73400092C8F0 /* UBTouchView.swift in Sources */,
@@ -1922,6 +2191,7 @@
 				0483EA051CDCE01A004EC234 /* UsabillaInternal.swift in Sources */,
 				04DC25AC1E8BB33E002962A3 /* OrRule.swift in Sources */,
 				43CCD4601E783ED800B3E4FE /* CheckBoxComponent.swift in Sources */,
+				F213104023EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */,
 				4334E85B1E29008200AC895C /* BaseFieldModel.swift in Sources */,
 				43CCD45C1E78366A00B3E4FE /* BaseIntComponentViewModel.swift in Sources */,
 				430669B51E76D8EE0078E3B3 /* CellViewModel.swift in Sources */,
@@ -1971,7 +2241,6 @@
 				43CCD4591E78366A00B3E4FE /* ComponentViewModel.swift in Sources */,
 				43CCD4711E799B2900B3E4FE /* ParagraphComponent.swift in Sources */,
 				4334E8631E2901A700AC895C /* FieldModel.swift in Sources */,
-				43ED68F51F86806B00C9D279 /* Debug.swift in Sources */,
 				436C2B811E85187000741E10 /* UBIntroOutroView.swift in Sources */,
 				43AC10B11E1D095C0064D758 /* PathManager.swift in Sources */,
 				436F554A1E8178EF00E91E58 /* CampaignModel.swift in Sources */,
@@ -2149,6 +2418,7 @@
 				43B04F4E1F1F7EEF0032F057 /* SliderComponent.swift in Sources */,
 				43B04F4F1F1F7EEF0032F057 /* FormStore.swift in Sources */,
 				4589E59A234C739C0092C8F0 /* UBTouchView.swift in Sources */,
+				F213103E23EC022C0017B633 /* UsabillaDebug.swift in Sources */,
 				43B04F501F1F7EEF0032F057 /* HTTPClientProtocol.swift in Sources */,
 				43B04F511F1F7EEF0032F057 /* RootCellView.swift in Sources */,
 				43B04F521F1F7EEF0032F057 /* UBFeedbackRequestDAO.swift in Sources */,
@@ -2182,6 +2452,7 @@
 				43F838931F793B2A005109AA /* UBFeedbackIDDictionaryDAO.swift in Sources */,
 				43B04F6A1F1F7EEF0032F057 /* SubmissionManager.swift in Sources */,
 				43B04F6B1F1F7EEF0032F057 /* ScreenshotModel.swift in Sources */,
+				F213104123EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */,
 				43B04F6C1F1F7EEF0032F057 /* RadioFieldModel.swift in Sources */,
 				43B04F6D1F1F7EEF0032F057 /* TextAreaComponentViewModel.swift in Sources */,
 				43B04F6E1F1F7EEF0032F057 /* EmailComponent.swift in Sources */,
@@ -2209,6 +2480,7 @@
 				C50F2C3D2084EEFF00D77F37 /* UILabel.swift in Sources */,
 				F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */,
 				435D06F71FA8A11600D5A2F4 /* TargetingOptionsModel.swift in Sources */,
+				F269238123EB190E00E6A455 /* UsabillaXamarin.swift in Sources */,
 				43B04F7D1F1F7EEF0032F057 /* HeaderComponent.swift in Sources */,
 				43B04F7E1F1F7EEF0032F057 /* BaseEditableStringComponentViewModel.swift in Sources */,
 				43B04F7F1F1F7EEF0032F057 /* RequestBuilder.swift in Sources */,
@@ -2250,6 +2522,7 @@
 				43B04F9C1F1F7EEF0032F057 /* FooterTableViewCell.swift in Sources */,
 				43B04F9D1F1F7EEF0032F057 /* ParagraphComponentViewModel.swift in Sources */,
 				43B04F9E1F1F7EEF0032F057 /* BaseCheckBoxComponent.swift in Sources */,
+				F213103A23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */,
 				43B04F9F1F1F7EEF0032F057 /* SwiftEventBus.swift in Sources */,
 				43B04FA01F1F7EEF0032F057 /* UBCampaignFeedbackRequestDAO.swift in Sources */,
 				43B04FA11F1F7EEF0032F057 /* FormModel.swift in Sources */,
@@ -2272,7 +2545,6 @@
 				43B04FAE1F1F7EEF0032F057 /* ComponentViewModel.swift in Sources */,
 				43B04FAF1F1F7EEF0032F057 /* ParagraphComponent.swift in Sources */,
 				43B04FB01F1F7EEF0032F057 /* FieldModel.swift in Sources */,
-				43ED68F61F86806B00C9D279 /* Debug.swift in Sources */,
 				43B04FB11F1F7EEF0032F057 /* UBIntroOutroView.swift in Sources */,
 				43B04FB31F1F7EEF0032F057 /* PathManager.swift in Sources */,
 				43B04FB41F1F7EEF0032F057 /* CampaignModel.swift in Sources */,
@@ -2300,6 +2572,202 @@
 				43B04FBE1F1F7EEF0032F057 /* CheckboxFieldModel.swift in Sources */,
 				45B8263222CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */,
 				43B04FBF1F1F7EEF0032F057 /* Protocols.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F26922B223EB17B900E6A455 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F26922B323EB17B900E6A455 /* BaseOptionsComponentViewModel.swift in Sources */,
+				F26922B423EB17B900E6A455 /* NPSComponent.swift in Sources */,
+				F26922B523EB17B900E6A455 /* AnimationManager.swift in Sources */,
+				F26922B623EB17B900E6A455 /* UBSlider.swift in Sources */,
+				F26922B723EB17B900E6A455 /* CopyModel.swift in Sources */,
+				F26922B823EB17B900E6A455 /* JumpRule.swift in Sources */,
+				F26922B923EB17B900E6A455 /* HTTPClient.swift in Sources */,
+				F26922BA23EB17B900E6A455 /* NPSFieldModel.swift in Sources */,
+				F26922BB23EB17B900E6A455 /* LeafEvent.swift in Sources */,
+				F26922BC23EB17B900E6A455 /* UBSADrawingTool.swift in Sources */,
+				F26922BD23EB17B900E6A455 /* UBFileHelper.swift in Sources */,
+				F26922BE23EB17B900E6A455 /* StyleKit.swift in Sources */,
+				F26922BF23EB17B900E6A455 /* CampaignViewController.swift in Sources */,
+				F26922C023EB17B900E6A455 /* FormViewController.swift in Sources */,
+				F26922C123EB17B900E6A455 /* CampaignService.swift in Sources */,
+				F26922C223EB17B900E6A455 /* GridViewCell.swift in Sources */,
+				F26922C323EB17B900E6A455 /* UBEndPageViewModel.swift in Sources */,
+				F26922C423EB17B900E6A455 /* MoodComponentViewModel.swift in Sources */,
+				F26922C523EB17B900E6A455 /* PickerComponentViewModel.swift in Sources */,
+				F26922C623EB17B900E6A455 /* UBFormDAO.swift in Sources */,
+				F26922C723EB17B900E6A455 /* PickerIPadComponent.swift in Sources */,
+				F26922C823EB17B900E6A455 /* ThankYouViewController.swift in Sources */,
+				F26922C923EB17B900E6A455 /* Date.swift in Sources */,
+				F26922CA23EB17B900E6A455 /* CampaignWindow.swift in Sources */,
+				F26922CB23EB17B900E6A455 /* UBBannerDisplay.swift in Sources */,
+				F26922CC23EB17B900E6A455 /* Reachability.swift in Sources */,
+				F26922CD23EB17B900E6A455 /* SliderComponentViewModel.swift in Sources */,
+				F26922CE23EB17B900E6A455 /* UBIntroOutroPresenter.swift in Sources */,
+				F26922CF23EB17B900E6A455 /* UITableView.swift in Sources */,
+				F26922D023EB17B900E6A455 /* ColorPickerCell.swift in Sources */,
+				F26922D123EB17B900E6A455 /* OptionsFieldModel.swift in Sources */,
+				F26922D223EB17B900E6A455 /* NPSToolTip.swift in Sources */,
+				F26922D323EB17B900E6A455 /* CheckBoxComponentViewModel.swift in Sources */,
+				F26922D423EB17B900E6A455 /* IntroPageViewModel.swift in Sources */,
+				F26922D523EB17B900E6A455 /* SliderComponent.swift in Sources */,
+				F26922D623EB17B900E6A455 /* FormStore.swift in Sources */,
+				F26922D723EB17B900E6A455 /* UBTouchView.swift in Sources */,
+				F26922D823EB17B900E6A455 /* HTTPClientProtocol.swift in Sources */,
+				F26922D923EB17B900E6A455 /* UBCameraViewController.swift in Sources */,
+				F26922DA23EB17B900E6A455 /* RootCellView.swift in Sources */,
+				F26922DB23EB17B900E6A455 /* UBFeedbackRequestDAO.swift in Sources */,
+				F26922DC23EB17B900E6A455 /* SequenceRule.swift in Sources */,
+				F26922DD23EB17B900E6A455 /* UIFont.swift in Sources */,
+				F26922DE23EB17B900E6A455 /* EmailFieldModel.swift in Sources */,
+				F26922DF23EB17B900E6A455 /* LocalisationHandler.swift in Sources */,
+				F26922E023EB17B900E6A455 /* NSLayoutConstraint.swift in Sources */,
+				F26922E123EB17B900E6A455 /* CheckBoxWithText.swift in Sources */,
+				F26922E223EB17B900E6A455 /* CampaignSubmissionRequestManager.swift in Sources */,
+				F26922E323EB17B900E6A455 /* MoodComponent.swift in Sources */,
+				F26922E423EB17B900E6A455 /* UBFormViewModel.swift in Sources */,
+				F26922E523EB17B900E6A455 /* BaseTextFieldComponent.swift in Sources */,
+				F26922E623EB17B900E6A455 /* NPSControl.swift in Sources */,
+				F26922E723EB17B900E6A455 /* EmailComponentViewModel.swift in Sources */,
+				F26922E823EB17B900E6A455 /* SwiftCheckBox.swift in Sources */,
+				F26922E923EB17B900E6A455 /* CampaignViewModel.swift in Sources */,
+				F26922EA23EB17B900E6A455 /* RadioComponentViewModel.swift in Sources */,
+				F26922EB23EB17B900E6A455 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
+				F26922EC23EB17B900E6A455 /* SwiftyJSON.swift in Sources */,
+				F26922ED23EB17B900E6A455 /* PassiveStatus.swift in Sources */,
+				F26922EE23EB17B900E6A455 /* PageViewModel.swift in Sources */,
+				F26922EF23EB17B900E6A455 /* UBCampaignFeedbackRequest.swift in Sources */,
+				F26922F023EB17B900E6A455 /* UBToast.swift in Sources */,
+				F26922F123EB17B900E6A455 /* DeviceInfo.swift in Sources */,
+				F26922F223EB17B900E6A455 /* BaseParagraphComponent.swift in Sources */,
+				F26922F323EB17B900E6A455 /* FieldFactory.swift in Sources */,
+				F26922F423EB17B900E6A455 /* UBToastPageViewModel.swift in Sources */,
+				F26922F523EB17B900E6A455 /* Promise.swift in Sources */,
+				F26922F623EB17B900E6A455 /* PercentageDecorator.swift in Sources */,
+				F26922F723EB17B900E6A455 /* SubmissionManager.swift in Sources */,
+				F213104223EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */,
+				F26922F823EB17B900E6A455 /* ScreenshotModel.swift in Sources */,
+				F26922F923EB17B900E6A455 /* RadioFieldModel.swift in Sources */,
+				F26922FA23EB17B900E6A455 /* TextAreaComponentViewModel.swift in Sources */,
+				F26922FB23EB17B900E6A455 /* EmailComponent.swift in Sources */,
+				F26922FC23EB17B900E6A455 /* HeaderComponentViewModel.swift in Sources */,
+				F26922FD23EB17B900E6A455 /* DrawingPlugin.swift in Sources */,
+				F26922FE23EB17B900E6A455 /* UBSAContainerView.swift in Sources */,
+				F26922FF23EB17B900E6A455 /* UBCampaignStore.swift in Sources */,
+				F269230023EB17B900E6A455 /* ParagraphFieldModel.swift in Sources */,
+				F269230123EB17B900E6A455 /* UBAlertDisplay.swift in Sources */,
+				F269230223EB17B900E6A455 /* Rules.swift in Sources */,
+				F269230323EB17B900E6A455 /* ColorPickerViewDelegate.swift in Sources */,
+				F269230423EB17B900E6A455 /* HeaderFieldModel.swift in Sources */,
+				F269230523EB17B900E6A455 /* ScreenshotComponent.swift in Sources */,
+				F269230623EB17B900E6A455 /* UBFeedbackRequest.swift in Sources */,
+				F269230723EB17B900E6A455 /* PoweredByUsabillaView.swift in Sources */,
+				F269230823EB17B900E6A455 /* UBEndPageModel.swift in Sources */,
+				F269230923EB17B900E6A455 /* EventEngine.swift in Sources */,
+				F269230A23EB17B900E6A455 /* UBSAEditImageMasterView.swift in Sources */,
+				F269230B23EB17B900E6A455 /* RatingFieldModel.swift in Sources */,
+				F269230C23EB17B900E6A455 /* ScreenshotComponentViewModel.swift in Sources */,
+				F269230D23EB17B900E6A455 /* UBCampaignDAO.swift in Sources */,
+				F269230E23EB17B900E6A455 /* Locale.swift in Sources */,
+				F269230F23EB17B900E6A455 /* BaseStringComponentViewModel.swift in Sources */,
+				F269231023EB17B900E6A455 /* HeaderComponent.swift in Sources */,
+				F269231123EB17B900E6A455 /* BaseEditableStringComponentViewModel.swift in Sources */,
+				F269231223EB17B900E6A455 /* UILabel.swift in Sources */,
+				F269231323EB17B900E6A455 /* RequestBuilder.swift in Sources */,
+				F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */,
+				F269231423EB17B900E6A455 /* ShowHideRule.swift in Sources */,
+				F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */,
+				F269231523EB17B900E6A455 /* String.swift in Sources */,
+				F269231623EB17B900E6A455 /* Logging.swift in Sources */,
+				F269231723EB17B900E6A455 /* AndRule.swift in Sources */,
+				F269231823EB17B900E6A455 /* IntFieldModel.swift in Sources */,
+				F269231923EB17B900E6A455 /* TextFieldModel.swift in Sources */,
+				F269231A23EB17B900E6A455 /* UIViewController.swift in Sources */,
+				F269231B23EB17B900E6A455 /* UIBarButtonItem.swift in Sources */,
+				F269231C23EB17B900E6A455 /* CampaignSubmissionManager.swift in Sources */,
+				F213103B23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */,
+				F269231D23EB17B900E6A455 /* GridViewSectionCell.swift in Sources */,
+				F269231E23EB17B900E6A455 /* UBImagePickerController.swift in Sources */,
+				F269231F23EB17B900E6A455 /* RepetitionDecorator.swift in Sources */,
+				F269232123EB17B900E6A455 /* OrRule.swift in Sources */,
+				F269232223EB17B900E6A455 /* CheckBoxComponent.swift in Sources */,
+				F269232323EB17B900E6A455 /* BaseFieldModel.swift in Sources */,
+				F269232423EB17B900E6A455 /* BaseIntComponentViewModel.swift in Sources */,
+				F269232523EB17B900E6A455 /* CellViewModel.swift in Sources */,
+				F269232623EB17B900E6A455 /* ClientModel.swift in Sources */,
+				F269232723EB17B900E6A455 /* UIColor.swift in Sources */,
+				F269232823EB17B900E6A455 /* UIDevice.swift in Sources */,
+				F269232923EB17B900E6A455 /* PageViewController.swift in Sources */,
+				F269232A23EB17B900E6A455 /* PageModel.swift in Sources */,
+				F269232B23EB17B900E6A455 /* UIImage.swift in Sources */,
+				F269232C23EB17B900E6A455 /* UIImageView.swift in Sources */,
+				F269232D23EB17B900E6A455 /* FormService.swift in Sources */,
+				F269232E23EB17B900E6A455 /* UBFileStorageDAO.swift in Sources */,
+				F269232F23EB17B900E6A455 /* Decorator.swift in Sources */,
+				F269233023EB17B900E6A455 /* UsabillaTheme.swift in Sources */,
+				F269233123EB17B900E6A455 /* UBFeedbackIDDictionaryDAO.swift in Sources */,
+				F269233223EB17B900E6A455 /* UBDAO.swift in Sources */,
+				F269233323EB17B900E6A455 /* ComponentFactory.swift in Sources */,
+				F269233423EB17B900E6A455 /* UBSADragableImageView.swift in Sources */,
+				F269233523EB17B900E6A455 /* TextAreaComponent.swift in Sources */,
+				F269233723EB17B900E6A455 /* ColorPickerView.swift in Sources */,
+				F269233823EB17B900E6A455 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
+				F269233923EB17B900E6A455 /* PassiveFormController.swift in Sources */,
+				F269233A23EB17B900E6A455 /* FooterTableViewCell.swift in Sources */,
+				F269233B23EB17B900E6A455 /* ParagraphComponentViewModel.swift in Sources */,
+				F269233C23EB17B900E6A455 /* BaseCheckBoxComponent.swift in Sources */,
+				F269233D23EB17B900E6A455 /* SwiftEventBus.swift in Sources */,
+				F269233E23EB17B900E6A455 /* UBCampaignFeedbackRequestDAO.swift in Sources */,
+				F269233F23EB17B900E6A455 /* FormModel.swift in Sources */,
+				F269234023EB17B900E6A455 /* Event.swift in Sources */,
+				F269234123EB17B900E6A455 /* RatingControl.swift in Sources */,
+				F269234223EB17B900E6A455 /* RadioComponent.swift in Sources */,
+				F269234323EB17B900E6A455 /* BaseComponent.swift in Sources */,
+				F269234423EB17B900E6A455 /* IntroPageModel.swift in Sources */,
+				F269234523EB17B900E6A455 /* BaseImageComponentViewModel.swift in Sources */,
+				F269234623EB17B900E6A455 /* UBAccessibility.swift in Sources */,
+				F269234723EB17B900E6A455 /* BaseTextAreaComponent.swift in Sources */,
+				F269234823EB17B900E6A455 /* TextFieldComponentViewModel.swift in Sources */,
+				F269234923EB17B900E6A455 /* PickerComponent.swift in Sources */,
+				F269234A23EB17B900E6A455 /* UBSADrawingView.swift in Sources */,
+				F269234B23EB17B900E6A455 /* TargetingFactory.swift in Sources */,
+				F269234C23EB17B900E6A455 /* CampaignManager.swift in Sources */,
+				F269234D23EB17B900E6A455 /* TargetingOptionsModel.swift in Sources */,
+				F269234E23EB17B900E6A455 /* UBConstants.swift in Sources */,
+				F269234F23EB17B900E6A455 /* UIView.swift in Sources */,
+				F269235023EB17B900E6A455 /* ComponentViewModelFactory.swift in Sources */,
+				F269235123EB17B900E6A455 /* ComponentViewModel.swift in Sources */,
+				F269235223EB17B900E6A455 /* ParagraphComponent.swift in Sources */,
+				F269235323EB17B900E6A455 /* FieldModel.swift in Sources */,
+				F269235523EB17B900E6A455 /* UBIntroOutroView.swift in Sources */,
+				F269235623EB17B900E6A455 /* PathManager.swift in Sources */,
+				F269235723EB17B900E6A455 /* CampaignModel.swift in Sources */,
+				F269235823EB17B900E6A455 /* MaskModel.swift in Sources */,
+				F269235923EB17B900E6A455 /* MoodFieldModel.swift in Sources */,
+				F269235A23EB17B900E6A455 /* UBImageLibraryButton.swift in Sources */,
+				F269235B23EB17B900E6A455 /* UBAlertPresenter.swift in Sources */,
+				F269235C23EB17B900E6A455 /* PickerParentComponent.swift in Sources */,
+				F269235D23EB17B900E6A455 /* LeafActiveStatus.swift in Sources */,
+				F269235E23EB17B900E6A455 /* Transitions.swift in Sources */,
+				F269235F23EB17B900E6A455 /* LeafPassiveStatus.swift in Sources */,
+				F269236023EB17B900E6A455 /* TextAreaFieldModel.swift in Sources */,
+				F269236123EB17B900E6A455 /* PickerFieldModel.swift in Sources */,
+				F269236223EB17B900E6A455 /* UBBannerPresenter.swift in Sources */,
+				F269236323EB17B900E6A455 /* CampaingAnimator.swift in Sources */,
+				F269236423EB17B900E6A455 /* JSONFormParser.swift in Sources */,
+				F269236523EB17B900E6A455 /* NPSComponentViewModel.swift in Sources */,
+				F269236623EB17B900E6A455 /* UBCustomTouchableView.swift in Sources */,
+				F269236723EB17B900E6A455 /* UBNavigationController.swift in Sources */,
+				F269236823EB17B900E6A455 /* UBRule.swift in Sources */,
+				F269236923EB17B900E6A455 /* UBSAPluginViewController.swift in Sources */,
+				F269236A23EB17B900E6A455 /* ActiveStatus.swift in Sources */,
+				F269236B23EB17B900E6A455 /* StringFieldModel.swift in Sources */,
+				F269236C23EB17B900E6A455 /* CheckboxFieldModel.swift in Sources */,
+				F269236D23EB17B900E6A455 /* UBEditImageMainViewController.swift in Sources */,
+				F269236E23EB17B900E6A455 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2796,6 +3264,128 @@
 			};
 			name = Release;
 		};
+		F269237923EB17B900E6A455 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27F14E423C781B8000E903D /* UBStaging.xcconfig */;
+			buildSettings = {
+				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 35;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"XCODE$(XCODE_VERSION_MAJOR)=1",
+				);
+				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 6.4.4;
+				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Debug;
+		};
+		F269237A23EB17B900E6A455 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27F14E123C781A5000E903D /* UBProduction.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 35;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "XCODE$(XCODE_VERSION_MAJOR)=1";
+				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
+				MARKETING_VERSION = 6.4.4;
+				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 x86_64 armv7 armv7s";
+			};
+			name = Release;
+		};
+		F269237B23EB17B900E6A455 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27F14E123C781A5000E903D /* UBProduction.xcconfig */;
+			buildSettings = {
+				ARCHS = (
+					arm64,
+					armv7,
+					armv7s,
+					i386,
+					x86_64,
+				);
+				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 35;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "XCODE$(XCODE_VERSION_MAJOR)=1";
+				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator";
+				MARKETING_VERSION = 6.4.4;
+				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				"SDKROOT[arch=i386]" = "$(CORRESPONDING_SIMULATOR_SDK_NAME)";
+				"SDKROOT[arch=x86_64]" = "$(CORRESPONDING_SIMULATOR_SDK_NAME)";
+				SKIP_INSTALL = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Production;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2835,6 +3425,16 @@
 				43B04FCC1F1F7EEF0032F057 /* Debug */,
 				43B04FCD1F1F7EEF0032F057 /* Release */,
 				439AAD1E1FAB702E00DF6D9E /* Production */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F269237823EB17B900E6A455 /* Build configuration list for PBXNativeTarget "UsabillaXamarin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F269237923EB17B900E6A455 /* Debug */,
+				F269237A23EB17B900E6A455 /* Release */,
+				F269237B23EB17B900E6A455 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
