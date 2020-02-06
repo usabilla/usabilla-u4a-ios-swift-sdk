@@ -1,7 +1,6 @@
 fastlane_version "2.64.1"
-import "./propertiesFile.rb"
-import "./BuildFastFile.rb"
 import "./buildFramework.rb"
+import "./buildXamarinFramework.rb"
 default_platform :ios
 actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
@@ -209,10 +208,10 @@ end
 #used to crate all releases on the swift-sdk git
 # takes the version from  info.plist 
 # uploads correct assets (carthage zip file) 
-	desc "creating relase drafts"
+	desc "creating release drafts"
     lane :createDraftRelease do
         versions = xcodeVersions
-        version = get_info_plist_value(path: "Usabilla/Info.plist", key: "CFBundleShortVersionString")
+        version = get_version_number(xcodeproj: "Usabilla.xcodeproj", target: "Usabilla")
 		first = true
 		versions.each do |xcode|
 			branch = "Xcode-#{xcode}"
@@ -251,7 +250,29 @@ end
 		    upload_assets: ["XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"]
         )
 	end
-	
+
+#used to generate artifacts for UsabillaXamarin
+    desc "creating artifacts for UsabillaXamarin"
+    lane :buildXamarinAndGenerateArtefacts do
+        versions = checkXcodeVersions
+        version =  versions.first
+        removeAllBuilds(
+            version: version,
+            project_directory: projectDirectory
+        )
+        buildForXamarin(
+            version: version,
+            project_directory: projectDirectory
+        )
+        validateXamarinBuildLLVMGCC(
+	        version: version,
+	        project_directory: projectDirectory
+    	)
+        copyToPodsFromXamarinBuild(
+    	        version: version,
+        	    project_directory: projectDirectory
+        )
+    end
 
 #used in STAGE  "Validation"	
     desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"

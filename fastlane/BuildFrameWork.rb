@@ -33,12 +33,12 @@ private_lane :buildForXcodeVersion do |options|
   paths = Paths.new(version, project_directory, config)
  	xcversion(version: version)
 
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration #{config} -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme Usabilla -configuration #{config}  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{config} -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{config}  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
 
 	#remove Module name error in swiftinterface files
-	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{config}-iphoneos/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
-	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{config}-iphonesimulator/Usabilla.framework/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{config}-iphoneos/#{paths.framework_name}/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{config}-iphonesimulator/#{paths.framework_name}/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
 	
 end
 
@@ -65,8 +65,8 @@ private_lane :buildAndRunUITest do |options|
   	paths = Paths.new(version, project_directory, config)
  	xcversion(version: version)
 
-	sh("xcodebuild clean -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration #{config} -sdk iphonesimulator")
-	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme Usabilla -configuration #{config} -sdk iphonesimulator")
+	sh("xcodebuild clean -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme #{paths.scheme_name} -configuration #{config} -sdk iphonesimulator")
+	sh("xcodebuild build -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme #{paths.scheme_name} -configuration #{config} -sdk iphonesimulator")
 
     devices.each do |deviceModel|
 		sh("xcodebuild  test -workspace #{paths.projectDirectory}/Usabilla.xcworkspace -scheme UsabillaUITestApp -destination '#{deviceModel}'")
@@ -151,7 +151,7 @@ private_lane :copyToPodsFromBuild do |options|
   project_directory = options[:project_directory]
   paths = Paths.new(version, project_directory, config)
 
-	sh("rm -rf #{projectDirectory}#{paths.xcode_directory}")
+	sh("rm -rf #{projectDirectory}#{paths.xcode_directory}/#{paths.pods_directory}")
   sh("mkdir -p #{paths.framework_path}")
 
 	sh("lipo -create -output \"#{paths.framework_outputFile}\" \"#{paths.iphoneos_outputFile}\" \"#{paths.simulator_outputFile}\"")

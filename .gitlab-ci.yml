@@ -9,6 +9,7 @@ stages:
   - system-test
   - deploy
   - release
+  - release-build-xamarin
 
 variables:
   LC_ALL: "en_US.UTF-8"
@@ -202,6 +203,23 @@ create-release-versions:
   stage: release
   script:
     - bundle exec fastlane createDraftRelease
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+  tags:
+    - sdk
+  only:
+    - /^release\/v[0-9]+\.[0-9]+\.[0-9]+.*/
+  when: manual
+
+create-release-build-xamarin:
+  stage: release-build-xamarin
+  script:
+    - bundle exec fastlane buildXamarinAndGenerateArtefacts
   cache:
     key: sdk-cache
     paths:

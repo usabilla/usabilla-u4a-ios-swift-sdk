@@ -181,14 +181,6 @@ public class FeedbackResult: NSObject {
     }
 
     public init(rating: Int?, abandonedPageIndex: Int?) {
-        if let rat = rating {
-            NSLog("-----------------------------------------------")
-            NSLog("-----------------------------------------------")
-            NSLog("rating: %i",  rat)
-            NSLog("-----------------------------------------------")
-            NSLog("-----------------------------------------------")
-        }
-
         if let aRating = rating {
             self.rating = "\(aRating)" as NSString
         }
@@ -202,13 +194,8 @@ public class FeedbackResult: NSObject {
 @objc(UBError)
 public class UBError: NSObject {
     @objc public var errorDescription: NSString?
-    public init(description: String?){
+    public init(description: String?) {
       if let errorDesc = description {
-        NSLog("-----------------------------------------------")
-        NSLog("-----------------------------------------------")
-        NSLog("description: %i",  errorDesc)
-        NSLog("-----------------------------------------------")
-        NSLog("-----------------------------------------------")
             self.errorDescription = "\(errorDesc)" as NSString
         }
     }
@@ -241,9 +228,7 @@ public protocol UsabillaDelegate: class {
      
      withFeedbackResults can contain between 1 and n FeedbackResult
      */
-//    @objc
-//    func formDidClose(formID: String, withFeedbackResults results: [String], isRedirectToAppStoreEnabled: Bool)
-
+    
     @objc
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool)
 
@@ -273,25 +258,8 @@ public protocol UsabillaDelegate: class {
 public extension UsabillaDelegate {
     func formDidClose(formID: String,  withFeedbackResults results: [String], isRedirectToAppStoreEnabled: Bool) {}
     func formDidClose(formID: String, withFeedbackResults results: [Any], isRedirectToAppStoreEnabled: Bool) {
-        NSLog("-----------------------------------------------")
-        NSLog("-----------------------------------------------")
-        
-        NSLog("Results: %@", results)
-        NSLog("-----------------------------------------------")
-        NSLog("-----------------------------------------------")
-
     }
     func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }
     func campaignDidClose(withFeedbackResult result: Any, isRedirectToAppStoreEnabled: Bool) {
-        NSLog("-----------------------------------------------")
-        NSLog("-----------------------------------------------")
-        if let res = result as? [String: Any] {
-            NSLog("Result: %@", res)
-        }
-        NSLog("-----------------------------------------------")
-        NSLog("-----------------------------------------------")
     }
-    
-//    func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {}
-//    func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) {}
 }

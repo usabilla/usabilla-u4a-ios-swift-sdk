@@ -54,14 +54,20 @@ class Paths
     	 @xcode_directory
     end
 
+    def scheme_name 
+        "Usabilla"
+    end
+    def pods_directory
+        "Pods"
+    end
     def framework_name 
-    	 "Usabilla.framework"
+    	 "#{scheme_name}.framework"
     end
     def framework_execFile 
-    	 "Usabilla"
+    	 "#{scheme_name}"
     end
     def framework_path  
-    	 "#{projectDirectory}#{xcode_directory}/Pods/#{framework_name}"
+    	 "#{projectDirectory}#{xcode_directory}/#{pods_directory}/#{framework_name}"
     end
 	def framework_outputFile
 		 "#{framework_path}/#{framework_execFile}"
@@ -96,4 +102,37 @@ class Paths
 		"Carthage.framework.zip"
 	end
 	
+    ################### Xamarin properties starts here ##############
+    def scheme_xamarin_name 
+        "UsabillaXamarin"
+    end
+    def pods_xamarin_directory
+        "XamarinPods"
+    end
+    def framework_xamarin_name 
+         "#{scheme_xamarin_name}.framework"
+    end
+    def framework_xamarin_execFile 
+        "#{scheme_xamarin_name}"
+    end
+    def framework_xamarin_path  
+        "#{projectDirectory}#{xcode_directory}/#{pods_xamarin_directory}/#{framework_xamarin_name}"
+    end
+    def framework_xamarin_outputFile
+        "#{framework_xamarin_path}/#{framework_xamarin_execFile}"
+    end
+   
+    def simulator_xamarin_path
+        "#{projectDirectory}/build/Build/Products/#{target}-iphonesimulator/#{framework_xamarin_name}"
+    end
+    def simulator_xamarin_outputFile
+       "#{simulator_xamarin_path}/#{framework_xamarin_execFile}"
+    end
+    def iphoneos_xamarin_path
+      "#{projectDirectory}/build/Build/Products/#{target}-iphoneos/#{framework_xamarin_name}"
+    end
+    def iphoneos_xamarin_outputFile
+      "#{iphoneos_xamarin_path}/#{framework_xamarin_execFile}"
+    end
+    ############################ ends here ###########################
 end
