@@ -273,11 +273,13 @@ class CampaignViewController: UIViewController {
 extension CampaignViewController: UBIntroOutroViewDelegate {
 
     func introViewDidCancel(introView: UBIntroOutroView) {
-        let completion: ((Bool) -> Void) = { _ in
-            self.backgroundLayer?.removeFromSuperview()
+        let completion: ((Bool) -> Void) = { [weak self] _ in
+            self?.backgroundLayer?.removeFromSuperview()
             introView.removeFromSuperview()
-            self.closeCampaign(atPageIndex: 0)
-
+            self?.closeCampaign(atPageIndex: 0)
+            if #available(iOS 13.0, *) {
+                self?.showToast()
+            }
         }
         removeBannerView(introView: introView, completion: completion)
     }
