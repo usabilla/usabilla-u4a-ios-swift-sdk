@@ -496,7 +496,6 @@
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 		F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 		F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
-		F213103A23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */; };
 		F213103B23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */; };
 		F213103D23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
 		F213103E23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
@@ -694,7 +693,6 @@
 		F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
-		F269238123EB190E00E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
 		F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
 		F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
@@ -2480,7 +2478,6 @@
 				C50F2C3D2084EEFF00D77F37 /* UILabel.swift in Sources */,
 				F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */,
 				435D06F71FA8A11600D5A2F4 /* TargetingOptionsModel.swift in Sources */,
-				F269238123EB190E00E6A455 /* UsabillaXamarin.swift in Sources */,
 				43B04F7D1F1F7EEF0032F057 /* HeaderComponent.swift in Sources */,
 				43B04F7E1F1F7EEF0032F057 /* BaseEditableStringComponentViewModel.swift in Sources */,
 				43B04F7F1F1F7EEF0032F057 /* RequestBuilder.swift in Sources */,
@@ -2522,7 +2519,6 @@
 				43B04F9C1F1F7EEF0032F057 /* FooterTableViewCell.swift in Sources */,
 				43B04F9D1F1F7EEF0032F057 /* ParagraphComponentViewModel.swift in Sources */,
 				43B04F9E1F1F7EEF0032F057 /* BaseCheckBoxComponent.swift in Sources */,
-				F213103A23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */,
 				43B04F9F1F1F7EEF0032F057 /* SwiftEventBus.swift in Sources */,
 				43B04FA01F1F7EEF0032F057 /* UBCampaignFeedbackRequestDAO.swift in Sources */,
 				43B04FA11F1F7EEF0032F057 /* FormModel.swift in Sources */,
