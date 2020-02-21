@@ -61,7 +61,7 @@ class UBTelemetricResponse: Codable {
             let nameOfClass = String(describing: $0)
             // use the classnames last part as codingkey
             // this is needed as the data holds protocols, that is not codeable at compiletime
-            if let index = nameOfClass.lastIndex(of: ".") {
+            if let index = nameOfClass.range(of: ".", options: .backwards)?.lowerBound {
                 let finalIndex = nameOfClass.index(index, offsetBy: 1)
                 let str = String(nameOfClass[finalIndex...])
                 let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: str))
