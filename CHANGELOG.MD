@@ -1,3 +1,10 @@
+## 6.4.5
+### Fix
+- Fixes issue where banner could overlap safe-area 
+- Fixes issue where targeting on other languages could fail
+- Fixes issue with font in HTML enabled paragraphs
+- Fixes issue with crash under iOS 13 
+
 ## 6.4.4
 ### Fix
 - Fixes issue where SDK, in some cases could crash if a campaign was canceled by user, and a new was triggered
