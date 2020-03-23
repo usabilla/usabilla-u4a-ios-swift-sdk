@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.1.3 effective-4.1.50 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
-// swift-module-flags: -target x86_64-apple-ios9.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -O -module-name Usabilla
+// swift-compiler-version: Apple Swift version 5.2 effective-4.1.50 (swiftlang-1103.0.30 clang-1103.0.30)
+// swift-module-flags: -target x86_64-apple-ios9.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -Onone -module-name Usabilla
 import AVFoundation
 import Foundation
 import Photos
@@ -9,6 +9,22 @@ import SystemConfiguration
 import UIKit
 @_exported import Usabilla
 extension Usabilla {
+  open class func formViewController(forFormData data: Foundation.Data, screenshot: UIKit.UIImage? = nil) -> UIKit.UINavigationController?
+  open class func displayCampaignForm(withID formID: Swift.String, completion: ((UBCampaignFormDisplayError?) -> Swift.Void)? = nil)
+  open class func displayCampaignForm(withData data: Foundation.Data)
+}
+public enum UBCampaignFormDisplayError : Swift.Error {
+  case sdkNotInitialized
+  case formFetchFailed
+  case campaignAlreadyBeingPresented
+  public var localizedDescription: Swift.String {
+    get
+  }
+  public static func == (a: UBCampaignFormDisplayError, b: UBCampaignFormDisplayError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
 }
 public struct UsabillaTheme {
   public var colors: UsabillaTheme.Colors
@@ -33,41 +49,41 @@ public struct UsabillaTheme {
   }
   public init()
 }
-open class Usabilla {
+@_hasMissingDesignatedInitializers open class Usabilla {
   public static var customVariables: [Swift.String : Any] {
     get
-    set
+    set(newValue)
   }
   public static var defaultDataMasks: [Swift.String] {
     get
   }
   public static var orientation: UIKit.UIInterfaceOrientationMask {
     get
-    set
+    set(newValue)
   }
   public static var localizedStringFile: Swift.String {
     get
-    set
+    set(newValue)
   }
   public static var theme: UsabillaTheme {
     get
-    set
+    set(newValue)
   }
   public static var delegate: UsabillaDelegate? {
     get
-    set
+    set(newValue)
   }
   public static var dismissAutomatically: Swift.Bool {
     get
-    set
+    set(newValue)
   }
   public static var canDisplayCampaigns: Swift.Bool {
     get
-    set
+    set(newValue)
   }
   public static var debugEnabled: Swift.Bool {
     get
-    set
+    set(newValue)
   }
   open class func sendEvent(event: Swift.String)
   open class func initialize(appID: Swift.String?, completion: (() -> Swift.Void)? = nil)
