@@ -1,3 +1,7 @@
+## 6.4.6
+### Update
+- build with Xcode 11.4, to support Carthage
+
 ## 6.4.5
 ### Fix
 - Fixes issue where banner could overlap safe-area 
