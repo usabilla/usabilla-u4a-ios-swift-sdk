@@ -1,6 +1,5 @@
-## 6.4.4
-### Fix
-- Fixes issue where sdk could in some cases couldcrash if a campaign was canceled by user, and a new was triggered
-- Fixes issue where error-text in form could overlap card components (iOS 10+)
+## 6.4.6
+### Update
+- build with Xcode 11.4, to support carthage
 
 

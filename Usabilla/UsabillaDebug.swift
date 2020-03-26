@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension Usabilla {
-
+#if INTERNAL_USE || DEBUG
     open class func formViewController(forFormData data: Data, screenshot: UIImage? = nil) -> UINavigationController? {
         return UsabillaInternal.formViewController(forFormData: data, screenshot: screenshot)
     }
@@ -20,4 +20,5 @@ extension Usabilla {
     open class func displayCampaignForm(withData data: Data) {
         UsabillaInternal.displayCampaignForm(withData: data)
     }
+#endif
 }

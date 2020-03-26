@@ -437,6 +437,7 @@
 		459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
 		459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
 		459678DC22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
+		4599FA91242CA0CE00B6BB8C /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
 		45B51EE022E7A00500122F44 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
 		45B51EE122E7A00500122F44 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
 		45B51EE322E7A01500122F44 /* UBSAPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */; };
@@ -2737,6 +2738,7 @@
 				F26922E823EB17B900E6A455 /* SwiftCheckBox.swift in Sources */,
 				F26922E923EB17B900E6A455 /* CampaignViewModel.swift in Sources */,
 				F26922EA23EB17B900E6A455 /* RadioComponentViewModel.swift in Sources */,
+				4599FA91242CA0CE00B6BB8C /* UsabillaDebug.swift in Sources */,
 				F26922EB23EB17B900E6A455 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
 				F26922EC23EB17B900E6A455 /* SwiftyJSON.swift in Sources */,
 				F26922ED23EB17B900E6A455 /* PassiveStatus.swift in Sources */,
@@ -3029,7 +3031,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3043,7 +3045,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3069,7 +3071,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3081,7 +3083,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3222,7 +3224,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3234,7 +3236,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3261,7 +3263,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3270,7 +3272,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3317,7 +3319,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3326,7 +3328,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3350,7 +3352,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3359,7 +3361,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3382,7 +3384,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3396,7 +3398,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3422,7 +3424,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3434,7 +3436,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3465,7 +3467,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3477,7 +3479,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos";
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator";
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
