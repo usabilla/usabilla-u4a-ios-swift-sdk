@@ -92,7 +92,7 @@ class UBTelemetrics {
 
     fileprivate func updateFileStorrage(with logId: String) {
         guard let objectToAlter = log[logId] else {return}
-        if saveToFile(component: objectToAlter) {
+        if saveToFile(component: [objectToAlter]) {
             log.removeValue(forKey: logId)
         }
     }
@@ -108,10 +108,10 @@ class UBTelemetrics {
         return nil
     }
 
-    fileprivate func saveToFile(component: UBTelemetricResponse) -> Bool {
+    fileprivate func saveToFile(component: [UBTelemetricResponse]) -> Bool {
         var currentData = loadFromJsonFile()
         guard let fileURL = getFileURL() else { return false}
-        currentData.insert(component, at: 0)
+        currentData.insert(contentsOf: component, at: 0)
         while currentData.count >= maxnumberOfEntries {
             currentData.remove(at: currentData.count-1)
         }
@@ -134,4 +134,37 @@ class UBTelemetrics {
         } catch {print("Error")}
         return []
     }
+
+    /// Get the current data as base64 encode json string,
+    /// - Parameter flush: if false the data are not flushed, but left in the storrage, defaults to true
+    /// - Returns: base64 encode string of the json
+    func getStoredData(flush: Bool = true) -> String {
+        let currentData = loadFromJsonFile()
+        guard let fileURL = getFileURL() else { return ""}
+        do {
+            if flush { try Data().write(to: fileURL) }
+            let data =  try JSONEncoder().encode(currentData)
+            return data.base64EncodedString()
+        } catch {
+            return ""
+        }
+    }
+    
+    /// Add data to the log. If data retrieved witht the getStoredData method fails the data can be added to the storrage again
+    /// - Parameter data: BASE64 encode string
+    /// - Returns: bool of the result. If the data was sucessfully decode and added it return true
+    func addLogData(data: String) -> Bool {
+        let decoder = JSONDecoder()
+        if let jsonData = Data(base64Encoded: data) {
+             do {
+                let products = try decoder.decode([UBTelemetricResponse].self, from: jsonData)
+                return saveToFile(component: products)
+            } catch {
+                return false
+            }
+        }
+        return false
+    }
+
+
 }
