@@ -166,5 +166,4 @@ class UBTelemetrics {
         return false
     }
 
-
 }

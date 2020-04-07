@@ -132,12 +132,15 @@ class UBTelemetricReset: UBTelemetricProtocol {
 }
 
 class UBTelemetricLoadForm: UBTelemetricProtocol {
-    let formID: String = ""
-    let numberOfElements: Int = 0
+    var formID: String = ""
+    var numberOfElements: Int = 0
     var displayed: Bool = false
     var methodResult: Bool = false
     var methodMessage: String?
     var duration: Double = 0.0
+    var customTheme: Bool = false
+    var imagePassed: Bool = false
+
 }
 class UBTelemetricSetDataMasking: UBTelemetricProtocol {
     var masks: [String] = []

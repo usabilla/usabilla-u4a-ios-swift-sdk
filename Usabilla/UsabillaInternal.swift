@@ -182,6 +182,9 @@ class UsabillaInternal {
 
     class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
         let logid = telemetric.logStart(method: UBTelemetricLoadForm(), logLevel: .methods )
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.formID, value: formID, logLevel: .methods)
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.customTheme, value: theme != self.theme, logLevel: .methods)
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.imagePassed, value: screenshot != nil, logLevel: .methods)
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
             telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: false, logLevel: .methods)

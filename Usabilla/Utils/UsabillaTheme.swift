@@ -9,15 +9,23 @@
 import Foundation
 import UIKit
 
-public struct UsabillaTheme {
+public struct UsabillaTheme: Equatable {
 
     public var colors: Colors
     public var fonts: Fonts
     public var images: Images
     public var statusBarStyle: UIStatusBarStyle?
 
+    public static func == (lhs: UsabillaTheme, rhs: UsabillaTheme) -> Bool {
+        return
+            lhs.colors == rhs.colors &&
+            lhs.fonts == rhs.fonts &&
+            lhs.images == rhs.images &&
+            lhs.statusBarStyle == rhs.statusBarStyle
+    }
+
     // MARK: Colors
-    public struct Colors {
+    public struct Colors: Equatable {
         public var header: UIColor?
         var title: UIColor
         var text: UIColor
@@ -28,6 +36,19 @@ public struct UsabillaTheme {
         var error: UIColor
         var hint: UIColor {
             return text.withAlphaComponent(0.38)
+        }
+
+        public static func == (lhs: Colors, rhs: Colors) -> Bool {
+            return
+                lhs.header == rhs.header &&
+                lhs.title == rhs.title &&
+                lhs.text == rhs.text &&
+                lhs.accent == rhs.accent &&
+                lhs.textOnAccent == rhs.textOnAccent &&
+                lhs.background == rhs.background &&
+                lhs.cardColor == rhs.cardColor &&
+                lhs.error == rhs.error &&
+                lhs.hint == rhs.hint
         }
 
         init() {
@@ -53,13 +74,20 @@ public struct UsabillaTheme {
     }
 
     // MARK: Fonts
-    public struct Fonts {
+    public struct Fonts: Equatable {
         public var regular: UIFont?
         public var bold: UIFont?
         public var titleSize: CGFloat
         public var textSize: CGFloat
         public var miniSize: CGFloat
 
+        public static func == (lhs: Fonts, rhs: Fonts) -> Bool {
+            return lhs.regular == rhs.regular &&
+            lhs.bold == rhs.bold &&
+            lhs.titleSize == rhs.titleSize &&
+            lhs.textSize == rhs.textSize &&
+            lhs.miniSize == rhs.miniSize
+        }
         //Computed font to use in SDK
         var font: UIFont {
             if let font = regular {
@@ -88,7 +116,7 @@ public struct UsabillaTheme {
     }
 
     // MARK: Custom images
-    public struct Images {
+    public struct Images: Equatable {
         public var enabledEmoticons: [UIImage]
         public var disabledEmoticons: [UIImage]?
         public var star: UIImage
@@ -102,6 +130,14 @@ public struct UsabillaTheme {
             starOutline = UIImage.getImageFromSDKBundle(name: "star_outline")!
             //swiftlint:enable force_unwrapping
         }
+
+        public static func == (lhs: Images, rhs: Images) -> Bool {
+            return lhs.enabledEmoticons == rhs.enabledEmoticons &&
+            lhs.disabledEmoticons == rhs.disabledEmoticons &&
+            lhs.star == rhs.star &&
+            lhs.starOutline == rhs.starOutline
+        }
+
     }
 
     public init() {
