@@ -26,7 +26,7 @@ class CampaignViewController: UIViewController {
 
     var backgroundLayer: UIView?
     var containerView: UIView?
-    var introView: UBIntroOutroView?
+    weak var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
     var animationSpeed = 0.3
@@ -81,7 +81,7 @@ class CampaignViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     func createBackgroundLayer() {
         guard backgroundLayer == nil else {
             return
@@ -193,38 +193,41 @@ class CampaignViewController: UIViewController {
 
         UIView.animate(withDuration: 0.4, delay: 0.0,
                        usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6,
-                       animations: {
+                       animations: { [weak self] in
                         base.view.transform = CGAffineTransform.identity
                         base.view.center = DeviceInfo.getViewCenter()
                         base.view .frame = DeviceInfo.getBounds()
-                        self.introView?.alpha = 0
+                        self?.introView?.alpha = 0
         })
     }
 
     func removeFormController(completion: (() -> Void)?) {
         if DeviceInfo.isIPad() {
-            self.formNavigationController?.dismiss(animated: true, completion: {
+            self.formNavigationController?.dismiss(animated: true, completion: { [weak self] in
+                self?.cleanAndRemoveBannerView()
                 completion?()
             })
             return
         }
-        let position = (viewModel.form.pages[0] as? IntroPageModel)?.displayMode ?? .bannerBottom
+        let position = (viewModel.form?.pages[0] as? IntroPageModel)?.displayMode ?? .bannerBottom
         let calculatedY = position == .bannerTop ? -view.frame.size.height : view.frame.size.height
 
-        UIView.animate(withDuration: animationSpeed, animations: {
-            self.formNavigationController?.view.frame = CGRect(x: 0, y: calculatedY, width: self.view.frame.size.width, height: self.view.frame.size.height)
-            self.formNavigationController?.view.alpha = 0
-            self.backgroundLayer?.alpha = 0
+        UIView.animate(withDuration: animationSpeed, animations: { [weak self] in
+            self?.formNavigationController?.view.frame = CGRect(x: 0, y: calculatedY,
+                                                                width: self?.view.frame.size.width ?? 0, height: self?.view.frame.size.height ?? 0)
+            self?.formNavigationController?.view.alpha = 0
+            self?.backgroundLayer?.alpha = 0
             // swiftlint:disable:next multiple_closures_with_trailing_closure
-        }) { _ in
-            self.formNavigationController?.view.removeFromSuperview()
-            self.formNavigationController?.removeFromParentViewController()
+        }) { [weak self] _ in
+            self?.formNavigationController?.view.removeFromSuperview()
+            self?.formNavigationController?.removeFromParentViewController()
+            self?.cleanAndRemoveBannerView()
             completion?()
         }
     }
 
     func showToast() {
-        let bannerPosition = (viewModel.form.pages[0] as? IntroPageModel)?.displayMode ?? IntroPageDisplayMode.bannerBottom
+        let bannerPosition = (viewModel.form?.pages[0] as? IntroPageModel)?.displayMode ?? IntroPageDisplayMode.bannerBottom
         let thankYoutext = viewModel.toastPageViewModel?.text ?? ""
         let estimatedDuration: UBToastDuration = thankYoutext.count > 40 && UIAccessibilityIsVoiceOverRunning() ? .long : .normal
         toast = UBToast(delegate: self, text: thankYoutext, duration: estimatedDuration)
@@ -236,6 +239,7 @@ class CampaignViewController: UIViewController {
     func closeCampaign(atPageIndex index: Int? = nil) {
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
         UsabillaInternal.delegate?.campaignDidClose(withFeedbackResult: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
+        self.cleanAndRemoveBannerView()
         self.delegate?.campaignDidEnd()
     }
 
@@ -257,6 +261,7 @@ class CampaignViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        if view.constraints.count == 0 { return }///    0 constraints means everything has been removed
         if viewModel.currentPageType == PageType.banner {
             coordinator.animate(alongsideTransition: { [weak self] (_ : UIViewControllerTransitionCoordinatorContext) in
                 let orientation = UIApplication.shared.statusBarOrientation
@@ -275,11 +280,7 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
     func introViewDidCancel(introView: UBIntroOutroView) {
         let completion: ((Bool) -> Void) = { [weak self] _ in
             self?.backgroundLayer?.removeFromSuperview()
-            introView.removeFromSuperview()
             self?.closeCampaign(atPageIndex: 0)
-            if #available(iOS 13.0, *) {
-                self?.showToast()
-            }
         }
         removeBannerView(introView: introView, completion: completion)
     }
@@ -294,6 +295,14 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
         UIView.animate(withDuration: 0.3, animations: {
             introView.frame = fra
         }, completion: completion)
+    }
+
+    private func cleanAndRemoveBannerView() {
+        self.introView?.resetViewAndRemoveAll()
+        self.introView?.removeFromSuperview()
+        NSLayoutConstraint.deactivate(self.view.constraints)
+        self.viewModel.introPresenter = nil
+        self.introView = nil
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {
@@ -313,8 +322,8 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 extension CampaignViewController: FormViewControllerDelegate {
 
     func formWillClose(_ formViewController: FormViewController) {
-        removeFormController {
-            self.closeCampaign(atPageIndex: formViewController.viewModel.currentPageIndex)
+        removeFormController { [weak self] in
+            self?.closeCampaign(atPageIndex: formViewController.viewModel.currentPageIndex)
         }
     }
 

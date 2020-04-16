@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol UBIntroOutroPresenter {
-    func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?)
-    func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?)
+    func present(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?)
+    func dismiss(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?)
     func updateConstraints(to size: CGSize, orientation: UIInterfaceOrientation)
 }

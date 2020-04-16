@@ -16,7 +16,7 @@ protocol UBIntroOutroViewDelegate: class {
 
 class UBIntroOutroView: UIView {
 
-    var viewModel: IntroPageViewModel!
+    var viewModel: IntroPageViewModel
     weak var delegate: UBIntroOutroViewDelegate?
     var display: UBIntroOutroDisplay.Type {
         switch viewModel.displayMode {
@@ -35,12 +35,12 @@ class UBIntroOutroView: UIView {
     var componentView: UIControl?
     var buttonsStackView: UIStackView!
 
-    var buttonsStackViewBottomContraint: NSLayoutConstraint?
+    weak var buttonsStackViewBottomContraint: NSLayoutConstraint?
     var titleTopConstraint: NSLayoutConstraint!
 
     var wrapper: UIView!
-    var wrapperLeftConstraint: NSLayoutConstraint?
-    var wrapperRightConstraint: NSLayoutConstraint?
+    weak var wrapperLeftConstraint: NSLayoutConstraint?
+    weak var wrapperRightConstraint: NSLayoutConstraint?
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -72,6 +72,26 @@ class UBIntroOutroView: UIView {
 
     deinit {
         SwiftEventBus.unregister(self)
+    }
+
+    func resetViewAndRemoveAll() {
+        removeAllConstraints()
+        subviews.forEach {$0.removeFromSuperview()}
+        buttonsStackView.removeFromSuperview()
+        titleLabel.removeFromSuperview()
+        componentView?.removeFromSuperview()
+        wrapper.removeFromSuperview()
+    }
+
+    private func removeAllConstraints() {
+        var view: UIView? = self
+        while let currentView = view {
+            currentView.removeConstraints(currentView.constraints.filter {
+                return $0.firstItem as? UIView == self || $0.secondItem as? UIView == self
+            })
+            view = view?.superview
+        }
+        NSLayoutConstraint.deactivate(constraints)
     }
 
     private func updateContinueButton() {

@@ -9,7 +9,7 @@
 import Foundation
 
 class CampaignViewModel {
-    var form: FormModel
+    weak var form: FormModel?
     var introPageViewModel: IntroPageViewModel?
     var introPresenter: UBIntroOutroPresenter?
     let manager: CampaignSubmissionRequestManagerProtocol
@@ -44,15 +44,15 @@ class CampaignViewModel {
     }
 
     var toastPageViewModel: UBToastPageViewModel? {
-        guard let endPageModel = form.pages[formViewModel.currentPageIndex] as? UBEndPageModel else {
+        guard let endPageModel = form?.pages[formViewModel.currentPageIndex] as? UBEndPageModel else {
             return nil
         }
         return UBToastPageViewModel(model: endPageModel)
     }
 
     var ratingValueForReview: Int? {
-        let fields = form.pages.flatMap { $0.fields }
-        let rating = fields.first {
+        let fields = form?.pages.flatMap { $0.fields }
+        let rating = fields?.first {
             type(of: $0) == MoodFieldModel.self
             } as? IntFieldModel
         return rating?.fieldValue

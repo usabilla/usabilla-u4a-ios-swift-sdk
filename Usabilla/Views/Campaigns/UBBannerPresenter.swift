@@ -27,7 +27,8 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     var offset: CGFloat = 0.0
 
-    func present(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?) {
+    func present(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?) {
+        guard let view = view, let inView = inView else {return}
         let style = view.viewModel.displayMode
         self.inView = inView
         self.introView = view
@@ -55,24 +56,24 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
         // Design requested slower animation on ipad
         let animationTime = (DeviceInfo.isIPad() ? UBDimensions.BannerPresenter.animateDurationTablet : UBDimensions.BannerPresenter.animateDurationDefualt)
-        UIView.animate(withDuration: animationTime, delay: UBDimensions.BannerPresenter.animateDelay, usingSpringWithDamping: UBDimensions.BannerPresenter.springDamping, initialSpringVelocity: UBDimensions.BannerPresenter.springVelocity, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: animationTime, delay: UBDimensions.BannerPresenter.animateDelay, usingSpringWithDamping: UBDimensions.BannerPresenter.springDamping, initialSpringVelocity: UBDimensions.BannerPresenter.springVelocity, options: .curveEaseOut, animations: { [weak self] in
 
-            self.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : self.topConstraint.constant)
-            self.bottomConstraint.constant = (style == .bannerTop ? self.bottomConstraint.constant : -DeviceInfo.bottomMargin)
+            self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
+            self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
             inView.layoutIfNeeded()
         })
         setFixedConstraints()
 
     }
 
-    func dismiss(view: UBIntroOutroView, inView: UIView, animations: (() -> Void)?, completion: (() -> Void)?) {
+    func dismiss(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?) {
 
-        UIView.animate(withDuration: UBDimensions.BannerPresenter.animateDurationDismiss, animations: {
+        UIView.animate(withDuration: UBDimensions.BannerPresenter.animateDurationDismiss, animations: { [weak self] in
             animations?()
-            self.topConstraint.constant = -self.offset - self.kShadowOffset
-            self.bottomConstraint.constant = self.offset + self.kShadowOffset
+            self?.topConstraint.constant = -(self?.offset ?? 0.0) - (self?.kShadowOffset ?? 0.0)
+            self?.bottomConstraint.constant = (self?.offset ?? 0.0) + (self?.kShadowOffset ?? 0.0)
 
-            inView.layoutIfNeeded()
+            inView?.layoutIfNeeded()
             // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { _ in
             completion?()
@@ -138,11 +139,13 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         if orientation == .landscapeLeft {
             offset = DeviceInfo.offsetRightNotch
         }
-        rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -offset)
+        let theConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -offset)
+        rightConstraint? = theConstraint
         rightConstraint?.isActive = true
 
         widthConstraint = aView.widthAnchor.constraint(equalToConstant: kWidthiPhone)
         widthConstraint?.isActive  = true
+    
         superview.updateConstraints()
     }
 }
