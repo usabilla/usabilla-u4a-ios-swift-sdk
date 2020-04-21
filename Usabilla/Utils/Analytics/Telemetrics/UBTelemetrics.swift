@@ -138,15 +138,19 @@ class UBTelemetrics {
     /// Get the current data as base64 encode json string,
     /// - Parameter flush: if false the data are not flushed, but left in the storrage, defaults to true
     /// - Returns: base64 encode string of the json
-    func getStoredData(flush: Bool = true) -> String {
+    func getStoredData(flush: Bool = true) -> String? {
         let currentData = loadFromJsonFile()
-        guard let fileURL = getFileURL() else { return ""}
-        do {
-            if flush { try Data().write(to: fileURL) }
-            let data =  try JSONEncoder().encode(currentData)
-            return data.base64EncodedString()
-        } catch {
-            return ""
+        if currentData.count == 0 {
+            return nil
+        } else {
+            guard let fileURL = getFileURL() else { return ""}
+            do {
+                if flush { try Data().write(to: fileURL) }
+                let data =  try JSONEncoder().encode(currentData)
+                return data.base64EncodedString()
+            } catch {
+                return nil
+            }
         }
     }
     

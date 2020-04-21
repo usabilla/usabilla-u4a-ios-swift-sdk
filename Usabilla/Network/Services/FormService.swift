@@ -21,6 +21,7 @@ class FormService: FormServiceProtocol {
 
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
+    weak var telemetric: UBTelemetrics?
 
     init(requestBuilder: RequestBuilder.Type = RequestBuilder.self, httpClient: HTTPClientProtocol.Type = HTTPClient.self) {
         self.requestBuilder = requestBuilder
@@ -30,10 +31,13 @@ class FormService: FormServiceProtocol {
     func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?, client: ClientModel) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
-            guard let request = request else {
+            guard var request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
+            }
+            if let telemetricData = telemetric?.getStoredData() {
+                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             httpClient.request(request: request, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {
@@ -134,7 +138,11 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil, allowNilData: false) { response in
+            var headersData: [String: String] = [:]
+            if let telemetricData = telemetric?.getStoredData() {
+                headersData = ["telemetry-data": telemetricData]
+            }
+            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -164,7 +172,11 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            httpClient.request(self.requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil, allowNilData: true) { response in
+            var headersData: [String: String] = [:]
+            if let telemetricData = telemetric?.getStoredData() {
+                headersData = ["telemetry-data": telemetricData]
+            }
+            httpClient.request(self.requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: true) { response in
                 if response.success {
                     fulfill(true)
                     return
@@ -186,7 +198,11 @@ class FormService: FormServiceProtocol {
     /// - Returns: Promise containig the responde data from the widget server
     func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil, responseQueue: nil, allowNilData: false) { response in
+            var headersData: [String: String] = [:]
+            if let telemetricData = telemetric?.getStoredData() {
+                headersData = ["telemetry-data": telemetricData]
+            }
+            httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(response)
                     return

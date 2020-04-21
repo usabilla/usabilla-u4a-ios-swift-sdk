@@ -31,6 +31,7 @@ class CampaignService: CampaignServiceProtocol {
 
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
+    weak var telemetric: UBTelemetrics?
 
     init(requestBuilder: RequestBuilder.Type = RequestBuilder.self, httpClient: HTTPClientProtocol.Type = HTTPClient.self) {
         self.requestBuilder = requestBuilder
@@ -40,10 +41,13 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetCampaignForm(withID: id)
         return Promise { fulfill, reject in
-            guard let request = request else {
+            guard var request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
+            }
+            if let telemetricData = telemetric?.getStoredData() {
+                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
@@ -67,10 +71,13 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>> {
         let request = requestBuilder.requestGetCampaigns(withAppID: appID)
         return Promise { fulfill, reject in
-            guard let request = request else {
+            guard var request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
+            }
+            if let telemetricData = telemetric?.getStoredData() {
+                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
@@ -91,10 +98,13 @@ class CampaignService: CampaignServiceProtocol {
     func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
         let request = requestBuilder.requestGetAllTargetingOptions(targetingIds: ids)
         return Promise { fulfill, reject in
-            guard let request = request else {
+            guard var request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
+            }
+            if let telemetricData = telemetric?.getStoredData() {
+                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 guard response.error == nil else {
@@ -152,10 +162,13 @@ class CampaignService: CampaignServiceProtocol {
     func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool> {
         let request = requestBuilder.requestPatchCampaignViews(forCampaignID: campaignID, viewCount: viewCount)
         return Promise { fulfill, reject in
-            guard let request = request else {
+            guard var request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
+            }
+            if let telemetricData = telemetric?.getStoredData() {
+                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
                 if response.success {

@@ -97,6 +97,7 @@ class UsabillaInternal {
                 return
             }
             UsabillaInternal.appID = appID
+            campaignService.telemetric =  telemetric
             campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: { [logid] in
                 let numberOfCampaings = campaignManager?.eventEngine.campaigns.count ?? 0
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appIdCorrect, value: true, logLevel: .methods)
@@ -109,6 +110,7 @@ class UsabillaInternal {
         }
 
         formService = FormService()
+        formService?.telemetric = telemetric
         // swiftlint:disable force_unwrapping
         formStore = FormStore(service: formService!)
         submissionManager = SubmissionManager(formService: formService!)
