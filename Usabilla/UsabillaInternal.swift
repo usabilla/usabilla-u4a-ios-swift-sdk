@@ -231,6 +231,9 @@ class UsabillaInternal {
         let navigationController = UBNavigationController(rootViewController: formController)
         navigationController.modalPresentationStyle = .fullScreen
         if DeviceInfo.isIPad() {
+            if #available(iOS 13.0, *) {
+                navigationController.isModalInPresentation = true
+            }
             navigationController.modalPresentationStyle = .formSheet
             navigationController.preferredContentSize = DeviceInfo.preferedFormSize()
             navigationController.presentationController?.delegate = formController

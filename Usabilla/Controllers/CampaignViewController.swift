@@ -124,6 +124,9 @@ class CampaignViewController: UIViewController {
 
     private func showModalFormiPad () {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
+        if #available(iOS 13.0, *) {
+            formController.isModalInPresentation = true // available in IOS13
+        }
         let rect = introView?.frame ?? CGRect()
         formController.initialRect = rect
         let base = UBNavigationController(rootViewController: formController)
