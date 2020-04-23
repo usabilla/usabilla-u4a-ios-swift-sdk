@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.2 effective-4.1.50 (swiftlang-1103.0.32.1 clang-1103.0.32.29)
+// swift-compiler-version: Apple Swift version 5.2.2 effective-4.1.50 (swiftlang-1103.0.32.6 clang-1103.0.32.51)
 // swift-module-flags: -target armv7-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -O -module-name Usabilla
 import AVFoundation
 import Foundation
@@ -10,26 +10,30 @@ import UIKit
 @_exported import Usabilla
 extension Usabilla {
 }
-public struct UsabillaTheme {
+public struct UsabillaTheme : Swift.Equatable {
   public var colors: UsabillaTheme.Colors
   public var fonts: UsabillaTheme.Fonts
   public var images: UsabillaTheme.Images
   public var statusBarStyle: UIKit.UIStatusBarStyle?
-  public struct Colors {
+  public static func == (lhs: UsabillaTheme, rhs: UsabillaTheme) -> Swift.Bool
+  public struct Colors : Swift.Equatable {
     public var header: UIKit.UIColor?
+    public static func == (lhs: UsabillaTheme.Colors, rhs: UsabillaTheme.Colors) -> Swift.Bool
   }
-  public struct Fonts {
+  public struct Fonts : Swift.Equatable {
     public var regular: UIKit.UIFont?
     public var bold: UIKit.UIFont?
     public var titleSize: CoreGraphics.CGFloat
     public var textSize: CoreGraphics.CGFloat
     public var miniSize: CoreGraphics.CGFloat
+    public static func == (lhs: UsabillaTheme.Fonts, rhs: UsabillaTheme.Fonts) -> Swift.Bool
   }
-  public struct Images {
+  public struct Images : Swift.Equatable {
     public var enabledEmoticons: [UIKit.UIImage]
     public var disabledEmoticons: [UIKit.UIImage]?
     public var star: UIKit.UIImage
     public var starOutline: UIKit.UIImage
+    public static func == (lhs: UsabillaTheme.Images, rhs: UsabillaTheme.Images) -> Swift.Bool
   }
   public init()
 }

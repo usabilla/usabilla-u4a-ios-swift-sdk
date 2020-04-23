@@ -1,3 +1,11 @@
+## 6.4.7
+### Fix
+- Fixes crash under iOS 13, after dismissing campaign, and rotating device
+- Fixes swipe-to-remove campaigns under iOS 13, in some situation causing a UI freeze
+
+### Update
+- build with Xcode 11.4.1, to support carthage
+
 ## 6.4.6
 ### Update
 - build with Xcode 11.4, to support Carthage

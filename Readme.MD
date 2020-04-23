@@ -76,7 +76,7 @@ Note :
 
 ## Requirements
 - iOS 9.0+
-- Xcode 9.4+
+- Xcode 10+   
 - Swift 4.0+
 
 ## Installation
@@ -84,6 +84,8 @@ Note :
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
 The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
+Due to an issue with swift 5.2 the current release is build with Xcode 11.3.1.  For the Xcode 11.4.1 build see the carthage section 
+
 Previous versions are available at our git-repository.
  
 ### CocoaPods
@@ -101,7 +103,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.6'
+pod 'Usabilla', '~> 6.4.7'
 
 End
 ```
@@ -125,14 +127,14 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 11.4
+The current master release is build for Xcode 11.3.1.
 
-For previous Xcode version, use:
+For other Xcode version use:
  
 ```yaml
-binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11.4.1/Usabilla.json"
 ```
-replace Xcode-11 with the required version eg. Xcode-10
+replace Xcode-11.4.1 with the required version eg. Xcode-10
 
 ### Manual
 
