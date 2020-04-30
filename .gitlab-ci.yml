@@ -162,7 +162,7 @@ trigger-test-app:
       -F token=$TOKEN_TRIGGER_INTERNAL_TEST_APP
       -F ref=develop
       -F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID"
-      -F "variables[SDK_BRANCH]=$CI_BUILD_REF_NAME"
+      -F "variables[SDK_BRANCH]=$CI_COMMIT_REF_NAME"
       https://gitlab.usabilla.net/api/v4/projects/146/trigger/pipeline
   cache:
     key: sdk-cache
@@ -185,7 +185,7 @@ trigger-preview-app:
       -F token=$TOKEN_TRIGGER_PREVIEW_APP
       -F ref=develop
       -F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID"
-      -F "variables[SDK_BRANCH]=$CI_BUILD_REF_NAME"
+      -F "variables[SDK_BRANCH]=$CI_COMMIT_REF_NAME"
       https://gitlab.usabilla.net/api/v4/projects/142/trigger/pipeline
   cache:
     key: sdk-cache

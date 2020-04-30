@@ -5,9 +5,16 @@ actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
 platform :ios do
 
 #branchname
-def sdkBranchName()
-	branchname = sh 'git name-rev --name-only HEAD | sed -e "s/^remotes\/origin\///"'
-	return branchname
+ def sdkBranchName()
+  gitlabBranchname = ENV['CI_COMMIT_REF_NAME']
+    if !gitlabBranchname.nil?
+        then puts "Checking out gitlabBranchname #{gitlabBranchname}"
+        return gitlabBranchname
+    else 
+        branchname = sh 'git name-rev --name-only HEAD | sed -e "s/^remotes\/origin\///"'
+        puts "Checking out branchname #{branchname}"
+        return branchname
+    end
 end
 
 #configfilename
@@ -94,7 +101,7 @@ end
 #used in STAGE  "Run Unit Tests"
     desc "Run unit tests for all xcode versions"
     lane :runUnitTests do
-        version = lastXcodeVersion
+        version = masterXcodeVersion
         # Build for given xcode version
         scan(
             workspace: 'Usabilla.xcworkspace',
@@ -111,7 +118,7 @@ end
     desc "UI test"
     lane :uiTest do
     	buildAndRunUITest( 
-    		    version: lastXcodeVersion,
+    		    version: masterXcodeVersion,
         	    project_directory: projectDirectory,
         	    devices: uiTestDevices
     		)
@@ -253,8 +260,7 @@ end
 #used to generate artifacts for UsabillaXamarin
     desc "creating artifacts for UsabillaXamarin"
     lane :buildXamarinAndGenerateArtefacts do
-        versions = checkXcodeVersions
-        version =  versions.first
+        version = masterXcodeVersion
         removeAllBuilds(
             version: version,
             project_directory: projectDirectory

@@ -17,8 +17,8 @@
 		config[:xcodeVersions]
     end
 
-    def lastXcodeVersion
-        config[:lastXcodeVersion]
+    def masterXcodeVersion
+        config[:masterXcodeVersion]
     end
     def uiTestDevices
         config[:uiTestDevices]
