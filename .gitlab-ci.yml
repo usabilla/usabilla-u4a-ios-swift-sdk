@@ -116,6 +116,7 @@ validation:
   tags:
     - sdk
   only:
+    - /^(release|develop|hotfix).*$/
     - master
 
 ui-test:

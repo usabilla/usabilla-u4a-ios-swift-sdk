@@ -1,223 +1,213 @@
+import "./buildconfig.rb"
 import "./buildFramework.rb"
 import "./buildXamarinFramework.rb"
+import "./GetLatestReleaseVersion.rb"
+
 default_platform :ios
-actions_path "#{File.expand_path(File.dirname(__FILE__))}/../"
+
 platform :ios do
 
-#branchname
- def sdkBranchName()
-  gitlabBranchname = ENV['CI_COMMIT_REF_NAME']
-    if !gitlabBranchname.nil?
-        then puts "Checking out gitlabBranchname #{gitlabBranchname}"
-        return gitlabBranchname
-    else 
-        branchname = sh 'git name-rev --name-only HEAD | sed -e "s/^remotes\/origin\///"'
-        puts "Checking out branchname #{branchname}"
-        return branchname
-    end
-end
-
-#configfilename
- def configFileName()
- branchname = sdkBranchName()
-  puts "configfilename - sdkbranchname - #{branchname}"
-    if index = branchname.downcase.index("release")
-      puts "configfilename - Release"
-      configfilename = "Release"
-      return configfilename
-    else
-      puts "configfilename - Debug"
-      configfilename = "Debug"
-      return configfilename
-    end
- end
-
-#used in STAGE  "Run Lint"    
-    desc "Checks liniting"
-    lane :lint do
-        swiftlint(
-            reporter: "html",
-            output_file: "fastlane/swiftlint.html"
-        )
-    end
-
-#used in STAGE  "Run UT"    
-    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-    lane :buildAll do
-        versions = xcodeVersions
-        versions.each do |version|
-        buildForXcodeVersion(
-            version: version,
-            project_directory: projectDirectory
-        )
-        end
-    end
-
-#used in STAGE  "Generate Artefacts"
-    desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-    lane :buildAllAndGenerateArtefacts do
-        versions = checkXcodeVersions
-        versions.each do |version|
-        #first remove previous builds
-        removeAllBuilds(
-            version: version,
-            project_directory: projectDirectory
-        )
-        # Build for xcode version
-        buildForXcodeVersion(
-            version: version,
-            project_directory: projectDirectory
-        )
-        # Copy generated artefacts for carthage and pods
-        copyToPodsFromBuild(
-            version: version,
-            project_directory: projectDirectory
-        )
-        copyToCarthageFromBuild(
-            version: version,
-            project_directory: projectDirectory
-        )
-        end
-    end
-
-#used in STAGE  "Create Artefacts"	
-    desc "Create Artefacts (Pods and Carthage)"
-    lane :createArtefacts do 
-        versions = checkXcodeVersions
-        versions.each do |version|
-			copyToPodsFromBuild(
-    	        version: version,
-        	    project_directory: projectDirectory
-        	)
-			copyToCarthageFromBuild(
-    	        version: version,
-        	    project_directory: projectDirectory
-	        )
-        end
-    end
-
-
-
-#used in STAGE  "Run Unit Tests"
-    desc "Run unit tests for all xcode versions"
-    lane :runUnitTests do
-        version = masterXcodeVersion
-        # Build for given xcode version
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'Usabilla',
-            clean: true,
-            build_for_testing: true,
-            derived_data_path: './derivedData'
-        )
-        # Unit test for all devices
-        unitTestAllDevices(version: version)
-    end
-
-#used in STAGE  "UI Tests"
-    desc "UI test"
-    lane :uiTest do
-    	buildAndRunUITest( 
-    		    version: masterXcodeVersion,
-        	    project_directory: projectDirectory,
-        	    devices: uiTestDevices
-    		)
-    end
-
-
-    desc "Check that all required xcode versions are installed"
-    lane :checkXcodeVersions do
-        versions = xcodeVersions
-        versions.each do |version|
-            xcversion(version: version)         
-        end
-        versions
-    end
-
-#used in STAGE  "System tests"
-    desc "Run System tests"
-    lane :systemTests do 
-        versions = checkXcodeVersions
-        versions.each do |version|
-	        systemTestsAfterBuild(
-    		    version: version,
-        	    project_directory: projectDirectory
-    		)
-    	end
-    end
-
-#used in STAGE  "Validate framework"
-	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
-	lane :validateFrameWork do
-      versions = checkXcodeVersions
-        versions.each do |version|
-			validateBuildLLVMGCC(
-	            version: version,
-	            project_directory: projectDirectory
-    	    )
-    	end
+	before_all do
+		ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 	end
 
-##############################################
-########       PRIVATE LANES          ########
-##############################################
+	#used in STAGE  "Check Xcode and Post to Slack"    
+	desc "Check Xcode and Post to Slack"
+	lane :checkXcode do
+		list = checkLatestXcode()
+		UI.important "xcode lists - #{list}"
+		postToSlack(
+			message: "`#{list['available_xcodes']}` *:xcode: Xcode Available* \n`#{list['available_xcodes_gm']}` *:xcode-gm: GM Versions Available* ",
+			payload: list.key?('xcode_data') ? list['xcode_data'] : nil
+		)
+	end
 
-#used in  lane "runUnitTests"
-    desc "Unit tests for all device model specified in fastlane/unit-tests.json"
-    private_lane :unitTestAllDevices do |version|
-        deviceModels = unitTestDevices
-        deviceModels.each do |deviceModel|
-            unitTest(deviceModel: deviceModel)
-        end
-    end
+	#used in STAGE  "Run Lint"    
+	desc "Checks liniting"
+	lane :lint do
+		swiftlint(
+			reporter: "html",
+			output_file: "fastlane/swiftlint.html"
+		)
+	end
 
-#used in lane "unitTestAllDevices"
-    desc "Unit test"
-    private_lane :unitTest do |options|
-        unless options[:deviceModel]
-            UI.error("missing device model")
-        end
-        scan(
-            workspace: 'Usabilla.xcworkspace',
-            scheme: 'Usabilla',
-            test_without_building: true,
-            derived_data_path: './derivedData',
-            code_coverage: true,
-            device: options[:deviceModel]
-        )
-    end
+	#used in STAGE  "Run UT"    
+	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+	lane :buildAll do
+		versions = xcodeVersions
+		versions.each do |version|
+			buildForXcodeVersion(
+				version: version,
+				project_directory: projectDirectory
+			)
+		end
+	end
 
-#used in lane  "validateAll"	
-    desc "Validate integrating the framework (with specified version) into a sample project"
-    private_lane :validateSDK do |options|
-        unless options[:version]
-            UI.error("missing Xcode version")
-        end
-        version = options[:version]
-        UI.message("Validating for Xcode-#{version}")
+	#used in STAGE  "Generate Artefacts"
+	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+	lane :buildAllAndGenerateArtefacts do
+		versions = checkXcodeVersions
+		versions.each do |version|
+			#first remove previous builds
+			removeAllBuilds(
+				version: version,
+				project_directory: projectDirectory
+			)
+			# Build for xcode version
+			buildForXcodeVersion(
+				version: version,
+				project_directory: projectDirectory
+			)
+			# Copy generated artefacts for carthage and pods
+			copyToPodsFromBuild(
+				version: version,
+				project_directory: projectDirectory
+			)
+			copyToCarthageFromBuild(
+				version: version,
+				project_directory: projectDirectory
+			)
+		end
+	end
 
-        resetSimulator
-        xcversion(version: version)
-        framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/Pods/Usabilla.Framework"
-        cleanReleaseProject
-        sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/")
-	    scan(
-            project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
-            clean: true,
-            device: "iPhone SE (11.4)"
-        )
-        cleanReleaseProject
-        resetSimulator
-    end
+	#used in STAGE  "Create Artefacts"	
+	desc "Create Artefacts (Pods and Carthage)"
+	lane :createArtefacts do 
+		versions = checkXcodeVersions
+		versions.each do |version|
+			copyToPodsFromBuild(
+				version: version,
+				project_directory: projectDirectory
+			)
+			copyToCarthageFromBuild(
+				version: version,
+				project_directory: projectDirectory
+			)
+		end
+	end
 
 
-#used to crate all releases on the swift-sdk git
-# takes the version from  info.plist 
-# uploads correct assets (carthage zip file) 
+
+	#used in STAGE  "Run Unit Tests"
+	desc "Run unit tests for all xcode versions"
+	lane :runUnitTests do
+		version = masterXcodeVersion
+		# Build for given xcode version
+		scan(
+			workspace: 'Usabilla.xcworkspace',
+			scheme: 'Usabilla',
+			clean: true,
+			build_for_testing: true,
+			derived_data_path: './derivedData'
+		)
+		# Unit test for all devices
+		unitTestAllDevices(version: version)
+	end
+
+	#used in STAGE  "UI Tests"
+	desc "UI test"
+	lane :uiTest do
+		buildAndRunUITest( 
+			version: masterXcodeVersion,
+			project_directory: projectDirectory,
+			devices: uiTestDevices
+		)
+	end
+
+
+	desc "Check that all required xcode versions are installed"
+	lane :checkXcodeVersions do
+		versions = xcodeVersions
+		versions.each do |version|
+			xcversion(version: version)         
+		end
+		versions
+	end
+
+	#used in STAGE  "System tests"
+	desc "Run System tests"
+	lane :systemTests do 
+		versions = checkXcodeVersions
+		versions.each do |version|
+			systemTestsAfterBuild(
+				version: version,
+				project_directory: projectDirectory
+			)
+		end
+	end
+
+	#used in STAGE  "Validate framework"
+	desc "Validate that framework does NOT have LLVM nor GCC code in the build"
+	lane :validateFrameWork do
+		versions = checkXcodeVersions
+		versions.each do |version|
+			validateBuildLLVMGCC(
+				version: version,
+				project_directory: projectDirectory
+			)
+		end
+	end
+
+	##############################################
+	########       PRIVATE LANES          ########
+	##############################################
+
+	#used in  lane "runUnitTests"
+	desc "Unit tests for all device model specified in fastlane/unit-tests.json"
+	private_lane :unitTestAllDevices do |version|
+		deviceModels = unitTestDevices
+		deviceModels.each do |deviceModel|
+			unitTest(deviceModel: deviceModel)
+		end
+	end
+
+	#used in lane "unitTestAllDevices"
+	desc "Unit test"
+	private_lane :unitTest do |options|
+		unless options[:deviceModel]
+			UI.error("missing device model")
+		end
+		scan(
+			workspace: 'Usabilla.xcworkspace',
+			scheme: 'Usabilla',
+			test_without_building: true,
+			derived_data_path: './derivedData',
+			code_coverage: true,
+			device: options[:deviceModel]
+		)
+	end
+
+	#used in lane  "validateAll"	
+	desc "Validate integrating the framework (with specified version) into a sample project"
+	private_lane :validateSDK do |options|
+		unless options[:version]
+			UI.error("missing Xcode version")
+		end
+		version = options[:version]
+		UI.message("Validating for Xcode-#{version}")
+
+		resetSimulator
+		xcversion(version: version)
+		framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/Pods/Usabilla.Framework"
+		cleanReleaseProject
+		sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/")
+		scan(
+			project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
+			clean: true,
+			device: "iPhone SE (11.4)"
+		)
+		cleanReleaseProject
+		resetSimulator
+	end
+
+
+	#used to crate all releases on the swift-sdk git
+	# takes the version from  info.plist 
+	# uploads correct assets (carthage zip file) 
 	desc "creating release drafts"
-    lane :createDraftRelease do
-        versions = xcodeVersions
-        version = get_version_number(xcodeproj: "Usabilla.xcodeproj", target: "Usabilla")
+	lane :createDraftRelease do
+		versions = xcodeVersions
+		version = get_version_number(xcodeproj: "Usabilla.xcodeproj", target: "Usabilla")
 		first = true
 		versions.each do |xcode|
 			branch = "Xcode-#{xcode}"
@@ -225,67 +215,95 @@ end
 				branch = "master"
 				first = false
 			end
-        	createAReleaseDraft(version: version, xcode: xcode, branch: branch)
-        end
-    end
+			createAReleaseDraft(version: version, xcode: xcode, branch: branch)
+		end
+	end
 
 
-#used to crate a releases on the swift-sdk git
-	
+	#used to crate a releases on the swift-sdk git
 	private_lane :createAReleaseDraft do |options|
 		unless options[:xcode]
-            UI.error("missing Xcode version")
-        end
+			UI.error("missing Xcode version")
+		end
 		unless options[:version]
-            UI.error("missing version")
-        end
-        xcode = options[:xcode]
-        version = options[:version] 
-        branch = options[:branch] 
-        name = "v#{version}-Xcode-#{xcode}"
-        UI.message("Creating for #{name}")
-        
-        set_github_release(
-        	repository_name: "usabilla/usabilla-u4a-ios-swift-sdk",
+			UI.error("missing version")
+		end
+		xcode = options[:xcode]
+		version = options[:version] 
+		branch = options[:branch] 
+		name = "v#{version}-Xcode-#{xcode}"
+		UI.message("Creating for #{name}")
+		set_github_release(
+			repository_name: "usabilla/usabilla-u4a-ios-swift-sdk",
 			name: name,
 			tag_name: name,
 			is_draft: true,
 			description: (File.read("../changelog") rescue "No changelog provided"),
 			api_token: "2d12a433ea301e041de5dbdd82902a5108b7aee5",
 			commitish: branch,
-		    upload_assets: ["XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"]
-        )
+			upload_assets: ["XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"]
+		)
 	end
 
-#used to generate artifacts for UsabillaXamarin
-    desc "creating artifacts for UsabillaXamarin"
-    lane :buildXamarinAndGenerateArtefacts do
-        version = masterXcodeVersion
-        removeAllBuilds(
-            version: version,
-            project_directory: projectDirectory
-        )
-        buildForXamarin(
-            version: version,
-            project_directory: projectDirectory
-        )
-        validateXamarinBuildLLVMGCC(
-	        version: version,
-	        project_directory: projectDirectory
-    	)
-        copyToPodsFromXamarinBuild(
-    	        version: version,
-        	    project_directory: projectDirectory
-        )
-    end
+	#used to generate artifacts for UsabillaXamarin
+	desc "creating artifacts for UsabillaXamarin"
+	lane :buildXamarinAndGenerateArtefacts do
+		version = masterXcodeVersion
+		removeAllBuilds(
+			version: version,
+			project_directory: projectDirectory
+		)
+		buildForXamarin(
+			version: version,
+			project_directory: projectDirectory
+		)
+		validateXamarinBuildLLVMGCC(
+			version: version,
+			project_directory: projectDirectory
+		)
+		copyToPodsFromXamarinBuild(
+			version: version,
+			project_directory: projectDirectory
+		)
+	end
 
-#used in STAGE  "Validation"	
-    desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
-    lane :validateAll do
-        versions = xcodeVersions
-        versions.each do |version|
-            validateSDK(version: version)
-        end
-    end
+	#used in STAGE  "Validation"	
+	desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
+	lane :validateAll do
+		versions = xcodeVersions
+		versions.each do |version|
+			validateSDK(version: version)
+		end
+	end
 
+	#post slack message on fail
+	desc "Post a message to slack channel on lane failure"
+	error do |lane, exception|
+		buildConfig = getBuildConfigs()
+		postToSlack(
+			message: ":alert: :warn: :iphone:*`SDK` `ERROR` `#{exception.to_s}`.* :alert: ",
+			success: false,
+			payload: {  # Optional, lets you specify any number of your own Slack attachments.
+				"Lane" => lane,
+				"Build Date" => DateTime.now.strftime("%e. %b, %Y %H:%M"),
+				"Built by" => " :gitlab: ",
+				"Branch" => buildConfig['branch'],
+				"Environment" => buildConfig['configuration'],
+			}
+		)
+	end
+
+	#slack message
+	desc "Post a message to slack channel"
+	private_lane :postToSlack do |options|
+		message = options[:message]
+		success = options[:success]
+		payload = options[:payload]
+		default_payloads = [:git_branch, :git_author]
+		slack(
+			message: message, 
+			default_payloads: default_payloads,
+			success: success,
+		    payload: payload)
+	end
 end
