@@ -130,9 +130,9 @@ The release in master is build for Xcode 11.3.1.
 For other Xcode version, use:
  
 ```yaml
-binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11.4.1/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/v6.4.7-Xcode-11.5/Usabilla.json"
 ```
-replace Xcode-11.4.1 with the required version eg. Xcode-10
+replace Xcode-11.5 with the required version eg. Xcode-10
 
 ### Manual
 
