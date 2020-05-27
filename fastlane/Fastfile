@@ -8,7 +8,7 @@ default_platform :ios
 platform :ios do
 
 	before_all do
-		ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+		ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 	end
 
 	#used in STAGE  "Check Xcode and Post to Slack"    
@@ -185,13 +185,16 @@ platform :ios do
 		end
 		version = options[:version]
 		UI.message("Validating for Xcode-#{version}")
+		configuration = options[:configuration]
+		UI.message("Validating for #{configuration} configuration")
 
 		resetSimulator
 		xcversion(version: version)
 		framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/Pods/Usabilla.Framework"
 		cleanReleaseProject
-		sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/")
+		sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/ReleaseValidator")
 		scan(
+			configuration: configuration,
 			project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
 			clean: true,
 			device: "iPhone SE (11.4)"
@@ -271,26 +274,11 @@ platform :ios do
 	desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
 	lane :validateAll do
 		versions = xcodeVersions
-		versions.each do |version|
-			validateSDK(version: version)
-		end
-	end
-
-	#post slack message on fail
-	desc "Post a message to slack channel on lane failure"
-	error do |lane, exception|
 		buildConfig = getBuildConfigs()
-		postToSlack(
-			message: ":alert: :warn: :iphone:*`SDK` `ERROR` `#{exception.to_s}`.* :alert: ",
-			success: false,
-			payload: {  # Optional, lets you specify any number of your own Slack attachments.
-				"Lane" => lane,
-				"Build Date" => DateTime.now.strftime("%e. %b, %Y %H:%M"),
-				"Built by" => " :gitlab: ",
-				"Branch" => buildConfig['branch'],
-				"Environment" => buildConfig['configuration'],
-			}
-		)
+		configuration = buildConfig['configuration']
+		versions.each do |version|
+			validateSDK(version: version, configuration: configuration)
+		end
 	end
 
 	#slack message

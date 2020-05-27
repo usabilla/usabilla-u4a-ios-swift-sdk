@@ -41,5 +41,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>USABILLA_FORM_ID</key>
+	<string>$(UB_FORM_ID)</string>
 </dict>
 </plist>

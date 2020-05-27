@@ -1,0 +1,12 @@
+//
+//  Staging.xcconfig
+//  ReleaseValidator
+//
+//  Created by Hitesh Jain on 26/05/2020.
+//  Copyright © 2020 Usabilla. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+UB_FORM_ID = 5c419a8cd9209606f31f9c36

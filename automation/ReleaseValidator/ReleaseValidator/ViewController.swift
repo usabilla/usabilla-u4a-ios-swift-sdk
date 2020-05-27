@@ -17,7 +17,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func barButtonFeedbackAction(_ sender: Any) {
-        Usabilla.loadFeedbackForm("5c419a8cd9209606f31f9c36")//5a16d9c67d66810f2248aad9")
+        let bundle = Bundle(for: AppDelegate.self)
+        let formID = bundle.infoDictionary!["USABILLA_FORM_ID"] as? String ?? ""
+        Usabilla.loadFeedbackForm(formID)
     }
 }
 
@@ -27,6 +29,6 @@ extension ViewController: UsabillaDelegate {
     }
     
     func formDidFailLoading(error: UBError) {
-        
+        print("Error - \(error)")
     }
 }
