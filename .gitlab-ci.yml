@@ -1,6 +1,7 @@
 stages:
   - install
   - lint
+  - checkXcode
   - run-unit-test
   - buildAll-and-GenerateArtefacts
   - validate-framework
@@ -47,6 +48,20 @@ lint:
   artifacts:
     paths:
       - fastlane/swiftlint.html
+  tags:
+    - sdk
+  allow_failure: false
+
+checkXcode:
+  stage: checkXcode
+  script:
+    - bundle exec fastlane checkXcode
+  dependencies: []
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
   tags:
     - sdk
   allow_failure: false

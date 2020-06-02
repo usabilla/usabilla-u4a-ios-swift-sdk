@@ -15,7 +15,8 @@
 		43BFC5A81FC71D300077192D /* ReleaseValidatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BFC5A71FC71D300077192D /* ReleaseValidatorUITests.swift */; };
 		F28B451F247D4A0E0070F95F /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F28B451E247D4A0E0070F95F /* Staging.xcconfig */; };
 		F28B4521247D4A220070F95F /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F28B4520247D4A220070F95F /* Production.xcconfig */; };
-		F28B4529247D57210070F95F /* Usabilla.Framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28B4528247D57210070F95F /* Usabilla.Framework */; };
+		F2C10893248643A30064C6A0 /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C10892248643A30064C6A0 /* Usabilla.framework */; };
+		F2C10894248643A30064C6A0 /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2C10892248643A30064C6A0 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,12 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		43BFC5B61FC71E2F0077192D /* Embed Frameworks */ = {
+		F2C10895248643A30064C6A0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F2C10894248643A30064C6A0 /* Usabilla.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +57,7 @@
 		F28B451E247D4A0E0070F95F /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		F28B4520247D4A220070F95F /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		F28B4528247D57210070F95F /* Usabilla.Framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Usabilla.Framework; sourceTree = "<group>"; };
+		F2C10892248643A30064C6A0 /* Usabilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Usabilla.framework; path = ReleaseValidator/Usabilla.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F28B4529247D57210070F95F /* Usabilla.Framework in Frameworks */,
+				F2C10893248643A30064C6A0 /* Usabilla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +86,7 @@
 				43BFC5911FC71D2F0077192D /* ReleaseValidator */,
 				43BFC5A61FC71D300077192D /* ReleaseValidatorUITests */,
 				43BFC5901FC71D2F0077192D /* Products */,
+				F2C10891248643A30064C6A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +131,14 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		F2C10891248643A30064C6A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2C10892248643A30064C6A0 /* Usabilla.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,7 +149,7 @@
 				43BFC58B1FC71D2F0077192D /* Sources */,
 				43BFC58C1FC71D2F0077192D /* Frameworks */,
 				43BFC58D1FC71D2F0077192D /* Resources */,
-				43BFC5B61FC71E2F0077192D /* Embed Frameworks */,
+				F2C10895248643A30064C6A0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
