@@ -24,8 +24,7 @@ class CampaignViewController: UIViewController {
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
-    var backgroundLayer: UIView?
-    var containerView: UIView?
+    weak var backgroundLayer: UIView?
     weak var introView: UBIntroOutroView?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
@@ -81,7 +80,7 @@ class CampaignViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     func createBackgroundLayer() {
         guard backgroundLayer == nil else {
             return
@@ -178,7 +177,6 @@ class CampaignViewController: UIViewController {
         base.view.layer.masksToBounds = true
 
         base.view.translatesAutoresizingMaskIntoConstraints = false
-        createBackgroundLayer()
 
         base.view.frame = rect
         base.view.alpha = 0
@@ -186,7 +184,6 @@ class CampaignViewController: UIViewController {
         modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
         modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
         modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
-        self.backgroundLayer?.alpha = 1
 
         view.layoutIfNeeded()
 
@@ -221,7 +218,6 @@ class CampaignViewController: UIViewController {
             self?.formNavigationController?.view.frame = CGRect(x: 0, y: calculatedY,
                                                                 width: self?.view.frame.size.width ?? 0, height: self?.view.frame.size.height ?? 0)
             self?.formNavigationController?.view.alpha = 0
-            self?.backgroundLayer?.alpha = 0
             // swiftlint:disable:next multiple_closures_with_trailing_closure
         }) { [weak self] _ in
             self?.formNavigationController?.view.removeFromSuperview()
@@ -284,7 +280,7 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
 
     func introViewDidCancel(introView: UBIntroOutroView) {
         let completion: ((Bool) -> Void) = { [weak self] _ in
-            self?.backgroundLayer?.removeFromSuperview()
+            //self?.backgroundLayer?.removeFromSuperview()
             self?.closeCampaign(atPageIndex: 0)
         }
         removeBannerView(introView: introView, completion: completion)
