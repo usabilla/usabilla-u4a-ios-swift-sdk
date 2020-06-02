@@ -128,10 +128,14 @@ class UBTelemetrics {
         guard let fileURL = getFileURL() else { return [] }
         do {
             let data = try Data(contentsOf: fileURL)
-            let decoder = JSONDecoder()
-            let product = try decoder.decode([UBTelemetricResponse].self, from: data)
-            return product
-        } catch {print("Error")}
+            if data.count > 0 {
+                let decoder = JSONDecoder()
+                let product = try decoder.decode([UBTelemetricResponse].self, from: data)
+                return product
+            }
+            return []
+        } catch {
+        }
         return []
     }
 
