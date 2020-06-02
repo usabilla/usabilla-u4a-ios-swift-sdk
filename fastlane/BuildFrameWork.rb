@@ -92,7 +92,8 @@ private_lane :systemTestsAfterBuild do |options|
 		project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
 		scheme: buildConfig['scheme_name_test'],
 		clean: true,        
-		devices: [ "iPhone X (11.4)"]
+		devices: [ "iPhone X (11.4)"],
+		slack_only_on_failure: true
 	)
 end
 

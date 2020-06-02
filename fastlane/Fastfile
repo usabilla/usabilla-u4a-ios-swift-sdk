@@ -98,7 +98,8 @@ platform :ios do
 			scheme: 'Usabilla',
 			clean: true,
 			build_for_testing: true,
-			derived_data_path: './derivedData'
+			derived_data_path: './derivedData',
+			slack_only_on_failure: true
 		)
 		# Unit test for all devices
 		unitTestAllDevices(version: version)
@@ -173,7 +174,8 @@ platform :ios do
 			test_without_building: true,
 			derived_data_path: './derivedData',
 			code_coverage: true,
-			device: options[:deviceModel]
+			device: options[:deviceModel],
+			slack_only_on_failure: true
 		)
 	end
 
@@ -197,7 +199,8 @@ platform :ios do
 			configuration: configuration,
 			project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
 			clean: true,
-			device: "iPhone SE (11.4)"
+			device: "iPhone SE (11.4)",
+			slack_only_on_failure: true
 		)
 		cleanReleaseProject
 		resetSimulator
