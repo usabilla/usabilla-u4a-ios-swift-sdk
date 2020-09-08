@@ -8,6 +8,130 @@
 
 import Foundation
 
+enum DecodingError: Error {
+    case corruptedData
+}
+/*** PROPERTIES **
+customVariables
+debugEnabled
+theme
+navigationButtonsVisibility
+** FUNCTIONS **
+takeScreenshot
+loadFeedbackForm
+preloadFeedbackForms
+updateFragmentManager
+resetCampaignData
+removeCachedForms
+dismiss
+
+*/
+enum UBTelemetricType {
+    static func classFromString(_ name: ValueType, values: KeyedDecodingContainer<DynamicKey> ) -> UBTelemetricProtocol? {
+        do {
+            switch name.description {
+            case TelemetryConstants.takeScreenshot:
+                return try values.decodeIfPresent(UBTelemetricScreenshot.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.loadFeedbackForm:
+                return try values.decodeIfPresent(UBTelemetricLoadForm.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.initialize:
+                return try values.decodeIfPresent(UBTelemetricInitMethod.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.sendEvent:
+                return try values.decodeIfPresent(UBTelemetricSendEvent.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.resetCampaignData:
+                return try values.decodeIfPresent(UBTelemetricReset.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.removeCachedForms:
+                return try values.decodeIfPresent(UBTelemetricRemoveCache.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.setDataMasking:
+                return try values.decodeIfPresent(UBTelemetricSetDataMasking.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.dismiss:
+                return try values.decodeIfPresent(UBTelemetricDismiss.self, forKey: DynamicKey(stringValue: "action"))
+            case TelemetryConstants.debugEnabled:
+                return try values.decodeIfPresent(UBTelemetricDebug.self, forKey: DynamicKey(stringValue: "action"))
+            default:
+                return nil
+            }
+        } catch {
+            return nil
+        }
+    }
+
+    static func nameFromClass(_ type: Any) -> String {
+        switch type {
+        case is UBTelemetricScreenshot.Type:
+            return TelemetryConstants.takeScreenshot
+        case is UBTelemetricLoadForm:
+            return TelemetryConstants.loadFeedbackForm
+        case is UBTelemetricInitMethod.Type:
+            return TelemetryConstants.initialize
+        case is UBTelemetricSendEvent:
+            return TelemetryConstants.sendEvent
+        case is UBTelemetricReset:
+            return TelemetryConstants.resetCampaignData
+        case is UBTelemetricRemoveCache:
+            return TelemetryConstants.removeCachedForms
+        case is UBTelemetricSetDataMasking.Type:
+            return TelemetryConstants.setDataMasking
+        case is UBTelemetricDismiss:
+            return TelemetryConstants.dismiss
+        case is UBTelemetricDebug:
+            return TelemetryConstants.debugEnabled
+        default:
+            return TelemetryConstants.unknown
+        }
+    }
+}
+
+enum ValueType: Decodable {
+    case number(Int)
+    case string(String)
+    case boolean(Bool)
+    case array([String])
+
+    init(from decoder: Decoder) throws {
+        do {
+            let singleValueContainer = try decoder.singleValueContainer()
+            let data = try singleValueContainer.decode(Int.self)
+            self = .number(data)
+            return
+        } catch {}
+        do {
+            let singleValueContainer = try decoder.singleValueContainer()
+            let data = try singleValueContainer.decode(String.self)
+            self = .string(data)
+            return
+        } catch {}
+        do {
+            let singleValueContainer = try decoder.singleValueContainer()
+            let data = try singleValueContainer.decode(Bool.self)
+            self = .boolean(data)
+            return
+        } catch {}
+        do {
+            let singleValueContainer = try decoder.singleValueContainer()
+            let data = try singleValueContainer.decode([String].self)
+            self = .array(data)
+            return
+        } catch {}
+
+        throw DecodingError.corruptedData
+    }
+    var description: String {
+        switch self {
+        case let .string(data):
+            return data
+        case let .number(data):
+            return "\(data)"
+        case let .boolean(data):
+            return "\(data)"
+        default :
+            return "no value"
+        }
+    }
+}
+
+typealias Values = [String: ValueType]
+
 // When encodeing we want the name of the class to be used as key
 // Since the data classes are a protocol, we need to create a Codingkey at runtime
 // By using this, we can translate the class name to a Codingkey
@@ -54,19 +178,21 @@ class UBTelemetricResponse: Codable {
         var container = encoder.container(keyedBy: DynamicKey.self)
         try container.encode(timestamp, forKey: DynamicKey(stringValue: "timestamp"))
         try container.encode(id, forKey: DynamicKey(stringValue: "id"))
-        try container.encode(level, forKey: DynamicKey(stringValue: "level"))
+        try container.encode(level, forKey: DynamicKey(stringValue: "option"))
         try container.encodeIfPresent(originClass, forKey: DynamicKey(stringValue: "originClass"))
 
         try data.forEach {
             let nameOfClass = String(describing: $0)
             // use the classnames last part as codingkey
             // this is needed as the data holds protocols, that is not codeable at compiletime
-            if let index = nameOfClass.range(of: ".", options: .backwards)?.lowerBound {
-                let finalIndex = nameOfClass.index(index, offsetBy: 1)
-                let str = String(nameOfClass[finalIndex...])
-                let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: str))
+            //if let index = nameOfClass.range(of: ".", options: .backwards)?.lowerBound {
+                //let finalIndex = nameOfClass.index(index, offsetBy: 1)
+                //let str = String(nameOfClass[finalIndex...])
+                //let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: str))
+                let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: "action"))
                 try $0.encode( to: dataEncoder)
-            }
+            print($0)
+            //}
         }
     }
 
@@ -74,20 +200,18 @@ class UBTelemetricResponse: Codable {
         let values = try decoder.container(keyedBy: DynamicKey.self)
         timestamp = try values.decode(String.self, forKey: DynamicKey(stringValue: "timestamp"))
         id  = try values.decode(String.self, forKey: DynamicKey(stringValue: "id"))
-        level = try values.decode(Int.self, forKey: DynamicKey(stringValue: "level"))
+        level = try values.decode(Int.self, forKey: DynamicKey(stringValue: "option"))
         originClass = try values.decodeIfPresent(String.self, forKey: DynamicKey(stringValue: "originClass"))
         data = []
-        if let object = try values.decodeIfPresent(UBTelemetricSDK.self, forKey: DynamicKey(className: UBTelemetricSDK.self)) {
+        if let object = try values.decodeIfPresent(UBTelemetricSDK.self, forKey: DynamicKey(stringValue: "metadata")) {
             data.append(object)
         }
-        if let object = try values.decodeIfPresent(UBTelemetricInitMethod.self, forKey: DynamicKey(className: UBTelemetricInitMethod.self)) {
-            data.append(object)
-        }
-        if let object = try values.decodeIfPresent(UBTelemetricSendEvent.self, forKey: DynamicKey(className: UBTelemetricSendEvent.self)) {
-            data.append(object)
-        }
-        if let object = try values.decodeIfPresent(UBTelemetricLoadForm.self, forKey: DynamicKey(className: UBTelemetricLoadForm.self)) {
-            data.append(object)
+        if let object = try values.decodeIfPresent(Values.self, forKey: DynamicKey(stringValue: "action")) {
+            if let name = object["name"] {
+                if let object = UBTelemetricType.classFromString(name, values: values) {
+                    data.append(object)
+                }
+            }
         }
     }
 }
@@ -107,46 +231,86 @@ extension UBTelemetricResponse: CustomStringConvertible {
 protocol UBTelemetricProtocol: Codable {
 
 }
-class UBTelemetricInitMethod: UBTelemetricProtocol {
-    var appId: String = ""
-    var appIdCorrect: Bool = false
-    var numberOfCampaigns: Int = 0
-    var methodResult: Bool = true
-    var methodMessage: String?
-    var duration: Double = 0.0
-}
-
-class UBTelemetricSendEvent: UBTelemetricProtocol {
-    var event: String = ""
-    var campaignId: String?
-    var displayed: Bool = false
-    var methodResult: Bool = false
-    var methodMessage: String?
-    var duration: Double = 0.0
-}
-
-class UBTelemetricReset: UBTelemetricProtocol {
-    var methodResult: Bool = false
-    var methodMessage: String?
+class UBTelemetricScreenshot: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricScreenshot.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
     var duration: Double = 0.0
 }
 
 class UBTelemetricLoadForm: UBTelemetricProtocol {
-    var formID: String = ""
-    var numberOfElements: Int = 0
-    var displayed: Bool = false
-    var methodResult: Bool = false
-    var methodMessage: String?
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricLoadForm.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
     var duration: Double = 0.0
-    var customTheme: Bool = false
-    var imagePassed: Bool = false
+    var screenshot: Bool = false
+    var theme: Bool = false
+    var formId: String = ""
+    var callback: Bool = false
+    var displayed: Bool = false
+    var formElements: Int = 0
+}
+
+
+class UBTelemetricInitMethod: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricInitMethod.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
+    var appId: String = ""
+    var numberCampaigns: Int = 0
+}
+
+class UBTelemetricSendEvent: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricSendEvent.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
+    var event: String = ""
+    var campaignTriggered: String?
+    var displayed: Bool = false
+}
+
+class UBTelemetricReset: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricReset.self)
+    var callback: Bool = false
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
 
 }
+
+class UBTelemetricRemoveCache: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricRemoveCache.self)
+    var removedCachedForms: Int = 0
+    var callback: Bool = false
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
+
+}
+
+class UBTelemetricDismiss: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricDebug.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
+    var dismiss: String = ""
+}
+
+class UBTelemetricDebug: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricDebug.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
+}
+
 class UBTelemetricSetDataMasking: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricSetDataMasking.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
     var masks: [String] = []
     var maskCharacter: String = ""
-    var methodResult: Bool = false
-    var methodMessage: String?
-    var duration: Double = 0.0
 
 }

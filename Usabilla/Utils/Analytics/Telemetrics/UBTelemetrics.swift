@@ -157,7 +157,7 @@ class UBTelemetrics {
             }
         }
     }
-    
+
     /// Add data to the log. If data retrieved witht the getStoredData method fails the data can be added to the storrage again
     /// - Parameter data: BASE64 encode string
     /// - Returns: bool of the result. If the data was sucessfully decode and added it return true

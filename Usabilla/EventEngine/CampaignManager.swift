@@ -51,9 +51,9 @@ class CampaignManager {
         guard let campaignToDisplay = displayableCampaign else {
             if telemetric != nil {
                 if triggeredCampaigns.count == 0 {
-                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
                 } else {
-                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
                 }
                 telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                 telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
@@ -75,8 +75,8 @@ class CampaignManager {
 
             guard self.testIntegrityOfCampaginForm(form) else {
                 let text = "form: \(campaign.formID) integrity incorrect"
-                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: text, logLevel: .methods)
-                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: text, logLevel: .methods)
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: 1, logLevel: .methods)
                 self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                 self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
                 return
@@ -91,15 +91,15 @@ class CampaignManager {
                 return
             }
 
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: TelemetryConstants.campaingAlreadyShowing, logLevel: .methods)
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.campaingAlreadyShowing, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: 1, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
             self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
 
             PLog(TelemetryConstants.campaingAlreadyShowing)
         }.catch { error in
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodMessage, value: error.localizedDescription, logLevel: .methods)
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: error.localizedDescription, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: 1, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
             self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
             PLog(error)
@@ -124,8 +124,11 @@ class CampaignManager {
         return activeStatuses
     }
 
-    func resetData(completion: (() -> Void)?) {
-        UBCampaignDAO.shared.deleteAll()
+    func resetData(completion: (() -> Void)?, logid: String? = nil) {
+        UBCampaignDAO.shared.deleteAll(completion: { [logid] in
+            self.telemetric?.alterData(for: logid, keyPath: \UBTelemetricReset.errorCode, value: 0, logLevel: .methods)
+            self.telemetric?.logEnd(for: logid, keyPath: \UBTelemetricReset.duration)
+        })
         fetchCampaignForEventEngine(completion: completion)
     }
 

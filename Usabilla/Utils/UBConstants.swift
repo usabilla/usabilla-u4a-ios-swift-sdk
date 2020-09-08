@@ -32,6 +32,24 @@ struct TelemetryConstants {
     static let campaingAlreadyShowing = "A campaign is already displayed"
     static let filename = "debug.data"
     static let filepath = "UBSDK"
+
+    static let errorCodeServer = 500
+    static let errorCodeClient = 400
+
+    static let takeScreenshot = "takeScreenshot"
+
+    static let loadFeedbackForm = "loadFeedbackForm"
+    static let initialize = "initialize"
+    static let sendEvent =  "sendEvent"
+
+    static let resetCampaignData = "resetCampaignData"
+    static let removeCachedForms =  "removeCachedForms"
+    static let setDataMasking =  "setDataMasking"
+    static let dismiss = "dismiss"
+    static let debugEnabled = "debugEnabled"
+
+    static let unknown = "unknown"
+
 }
 
 struct UBDimensions {

@@ -14,5 +14,5 @@ protocol UBDAO {
     func readAll() -> [DataType]
     func read(id: String) -> DataType?
     @discardableResult func delete(_ obj: DataType) -> Bool
-    @discardableResult func deleteAll() -> Bool
+    @discardableResult func deleteAll(completion: (() -> Void)?) -> Bool
 }
