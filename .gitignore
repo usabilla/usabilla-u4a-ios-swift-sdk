@@ -69,3 +69,4 @@ vendor
 generatedFramework
 slather-coverage
 automation/ReleaseValidator/ReleaseValidator/Usabilla.Framework
+XcodeBuilds

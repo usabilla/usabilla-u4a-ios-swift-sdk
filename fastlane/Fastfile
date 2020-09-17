@@ -297,4 +297,15 @@ platform :ios do
 			success: success,
 		    payload: payload)
 	end
+
+	desc "Export xcframework"
+	lane :export_xcframework do
+		create_xcframework(
+			workspace: 'Usabilla.xcworkspace',
+			scheme: 'Usabilla',
+    		include_bitcode: true,
+    		destinations: ['iOS'],
+    		xcframework_output_directory: 'XcodeBuilds/xcframeworks'
+		)
+	end
 end
