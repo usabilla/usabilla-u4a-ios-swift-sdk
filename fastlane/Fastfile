@@ -300,6 +300,7 @@ platform :ios do
 
 	desc "Export xcframework"
 	lane :export_xcframework do
+		sh("rm -rf #{projectDirectory}XcodeBuilds/xcframeworks")
 		create_xcframework(
 			workspace: 'Usabilla.xcworkspace',
 			scheme: 'Usabilla',
