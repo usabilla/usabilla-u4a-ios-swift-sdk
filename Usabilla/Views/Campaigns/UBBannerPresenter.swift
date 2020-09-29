@@ -53,11 +53,10 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         bottomConstraint.isActive = style == .bannerBottom
         inView.layoutIfNeeded()
 
-        CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar - 1
+        CampaignWindow.shared.setWindowLevel(UIWindowLevelStatusBar - 1)
         // Design requested slower animation on ipad
         let animationTime = (DeviceInfo.isIPad() ? UBDimensions.BannerPresenter.animateDurationTablet : UBDimensions.BannerPresenter.animateDurationDefualt)
         UIView.animate(withDuration: animationTime, delay: UBDimensions.BannerPresenter.animateDelay, usingSpringWithDamping: UBDimensions.BannerPresenter.springDamping, initialSpringVelocity: UBDimensions.BannerPresenter.springVelocity, options: .curveEaseOut, animations: { [weak self] in
-
             self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
             self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
             inView.layoutIfNeeded()
@@ -67,17 +66,16 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     }
 
     func dismiss(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?) {
-
+        let bannerViewHeigth = (view?.frame.size.height ?? 0.0)
         UIView.animate(withDuration: UBDimensions.BannerPresenter.animateDurationDismiss, animations: { [weak self] in
             animations?()
-            self?.topConstraint.constant = -(self?.offset ?? 0.0) - (self?.kShadowOffset ?? 0.0)
-            self?.bottomConstraint.constant = (self?.offset ?? 0.0) + (self?.kShadowOffset ?? 0.0)
+            self?.topConstraint.constant =  -(bannerViewHeigth  + (self?.offset ?? 0.0) + (self?.kShadowOffset ?? 0.0))
+            self?.bottomConstraint.constant = bannerViewHeigth + (self?.offset ?? 0.0) + (self?.kShadowOffset ?? 0.0)
 
             inView?.layoutIfNeeded()
-            // swiftlint:disable:next multiple_closures_with_trailing_closure
-        }) { _ in
+        }, completion: { _ in
             completion?()
-        }
+        })
     }
 
     private func setFixedConstraints() {
@@ -145,7 +143,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
         widthConstraint = aView.widthAnchor.constraint(equalToConstant: kWidthiPhone)
         widthConstraint?.isActive  = true
-    
+
         superview.updateConstraints()
     }
 }

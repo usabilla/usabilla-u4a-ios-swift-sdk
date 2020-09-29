@@ -29,11 +29,7 @@ class CampaignManager {
     }
 
     func closeCampaign() -> Bool {
-        if let campaignViewController = CampaignWindow.shared.rootViewController as? CampaignViewController {
-            _  = campaignViewController.forceCloseCampaing()
-            return true
-        }
-        return false
+        return CampaignWindow.shared.removeCampaign()
     }
 
     // customVariables sent from the interface are the activeStatuses used inside our SDK.

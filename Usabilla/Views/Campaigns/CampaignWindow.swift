@@ -5,71 +5,89 @@
 //  Created by Benjamin Grima on 21/03/2017.
 //  Copyright © 2017 Usabilla. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
-class CampaignWindow: UIWindow {
+// with iOS 13, and scenes we add another window, that requries a pass-through of hits. We use both UIWindow and UIView to make it work properly
+class PassthroughWindow: UIWindow {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        return view == self  ? nil : view
+    }
+}
 
-    static let shared = CampaignWindow()
+class CampaignWindow {
     fileprivate var currentCampaignViewModel: CampaignViewModel?
 
-    private init() {
-        super.init(frame: UIScreen.main.bounds)
-        backgroundColor = .clear
-        autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        windowLevel = UIWindowLevelStatusBar - 1
-        accessibilityViewIsModal = true
-    }
+    var showing = false
+    static let shared = CampaignWindow()
+    private var  window: UIWindow?
+    private var campaingController: CampaignViewController?
+    private init() { }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    /**
-     Display a campaign if no other campaigns are displaying
-
-     - parameter campaign: Campaign to display
-     */
     @discardableResult func showCampaign(_ campaignViewModel: CampaignViewModel) -> Bool {
-        guard currentCampaignViewModel == nil else {
-            return false
-        }
-        // Under iOS 13 the UIWindow has been moved out of UIApplication and into UIWindowScene
-        // So for the UIWindow to know where to display itself, the windowScene must be set
-        #if XCODE1100
-        if #available(iOS 13, *) {
-            if let currentWindowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                self.windowScene = currentWindowScene
+        var popupWindow: UIWindow?
+        #if XCODE1100 || XCODE1200
+        if #available(iOS 13.0, *) {
+            let windowScene = UIApplication.shared
+                .connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first
+            if let windowScene = windowScene as? UIWindowScene {
+                popupWindow = PassthroughWindow(windowScene: windowScene)
             }
+        } else {
+            popupWindow = PassthroughWindow(frame: UIScreen.main.bounds)
         }
+        #else
+            popupWindow = PassthroughWindow(frame: UIScreen.main.bounds)
         #endif
-        isHidden = false
-        currentCampaignViewModel = campaignViewModel
-        rootViewController = CampaignViewController(viewModel: campaignViewModel, delegate: self)
-        rootViewController?.view.translatesAutoresizingMaskIntoConstraints = false
-        rootViewController?.view.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-        rootViewController?.view.topAnchor.constraint(equalTo: topAnchor).activate()
-        rootViewController?.view.leftAnchor.constraint(equalTo: leftAnchor).activate()
-        rootViewController?.view.rightAnchor.constraint(equalTo: rightAnchor).activate()
+        let viewcontroller = UIViewController()
+        viewcontroller.view = UBCustomTouchableView()
+        viewcontroller.view.backgroundColor = .clear
+        viewcontroller.modalPresentationStyle = .overFullScreen
+        viewcontroller.view.alpha = 1
+        viewcontroller.view.frame = UIScreen.main.bounds
+        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+
+        popupWindow?.frame = UIScreen.main.bounds
+        popupWindow?.backgroundColor = .clear
+        popupWindow?.windowLevel = UIWindowLevelStatusBar + 1
+        popupWindow?.rootViewController = viewcontroller
+        popupWindow?.makeKeyAndVisible()
+        showing = true
+        let campaignVC = CampaignViewController(viewModel: campaignViewModel, delegate: self)
+        campaignVC.view.translatesAutoresizingMaskIntoConstraints = true
+        campaignVC.view.backgroundColor = .clear
+        campaignVC.modalPresentationStyle = .overFullScreen
+        popupWindow?.rootViewController?.present(campaignVC, animated: false, completion: nil)
+        campaingController = campaignVC
+        window = popupWindow
         return true
     }
 
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        for subView in subviews {
-            if subView.hitTest(convert(point, to: subView), with: event) != nil {
-                return true
-            }
+    func removeCampaign() -> Bool {
+        if showing {
+            return campaingController?.forceCloseCampaing() ?? false
         }
-
         return false
+    }
+
+    func setWindowLevel(_ level: UIWindowLevel) {
+        window?.windowLevel = level
     }
 }
 
 extension CampaignWindow: CampaignViewControllerDelegate {
     func campaignDidEnd() {
-        isHidden = true
         currentCampaignViewModel = nil
+        window?.rootViewController?.dismiss(animated: true, completion: {})
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+        window?.isHidden = true
+
+        if #available(iOS 13, *) {
+            window?.windowScene = nil
+        }
+        showing = false
     }
 }

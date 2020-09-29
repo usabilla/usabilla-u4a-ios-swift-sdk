@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 class UBCustomTouchableView: UIView {
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        for subView in subviews {
-            if subView.hitTest(convert(point, to: subView), with: event) != nil {
-                return true
-            }
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        var view = super.hitTest(point, with: event)
+        if view != self {
+            return view
         }
-        return false
+        while !(view is PassthroughWindow) {
+            view = view?.superview
+        }
+        return view
     }
 }

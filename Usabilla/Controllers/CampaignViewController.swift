@@ -49,26 +49,24 @@ class CampaignViewController: UIViewController {
         return false
     }
 
-    override func viewDidLoad() {
+    override func viewDidAppear(_ animated: Bool) {
         if let introPageViewModel = viewModel.introPageViewModel {
             let introView = UBIntroOutroView(viewModel: introPageViewModel)
             self.introView = introView
             introView.delegate = self
 
-            var animations: (() -> Void)?
-
-            if viewModel.introPageViewModel?.displayMode == .alert {
-                createBackgroundLayer()
-                animations = {
-                    self.backgroundLayer?.alpha = 1
-                }
-            }
             view.addSubview(introView)
-            viewModel.introPresenter?.present(view: introView, inView: view, animations: animations)
-            return
         }
-    }
+        var animations: (() -> Void)?
 
+        if viewModel.introPageViewModel?.displayMode == .alert {
+            createBackgroundLayer()
+            animations = {
+                self.backgroundLayer?.alpha = 1
+            }
+        }
+        viewModel.introPresenter?.present(view: introView, inView: view, animations: animations)
+    }
     override func loadView() {
         self.view = UBCustomTouchableView()
         self.view.frame = UIScreen.main.bounds
@@ -123,7 +121,7 @@ class CampaignViewController: UIViewController {
 
     private func showModalFormiPad () {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
-        #if XCODE1100
+        #if XCODE1100 || XCODE1200
         if #available(iOS 13.0, *) {
             formController.isModalInPresentation = true // available in IOS13
         }
@@ -240,7 +238,7 @@ class CampaignViewController: UIViewController {
     func closeCampaign(atPageIndex index: Int? = nil) {
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
         UsabillaInternal.delegate?.campaignDidClose(withFeedbackResult: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
-        self.cleanAndRemoveBannerView()
+        //self.cleanAndRemoveBannerView()
         self.delegate?.campaignDidEnd()
     }
 
@@ -279,23 +277,8 @@ class CampaignViewController: UIViewController {
 extension CampaignViewController: UBIntroOutroViewDelegate {
 
     func introViewDidCancel(introView: UBIntroOutroView) {
-        let completion: ((Bool) -> Void) = { [weak self] _ in
-            //self?.backgroundLayer?.removeFromSuperview()
-            self?.closeCampaign(atPageIndex: 0)
-        }
-        removeBannerView(introView: introView, completion: completion)
-    }
-
-    private func removeBannerView(introView: UBIntroOutroView, completion: ((Bool) -> Void)?) {
-        var fra = introView.frame
-        if fra.origin.y > CGFloat(distanceFromTop) { // indicates bottom....
-            fra.origin.y = view.frame.size.height + offset
-        } else {
-            fra.origin.y = -(fra.size.height + offset)
-        }
-        UIView.animate(withDuration: 0.3, animations: {
-            introView.frame = fra
-        }, completion: completion)
+        viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: { [weak self] in
+            self?.closeCampaign(atPageIndex: 0) })
     }
 
     private func cleanAndRemoveBannerView() {
@@ -309,11 +292,11 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
     func introViewDidContinue(introView: UBIntroOutroView) {
         viewModel.introViewDidContinue()
         if viewModel.currentPageType == .toast {
-            let completion: ((Bool) -> Void) = { _ in
+            let completion: (() -> Void) = {
                 introView.removeFromSuperview()
                 self.showToast()
             }
-            removeBannerView(introView: introView, completion: completion)
+            viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: completion)//
             return
         }
         showModalForm()

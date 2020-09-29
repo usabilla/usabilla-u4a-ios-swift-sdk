@@ -20,7 +20,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
         view.centerXAnchor.constraint(equalTo: inView.centerXAnchor).activate()
         inView.layoutIfNeeded()
 
-        CampaignWindow.shared.windowLevel = UIWindowLevelStatusBar
+        CampaignWindow.shared.setWindowLevel(UIWindowLevelStatusBar)
 
         view.transform = CGAffineTransform(scaleX: UBDimensions.AlertPresenter.tranformScaleX, y: UBDimensions.AlertPresenter.tranformScaleY)
 
