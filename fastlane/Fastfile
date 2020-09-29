@@ -307,5 +307,6 @@ platform :ios do
     		destinations: ['iOS'],
     		xcframework_output_directory: 'XcodeBuilds/xcframeworks'
 		)
+		copyToSwiftPackage
 	end
 end

@@ -165,3 +165,9 @@ private_lane :copyToCarthageFromBuild do |options|
 	sh("cd #{paths.carthage_path}/ && zip -r #{paths.carthage_path}/#{paths.carthageFileName} Carthage/")
 	sh("rm -rf #{paths.carthage_path}/Carthage")
 end
+
+desc "Copy artefacts to the Swift Package directory"
+private_lane :copyToSwiftPackage do
+	sh("find \"#{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
+	sh("cp -rf #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
+end
