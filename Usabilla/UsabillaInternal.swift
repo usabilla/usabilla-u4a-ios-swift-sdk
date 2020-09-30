@@ -40,7 +40,8 @@ class UsabillaInternal {
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
 
-    private static let errorCamapingShowing = "UBError: A campaing is showing. Form can't be displayed."
+    private static let errorCamapingShowing = "UBError: A Campaing is showing. Form can't be displayed."
+    private static let errorFormShowing = "UBError: A Form is showing. Campaing can't be displayed."
     private static let featurebillaService = FeaturebillaService()
     private static let featurebillaStore: FeaturebillaStoreProtocol = FeaturebillaStore(service: featurebillaService)
     private static var featurebillaManager = UBFeaturebillaManager(featurebillaStore: featurebillaStore, featurebillaService: featurebillaService)
@@ -50,6 +51,12 @@ class UsabillaInternal {
         campaignManager?.telemetric = telemetric
         let logid = telemetric.logStart(method: UBTelemetricSendEvent(), logLevel: .methods )
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.event, value: event, logLevel: .methods)
+        if formNavigationController != nil {
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.methodMessage, value: errorFormShowing, logLevel: .methods)
+            telemetric.logEnd(for: logid, keyPath: \UBTelemetricSendEvent.duration)
+            return
+        }
         campaignManager?.sendEvent(event: event, customVariables: customVariables, logId: logid)
     }
 
