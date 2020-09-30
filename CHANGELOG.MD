@@ -1,3 +1,10 @@
+## 6.5.0
+### Fix
+- Fixes crash under iOS 13, after dismissing campaign, and rotating device
+### Update
+- Build with Xcode 12.0 to support swift package
+- Added Swift Package Support ( Binary Target - xcframework)
+
 ## 6.4.7
 ### Fix
 - Fixes crash under iOS 13, after dismissing campaign, and rotating device
