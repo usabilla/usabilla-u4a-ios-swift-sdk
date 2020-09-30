@@ -23,7 +23,7 @@ def getDataAfterLastInstalledXcodeVersion(a, b)
 	puts "current xcode #{b}"
 	data = []
 	a.each do |child|
-		version = child['version']['number']
+		version = child.dig('version', 'number')
 		data.push(child)
 		if b == version
 			data.pop
@@ -69,17 +69,16 @@ end
 def getFormattedXcodedata(a)
 	data = Hash.new
 	swift_versions = []
-	version = a['version']
-	data["version-number"] = version['number']
-	data["build-version"] = version['build']
-	data["date"] = getFormattedDate(a['date'])
-	links = a['links']
-	data["notes_url"] = links['notes']['url']
-	data["download_url"] = links['download']['url']
-	data["version-number"] = version['number']
-	data["build-version"] = version['build']
-	data["requireOSVersion"] = a['requires']
-	a['compilers']['swift'].each do |ver|
+	version = a.dig('version')
+	data["version-number"] = version.dig('number')
+	data["build-version"] = version.dig('build')
+	data["date"] = getFormattedDate(a.dig('date'))
+	links = a.dig('links')
+	data["notes_url"] = links.dig('notes', 'url')
+	data["download_url"] = links.dig('download', 'url')
+	data["requireOSVersion"] = a.dig('requires')
+	b = a.dig('compilers', 'swift')
+	b.each do |ver|
 		swift_versions.push(ver['number'])
 	end
 	data["requireSwiftVersion"] = swift_versions
@@ -109,5 +108,3 @@ def checkLatestXcode()
 	end
 	return data
 end
-
-puts "checkLatestXcode() #{checkLatestXcode()} \n "
