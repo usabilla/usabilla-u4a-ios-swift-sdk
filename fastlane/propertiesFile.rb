@@ -45,10 +45,10 @@ class Paths
 		@projectDirectory = projectDirectory
 		@target = configuration
 	end
-		def projectDirectory
+	def projectDirectory
 		@projectDirectory
 	end
-		def target 
+	def target 
 		@target
 	end
 	def xcode_directory 
@@ -61,6 +61,15 @@ class Paths
 	def pods_directory
 		"Pods"
 	end
+	def pods_path
+		"#{projectDirectory}#{xcode_directory}/#{pods_directory}"
+	end
+	def podsFileName 
+		"Pods.framework.zip"
+	end
+	def xcframeworkFileName 
+		"Usabilla.xcframework.zip"
+    end
 	def framework_name 
 		"#{scheme_name}.framework"
 	end
@@ -68,12 +77,12 @@ class Paths
 		"#{scheme_name}"
 	end
 	def framework_path  
-		"#{projectDirectory}#{xcode_directory}/#{pods_directory}/#{framework_name}"
+		"#{pods_path}/#{framework_name}"
 	end
 	def framework_outputFile
 		"#{framework_path}/#{framework_execFile}"
 	end
-		def simulator_path
+	def simulator_path
 		"#{projectDirectory}/build/Build/Products/#{target}-iphonesimulator/#{framework_name}"
 	end
 	def simulator_outputFile
@@ -88,11 +97,11 @@ class Paths
 	def carthage_outputPath
 		"#{projectDirectory}#{xcode_directory}/Carthage/Carthage/Build/iOS"
 	end
-		def carthage_symbolsPath
+	def carthage_symbolsPath
 		"#{projectDirectory}/build/Build/Products/#{target}-iphoneos"
 	end
 	def carthage_dSYMPath
-		"#{projectDirectory}#{xcode_directory}/Pods"
+		"#{pods_path}"
 	end
 	def carthage_path
 		"#{projectDirectory}#{xcode_directory}/Carthage"
@@ -119,7 +128,7 @@ class Paths
 	def framework_xamarin_outputFile
 		"#{framework_xamarin_path}/#{framework_xamarin_execFile}"
 	end
-		def simulator_xamarin_path
+	def simulator_xamarin_path
 		"#{projectDirectory}/build/Build/Products/#{target}-iphonesimulator/#{framework_xamarin_name}"
 	end
 	def simulator_xamarin_outputFile

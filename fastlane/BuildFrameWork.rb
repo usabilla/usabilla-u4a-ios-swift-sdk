@@ -141,6 +141,7 @@ private_lane :copyToPodsFromBuild do |options|
 	sh("cp -rf #{paths.iphoneos_path}/Headers #{paths.framework_path}/." )
 	sh("cp -rf #{paths.iphoneos_path}/Modules #{paths.framework_path}/." )
 	sh("cp -rf #{paths.simulator_path}/Modules/* #{paths.framework_path}/Modules/." )
+	sh("cd #{projectDirectory}#{paths.xcode_directory}/#{paths.pods_directory}/ && zip -r ./#{paths.podsFileName} .")
 end
 
 desc "Copy artefacts to the Carthage directory"
@@ -161,6 +162,7 @@ private_lane :copyToCarthageFromBuild do |options|
 
 	sh("cp -rf #{paths.framework_path} #{paths.carthage_outputPath}/." )
 	sh("cp -rf #{paths.carthage_dSYMPath}/*.dSYM #{paths.carthage_outputPath}/." )
+	sh("rm -rf #{paths.carthage_dSYMPath}/*.framework #{paths.carthage_dSYMPath}/*.dSYM")
 	sh("cp #{paths.carthage_symbolsPath}/*.bcsymbolmap #{paths.carthage_outputPath}/." )
 	sh("cd #{paths.carthage_path}/ && zip -r #{paths.carthage_path}/#{paths.carthageFileName} Carthage/")
 	sh("rm -rf #{paths.carthage_path}/Carthage")
@@ -171,7 +173,7 @@ private_lane :copyToSwiftPackage do
 	sh("find \"#{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
 	sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
 	sh("cp -rf #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-	sh("cd #{projectDirectory}XcodeBuilds/xcframeworks && zip -r ./Usabilla.xcframework.zip ./Usabilla.xcframework")
+	sh("cd #{projectDirectory}XcodeBuilds/xcframeworks && zip -r ./#{paths.xcframeworkFileName} ./Usabilla.xcframework")
 	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework.zip | xargs")
 	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt")
 end
