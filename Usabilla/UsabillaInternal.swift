@@ -39,6 +39,8 @@ class UsabillaInternal {
     private static weak var formNavigationController: UINavigationController?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
+
+    private static let errorCamapingShowing = "UBError: A campaing is showing. Form can't be displayed."
     private static let featurebillaService = FeaturebillaService()
     private static let featurebillaStore: FeaturebillaStoreProtocol = FeaturebillaStore(service: featurebillaService)
     private static var featurebillaManager = UBFeaturebillaManager(featurebillaStore: featurebillaStore, featurebillaService: featurebillaService)
@@ -187,8 +189,17 @@ class UsabillaInternal {
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.formID, value: formID, logLevel: .methods)
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.customTheme, value: theme != self.theme, logLevel: .methods)
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.imagePassed, value: screenshot != nil, logLevel: .methods)
+        if CampaignWindow.shared.showing {
+            DispatchQueue.main.async {
+                delegate?.formDidFailLoading(error: UBError(description: errorCamapingShowing))
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: false, logLevel: .methods)
+                self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodMessage, value: errorCamapingShowing, logLevel: .methods)
+                self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
+            }
+            return
+        }
+
         guard let formStore = formStore else {
-            print(errorSDKNotInitialized)
             telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodResult, value: false, logLevel: .methods)
             telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.methodMessage, value: errorSDKNotInitialized, logLevel: .methods)
             telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
