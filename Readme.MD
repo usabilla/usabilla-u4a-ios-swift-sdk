@@ -10,9 +10,9 @@ Note :
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
-- [- UI Customisations](#ui-customisations)
   - [Requirements](#requirements)
   - [Installation](#installation)
+    - [Swift Package Manager](#SPM)
     - [CocoaPods](#cocoapods)
     - [Carthage](#carthage)
     - [Manual](#manual)
@@ -50,27 +50,6 @@ Note :
     - [String file contents](#string-file-contents)
   - [Permissions](#permissions)
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
-    - [Masking Private Identifiable Information](#masking-data)
-- [Custom variables](#custom-variables)
-- [App Store rating](#app-store-rating)
-- [Force specific interface orientation](#Force-specific-interface-orientation)
-- [UI Customisations](#ui-customisations)
-  - [Masking Private Identifiable Information](#masking-private-identifiable-information)
-  - [Custom variables](#custom-variables)
-  - [App Store rating](#app-store-rating)
-  - [Programmatically remove a Form or a Campaign](#programmatically-remove-a-form-or-a-campaign)
-  - [Force specific interface orientation](#force-specific-interface-orientation)
-  - [UI Customisations](#ui-customisations)
-    - [Custom Emoticons Rating](#custom-emoticons-rating)
-      - [Provide only the selected version](#provide-only-the-selected-version)
-      - [Provide both the selected and unselected version](#provide-both-the-selected-and-unselected-version)
-    - [Custom Star Rating](#custom-star-rating)
-    - [Custom Fonts](#custom-fonts)
-    - [Custom colors](#custom-colors)
-  - [Localization](#localization)
-    - [String file contents](#string-file-contents)
-  - [Permissions](#permissions)
-  - [Integration with Obj-C applications](#integration-with-obj-c-applications)
 
 * * *
 
@@ -86,6 +65,9 @@ You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 This release is build with Xcode 11.3.1 and with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
 Previous versions are available at our git-repository. For Carthage please check the Carthage section
  
+### SPM
+Instructions for [Swift Package Manager](https://swift.org/package-manager/) support can be found at [SwiftPackageManager.md](SwiftPackageManager.MD).
+
 ### CocoaPods
 
 The Usabilla SDK is available on [CocoaPods](http://cocoapods.org). You can install CocoaPods the following way:
@@ -101,7 +83,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.7'
+pod 'Usabilla', '~> 6.5.0'
 
 End
 ```
@@ -125,18 +107,20 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The release in master is build for Xcode 11.3.1.
+The release in master is build for Xcode 12.0
 
 For other Xcode version, use:
  
 ```yaml
-binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11.4.1/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-11.4.1 with the required version eg. Xcode-10
+replace Xcode-x.y.z with the required version eg. Xcode-10
+
+**Compilation issue:** Update Carthage to `v0.35.0` and above.
 
 ### Manual
 
-You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
+You can download the latest version of the repository from [releases](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/) and extract **Pods.framework.zip** or **Usabilla.xcframework.zip**. Then add **Usabilla.framework** or **Usabilla.xcframework** to your app’s embedded frameworks.
 
 In doing so, you might encounter a problem while submitting your app to the App Store. This is due to a [bug in the App Store](http://www.openradar.me/radar?id=6409498411401216) itself.     
 
@@ -457,12 +441,7 @@ Usabilla.defaultDataMasks
 You can pass along custom variables that will be attached to the feedback users send.
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
 
-You can set custom variables using the public method
-```swift
-Usabilla.setCustomVariable(value: Any?, forKey: String)
-```
-
-or by simply modifying the dictionary object
+You can set custom variables by simply modifying the dictionary object
 
 ```swift
 Usabilla.customVariables["key"] = "value"
