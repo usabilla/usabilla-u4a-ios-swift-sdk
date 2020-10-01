@@ -203,8 +203,7 @@ class CampaignViewController: UIViewController {
 
     func removeFormController(completion: (() -> Void)?) {
         if DeviceInfo.isIPad() {
-            self.formNavigationController?.dismiss(animated: true, completion: { [weak self] in
-                self?.cleanAndRemoveBannerView()
+            self.formNavigationController?.dismiss(animated: true, completion: {
                 completion?()
             })
             return
@@ -220,7 +219,6 @@ class CampaignViewController: UIViewController {
         }) { [weak self] _ in
             self?.formNavigationController?.view.removeFromSuperview()
             self?.formNavigationController?.removeFromParentViewController()
-            self?.cleanAndRemoveBannerView()
             completion?()
         }
     }
@@ -238,7 +236,6 @@ class CampaignViewController: UIViewController {
     func closeCampaign(atPageIndex index: Int? = nil) {
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
         UsabillaInternal.delegate?.campaignDidClose(withFeedbackResult: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
-        //self.cleanAndRemoveBannerView()
         self.delegate?.campaignDidEnd()
     }
 
@@ -279,14 +276,6 @@ extension CampaignViewController: UBIntroOutroViewDelegate {
     func introViewDidCancel(introView: UBIntroOutroView) {
         viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: { [weak self] in
             self?.closeCampaign(atPageIndex: 0) })
-    }
-
-    private func cleanAndRemoveBannerView() {
-        self.introView?.resetViewAndRemoveAll()
-        self.introView?.removeFromSuperview()
-        NSLayoutConstraint.deactivate(self.view.constraints)
-        self.viewModel.introPresenter = nil
-        self.introView = nil
     }
 
     func introViewDidContinue(introView: UBIntroOutroView) {

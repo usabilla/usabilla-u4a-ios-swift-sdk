@@ -51,7 +51,7 @@ class CampaignWindow {
         viewcontroller.modalPresentationStyle = .overFullScreen
         viewcontroller.view.alpha = 1
         viewcontroller.view.frame = UIScreen.main.bounds
-        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = true
 
         popupWindow?.frame = UIScreen.main.bounds
         popupWindow?.backgroundColor = .clear
