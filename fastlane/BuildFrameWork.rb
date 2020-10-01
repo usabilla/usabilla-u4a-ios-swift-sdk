@@ -167,7 +167,6 @@ private_lane :copyToCarthageFromBuild do |options|
 
 	sh("cp -rf #{paths.framework_path} #{paths.carthage_outputPath}/." )
 	sh("cp -rf #{paths.carthage_dSYMPath}/*.dSYM #{paths.carthage_outputPath}/." )
-	sh("rm -rf #{paths.carthage_dSYMPath}/*.framework #{paths.carthage_dSYMPath}/*.dSYM")
 	sh("cp #{paths.carthage_symbolsPath}/*.bcsymbolmap #{paths.carthage_outputPath}/." )
 	sh("cd #{paths.carthage_path}/ && zip -r #{paths.carthage_path}/#{paths.carthageFileName} Carthage/")
 	sh("rm -rf #{paths.carthage_path}/Carthage")
