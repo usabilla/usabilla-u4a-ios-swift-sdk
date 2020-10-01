@@ -26,6 +26,9 @@ class CampaignWindow {
     private init() { }
 
     @discardableResult func showCampaign(_ campaignViewModel: CampaignViewModel) -> Bool {
+        if showing {
+            return false
+        }
         var popupWindow: UIWindow?
         #if XCODE1100 || XCODE1200
         if #available(iOS 13.0, *) {
