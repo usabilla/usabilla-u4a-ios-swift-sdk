@@ -4,9 +4,14 @@ desc "Build framework For a given XCode version"
 private_lane :buildForXcodeVersion do |options|
 	#configuration
 	buildConfig = getBuildConfigs()
+	version = options[:version]
 
-	if options[:version] == nil	
+	if version == nil	
 		UI.message("'version' not specified in 'buildForXcodeVersion")
+	elsif version.include? "12"
+		archVariable = "EXCLUDED_ARCHS=arm64"
+	else
+		archVariable = ""
 	end
 	if options[:project_directory] == nil	
 		UI.message("'project_directory' not specified in 'buildForXcodeVersion")
@@ -19,7 +24,7 @@ private_lane :buildForXcodeVersion do |options|
 	xcversion(version: version)
 
 	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{buildConfig['configuration']} -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{buildConfig['configuration']}  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO ")
+	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{buildConfig['configuration']}  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO #{archVariable}")
 
 	#remove Module name error in swiftinterface files
 	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{buildConfig['configuration']}-iphoneos/#{paths.framework_name}/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
