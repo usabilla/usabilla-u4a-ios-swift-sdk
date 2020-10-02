@@ -46,6 +46,7 @@ platform :ios do
 	#used in STAGE  "Generate Artefacts"
 	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
 	lane :buildAllAndGenerateArtefacts do
+		export_xcframework
 		versions = checkXcodeVersions
 		versions.each do |version|
 			#first remove previous builds
