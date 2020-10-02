@@ -1,3 +1,7 @@
+## 6.5.0
+### Fix
+- Fix crash under iOS 13 & 14, after dismissing campaign.
+
 ## 6.4.7
 ### Fix
 - Fixes crash under iOS 13, after dismissing campaign, and rotating device
