@@ -1,3 +1,7 @@
+## 6.5.0
+### Fix
+- Fix crash under iOS 13 & 14, after dismissing campaign.
+
 ## 6.4.5
 ### Fix
 - Fixes issue where banner could overlap safe-area 

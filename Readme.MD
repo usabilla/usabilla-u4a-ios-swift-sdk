@@ -76,7 +76,7 @@ Note :
 
 ## Requirements
 - iOS 9.0+
-- Xcode 9.4+
+- Xcode 10+   
 - Swift 4.0+
 
 ## Installation
@@ -101,7 +101,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.5'
+pod 'Usabilla', '~> 6.5.0'
 
 End
 ```
@@ -125,7 +125,7 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 11.3.1
+The current Carthage release is build for Xcode 12.0.
 
 For previous Xcode version, use:
  
@@ -457,12 +457,7 @@ Usabilla.defaultDataMasks
 You can pass along custom variables that will be attached to the feedback users send.
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
 
-You can set custom variables using the public method
-```swift
-Usabilla.setCustomVariable(value: Any?, forKey: String)
-```
-
-or by simply modifying the dictionary object
+You can set custom variables by simply modifying the dictionary object
 
 ```swift
 Usabilla.customVariables["key"] = "value"
