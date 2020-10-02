@@ -92,14 +92,14 @@ class CampaignManager {
             }
 
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.campaingAlreadyShowing, logLevel: .methods)
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: 1, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
             self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
 
             PLog(TelemetryConstants.campaingAlreadyShowing)
         }.catch { error in
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: error.localizedDescription, logLevel: .methods)
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: 1, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
             self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
             PLog(error)

@@ -80,7 +80,7 @@ class CampaignManagerTests: QuickSpec {
                 beforeEach {
                     storeMock.campaigns = []
                     storeMock.onSaveCalled = nil
-                    UBCampaignDAO.shared.deleteAll()
+                    UBCampaignDAO.shared.deleteAll(completion: {})
                     CampaignWindow.shared.campaignDidEnd()
                     Usabilla.canDisplayCampaigns = true
                 }

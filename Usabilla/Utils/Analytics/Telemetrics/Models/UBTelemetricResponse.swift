@@ -11,21 +11,7 @@ import Foundation
 enum DecodingError: Error {
     case corruptedData
 }
-/*** PROPERTIES **
-customVariables
-debugEnabled
-theme
-navigationButtonsVisibility
-** FUNCTIONS **
-takeScreenshot
-loadFeedbackForm
-preloadFeedbackForms
-updateFragmentManager
-resetCampaignData
-removeCachedForms
-dismiss
 
-*/
 enum UBTelemetricType {
     static func classFromString(_ name: ValueType, values: KeyedDecodingContainer<DynamicKey> ) -> UBTelemetricProtocol? {
         do {
@@ -89,26 +75,23 @@ enum ValueType: Decodable {
     case array([String])
 
     init(from decoder: Decoder) throws {
+        let singleValueContainer = try decoder.singleValueContainer()
         do {
-            let singleValueContainer = try decoder.singleValueContainer()
             let data = try singleValueContainer.decode(Int.self)
             self = .number(data)
             return
         } catch {}
         do {
-            let singleValueContainer = try decoder.singleValueContainer()
             let data = try singleValueContainer.decode(String.self)
             self = .string(data)
             return
         } catch {}
         do {
-            let singleValueContainer = try decoder.singleValueContainer()
             let data = try singleValueContainer.decode(Bool.self)
             self = .boolean(data)
             return
         } catch {}
         do {
-            let singleValueContainer = try decoder.singleValueContainer()
             let data = try singleValueContainer.decode([String].self)
             self = .array(data)
             return
@@ -124,8 +107,9 @@ enum ValueType: Decodable {
             return "\(data)"
         case let .boolean(data):
             return "\(data)"
-        default :
-            return "no value"
+        case let .array(data):
+            return "\(data.enumerated())"
+
         }
     }
 }
@@ -182,17 +166,8 @@ class UBTelemetricResponse: Codable {
         try container.encodeIfPresent(originClass, forKey: DynamicKey(stringValue: "originClass"))
 
         try data.forEach {
-            let nameOfClass = String(describing: $0)
-            // use the classnames last part as codingkey
-            // this is needed as the data holds protocols, that is not codeable at compiletime
-            //if let index = nameOfClass.range(of: ".", options: .backwards)?.lowerBound {
-                //let finalIndex = nameOfClass.index(index, offsetBy: 1)
-                //let str = String(nameOfClass[finalIndex...])
-                //let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: str))
-                let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: "action"))
-                try $0.encode( to: dataEncoder)
-            print($0)
-            //}
+            let dataEncoder = container.superEncoder(forKey: DynamicKey(stringValue: "action"))
+            try $0.encode( to: dataEncoder)
         }
     }
 
@@ -251,7 +226,6 @@ class UBTelemetricLoadForm: UBTelemetricProtocol {
     var formElements: Int = 0
 }
 
-
 class UBTelemetricInitMethod: UBTelemetricProtocol {
     var name: String = UBTelemetricType.nameFromClass(UBTelemetricInitMethod.self)
     var errorCode: Int = 0
@@ -303,6 +277,7 @@ class UBTelemetricDebug: UBTelemetricProtocol {
     var errorCode: Int = 0
     var errorMessage: String?
     var duration: Double = 0.0
+    var debug: Bool = false
 }
 
 class UBTelemetricSetDataMasking: UBTelemetricProtocol {

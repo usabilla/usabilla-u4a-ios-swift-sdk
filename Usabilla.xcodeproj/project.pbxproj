@@ -1619,6 +1619,7 @@
 		434A27891E2F6FD6002864C6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				45C25E7A2507EB3D006CE26F /* Telemetrics */,
 				43E883F41E37B7AA00A97F1D /* Extensions */,
 				434A278A1E2F6FE6002864C6 /* PromiseTest.swift */,
 				434085BC1E363BD800B4A4B9 /* StyleKitTest.swift */,
@@ -1799,6 +1800,13 @@
 				458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */,
 			);
 			path = UBColorPicker;
+			sourceTree = "<group>";
+		};
+		45C25E7A2507EB3D006CE26F /* Telemetrics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Telemetrics;
 			sourceTree = "<group>";
 		};
 		45C620D522DCAE4B00CB95A9 /* Screenshot */ = {

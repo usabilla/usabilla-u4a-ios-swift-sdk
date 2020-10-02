@@ -134,14 +134,13 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
         return delete(id: id(forObj: obj))
     }
 
-    @discardableResult func deleteAll(completion: (() -> Void)?) -> Bool {
+    @discardableResult func deleteAll(completion: (() -> Void)? = nil) -> Bool {
         var isDeleted = false
         fileStorageSerialQueue.sync {
             do {
                 try FileManager.default.removeItem(at: directoryUrl)
                 isDeleted = true
-                completion?()
-                
+                completion?()                
             } catch {
                 PLog("Impossible to empty directory at path \(directoryUrl)")
             }

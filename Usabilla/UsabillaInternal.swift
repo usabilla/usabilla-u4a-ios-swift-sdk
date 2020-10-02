@@ -24,7 +24,20 @@ class UsabillaInternal {
     }
     static var dismissAutomatically: Bool = true
     static var canDisplayCampaigns: Bool = true
-    static var debugEnabled: Bool = false
+    private static var internalDebugEnabled: Bool = false
+    static var debugEnabled: Bool {
+        get {
+            return internalDebugEnabled
+        }
+        set {
+            let logid = telemetric.logStart(method: UBTelemetricDebug(), logLevel: .properties )
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricDebug.debug, value: newValue, logLevel: .properties)
+            telemetric.logEnd(for: logid, keyPath: \UBTelemetricDebug.duration)
+            // This is setting the internal properties
+            internalDebugEnabled = newValue
+        }
+    }
+
     static weak var delegate: UsabillaDelegate?
     static var theme: UsabillaTheme = UsabillaTheme()
     static var defaultLocalisationFile = true
