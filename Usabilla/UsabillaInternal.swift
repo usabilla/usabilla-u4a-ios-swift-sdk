@@ -65,8 +65,8 @@ class UsabillaInternal {
         let logid = telemetric.logStart(method: UBTelemetricSendEvent(), logLevel: .methods )
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.event, value: event, logLevel: .methods)
         if formNavigationController != nil {
-            telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.methodResult, value: false, logLevel: .methods)
-            telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.methodMessage, value: errorFormShowing, logLevel: .methods)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.errorCode, value:  TelemetryConstants.errorCodeClient, logLevel: .methods)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.errorMessage, value: errorFormShowing, logLevel: .methods)
             telemetric.logEnd(for: logid, keyPath: \UBTelemetricSendEvent.duration)
             return
         }
