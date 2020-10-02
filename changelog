@@ -1,9 +1,7 @@
-## 6.4.7
+## 6.5.0
 ### Fix
-- crash under iOS 13, after dismissing campaign, and rotating device
-- removed swipe-to-remove campaigns under iOS 13
+- crash under iOS 13 & 14, after dismissing campaign, and rotating device
 
 ### Update
-- build with Xcode 11.4.1, to support carthage
-
-
+- build with Xcode 12.0 to support swift package
+- added xcframeworks ( can be used for future distribution, supports xcode 11 and above)
