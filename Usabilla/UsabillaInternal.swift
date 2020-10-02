@@ -211,6 +211,16 @@ class UsabillaInternal {
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.formId, value: formID, logLevel: .methods)
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.theme, value: theme != self.theme, logLevel: .methods)
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.screenshot, value: screenshot != nil, logLevel: .methods)
+        if CampaignWindow.shared.showing {
+            DispatchQueue.main.async {
+                delegate?.formDidFailLoading(error: UBError(description: errorCamapingShowing))
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errorCode, value: TelemetryConstants.errorCodeClient, logLevel: .methods)
+                self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errorMessage, value: errorCamapingShowing, logLevel: .methods)
+                self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.duration)
+            }
+            return
+        }
+
         guard let formStore = formStore else {
             print(errorSDKNotInitialized)
             telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errorCode, value: TelemetryConstants.errorCodeClient, logLevel: .methods)

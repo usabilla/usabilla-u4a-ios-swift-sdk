@@ -87,10 +87,11 @@ extension CampaignWindow: CampaignViewControllerDelegate {
         window?.rootViewController?.dismiss(animated: true, completion: {})
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
         window?.isHidden = true
-
+        #if XCODE1100 || XCODE1200
         if #available(iOS 13, *) {
             window?.windowScene = nil
         }
+        #endif
         showing = false
     }
 }
