@@ -75,8 +75,12 @@ class CampaignViewController: UIViewController {
     init(viewModel: CampaignViewModel, delegate: CampaignViewControllerDelegate) {
         self.viewModel = viewModel
         self.delegate = delegate
-
         super.init(nibName: nil, bundle: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleBackgroundReEntry), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+
+    @objc func handleBackgroundReEntry() {
+        updateModalConstraints()
     }
 
     func createBackgroundLayer() {
@@ -234,6 +238,7 @@ class CampaignViewController: UIViewController {
     }
 
     func closeCampaign(atPageIndex index: Int? = nil) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
         UsabillaInternal.delegate?.campaignDidClose(withFeedbackResult: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
         self.delegate?.campaignDidEnd()
