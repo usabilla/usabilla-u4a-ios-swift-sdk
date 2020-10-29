@@ -62,6 +62,8 @@ enum UBTelemetricType {
             return TelemetryConstants.dismiss
         case is UBTelemetricDebug:
             return TelemetryConstants.debugEnabled
+        case is UBTelemetricSetFooterLogoClickable:
+            return TelemetryConstants.setFooterLogoClickable
         default:
             return TelemetryConstants.unknown
         }
@@ -288,4 +290,12 @@ class UBTelemetricSetDataMasking: UBTelemetricProtocol {
     var masks: [String] = []
     var maskCharacter: String = ""
 
+}
+
+class UBTelemetricSetFooterLogoClickable: UBTelemetricProtocol {
+    var name: String = UBTelemetricType.nameFromClass(UBTelemetricSetFooterLogoClickable.self)
+    var errorCode: Int = 0
+    var errorMessage: String?
+    var duration: Double = 0.0
+    var setFooterLogoClickable: Bool = true
 }

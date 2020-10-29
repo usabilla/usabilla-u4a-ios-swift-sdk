@@ -38,6 +38,20 @@ class UsabillaInternal {
         }
     }
 
+    private static var internalSetFooterLogoClickable: Bool = true
+    static var setFooterLogoClickable: Bool {
+        get {
+            return internalSetFooterLogoClickable
+        }
+        set {
+            let logid = telemetric.logStart(method: UBTelemetricSetFooterLogoClickable(), logLevel: .properties )
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricSetFooterLogoClickable.setFooterLogoClickable, value: newValue, logLevel: .properties)
+            telemetric.logEnd(for: logid, keyPath: \UBTelemetricSetFooterLogoClickable.duration)
+            // This is setting the internal properties
+            internalSetFooterLogoClickable = newValue
+        }
+    }
+
     static weak var delegate: UsabillaDelegate?
     static var theme: UsabillaTheme = UsabillaTheme()
     static var defaultLocalisationFile = true

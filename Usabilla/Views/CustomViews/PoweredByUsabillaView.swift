@@ -20,6 +20,9 @@ class PoweredByUsabillaView: UIView {
         logo.addTarget(PageViewController.self, action: #selector(PageViewController.openUsabilla), for: .touchUpInside)
         logo.setImage(Icons.imageOfPoweredBy(color: theme.colors.hint), for: UIControlState())
         logo.accessibilityIdentifier = "powered-by-id"
+        if !UsabillaInternal.setFooterLogoClickable {
+            logo.isUserInteractionEnabled = UsabillaInternal.setFooterLogoClickable
+        }
         self.addSubview(logo)
 
         // Layout

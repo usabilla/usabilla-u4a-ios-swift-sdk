@@ -93,6 +93,19 @@ open class UsabillaXamarin: NSObject {
             UsabillaInternal.debugEnabled = newValue
         }
     }
+    
+    /**
+     A Boolean value that determines whether the SDK powered by logo clickable.
+     */
+    @objc
+    public static var setFooterLogoClickable: Bool {
+        get {
+            return UsabillaInternal.setFooterLogoClickable
+        }
+        set {
+            UsabillaInternal.setFooterLogoClickable = newValue
+        }
+    }
 
     @objc
     public class func sendEvent(_ eventName: String) {

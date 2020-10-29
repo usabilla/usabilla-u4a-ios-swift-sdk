@@ -91,6 +91,19 @@ open class Usabilla {
         }
     }
 
+    /**
+     A Boolean value that determines whether the SDK powered by logo clickable.
+     */
+    @objc
+    public static var setFooterLogoClickable: Bool {
+        get {
+            return UsabillaInternal.setFooterLogoClickable
+        }
+        set {
+            UsabillaInternal.setFooterLogoClickable = newValue
+        }
+    }
+
     open class func sendEvent(event: String) {
         UsabillaInternal.sendEvent(event: event)
     }

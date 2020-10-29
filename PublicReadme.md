@@ -15,6 +15,7 @@ In Usabilla SDK Version 6.2 there are two new features
     - [Manual](#manual)
   - [Initialization](#initialization)
     - [DebugMode](#debugmode)
+    - [FooterLogoClickable](#FooterLogoClickable)
   - [Campaigns](#campaigns)
     - [The App Id](#the-app-id)
     - [Targeting options](#targeting-options)
@@ -164,6 +165,13 @@ In order to have more insights from the SDK while developing, you can enable log
 Usabilla.debugEnabled = true
 ```
 This property is by default set to `false`.
+
+### FooterLogoClickable
+When user interacts with logo present at bottom area of the form , it opens a url `"http://www.usabilla.com"` into the mobile browser, you can disable that user interaction with:
+```swift
+Usabilla.setFooterLogoClickable = false
+```
+This property is by default set to `true`.
 
 ## Campaigns
 Version 4 of the Usabilla for Apps SDK introduces the new campaigns feature.

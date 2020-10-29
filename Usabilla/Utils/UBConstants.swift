@@ -47,7 +47,7 @@ struct TelemetryConstants {
     static let setDataMasking =  "setDataMasking"
     static let dismiss = "dismiss"
     static let debugEnabled = "debugEnabled"
-
+    static let setFooterLogoClickable = "setFooterLogoClickable"
     static let unknown = "unknown"
 
 }
