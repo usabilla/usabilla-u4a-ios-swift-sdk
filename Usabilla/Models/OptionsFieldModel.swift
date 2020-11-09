@@ -12,6 +12,7 @@ class OptionsFieldModel: BaseFieldModel, Exportable {
 
     var options: [Options]
     var fieldValue: [String] = []
+    var shouldRandomise: Bool
 
     var exportableValue: Any? {
         return fieldValue.count > 0 ? fieldValue : nil
@@ -25,6 +26,13 @@ class OptionsFieldModel: BaseFieldModel, Exportable {
         for (_, subJson): (String, JSON) in json["options"] {
             options.append(Options(title: subJson["title"].stringValue, value: subJson["value"].stringValue))
         }
+
+        let shouldRandomise: Bool = json["random"].boolValue
+        if shouldRandomise {
+            options.shuffle()
+        }
+        self.shouldRandomise = shouldRandomise
+
         self.options = options
         super.init(json: json)
     }

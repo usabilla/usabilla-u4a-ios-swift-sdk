@@ -33,6 +33,9 @@ class OptionsFieldModelTest: QuickSpec {
                 model?.fieldValue = ["hello"]
                 expect(model?.isValid()).to(beTrue())
             }
+            it("should randomise") {
+                expect(model?.shouldRandomise).to(beFalse())
+            }
             it("should export the value correctly") {
                 model?.fieldValue = []
                 expect(model?.exportableValue).to(beNil())
