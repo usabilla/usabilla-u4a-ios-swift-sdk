@@ -51,12 +51,12 @@ class CampaignManager {
         guard let campaignToDisplay = displayableCampaign else {
             if telemetric != nil {
                 if triggeredCampaigns.count == 0 {
-                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
                 } else {
-                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
                 }
                 telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
-                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
             }
             return
         }
@@ -67,7 +67,7 @@ class CampaignManager {
         guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
             if telemetric != nil {
                 telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
-                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
             }
             return
         }
@@ -75,10 +75,10 @@ class CampaignManager {
 
             guard self.testIntegrityOfCampaginForm(form) else {
                 let text = "form: \(campaign.formID) integrity incorrect"
-                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: text, logLevel: .methods)
-                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: 1, logLevel: .methods)
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: text, logLevel: .methods)
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errC, value: 1, logLevel: .methods)
                 self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
-                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
                 return
             }
             let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
@@ -87,21 +87,21 @@ class CampaignManager {
                 campaign.numberOfTimesTriggered += 1
                 UBCampaignDAO.shared.create(campaign)
                 self.incrementViews(forCampaign: campaign)
-                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
                 return
             }
 
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: TelemetryConstants.campaingAlreadyShowing, logLevel: .methods)
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.campaingAlreadyShowing, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
-            self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+            self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
 
             PLog(TelemetryConstants.campaingAlreadyShowing)
         }.catch { error in
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorMessage, value: error.localizedDescription, logLevel: .methods)
-            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errorCode, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: error.localizedDescription, logLevel: .methods)
+            self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
-            self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.duration)
+            self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
             PLog(error)
         }
     }
@@ -126,8 +126,8 @@ class CampaignManager {
 
     func resetData(completion: (() -> Void)?, logid: String? = nil) {
         UBCampaignDAO.shared.deleteAll(completion: { [logid] in
-            self.telemetric?.alterData(for: logid, keyPath: \UBTelemetricReset.errorCode, value: 0, logLevel: .methods)
-            self.telemetric?.logEnd(for: logid, keyPath: \UBTelemetricReset.duration)
+            self.telemetric?.alterData(for: logid, keyPath: \UBTelemetricReset.errC, value: 0, logLevel: .methods)
+            self.telemetric?.logEnd(for: logid, keyPath: \UBTelemetricReset.dur)
         })
         fetchCampaignForEventEngine(completion: completion)
     }

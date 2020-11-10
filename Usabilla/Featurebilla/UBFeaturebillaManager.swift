@@ -67,7 +67,7 @@ class UBFeaturebillaManager {
     }
 
     func shouldLog(_ type: FeatureTypes, logLevel: UBTelemetricLogLevel) -> Bool {
-        var current: UBTelemetricLogLevel = [.methods, .memmory]
+        var current: UBTelemetricLogLevel = [.methods, .properties, .all]
         if let level = logLevels[type] as? Int {
             current = UBTelemetricLogLevel(rawValue: level)
         }

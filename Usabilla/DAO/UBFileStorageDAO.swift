@@ -140,7 +140,7 @@ class UBFileStorageDAO<ModelType: NSCoding>: UBDAO {
             do {
                 try FileManager.default.removeItem(at: directoryUrl)
                 isDeleted = true
-                completion?()                
+                completion?()
             } catch {
                 PLog("Impossible to empty directory at path \(directoryUrl)")
             }

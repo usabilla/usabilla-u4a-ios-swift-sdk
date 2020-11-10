@@ -33,8 +33,7 @@ class UBTelemetrics {
         if featureBillaService.shouldLog(.telemetryLevel, logLevel: logLevel) {
             let logid = String(abs(date.hashValue))
             startTime[logid] = date
-            let dataStruct = UBTelemetricResponse(logLevel)
-            dataStruct.data.append(method)
+            let dataStruct = UBTelemetricResponse(logLevel, data: method)
             log[logid] = dataStruct
             return logid
         }
@@ -50,11 +49,12 @@ class UBTelemetrics {
         if featureBillaService.shouldLog(.telemetryLevel, logLevel: logLevel) {
             guard let logId = logId, let dataToAlter = log[logId] else { return }
 
-            dataToAlter.data.forEach {
-                if var object = $0 as? Type {
-                    object[keyPath: keyPath] = value
+            dataToAlter.logs.forEach {
+                $0.dataLogs.forEach {
+                    if var object = $0 as? Type {
+                        object[keyPath: keyPath] = value
+                    }
                 }
-
             }
             log[logId] = dataToAlter
         }
@@ -92,7 +92,7 @@ class UBTelemetrics {
 
     fileprivate func updateFileStorrage(with logId: String) {
         guard let objectToAlter = log[logId] else {return}
-        if saveToFile(component: [objectToAlter]) {
+        if saveToFile(component: objectToAlter) {
             log.removeValue(forKey: logId)
         }
     }
@@ -108,15 +108,21 @@ class UBTelemetrics {
         return nil
     }
 
-    fileprivate func saveToFile(component: [UBTelemetricResponse]) -> Bool {
-        var currentData = loadFromJsonFile()
+    fileprivate func saveToFile(component: UBTelemetricResponse) -> Bool {
         guard let fileURL = getFileURL() else { return false}
-        currentData.insert(contentsOf: component, at: 0)
-        while currentData.count >= maxnumberOfEntries {
-            currentData.remove(at: currentData.count-1)
+        var dataToStore: UBTelemetricResponse
+        if let currentData = loadFromJsonFile() {
+            // add the data from logs in the current log
+            currentData.logs.insert(contentsOf: component.logs, at: 0)
+            dataToStore = currentData
+        } else {
+            dataToStore = component
+        }
+        while dataToStore.logs.count >= maxnumberOfEntries {
+            dataToStore.logs.remove(at: dataToStore.logs.count-1)
         }
         do {
-            let data = try JSONEncoder().encode(currentData)
+            let data = try JSONEncoder().encode(dataToStore)
             try data.write(to: fileURL)
             return true
         } catch {
@@ -124,29 +130,26 @@ class UBTelemetrics {
         }
     }
 
-    fileprivate func loadFromJsonFile() -> [UBTelemetricResponse] {
-        guard let fileURL = getFileURL() else { return [] }
+    fileprivate func loadFromJsonFile() -> UBTelemetricResponse? {
+        guard let fileURL = getFileURL() else { return nil }
         do {
             let data = try Data(contentsOf: fileURL)
             if data.count > 0 {
                 let decoder = JSONDecoder()
-                let product = try decoder.decode([UBTelemetricResponse].self, from: data)
+                let product = try decoder.decode(UBTelemetricResponse.self, from: data)
                 return product
             }
-            return []
+            return nil
         } catch {
+            return nil
         }
-        return []
     }
 
     /// Get the current data as base64 encode json string,
     /// - Parameter flush: if false the data are not flushed, but left in the storrage, defaults to true
     /// - Returns: base64 encode string of the json
     func getStoredData(flush: Bool = true) -> String? {
-        let currentData = loadFromJsonFile()
-        if currentData.count == 0 {
-            return nil
-        } else {
+        if let currentData = loadFromJsonFile() {
             guard let fileURL = getFileURL() else { return ""}
             do {
                 if flush { try Data().write(to: fileURL) }
@@ -156,6 +159,7 @@ class UBTelemetrics {
                 return nil
             }
         }
+        return nil
     }
 
     /// Add data to the log. If data retrieved witht the getStoredData method fails the data can be added to the storrage again
@@ -165,7 +169,7 @@ class UBTelemetrics {
         let decoder = JSONDecoder()
         if let jsonData = Data(base64Encoded: data) {
              do {
-                let products = try decoder.decode([UBTelemetricResponse].self, from: jsonData)
+                let products = try decoder.decode(UBTelemetricResponse.self, from: jsonData)
                 return saveToFile(component: products)
             } catch {
                 return false
