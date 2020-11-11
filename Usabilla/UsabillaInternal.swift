@@ -17,7 +17,8 @@ class UsabillaInternal {
             submissionManager?.userContext = customVariables
         }
     }
-    static var localizedStringFile: String = "usa_localizable" {
+    static let defaultLocalizedStringFile = "usa_localizable"
+    static var localizedStringFile: String = defaultLocalizedStringFile {
         didSet {
             defaultLocalisationFile = false
         }

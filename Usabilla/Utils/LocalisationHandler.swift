@@ -12,12 +12,20 @@ class LocalisationHandler {
 
     static func getLocalisedStringForKey(_ key: String) -> String {
         if UsabillaInternal.defaultLocalisationFile {
-            // swiftlint:disable:next force_unwrapping
-            let bundle = Bundle(identifier: "com.usabilla.Usabilla")!
-            return NSLocalizedString(key, tableName: UsabillaInternal.localizedStringFile, bundle: bundle, comment: "")
+            return getDefaultLocalisedStringForKey(key, localeFile: UsabillaInternal.localizedStringFile)
         } else {
-            return NSLocalizedString(key, tableName: UsabillaInternal.localizedStringFile, comment: "")
+            var value = NSLocalizedString(key, tableName: UsabillaInternal.localizedStringFile, comment: "")
+            if value == key {
+                value = getDefaultLocalisedStringForKey(key, localeFile: UsabillaInternal.defaultLocalizedStringFile)
+            }
+            return value
         }
+    }
 
+    fileprivate static func getDefaultLocalisedStringForKey(_ key: String, localeFile: String) -> String {
+        // swiftlint:disable:next force_unwrapping
+        let bundle = Bundle(identifier: "com.usabilla.Usabilla")!
+        let value = NSLocalizedString(key, tableName: localeFile, bundle: bundle, comment: "")
+        return value
     }
 }
