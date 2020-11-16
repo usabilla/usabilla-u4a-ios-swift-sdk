@@ -1,3 +1,11 @@
+## 6.6.0
+### Fix
+- SDK now randomize questions, marked as random
+- fix a bug, where campaigns would resize incorrectly when returning from background
+- localised string file, can now be partial adopted. Missing string in customer file, will be read from default
+### Update
+- added properties to disable "powered by" logo click-ability
+
 ## 6.5.0
 ### Fix
 - Fix crash under iOS 13 & 14, after dismissing campaign.
