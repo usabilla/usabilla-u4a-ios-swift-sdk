@@ -18,6 +18,7 @@ Note :
     - [Manual](#manual)
   - [Initialization](#initialization)
     - [DebugMode](#debugmode)
+    - [FooterLogoClickable](#FooterLogoClickable)
   - [Campaigns](#campaigns)
     - [The App Id](#the-app-id)
     - [Targeting options](#targeting-options)
@@ -83,8 +84,8 @@ Note :
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
-This release is build with Xcode 11.3.1 and with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
-Previous versions are available at our git-repository. For Carthage please check the Carthage section
+The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
+Previous versions are available at our git-repository.
  
 ### CocoaPods
 
@@ -101,7 +102,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.4.7'
+pod 'Usabilla', '~> 6.6.0'
 
 End
 ```
@@ -125,14 +126,14 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The release in master is build for Xcode 11.3.1.
+The current Carthage release is build for Xcode 12.0.
 
-For other Xcode version, use:
+For previous Xcode version, use:
  
 ```yaml
-binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/v6.4.7-Xcode-11.5/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11/Usabilla.json"
 ```
-replace Xcode-11.5 with the required version eg. Xcode-10
+replace Xcode-11 with the required version eg. Xcode-10
 
 ### Manual
 
@@ -178,6 +179,13 @@ In order to have more insights from the SDK while developing, you can enable log
 Usabilla.debugEnabled = true
 ```
 This property is by default set to `false`.
+
+### FooterLogoClickable
+When user interacts with logo present at bottom area of the form , it opens a url `"http://www.usabilla.com"` into the mobile browser, you can disable that user interaction with:
+```swift
+Usabilla.setFooterLogoClickable = false
+```
+This property is by default set to `true`.
 
 ## Campaigns
 Version 4 of the Usabilla for Apps SDK introduces the new campaigns feature.
@@ -457,12 +465,7 @@ Usabilla.defaultDataMasks
 You can pass along custom variables that will be attached to the feedback users send.
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
 
-You can set custom variables using the public method
-```swift
-Usabilla.setCustomVariable(value: Any?, forKey: String)
-```
-
-or by simply modifying the dictionary object
+You can set custom variables by simply modifying the dictionary object
 
 ```swift
 Usabilla.customVariables["key"] = "value"
@@ -585,7 +588,7 @@ For all the text that is not customizable in the web interface, you can provide 
 This file also includes all the accessibility labels read when VoiceOver is enabled.
 
 ### String file contents
-If you want to provide your own translation, you need to override **all** the keys in the default .string file.
+If you want to provide your own translation, you need to provide the specific keys (mentioned below) with the custom text in the .string file.
 
 
 The default file with the keys and the default text is the following:

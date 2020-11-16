@@ -1,4 +1,5 @@
 {
-    "6.4.7": "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v6.4.7-Xcode-11.5/Carthage.framework.zip"
+	"6.6.0": "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v6.6.0-Xcode-11.5/Carthage.framework.zip",
+	"6.4.7": "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v6.4.7-Xcode-11.5/Carthage.framework.zip"
 }
 
