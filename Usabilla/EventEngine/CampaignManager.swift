@@ -33,7 +33,7 @@ class CampaignManager {
     }
 
     // customVariables sent from the interface are the activeStatuses used inside our SDK.
-    func sendEvent(event: String, customVariables: [String: Any], logId: String? = nil) {
+    func sendEvent(event: String, customVariables: [String: String], logId: String? = nil) {
         let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: filterActiveStatuses(fromCustomVariables: customVariables))
 
         // Persist all updated campaigns
@@ -114,12 +114,11 @@ class CampaignManager {
         }
     }
 
-    func filterActiveStatuses(fromCustomVariables variables: [String: Any]) -> [String: String] {
+    func filterActiveStatuses(fromCustomVariables variables: [String: String]) -> [String: String] {
         let filtered = variables.filter { type(of: $0.1) == String.self }
         var activeStatuses = [String: String]()
         for result in filtered {
-            //swiftlint:disable:next force_cast
-            activeStatuses[result.0] = (result.1 as! String)
+            activeStatuses[result.0] = result.1
         }
         return activeStatuses
     }

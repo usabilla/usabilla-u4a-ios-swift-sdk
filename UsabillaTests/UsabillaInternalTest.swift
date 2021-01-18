@@ -109,16 +109,15 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                     expect(Usabilla.customVariables).toNot(beNil())
                     expect(Usabilla.customVariables).to(beEmpty())
 
-                    var cs: [String: Any] = [:]
+                    var cs: [String: String] = [:]
                     cs["string"] = "1"
-                    cs["int"] = 1
-                    cs["array"] = [1,2,3,4]
+                    cs["array"] = "[1,2,3,4]"
 
                     Usabilla.customVariables = cs
 
                     expect(Usabilla.customVariables).toNot(beEmpty())
-                    expect(Usabilla.customVariables["array"] as! [Int]).to(equal([1,2,3,4]))
-                    expect(Usabilla.customVariables["int"] as! Int).to(equal(1))
+                    expect(Usabilla.customVariables["array"] as! String).to(equal("[1,2,3,4]"))
+                    expect(Usabilla.customVariables["string"] as! String).to(equal("1"))
                 }
 
                 it("it should refuse invalid custom variables") {
@@ -126,10 +125,11 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
 
                     expect(Usabilla.customVariables).toNot(beNil())
                     expect(Usabilla.customVariables).to(beEmpty())
-                    Usabilla.customVariables["wrong"] = UIColor.red
-                    expect(Usabilla.customVariables).to(beEmpty())
-                    Usabilla.customVariables["wrong"] = UBMock.campaignMock()
-                    expect(Usabilla.customVariables).to(beEmpty())
+                    // Not valid as now it only accepts strings
+//                    Usabilla.customVariables["wrong"] = UIColor.red
+//                    expect(Usabilla.customVariables).to(beEmpty())
+//                    Usabilla.customVariables["wrong"] = UBMock.campaignMock()
+//                    expect(Usabilla.customVariables).to(beEmpty())
 
                 }
             }

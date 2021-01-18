@@ -10,7 +10,7 @@ import UIKit
 @objc(Usabilla)
 open class UsabillaXamarin: NSObject {
     @objc
-    public static var customVariables: [String: Any] {
+    public static var customVariables: [String: String] {
         get {
             return UsabillaInternal.customVariables
         }

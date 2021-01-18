@@ -12,7 +12,7 @@ import UIKit
 class UsabillaInternal {
     static let defaultDataMasks: [String] = ["[0-9]{4,}", "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"]
     private (set) static var maskModel: MaskModel?
-    static var customVariables: [String: Any] = [:] {
+    static var customVariables: [String: String] = [:] {
         didSet {
             submissionManager?.userContext = customVariables
         }
@@ -107,7 +107,7 @@ class UsabillaInternal {
         return true
     }
 
-    class func setCustomVariable(value: Any?, forKey key: String) {
+    class func setCustomVariable(value: String, forKey key: String) {
         customVariables[key] = value
         PLog(customVariables)
     }

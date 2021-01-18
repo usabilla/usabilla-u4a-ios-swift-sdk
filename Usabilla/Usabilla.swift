@@ -8,7 +8,7 @@
 import UIKit
 
 open class Usabilla {
-    public static var customVariables: [String: Any] {
+    public static var customVariables: [String: String] {
         get {
             return UsabillaInternal.customVariables
         }

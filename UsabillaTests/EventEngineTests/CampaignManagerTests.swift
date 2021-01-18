@@ -378,11 +378,12 @@ class CampaignManagerTests: QuickSpec {
                 it("should keep only the key:values where the value is a string") {
                     let form = UBMock.formMock()
                     let campaignManager = CampaignManager(campaignStore: storeMock, campaignService: campaignServiceMock, appID: "")
-                    var dictionary = [String: Any]()
+                    var dictionary = [String: String]()
                     dictionary["string"] = "string"
-                    dictionary["integer"] = 1
-                    dictionary["float"] = 0.5
-                    dictionary["object"] = form
+                   // custom variable only supporting strings
+//                    dictionary["integer"] = 1
+//                    dictionary["float"] = 0.5
+//                    dictionary["object"] = form
                     dictionary["moreString"] = "string"
 
                     let filtered = campaignManager.filterActiveStatuses(fromCustomVariables: dictionary)
