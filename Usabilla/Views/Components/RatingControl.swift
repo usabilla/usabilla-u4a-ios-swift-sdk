@@ -88,11 +88,11 @@ class RatingControl: UIControl {
 
     private func
         getSelectedIndexBase(_ selected: Int? = nil) -> Int {
-        if let selectedIndex = selected {
-            if selectedIndex*2 <= contentView.subviews.count {
-                return selectedIndex*2-1
+        if let aSelectedIndex = selected {
+            if aSelectedIndex*2 <= contentView.subviews.count {
+                return aSelectedIndex*2-1
             }
-            return selectedIndex
+            return aSelectedIndex
         }
 
         guard selectedIndex > -1 else {
@@ -293,10 +293,11 @@ class RatingControl: UIControl {
     }
 
     override func accessibilityIncrement() {
-        guard selectedIndex < maxValue - 1 else {
+        guard selectedIndex < maxValue*2 - 1 else {
             return
         }
-        selectedIndex += 1
+        // every image has a preceding space image, hence the index must be double
+        selectedIndex += 2
         sendActions(for: .valueChanged)
     }
 
@@ -304,7 +305,8 @@ class RatingControl: UIControl {
         guard selectedIndex > 0 else {
             return
         }
-        selectedIndex -= 1
+        // every image has a preceding space image, hence the index must be double
+        selectedIndex -= 2
         sendActions(for: .valueChanged)
     }
 
