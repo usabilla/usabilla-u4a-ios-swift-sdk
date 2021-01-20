@@ -200,7 +200,7 @@ platform :ios do
 			configuration: configuration,
 			project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
 			clean: true,
-			device: "iPhone SE (11.4)",
+			device: uiTestDevices,
 			slack_only_on_failure: true
 		)
 		cleanReleaseProject
