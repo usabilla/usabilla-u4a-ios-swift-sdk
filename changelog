@@ -1,7 +1,7 @@
-## 6.5.0
+## 6.6.1
 ### Fix
-- crash under iOS 13 & 14, after dismissing campaign, and rotating device
+- voiceover issue for mood component
+- header element cut off due to scroll
 
 ### Update
-- build with Xcode 12.0 to support swift package
-- added xcframeworks ( can be used for future distribution, supports xcode 11 and above)
+- Xcode supported above 10.3
