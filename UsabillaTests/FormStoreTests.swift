@@ -27,7 +27,7 @@ class FormStoreTests: QuickSpec {
 
             context("When calling loadStore", {
                 it("Should succeed and return formModel from network if formID isValid", closure: {
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: 5.0) { done in
                         let promise = self.formStore.loadForm(id: "583c0d8ea935028022c145f4", screenshot: nil, theme: UsabillaTheme(), maskModel: nil)
                         promise.then { formMdel in
                             expect(formMdel.identifier).to(equal("583c0d8ea935028022c145f4"))

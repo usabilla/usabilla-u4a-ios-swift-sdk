@@ -29,6 +29,8 @@ class PreventTriggeringCampaignMultipleTimes: XCTestCase {
         app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10)).tap()
         let sendButton = app.buttons["send"]
         sendButton.tap()
+        sleep(2)
+        
         let ratingcontrolElement = app.otherElements["ratingControl"]
         XCTAssert(ratingcontrolElement.exists, "rating control banner exists")
 
@@ -36,7 +38,8 @@ class PreventTriggeringCampaignMultipleTimes: XCTestCase {
         cancelButton.tap()
 
         sendButton.tap()
-
+        sleep(2)
+        
         let banner = app.otherElements["ratingControl"]
         XCTAssert(!banner.exists, "rating control banner is not shown")
     }

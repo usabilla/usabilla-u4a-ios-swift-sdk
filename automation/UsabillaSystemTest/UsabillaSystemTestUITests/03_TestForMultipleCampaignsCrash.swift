@@ -28,6 +28,8 @@ class TestForMultipleCampaignsCrash: XCTestCase {
         app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10)).tap()
         var sendButton = app.buttons["send"]
         sendButton.tap()
+        sleep(2)
+        
         var ratingcontrolElement = app.otherElements["ratingControl"]        
         
         let cancelButton = app.buttons["Cancel"]
@@ -39,6 +41,8 @@ class TestForMultipleCampaignsCrash: XCTestCase {
         app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10)).tap()
         sendButton = app.buttons["send"]
         sendButton.tap()
+        sleep(2)
+        
         ratingcontrolElement = app.otherElements["ratingControl"]
         XCTAssert(ratingcontrolElement.exists, "rating control banner does not exists")
         

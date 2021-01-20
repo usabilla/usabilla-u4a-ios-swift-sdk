@@ -30,7 +30,8 @@ class TriggerAndDisplayCampaign: XCTestCase {
         let sendButton = app.buttons["send"]
         sendButton.tap()
         sendButton.tap()
-
+        sleep(2)
+        
         let ratingcontrolElement = app.otherElements["ratingControl"]
         XCTAssert(ratingcontrolElement.exists, "rating control banner exists")
     }
