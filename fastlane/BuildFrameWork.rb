@@ -9,7 +9,7 @@ private_lane :buildForXcodeVersion do |options|
 	if version == nil	
 		UI.message("'version' not specified in 'buildForXcodeVersion")
 	elsif version.include? "12"
-		archVariable = "EXCLUDED_ARCHS=arm64 i386"
+		archVariable = "EXCLUDED_ARCHS=arm64"
 	else
 		archVariable = ""
 	end
