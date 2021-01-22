@@ -1,3 +1,11 @@
+## 6.6.1
+### Fix
+- voiceover issue for mood component
+- header element cut off due to scroll
+
+### Update
+- Xcode supported above 10.3
+
 ## 6.6.0
 ### Fix
 - SDK now randomize questions, marked as random
@@ -9,6 +17,15 @@
 ## 6.5.0
 ### Fix
 - Fix crash under iOS 13 & 14, after dismissing campaign.
+
+## 6.4.7
+### Fix
+- Fixes crash under iOS 13, after dismissing campaign, and rotating device
+- Fixes swipe-to-remove campaigns under iOS 13, in some situation causing a UI freeze
+
+## 6.4.6
+### Update
+- build with Xcode 11.4, to support Carthage
 
 ## 6.4.5
 ### Fix

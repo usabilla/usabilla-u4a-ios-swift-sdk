@@ -1,12 +1,6 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-In Usabilla SDK Version 6.4 there are two new features in addition to screenshot
-1. ability to capture image using camera
-2. ability to draw over image using drawing tool
-Note : 
-1. For camera, iPad supports all orientations and iPhone supports portrait mode only. 
-2. iPhone with landscape only mode doesn't support this features but there is an ability to capture image using image library)
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
@@ -72,12 +66,13 @@ Note :
     - [String file contents](#string-file-contents)
   - [Permissions](#permissions)
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
+  - [ThreadSafe](#ThreadSafe)
 
 * * *
 
 ## Requirements
 - iOS 9.0+
-- Xcode 10+   
+- Xcode 10.3+   
 - Swift 4.0+
 
 ## Installation
@@ -102,7 +97,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.5.0'
+pod 'Usabilla', '~> 6.6.1'
 
 End
 ```
@@ -126,7 +121,7 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 12.0.
+The current Carthage release is build for Xcode 12.2.
 
 For previous Xcode version, use:
  
@@ -472,7 +467,7 @@ Usabilla.customVariables["key"] = "value"
 ```
 
 **Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitations have to be taken into account.
-The `value` of a custom variable must then be an instance NSString, NSNumber, NSArray, NSDictionary, or NSNull.**
+The `value` of a custom variable must then be an instance NSString or String.**
 
 
 Trying to set an invalid object as a custom variable will result in that object not being set and in an error being printed in the console.
@@ -653,13 +648,12 @@ The default file with the keys and the default text is the following:
 
 ```
 
-Failure to override a key will display the key itself instead as the text.
-
 If you want to use your custom .string file, you can do so by calling
 
 ```swift
 Usabilla.localizedStringFile = "your_localization_file_name"
 ```
+If keys are not present in your file, the SDK will revert to the default keys.
 
 With the name of your file, without the .string extension.
 
@@ -733,3 +727,7 @@ extension ViewController : UsabillaDelegate {
 }
 
 ```
+## ThreadSafe
+
+The SDK is currently not Threadsafe. This requires the host-app to ensure all calls to the SDK are handle on the same thread. Not doing so can result in unexpected behavior.
+
