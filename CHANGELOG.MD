@@ -1,3 +1,11 @@
+## 6.6.1
+### Fix
+- voiceover issue for mood component
+- header element cut off due to scroll
+
+### Update
+- Xcode supported above 10.3
+
 ## 6.6.0
 ### Fix
 - SDK now randomize questions, marked as random
