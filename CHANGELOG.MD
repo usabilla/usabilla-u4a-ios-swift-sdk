@@ -1,3 +1,11 @@
+## 6.6.1
+### Fix
+- voiceover issue for mood component
+- header element cut off due to scroll
+
+### Update
+- Xcode supported above 10.3
+
 ## 6.6.0
 ### Fix
 - SDK now randomize questions, marked as random
@@ -8,10 +16,7 @@
 
 ## 6.5.0
 ### Fix
-- Fixes crash under iOS 13, after dismissing campaign, and rotating device
-### Update
-- Build with Xcode 12.0 to support swift package
-- Added Swift Package Support ( Binary Target - xcframework)
+- Fix crash under iOS 13 & 14, after dismissing campaign.
 
 ## 6.4.7
 ### Fix
