@@ -65,10 +65,10 @@ class Paths
 		"#{projectDirectory}#{xcode_directory}/#{pods_directory}"
 	end
 	def podsFileName 
-		"Pods.framework.zip"
+		"UsabillaPods.zip"
 	end
 	def xcframeworkFileName 
-		"Usabilla.xcframework.zip"
+		"UsabillaXCFramework.zip"
     end
 	def framework_name 
 		"#{scheme_name}.framework"
