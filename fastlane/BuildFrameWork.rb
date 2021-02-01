@@ -181,3 +181,35 @@ private_lane :copyToSwiftPackage do
 	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework.zip | xargs")
 	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt")
 end
+
+desc "Copy artefacts to the github public repository and create draft release"
+private_lane :createAReleaseDraft do |options|
+	unless options[:xcode]
+		UI.error("missing Xcode version")
+	end
+	unless options[:version]
+		UI.error("missing version")
+	end
+	xcode = options[:xcode]
+	version = options[:version] 
+	branch = options[:branch] 
+	name = "v#{version}-Xcode-#{xcode}"
+	UI.message("Creating for #{name}")
+	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"
+	pods = "XcodeBuilds/Xcode-#{xcode}/Pods/Pods.framework.zip"
+	assets = ["#{carthage}","#{pods}"]
+	if branch == "master"
+		xcframework = "XcodeBuilds/xcframeworks/Usabilla.xcframework.zip"
+		assets = ["#{carthage}","#{pods}","#{xcframework}"]
+	end
+	set_github_release(
+		repository_name: "usabilla/usabilla-u4a-ios-swift-sdk",
+		name: name,
+		tag_name: name,
+		is_draft: true,
+		description: (File.read("../changelog") rescue "No changelog provided"),
+		api_token: "2d12a433ea301e041de5dbdd82902a5108b7aee5",
+		commitish: branch,
+		upload_assets: assets
+	)
+end

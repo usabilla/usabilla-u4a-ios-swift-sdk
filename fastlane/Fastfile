@@ -208,9 +208,9 @@ platform :ios do
 	end
 
 
-	#used to crate all releases on the swift-sdk git
+	#used to create all releases on the swift-sdk git
 	# takes the version from  info.plist 
-	# uploads correct assets (carthage zip file) 
+	# uploads correct assets (carthage, pods and xcframework zip file) 
 	desc "creating release drafts"
 	lane :createDraftRelease do
 		versions = xcodeVersions
@@ -222,34 +222,9 @@ platform :ios do
 				branch = "master"
 				first = false
 			end
+			buildConfig = getBuildConfigs()
 			createAReleaseDraft(version: version, xcode: xcode, branch: branch)
 		end
-	end
-
-
-	#used to crate a releases on the swift-sdk git
-	private_lane :createAReleaseDraft do |options|
-		unless options[:xcode]
-			UI.error("missing Xcode version")
-		end
-		unless options[:version]
-			UI.error("missing version")
-		end
-		xcode = options[:xcode]
-		version = options[:version] 
-		branch = options[:branch] 
-		name = "v#{version}-Xcode-#{xcode}"
-		UI.message("Creating for #{name}")
-		set_github_release(
-			repository_name: "usabilla/usabilla-u4a-ios-swift-sdk",
-			name: name,
-			tag_name: name,
-			is_draft: true,
-			description: (File.read("../changelog") rescue "No changelog provided"),
-			api_token: "2d12a433ea301e041de5dbdd82902a5108b7aee5",
-			commitish: branch,
-			upload_assets: ["XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"]
-		)
 	end
 
 	#used to generate artifacts for UsabillaXamarin
