@@ -107,7 +107,7 @@ class Paths
 		"#{projectDirectory}#{xcode_directory}/Carthage"
 	end
 	def carthageFileName 
-		"Carthage.framework.zip"
+		"UsabillaCarthage.zip"
     end
 #--------------------------------------------------------------------- Xamarin properties starts here ---------------------------------------------------------------#
 	def scheme_xamarin_name 

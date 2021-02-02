@@ -195,7 +195,7 @@ private_lane :createAReleaseDraft do |options|
 	branch = options[:branch] 
 	name = "v#{version}-Xcode-#{xcode}"
 	UI.message("Creating for #{name}")
-	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/Carthage.framework.zip"
+	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/UsabillaCarthage.zip"
 	pods = "XcodeBuilds/Xcode-#{xcode}/Pods/UsabillaPods.zip"
 	assets = ["#{carthage}","#{pods}"]
 	if branch == "master"
