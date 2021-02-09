@@ -437,6 +437,7 @@
 		459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
 		459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
 		459678DC22E878520043DE70 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
+		45B1B28525D1496600B8D451 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B1B28425D1496600B8D451 /* UIApplication.swift */; };
 		45B51EE022E7A00500122F44 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
 		45B51EE122E7A00500122F44 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
 		45B51EE322E7A01500122F44 /* UBSAPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */; };
@@ -1003,6 +1004,7 @@
 		458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADragableImageView.swift; sourceTree = "<group>"; };
 		459678D722E878510043DE70 /* UBSADrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingView.swift; sourceTree = "<group>"; };
 		459678D822E878520043DE70 /* UBSADrawingTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSADrawingTool.swift; sourceTree = "<group>"; };
+		45B1B28425D1496600B8D451 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingPlugin.swift; sourceTree = "<group>"; };
 		45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBSAPluginViewController.swift; sourceTree = "<group>"; };
 		45B60FC322D70F5E00711E64 /* ClientModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModelTest.swift; sourceTree = "<group>"; };
@@ -1757,6 +1759,7 @@
 				C50F2C3B2084ED7D00D77F37 /* UILabel.swift */,
 				45CB6F0022DFBE63007FEE38 /* UIViewController.swift */,
 				F2A08B9723D06FCF00A5F6F0 /* Locale.swift */,
+				45B1B28425D1496600B8D451 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2208,6 +2211,7 @@
 				4334E8611E29011E00AC895C /* OptionsFieldModel.swift in Sources */,
 				41C4C7631F69DD490043A844 /* NPSToolTip.swift in Sources */,
 				43CCD4671E79508200B3E4FE /* CheckBoxComponentViewModel.swift in Sources */,
+				45B1B28525D1496600B8D451 /* UIApplication.swift in Sources */,
 				4342CBA11E82BFE800601F3D /* IntroPageViewModel.swift in Sources */,
 				F213103D23EC022C0017B633 /* UsabillaDebug.swift in Sources */,
 				43CCD4761E79A18700B3E4FE /* SliderComponent.swift in Sources */,

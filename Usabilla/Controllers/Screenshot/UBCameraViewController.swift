@@ -160,10 +160,18 @@ class UBCameraViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        testForPermisisons()
         setupView()
         setConstraints()
     }
 
+    private func testForPermisisons () {
+        let camera = Bundle.main.infoDictionary?["NSCameraUsageDescription"]
+        let library = Bundle.main.infoDictionary?["NSPhotoLibraryUsageDescription"]
+        print(camera)
+        print(library)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {

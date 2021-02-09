@@ -190,9 +190,19 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         noScreenshotBottomConstraint.isActive = true
     }
 
+    fileprivate func canAddImages(_ hasScreenShot: Bool) -> Bool {
+        if hasScreenShot {return true}
+        let camera = Bundle.main.infoDictionary?["NSCameraUsageDescription"]
+        let library = Bundle.main.infoDictionary?["NSPhotoLibraryUsageDescription"]
+        if camera == nil && library == nil {return false}
+        return true
+    }
+
     func updateUI() {
         let hasScreenShot = viewModel.value != nil
         addIcon.isHidden = hasScreenShot
+        editIcon.isHidden = !canAddImages(hasScreenShot)
+        editIconBackGroundView.isHidden = editIcon.isHidden
         addScreenshotLabel.isHidden = hasScreenShot
         screenShotView.isHidden = !hasScreenShot
         self.accessibilityElements = hasScreenShot ? [editIcon, deleteIcon] : [addScreenshotLabel]
