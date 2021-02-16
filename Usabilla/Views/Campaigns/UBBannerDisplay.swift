@@ -36,7 +36,7 @@ class UBBannerDisplay: UBIntroOutroDisplay {
         if view.viewModel.displayMode == .bannerBottom {
             view.buttonsStackViewBottomContraint?.constant -= kBannerExtraSpace
         } else { // display banner top
-            view.titleTopConstraint?.constant += UBBannerDisplay.topBannerMargin + kBannerExtraSpace
+            view.titleTopConstraint?.constant += UBBannerDisplay.topBannerMargin
         }
     }
 

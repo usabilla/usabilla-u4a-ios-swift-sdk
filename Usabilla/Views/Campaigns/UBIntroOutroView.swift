@@ -39,8 +39,14 @@ class UBIntroOutroView: UIView {
     var titleTopConstraint: NSLayoutConstraint!
 
     var wrapper: UIView!
+    var scrollView: UIScrollView!
+    var scrollContentView: UIView!
+
     weak var wrapperLeftConstraint: NSLayoutConstraint?
     weak var wrapperRightConstraint: NSLayoutConstraint?
+
+    weak var heightScrollViewConstraint: NSLayoutConstraint?
+    var heightScrollView: CGFloat = UIScreen.main.bounds.height * 0.5  - UBDimensions.IntroOutroView.buttonStackViewHeight
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -51,15 +57,10 @@ class UBIntroOutroView: UIView {
         super.init(frame: CGRect.zero)
 
         setupWrapper()
+        setupButtons()
+        setUpScrolView()
         setupTitle()
         setupComponent()
-        setupButtons()
-
-        if let componentView = componentView {
-            buttonsStackView?.topAnchor.constraint(equalTo: componentView.bottomAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).isActive = true
-        } else {
-            buttonsStackView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).isActive = true
-        }
 
         setupCustomizations()
 
@@ -100,6 +101,21 @@ class UBIntroOutroView: UIView {
 
     override func layoutSubviews() {
         componentView?.layoutSubviews()
+        configureScrollHeight()
+    }
+
+    func configureScrollHeight() {
+        // For landscape mode or accessibility text mode,
+        // ScrollView height should be max 75% of screen height
+        if DeviceInfo.isAccessibilityTextMode() || DeviceInfo.isLandscapeMode() {
+            heightScrollView = UIScreen.main.bounds.height * 0.75 - UBDimensions.IntroOutroView.buttonStackViewHeight
+        } else {
+            heightScrollView = UIScreen.main.bounds.height * 0.5 - UBDimensions.IntroOutroView.buttonStackViewHeight
+        }
+        
+        let heightScrollViewConstant = min(scrollContentView.frame.height, heightScrollView)
+        // swiftlint:disable:next force_unwrapping
+        heightScrollViewConstraint!.constant = heightScrollViewConstant
     }
 
     override func updateConstraints() {
@@ -107,6 +123,25 @@ class UBIntroOutroView: UIView {
         wrapperRightConstraint?.constant = -UIView.safeAreaEdgeInsets.right
         wrapperLeftConstraint?.constant = UIView.safeAreaEdgeInsets.left
 
+    }
+
+    private func setUpScrolView() {
+        scrollView = UIScrollView()
+        scrollContentView = UIView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollContentView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(scrollView)
+        scrollView.addSubview(scrollContentView)
+        scrollView.isScrollEnabled = true
+        scrollView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: buttonsStackView.topAnchor).isActive = true
+        heightScrollViewConstraint = scrollView.heightAnchor.constraint(equalToConstant: heightScrollView).activate()
+        scrollContentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        scrollContentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
+        scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        scrollContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        scrollContentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
 
     private func setupWrapper() {
@@ -124,22 +159,22 @@ class UBIntroOutroView: UIView {
         titleLabel = UILabel()
         titleLabel.text = viewModel.title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.numberOfLines = 0
-        wrapper.addSubview(titleLabel)
-        titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).activate()
-        titleLabel.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: UBDimensions.IntroOutroView.sidesMargin).activate()
-        titleLabel.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -UBDimensions.IntroOutroView.sidesMargin).activate()
+        titleLabel.numberOfLines = UBDimensions.IntroOutroView.textTitleLines
+        scrollContentView.addSubview(titleLabel)
+        titleTopConstraint = titleLabel.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: UBDimensions.IntroOutroView.outsideVerticalMargin).activate()
+        titleLabel.leftAnchor.constraint(equalTo: scrollContentView.leftAnchor, constant: UBDimensions.IntroOutroView.sidesMargin).activate()
+        titleLabel.rightAnchor.constraint(equalTo: scrollContentView.rightAnchor, constant: -UBDimensions.IntroOutroView.sidesMargin).activate()
     }
 
     private func setupButtons() {
         buttonsStackView = UIStackView()
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        //swiftlint:disable:next force_unwrapping
+        // swiftlint:disable:next force_unwrapping
         wrapper.addSubview(buttonsStackView!)
         buttonsStackView.leftAnchor.constraint(equalTo: wrapper.leftAnchor).activate()
         buttonsStackView.rightAnchor.constraint(equalTo: wrapper.rightAnchor).activate()
         buttonsStackViewBottomContraint = buttonsStackView?.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor).activate()
-        buttonsStackView.heightAnchor.constraint(equalToConstant: 44).activate()
+        buttonsStackView.heightAnchor.constraint(equalToConstant: UBDimensions.IntroOutroView.buttonStackViewHeight).activate()
         buttonsStackView.axis = .horizontal
         buttonsStackView.distribution = .fillProportionally
 
@@ -150,7 +185,7 @@ class UBIntroOutroView: UIView {
 
         if viewModel.hasContinueButton || UIAccessibilityIsVoiceOverRunning() {
             continueButton = UIButton(type: .system)
-            //swiftlint:disable:next force_unwrapping
+            // swiftlint:disable:next force_unwrapping
             buttonsStackView.addArrangedSubview(continueButton!)
             // In case voice over is activated we want to add a continue button even if it does not exist
             var continueText = viewModel.continueLabelText
@@ -171,12 +206,13 @@ class UBIntroOutroView: UIView {
             if !viewModel.hasContinueButton && !UIAccessibilityIsVoiceOverRunning() {
                 componentView?.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
             }
-            //swiftlint:disable:next force_unwrapping
-            wrapper.addSubview(componentView!)
+            // swiftlint:disable:next force_unwrapping
+            scrollContentView.addSubview(componentView!)
             componentView?.translatesAutoresizingMaskIntoConstraints = false
-            componentView?.leftAnchor.constraint(equalTo: wrapper.leftAnchor, constant: UBDimensions.IntroOutroView.sidesMargin).isActive = true
-            componentView?.rightAnchor.constraint(equalTo: wrapper.rightAnchor, constant: -UBDimensions.IntroOutroView.sidesMargin).isActive = true
+            componentView?.leftAnchor.constraint(equalTo: scrollContentView.leftAnchor, constant: UBDimensions.IntroOutroView.sidesMargin).isActive = true
+            componentView?.rightAnchor.constraint(equalTo: scrollContentView.rightAnchor, constant: -UBDimensions.IntroOutroView.sidesMargin).isActive = true
             componentView?.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UBDimensions.IntroOutroView.marginBetweenComponentAndTitle).isActive = true
+            componentView?.bottomAnchor.constraint(equalTo: scrollContentView.bottomAnchor, constant: UBDimensions.IntroOutroView.scrollContentMargin).isActive = true
         }
     }
 

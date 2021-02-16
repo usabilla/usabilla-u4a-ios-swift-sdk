@@ -212,4 +212,17 @@ class DeviceInfo {
         }
         return false
     }
+
+    class func isAccessibilityTextMode() -> Bool {
+        let fontCategory = UIApplication.shared.preferredContentSizeCategory
+        return fontCategory == .accessibilityMedium
+            || fontCategory == .accessibilityLarge
+            || fontCategory == .accessibilityExtraLarge
+            || fontCategory == .accessibilityExtraExtraLarge
+            || fontCategory == .accessibilityExtraExtraExtraLarge
+    }
+
+    class func isLandscapeMode() -> Bool {
+        return UIScreen.main.bounds.height < UIScreen.main.bounds.width
+    }
 }
