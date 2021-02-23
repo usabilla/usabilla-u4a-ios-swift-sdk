@@ -76,7 +76,9 @@ class UBImageLibraryButton: UIView {
 
     @objc
     fileprivate func buttonTouchUpInside() {
-        delegate?.UBtouchUpInside()
+        if UBImageInputTypes.available(.library) == .library {
+            delegate?.UBtouchUpInside()
+        }
     }
 
     /// Asks for acces to the photolibrary. If granted, fetches the newest photo from the camera roll
