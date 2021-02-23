@@ -82,6 +82,10 @@ class UBImageLibraryButton: UIView {
     /// Asks for acces to the photolibrary. If granted, fetches the newest photo from the camera roll
     /// and installs it in the button view
     fileprivate func testAndGetLibraryAccess() {
+        if UBImageInputTypes.available(.library) != .library {
+            libraryAccess = false
+            return
+        }
         let status = PHPhotoLibrary.authorizationStatus()
         if status == PHAuthorizationStatus.authorized {
             PHPhotoLibrary.shared().register(self)

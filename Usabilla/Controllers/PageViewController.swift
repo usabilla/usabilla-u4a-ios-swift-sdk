@@ -210,8 +210,24 @@ class PageViewController: UIViewController {
             IndexPath(row: $0, section: 0) }
         if listOfIndexes.count > 0 {
             self.reloadCellsWithAnimation(indexPaths) }
+        removeScreenshootCellIfNeeded()
     }
 
+    private func removeScreenshootCellIfNeeded() {
+        let screenshotcell = viewModel.cellViewModels.filter {
+            $0.componentViewModel is ScreenshotComponentViewModel
+        }
+        if let theCell = screenshotcell.first?.componentViewModel as? ScreenshotComponentViewModel {
+            if theCell.model.image != nil {return }
+            if UBImageInputTypes.available() == .none {
+                if let index = viewModel.cellViewModels.firstIndex(where: { $0.componentViewModel is ScreenshotComponentViewModel }) {
+                    viewModel.cellViewModels.remove(at: index)
+                    let indexPath = IndexPath(row: index, section: 0)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+    }
     func deinitPageController() {
         SwiftEventBus.unregister(self)
     }
@@ -262,7 +278,7 @@ class PageViewController: UIViewController {
 
     //Image handling stuff
     fileprivate func presentFullDrawSolution(with client: ClientModel) {
-        let controller = UBEditImageMainViewController(theme: viewModel.theme, client: client)
+        let controller = UBEditImageMainViewController(theme: viewModel.theme, client: client, image: viewModel.getScreenShootImage())
         let navController = UBNavigationController(rootViewController: controller)
         navController.modalPresentationStyle = .overCurrentContext
         navController.isNavigationBarHidden = true

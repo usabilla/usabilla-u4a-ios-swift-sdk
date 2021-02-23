@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum PageType: String {
     case banner
@@ -53,5 +54,14 @@ class PageModel: PageModelProtocol {
             pageDictionary[field.fieldID] = exportable?.exportableValue
         }
         return pageDictionary
+    }
+}
+
+extension PageViewModel {
+    func getScreenShootImage() -> UIImage? {
+        if let screenshootModel = model.fields.last as? ScreenshotModel {
+            return screenshootModel.image
+        }
+        return nil
     }
 }

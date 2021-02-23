@@ -172,6 +172,7 @@ struct UBDimensions {
         static let leftButtonText: String = "usa_retake_button_title"
         static let rightButtonText: String = "usa_add_button_title"
         static let backButtonText: String = "usa_back_button_title"
+        static let cancelButtonText: String = "usa_cancel_button_title"
         static let addButtonText: String = "usa_add_button_title"
         static let doneButtonText: String = "usa_done_button_title"
         static let editTitleText: String = "usa_edit_title"
@@ -238,6 +239,7 @@ struct UBDimensions {
 
         static let backButtonText: String = "usa_back_button_title"
         static let libraryTitleText: String = "usa_library_title"
+        static let libraryCancelText: String = "usa_cancel_button_title"
     }
 
     struct GridHeaderCell {

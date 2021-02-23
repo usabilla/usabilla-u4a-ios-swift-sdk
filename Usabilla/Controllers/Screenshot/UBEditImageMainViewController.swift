@@ -12,13 +12,34 @@ import Photos
 enum UBimageSource: String {
     case camera = "camera"
     case library = "library"
+    case loaded = "loaded"
     case unknown = "default"
 }
 
-class UBEditImageMainViewController: UBSAEditImageMasterView {
+struct UBImageInputTypes {
+    enum UBInputTypes {
+    case camera
+    case library
+    case both
+    case none
+    }
+    static func available(_ type: UBInputTypes? = nil ) -> UBInputTypes {
+        let camera = Bundle.main.infoDictionary?["NSCameraUsageDescription"]
+        let library = Bundle.main.infoDictionary?["NSPhotoLibraryUsageDescription"]
+        if type == .camera && camera != nil {return .camera}
+        if type == .library && library != nil {return .library}
 
+        if camera != nil && library != nil {return .both}
+        if camera == nil && library != nil {return .library}
+        if camera != nil && library == nil {return .camera}
+        return .none
+    }
+}
+
+class UBEditImageMainViewController: UBSAEditImageMasterView {
     var currentOrientation: UIDeviceOrientation?
     var imageSource: UBimageSource = .unknown
+    private var currentImage: UIImage?
     var client: ClientModel
     lazy var cameraViewController: UBCameraViewController = UBCameraViewController()
     init(client: ClientModel) {
@@ -31,9 +52,13 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
     }
 
     // MARK: - Lifecylce methods
-    convenience init(theme: UsabillaTheme, client: ClientModel ) {
+    convenience init(theme: UsabillaTheme, client: ClientModel, image: UIImage? = nil ) {
         self.init(client: client)
         self.theme = theme
+        currentImage = image
+        if currentImage != nil {
+            imageSource = .loaded
+        }
     }
 
     override func viewDidLoad() {
@@ -48,13 +73,16 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         view.backgroundColor = .clear
         view.isOpaque = false
         configurePlugins()
-        presentCamera()
+        if imageSource != .loaded { presentImageSelector()}
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if containerView.superview == nil {
             view.addSubview(containerView)
+            if let img = currentImage {
+                addBaseImage(image: img, source: .loaded)
+            }
         }
     }
 
@@ -76,6 +104,19 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         containerView.setBackgroundImage(image)
     }
 
+    // show the initail image selector. Default is Camera, but if camera is not available. show image library.
+    // if also not available, exit gracefully.
+    // this method is called from the viewDidLoad af part of the setup.
+    // If there is no access 
+    func presentImageSelector() {
+        if Bundle.main.infoDictionary?["NSCameraUsageDescription"] != nil {
+            presentCamera()
+        } else if Bundle.main.infoDictionary?["NSPhotoLibraryUsageDescription"] != nil {
+            imageSource = .library
+            presentImagePicker()
+        }
+    }
+
     func presentCamera(animated: Bool = true) {
         cameraViewController.theme = theme
         cameraViewController.delegate = self
@@ -88,10 +129,11 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         navigationController?.pushViewController(cameraViewController, animated: animated)
     }
 
-    private func presentImagePicker(animated: Bool = true) {
+    private func presentImagePicker(animated: Bool = true, cancel: Bool = true) {
         let viewController = UBImagePickerController(theme: theme)
+        viewController.cancelable = cancel
         viewController.delegate = self
-        navigationController?.pushViewController(viewController, animated: animated)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     // MARK: - Configuration methods
@@ -101,6 +143,8 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
             configureFromCamera()
         case .library:
             configureFromLibrary()
+        case .loaded:
+            configureForLoaded()
         default:
             configureForDefault()
         }
@@ -122,6 +166,12 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
 
     fileprivate func configureForDefault() {
         leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.backButtonText), for: UIControlState.normal)
+        rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.doneButtonText), for: UIControlState.normal)
+        titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.editTitleText)
+    }
+
+    fileprivate func configureForLoaded() {
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.cancelButtonText), for: UIControlState.normal)
         rightButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.doneButtonText), for: UIControlState.normal)
         titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBEditImageMainView.editTitleText)
     }
@@ -188,14 +238,20 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         case .camera:
             presentCamera(animated: false)
         case .library:
-            presentCamera(animated: false)
+            if UBImageInputTypes.available(.camera) == .camera {
+                presentCamera(animated: false)
+            }
             presentImagePicker(animated: false)
+        case .loaded:
+            self.dismiss(animated: true, completion: nil)
         default:
             return
         }
     }
 
     private func checkPermissionAndSaveImage(_ imageData: UIImage) {
+        let library = Bundle.main.infoDictionary?["NSPhotoLibraryUsageDescription"]
+        if library == nil {return}
         let status = PHPhotoLibrary.authorizationStatus()
         if status == .authorized {
             UIImageWriteToSavedPhotosAlbum(imageData, nil, nil, nil)
@@ -217,7 +273,8 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         }
         dismiss(animated: true, completion: nil)
         if imageSource != .unknown {
-            let imageType = ["image_type": imageSource.rawValue, "number_of_drawings": containerView.numbeOfDrawings()] as [String: Any]
+            let imageType = ["image_type": imageSource.rawValue,
+                             "number_of_drawings": containerView.numbeOfDrawings()] as [String: Any]
             client.addBehaviour("screenshot_annotations", imageType)
             SwiftEventBus.postToMainThread("imagePicked", sender: containerView.finalImage())
         }
@@ -239,14 +296,20 @@ extension UBEditImageMainViewController: CapturePhotoProtocol {
     }
 
     func librarySelected() {
-        self.presentImagePicker()
+        self.presentImagePicker(animated: true, cancel: false)
     }
 }
 
 extension UBEditImageMainViewController: UBImagePickerControllerDelegate {
 
     func imagePickerControllerDidCancel(_ picker: UBImagePickerController) {
-        navigationController?.popViewController(animated: true)
+        if UBImageInputTypes.available(.camera) == .camera {
+            // if camera is available, the library comes from the camera screen, and should only itself
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        // if camera is not available, it should remove the edit process
+        dismiss(animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UBImagePickerController, didFinishPickingImage image: UIImage!) {
         addBaseImage(image: image, source: .library)
@@ -275,4 +338,7 @@ extension UBEditImageMainViewController: UINavigationControllerDelegate {
             return nil
         }
     }
+//    func testForLibrary
+//    let camera = Bundle.main.infoDictionary?["NSCameraUsageDescription"]
+//    let library = Bundle.main.infoDictionary?["NSPhotoLibraryUsageDescription"]
 }

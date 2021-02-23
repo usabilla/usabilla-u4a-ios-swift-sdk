@@ -572,8 +572,16 @@ class Icons: NSObject {
         LocalCache.color = color
         return image
     }
-
+    
     class func imageOfEdit(color: UIColor) -> UIImage {
+        if let image = UIImage.getImageFromSDKBundle(name: "ic_edit") {
+            return image.maskWithColor(color: color)
+            
+        }
+        return UIImage()
+    }
+
+    class func imageOfCamera(color: UIColor) -> UIImage {
         struct LocalCache {
             static var image: UIImage!
             static var color: UIColor!

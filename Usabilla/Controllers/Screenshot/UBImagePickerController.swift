@@ -36,6 +36,7 @@ class UBImagePickerController: UIViewController {
     weak var delegate: UBImagePickerControllerDelegate?
     let theme: UsabillaTheme
     var client: ClientModel?
+    var cancelable = false
     lazy var collectionView: UICollectionView = {
         let layout = LeftAlignedCollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -159,7 +160,8 @@ class UBImagePickerController: UIViewController {
         titleLabel.font = theme.fonts.boldFont
         titleLabel.textColor = theme.colors.title
         titleLabel.text = LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBImagePickerView.libraryTitleText)
-        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(UBDimensions.UBImagePickerView.backButtonText), for: UIControlState.normal)
+        leftButton.setTitle(LocalisationHandler.getLocalisedStringForKey(cancelable ? UBDimensions.UBImagePickerView.libraryCancelText :UBDimensions.UBImagePickerView.backButtonText),
+                            for: UIControlState.normal)
     }
 
     fileprivate func layoutViews() {
@@ -259,6 +261,7 @@ class UBImagePickerController: UIViewController {
                             }
                         }
                         self.cameraRollAlbum = data.sorted(by: { $0.date < $1.date })
+                        self.collectionView.reloadData()
                     }
                 }
             }

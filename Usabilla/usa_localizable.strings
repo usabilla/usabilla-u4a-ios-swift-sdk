@@ -49,6 +49,7 @@
 // Screenshot anotation
 "usa_retake_button_title" = "Retake";
 "usa_back_button_title" = "Back";
+"usa_cancel_button_title" = "Cancel";
 "usa_add_button_title" = "Add";
 "usa_done_button_title" = "Done";
 "usa_back_button_library_title" = "Library";
