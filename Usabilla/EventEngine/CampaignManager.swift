@@ -43,7 +43,7 @@ class CampaignManager {
 
         // Display first triggered campaign that can be displayed
         let displayableCampaign = triggeredCampaigns.sorted {
-            $0.createdAt > $1.createdAt
+            $0.createdAt < $1.createdAt
         }.first {
             $0.canBeDisplayed == true
         }
