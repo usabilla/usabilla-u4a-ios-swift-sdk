@@ -14,6 +14,14 @@ class UsabillaInternal {
     private (set) static var maskModel: MaskModel?
     static var customVariables: [String: String] = [:] {
         didSet {
+            for (key, _) in customVariables {
+                if key.contains(".") || key.contains("$") {
+                    DLogError("Custom variable name / key should not contain '.' or '$'")
+                }
+                if key.isEmpty {
+                    DLogError("Custom variable name / key should not be empty string")
+                }
+            }
             submissionManager?.userContext = customVariables
         }
     }

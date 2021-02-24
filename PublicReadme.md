@@ -472,7 +472,7 @@ You can always check whether an object is considered valid or not by calling `JS
 
 
 Custom variables are added as extra feedback data with every feedback item sent by the SDK, whether from a passive feedback or a campaign.
-
+Custom Variables **key / name** should not be an `empty string` and it should not contain `.` or `$`.
 **Custom variables can be used as targeting options, as long as the `value` is a String.**
 
 ## App Store rating
