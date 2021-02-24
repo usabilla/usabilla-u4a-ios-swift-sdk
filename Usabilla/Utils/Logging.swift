@@ -3,13 +3,23 @@
 //
 
 import Foundation
+import os
+
+private let sdkLog = "com.usabilla.Logging-SDK"
+private struct LogType {
+    @available(iOS 10.0, *)
+    static let debugLog = OSLog(subsystem: sdkLog, category: "Usabilla Log")
+}
 
 private func DLog(_ message: String) {
     guard UsabillaInternal.debugEnabled else {
         return
     }
-
-    print("\(message)")
+    if #available(iOS 10.0, *) {
+        os_log("%{public}s.", log: LogType.debugLog, type: .info, message)
+    } else {
+        print("\(message)")
+    }
 }
 
 /// prints some usefull information to the client when needed
@@ -50,11 +60,15 @@ func DLogError(_ endpoint: String, code: String, description: String? = nil) {
 ///   - line: The line number, defaults to the line number within the file that the call is made.
 func PLog<T>(_ object: @autoclosure () -> T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
-        let value = object()
-        let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"
-        let queue = Thread.isMainThread ? "UI" : "BG"
-
+    let value = object()
+    let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"
+    let queue = Thread.isMainThread ? "UI" : "BG"
+    if #available(iOS 10.0, *) {
+        let debugString = "<\(queue)> \(fileURL) \(function)[\(line)]: " + String(reflecting: value)
+        os_log("%{public}s.", log: LogType.debugLog, type: .info, debugString)
+    } else {
         print("<\(queue)> \(fileURL) \(function)[\(line)]: " + String(reflecting: value))
+    }
     #endif
 }
 
@@ -74,11 +88,19 @@ func PDump<T>(_ object: @autoclosure () -> T, label: String? = nil, _ file: Stri
         let value = object()
         let fileURL = NSURL(string: file)?.lastPathComponent ?? "Unknown file"
         let queue = Thread.isMainThread ? "UI" : "BG"
-
-        print("--------")
-        print("<\(queue)> \(fileURL) \(function):[\(line)] ")
-        label.flatMap { print($0) }
-        dump(value)
-        print("--------")
+        if #available(iOS 10.0, *) {
+            let debugString = "<\(queue)> \(fileURL) \(function):[\(line)]"
+            os_log("%{public}s", log: LogType.debugLog, type: .info, "---------")
+            os_log("%{public}s.", log: LogType.debugLog, type: .info, debugString)
+            label.flatMap { os_log("%{public}s", log: LogType.debugLog, type: .info, $0) }
+            os_log("%{public}s", log: LogType.debugLog, type: .info, "---------")
+        } else {
+            print("--------")
+            print("<\(queue)> \(fileURL) \(function):[\(line)] ")
+            label.flatMap { print($0) }
+            dump(value)
+            print("--------")
+            
+        }
     #endif
 }
