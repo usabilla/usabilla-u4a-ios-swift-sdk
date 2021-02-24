@@ -133,6 +133,8 @@ class UBIntroOutroView: UIView {
         addSubview(scrollView)
         scrollView.addSubview(scrollContentView)
         scrollView.isScrollEnabled = true
+        scrollView.leftAnchor.constraint(equalTo: wrapper.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: wrapper.rightAnchor).isActive = true
         scrollView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: buttonsStackView.topAnchor).isActive = true
