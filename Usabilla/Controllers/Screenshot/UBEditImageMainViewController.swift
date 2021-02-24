@@ -133,7 +133,7 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         let viewController = UBImagePickerController(theme: theme)
         viewController.cancelable = cancel
         viewController.delegate = self
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(viewController, animated: animated)
     }
 
     // MARK: - Configuration methods
@@ -238,10 +238,12 @@ class UBEditImageMainViewController: UBSAEditImageMasterView {
         case .camera:
             presentCamera(animated: false)
         case .library:
+            var cancel = true  // if showing the library with camera, the left button should be back
             if UBImageInputTypes.available(.camera) == .camera {
                 presentCamera(animated: false)
+                cancel = false
             }
-            presentImagePicker(animated: false)
+            presentImagePicker(animated: false, cancel: cancel)
         case .loaded:
             self.dismiss(animated: true, completion: nil)
         default:
