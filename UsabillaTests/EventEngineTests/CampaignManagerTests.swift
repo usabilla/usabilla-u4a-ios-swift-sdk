@@ -163,8 +163,8 @@ class CampaignManagerTests: QuickSpec {
                     campaignManager.sendEvent(event: "bar", customVariables: customVariables)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     campaignB = UBCampaignDAO.shared.read(id: "b")
-                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
-                    expect(campaignB?.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
                 }
                 
                 it("should display only the first campaign that trigger sorted by most recently created") {
@@ -192,8 +192,8 @@ class CampaignManagerTests: QuickSpec {
                     campaignManager.sendEvent(event: "bar", customVariables: customVariables)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     campaignB = UBCampaignDAO.shared.read(id: "b")
-                    expect(campaignA?.numberOfTimesTriggered).to(equal(1))
-                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(1))
                 }
                 
                 it("should display only the first campaign that trigger sorted by most recently created") {
@@ -221,8 +221,8 @@ class CampaignManagerTests: QuickSpec {
                     campaignManager.sendEvent(event: "bar", customVariables: customVariables)
                     campaignA = UBCampaignDAO.shared.read(id: "a")
                     campaignB = UBCampaignDAO.shared.read(id: "b")
-                    expect(campaignA?.numberOfTimesTriggered).to(equal(0))
-                    expect(campaignB?.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignA?.numberOfTimesTriggered).to(equal(1))
+                    expect(campaignB?.numberOfTimesTriggered).to(equal(0))
                 }
                 
                 it("should display only the first campaign that triggered and that can be displayed") {

@@ -574,8 +574,18 @@ class Icons: NSObject {
     }
     
     class func imageOfEdit(color: UIColor) -> UIImage {
+        struct LocalCache {
+            static var image: UIImage!
+            static var color: UIColor!
+        }
+        if LocalCache.image != nil && LocalCache.color == color {
+            return LocalCache.image
+        }
         if let image = UIImage.getImageFromSDKBundle(name: "ic_edit") {
-            return image.maskWithColor(color: color)
+            let aImage = image.maskWithColor(color: color)
+            LocalCache.image = aImage
+            LocalCache.color = color
+            return aImage
             
         }
         return UIImage()
