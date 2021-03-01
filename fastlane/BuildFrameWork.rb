@@ -112,6 +112,42 @@ private_lane :systemTestsAfterBuild do |options|
 	# )
 end
 
+#used in lane  "validateAll"	
+desc "Validate integrating the framework (with specified version) into a sample project"
+private_lane :validateSDK do |options|
+	unless options[:version]
+		UI.error("missing Xcode version")
+	end
+	version = options[:version]
+	UI.message("Validating for Xcode-#{version}")
+	configuration = options[:configuration]
+	UI.message("Validating for #{configuration} configuration")
+
+	if version == nil	
+		UI.message("'version' not specified in 'validateSDK")
+	elsif version.include? "12"
+		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
+	else
+		archVariable = ""
+	end
+
+	resetSimulator
+	xcversion(version: version)
+	framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/Pods/Usabilla.Framework"
+	cleanReleaseProject
+	sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/ReleaseValidator")
+	# scan(
+	# 	configuration: configuration,
+	# 	project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
+	# 	clean: true,
+	# 	devices: unitTestDevices,
+	# 	slack_only_on_failure: true
+	# )
+	sh("xcodebuild clean -project #{paths.projectDirectory}/automation/ReleaseValidator/ReleaseValidator.xcodeproj -configuration #{configuration} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
+	cleanReleaseProject
+	resetSimulator
+end
+
 desc "Vallidate build for non LLVM and GCC code" 
 private_lane :validateBuildLLVMGCC do |options|
 	#configuration
