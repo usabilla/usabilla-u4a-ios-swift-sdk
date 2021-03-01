@@ -35,7 +35,7 @@ class MoodComponentViewModelTests: QuickSpec {
                     moodComponentViewModel = MoodComponentViewModel(model: moodModel, theme: theme)
                     let delegate = MockBaseComponentViewModelDelegate()
                     moodComponentViewModel.delegate = delegate
-                    waitUntil(timeout: 1.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(1)) { done in
                         delegate.onValueDidChange = done
                         moodComponentViewModel.value = nil
                     }

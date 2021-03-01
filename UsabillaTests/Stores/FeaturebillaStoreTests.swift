@@ -27,7 +27,7 @@ class FeaturebillaStoreTests: QuickSpec {
 
         context("When calling loadSettings", {
             it("Should succeed and return settingModel from network", closure: {
-                waitUntil(timeout: 2.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                     let promise = self.featurebillaStore.loadSettings()
                     promise.then { settingModel in
                         expect(settingModel.self).toNot(beNil())

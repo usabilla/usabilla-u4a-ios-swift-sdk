@@ -27,7 +27,7 @@ class FormStoreTests: QuickSpec {
 
             context("When calling loadStore", {
                 it("Should succeed and return formModel from network if formID isValid", closure: {
-                    waitUntil(timeout: 5.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                         let promise = self.formStore.loadForm(id: "583c0d8ea935028022c145f4", screenshot: nil, theme: UsabillaTheme(), maskModel: nil)
                         promise.then { formMdel in
                             expect(formMdel.identifier).to(equal("583c0d8ea935028022c145f4"))
@@ -43,7 +43,7 @@ class FormStoreTests: QuickSpec {
                     let isCached = UBFormDAO.shared.create(mockFormModel)
                     expect(isCached).to(beTrue())
 
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = self.formStore.loadForm(id: mockFormModel.identifier, screenshot: nil, theme: UsabillaTheme(), maskModel: nil)
                         promise.then { cachedFormModel in
                             expect(cachedFormModel.identifier).to(equal(mockFormModel.identifier))
@@ -55,7 +55,7 @@ class FormStoreTests: QuickSpec {
                     }
                 })
                 it("Should fail if nothing is retrieved form network nor found in cache", closure: {
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = self.formStore.loadForm(id: "NonExistingFormId", screenshot: nil, theme: UsabillaTheme(), maskModel: nil)
                         promise.then { _ in
                             fail()

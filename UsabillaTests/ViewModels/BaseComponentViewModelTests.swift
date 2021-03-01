@@ -35,7 +35,7 @@ class BaseComponentViewModelTests: QuickSpec {
                     self.componentViewModel = MockBaseComponentViewModel(model: self.model, theme: UsabillaTheme())
                 }
                 it("should reset the model and call the delegate") {
-                    waitUntil(timeout: 1.0) { (done) in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(1)) { (done) in
                         self.model.onReset = {
                             done()
                         }
@@ -45,7 +45,7 @@ class BaseComponentViewModelTests: QuickSpec {
                 it("should notify the delegate") {
                     let delegate = MockBaseComponentViewModelDelegate()
                     self.componentViewModel.delegate = delegate
-                    waitUntil(timeout: 1.0) { (done) in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(1)) { (done) in
                         delegate.onValueDidChange = {
                             done()
                         }

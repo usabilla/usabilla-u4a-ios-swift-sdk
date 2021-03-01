@@ -25,7 +25,7 @@ class UBCampaignFeedbackRequestTests: QuickSpec {
 
                 }
 
-                expect(items.count).toEventually(equal(3), timeout: 4)
+                expect(items.count).toEventually(equal(3), timeout: DispatchTimeInterval.seconds(4))
                 expect(items[0]).notTo(equal(items[1]))
                 expect(items[0]).notTo(equal(items[2]))
                 expect(items[1]).notTo(equal(items[2]))

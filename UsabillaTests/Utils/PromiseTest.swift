@@ -17,7 +17,7 @@ class PromiseTest: QuickSpec {
 
         describe("Promise") {
             it("Promise succeed") {
-                waitUntil(timeout: 2.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                     Promise<Bool> { fullfilled, _ in
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100)) {
                             fullfilled(true)
@@ -34,7 +34,7 @@ class PromiseTest: QuickSpec {
             }
 
             it("Promise failure") {
-                waitUntil(timeout: 2.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                     Promise<Bool> { _, reject in
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100)) {
                             reject(NSError(domain: "", code: 0, userInfo: nil))
@@ -51,7 +51,7 @@ class PromiseTest: QuickSpec {
             }
 
             it("Promise succeed without async") {
-                waitUntil(timeout: 2.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                     Promise<Bool> { fullfilled, _ in
                         fullfilled(true)
 
@@ -67,7 +67,7 @@ class PromiseTest: QuickSpec {
             }
 
             it("Promise failure without async") {
-                waitUntil(timeout: 2.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                     Promise<Bool> { _, reject in
                         reject(NSError(domain: "", code: 0, userInfo: nil))
                     }.then { _ in

@@ -42,7 +42,7 @@ class PassiveFormControllerTest: QuickSpec {
 
         context("When canceling the form before the end page") {
             it("should create a feedback result") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { feedbackResults, _ in
                         expect(feedbackResults.count).to(equal(1))
                         expect(feedbackResults.first?.sent).to(beFalse())
@@ -68,7 +68,7 @@ class PassiveFormControllerTest: QuickSpec {
                 viewController.beginAppearanceTransition(true, animated: false)
                 viewController.endAppearanceTransition()
 
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onWillClose = { feedbackResults, redirectToAppStore in
                         expect(redirectToAppStore).to(beTrue())
                         done()
@@ -78,7 +78,7 @@ class PassiveFormControllerTest: QuickSpec {
             }
 
             it("should call the willClose delegate method") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onWillClose = { feedbackResults, redirectToAppStore in
                         expect(redirectToAppStore).to(beFalse())
                         done()
@@ -88,7 +88,7 @@ class PassiveFormControllerTest: QuickSpec {
             }
 
             it("should call the didClose delegate method when dismissAutomatically is true") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { feedbackResults, redirectToAppStore in
                         done()
                     }
@@ -98,7 +98,7 @@ class PassiveFormControllerTest: QuickSpec {
 
             it("should not call the didClose delegate method when dismissAutomatically is false") {
                 Usabilla.dismissAutomatically = false
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { feedbackResults, redirectToAppStore in
                         fail()
                     }
@@ -138,7 +138,7 @@ class PassiveFormControllerTest: QuickSpec {
                 expect(viewController.viewModel.currentPageIndex).to(equal(3))
                 expect(viewController.thankYouViewController).toNot(beNil())
 
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { feedbackResults, redirectToAppStore in
                         expect(feedbackResults.count).to(equal(1))
                         expect(feedbackResults.first?.sent).to(beTrue())

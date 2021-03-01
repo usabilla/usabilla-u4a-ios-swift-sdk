@@ -351,7 +351,7 @@ class CampaignManagerTests: QuickSpec {
                     campaignServiceMock.incrementCampaignSucceed = true
                     expect(campaign.canBeDisplayed).to(beTrue())
 
-                    waitUntil(timeout: 2) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         campaignServiceMock.onIncrementCampaign = { campaignID, viewCount in
                             expect(campaignID).to(equal(campaign.identifier))
                             expect(viewCount).to(equal(1))

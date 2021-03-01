@@ -94,7 +94,7 @@ class CampaignSubmissionManagerTests: QuickSpec {
         let patch2 = UBCampaignFeedbackRequest(request: URLRequest(url: URL(string: "https://www.google.nl/internalID")!), internalID: "internalID", id: "1498039389990")
 
         describe("CampaignSubmissionManager") {
-            Nimble.AsyncDefaults.Timeout = 5
+            Nimble.AsyncDefaults.timeout = DispatchTimeInterval.seconds(5)
             beforeEach {
                 reachabilityMock = ReachabilityMock()
                 dao.deleteAll()
@@ -116,7 +116,7 @@ class CampaignSubmissionManagerTests: QuickSpec {
 
                 //set online
                 reachabilityMock.reachable = true
-                expect(dao.readAll().count).toEventually(equal(0), timeout: 4)
+                expect(dao.readAll().count).toEventually(equal(0), timeout: DispatchTimeInterval.seconds(4))
             }
 
             context("when updating a feedback item URL") {
@@ -126,9 +126,9 @@ class CampaignSubmissionManagerTests: QuickSpec {
                     submissionService.returnFeedbackID = true
                     csm.handle(request: post)
                     csm.handle(request: patch1)
-                    expect(submissionService.lastRequest?.url?.absoluteString).toEventually(equal("https://www.google.nl/newID"), timeout: 4)
+                    expect(submissionService.lastRequest?.url?.absoluteString).toEventually(equal("https://www.google.nl/newID"), timeout: DispatchTimeInterval.seconds(4))
                     csm.handle(request: patch2)
-                    expect(submissionService.lastRequest?.url?.absoluteString).toEventually(equal("https://www.google.nl/newID"), timeout: 4)
+                    expect(submissionService.lastRequest?.url?.absoluteString).toEventually(equal("https://www.google.nl/newID"), timeout: DispatchTimeInterval.seconds(4))
                 }
             }
 

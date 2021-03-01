@@ -21,7 +21,7 @@ class FeaturebillaServiceTest: QuickSpec {
                     let validData = try! UBMock.json(fromFile:"Featurebilla").rawData()
                     let validJSON = try! JSONSerialization.jsonObject(with: validData, options: .allowFragments)
                     UBHTTPMock.response = HTTPClientResponse(data: validJSON, headers: nil, error: nil, success: true, isChanged: true)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         FeaturebillaService(httpClient: UBHTTPMock.self).getSettings().then { _ in
                             done()
                         }.catch { _ in
@@ -30,7 +30,7 @@ class FeaturebillaServiceTest: QuickSpec {
                     }
                 }
                 it("should fail if request fails") {
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         FeaturebillaService(httpClient: UBHTTPMockFail.self).getSettings().then { _ in
                             fail("should not go here")
                         }.catch { _ in
@@ -40,7 +40,7 @@ class FeaturebillaServiceTest: QuickSpec {
                 }
                 it("should fail if there is no data nor error") {
                     UBHTTPMock.response = HTTPClientResponse(data: nil, headers: nil, error: nil, success: true, isChanged: true)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         FeaturebillaService(httpClient: UBHTTPMock.self).getSettings().then { _ in
                             fail("should not go here")
                         }.catch { _ in

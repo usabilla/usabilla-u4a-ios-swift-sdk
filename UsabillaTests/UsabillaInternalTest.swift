@@ -51,7 +51,7 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
             }
             
             it("UsabillaInternal loadFeedbackForm shoud succeed") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.succeed = {
                         done()
                     }
@@ -73,7 +73,7 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                     expect(UsabillaInternal.appID).to(equal("0D5424BE-41AD-4434-A081-32C393A998A3"))
                 }
                 it("should call the fail delegate method if the form cannot be loaded") {
-                    waitUntil(timeout: 55.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(55)) { done in
                         self.succeed = {
                             fail()
                         }
@@ -91,7 +91,7 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                     
                     Usabilla.customVariables = ["key1": "value1"]
                     expect(Usabilla.customVariables["key1"]).toNot(beNil())
-                    let value = Usabilla.customVariables["key1"] as? String
+                    let value = Usabilla.customVariables["key1"]
                     expect(value).to(equal("value1"))
                     
                     Usabilla.customVariables["key"] = "value2"
@@ -116,8 +116,8 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                     Usabilla.customVariables = cs
 
                     expect(Usabilla.customVariables).toNot(beEmpty())
-                    expect(Usabilla.customVariables["array"] as! String).to(equal("[1,2,3,4]"))
-                    expect(Usabilla.customVariables["string"] as! String).to(equal("1"))
+                    expect(Usabilla.customVariables["array"] ).to(equal("[1,2,3,4]"))
+                    expect(Usabilla.customVariables["string"]).to(equal("1"))
                 }
 
                 it("it should refuse invalid custom variables") {

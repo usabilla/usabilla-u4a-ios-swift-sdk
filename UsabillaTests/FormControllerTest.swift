@@ -69,7 +69,7 @@ class FormControllerTest: QuickSpec {
         describe("delegate methods test") {
 
             it("tap on left button should notify delegate") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.doneLeft = {
                         done()
                     }

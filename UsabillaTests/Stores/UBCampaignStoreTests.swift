@@ -47,7 +47,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.campaignsJSONResponse = Cachable(value: campaignJSON.arrayValue, hasChanged: true)
                         campaignService.targetingResponse = targetingArray
                         let store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             store.getCampaigns(withAppID: "appId").then { campaigns in
                                 expect(campaigns).notTo(beNil())
                                 expect(campaigns.count).to(equal(4))
@@ -67,7 +67,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.campaignsJSONResponse = Cachable(value: campaignJSON.arrayValue, hasChanged: true)
                         campaignService.targetingResponse = targetingArray
                         let store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             store.getCampaigns(withAppID: "appId").then { campaigns in
                                 expect(campaigns).notTo(beNil())
                                 expect(campaigns.count).to(equal(3))
@@ -85,7 +85,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.campaignsJSONResponse = Cachable(value: [], hasChanged: true)
                         campaignService.targetingResponse = []
                         let store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             store.getCampaigns(withAppID: "appId").then { campaigns in
                                 expect(campaigns).notTo(beNil())
                                 expect(campaigns.count).to(equal(0))
@@ -103,7 +103,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.campaignsJSONResponse = Cachable(value: campaignJSON.arrayValue, hasChanged: true)
                         campaignService.targetingResponse = []
                         let store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             store.getCampaigns(withAppID: "appId").then { campaigns in
                                 expect(campaigns).notTo(beNil())
                                 expect(campaigns.count).to(equal(0))
@@ -124,7 +124,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.targetingResponse = nil
                         UBCampaignDAO.shared.create(self.campaign1)
                         let store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             store.getCampaigns(withAppID: "appId").then { campaigns in
                                 expect(campaigns).notTo(beNil())
                                 expect(campaigns.count).to(equal(1))
@@ -146,7 +146,7 @@ class UBCampaignStoreTests: QuickSpec {
                     let targetingArray = targetingJSON.arrayValue.flatMap { TargetingOptionsModel(json: $0) }
                     campaignService.targetingResponse = targetingArray
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         store.getCampaigns(withAppID: "").then { campaigns in
                             expect(campaigns.count).to(equal(0))
                             done()
@@ -164,7 +164,7 @@ class UBCampaignStoreTests: QuickSpec {
                     campaignService.targetingResponse = [specialTargeting]
 
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         store.getCampaigns(withAppID: "").then { _ in
                             expect(UBCampaignDAO.shared.readAll().count).to(equal(1))
                             let campaign = UBCampaignDAO.shared.readAll().first!
@@ -185,7 +185,7 @@ class UBCampaignStoreTests: QuickSpec {
                     campaignService.targetingResponse = [specialTargeting]
 
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         store.getCampaigns(withAppID: "").then { _ in
                             expect(UBCampaignDAO.shared.readAll().count).to(equal(1))
                             let campaign = UBCampaignDAO.shared.readAll().first!
@@ -206,7 +206,7 @@ class UBCampaignStoreTests: QuickSpec {
                     store = UBCampaignStore(service: campaignService)
                     expect(UBCampaignDAO.shared.readAll().count).to(equal(1))
 
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         store.getCampaigns(withAppID: "").then { campaigns in
                             expect(campaigns.count).to(equal(0))
                             expect(UBCampaignDAO.shared.readAll().count).to(equal(0))
@@ -229,7 +229,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.targetingResponse = [specialTargeting]
 
                         store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             store.getCampaigns(withAppID: "").then { campaigns in
                                 expect(campaigns.count).to(equal(1))
                                 let storeCampaign = UBCampaignDAO.shared.read(id: "63f11920-4854-48df-83cc-e75d49449289")
@@ -253,7 +253,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.targetingResponse = [specialTargeting]
 
                         store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             let promise = store.getCampaigns(withAppID: "")
                             promise.then { campaigns in
                                 expect(campaigns.count).to(equal(1))
@@ -274,7 +274,7 @@ class UBCampaignStoreTests: QuickSpec {
                         campaignService.targetingResponse = [specialTargeting]
 
                         store = UBCampaignStore(service: campaignService)
-                        waitUntil(timeout: 2.0) { done in
+                        waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                             let promise = store.getCampaigns(withAppID: "")
                             promise.then { campaigns in
                                 expect(campaigns.count).to(equal(1))
@@ -293,7 +293,7 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return an error") {
                     let campaignService = UBCampaignServiceMock()
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = store.getCampaigns(withAppID: "")
                         promise.then { _ in
                             fail("should not go here")
@@ -309,7 +309,7 @@ class UBCampaignStoreTests: QuickSpec {
                     UBCampaignDAO.shared.create(self.campaign1)
                     UBCampaignDAO.shared.create(self.campaign2)
 
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = store.getCampaigns(withAppID: "")
                         promise.then { campaigns in
                             expect(campaigns.count).to(equal(2))
@@ -324,7 +324,7 @@ class UBCampaignStoreTests: QuickSpec {
                     campaignService.campaignsJSONResponse = Cachable(value: [UBMock.json(fromFile: "CampaignStoreTest", "campaign")], hasChanged: true)
                     campaignService.targetingResponse = nil
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         store.getCampaigns(withAppID: "").then { campaigns in
                             fail("should not go here")
                         }.catch { _ in
@@ -338,7 +338,7 @@ class UBCampaignStoreTests: QuickSpec {
                 it("should return an error when an error is sent from the campaignService") {
                     let campaignService = UBCampaignServiceMock()
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = store.getCampaignForm(withFormID: "test", theme: UsabillaTheme(), position: IntroPageDisplayMode.bannerBottom, maskModel:  nil)
                         promise.then { _ in
                             fail("should not go here")
@@ -352,7 +352,7 @@ class UBCampaignStoreTests: QuickSpec {
                     let form = UBMock.formMock()
                     campaignService.campaignForm = form
                     store = UBCampaignStore(service: campaignService)
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = store.getCampaignForm(withFormID: "test", theme: UsabillaTheme(), position: IntroPageDisplayMode.bannerBottom, maskModel:  nil)
                         promise.then { formResponse in
                             expect(formResponse).to(equal(form))
@@ -369,7 +369,7 @@ class UBCampaignStoreTests: QuickSpec {
                     store = UBCampaignStore(service: campaignService)
                     var theme = UsabillaTheme()
                     theme.colors.header = UIColor.purple
-                    waitUntil(timeout: 2.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(2)) { done in
                         let promise = store.getCampaignForm(withFormID: "test", theme: theme, position: IntroPageDisplayMode.bannerBottom, maskModel:  nil)
                         promise.then { formResponse in
                             expect(formResponse.theme.colors.header).to(equal(UIColor.purple))

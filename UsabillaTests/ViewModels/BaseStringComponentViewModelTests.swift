@@ -31,7 +31,7 @@ class BaseStringComponentViewModelTests: QuickSpec {
                 it("should notify the delegate") {
                     let delegate = MockBaseComponentViewModelDelegate()
                     viewModel.delegate = delegate
-                    waitUntil(timeout: 1.0) { done in
+                    waitUntil(timeout: DispatchTimeInterval.seconds(1)) { done in
                         delegate.onValueDidChange = done
                         viewModel.value = nil
                     }

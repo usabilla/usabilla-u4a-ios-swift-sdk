@@ -60,14 +60,14 @@ class SubmissionManagerTests: QuickSpec {
 
                 //set online
                 reachabilityMock.reachable = true
-                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(1), timeout: 4)
-                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
+                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(1), timeout: DispatchTimeInterval.seconds(4))
+                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: DispatchTimeInterval.seconds(4))
             }
 
             it("submit with reachable") {
                 sm.submit(form: formModel!)
                 expect(UBFeedbackRequestDAO.shared.readAll().count).to(equal(1))
-                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: 4)
+                expect(UBFeedbackRequestDAO.shared.readAll().count).toEventually(equal(0), timeout: DispatchTimeInterval.seconds(4))
             }
 
             it("submit with custom vars, screenshot") {

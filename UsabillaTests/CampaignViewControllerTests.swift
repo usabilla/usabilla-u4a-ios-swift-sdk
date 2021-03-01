@@ -38,7 +38,7 @@ class CampaignViewControllerTests: QuickSpec {
 
         context("When canceling the campaign immediately") {
             it("should create a valid feedback result") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { (feedbackResults, redirect) in
                         expect(feedbackResults.rating).to(beNil())
                         expect(feedbackResults.sent).to(beFalse())
@@ -52,7 +52,7 @@ class CampaignViewControllerTests: QuickSpec {
 
         context("When canceling the campaign after a few pages") {
             it("should create a valid feedback result") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { (feedbackResults, redirect) in
                         expect(feedbackResults.rating).to(equal(1))
                         expect(feedbackResults.sent).to(beFalse())
@@ -69,7 +69,7 @@ class CampaignViewControllerTests: QuickSpec {
 
         context("When completing the campaign") {
             it("should create a valid feedback result") {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     self.onDidClose = { (feedbackResults, redirect) in
                         expect(feedbackResults.rating).to(equal(5))
                         expect(feedbackResults.sent).to(beTrue())
