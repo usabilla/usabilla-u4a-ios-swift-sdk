@@ -71,6 +71,7 @@ class PageViewController: UIViewController {
                 self.client.addBehaviour("screenshot_annotations", imageTypeDict)
             }
         }
+        removeScreenshootCellIfNeeded()
     }
 
     override func viewDidLoad() {
