@@ -1,15 +1,12 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-In Usabilla SDK Version 6.2 there are two new features
-1. ability to programmatically close a Form or a Campaign
-2. enable data masking, on text fields
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
-- [- UI Customisations](#ui-customisations)
   - [Requirements](#requirements)
   - [Installation](#installation)
+    - [Swift Package Manager](#SPM)
     - [CocoaPods](#cocoapods)
     - [Carthage](#carthage)
     - [Manual](#manual)
@@ -48,38 +45,23 @@ In Usabilla SDK Version 6.2 there are two new features
     - [String file contents](#string-file-contents)
   - [Permissions](#permissions)
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
-    - [Masking Private Identifiable Information](#masking-data)
-- [Custom variables](#custom-variables)
-- [App Store rating](#app-store-rating)
-- [Force specific interface orientation](#Force-specific-interface-orientation)
-- [UI Customisations](#ui-customisations)
-  - [Masking Private Identifiable Information](#masking-private-identifiable-information)
-  - [Custom variables](#custom-variables)
-  - [App Store rating](#app-store-rating)
-  - [Programmatically remove a Form or a Campaign](#programmatically-remove-a-form-or-a-campaign)
-  - [Force specific interface orientation](#force-specific-interface-orientation)
-  - [UI Customisations](#ui-customisations)
-    - [Custom Emoticons Rating](#custom-emoticons-rating)
-      - [Provide only the selected version](#provide-only-the-selected-version)
-      - [Provide both the selected and unselected version](#provide-both-the-selected-and-unselected-version)
-    - [Custom Star Rating](#custom-star-rating)
-    - [Custom Fonts](#custom-fonts)
-    - [Custom colors](#custom-colors)
-  - [Localization](#localization)
-    - [String file contents](#string-file-contents)
-  - [Permissions](#permissions)
-  - [Integration with Obj-C applications](#integration-with-obj-c-applications)
-
+  - [ThreadSafe](#ThreadSafe)
 * * *
 
 ## Requirements
 - iOS 9.0+
-- Xcode 9.4+
+- Xcode 10.3+   
 - Swift 4.0+
 
 ## Installation
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
+
+The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
+Previous versions are available at our git-repository. For Carthage please check the Carthage section
+ 
+### SPM
+Instructions for [Swift Package Manager](https://swift.org/package-manager/) support can be found at [SwiftPackageManager.md](SwiftPackageManager.MD).
 
 ### CocoaPods
 
@@ -96,7 +78,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.2.0'
+pod 'Usabilla', '~> 6.6.1'
 
 End
 ```
@@ -118,12 +100,21 @@ to add carthage to your project.
 And add this line to your `Cartfile`:
 
 ```yaml
-github "usabilla/usabilla-u4a-ios-swift-sdk" "v6.2.0"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
+The current Carthage release is build for Xcode 12.2.
+
+For older Xcode version, use:
+ 
+```yaml
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
+```
+replace Xcode-x.y.z with the required version eg. Xcode-10.3
+
 
 ### Manual
 
-You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
+You can download the latest version of the repository from [releases](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/) and extract **Pods.framework.zip** or **Usabilla.xcframework.zip**. Then add **Usabilla.framework** or **Usabilla.xcframework** to your app’s embedded frameworks.
 
 In doing so, you might encounter a problem while submitting your app to the App Store. This is due to a [bug in the App Store](http://www.openradar.me/radar?id=6409498411401216) itself.     
 
@@ -451,19 +442,14 @@ Usabilla.defaultDataMasks
 You can pass along custom variables that will be attached to the feedback users send.
 Custom variables are held in a dictionary object, in the public interface of the SDK, called `customVariables`.
 
-You can set custom variables using the public method
-```swift
-Usabilla.setCustomVariable(value: Any?, forKey: String)
-```
-
-or by simply modifying the dictionary object
+You can set custom variables by simply modifying the dictionary object
 
 ```swift
 Usabilla.customVariables["key"] = "value"
 ```
 
 **Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitations have to be taken into account.
-The `value` of a custom variable must then be an instance NSString, NSNumber, NSArray, NSDictionary, or NSNull.**
+The `value` of a custom variable must then be an instance NSString, or String.**
 
 
 Trying to set an invalid object as a custom variable will result in that object not being set and in an error being printed in the console.
@@ -579,7 +565,7 @@ For all the text that is not customizable in the web interface, you can provide 
 This file also includes all the accessibility labels read when VoiceOver is enabled.
 
 ### String file contents
-If you want to provide your own translation, you need to override **all** the keys in the default .string file.
+If you want to provide your own translation, you need to provide the specific keys (mentioned below) with the custom text in the .string file.
 
 
 The default file with the keys and the default text is the following:
@@ -621,9 +607,31 @@ The default file with the keys and the default text is the following:
 "usa_selected" = "selected";
 "usa_unselected" = "unselected";
 
+// Added in SDK Version 6.4.0
+//camera button
+"usa_camera_navbar_left_button" = "Cancel";
+
+// Screenshot anotation
+"usa_retake_button_title" = "Retake";
+"usa_back_button_title" = "Back";
+"usa_cancel_button_title" = "Cancel";
+"usa_add_button_title" = "Add";
+"usa_done_button_title" = "Done";
+"usa_back_button_library_title" = "Library";
+"usa_library_title" = "Library";
+"usa_edit_title" = "Edit";
+"usa_add_title" = "Add photo";
+"usa_camera_error_title" = "No access to camera";
+"usa_camera_error_description" = "Allowing access lets you take photos to add to your feedback.";
+"usa_camera_settings_title" = "Allow access to camera";
+
+"usa_library_error_title" = "No access to library";
+"usa_library_error_description" = "Allowing access lets you select a photo to add to your feedback.";
+"usa_library_settings_title" = "Allow access to library";
+
 ```
 
-Failure to override a key will display the key itself instead as the text.
+If keys are not present in your file, the SDK will revert to the default keys.
 
 If you want to use your custom .string file, you can do so by calling
 
@@ -633,9 +641,22 @@ Usabilla.localizedStringFile = "your_localization_file_name"
 
 With the name of your file, without the .string extension.
 
-## Permissions
-If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery.    
-No other permission is needed to run the SDK.
+## Permissions (Optional)
+If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery and camera.
+
+These privacy permissions are needed on the main app:
+    
+    NSCameraUsageDescription
+    NSPhotoLibraryUsageDescription
+
+Please make sure there is a description string for each of these properties.
+
+Refer to Apples [technical document](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html), on how to localize these 
+
+If user wants to set only library or camera permissions than either only the camera view or the photo-library view will be displayed.
+And incase if both permissions are not provided than end-user can only able to annotate or see the image passed via load form and also the camera and the photo-library will not be displayed.
+
+NOTE: If you haven’t enabled the ‘Show screenshot’ option in the Advanced settings panel of a form, than `Add a photo` panel will not be displayed.
 
 ## Integration with Obj-C applications
 
@@ -692,3 +713,6 @@ extension ViewController : UsabillaDelegate {
 }
 
 ```
+## ThreadSafe
+
+The SDK is currently not Threadsafe. This requires the host-app to ensure all calls to the SDK are handle on the same thread. Not doing so can result in unexpected behavior.
