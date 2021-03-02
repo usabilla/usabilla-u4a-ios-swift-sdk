@@ -1,3 +1,22 @@
+## 6.7.0
+### Fix
+- show oldest campaign first
+- debug logs
+
+### Update
+- make app permissions for camera and library optional
+- anotate custom screenshot image passed with load form method
+- campaign banner to have scroll view for large texts or large accessibility fonts
+- campaign banner title show max number of lines set to 3
+
+## 6.6.1
+### Fix
+- voiceover issue for mood component
+- header element cut off due to scroll
+
+### Update
+- Xcode supported above 10.3
+
 ## 6.6.0
 ### Fix
 - SDK now randomize questions, marked as random
@@ -5,6 +24,10 @@
 - localised string file, can now be partial adopted. Missing string in customer file, will be read from default
 ### Update
 - added properties to disable "powered by" logo click-ability
+
+## 6.5.0
+### Fix
+- Fix crash under iOS 13 & 14, after dismissing campaign.
 
 ## 6.4.7
 ### Fix
