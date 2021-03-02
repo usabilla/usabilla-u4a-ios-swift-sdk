@@ -1,7 +1,10 @@
-## 6.6.1
+## 6.7.0
 ### Fix
-- voiceover issue for mood component
-- header element cut off due to scroll
+- show oldest campaign first
+- debug logs
 
 ### Update
-- Xcode supported above 10.3
+- make app permissions for camera and library optional
+- anotate custom screenshot image passed with load form method
+- campaign banner to have scroll view for large texts or large accessibility fonts
+- campaign banner title show max number of lines set to 3
