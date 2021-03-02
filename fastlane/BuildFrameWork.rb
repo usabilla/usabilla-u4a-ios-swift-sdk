@@ -143,7 +143,7 @@ private_lane :validateSDK do |options|
 	# 	devices: unitTestDevices,
 	# 	slack_only_on_failure: true
 	# )
-	sh("xcodebuild clean -project #{paths.projectDirectory}/automation/ReleaseValidator/ReleaseValidator.xcodeproj -configuration #{configuration} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
+	sh("xcodebuild clean -project #{projectDirectory}automation/ReleaseValidator/ReleaseValidator.xcodeproj -scheme ReleaseValidator -configuration #{configuration} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
 	cleanReleaseProject
 	resetSimulator
 end
