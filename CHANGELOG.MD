@@ -1,3 +1,14 @@
+## 6.7.0
+### Fix
+- show oldest campaign first
+- debug logs
+
+### Update
+- make app permissions for camera and library optional
+- anotate custom screenshot image passed with load form method
+- campaign banner to have scroll view for large texts or large accessibility fonts
+- campaign banner title show max number of lines set to 3
+
 ## 6.6.1
 ### Fix
 - voiceover issue for mood component
