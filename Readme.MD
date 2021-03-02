@@ -4,9 +4,9 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
-- [- UI Customisations](#ui-customisations)
   - [Requirements](#requirements)
   - [Installation](#installation)
+    - [Swift Package Manager](#SPM)
     - [CocoaPods](#cocoapods)
     - [Carthage](#carthage)
     - [Manual](#manual)
@@ -45,29 +45,7 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
     - [String file contents](#string-file-contents)
   - [Permissions](#permissions)
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
-    - [Masking Private Identifiable Information](#masking-data)
-- [Custom variables](#custom-variables)
-- [App Store rating](#app-store-rating)
-- [Force specific interface orientation](#Force-specific-interface-orientation)
-- [UI Customisations](#ui-customisations)
-  - [Masking Private Identifiable Information](#masking-private-identifiable-information)
-  - [Custom variables](#custom-variables)
-  - [App Store rating](#app-store-rating)
-  - [Programmatically remove a Form or a Campaign](#programmatically-remove-a-form-or-a-campaign)
-  - [Force specific interface orientation](#force-specific-interface-orientation)
-  - [UI Customisations](#ui-customisations)
-    - [Custom Emoticons Rating](#custom-emoticons-rating)
-      - [Provide only the selected version](#provide-only-the-selected-version)
-      - [Provide both the selected and unselected version](#provide-both-the-selected-and-unselected-version)
-    - [Custom Star Rating](#custom-star-rating)
-    - [Custom Fonts](#custom-fonts)
-    - [Custom colors](#custom-colors)
-  - [Localization](#localization)
-    - [String file contents](#string-file-contents)
-  - [Permissions](#permissions)
-  - [Integration with Obj-C applications](#integration-with-obj-c-applications)
   - [ThreadSafe](#ThreadSafe)
-
 * * *
 
 ## Requirements
@@ -80,8 +58,11 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
 The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
-Previous versions are available at our git-repository.
+Previous versions are available at our git-repository. For Carthage please check the Carthage section
  
+### SPM
+Instructions for [Swift Package Manager](https://swift.org/package-manager/) support can be found at [SwiftPackageManager.md](SwiftPackageManager.MD).
+
 ### CocoaPods
 
 The Usabilla SDK is available on [CocoaPods](http://cocoapods.org). You can install CocoaPods the following way:
@@ -97,7 +78,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.6.1'
+pod 'Usabilla', '~> 6.7.0'
 
 End
 ```
@@ -121,18 +102,19 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 12.2.
+The current Carthage release is build for Xcode 12.4.
 
-For previous Xcode version, use:
+For older Xcode version, use:
  
 ```yaml
-binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-11/Usabilla.json"
+binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-11 with the required version eg. Xcode-10
+replace Xcode-x.y.z with the required version eg. Xcode-10.3
+
 
 ### Manual
 
-You can download the latest version of the repository and add **Usabilla.framework** to your app’s embedded frameworks.     
+You can download the latest version of the repository from [releases](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/) and extract **Pods.framework.zip** or **Usabilla.xcframework.zip**. Then add **Usabilla.framework** or **Usabilla.xcframework** to your app’s embedded frameworks.
 
 In doing so, you might encounter a problem while submitting your app to the App Store. This is due to a [bug in the App Store](http://www.openradar.me/radar?id=6409498411401216) itself.     
 
@@ -467,7 +449,7 @@ Usabilla.customVariables["key"] = "value"
 ```
 
 **Since the SDK is using [JSONSerialisation](https://developer.apple.com/documentation/foundation/jsonserialization) to convert the custom variables to JSON, its limitations have to be taken into account.
-The `value` of a custom variable must then be an instance NSString or String.**
+The `value` of a custom variable must then be an instance NSString, or String.**
 
 
 Trying to set an invalid object as a custom variable will result in that object not being set and in an error being printed in the console.
@@ -476,7 +458,7 @@ You can always check whether an object is considered valid or not by calling `JS
 
 
 Custom variables are added as extra feedback data with every feedback item sent by the SDK, whether from a passive feedback or a campaign.
-
+Custom Variables **key / name** should not be an `empty string` and it should not contain `.` or `$`.
 **Custom variables can be used as targeting options, as long as the `value` is a String.**
 
 ## App Store rating
@@ -500,9 +482,9 @@ If there is a Form or a Campaign the method will return true, false otherwise.
 It is possible to force a Campaign or Form to be presented in specific orientation, regardless of the device orientation, or the supported orientations for the Application.
 
 ```swift
-Usabilla.orientation = .landscapeLeft
+Usabilla.orientation = .landscapeLeft 
 ```
-Set this property before presenting a Campaign or Form. It defaults to
+Set this property before presenting a Campaign or Form. It defaults to 
 
 ```swift
 Usabilla.orientation = .all
@@ -632,6 +614,7 @@ The default file with the keys and the default text is the following:
 // Screenshot anotation
 "usa_retake_button_title" = "Retake";
 "usa_back_button_title" = "Back";
+"usa_cancel_button_title" = "Cancel";
 "usa_add_button_title" = "Add";
 "usa_done_button_title" = "Done";
 "usa_back_button_library_title" = "Library";
@@ -648,29 +631,32 @@ The default file with the keys and the default text is the following:
 
 ```
 
+If keys are not present in your file, the SDK will revert to the default keys.
+
 If you want to use your custom .string file, you can do so by calling
 
 ```swift
 Usabilla.localizedStringFile = "your_localization_file_name"
 ```
-If keys are not present in your file, the SDK will revert to the default keys.
 
 With the name of your file, without the .string extension.
 
-## Permissions
-If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery.    
-We now also ask for camera access.
+## Permissions (Optional)
+If the user tries to set a custom screenshot, the SDK will ask for the permission to access the gallery and camera.
 
 These privacy permissions are needed on the main app:
-	
-	NSCameraUsageDescription
-	NSPhotoLibraryUsageDescription
+    
+    NSCameraUsageDescription
+    NSPhotoLibraryUsageDescription
 
-Please make sure there is a description string for each of these properties
+Please make sure there is a description string for each of these properties.
 
 Refer to Apples [technical document](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html), on how to localize these 
 
-NOTE: If you haven’t enabled the ‘Show screenshot’ option in the Advanced settings panel of a form, the camera and the photo-library will not be displayed. But since your application (containing this SDK) has a feature that could use them, these privacy permissions must be include to pass App-store reviews. In that case, they will never be shown to your end users.
+If user wants to set only library or camera permissions than either only the camera view or the photo-library view will be displayed.
+And incase if both permissions are not provided than end-user can only able to annotate or see the image passed via load form and also the camera and the photo-library will not be displayed.
+
+NOTE: If you haven’t enabled the ‘Show screenshot’ option in the Advanced settings panel of a form, than `Add a photo` panel will not be displayed.
 
 ## Integration with Obj-C applications
 
@@ -730,4 +716,3 @@ extension ViewController : UsabillaDelegate {
 ## ThreadSafe
 
 The SDK is currently not Threadsafe. This requires the host-app to ensure all calls to the SDK are handle on the same thread. Not doing so can result in unexpected behavior.
-
