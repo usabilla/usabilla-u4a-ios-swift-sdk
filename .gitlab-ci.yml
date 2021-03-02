@@ -150,6 +150,7 @@ ui-test:
     - sdk
   except:
     - /task.*$/
+  allow_failure: true
 
 system-test:
   stage: system-test
