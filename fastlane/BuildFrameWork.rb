@@ -17,7 +17,6 @@ private_lane :buildForXcodeVersion do |options|
 		UI.message("'project_directory' not specified in 'buildForXcodeVersion")
 	end   
 
-	version = options[:version]
 	project_directory = options[:project_directory]
 
 	paths = Paths.new(version, project_directory, buildConfig['configuration'])
@@ -90,7 +89,7 @@ private_lane :systemTestsAfterBuild do |options|
 	paths = Paths.new(version, project_directory, buildConfig['configuration'])
 
 	if version == nil	
-		UI.message("'version' not specified in 'buildForXcodeVersion")
+		UI.message("'version' not specified in 'systemTestsAfterBuild")
 	elsif version.include? "12"
 		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
 	else
@@ -224,7 +223,7 @@ private_lane :copyToSwiftPackage do
 	sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
 	sh("cp -rf #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
 	sh("cd #{projectDirectory}XcodeBuilds/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework ./Usabilla.dSYMs")
-	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework.zip | xargs")
+	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/xcframeworks/UsabillaXCFramework.zip | xargs")
 	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt")
 end
 
@@ -237,7 +236,7 @@ private_lane :createAReleaseDraft do |options|
 		UI.error("missing version")
 	end
 	xcode = options[:xcode]
-	version = options[:version] 
+	version = options[:version]
 	branch = options[:branch] 
 	name = "v#{version}-Xcode-#{xcode}"
 	UI.message("Creating for #{name}")
@@ -245,16 +244,38 @@ private_lane :createAReleaseDraft do |options|
 	pods = "XcodeBuilds/Xcode-#{xcode}/Pods/UsabillaPods.zip"
 	assets = ["#{carthage}","#{pods}"]
 	if branch == "master"
+		name = "v#{version}"
 		xcframework = "XcodeBuilds/xcframeworks/UsabillaXCFramework.zip"
 		assets = ["#{carthage}","#{pods}","#{xcframework}"]
 	end
+	
+	git_token = "893008a57b830b2cd3f4d6d337c86fafb7d0c6b6"
+	user_name = "hiteshjain29"
+
+	repo_dir = "usabilla-u4a-ios-swift-sdk"
+	repo_name = "usabilla/#{repo_dir}"
+	repo_path = "github.com/#{repo_name}"
+	git_url = "https://#{repo_path}"
+	git_push_url = "https://#{user_name}:#{git_token}@#{repo_path}.git"
+	source_url = "https://#{repo_path}/releases/download/#{name}/UsabillaCarthage.zip"
+	
+	sh("mkdir -p #{projectDirectory}publicrepo && cd #{projectDirectory}publicrepo && git clone #{git_url} && cd #{repo_dir} &&
+	if [[ #{branch} == 'master' ]]; then checksum=`cat #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt` &&
+		sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
+	else git checkout --track origin/#{branch}; fi &&
+	cat #{projectDirectory}changelog ./CHANGELOG.MD > temp && mv temp ./CHANGELOG.MD && cat #{projectDirectory}PublicReadme.md  > ./Readme.MD &&
+	sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/' ./Usabilla.podspec && jq '{ \"#{version}\" : \"#{source_url}\" } + .' Usabilla.json >tmp.json &&
+	mv tmp.json Usabilla.json &&
+	git add . && git commit -m \"Release #{version}\" && git diff --stat --cached origin/#{branch} && git push #{git_push_url} &&
+	rm -rf #{projectDirectory}publicrepo")
+
 	set_github_release(
-		repository_name: "usabilla/usabilla-u4a-ios-swift-sdk",
+		repository_name: repo_name,
 		name: name,
 		tag_name: name,
 		is_draft: true,
 		description: (File.read("../changelog") rescue "No changelog provided"),
-		api_token: "2d12a433ea301e041de5dbdd82902a5108b7aee5",
+		api_token: git_token,
 		commitish: branch,
 		upload_assets: assets
 	)
