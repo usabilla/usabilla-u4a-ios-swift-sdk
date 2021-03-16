@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+enum PoweredByUrlSource {
+    case active
+    case passive
+}
+
+struct PoweredByLogo {
+    static let url = "https://www.getfeedback.com/digital/?utm_medium=powered-link&utm_source=apps_\(PoweredByUrlSource.passive)"
+}
+
 struct JSONConstant {
     static let data = "data"
 

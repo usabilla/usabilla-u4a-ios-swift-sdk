@@ -1,5 +1,5 @@
 //
-//  PoweredByUsabillaView.swift
+//  PoweredByLogoView.swift
 //  Usabilla
 //
 //  Created by Adil Bougamza on 12/04/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PoweredByUsabillaView: UIView {
+class PoweredByLogoView: UIView {
 
     init(theme: UsabillaTheme) {
         // Setup
@@ -17,7 +17,7 @@ class PoweredByUsabillaView: UIView {
         self.backgroundColor = UIColor.clear
 
         let logo = UIButton(type: UIButtonType.custom)
-        logo.addTarget(PageViewController.self, action: #selector(PageViewController.openUsabilla), for: .touchUpInside)
+        logo.addTarget(PageViewController.self, action: #selector(PageViewController.openPoweredByURL), for: .touchUpInside)
         logo.setImage(Icons.imageOfPoweredBy(color: theme.colors.hint), for: UIControlState())
         logo.accessibilityIdentifier = "powered-by-id"
         if !UsabillaInternal.setFooterLogoClickable {

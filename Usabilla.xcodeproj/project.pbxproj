@@ -472,8 +472,8 @@
 		C5223B3B1F3226E7003CF696 /* TargetingOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */; };
 		C52550541ED43EF6005658F5 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
 		C530A9631F7CFB3E007A701B /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
-		C534D31A207F5FCB009D06CF /* PoweredByUsabillaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */; };
-		C534D31B207F5FCB009D06CF /* PoweredByUsabillaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */; };
+		C534D31A207F5FCB009D06CF /* PoweredByLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */; };
+		C534D31B207F5FCB009D06CF /* PoweredByLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */; };
 		C535E43D1E97CB2B007319E4 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
 		C536547A1F39DD1A00C51AD5 /* PassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */; };
 		C536547D1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C536547B1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift */; };
@@ -604,7 +604,7 @@
 		F269230423EB17B900E6A455 /* HeaderFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */; };
 		F269230523EB17B900E6A455 /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
 		F269230623EB17B900E6A455 /* UBFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */; };
-		F269230723EB17B900E6A455 /* PoweredByUsabillaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */; };
+		F269230723EB17B900E6A455 /* PoweredByLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */; };
 		F269230823EB17B900E6A455 /* UBEndPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264131E92867A00A0533C /* UBEndPageModel.swift */; };
 		F269230923EB17B900E6A455 /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
 		F269230A23EB17B900E6A455 /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
@@ -1025,7 +1025,7 @@
 		C5223B371F322318003CF696 /* ActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveStatusTests.swift; sourceTree = "<group>"; };
 		C5223B3A1F3226E7003CF696 /* TargetingOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingOptionsTests.swift; sourceTree = "<group>"; };
 		C52550531ED43EF6005658F5 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
-		C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoweredByUsabillaView.swift; sourceTree = "<group>"; };
+		C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoweredByLogoView.swift; sourceTree = "<group>"; };
 		C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBFormDAO.swift; sourceTree = "<group>"; };
 		C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveStatus.swift; sourceTree = "<group>"; };
 		C536547B1F39E0EE00C51AD5 /* LeafPassiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafPassiveStatusTests.swift; sourceTree = "<group>"; };
@@ -1840,7 +1840,7 @@
 			children = (
 				458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */,
 				458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */,
-				C534D319207F5FCB009D06CF /* PoweredByUsabillaView.swift */,
+				C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */,
 				4552C1B122C3748900814093 /* UBImageLibraryButton.swift */,
 			);
 			path = CustomViews;
@@ -2265,7 +2265,7 @@
 				0483E9D91CDCDF86004EC234 /* HeaderFieldModel.swift in Sources */,
 				43CCD4781E7A7DF900B3E4FE /* ScreenshotComponent.swift in Sources */,
 				43E883E41E37575B00A97F1D /* UBFeedbackRequest.swift in Sources */,
-				C534D31A207F5FCB009D06CF /* PoweredByUsabillaView.swift in Sources */,
+				C534D31A207F5FCB009D06CF /* PoweredByLogoView.swift in Sources */,
 				436264141E92867A00A0533C /* UBEndPageModel.swift in Sources */,
 				04C6BEEA1E9521440078F6FC /* EventEngine.swift in Sources */,
 				45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */,
@@ -2577,7 +2577,7 @@
 				458FC5DD22EE428200E198A7 /* ColorPickerViewDelegate.swift in Sources */,
 				43B04F741F1F7EEF0032F057 /* HeaderFieldModel.swift in Sources */,
 				41AC38461F68848800F0DFC6 /* NPSControl.swift in Sources */,
-				C534D31B207F5FCB009D06CF /* PoweredByUsabillaView.swift in Sources */,
+				C534D31B207F5FCB009D06CF /* PoweredByLogoView.swift in Sources */,
 				43B04F751F1F7EEF0032F057 /* ScreenshotComponent.swift in Sources */,
 				43B04F761F1F7EEF0032F057 /* UBFeedbackRequest.swift in Sources */,
 				43B04F771F1F7EEF0032F057 /* UBEndPageModel.swift in Sources */,
@@ -2779,7 +2779,7 @@
 				F269230423EB17B900E6A455 /* HeaderFieldModel.swift in Sources */,
 				F269230523EB17B900E6A455 /* ScreenshotComponent.swift in Sources */,
 				F269230623EB17B900E6A455 /* UBFeedbackRequest.swift in Sources */,
-				F269230723EB17B900E6A455 /* PoweredByUsabillaView.swift in Sources */,
+				F269230723EB17B900E6A455 /* PoweredByLogoView.swift in Sources */,
 				F269230823EB17B900E6A455 /* UBEndPageModel.swift in Sources */,
 				F269230923EB17B900E6A455 /* EventEngine.swift in Sources */,
 				F269230A23EB17B900E6A455 /* UBSAEditImageMasterView.swift in Sources */,

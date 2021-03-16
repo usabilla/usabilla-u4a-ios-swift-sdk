@@ -304,9 +304,9 @@ class PageViewController: UIViewController {
     }
 
     @objc
-    static func openUsabilla() {
+    static func openPoweredByURL() {
         // swiftlint:disable:next force_unwrapping
-        UIApplication.shared.openURL(URL(string: "http://www.usabilla.com")!)
+        UIApplication.shared.openURL(URL(string: PoweredByLogo.url)!)
     }
 
     private func updateHeaderMargins() {
@@ -364,7 +364,7 @@ extension PageViewController: UITableViewDataSource {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
             if let cell = cell as? FooterTableViewCell {
-                cell.footerView = PoweredByUsabillaView(theme: viewModel.theme)
+                cell.footerView = PoweredByLogoView(theme: viewModel.theme)
             }
             cell.backgroundColor = .clear
             return cell
