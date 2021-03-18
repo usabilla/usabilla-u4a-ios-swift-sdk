@@ -11,13 +11,13 @@ import UIKit
 
 class PoweredByLogoView: UIView {
 
-    init(theme: UsabillaTheme) {
+    init(theme: UsabillaTheme, url: String) {
         // Setup
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
         self.backgroundColor = UIColor.clear
 
-        let logo = UIButton(type: UIButtonType.custom)
-        logo.addTarget(PageViewController.self, action: #selector(PageViewController.openPoweredByURL), for: .touchUpInside)
+        let logo = PoweredByLogoButton(urlString: url)
+        logo.addTarget(PageViewController.self, action: #selector(PageViewController.openPoweredByURL(_:)), for: .touchUpInside)
         logo.setImage(Icons.imageOfPoweredBy(color: theme.colors.hint), for: UIControlState())
         logo.accessibilityIdentifier = "powered-by-id"
         if !UsabillaInternal.setFooterLogoClickable {
@@ -36,6 +36,17 @@ class PoweredByLogoView: UIView {
         logo.accessibilityHint = LocalisationHandler.getLocalisedStringForKey("usa_tap_to_visit_usabilla")
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+internal class PoweredByLogoButton: UIButton {
+    var urlString: String
+    required init(urlString: String) {
+        self.urlString = urlString
+        super.init(frame: CGRect.zero)
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

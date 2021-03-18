@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-enum PoweredByUrlSource {
+enum FormType: String {
     case active
     case passive
 }
 
 struct PoweredByLogo {
-    static let url = "https://www.getfeedback.com/digital/?utm_medium=powered-link&utm_source=apps_\(PoweredByUrlSource.passive)"
+    let formType: FormType
+    init(formType: FormType) {
+        self.formType = formType
+    }
+    var url: String {
+        return "https://www.getfeedback.com/digital/?utm_medium=powered-link&utm_source=apps_\(String(describing: formType.rawValue))"
+    }
 }
 
 struct JSONConstant {

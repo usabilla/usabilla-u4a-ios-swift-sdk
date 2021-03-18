@@ -12,6 +12,7 @@ let footerHeight: CGFloat = 90.0
 
 class PageViewController: UIViewController {
 
+    var formType: FormType = FormType.passive
     var client: ClientModel!
     var viewModel: PageViewModel!
     var cellHeights: [IndexPath: CGFloat] = [IndexPath: CGFloat]()
@@ -303,10 +304,9 @@ class PageViewController: UIViewController {
         presentLibraryOnlySolution(with: client)
     }
 
-    @objc
-    static func openPoweredByURL() {
+    @objc static func openPoweredByURL(_ sender: PoweredByLogoButton) {
         // swiftlint:disable:next force_unwrapping
-        UIApplication.shared.openURL(URL(string: PoweredByLogo.url)!)
+        UIApplication.shared.openURL(URL(string: sender.urlString)!)
     }
 
     private func updateHeaderMargins() {
@@ -364,7 +364,7 @@ extension PageViewController: UITableViewDataSource {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "footer", for: indexPath)
             if let cell = cell as? FooterTableViewCell {
-                cell.footerView = PoweredByLogoView(theme: viewModel.theme)
+                cell.footerView = PoweredByLogoView(theme: viewModel.theme, url: PoweredByLogo(formType: formType).url)
             }
             cell.backgroundColor = .clear
             return cell
