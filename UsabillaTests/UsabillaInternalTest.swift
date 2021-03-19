@@ -40,7 +40,7 @@ class UsabillaInternalTest: QuickSpec, UsabillaDelegate {
                 let imageView = UIImageView(image: powered)
                 let screenshot = Usabilla.takeScreenshot(imageView)
                 expect(screenshot).toNot(beNil())
-                expect(screenshot?.size).to(equal(powered.size))
+                expect(screenshot?.size.height).to(equal(powered.size.height))
             }
             
             it("UsabillaInternal orientation") {
