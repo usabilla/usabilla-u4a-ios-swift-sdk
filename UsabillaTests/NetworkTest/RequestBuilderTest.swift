@@ -108,6 +108,14 @@ class RequestBuilderTest: QuickSpec {
                     expect(req?.httpMethod).to(equal("GET"))
                     expect(req?.timeoutInterval).to(equal(10))
                 }
+                it("Builds the teletry request correctly") {
+                    let req = RequestBuilder.requestSubmitTelemetryData(withAppID: "myAppId")
+                    expect(req?.url?.absoluteString).to(equal("https://w-staging.usabilla.com/a/t?m=a&i=myAppId"))
+                    expect(req?.cachePolicy).to(equal(self.correctPatch.cachePolicy))
+                    expect(req?.httpMethod).to(equal("GET"))
+                    expect(req?.timeoutInterval).to(equal(10))
+                }
+                
                 it("Builds the targeting option request correctly") {
                     let req = RequestBuilder.requestGetTargeting(withID: "targetingID")
                     expect(req?.url?.absoluteString).to(equal("https://sdk.out-staging.usbla.net/targeting-options/targetingID"))

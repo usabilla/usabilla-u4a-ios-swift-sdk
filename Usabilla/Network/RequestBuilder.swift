@@ -19,6 +19,7 @@ class RequestBuilder {
         case campaignViews = "/v2/sdk/campaigns/{campaign_id}/views"
         case targetingOptions = "/targeting-options"
         case featurebilla = "/v1/featurebilla/config.json"
+        case telemetry = "/a/t?m=a&i={app_id}"
     }
 
     static let bundle = Bundle(for: RequestBuilder.self)
@@ -26,6 +27,7 @@ class RequestBuilder {
     static let apiUrl: String = bundle.infoDictionary!["USABILLA_API_HOST"] as! String
     static let submitUrl: String = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
     static let cdnUrl: String = bundle.infoDictionary!["USABILLA_CDN_HOST"] as! String
+    static let telemetryUrl: String = bundle.infoDictionary!["USABILLA_TELEMETRY_ENDPOINT"] as! String
     // swiftlint:enable force_cast
 
     static let sdkBundle = Bundle(identifier: "com.usabilla.Usabilla")!
@@ -221,4 +223,13 @@ class RequestBuilder {
         }
         return requestForGet(withURL: url)
     }
+
+    class func requestSubmitTelemetryData(withAppID appID: String) -> URLRequest? {
+        let endPoint = Endpoints.telemetry.rawValue.replacingOccurrences(of: "{app_id}", with: appID)
+        guard let url = buildURL(withBaseUrl: telemetryUrl, withString: endPoint) else {
+            return nil
+        }
+        return requestForGet(withURL: url)
+    }
+
 }

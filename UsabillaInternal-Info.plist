@@ -30,5 +30,7 @@
 	<string>$(UB_USABILLA_CDN_HOST)</string>
 	<key>USABILLA_SUBMIT_ENDPOINT</key>
 	<string>$(UB_USABILLA_SUBMIT_ENDPOINT)</string>
+	<key>USABILLA_TELEMETRY_ENDPOINT</key>
+	<string>$(UB_USABILLA_TELEMETRY_ENDPOINT)</string>
 </dict>
 </plist>
