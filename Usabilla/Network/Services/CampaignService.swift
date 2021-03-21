@@ -46,9 +46,6 @@ class CampaignService: CampaignServiceProtocol {
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
             }
-            if let telemetricData = telemetric?.getStoredData() {
-                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
-            }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 if let json = response.data {
                     guard let formModel = FormModel(json: JSON(json), id: id, screenshot: nil, maskModel: maskModel) else {
@@ -76,9 +73,6 @@ class CampaignService: CampaignServiceProtocol {
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
             }
-            if let telemetricData = telemetric?.getStoredData() {
-                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
-            }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
                     let campaignsArray = JSON(json).array else {
@@ -102,9 +96,6 @@ class CampaignService: CampaignServiceProtocol {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
-            }
-            if let telemetricData = telemetric?.getStoredData() {
-                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 guard response.error == nil else {
@@ -166,9 +157,6 @@ class CampaignService: CampaignServiceProtocol {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
-            }
-            if let telemetricData = telemetric?.getStoredData() {
-                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
             }
             httpClient.request(request: request, responseQueue: nil, allowNilData: true, completion: { response in
                 if response.success {

@@ -36,9 +36,6 @@ class FormService: FormServiceProtocol {
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
             }
-            if let telemetricData = telemetric?.getStoredData() {
-                request.addValue(telemetricData, forHTTPHeaderField: "telemetry-data")
-            }
             httpClient.request(request: request, responseQueue: nil, allowNilData: false) { response in
                 if let json = response.data {
                     guard let formModel = FormModel(json: JSON(json),
@@ -139,9 +136,6 @@ class FormService: FormServiceProtocol {
 
         return Promise { fulfill, reject in
             var headersData: [String: String] = [:]
-            if let telemetricData = telemetric?.getStoredData() {
-                headersData = ["telemetry-data": telemetricData]
-            }
             httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(true)
@@ -173,9 +167,6 @@ class FormService: FormServiceProtocol {
 
         return Promise { fulfill, reject in
             var headersData: [String: String] = [:]
-            if let telemetricData = telemetric?.getStoredData() {
-                headersData = ["telemetry-data": telemetricData]
-            }
             httpClient.request(self.requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: true) { response in
                 if response.success {
                     fulfill(true)
@@ -199,9 +190,6 @@ class FormService: FormServiceProtocol {
     func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
             var headersData: [String: String] = [:]
-            if let telemetricData = telemetric?.getStoredData() {
-                headersData = ["telemetry-data": telemetricData]
-            }
             httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(response)
