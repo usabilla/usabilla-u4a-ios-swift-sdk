@@ -92,6 +92,17 @@ open class Usabilla {
     }
 
     /**
+     A Boolean value that determines whether the SDK should send telemetry data.
+     */
+    public static var submitTelemetryData: Bool {
+        get {
+            return UsabillaInternal.submitTelemetryData
+        }
+        set {
+            UsabillaInternal.submitTelemetryData = newValue
+        }
+    }
+  /**
      A Boolean value that determines whether the SDK powered by logo clickable.
      */
     @objc

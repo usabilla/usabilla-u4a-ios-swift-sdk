@@ -33,6 +33,17 @@ class UsabillaInternal {
     }
     static var dismissAutomatically: Bool = true
     static var canDisplayCampaigns: Bool = true
+
+    private static var internalSubmitTelemetryData: Bool = false
+    static var submitTelemetryData: Bool {
+        get {
+            return internalSubmitTelemetryData
+        }
+        set {
+            internalSubmitTelemetryData = newValue
+            telemetric.submitTelemetryData = internalSubmitTelemetryData
+        }
+    }
     private static var internalDebugEnabled: Bool = false
     static var debugEnabled: Bool {
         get {

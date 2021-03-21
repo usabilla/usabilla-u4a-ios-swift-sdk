@@ -16,6 +16,7 @@ class UBTelemetrics {
     private let maxnumberOfEntries = 10  // the max number of entries, 0 equals no limit
 
     private var featureBillaService: UBFeaturebillaManager
+    var submitTelemetryData = true
     init(manager: UBFeaturebillaManager) {
         self.featureBillaService = manager
         manager.getSettingVariable(variableName: .telemetryLevel, defaultValue: 0.5, userContexts: ["platform": "ios", "sdk": "6.4.3"], completion: {_ in
