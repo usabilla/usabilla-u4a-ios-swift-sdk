@@ -225,8 +225,12 @@ class RequestBuilder {
     }
 
     class func requestSubmitTelemetryData(withAppID appID: String, body: String) -> URLRequest? {
-        var endPoint = Endpoints.telemetry.rawValue.replacingOccurrences(of: "{app_id}", with: appID)
-        endPoint += "&telemetry=\(body)"
+        var anAppId = appID
+        if anAppId == "" { anAppId = "noAppId"}
+        var endPoint = Endpoints.telemetry.rawValue.replacingOccurrences(of: "{app_id}", with: anAppId)
+        if body.count > 0 {
+            endPoint += "&telemetry=\(body)"
+        }
         guard let url = buildURL(withBaseUrl: telemetryUrl, withString: endPoint) else {
             return nil
         }
