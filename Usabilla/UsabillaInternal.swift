@@ -161,6 +161,7 @@ class UsabillaInternal {
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.errC, value: 0, logLevel: .methods)
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.numberCampaigns, value: numberOfCampaings, logLevel: .methods)
                 telemetric.logEnd(for: logid, keyPath: \UBTelemetricInitMethod.dur)
+                telemetric.submitLogData()
                 completion?()
             })
         }

@@ -151,7 +151,6 @@ class HTTPClient: HTTPClientProtocol {
         var request = NSMutableURLRequest(url: url)
         request.cachePolicy = .useProtocolCachePolicy
         request.httpMethod = method.rawValue
-
         if let headers = headers {
             request.allHTTPHeaderFields = headers
         }
@@ -164,4 +163,5 @@ class HTTPClient: HTTPClientProtocol {
         }
         HTTPClient.request(request: request as URLRequest, responseQueue: responseQueue, completion: completion)
     }
+
 }

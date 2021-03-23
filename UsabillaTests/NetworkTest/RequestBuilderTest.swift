@@ -109,8 +109,9 @@ class RequestBuilderTest: QuickSpec {
                     expect(req?.timeoutInterval).to(equal(10))
                 }
                 it("Builds the teletry request correctly") {
-                    let req = RequestBuilder.requestSubmitTelemetryData(withAppID: "myAppId")
-                    expect(req?.url?.absoluteString).to(equal("https://w-staging.usabilla.com/a/t?m=a&i=myAppId"))
+                    let data = "testdata"
+                    let req = RequestBuilder.requestSubmitTelemetryData(withAppID: "myAppId", body: data)
+                    expect(req?.url?.absoluteString).to(equal("https://w-staging.usabilla.com/a/t?m=a&i=myAppId&telemetry=testdata"))
                     expect(req?.cachePolicy).to(equal(self.correctPatch.cachePolicy))
                     expect(req?.httpMethod).to(equal("GET"))
                     expect(req?.timeoutInterval).to(equal(10))

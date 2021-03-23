@@ -14,6 +14,7 @@ class UBTelemetrics {
     private var startTime: [String: Date] = [:]
     private var log: [String: UBTelemetricResponse] = [:]
     private let maxnumberOfEntries = 10  // the max number of entries, 0 equals no limit
+    private var telemtricService = TelemtryService()
 
     private var featureBillaService: UBFeaturebillaManager
     var submitTelemetryData = true
@@ -166,7 +167,7 @@ class UBTelemetrics {
     /// Add data to the log. If data retrieved witht the getStoredData method fails the data can be added to the storrage again
     /// - Parameter data: BASE64 encode string
     /// - Returns: bool of the result. If the data was sucessfully decode and added it return true
-    func addLogData(data: String) -> Bool {
+    private func addLogData(data: String) -> Bool {
         let decoder = JSONDecoder()
         if let jsonData = Data(base64Encoded: data) {
              do {
@@ -179,4 +180,15 @@ class UBTelemetrics {
         return false
     }
 
+    func submitLogData () {
+        var appId = UsabillaInternal.appID ?? ""
+        if  appId == "" {
+            appId = "noAppId"
+        }
+        if let storeData = getStoredData(), let data = storeData.data(using: .utf8) {
+            telemtricService.submitTelemtryData(appId: appId, body: storeData).then { result in
+                print(result)
+            }
+        }
+    }
 }

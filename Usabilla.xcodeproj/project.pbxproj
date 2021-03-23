@@ -460,6 +460,9 @@
 		45F0D41F22DDEE7A0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
 		45F0D42222DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		45F0D42322DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		45F8A5F22608F9AF00A1ADA3 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
+		45F8A5F72608F9B700A1ADA3 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
+		45F8A5F82608F9B800A1ADA3 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
 		C508684B1F320D9A006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
 		C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
@@ -1017,6 +1020,7 @@
 		45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBTelemetrics.swift; sourceTree = "<group>"; };
 		45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewSectionCell.swift; sourceTree = "<group>"; };
 		45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemtryService.swift; sourceTree = "<group>"; };
 		C500470C1F827AAD00EBF1C5 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatus.swift; sourceTree = "<group>"; };
 		C508684D1F320F38006CDA53 /* LeafActiveStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafActiveStatusTests.swift; sourceTree = "<group>"; };
@@ -1131,6 +1135,7 @@
 			children = (
 				040C97DC1EA6527200A59C95 /* CampaignService.swift */,
 				C52550531ED43EF6005658F5 /* FormService.swift */,
+				45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2251,6 +2256,7 @@
 				04DC25B41E8BB347002962A3 /* PercentageDecorator.swift in Sources */,
 				434085C11E36430D00B4A4B9 /* SubmissionManager.swift in Sources */,
 				0483EA031CDCE003004EC234 /* ScreenshotModel.swift in Sources */,
+				45F8A5F22608F9AF00A1ADA3 /* TelemtryService.swift in Sources */,
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
 				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
@@ -2650,6 +2656,7 @@
 				43B04FAA1F1F7EEF0032F057 /* PickerComponent.swift in Sources */,
 				459678DA22E878520043DE70 /* UBSADrawingView.swift in Sources */,
 				C5780D201F2226FE0016C519 /* TargetingFactory.swift in Sources */,
+				45F8A5F72608F9B700A1ADA3 /* TelemtryService.swift in Sources */,
 				43B04FAB1F1F7EEF0032F057 /* CampaignManager.swift in Sources */,
 				10CA69A4221EEAA400D8D327 /* UBConstants.swift in Sources */,
 				43B04FAC1F1F7EEF0032F057 /* UIView.swift in Sources */,
@@ -2828,6 +2835,7 @@
 				F269233023EB17B900E6A455 /* UsabillaTheme.swift in Sources */,
 				F269233123EB17B900E6A455 /* UBFeedbackIDDictionaryDAO.swift in Sources */,
 				F269233223EB17B900E6A455 /* UBDAO.swift in Sources */,
+				45F8A5F82608F9B800A1ADA3 /* TelemtryService.swift in Sources */,
 				F269233323EB17B900E6A455 /* ComponentFactory.swift in Sources */,
 				F269233423EB17B900E6A455 /* UBSADragableImageView.swift in Sources */,
 				F269233523EB17B900E6A455 /* TextAreaComponent.swift in Sources */,

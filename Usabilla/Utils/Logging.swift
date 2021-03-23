@@ -100,7 +100,6 @@ func PDump<T>(_ object: @autoclosure () -> T, label: String? = nil, _ file: Stri
             label.flatMap { print($0) }
             dump(value)
             print("--------")
-            
         }
     #endif
 }

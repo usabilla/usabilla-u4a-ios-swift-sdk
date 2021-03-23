@@ -93,7 +93,7 @@ open class UsabillaXamarin: NSObject {
             UsabillaInternal.debugEnabled = newValue
         }
     }
-    
+
     /**
      A Boolean value that determines whether the SDK powered by logo clickable.
      */
