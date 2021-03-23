@@ -180,14 +180,15 @@ class UBTelemetrics {
         return false
     }
 
+    /// Upload data to our server
     func submitLogData () {
         var appId = UsabillaInternal.appID ?? ""
         if  appId == "" {
             appId = "noAppId"
         }
-        if let storeData = getStoredData(), let data = storeData.data(using: .utf8) {
-            telemtricService.submitTelemtryData(appId: appId, body: storeData).then { result in
-                print(result)
+        if let storeData = getStoredData() {
+            telemtricService.submitTelemtryData(appId: appId, body: storeData).then { _ in
+                return
             }
         }
     }

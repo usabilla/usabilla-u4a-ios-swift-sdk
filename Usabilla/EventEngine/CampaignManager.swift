@@ -57,6 +57,8 @@ class CampaignManager {
                 }
                 telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                 telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+                telemetric?.submitLogData()
+                telemetric?.submitLogData()
             }
             return
         }
@@ -68,6 +70,7 @@ class CampaignManager {
             if telemetric != nil {
                 telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                 telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+                telemetric?.submitLogData()
             }
             return
         }
@@ -79,6 +82,7 @@ class CampaignManager {
                 self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errC, value: 1, logLevel: .methods)
                 self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                 self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+                self.telemetric?.submitLogData()
                 return
             }
             let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
@@ -88,6 +92,7 @@ class CampaignManager {
                 UBCampaignDAO.shared.create(campaign)
                 self.incrementViews(forCampaign: campaign)
                 self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+                self.telemetric?.submitLogData()
                 return
             }
 
@@ -95,6 +100,7 @@ class CampaignManager {
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
             self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+            self.telemetric?.submitLogData()
 
             PLog(TelemetryConstants.campaingAlreadyShowing)
         }.catch { error in
@@ -102,6 +108,7 @@ class CampaignManager {
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
             self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
             self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+            self.telemetric?.submitLogData()
             PLog(error)
         }
     }

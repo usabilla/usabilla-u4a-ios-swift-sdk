@@ -104,6 +104,7 @@ class UsabillaInternal {
                                  logLevel: .methods)
             telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.errM, value: errorFormShowing, logLevel: .methods)
             telemetric.logEnd(for: logid, keyPath: \UBTelemetricSendEvent.dur)
+            telemetric.submitLogData()
             return
         }
         campaignManager?.sendEvent(event: event, customVariables: customVariables, logId: logid)
@@ -151,6 +152,7 @@ class UsabillaInternal {
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.errM, value: "appId has wrong format", logLevel: .methods)
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appId, value: appID, logLevel: .methods)
                 telemetric.logEnd(for: logid, keyPath: \UBTelemetricInitMethod.dur)
+                telemetric.submitLogData()
                 return
             }
             UsabillaInternal.appID = appID
@@ -254,6 +256,7 @@ class UsabillaInternal {
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeClient, logLevel: .methods)
                 self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: errorCamapingShowing, logLevel: .methods)
                 self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                self.telemetric.submitLogData()
             }
             return
         }
@@ -263,6 +266,7 @@ class UsabillaInternal {
             telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeClient, logLevel: .methods)
             telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: errorSDKNotInitialized, logLevel: .methods)
             telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+            telemetric.submitLogData()
             return
         }
         formStore.loadForm(id: formID, screenshot: screenshot, theme: theme, maskModel: UsabillaInternal.maskModel).then { form in
@@ -272,6 +276,7 @@ class UsabillaInternal {
                     self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
                     self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: errorSDKNotInitialized, logLevel: .methods)
                     self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                    self.telemetric.submitLogData()
                 }
                 return
             }
@@ -280,6 +285,7 @@ class UsabillaInternal {
                 delegate?.formDidLoad(form: navigationController)
                 self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: 0, logLevel: .methods)
                 self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                self.telemetric.submitLogData()
             }
 
             }.catch { _ in
@@ -288,6 +294,7 @@ class UsabillaInternal {
                     self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
                     self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: "Unable to load the form", logLevel: .methods)
                     self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                    self.telemetric.submitLogData()
 
                 }
         }
