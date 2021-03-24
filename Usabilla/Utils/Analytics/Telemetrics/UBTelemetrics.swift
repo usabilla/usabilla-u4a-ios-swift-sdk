@@ -182,6 +182,7 @@ class UBTelemetrics {
 
     /// Upload data to our server
     func submitLogData () {
+        if !submitTelemetryData {return}
         var appId = UsabillaInternal.appID ?? ""
         if  appId == "" {
             appId = "noAppId"

@@ -34,7 +34,7 @@ class UsabillaInternal {
     static var dismissAutomatically: Bool = true
     static var canDisplayCampaigns: Bool = true
 
-    private static var internalSubmitTelemetryData: Bool = false
+    private static var internalSubmitTelemetryData: Bool = true
     static var submitTelemetryData: Bool {
         get {
             return internalSubmitTelemetryData
