@@ -78,17 +78,24 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.7.0'
+pod 'Usabilla', '~> 6.7.1'
 
 End
 ```
+The current pod is build for Xcode 12.4.
+
+For older Xcode version, use:
+ 
+```ruby
+pod 'Usabilla', :podspec => 'https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.podspec'
+```
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-11.7`, `Xcode-11.3.1` , `Xcode-10.3`.
 
 Then, run the following command:
 
 ```bash
 $ pod install
 ```
-
 
 ### Carthage
 
@@ -109,8 +116,7 @@ For older Xcode version, use:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3
-
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-11.7`, `Xcode-11.3.1`, `Xcode-10.3`.
 
 ### Manual
 
