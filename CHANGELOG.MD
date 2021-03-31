@@ -1,3 +1,6 @@
+## 6.7.1
+### Update
+- Rebranded logo & url for Getfeedback Digital
 ## 6.7.0
 ### Fix
 - show oldest campaign first
