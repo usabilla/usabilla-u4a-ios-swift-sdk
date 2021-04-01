@@ -238,17 +238,17 @@ private_lane :createAReleaseDraft do |options|
 	xcode = options[:xcode]
 	version = options[:version]
 	branch = options[:branch] 
-	name = "v#{version}-Xcode-#{xcode}"
-	UI.message("Creating for #{name}")
+    tag = "#{version}-Xcode-#{xcode}"
+	UI.message("Creating for #{tag}")
 	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/UsabillaCarthage.zip"
 	pods = "XcodeBuilds/Xcode-#{xcode}/Pods/UsabillaPods.zip"
 	assets = ["#{carthage}","#{pods}"]
 	if branch == "master"
-		name = "v#{version}"
+        tag = "#{version}"
 		xcframework = "XcodeBuilds/xcframeworks/UsabillaXCFramework.zip"
 		assets = ["#{carthage}","#{pods}","#{xcframework}"]
 	end
-	
+    name = "v#{tag}"
 	git_token = "893008a57b830b2cd3f4d6d337c86fafb7d0c6b6"
 	user_name = "hiteshjain29"
 
@@ -264,11 +264,11 @@ private_lane :createAReleaseDraft do |options|
 		sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
 	else git checkout --track origin/#{branch}; fi &&
 	cat #{projectDirectory}changelog ./CHANGELOG.MD > temp && mv temp ./CHANGELOG.MD && cat #{projectDirectory}PublicReadme.md  > ./Readme.MD &&
-	sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/' ./Usabilla.podspec && jq '{ \"#{version}\" : \"#{source_url}\" } + .' Usabilla.json >tmp.json &&
+	sed -i '' -e '/version =/ s/= .*/= \"#{tag}\"/' ./Usabilla.podspec && jq '{ \"#{version}\" : \"#{source_url}\" } + .' Usabilla.json >tmp.json &&
 	mv tmp.json Usabilla.json &&
 	git add . && git commit -m \"Release #{version}\" && git diff --stat --cached origin/#{branch} && git push #{git_push_url} &&
 	rm -rf #{projectDirectory}publicrepo")
-
+    UI.message("Drafting Release for #{tag}")
 	set_github_release(
 		repository_name: repo_name,
 		name: name,
