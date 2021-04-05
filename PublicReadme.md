@@ -296,6 +296,59 @@ class SomeViewController: UIViewController, UsabillaDelegate {
 }
 ```
 
+And for SWIFTUI implementation follow below steps:
+`UIViewControllerRepresentable` instance is used to create and manage a UIViewController object in your SwiftUI interface.
+
+```swift
+import SwiftUI
+import UIKit
+import Usabilla
+
+struct UsabillaFormView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UsabillaFormViewController {
+        let vc = UsabillaFormViewController()
+        return vc
+    }
+    func updateUIViewController(_ uiViewController: UsabillaFormViewController, context: Context) {
+    }
+    typealias UIViewControllerType = UsabillaFormViewController
+}
+
+class UsabillaFormViewController: UIViewController, UsabillaDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Usabilla.delegate = self
+        Usabilla.loadFeedbackForm("Form ID")
+    }
+
+    //Called when your form successfully load
+    func formDidLoad(form: UINavigationController) {
+        present(form, animated: true, completion: nil)
+    }
+
+    //Called when your forms can not be loaded. Returns a default form
+    func formDidFailLoading(error: UBError) {
+        //...
+    }
+
+}
+
+ //Called from SWIFTUI view to load the form
+struct ContentView: View {
+    @State private var showingUsabillaForm:Bool = false
+
+    var body: some View {
+        Button(action: {
+            self.showingUsabillaForm = !self.showingUsabillaForm
+        })
+        if(showingUsabillaForm) {
+            UsabillaFormView()
+        }
+    }
+}
+```
+
 ### Preloading a form
 
 If you know you will need to display a feedback form when the user is offline, you can preload and cache it to make it available at any given moment.   
