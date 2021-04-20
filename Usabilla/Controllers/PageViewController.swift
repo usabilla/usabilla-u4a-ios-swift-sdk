@@ -243,7 +243,7 @@ class PageViewController: UIViewController {
     }
 
     func scrollToTop() {
-        tableView.scrollTo(indexPath: IndexPath(row: 0, section: 0), animated: true)
+        tableView.setContentOffset(.zero, animated: true)
     }
 
     func reloadTableWithAnimation() {
