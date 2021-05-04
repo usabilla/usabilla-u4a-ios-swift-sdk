@@ -69,7 +69,8 @@ class UBTelemetrics {
         guard let logId = logId else { return }
         if let startime = startTime[logId] {
             let endtime = Date()
-            alterData(for: logId, keyPath: keyPath, value: endtime.timeIntervalSince(startime), logLevel: .all )
+            let timeInMS: Double = Double(endtime.timeIntervalSince(startime)*1000)
+            alterData(for: logId, keyPath: keyPath, value: timeInMS, logLevel: .all )
             startTime.removeValue(forKey: logId)
             updateFileStorrage(with: logId)
             return
