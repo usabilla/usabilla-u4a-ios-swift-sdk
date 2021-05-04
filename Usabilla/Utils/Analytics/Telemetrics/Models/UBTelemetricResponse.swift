@@ -152,9 +152,19 @@ class UBTelemetricResponseLogs: Codable {
     var orig: String?
     var dataLogs: [UBTelemetricProtocol] = []
     init(originClass: String? = nil) {
-        orig = originClass
         id = String(describing: abs(NSUUID().hashValue))
         timestamp = Date().toRFC3339Format()
+        orig = self.getCallingClass()
+    }
+
+    // get the classname of the class before the UsabillaInternal.
+    // It's used to dertermine if the sdk was called from our bridge
+    private func getCallingClass() -> String {
+        let data = Thread.callStackSymbols
+        let callname = data[3]   // the 3 line is the first time an external app / or library accesses the SDK
+        let replaced = callname.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil)
+        let components = replaced.split(separator: " ")
+        return String(components[1]) //element 1 is the classname of the caller
     }
 
     func encode(to encoder: Encoder) throws {

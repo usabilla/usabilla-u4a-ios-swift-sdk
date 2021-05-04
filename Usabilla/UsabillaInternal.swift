@@ -131,20 +131,10 @@ class UsabillaInternal {
         customVariables[key] = value
         PLog(customVariables)
     }
-    // get the classname of the class before the UsabillaInternal.
-    // It's used to dertermine if the sdk was called from our bridge
-    private class func getCallingClass() -> String {
-        let data = Thread.callStackSymbols
-        let callname = data[3]   // the 3 line is the first time an external app / or library accesses the SDK
-        let replaced = callname.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil)
-        let components = replaced.split(separator: " ")
-        return String(components[1]) //element 1 is the classname of the caller
-    }
 
     class func initialize(appID: String?, completion: (() -> Void)? = nil
                           ) {
         let logid = telemetric.logStart(method: UBTelemetricInitMethod(), logLevel: .methods )
-        //telemetric.alterData(for: logid, keyPath: \UBTelemetricResponse.originClass, value: getCallingClass(), logLevel: .methods)
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
                 Swift.debugPrint("Usabilla: The appId \(appID) has wrong format (expected UUID)")
