@@ -161,6 +161,9 @@ class UBTelemetricResponseLogs: Codable {
     // It's used to dertermine if the sdk was called from our bridge
     private func getCallingClass() -> String {
         let data = Thread.callStackSymbols
+        guard data.count > 3 else {
+            return "No parrent class found"
+        }
         let callname = data[3]   // the 3 line is the first time an external app / or library accesses the SDK
         let replaced = callname.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil)
         let components = replaced.split(separator: " ")
