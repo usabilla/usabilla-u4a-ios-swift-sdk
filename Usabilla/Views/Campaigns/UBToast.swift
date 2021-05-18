@@ -67,6 +67,11 @@ class UBToast: UIView {
         backgroundColor = toastBackgroundColor.withAlphaComponent(opacity)
         layer.cornerRadius = UBDimensions.Toast.cornerRadius
         layer.masksToBounds = true
+
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, label)
+        label.isAccessibilityElement = true
+        label.becomeFirstResponder()
+
     }
 
     func show(position: IntroPageDisplayMode = .bannerBottom, completion: (() -> Void)?) {
