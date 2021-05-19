@@ -46,6 +46,8 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
   - [Permissions](#permissions)
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
   - [ThreadSafe](#ThreadSafe)
+  - [Telemetry data collection](#Telemetry-data-collection)
+
 * * *
 
 ## Requirements
@@ -78,7 +80,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.7.1'
+pod 'Usabilla', '~> 6.8.0'
 
 End
 ```
@@ -293,6 +295,59 @@ class SomeViewController: UIViewController, UsabillaDelegate {
         //...
     }
 
+}
+```
+
+And for SWIFTUI implementation follow below steps:
+`UIViewControllerRepresentable` instance is used to create and manage a UIViewController object in your SwiftUI interface.
+
+```swift
+import SwiftUI
+import UIKit
+import Usabilla
+
+struct UsabillaFormView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UsabillaFormViewController {
+        let vc = UsabillaFormViewController()
+        return vc
+    }
+    func updateUIViewController(_ uiViewController: UsabillaFormViewController, context: Context) {
+    }
+    typealias UIViewControllerType = UsabillaFormViewController
+}
+
+class UsabillaFormViewController: UIViewController, UsabillaDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Usabilla.delegate = self
+        Usabilla.loadFeedbackForm("Form ID")
+    }
+
+    //Called when your form successfully load
+    func formDidLoad(form: UINavigationController) {
+        present(form, animated: true, completion: nil)
+    }
+
+    //Called when your forms can not be loaded. Returns a default form
+    func formDidFailLoading(error: UBError) {
+        //...
+    }
+
+}
+
+ //Called from SWIFTUI view to load the form
+struct ContentView: View {
+    @State private var showingUsabillaForm:Bool = false
+
+    var body: some View {
+        Button(action: {
+            self.showingUsabillaForm = !self.showingUsabillaForm
+        })
+        if(showingUsabillaForm) {
+            UsabillaFormView()
+        }
+    }
 }
 ```
 
@@ -722,3 +777,57 @@ extension ViewController : UsabillaDelegate {
 ## ThreadSafe
 
 The SDK is currently not Threadsafe. This requires the host-app to ensure all calls to the SDK are handle on the same thread. Not doing so can result in unexpected behavior.
+
+## Telemetry data collection
+
+The SDK collects diagnostic data to improve the performance and optimise usage on the variety of devices it can be run on.
+
+**The information collected is not used to identify users, does not contain PII and it's not shared with external parties
+For iOS developers the data collected falls under the category 'Diagnostics' of Apples Privacy data type**
+
+Adding the SDK to your project will NOT send any information; information is sent only in the following cases:
+- Call to `initialise()` completes
+- Call to `loadFeedbackForm()` completes
+- Call to `sendEvent()` completes
+- Exiting a feedback form
+
+The data collected is as follows:
+
+```json
+{
+  "appVersion": "1.0.0",
+  "appName": "AppName",
+  "device": "iphone1.2",
+  "freeMemory": "831172",
+  "freeSpace": "582800",
+  "orientation": "Portrait",
+  "osVersion": "12.1.0",
+  "reachability": "WiFi",
+  "rooted": false,
+  "screenSize": "1440x2392",
+  "sdkVersion": "7.2.0",
+  "system": "ios",
+  "totalMemory": "1530604",
+  "totalSpace": "793488",
+  "id": "34e3e3123",
+  "timestamp": "2021-04-04T12:34:23Z",
+  "originClass": "com.usabilla.Usabilla",
+  "action": {
+    "duration": "102",
+    "errorCode": "0",
+    "errorMessage": "",
+    "name": "function or property invoked on our public interface"
+    ...
+    function parameters are also collected here
+    ...
+  }
+}
+```
+
+If you wish for us not to collect this diagnostic data you can set the public field (`true` by default) as follows
+
+```swift
+Usabilla.submitTelemetryData = false
+```
+
+If the property is set to false, submitting telemetry data is turned off.

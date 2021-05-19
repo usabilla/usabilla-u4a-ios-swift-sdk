@@ -1,3 +1,12 @@
+## 6.8.0
+### FIX
+- problem with position of required text
+- Voiceover problem on toast
+
+### CHANGE
+- cocoapods now uses xcframework
+- collecting diagnostic data to improve SDK
+
 ## 6.7.1
 ### Update
 - Rebranded logo & url for Getfeedback Digital
