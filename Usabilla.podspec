@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.license       = "Apache License, Version 2.0"
   s.author        = { "Team SDK" => "sdk@usabilla.com" }
   s.platform      = :ios, "9.0"
-  s.source        = { :http => "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v#{s.version}/UsabillaPods.zip"}
-  s.ios.vendored_frameworks = 'Usabilla.framework'
+  s.source        = { :http => "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v#{s.version}/UsabillaXCFramework.zip"}
+  s.ios.vendored_frameworks = 'Usabilla.xcframework'
 end
