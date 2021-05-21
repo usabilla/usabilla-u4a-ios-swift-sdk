@@ -149,6 +149,7 @@ class UBIntroOutroView: UIView {
     private func setupWrapper() {
         let bottomDisplay = (viewModel.displayMode == .bannerBottom)
         wrapper = UIView()
+        wrapper.shouldGroupAccessibilityChildren = true
         wrapper.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wrapper)
         wrapper.bottomAnchor.constraint(equalTo: bottomAnchor, constant: (bottomDisplay ? UBDimensions.IntroOutroView.bottomWrapper : 0)).activate()
