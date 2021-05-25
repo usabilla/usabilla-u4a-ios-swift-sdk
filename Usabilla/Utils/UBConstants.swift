@@ -78,7 +78,7 @@ struct UBDimensions {
         static let heightValue: CGFloat = 80
         static let scrollContentMargin: CGFloat = -20
         static let buttonStackViewHeight: CGFloat = 44
-        static let textTitleLines: Int = 3
+        static let textTitleLines: Int = 5
     }
     // UBAlertDisplay
     struct AlertDisplay {
