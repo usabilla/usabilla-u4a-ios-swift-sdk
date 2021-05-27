@@ -269,7 +269,11 @@ class PageViewController: UIViewController {
         viewModel.verifyFields()
         if let index = viewModel.indexOfInvalidField() {
             let cellIndexPath = IndexPath(row: index, section: 0)
-            tableView.scrollTo(indexPath: cellIndexPath, animated: true)
+            let cellRect = tableView.rectForRow(at: cellIndexPath)
+            let completelyVisible = tableView.bounds.contains(cellRect)
+            if !completelyVisible {
+                tableView.scrollTo(indexPath: cellIndexPath, animated: true)
+            }
             reloadCellAt(indexPath: cellIndexPath)
         }
     }
