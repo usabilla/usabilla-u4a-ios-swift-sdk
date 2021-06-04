@@ -1,7 +1,7 @@
-## 6.8.0
-### FIX
-- Problem with position of required text
-- Voiceover problem on toast
-### CHANGE
-- Cocoapods now uses xcframework
-- Collecting diagnostic data to improve SDK
+## 6.8.1
+### Fix
+- Scroll problem with position of visible required text
+- Voiceover problem on campaign baner bottom
+
+### Update
+- Campaign banner title show max number of lines set to 5

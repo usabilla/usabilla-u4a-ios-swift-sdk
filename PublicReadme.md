@@ -55,6 +55,8 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
 - Xcode 10.3+   
 - Swift 4.0+
 
+**Note :  `6.8.1`  will be the last release on `Xcode 10.3`**
+
 ## Installation
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
@@ -80,7 +82,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.8.0'
+pod 'Usabilla', '~> 6.8.1'
 
 End
 ```
