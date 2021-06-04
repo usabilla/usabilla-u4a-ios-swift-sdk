@@ -1,3 +1,10 @@
+## 6.8.1
+### Fix
+- Scroll problem with position of visible required text
+- Voiceover problem on campaign baner bottom
+
+### Update
+- Campaign banner title show max number of lines set to 5
 ## 6.8.0
 ### FIX
 - Problem with position of required text
