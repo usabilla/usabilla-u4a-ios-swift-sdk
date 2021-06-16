@@ -48,7 +48,7 @@ class NPSControl: UIControl {
     }
     private let progressView = UIView()
     private let touchView = UBTouchView()
-    private var toolTip = NPSToolTip()
+    private var gfpToolTip = NPSToolTip()
 
     private var toolTipCenterXContraint: NSLayoutConstraint!
     private var progressViewTrailingAnchor: NSLayoutConstraint!
@@ -76,14 +76,14 @@ class NPSControl: UIControl {
     var font: UIFont? {
         didSet {
             labels.forEach { $0.customFont = font }
-            toolTip.label.font = font?.withSize(20)
+            gfpToolTip.label.font = font?.withSize(20)
         }
     }
     var toolTipTextColor: UIColor? {
         didSet {
             labels.forEach { $0.hightlightedTextColor = toolTipTextColor }
             selectedLabel.hightlightedTextColor = toolTipTextColor
-            toolTip.label.textColor = toolTipTextColor
+            gfpToolTip.label.textColor = toolTipTextColor
         }
     }
     var rating: Int? {
@@ -117,7 +117,7 @@ class NPSControl: UIControl {
 
     override func tintColorDidChange() {
         labels.forEach { $0.tintColor = tintColor }
-        toolTip.tintColor = tintColor
+        gfpToolTip.tintColor = tintColor
         progressView.backgroundColor = tintColor.withAlphaComponent(0.5)
         borderedView.layer.borderColor = tintColor.cgColor
         selectedLabel.tintColor = tintColor
@@ -156,9 +156,9 @@ class NPSControl: UIControl {
 
         progressView.isHidden = true
 
-        toolTip.alpha = 0.0
+        gfpToolTip.alpha = 0.0
 
-        addSubviews(borderedView, toolTip)
+        addSubviews(borderedView, gfpToolTip)
         borderedView.addSubviews(progressView, contentStackView, selectedLabel, touchView)
         createLabels(inContentView: contentStackView, count: numberOfValues)
     }
@@ -192,11 +192,11 @@ class NPSControl: UIControl {
         touchView.trailingAnchor.constraint(equalTo: borderedView.trailingAnchor).activate()
         touchView.bottomAnchor.constraint(equalTo: borderedView.bottomAnchor).activate()
 
-        toolTip.translatesAutoresizingMaskIntoConstraints = false
-        toolTip.bottomAnchor.constraint(equalTo: topAnchor, constant: -10).activate()
-        toolTip.widthAnchor.constraint(equalToConstant: 35).activate()
-        toolTip.heightAnchor.constraint(equalToConstant: 46).activate()
-        toolTipCenterXContraint = toolTip.centerXAnchor.constraint(equalTo: contentStackView.centerXAnchor).activate()
+        gfpToolTip.translatesAutoresizingMaskIntoConstraints = false
+        gfpToolTip.bottomAnchor.constraint(equalTo: topAnchor, constant: -10).activate()
+        gfpToolTip.widthAnchor.constraint(equalToConstant: 35).activate()
+        gfpToolTip.heightAnchor.constraint(equalToConstant: 46).activate()
+        toolTipCenterXContraint = gfpToolTip.centerXAnchor.constraint(equalTo: contentStackView.centerXAnchor).activate()
     }
 
     private func createLabels(inContentView stackView: UIStackView, count: Int) {
@@ -252,9 +252,9 @@ class NPSControl: UIControl {
             return }
         let choiceLabel = labels[index]
         toolTipCenterXContraint?.isActive = false
-        toolTipCenterXContraint = toolTip.centerXAnchor.constraint(equalTo: choiceLabel.centerXAnchor).activate()
-        toolTip.text = String(index)
-        toolTip.layoutIfNeeded()
+        toolTipCenterXContraint = gfpToolTip.centerXAnchor.constraint(equalTo: choiceLabel.centerXAnchor).activate()
+        gfpToolTip.text = String(index)
+        gfpToolTip.layoutIfNeeded()
     }
 
     private func moveProgressBar(toIndex index: Int) {
@@ -312,7 +312,7 @@ class NPSControl: UIControl {
         initialTouchIndex = selectedIndex
         handleTouches(touches: touches, withEvent: event)
         UIView.animate(withDuration: transitionDuration) {
-            self.toolTip.alpha = 1.0
+            self.gfpToolTip.alpha = 1.0
         }
     }
 
@@ -322,7 +322,7 @@ class NPSControl: UIControl {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: transitionDuration) {
-            self.toolTip.alpha = 0.0
+            self.gfpToolTip.alpha = 0.0
         }
         handleTouches(touches: touches, withEvent: event)
         if initialTouchIndex != selectedIndex {
