@@ -22,6 +22,9 @@ class UBEndPageViewModel {
     var headerText: String?
     var headerFont: UIFont?
     var headerColor: UIColor?
+    
+    var headerAttributedText: NSAttributedString?
+    var thankyouAttributedText: NSAttributedString?
 
     fileprivate func setHeaderText(_ field: BaseFieldModel) {
         if  let aField = field as? HeaderFieldModel {
@@ -29,7 +32,11 @@ class UBEndPageViewModel {
             headerFont = theme.fonts.boldFont
             headerColor = theme.colors.title
         } else if let aField = field as? ParagraphFieldModel {
-            headerText = aField.fieldValue
+            if aField.isHTML {
+                headerAttributedText = aField.immutableParagraphValue?.parseHTMLString(font: theme.fonts.font.withSize(theme.fonts.textSize))
+            } else {
+                headerText = aField.fieldValue
+            }
             headerFont = theme.fonts.font
             headerColor = theme.colors.text
         }
@@ -41,7 +48,11 @@ class UBEndPageViewModel {
             thankyouFont = theme.fonts.boldFont
             thankyouColor = theme.colors.title
         } else if let aField = field as? ParagraphFieldModel {
-            thankyouText = aField.fieldValue
+            if aField.isHTML {
+                thankyouAttributedText = aField.immutableParagraphValue?.parseHTMLString(font: theme.fonts.font.withSize(theme.fonts.textSize))
+            } else {
+                thankyouText = aField.fieldValue
+            }
             thankyouFont = theme.fonts.font
             thankyouColor = theme.colors.text
         }

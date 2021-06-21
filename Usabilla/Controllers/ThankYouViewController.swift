@@ -48,13 +48,23 @@ class ThankYouViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(messageLabel)
 
-        titleLabel.text = viewModel.headerText
         titleLabel.font = viewModel.headerFont
         titleLabel.textColor = viewModel.headerColor
 
-        messageLabel.text = viewModel.thankyouText
         messageLabel.font = viewModel.thankyouFont
         messageLabel.textColor = viewModel.thankyouColor
+
+        if viewModel.headerAttributedText != nil {
+            titleLabel.attributedText = viewModel.headerAttributedText
+        } else {
+            titleLabel.text = viewModel.headerText
+        }
+
+        if viewModel.thankyouAttributedText != nil {
+            messageLabel.attributedText = viewModel.thankyouAttributedText
+        } else {
+            messageLabel.text = viewModel.thankyouText
+        }
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideMargin).isActive = true
