@@ -100,6 +100,10 @@ class FormModel: NSObject, NSCoding {
         return formDictionary
     }
 
+    func toJson() throws -> Data {
+        let jsonData = try JSONSerialization.data(withJSONObject: toDictionary(), options: [])
+        return jsonData
+    }
     /**
         Create a FeedbackResult based on the currentState of the form
 

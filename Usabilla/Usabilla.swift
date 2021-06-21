@@ -243,12 +243,12 @@ public protocol UsabillaDelegate: class {
      - Parameter userResponse: Dictionary<String, Any> containing the answers submitted by the user
      
      */
-    func feedbackResultSubmited(userResponse: Dictionary<String, Any>)
+    func feedbackResultSubmited(userResponse: Data)
 }
 
 public extension UsabillaDelegate {
     func formDidClose(formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }
     func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }
     func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
-    func feedbackResultSubmited(userResponse: Dictionary<String, Any>) {}
+    func feedbackResultSubmited(userResponse: Data) {}
 }
