@@ -240,7 +240,7 @@ class CampaignViewController: UIViewController {
     func closeCampaign(atPageIndex index: Int? = nil) {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         let result = FeedbackResult(rating: viewModel.ratingValueForReview, abandonedPageIndex: index)
-        try? UsabillaInternal.delegate?.feedbackResultSubmited(userResponse: viewModel.formViewModel.model.toJson())
+        try? UsabillaInternal.delegate?.feedbackResultSubmitted(userResponse: viewModel.formViewModel.model.toJson())
         UsabillaInternal.delegate?.campaignDidClose(withFeedbackResult: result, isRedirectToAppStoreEnabled: viewModel.formViewModel.model.redirectToAppStore)
         self.delegate?.campaignDidEnd()
     }

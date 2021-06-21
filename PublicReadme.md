@@ -842,7 +842,7 @@ When a camping or form is closed, the data is submitted to the server. If there 
 the hosting app can implement a optional delegate method
 
 ```swift
- func feedbackResultSubmited(userResponse: Data)
+ func feedbackResultSubmitted(userResponse: Data)
 ```
 This delegate method provides you with an ```Data``` object that holds the questions / answers
 The data is ```Dictionary<String:Any>```
@@ -852,7 +852,7 @@ If the question is not answered ```null``` will be the value
 The data can be obtained like this
 ```swift
 
-	func feedbackResultSubmited(userResponse: Data) {
+	func feedbackResultSubmitted(userResponse: Data) {
         if let jsonString = String(data: userResponse, encoding: String.Encoding.ascii) {
             //// use the data
         }

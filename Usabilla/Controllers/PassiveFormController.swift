@@ -21,7 +21,7 @@ class PassiveFormController: FormViewControllerDelegate {
         if !formViewController.viewModel.isItTheEnd {
             results.append(formViewController.viewModel.model.toFeedbackResult(latestPageIndex: formViewController.viewModel.currentPageIndex))
         }
-        try? UsabillaInternal.delegate?.feedbackResultSubmited(userResponse: formViewController.viewModel.model.toJson())
+        try? UsabillaInternal.delegate?.feedbackResultSubmitted(userResponse: formViewController.viewModel.model.toJson())
         // swiftlint:disable:next force_unwrapping
         UsabillaInternal.delegate?.formWillClose(form: formViewController.navigationController!, formID: formViewController.viewModel.id, withFeedbackResults: results, isRedirectToAppStoreEnabled: formViewController.viewModel.model.redirectToAppStore)
 
