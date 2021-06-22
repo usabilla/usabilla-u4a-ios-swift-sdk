@@ -53,10 +53,10 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
 
 ## Requirements
 - iOS 9.0+
-- Xcode 10.3+   
+- Xcode 11+   
 - Swift 4.0+
 
-**Note :  `6.8.1`  will be the last release on `Xcode 10.3`**
+**Note :  v`6.8.1`  can be used for `Xcode 10.3`**
 
 ## Installation
 
@@ -83,7 +83,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.8.1'
+pod 'Usabilla', '~> 6.8.2'
 
 End
 ```

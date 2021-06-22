@@ -1,7 +1,7 @@
-## 6.8.1
+## 6.8.2
 ### Fix
-- Scroll problem with position of visible required text
-- Voiceover problem on campaign baner bottom
+- Tooltip naming variable for ios15
 
 ### Update
-- Campaign banner title show max number of lines set to 5
+- HTML parsing on Thankyou/End page for passive forms
+- Callback for in app user response
