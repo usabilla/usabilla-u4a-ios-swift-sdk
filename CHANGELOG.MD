@@ -1,3 +1,10 @@
+## 6.8.2
+### Fix
+- Tooltip naming variable for ios15
+
+### Update
+- HTML parsing on Thankyou/End page for passive forms
+- Callback for in app user response
 ## 6.8.1
 ### Fix
 - Scroll problem with position of visible required text
