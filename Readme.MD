@@ -47,15 +47,16 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
   - [Integration with Obj-C applications](#integration-with-obj-c-applications)
   - [ThreadSafe](#ThreadSafe)
   - [Telemetry data collection](#Telemetry-data-collection)
+  - [Getting User feedback in app](#Getting-user-feedback-in-app)
 
 * * *
 
 ## Requirements
 - iOS 9.0+
-- Xcode 10.3+   
+- Xcode 11+   
 - Swift 4.0+
 
-**Note :  `6.8.1`  will be the last release on `Xcode 10.3`**
+**Note :  v`6.8.1`  can be used for `Xcode 10.3`**
 
 ## Installation
 
@@ -82,7 +83,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.8.1'
+pod 'Usabilla', '~> 6.8.2'
 
 End
 ```
@@ -833,3 +834,29 @@ Usabilla.submitTelemetryData = false
 ```
 
 If the property is set to false, submitting telemetry data is turned off.
+
+
+## Getting user feedback in app
+
+When a camping or form is closed, the data is submitted to the server. If there is a need to have the responses available in the App,
+the hosting app can implement a optional delegate method
+
+```swift
+ func feedbackResultSubmitted(userResponse: Data)
+```
+This delegate method provides you with an ```Data``` object that holds the questions / answers
+The data is ```Dictionary<String:Any>```
+The dictionary holds all question in a random order where the key is the name of the question and the value is the answer to the question. 
+If the question is not answered ```null``` will be the value
+
+The data can be obtained like this
+```swift
+
+	func feedbackResultSubmitted(userResponse: Data) {
+        if let jsonString = String(data: userResponse, encoding: String.Encoding.ascii) {
+            //// use the data
+        }
+    
+    }
+	
+```
