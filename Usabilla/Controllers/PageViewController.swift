@@ -253,17 +253,15 @@ class PageViewController: UIViewController {
     }
 
     func reloadCellsWithAnimation(_ indexPaths: [IndexPath]) {
-
-        let tableViewOffset = tableView.contentOffset
-        tableView.beginUpdates()
-
-        self.tableView.reloadRows(at: Array(Set(indexPaths)), with: .automatic)
-        tableView.endUpdates()
-        UIView.setAnimationsEnabled(false)
-        tableView.layer.removeAllAnimations()
-        tableView.setContentOffset(tableViewOffset, animated: false)
-        UIView.setAnimationsEnabled(true)
-    }
+         let tableViewOffset = tableView.contentOffset
+         DispatchQueue.main.async {
+             self.tableView.reloadData()
+             UIView.setAnimationsEnabled(false)
+             self.tableView.layer.removeAllAnimations()
+             self.tableView.setContentOffset(tableViewOffset, animated: false)
+             UIView.setAnimationsEnabled(true)
+         }
+     }
 
     func gotToNextErrorField() {
         viewModel.verifyFields()
