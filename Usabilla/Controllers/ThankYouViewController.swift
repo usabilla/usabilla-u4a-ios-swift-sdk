@@ -14,16 +14,28 @@ class ThankYouViewController: UIViewController {
     let sideMargin: CGFloat = 16.0
     let verticalMargin: CGFloat = 20.0
 
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+    var titleLabel: UITextView = {
+        let label = UITextView()
+        label.textContainer.lineBreakMode = .byWordWrapping
+        label.textContainer.maximumNumberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isScrollEnabled = false
+        label.isEditable = false
+        label.textContainer.lineFragmentPadding = 0
+        label.textContainerInset = .zero
+        label.backgroundColor = .clear
         return label
     }()
-    var messageLabel: UILabel = {
-        let label = UILabel()
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+    var messageLabel: UITextView = {
+        let label = UITextView()
+        label.textContainer.lineBreakMode = .byWordWrapping
+        label.textContainer.maximumNumberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isScrollEnabled = false
+        label.isEditable = false
+        label.textContainer.lineFragmentPadding = 0
+        label.textContainerInset = .zero
+        label.backgroundColor = .clear
         return label
     }()
 
@@ -56,12 +68,14 @@ class ThankYouViewController: UIViewController {
 
         if viewModel.headerAttributedText != nil {
             titleLabel.attributedText = viewModel.headerAttributedText
+            titleLabel.dataDetectorTypes = [.link, .phoneNumber]
         } else {
             titleLabel.text = viewModel.headerText
         }
 
         if viewModel.thankyouAttributedText != nil {
             messageLabel.attributedText = viewModel.thankyouAttributedText
+            titleLabel.dataDetectorTypes = [.link, .phoneNumber]
         } else {
             messageLabel.text = viewModel.thankyouText
         }
