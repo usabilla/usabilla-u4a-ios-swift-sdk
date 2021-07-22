@@ -161,13 +161,23 @@ class UBTelemetricResponseLogs: Codable {
     // It's used to dertermine if the sdk was called from our bridge
     private func getCallingClass() -> String {
         let data = Thread.callStackSymbols
-        guard data.count > 3 else {
-            return "No parrent class found"
+        var className: String {
+            switch data {
+            case _ where (data.first(where: {$0.contains("SwiftFlutterUsabillaPlugin")}) != nil) :
+                return "Flutter"
+            case _ where (data.first(where: {$0.contains("UsabillaBridge")}) != nil) :
+                return "ReactNative"
+            case _ where (data.first(where: {$0.contains("UsabillaB0")}) != nil) :
+                return "Cordova"
+            case _ where (data.first(where: {$0.contains("UsabillaInternal")}) != nil) :
+                return "Internal"
+            case _ where (data.first(where: {$0.contains("UsabillaXamarin")}) != nil) :
+                return "Xamarin"
+            default:
+                return "Usabilla"
+            }
         }
-        let callname = data[3]   // the 3 line is the first time an external app / or library accesses the SDK
-        let replaced = callname.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression, range: nil)
-        let components = replaced.split(separator: " ")
-        return String(components[1]) //element 1 is the classname of the caller
+        return className
     }
 
     func encode(to encoder: Encoder) throws {
