@@ -1,7 +1,6 @@
-## 6.8.2
+## 6.8.3
 ### Fix
-- Tooltip naming variable for ios15
+- Crash after animation on table cell reload 
 
 ### Update
-- HTML parsing on Thankyou/End page for passive forms
-- Callback for in app user response
+- Link detectable on Thankyou/End page for passive forms
