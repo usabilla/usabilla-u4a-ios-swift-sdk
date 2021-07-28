@@ -4,8 +4,8 @@
 import PackageDescription
 
 let version = "6.8.3"
-let checksum = "a01880b3bdb7aed09e916ce7b4e2a75079c8b2a6031ffff79de48f48228de315"
-let url = "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/download/v\(version)/UsabillaXCFramework.zip"
+let checksum = "55b79beb528800c74d4b03851c5441f1c7df324c5c6a359872bcb6bdb84fba78"
+let url = "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/blob/SP-xcode-6.8.3/UsabillaXCFramework.zip"
 
 let package = Package(
     name: "Usabilla",
