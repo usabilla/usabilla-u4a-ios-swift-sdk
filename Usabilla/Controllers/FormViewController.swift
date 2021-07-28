@@ -149,9 +149,19 @@ class FormViewController: UIViewController {
         }
 
         let textOnAccentedColor = viewModel.textOnAccentColor
-        navigationController?.navigationBar.barTintColor = viewModel.headerColor
-        navigationController?.navigationBar.tintColor = textOnAccentedColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textOnAccentedColor, NSAttributedStringKey.font: viewModel.navBarItemsFontNormal]
+        let navBar = navigationController?.navigationBar
+        navBar?.tintColor = textOnAccentedColor
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = viewModel.headerColor
+            appearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textOnAccentedColor, NSAttributedStringKey.font: viewModel.navBarItemsFontNormal]
+            navBar?.standardAppearance = appearance
+            navBar?.scrollEdgeAppearance = appearance
+        } else {
+            navBar?.barTintColor = viewModel.headerColor
+            navBar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textOnAccentedColor, NSAttributedStringKey.font: viewModel.navBarItemsFontNormal]
+        }
         cancelButton.setFont(font: viewModel.navBarItemsFontNormal)
         cancelButton.title = viewModel.cancelText
         nextButton.setFont(font: viewModel.navBarItemsFontBold)
