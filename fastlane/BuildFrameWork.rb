@@ -222,7 +222,7 @@ private_lane :copyToSwiftPackage do
 	sh("find \"#{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
 	sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
 	sh("cp -rf #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-	sh("cd #{projectDirectory}XcodeBuilds/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework ./Usabilla.dSYMs")
+	sh("cd #{projectDirectory}XcodeBuilds/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework")
 	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/xcframeworks/UsabillaXCFramework.zip | xargs")
 	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt")
 end
