@@ -253,6 +253,7 @@ platform :ios do
 			workspace: 'Usabilla.xcworkspace',
 			scheme: 'Usabilla',
     		include_bitcode: true,
+            include_debug_symbols: true,
     		destinations: ['iOS'],
     		xcframework_output_directory: 'XcodeBuilds/xcframeworks'
 		)
