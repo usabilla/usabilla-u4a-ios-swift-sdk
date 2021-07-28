@@ -5,8 +5,7 @@ import PackageDescription
 
 let version = "6.8.3"
 let checksum = "55b79beb528800c74d4b03851c5441f1c7df324c5c6a359872bcb6bdb84fba78"
-let url = "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/blob/SP-xcode-6.8.3/UsabillaXCFramework.zip"
-
+let url = "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/SP-xcode-6.8.3/UsabillaXCFramework.zip"
 let package = Package(
     name: "Usabilla",
     platforms: [.iOS(.v9)],
