@@ -125,7 +125,7 @@ class CampaignViewController: UIViewController {
 
     private func showModalFormiPad () {
         let formController = FormViewController(viewModel: viewModel.formViewModel)
-        #if XCODE1100 || XCODE1200
+        #if XCODE1100 || XCODE1200 || XCODE1300
         if #available(iOS 13.0, *) {
             formController.isModalInPresentation = true // available in IOS13
         }
