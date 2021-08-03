@@ -151,6 +151,7 @@ class FormViewController: UIViewController {
         let textOnAccentedColor = viewModel.textOnAccentColor
         let navBar = navigationController?.navigationBar
         navBar?.tintColor = textOnAccentedColor
+        #if XCODE1300
         if #available(iOS 15.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
@@ -162,6 +163,10 @@ class FormViewController: UIViewController {
             navBar?.barTintColor = viewModel.headerColor
             navBar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textOnAccentedColor, NSAttributedStringKey.font: viewModel.navBarItemsFontNormal]
         }
+        #else
+            navBar?.barTintColor = viewModel.headerColor
+            navBar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor: textOnAccentedColor, NSAttributedStringKey.font: viewModel.navBarItemsFontNormal]
+        #endif
         cancelButton.setFont(font: viewModel.navBarItemsFontNormal)
         cancelButton.title = viewModel.cancelText
         nextButton.setFont(font: viewModel.navBarItemsFontBold)
