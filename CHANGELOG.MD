@@ -1,3 +1,7 @@
+## 6.8.4
+### Fix
+- Navigation bar for ios15
+- Swift package for xcode 13 
 ## 6.8.3
 ### Fix
 - Crash after animation on table cell reload 
