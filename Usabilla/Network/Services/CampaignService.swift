@@ -21,6 +21,7 @@ protocol CampaignServiceProtocol: SubmissionServiceProtocol {
     var requestBuilder: RequestBuilder.Type { get }
     var httpClient: HTTPClientProtocol.Type { get }
 
+    func getCampaignStatus(withID id: String) -> Promise<HTTPClientResponse>
     func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel>
     func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>>
     func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]>
@@ -61,6 +62,33 @@ class CampaignService: CampaignServiceProtocol {
                     return
                 }
                 reject(error)
+            })
+        }
+    }
+    /// Fetches campaign's status
+    ///
+    /// - Parameters:
+    ///   - request: the URL request with the campaign identifier
+    ///
+    /// - Returns: A promise fulfilled with the campaign
+    func getCampaignStatus(withID id: String) -> Promise<HTTPClientResponse> {
+        let request = requestBuilder.requestGetCampaignStatus(withID: id)
+        return Promise { fulfill, reject in
+            guard let request = request else {
+                PLog("❌ not a valid url parameter")
+                reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
+                return
+            }
+            self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
+                if response.success {
+                    fulfill(response)
+                    return
+                }
+                guard response.error != nil else {
+                    PLog("❌ error missing from response")
+                    reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))
+                    return
+                }
             })
         }
     }

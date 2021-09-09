@@ -14,6 +14,7 @@ class RequestBuilder {
     enum Endpoints: String {
         case passiveForm = "/app/forms"
         case campaignForm = "/forms"
+        case campaignStatus = "/campaigns"
         case campaignsList = "/campaigns?app_id={app_id}"
         case campaignSubmission = "/v2/sdk/campaigns/{campaign_id}/feedback"
         case campaignViews = "/v2/sdk/campaigns/{campaign_id}/views"
@@ -153,6 +154,13 @@ class RequestBuilder {
 
     class func requestGetCampaignForm(withID id: String) -> URLRequest? {
         guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .campaignForm, withURLParam: id) else {
+            return nil
+        }
+        return requestForGet(withURL: url)
+    }
+    
+    class func requestGetCampaignStatus(withID id: String) -> URLRequest? {
+        guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .campaignStatus, withURLParam: id) else {
             return nil
         }
         return requestForGet(withURL: url)

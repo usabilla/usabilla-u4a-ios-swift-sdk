@@ -10,6 +10,7 @@ import Foundation
 
 protocol UBCampaignStoreProtocol {
     func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]>
+    func getCampaignStatus(withID id: String) -> Promise<CampaignModel>
     func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode, maskModel: MaskModel?) -> Promise<FormModel>
 }
 
@@ -87,6 +88,35 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                     return
                 }
                 reject(error)
+            }
+        }
+    }
+
+    /**
+     - returns: a promise of CampaignModel
+     */
+    func getCampaignStatus(withID id: String) -> Promise<CampaignModel> {
+        return Promise { fulfill, reject in
+            self.campaignService.getCampaignStatus(withID: id).then { response -> Void in
+                guard let data = response.data else {
+                    reject(NSError(domain: "no response", code: 0, userInfo: nil))
+                    return
+                }
+                let json = JSON(data)
+                let id = json["id"].stringValue
+                guard let status = CampaignModel.Status(rawValue: json["status"].stringValue) else {
+                    PLog("Fail to get campaign status")
+                    return
+                }
+                guard let localCampaign = UBCampaignDAO.shared.read(id: id) else {
+                    PLog("Fail to read local campaign")
+                    return
+                }
+                localCampaign.status = status
+                fulfill(localCampaign)
+            }.catch { error in
+                reject(error)
+                PLog(error)
             }
         }
     }

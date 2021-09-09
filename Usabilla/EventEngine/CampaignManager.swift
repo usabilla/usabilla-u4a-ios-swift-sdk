@@ -31,38 +31,39 @@ class CampaignManager {
     func closeCampaign() -> Bool {
         return CampaignWindow.shared.removeCampaign()
     }
-
     // customVariables sent from the interface are the activeStatuses used inside our SDK.
     func sendEvent(event: String, customVariables: [String: String], logId: String? = nil) {
-        let (respondingCampaigns, triggeredCampaigns) = eventEngine.sendEvent(event, activeStatuses: filterActiveStatuses(fromCustomVariables: customVariables))
+        fetchCampaignStatusForEventEngine(eventName: event) {
+            let (respondingCampaigns, triggeredCampaigns) = self.eventEngine.sendEvent(event, activeStatuses: self.filterActiveStatuses(fromCustomVariables: customVariables))
 
-        // Persist all updated campaigns
-        respondingCampaigns.forEach {
-            UBCampaignDAO.shared.create($0)
-        }
-
-        // Display first triggered campaign that can be displayed
-        let displayableCampaign = triggeredCampaigns.sorted {
-            $0.createdAt < $1.createdAt
-        }.first {
-            $0.canBeDisplayed == true
-        }
-
-        guard let campaignToDisplay = displayableCampaign else {
-            if telemetric != nil {
-                if triggeredCampaigns.count == 0 {
-                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
-                } else {
-                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
-                }
-                telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
-                telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
-                telemetric?.submitLogData()
-                telemetric?.submitLogData()
+            // Persist all updated campaigns
+            respondingCampaigns.forEach {
+                UBCampaignDAO.shared.create($0)
             }
-            return
+
+            // Display first triggered campaign that can be displayed
+            let displayableCampaign = triggeredCampaigns.sorted {
+                $0.createdAt < $1.createdAt
+            }.first {
+                $0.canBeDisplayed == true
+            }
+
+            guard let campaignToDisplay = displayableCampaign else {
+                if self.telemetric != nil {
+                    if triggeredCampaigns.count == 0 {
+                        self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.noCampaingFound, logLevel: .methods)
+                    } else {
+                        self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.errM, value: TelemetryConstants.campaingAlraedyTriggered, logLevel: .methods)
+                    }
+                    self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
+                    self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+                    self.telemetric?.submitLogData()
+                    self.telemetric?.submitLogData()
+                }
+                return
+            }
+            self.displayCampaign(campaignToDisplay, withUserContext: customVariables, logId: logId)
         }
-        displayCampaign(campaignToDisplay, withUserContext: customVariables, logId: logId)
     }
 
     func displayCampaign(_ campaign: CampaignModel, withUserContext userContext: [String: Any], logId: String? = nil) {
@@ -142,6 +143,32 @@ class CampaignManager {
         campaignStore.getCampaigns(withAppID: appID).then { campaigns in
             self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
             completion?()
+        }
+    }
+
+    /*
+     *  Any given send event must check the status
+     *  check if campaign exist in event engine & status is not active
+     *  check if campaign doesn't exist in event engine & status is active
+     */
+    private func fetchCampaignStatusForEventEngine(eventName: String, completion: (() -> Void)? = nil) {
+        let localCampaigns = UBCampaignDAO.shared.readAll()
+        let event = Event(name: eventName)
+        let campaignThatResponds = localCampaigns.filter {
+            $0.respondToEvents(event: event)
+        }
+        campaignThatResponds.forEach {
+            campaignStore.getCampaignStatus(withID: $0.identifier).then { campaign in
+                let campaignEvent = self.eventEngine.campaigns.filter { $0.identifier == campaign.identifier}
+                if campaignEvent.count != 0 && campaign.status != .active {
+                    self.eventEngine.campaigns.removeAll { (item) -> Bool in
+                        item.identifier == campaign.identifier
+                    }
+                } else if campaignEvent.count == 0 && campaign.status == .active {
+                    self.eventEngine.campaigns.append(campaign)
+                }
+                completion?()
+            }
         }
     }
 
