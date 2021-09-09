@@ -138,10 +138,20 @@ class UBCampaignServiceMock: CampaignServiceProtocol {
     var incrementCampaignSucceed = true
     let requestBuilder: RequestBuilder.Type
     let httpClient: HTTPClientProtocol.Type
+    var campaignResponse: HTTPClientResponse?
 
     init(requestBuilder: RequestBuilder.Type = RequestBuilder.self, httpClient: HTTPClientProtocol.Type = HTTPClient.self) {
         self.requestBuilder = requestBuilder
         self.httpClient = httpClient
+    }
+
+    func getCampaignStatus(withID id: String) -> Promise<HTTPClientResponse> {
+        return Promise { fulfill, reject in
+            if campaignResponse != nil {
+                return fulfill(campaignResponse!)
+            }
+            reject(NSError(domain: "", code: 500, userInfo: nil))
+        }
     }
 
     func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel> {

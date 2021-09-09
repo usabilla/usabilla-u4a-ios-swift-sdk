@@ -19,7 +19,7 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
     var onSaveCalled: ((CampaignModel) -> Void)?
     var form: FormModel?
     var getCampaignFormHasBeenCalled: Bool = false
-    
+
     func getCampaigns(withAppID appID: String) -> Promise<[CampaignModel]> {
         getCampaignsHasBeenCalled = true
         return Promise { fulfill, _ in
@@ -27,6 +27,11 @@ class CampaignStoreMock: UBCampaignStoreProtocol {
         }
     }
 
+    func getCampaignStatus(withID id: String) -> Promise<CampaignModel> {
+        return Promise { fulfill, _ in
+            fulfill(CampaignModel(id: id, targeting: UBMock.mockTargeting, formID: "", targetingID: "", maximumDisplays: 0, numberOfTimesTriggered: 0, status: .active, createdAt: Date()))
+        }
+    }
     func getCampaignForm(withFormID formID: String, theme: UsabillaTheme, position: IntroPageDisplayMode, maskModel: MaskModel?) -> Promise<FormModel> {
         return Promise { fulfill, reject in
             getCampaignFormHasBeenCalled = true
