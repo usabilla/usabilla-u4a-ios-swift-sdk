@@ -101,7 +101,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         }
 
         SwiftEventBus.onMainThread(self, name: "kill") { _ in
-            SwiftEventBus.unregister(self)
+            SwiftEventBus.unregister(self, name: "kill")
         }
         applyCustomisations()
 
