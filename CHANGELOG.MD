@@ -1,3 +1,11 @@
+## 6.8.5
+### Fix
+- screenshot annotation issue for flutter-ios
+- show active campaigns only
+
+ ### Update
+- build with Xcode 13.0
+- support accessbility larger texts for campaign banner cta buttons
 ## 6.8.4
 ### Fix
 - Navigation bar for ios15
