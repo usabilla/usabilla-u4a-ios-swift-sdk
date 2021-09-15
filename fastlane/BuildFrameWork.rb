@@ -8,7 +8,7 @@ private_lane :buildForXcodeVersion do |options|
 
 	if version == nil	
 		UI.message("'version' not specified in 'buildForXcodeVersion")
-	elsif version.include? "12"
+	elsif version.include?("12") || version.include?("13")
 		archVariable = "EXCLUDED_ARCHS=arm64"
 	else
 		archVariable = ""
@@ -90,7 +90,7 @@ private_lane :systemTestsAfterBuild do |options|
 
 	if version == nil	
 		UI.message("'version' not specified in 'systemTestsAfterBuild")
-	elsif version.include? "12"
+    elsif version.include?("12") || version.include?("13")
 		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
 	else
 		archVariable = ""
@@ -124,7 +124,7 @@ private_lane :validateSDK do |options|
 
 	if version == nil	
 		UI.message("'version' not specified in 'validateSDK")
-	elsif version.include? "12"
+    elsif version.include?("12") || version.include?("13")
 		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
 	else
 		archVariable = ""

@@ -79,6 +79,7 @@ run-unit-test:
     - derivedData/
   tags:
     - sdk
+  allow_failure: true
 
 build:
   stage: buildAll-and-GenerateArtefacts
