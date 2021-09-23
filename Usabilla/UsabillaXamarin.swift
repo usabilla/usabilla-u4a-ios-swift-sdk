@@ -266,6 +266,15 @@ public protocol UsabillaDelegate: class {
      
      */
     func campaignDidClose(withFeedbackResult result: Any, isRedirectToAppStoreEnabled: Bool)
+
+    /**
+     
+     This method is called once a campaign or feedback Form is being submittted
+     
+     - Parameter userResponse: Dictionary<String, Any> containing the answers submitted by the user
+     
+     */
+    func feedbackResultSubmitted(userResponse: Data)
 }
 
 public extension UsabillaDelegate {
@@ -275,4 +284,5 @@ public extension UsabillaDelegate {
     func formWillClose(form: UINavigationController, formID: String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Bool) { }
     func campaignDidClose(withFeedbackResult result: Any, isRedirectToAppStoreEnabled: Bool) {
     }
+    func feedbackResultSubmitted(userResponse: Data) {}
 }
