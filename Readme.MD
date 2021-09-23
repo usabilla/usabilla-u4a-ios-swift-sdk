@@ -83,11 +83,11 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.8.4'
+pod 'Usabilla', '~> 6.8.5'
 
 End
 ```
-The current pod is build for Xcode 12.4 and now uses xcframework.
+The current pod is build for Xcode 13.0 and now uses xcframework.
 
 For older Xcode version, use:
  
@@ -114,7 +114,7 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 12.4.
+The current Carthage release is build for Xcode 13.0.
 
 For older Xcode version, use:
  
