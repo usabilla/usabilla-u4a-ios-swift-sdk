@@ -56,7 +56,7 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
 - Xcode 11+   
 - Swift 4.0+
 
-**Note :  v`6.8.1`  can be used for `Xcode 10.3`**
+**Note :  v`6.8.5` can be used for `Xcode 10.3.`**
 
 ## Installation
 
@@ -83,7 +83,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.8.5'
+pod 'Usabilla', '~> 6.8.6'
 
 End
 ```
@@ -94,7 +94,7 @@ For other Xcode version, use:
 ```ruby
 pod 'Usabilla', :podspec => 'https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.podspec'
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13`, `Xcode-12.4`, `Xcode-11.7`, `Xcode-11.3.1` , `Xcode-10.3`.
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13`, `Xcode-12.4`, `Xcode-11.7`, `Xcode-11.3.1`.
 
 Then, run the following command:
 
@@ -121,7 +121,7 @@ For other Xcode version, use:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13`, `Xcode-12.4`, `Xcode-11.7`, `Xcode-11.3.1`, `Xcode-10.3`.
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13`, `Xcode-12.4`, `Xcode-11.7`, `Xcode-11.3.1`.
 
 ### Manual
 
