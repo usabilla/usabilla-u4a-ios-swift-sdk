@@ -218,13 +218,12 @@ private_lane :copyToCarthageFromBuild do |options|
 end
 
 desc "Copy artefacts to the Swift Package directory"
-private_lane :copyToSwiftPackage do
-	sh("find \"#{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
+private_lane :copyToSwiftPackage do |options|
+	version = options[:version]
 	sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-	sh("cp -rf #{projectDirectory}XcodeBuilds/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-	sh("cd #{projectDirectory}XcodeBuilds/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework")
-	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/xcframeworks/UsabillaXCFramework.zip | xargs")
-	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt")
+	sh("cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
+	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip | xargs")
+	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/CHECKSUM.txt")
 end
 
 desc "Copy artefacts to the github public repository and create draft release"
@@ -242,11 +241,10 @@ private_lane :createAReleaseDraft do |options|
 	UI.message("Creating for #{tag}")
 	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/UsabillaCarthage.zip"
 	pods = "XcodeBuilds/Xcode-#{xcode}/Pods/UsabillaPods.zip"
-	assets = ["#{carthage}","#{pods}"]
+	xcframework = "XcodeBuilds/Xcode-#{xcode}/xcframeworks/UsabillaXCFramework.zip"
+	assets = ["#{carthage}","#{pods}","#{xcframework}"]
 	if branch == "master"
         tag = "#{version}"
-		xcframework = "XcodeBuilds/xcframeworks/UsabillaXCFramework.zip"
-		assets = ["#{carthage}","#{pods}","#{xcframework}"]
 	end
     name = "v#{tag}"
 	git_token = "893008a57b830b2cd3f4d6d337c86fafb7d0c6b6"
@@ -260,7 +258,7 @@ private_lane :createAReleaseDraft do |options|
 	source_url = "https://#{repo_path}/releases/download/#{name}/UsabillaCarthage.zip"
 	
 	sh("mkdir -p #{projectDirectory}publicrepo && cd #{projectDirectory}publicrepo && git clone #{git_url} && cd #{repo_dir} &&
-	if [[ #{branch} == 'master' ]]; then checksum=`cat #{projectDirectory}XcodeBuilds/xcframeworks/CHECKSUM.txt` &&
+	if [[ #{branch} == 'master' ]]; then checksum=`cat #{projectDirectory}XcodeBuilds/Xcode-#{xcode}/xcframeworks/CHECKSUM.txt` &&
 		sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
 	else git checkout --track origin/#{branch}; fi &&
 	cat #{projectDirectory}changelog ./CHANGELOG.MD > temp && mv temp ./CHANGELOG.MD && cat #{projectDirectory}PublicReadme.md  > ./Readme.MD &&

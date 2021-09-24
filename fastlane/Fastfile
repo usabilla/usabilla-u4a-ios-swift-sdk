@@ -46,7 +46,6 @@ platform :ios do
 	#used in STAGE  "Generate Artefacts"
 	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
 	lane :buildAllAndGenerateArtefacts do
-		export_xcframework
 		versions = checkXcodeVersions
 		versions.each do |version|
 			#first remove previous builds
@@ -55,6 +54,10 @@ platform :ios do
 				project_directory: projectDirectory
 			)
 			# Build for xcode version
+			buildXCFrameworkForXcodeVersion(
+				xcode: version
+			)
+
 			buildForXcodeVersion(
 				version: version,
 				project_directory: projectDirectory
@@ -187,12 +190,10 @@ platform :ios do
 	lane :createDraftRelease do
 		versions = xcodeVersions
 		version = get_version_number(xcodeproj: "Usabilla.xcodeproj", target: "Usabilla")
-		first = true
 		versions.each do |xcode|
 			branch = "Xcode-#{xcode}"
-			if first
+			if xcode == masterXcodeVersion
 				branch = "master"
-				first = false
 			end
 			buildConfig = getBuildConfigs()
 			createAReleaseDraft(version: version, xcode: xcode, branch: branch)
@@ -247,16 +248,22 @@ platform :ios do
 	end
 
 	desc "Export xcframework"
-	lane :export_xcframework do
-		sh("rm -rf #{projectDirectory}XcodeBuilds/xcframeworks")
+	lane :buildXCFrameworkForXcodeVersion do |options|
+		version = options[:xcode]
+		sh("rm -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks")
+		xcversion(version: version)
 		create_xcframework(
 			workspace: 'Usabilla.xcworkspace',
 			scheme: 'Usabilla',
     		include_bitcode: true,
             include_debug_symbols: true,
     		destinations: ['iOS'],
-    		xcframework_output_directory: 'XcodeBuilds/xcframeworks'
+    		xcframework_output_directory: "XcodeBuilds/Xcode-#{version}/xcframeworks"
 		)
-		copyToSwiftPackage
+		sh("find \"#{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
+		sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework")
+		if version == masterXcodeVersion
+			copyToSwiftPackage(version: version)
+		end
 	end
 end
