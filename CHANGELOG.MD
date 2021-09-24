@@ -1,3 +1,7 @@
+## 6.8.6
+### Update
+- build with Xcode 12.5.1 ( for supporting CI/CD process which doesn't migrate to xcode 13)
+- temporarily removed xcode 13.0 from cocoapods but can be used from git podspec.
 ## 6.8.5
 ### Fix
 - screenshot annotation issue for flutter-ios
