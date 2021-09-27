@@ -217,6 +217,34 @@ trigger-preview-app:
   only:
     - /^(develop|hotfix|release).*$/
     
+trigger-lifecycle-app:
+  stage: deploy
+  script:
+    - echo "Build Lifecycle App"
+    - >
+      curl -X POST
+      -F token=$TOKEN_TRIGGER_LIFECYCLE_APP
+      -F ref=main
+      -F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID"
+      -F "variables[SDK_BRANCH]=$CI_COMMIT_REF_NAME"
+      -F "variables[SDK_FILENAME]=XcodeBuilds/master/UsabillaXCFramework.zip"
+      -F "variables[SDK_JOB_ID]=${CI_JOB_ID}"
+      https://gitlab.usabilla.net/api/v4/projects/320/trigger/pipeline
+  cache:
+    key: sdk-cache
+    paths:
+    - Carthage/
+    - vendor/
+    - derivedData/
+    - XcodeBuilds/
+  artifacts:
+    paths:
+    - ./XcodeBuilds/master/UsabillaXCFramework.zip
+  tags:
+    - sdk
+  only:
+    - /^release\/v[0-9]+\.[0-9]+\.[0-9]+.*/
+
 create-release-versions:
   stage: release
   script:
