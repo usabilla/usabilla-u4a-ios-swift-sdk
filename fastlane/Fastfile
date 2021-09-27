@@ -260,10 +260,6 @@ platform :ios do
     		destinations: ['iOS'],
     		xcframework_output_directory: "XcodeBuilds/Xcode-#{version}/xcframeworks"
 		)
-		sh("find \"#{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
-		sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework")
-		if version == masterXcodeVersion
-			copyToSwiftPackage(version: version)
-		end
+		copyToSwiftPackage(version: version)
 	end
 end

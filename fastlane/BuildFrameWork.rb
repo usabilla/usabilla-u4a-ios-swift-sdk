@@ -220,10 +220,18 @@ end
 desc "Copy artefacts to the Swift Package directory"
 private_lane :copyToSwiftPackage do |options|
 	version = options[:version]
-	sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-	sh("cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-	CHECKSUM = sh("cd #{projectDirectory}UsabillaSDK && swift package compute-checksum #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip | xargs")
+	sh("find \"#{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
+	sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework")
+	# Not needed anymore, sha is used instead of compute-checksum
+	# CHECKSUM = sh("swift package --package-path #{projectDirectory}UsabillaSDK compute-checksum #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip | xargs")
+	CHECKSUM = sh("shasum -a 256  #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip | sed 's/ .*//'")
 	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/CHECKSUM.txt")
+	if version == masterXcodeVersion
+		sh("mkdir -p #{projectDirectory}XcodeBuilds/master && cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip #{projectDirectory}XcodeBuilds/master/UsabillaXCFramework.zip")
+		# Not needed anymore, sha is used instead of compute-checksum
+		# sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
+		# sh("cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
+	end
 end
 
 desc "Copy artefacts to the github public repository and create draft release"
@@ -260,7 +268,10 @@ private_lane :createAReleaseDraft do |options|
 	sh("mkdir -p #{projectDirectory}publicrepo && cd #{projectDirectory}publicrepo && git clone #{git_url} && cd #{repo_dir} &&
 	if [[ #{branch} == 'master' ]]; then checksum=`cat #{projectDirectory}XcodeBuilds/Xcode-#{xcode}/xcframeworks/CHECKSUM.txt` &&
 		sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
-	else git checkout --track origin/#{branch}; fi &&
+	else git checkout --track origin/#{branch}  &&
+		checksum=`cat #{projectDirectory}XcodeBuilds/Xcode-#{xcode}/xcframeworks/CHECKSUM.txt` &&
+		sed -i '' -e '/version =/ s/= .*/= \"#{tag}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
+	fi &&
 	cat #{projectDirectory}changelog ./CHANGELOG.MD > temp && mv temp ./CHANGELOG.MD && cat #{projectDirectory}PublicReadme.md  > ./Readme.MD &&
 	sed -i '' -e '/version =/ s/= .*/= \"#{tag}\"/' ./Usabilla.podspec && jq '{ \"#{version}\" : \"#{source_url}\" } + .' Usabilla.json >tmp.json &&
 	mv tmp.json Usabilla.json &&
