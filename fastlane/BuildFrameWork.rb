@@ -222,15 +222,11 @@ private_lane :copyToSwiftPackage do |options|
 	version = options[:version]
 	sh("find \"#{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
 	sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks && zip -r ./UsabillaXCFramework.zip ./Usabilla.xcframework")
-	# Not needed anymore, sha is used instead of compute-checksum
-	# CHECKSUM = sh("swift package --package-path #{projectDirectory}UsabillaSDK compute-checksum #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip | xargs")
 	CHECKSUM = sh("shasum -a 256  #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip | sed 's/ .*//'")
 	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/CHECKSUM.txt")
+	sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/ && find . -not -name UsabillaXCFramework.zip -not -name CHECKSUM.txt -delete")
 	if version == masterXcodeVersion
 		sh("mkdir -p #{projectDirectory}XcodeBuilds/master && cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/UsabillaXCFramework.zip #{projectDirectory}XcodeBuilds/master/UsabillaXCFramework.zip")
-		# Not needed anymore, sha is used instead of compute-checksum
-		# sh("rm -rf #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
-		# sh("cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks/Usabilla.xcframework #{projectDirectory}UsabillaSDK/Usabilla.xcframework")
 	end
 end
 
@@ -248,9 +244,8 @@ private_lane :createAReleaseDraft do |options|
     tag = "#{version}-Xcode-#{xcode}"
 	UI.message("Creating for #{tag}")
 	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/UsabillaCarthage.zip"
-	pods = "XcodeBuilds/Xcode-#{xcode}/Pods/UsabillaPods.zip"
 	xcframework = "XcodeBuilds/Xcode-#{xcode}/xcframeworks/UsabillaXCFramework.zip"
-	assets = ["#{carthage}","#{pods}","#{xcframework}"]
+	assets = ["#{carthage}","#{xcframework}"]
 	if branch == "master"
         tag = "#{version}"
 	end
