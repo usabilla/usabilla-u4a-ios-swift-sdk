@@ -151,7 +151,7 @@ class FormViewController: UIViewController {
         let textOnAccentedColor = viewModel.textOnAccentColor
         let navBar = navigationController?.navigationBar
         navBar?.tintColor = textOnAccentedColor
-        #if XCODE1300
+        #if XCODE1200 || XCODE1300
         if #available(iOS 15.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
