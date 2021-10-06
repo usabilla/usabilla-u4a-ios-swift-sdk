@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -717,6 +717,210 @@
 		F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
 		F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
 		F26E6C5A2379918B00BAE436 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
+		F274EB80270CADA600AA69B8 /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
+		F274EB81270CADA600AA69B8 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
+		F274EB82270CADA600AA69B8 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
+		F274EB83270CADA600AA69B8 /* UBSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */; };
+		F274EB84270CADA600AA69B8 /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
+		F274EB85270CADA600AA69B8 /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
+		F274EB86270CADA600AA69B8 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
+		F274EB87270CADA600AA69B8 /* NPSFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38471F68867600F0DFC6 /* NPSFieldModel.swift */; };
+		F274EB88270CADA600AA69B8 /* LeafEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafEvent.swift */; };
+		F274EB89270CADA600AA69B8 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
+		F274EB8A270CADA600AA69B8 /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
+		F274EB8B270CADA600AA69B8 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
+		F274EB8C270CADA600AA69B8 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
+		F274EB8D270CADA600AA69B8 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormViewController.swift */; };
+		F274EB8E270CADA600AA69B8 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
+		F274EB8F270CADA600AA69B8 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */; };
+		F274EB90270CADA600AA69B8 /* UBEndPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264111E92865000A0533C /* UBEndPageViewModel.swift */; };
+		F274EB91270CADA600AA69B8 /* MoodComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */; };
+		F274EB92270CADA600AA69B8 /* PickerComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44E1E78366A00B3E4FE /* PickerComponentViewModel.swift */; };
+		F274EB93270CADA600AA69B8 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
+		F274EB94270CADA600AA69B8 /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
+		F274EB95270CADA600AA69B8 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
+		F274EB96270CADA600AA69B8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C2C80B1F39EB9E0082A1B9 /* Date.swift */; };
+		F274EB97270CADA600AA69B8 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
+		F274EB98270CADA600AA69B8 /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B771E85187000741E10 /* UBBannerDisplay.swift */; };
+		F274EB99270CADA600AA69B8 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F149DE1CE0B8D000D56B29 /* Reachability.swift */; };
+		F274EB9A270CADA600AA69B8 /* SliderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */; };
+		F274EB9B270CADA600AA69B8 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */; };
+		F274EB9C270CADA600AA69B8 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
+		F274EB9D270CADA600AA69B8 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
+		F274EB9E270CADA600AA69B8 /* OptionsFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8601E29011E00AC895C /* OptionsFieldModel.swift */; };
+		F274EB9F270CADA600AA69B8 /* NPSToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4C7621F69DD490043A844 /* NPSToolTip.swift */; };
+		F274EBA0270CADA600AA69B8 /* CheckBoxComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */; };
+		F274EBA1270CADA600AA69B8 /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
+		F274EBA2270CADA600AA69B8 /* SliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699C1E76B4B30078E3B3 /* SliderComponent.swift */; };
+		F274EBA3270CADA600AA69B8 /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
+		F274EBA4270CADA600AA69B8 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
+		F274EBA5270CADA600AA69B8 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C3F9B1EAA14A000B0B190 /* HTTPClientProtocol.swift */; };
+		F274EBA6270CADA600AA69B8 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
+		F274EBA7270CADA600AA69B8 /* RootCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CC1CDCDF86004EC234 /* RootCellView.swift */; };
+		F274EBA8270CADA600AA69B8 /* UBFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */; };
+		F274EBA9270CADA600AA69B8 /* SequenceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A91E8BB33E002962A3 /* SequenceRule.swift */; };
+		F274EBAA270CADA600AA69B8 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
+		F274EBAB270CADA600AA69B8 /* EmailFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */; };
+		F274EBAC270CADA600AA69B8 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
+		F274EBAD270CADA600AA69B8 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */; };
+		F274EBAE270CADA600AA69B8 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
+		F274EBAF270CADA600AA69B8 /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
+		F274EBB0270CADA600AA69B8 /* MoodComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669991E76B4B30078E3B3 /* MoodComponent.swift */; };
+		F274EBB1270CADA600AA69B8 /* UBFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CC0161E92565100205D9D /* UBFormViewModel.swift */; };
+		F274EBB2270CADA600AA69B8 /* BaseTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */; };
+		F274EBB3270CADA600AA69B8 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
+		F274EBB4270CADA600AA69B8 /* EmailComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */; };
+		F274EBB5270CADA600AA69B8 /* SwiftCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */; };
+		F274EBB6270CADA600AA69B8 /* CampaignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */; };
+		F274EBB7270CADA600AA69B8 /* RadioComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */; };
+		F274EBB8270CADA600AA69B8 /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */; };
+		F274EBB9270CADA600AA69B8 /* PassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */; };
+		F274EBBA270CADA600AA69B8 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B21E76D8E30078E3B3 /* PageViewModel.swift */; };
+		F274EBBB270CADA600AA69B8 /* UBCampaignFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */; };
+		F274EBBC270CADA600AA69B8 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
+		F274EBBD270CADA600AA69B8 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E181CD76708002F501E /* DeviceInfo.swift */; };
+		F274EBBE270CADA600AA69B8 /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
+		F274EBBF270CADA600AA69B8 /* FieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C31CDCDF86004EC234 /* FieldFactory.swift */; };
+		F274EBC0270CADA600AA69B8 /* UBToastPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BFD4261EFBDF0200AD47AE /* UBToastPageViewModel.swift */; };
+		F274EBC1270CADA600AA69B8 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
+		F274EBC2270CADA600AA69B8 /* PercentageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */; };
+		F274EBC3270CADA600AA69B8 /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C01E36430D00B4A4B9 /* SubmissionManager.swift */; };
+		F274EBC4270CADA600AA69B8 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
+		F274EBC5270CADA600AA69B8 /* ScreenshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA021CDCE003004EC234 /* ScreenshotModel.swift */; };
+		F274EBC6270CADA600AA69B8 /* RadioFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */; };
+		F274EBC7270CADA600AA69B8 /* UBFeaturebillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6DCEA238541DA0076319E /* UBFeaturebillaManager.swift */; };
+		F274EBC8270CADA600AA69B8 /* TextAreaComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */; };
+		F274EBC9270CADA600AA69B8 /* EmailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669971E76B4B30078E3B3 /* EmailComponent.swift */; };
+		F274EBCA270CADA600AA69B8 /* HeaderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */; };
+		F274EBCB270CADA600AA69B8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
+		F274EBCC270CADA600AA69B8 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
+		F274EBCD270CADA600AA69B8 /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */; };
+		F274EBCE270CADA600AA69B8 /* UBCampaignStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EE6F1EA0E6AF00241D44 /* UBCampaignStore.swift */; };
+		F274EBCF270CADA600AA69B8 /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CA1CDCDF86004EC234 /* ParagraphFieldModel.swift */; };
+		F274EBD0270CADA600AA69B8 /* UBAlertDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B831E8518E600741E10 /* UBAlertDisplay.swift */; };
+		F274EBD1270CADA600AA69B8 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A81E8BB33E002962A3 /* Rules.swift */; };
+		F274EBD2270CADA600AA69B8 /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */; };
+		F274EBD3270CADA600AA69B8 /* HeaderFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */; };
+		F274EBD4270CADA600AA69B8 /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
+		F274EBD5270CADA600AA69B8 /* UBFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */; };
+		F274EBD6270CADA600AA69B8 /* PoweredByLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */; };
+		F274EBD7270CADA600AA69B8 /* UBEndPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264131E92867A00A0533C /* UBEndPageModel.swift */; };
+		F274EBD8270CADA600AA69B8 /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
+		F274EBD9270CADA600AA69B8 /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
+		F274EBDA270CADA600AA69B8 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
+		F274EBDB270CADA600AA69B8 /* ScreenshotComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */; };
+		F274EBDC270CADA600AA69B8 /* UBCampaignDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */; };
+		F274EBDD270CADA600AA69B8 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
+		F274EBDE270CADA600AA69B8 /* BaseStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */; };
+		F274EBDF270CADA600AA69B8 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0A1E89184E00928F54 /* HeaderComponent.swift */; };
+		F274EBE0270CADA600AA69B8 /* BaseEditableStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46D1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift */; };
+		F274EBE1270CADA600AA69B8 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F2C3B2084ED7D00D77F37 /* UILabel.swift */; };
+		F274EBE2270CADA600AA69B8 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
+		F274EBE4270CADA600AA69B8 /* ShowHideRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4F1CD76717002F501E /* ShowHideRule.swift */; };
+		F274EBE5270CADA600AA69B8 /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
+		F274EBE6270CADA600AA69B8 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
+		F274EBE7270CADA600AA69B8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
+		F274EBE8270CADA600AA69B8 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433794361E8A6C0100965EC8 /* Logging.swift */; };
+		F274EBE9270CADA600AA69B8 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
+		F274EBEA270CADA600AA69B8 /* IntFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85E1E2900B300AC895C /* IntFieldModel.swift */; };
+		F274EBEB270CADA600AA69B8 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */; };
+		F274EBEC270CADA600AA69B8 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6F0022DFBE63007FEE38 /* UIViewController.swift */; };
+		F274EBED270CADA600AA69B8 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43552B231F8CE82500BE657A /* UIBarButtonItem.swift */; };
+		F274EBEE270CADA600AA69B8 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
+		F274EBF0270CADA600AA69B8 /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
+		F274EBF1270CADA600AA69B8 /* UBImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */; };
+		F274EBF2270CADA600AA69B8 /* RepetitionDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */; };
+		F274EBF3270CADA600AA69B8 /* OrRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A71E8BB33E002962A3 /* OrRule.swift */; };
+		F274EBF4270CADA600AA69B8 /* CheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */; };
+		F274EBF5270CADA600AA69B8 /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
+		F274EBF6270CADA600AA69B8 /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
+		F274EBF7270CADA600AA69B8 /* BaseIntComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */; };
+		F274EBF8270CADA600AA69B8 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B41E76D8EE0078E3B3 /* CellViewModel.swift */; };
+		F274EBF9270CADA600AA69B8 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
+		F274EBFA270CADA600AA69B8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EC1E37B5C900A97F1D /* UIColor.swift */; };
+		F274EBFB270CADA600AA69B8 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EE1E37B61000A97F1D /* UIDevice.swift */; };
+		F274EBFC270CADA600AA69B8 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageViewController.swift */; };
+		F274EBFD270CADA600AA69B8 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C91CDCDF86004EC234 /* PageModel.swift */; };
+		F274EBFE270CADA600AA69B8 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
+		F274EBFF270CADA600AA69B8 /* FeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29245072375A0F500401ADF /* FeatureModel.swift */; };
+		F274EC00270CADA600AA69B8 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73BD1F97748200447B2C /* UIImageView.swift */; };
+		F274EC01270CADA600AA69B8 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
+		F274EC02270CADA600AA69B8 /* UBFileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */; };
+		F274EC03270CADA600AA69B8 /* Decorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25AF1E8BB347002962A3 /* Decorator.swift */; };
+		F274EC04270CADA600AA69B8 /* UsabillaTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; };
+		F274EC05270CADA600AA69B8 /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
+		F274EC06270CADA600AA69B8 /* UBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F11E97BE9B00092977 /* UBDAO.swift */; };
+		F274EC07270CADA600AA69B8 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
+		F274EC08270CADA600AA69B8 /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669961E76B4B30078E3B3 /* ComponentFactory.swift */; };
+		F274EC09270CADA600AA69B8 /* UBSADragableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */; };
+		F274EC0A270CADA600AA69B8 /* TextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */; };
+		F274EC0B270CADA600AA69B8 /* FeaturebillaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450A2379821900401ADF /* FeaturebillaStore.swift */; };
+		F274EC0C270CADA600AA69B8 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D522EE428200E198A7 /* ColorPickerView.swift */; };
+		F274EC0D270CADA600AA69B8 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		F274EC0E270CADA600AA69B8 /* PassiveFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EBF1E71B57500E3011A /* PassiveFormController.swift */; };
+		F274EC0F270CADA600AA69B8 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
+		F274EC10270CADA600AA69B8 /* ParagraphComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */; };
+		F274EC11270CADA600AA69B8 /* BaseCheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */; };
+		F274EC12270CADA600AA69B8 /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
+		F274EC13270CADA600AA69B8 /* UBCampaignFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */; };
+		F274EC14270CADA600AA69B8 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C51CDCDF86004EC234 /* FormModel.swift */; };
+		F274EC15270CADA600AA69B8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
+		F274EC16270CADA600AA69B8 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
+		F274EC17270CADA600AA69B8 /* RadioComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699B1E76B4B30078E3B3 /* RadioComponent.swift */; };
+		F274EC18270CADA600AA69B8 /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669911E76B4B30078E3B3 /* BaseComponent.swift */; };
+		F274EC19270CADA600AA69B8 /* IntroPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA21E82C02000601F3D /* IntroPageModel.swift */; };
+		F274EC1A270CADA600AA69B8 /* BaseImageComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */; };
+		F274EC1B270CADA600AA69B8 /* UBAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8DDD1FB5CB5700AA51DC /* UBAccessibility.swift */; };
+		F274EC1C270CADA600AA69B8 /* BaseTextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */; };
+		F274EC1D270CADA600AA69B8 /* TextFieldComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */; };
+		F274EC1E270CADA600AA69B8 /* PickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669951E76B4B30078E3B3 /* PickerComponent.swift */; };
+		F274EC1F270CADA600AA69B8 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
+		F274EC20270CADA600AA69B8 /* TargetingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5780D1E1F22073B0016C519 /* TargetingFactory.swift */; };
+		F274EC21270CADA600AA69B8 /* CampaignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */; };
+		F274EC22270CADA600AA69B8 /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
+		F274EC23270CADA600AA69B8 /* UBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CA69A2221EEAA400D8D327 /* UBConstants.swift */; };
+		F274EC24270CADA600AA69B8 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
+		F274EC25270CADA600AA69B8 /* ComponentViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */; };
+		F274EC26270CADA600AA69B8 /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */; };
+		F274EC27270CADA600AA69B8 /* ParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */; };
+		F274EC28270CADA600AA69B8 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8621E2901A700AC895C /* FieldModel.swift */; };
+		F274EC29270CADA600AA69B8 /* UBIntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* UBIntroOutroView.swift */; };
+		F274EC2A270CADA600AA69B8 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
+		F274EC2B270CADA600AA69B8 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
+		F274EC2C270CADA600AA69B8 /* MaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B7E7C225783BE00088CB8 /* MaskModel.swift */; };
+		F274EC2D270CADA600AA69B8 /* MoodFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C71CDCDF86004EC234 /* MoodFieldModel.swift */; };
+		F274EC2E270CADA600AA69B8 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
+		F274EC2F270CADA600AA69B8 /* UBAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B851E851EF300741E10 /* UBAlertPresenter.swift */; };
+		F274EC30270CADA600AA69B8 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
+		F274EC31270CADA600AA69B8 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
+		F274EC32270CADA600AA69B8 /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
+		F274EC33270CADA600AA69B8 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D922DCB61800CB95A9 /* Transitions.swift */; };
+		F274EC34270CADA600AA69B8 /* LeafPassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */; };
+		F274EC35270CADA600AA69B8 /* TextAreaFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */; };
+		F274EC36270CADA600AA69B8 /* PickerFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C01CDCDF86004EC234 /* PickerFieldModel.swift */; };
+		F274EC37270CADA600AA69B8 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B781E85187000741E10 /* UBBannerPresenter.swift */; };
+		F274EC38270CADA600AA69B8 /* CampaingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */; };
+		F274EC39270CADA600AA69B8 /* JSONFormParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1A1CD76708002F501E /* JSONFormParser.swift */; };
+		F274EC3A270CADA600AA69B8 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
+		F274EC3B270CADA600AA69B8 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */; };
+		F274EC3C270CADA600AA69B8 /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
+		F274EC3D270CADA600AA69B8 /* UBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FFEA021AD5318004034A5 /* UBNavigationController.swift */; };
+		F274EC3E270CADA600AA69B8 /* UBRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4E1CD76717002F501E /* UBRule.swift */; };
+		F274EC3F270CADA600AA69B8 /* UBSAPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */; };
+		F274EC40270CADA600AA69B8 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
+		F274EC41270CADA600AA69B8 /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
+		F274EC42270CADA600AA69B8 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
+		F274EC43270CADA600AA69B8 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
+		F274EC44270CADA600AA69B8 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
+		F274EC47270CADA600AA69B8 /* Usabilla.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* Usabilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F274EC49270CADA600AA69B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
+		F274EC4A270CADA600AA69B8 /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
+		F274EC4B270CADA600AA69B8 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
+		F274EC4C270CADA600AA69B8 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
+		F274EC4D270CADA600AA69B8 /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
+		F274EC56270CAF6100AA69B8 /* UsabillaCSDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274EC55270CAF6100AA69B8 /* UsabillaCSDebug.swift */; };
+		F274EC58270CAFB700AA69B8 /* UsabillaCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */; };
+		F274EC59270CB0A000AA69B8 /* UsabillaCS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F274EC54270CADA600AA69B8 /* UsabillaCS-info.plist */; };
 		F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
@@ -1067,9 +1271,13 @@
 		F21326E3238C22A600553358 /* Featurebilla.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Featurebilla.json; sourceTree = "<group>"; };
 		F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturebillaStoreTests.swift; sourceTree = "<group>"; };
 		F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F269237D23EB17B900E6A455 /* UsabillaXamarin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UsabillaXamarin-Info.plist"; path = "/Users/hjain/Documents/Workspace/sdk_ios/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/UsabillaXamarin-Info.plist"; sourceTree = "<absolute>"; };
 		F269237E23EB190000E6A455 /* UsabillaXamarin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarin.swift; sourceTree = "<group>"; };
 		F26E6C592379918B00BAE436 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		F274EC53270CADA600AA69B8 /* UsabillaCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F274EC54270CADA600AA69B8 /* UsabillaCS-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UsabillaCS-info.plist"; path = "/Users/hjain/Workspace/GitHub/sdk_ios/usabilla-u4a-ios-internal-testing/usabilla-u4a-ios-swift/UsabillaCS-info.plist"; sourceTree = "<absolute>"; };
+		F274EC55270CAF6100AA69B8 /* UsabillaCSDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCSDebug.swift; sourceTree = "<group>"; };
+		F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCS.swift; sourceTree = "<group>"; };
+		F274EC5A270CB52B00AA69B8 /* UsabillaXamarin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "UsabillaXamarin-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
 		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
 		F292450423759DF400401ADF /* FeaturebillaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaService.swift; sourceTree = "<group>"; };
@@ -1112,6 +1320,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F269236F23EB17B900E6A455 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F274EC45270CADA600AA69B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1367,6 +1582,7 @@
 				04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */,
 				43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */,
 				F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */,
+				F274EC53270CADA600AA69B8 /* UsabillaCS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1390,14 +1606,17 @@
 				04F54DCD1CD75A3F002F501E /* Info.plist */,
 				45639DA423015BD600E7135C /* Assets.xcassets */,
 				43B04FCF1F1F7EEF0032F057 /* UsabillaInternal-Info.plist */,
-				F269237D23EB17B900E6A455 /* UsabillaXamarin-Info.plist */,
+				F274EC5A270CB52B00AA69B8 /* UsabillaXamarin-Info.plist */,
+				F274EC54270CADA600AA69B8 /* UsabillaCS-info.plist */,
 				0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */,
 				F269237E23EB190000E6A455 /* UsabillaXamarin.swift */,
+				F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */,
 				F2D12C5C23954CD100096A04 /* UBSettingContext.swift */,
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
 				041275D71F792BF700A12E09 /* Usabilla.swift */,
 				F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */,
 				F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */,
+				F274EC55270CAF6100AA69B8 /* UsabillaCSDebug.swift */,
 				F213103C23EC022C0017B633 /* UsabillaDebug.swift */,
 			);
 			path = Usabilla;
@@ -1933,6 +2152,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F274EC46270CADA600AA69B8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F274EC47270CADA600AA69B8 /* Usabilla.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -2012,6 +2239,25 @@
 			productReference = F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F274EB7E270CADA600AA69B8 /* UsabillaCS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F274EC4F270CADA600AA69B8 /* Build configuration list for PBXNativeTarget "UsabillaCS" */;
+			buildPhases = (
+				F274EB7F270CADA600AA69B8 /* Sources */,
+				F274EC45270CADA600AA69B8 /* Frameworks */,
+				F274EC46270CADA600AA69B8 /* Headers */,
+				F274EC48270CADA600AA69B8 /* Resources */,
+				F274EC4E270CADA600AA69B8 /* Linter */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UsabillaCS;
+			productName = Usabilla;
+			productReference = F274EC53270CADA600AA69B8 /* UsabillaCS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2025,7 +2271,7 @@
 					04F54DC71CD75A3F002F501E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 24ZZS38JW5;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1250;
 					};
 					04F54DD11CD75A3F002F501E = {
 						CreatedOnToolsVersion = 7.3;
@@ -2054,6 +2300,7 @@
 				43B04F331F1F7EEF0032F057 /* UsabillaInternal */,
 				04F54DD11CD75A3F002F501E /* UsabillaTests */,
 				F26922B123EB17B900E6A455 /* UsabillaXamarin */,
+				F274EB7E270CADA600AA69B8 /* UsabillaCS */,
 			);
 		};
 /* End PBXProject section */
@@ -2115,6 +2362,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F274EC48270CADA600AA69B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F274EC49270CADA600AA69B8 /* Assets.xcassets in Resources */,
+				F274EC4A270CADA600AA69B8 /* UBStaging.xcconfig in Resources */,
+				F274EC4B270CADA600AA69B8 /* config.json in Resources */,
+				F274EC59270CB0A000AA69B8 /* UsabillaCS-info.plist in Resources */,
+				F274EC4C270CADA600AA69B8 /* usa_localizable.strings in Resources */,
+				F274EC4D270CADA600AA69B8 /* UBProduction.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2163,6 +2423,20 @@
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		F269237723EB17B900E6A455 /* Linter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Linter;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		F274EC4E270CADA600AA69B8 /* Linter */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2904,6 +3178,210 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F274EB7F270CADA600AA69B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F274EB80270CADA600AA69B8 /* BaseOptionsComponentViewModel.swift in Sources */,
+				F274EB81270CADA600AA69B8 /* NPSComponent.swift in Sources */,
+				F274EB82270CADA600AA69B8 /* AnimationManager.swift in Sources */,
+				F274EB83270CADA600AA69B8 /* UBSlider.swift in Sources */,
+				F274EB84270CADA600AA69B8 /* CopyModel.swift in Sources */,
+				F274EB85270CADA600AA69B8 /* JumpRule.swift in Sources */,
+				F274EB86270CADA600AA69B8 /* HTTPClient.swift in Sources */,
+				F274EB87270CADA600AA69B8 /* NPSFieldModel.swift in Sources */,
+				F274EB88270CADA600AA69B8 /* LeafEvent.swift in Sources */,
+				F274EB89270CADA600AA69B8 /* UBSADrawingTool.swift in Sources */,
+				F274EB8A270CADA600AA69B8 /* UBFileHelper.swift in Sources */,
+				F274EB8B270CADA600AA69B8 /* StyleKit.swift in Sources */,
+				F274EB8C270CADA600AA69B8 /* CampaignViewController.swift in Sources */,
+				F274EB8D270CADA600AA69B8 /* FormViewController.swift in Sources */,
+				F274EB8E270CADA600AA69B8 /* CampaignService.swift in Sources */,
+				F274EB8F270CADA600AA69B8 /* GridViewCell.swift in Sources */,
+				F274EB90270CADA600AA69B8 /* UBEndPageViewModel.swift in Sources */,
+				F274EB91270CADA600AA69B8 /* MoodComponentViewModel.swift in Sources */,
+				F274EB92270CADA600AA69B8 /* PickerComponentViewModel.swift in Sources */,
+				F274EB93270CADA600AA69B8 /* UBFormDAO.swift in Sources */,
+				F274EB94270CADA600AA69B8 /* PickerIPadComponent.swift in Sources */,
+				F274EB95270CADA600AA69B8 /* ThankYouViewController.swift in Sources */,
+				F274EB96270CADA600AA69B8 /* Date.swift in Sources */,
+				F274EB97270CADA600AA69B8 /* CampaignWindow.swift in Sources */,
+				F274EB98270CADA600AA69B8 /* UBBannerDisplay.swift in Sources */,
+				F274EB99270CADA600AA69B8 /* Reachability.swift in Sources */,
+				F274EB9A270CADA600AA69B8 /* SliderComponentViewModel.swift in Sources */,
+				F274EB9B270CADA600AA69B8 /* UBIntroOutroPresenter.swift in Sources */,
+				F274EB9C270CADA600AA69B8 /* UITableView.swift in Sources */,
+				F274EB9D270CADA600AA69B8 /* ColorPickerCell.swift in Sources */,
+				F274EB9E270CADA600AA69B8 /* OptionsFieldModel.swift in Sources */,
+				F274EB9F270CADA600AA69B8 /* NPSToolTip.swift in Sources */,
+				F274EBA0270CADA600AA69B8 /* CheckBoxComponentViewModel.swift in Sources */,
+				F274EBA1270CADA600AA69B8 /* IntroPageViewModel.swift in Sources */,
+				F274EBA2270CADA600AA69B8 /* SliderComponent.swift in Sources */,
+				F274EBA3270CADA600AA69B8 /* FormStore.swift in Sources */,
+				F274EBA4270CADA600AA69B8 /* UBTouchView.swift in Sources */,
+				F274EBA5270CADA600AA69B8 /* HTTPClientProtocol.swift in Sources */,
+				F274EBA6270CADA600AA69B8 /* UBCameraViewController.swift in Sources */,
+				F274EBA7270CADA600AA69B8 /* RootCellView.swift in Sources */,
+				F274EBA8270CADA600AA69B8 /* UBFeedbackRequestDAO.swift in Sources */,
+				F274EBA9270CADA600AA69B8 /* SequenceRule.swift in Sources */,
+				F274EBAA270CADA600AA69B8 /* UIFont.swift in Sources */,
+				F274EBAB270CADA600AA69B8 /* EmailFieldModel.swift in Sources */,
+				F274EBAC270CADA600AA69B8 /* LocalisationHandler.swift in Sources */,
+				F274EBAD270CADA600AA69B8 /* NSLayoutConstraint.swift in Sources */,
+				F274EBAE270CADA600AA69B8 /* CheckBoxWithText.swift in Sources */,
+				F274EBAF270CADA600AA69B8 /* CampaignSubmissionRequestManager.swift in Sources */,
+				F274EC56270CAF6100AA69B8 /* UsabillaCSDebug.swift in Sources */,
+				F274EBB0270CADA600AA69B8 /* MoodComponent.swift in Sources */,
+				F274EBB1270CADA600AA69B8 /* UBFormViewModel.swift in Sources */,
+				F274EBB2270CADA600AA69B8 /* BaseTextFieldComponent.swift in Sources */,
+				F274EBB3270CADA600AA69B8 /* NPSControl.swift in Sources */,
+				F274EBB4270CADA600AA69B8 /* EmailComponentViewModel.swift in Sources */,
+				F274EBB5270CADA600AA69B8 /* SwiftCheckBox.swift in Sources */,
+				F274EBB6270CADA600AA69B8 /* CampaignViewModel.swift in Sources */,
+				F274EBB7270CADA600AA69B8 /* RadioComponentViewModel.swift in Sources */,
+				F274EBB8270CADA600AA69B8 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
+				F274EBB9270CADA600AA69B8 /* PassiveStatus.swift in Sources */,
+				F274EBBA270CADA600AA69B8 /* PageViewModel.swift in Sources */,
+				F274EBBB270CADA600AA69B8 /* UBCampaignFeedbackRequest.swift in Sources */,
+				F274EBBC270CADA600AA69B8 /* UBToast.swift in Sources */,
+				F274EBBD270CADA600AA69B8 /* DeviceInfo.swift in Sources */,
+				F274EBBE270CADA600AA69B8 /* BaseParagraphComponent.swift in Sources */,
+				F274EBBF270CADA600AA69B8 /* FieldFactory.swift in Sources */,
+				F274EBC0270CADA600AA69B8 /* UBToastPageViewModel.swift in Sources */,
+				F274EBC1270CADA600AA69B8 /* Promise.swift in Sources */,
+				F274EBC2270CADA600AA69B8 /* PercentageDecorator.swift in Sources */,
+				F274EBC3270CADA600AA69B8 /* SubmissionManager.swift in Sources */,
+				F274EBC4270CADA600AA69B8 /* UsabillaInternalDebug.swift in Sources */,
+				F274EBC5270CADA600AA69B8 /* ScreenshotModel.swift in Sources */,
+				F274EBC6270CADA600AA69B8 /* RadioFieldModel.swift in Sources */,
+				F274EBC7270CADA600AA69B8 /* UBFeaturebillaManager.swift in Sources */,
+				F274EBC8270CADA600AA69B8 /* TextAreaComponentViewModel.swift in Sources */,
+				F274EBC9270CADA600AA69B8 /* EmailComponent.swift in Sources */,
+				F274EBCA270CADA600AA69B8 /* HeaderComponentViewModel.swift in Sources */,
+				F274EBCB270CADA600AA69B8 /* SwiftyJSON.swift in Sources */,
+				F274EBCC270CADA600AA69B8 /* DrawingPlugin.swift in Sources */,
+				F274EBCD270CADA600AA69B8 /* UBSAContainerView.swift in Sources */,
+				F274EBCE270CADA600AA69B8 /* UBCampaignStore.swift in Sources */,
+				F274EBCF270CADA600AA69B8 /* ParagraphFieldModel.swift in Sources */,
+				F274EBD0270CADA600AA69B8 /* UBAlertDisplay.swift in Sources */,
+				F274EBD1270CADA600AA69B8 /* Rules.swift in Sources */,
+				F274EBD2270CADA600AA69B8 /* ColorPickerViewDelegate.swift in Sources */,
+				F274EBD3270CADA600AA69B8 /* HeaderFieldModel.swift in Sources */,
+				F274EBD4270CADA600AA69B8 /* ScreenshotComponent.swift in Sources */,
+				F274EBD5270CADA600AA69B8 /* UBFeedbackRequest.swift in Sources */,
+				F274EBD6270CADA600AA69B8 /* PoweredByLogoView.swift in Sources */,
+				F274EBD7270CADA600AA69B8 /* UBEndPageModel.swift in Sources */,
+				F274EBD8270CADA600AA69B8 /* EventEngine.swift in Sources */,
+				F274EBD9270CADA600AA69B8 /* UBSAEditImageMasterView.swift in Sources */,
+				F274EBDA270CADA600AA69B8 /* RatingFieldModel.swift in Sources */,
+				F274EBDB270CADA600AA69B8 /* ScreenshotComponentViewModel.swift in Sources */,
+				F274EBDC270CADA600AA69B8 /* UBCampaignDAO.swift in Sources */,
+				F274EBDD270CADA600AA69B8 /* Locale.swift in Sources */,
+				F274EBDE270CADA600AA69B8 /* BaseStringComponentViewModel.swift in Sources */,
+				F274EBDF270CADA600AA69B8 /* HeaderComponent.swift in Sources */,
+				F274EBE0270CADA600AA69B8 /* BaseEditableStringComponentViewModel.swift in Sources */,
+				F274EBE1270CADA600AA69B8 /* UILabel.swift in Sources */,
+				F274EBE2270CADA600AA69B8 /* RequestBuilder.swift in Sources */,
+				F274EC58270CAFB700AA69B8 /* UsabillaCS.swift in Sources */,
+				F274EBE4270CADA600AA69B8 /* ShowHideRule.swift in Sources */,
+				F274EBE5270CADA600AA69B8 /* UBTelemetricResponse.swift in Sources */,
+				F274EBE6270CADA600AA69B8 /* UsabillaInternal.swift in Sources */,
+				F274EBE7270CADA600AA69B8 /* String.swift in Sources */,
+				F274EBE8270CADA600AA69B8 /* Logging.swift in Sources */,
+				F274EBE9270CADA600AA69B8 /* AndRule.swift in Sources */,
+				F274EBEA270CADA600AA69B8 /* IntFieldModel.swift in Sources */,
+				F274EBEB270CADA600AA69B8 /* TextFieldModel.swift in Sources */,
+				F274EBEC270CADA600AA69B8 /* UIViewController.swift in Sources */,
+				F274EBED270CADA600AA69B8 /* UIBarButtonItem.swift in Sources */,
+				F274EBEE270CADA600AA69B8 /* CampaignSubmissionManager.swift in Sources */,
+				F274EBF0270CADA600AA69B8 /* GridViewSectionCell.swift in Sources */,
+				F274EBF1270CADA600AA69B8 /* UBImagePickerController.swift in Sources */,
+				F274EBF2270CADA600AA69B8 /* RepetitionDecorator.swift in Sources */,
+				F274EBF3270CADA600AA69B8 /* OrRule.swift in Sources */,
+				F274EBF4270CADA600AA69B8 /* CheckBoxComponent.swift in Sources */,
+				F274EBF5270CADA600AA69B8 /* BaseFieldModel.swift in Sources */,
+				F274EBF6270CADA600AA69B8 /* UBTelemetrics.swift in Sources */,
+				F274EBF7270CADA600AA69B8 /* BaseIntComponentViewModel.swift in Sources */,
+				F274EBF8270CADA600AA69B8 /* CellViewModel.swift in Sources */,
+				F274EBF9270CADA600AA69B8 /* ClientModel.swift in Sources */,
+				F274EBFA270CADA600AA69B8 /* UIColor.swift in Sources */,
+				F274EBFB270CADA600AA69B8 /* UIDevice.swift in Sources */,
+				F274EBFC270CADA600AA69B8 /* PageViewController.swift in Sources */,
+				F274EBFD270CADA600AA69B8 /* PageModel.swift in Sources */,
+				F274EBFE270CADA600AA69B8 /* UIImage.swift in Sources */,
+				F274EBFF270CADA600AA69B8 /* FeatureModel.swift in Sources */,
+				F274EC00270CADA600AA69B8 /* UIImageView.swift in Sources */,
+				F274EC01270CADA600AA69B8 /* FormService.swift in Sources */,
+				F274EC02270CADA600AA69B8 /* UBFileStorageDAO.swift in Sources */,
+				F274EC03270CADA600AA69B8 /* Decorator.swift in Sources */,
+				F274EC04270CADA600AA69B8 /* UsabillaTheme.swift in Sources */,
+				F274EC05270CADA600AA69B8 /* UBFeedbackIDDictionaryDAO.swift in Sources */,
+				F274EC06270CADA600AA69B8 /* UBDAO.swift in Sources */,
+				F274EC07270CADA600AA69B8 /* TelemtryService.swift in Sources */,
+				F274EC08270CADA600AA69B8 /* ComponentFactory.swift in Sources */,
+				F274EC09270CADA600AA69B8 /* UBSADragableImageView.swift in Sources */,
+				F274EC0A270CADA600AA69B8 /* TextAreaComponent.swift in Sources */,
+				F274EC0B270CADA600AA69B8 /* FeaturebillaStore.swift in Sources */,
+				F274EC0C270CADA600AA69B8 /* ColorPickerView.swift in Sources */,
+				F274EC0D270CADA600AA69B8 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
+				F274EC0E270CADA600AA69B8 /* PassiveFormController.swift in Sources */,
+				F274EC0F270CADA600AA69B8 /* FooterTableViewCell.swift in Sources */,
+				F274EC10270CADA600AA69B8 /* ParagraphComponentViewModel.swift in Sources */,
+				F274EC11270CADA600AA69B8 /* BaseCheckBoxComponent.swift in Sources */,
+				F274EC12270CADA600AA69B8 /* SwiftEventBus.swift in Sources */,
+				F274EC13270CADA600AA69B8 /* UBCampaignFeedbackRequestDAO.swift in Sources */,
+				F274EC14270CADA600AA69B8 /* FormModel.swift in Sources */,
+				F274EC15270CADA600AA69B8 /* Event.swift in Sources */,
+				F274EC16270CADA600AA69B8 /* RatingControl.swift in Sources */,
+				F274EC17270CADA600AA69B8 /* RadioComponent.swift in Sources */,
+				F274EC18270CADA600AA69B8 /* BaseComponent.swift in Sources */,
+				F274EC19270CADA600AA69B8 /* IntroPageModel.swift in Sources */,
+				F274EC1A270CADA600AA69B8 /* BaseImageComponentViewModel.swift in Sources */,
+				F274EC1B270CADA600AA69B8 /* UBAccessibility.swift in Sources */,
+				F274EC1C270CADA600AA69B8 /* BaseTextAreaComponent.swift in Sources */,
+				F274EC1D270CADA600AA69B8 /* TextFieldComponentViewModel.swift in Sources */,
+				F274EC1E270CADA600AA69B8 /* PickerComponent.swift in Sources */,
+				F274EC1F270CADA600AA69B8 /* UBSADrawingView.swift in Sources */,
+				F274EC20270CADA600AA69B8 /* TargetingFactory.swift in Sources */,
+				F274EC21270CADA600AA69B8 /* CampaignManager.swift in Sources */,
+				F274EC22270CADA600AA69B8 /* TargetingOptionsModel.swift in Sources */,
+				F274EC23270CADA600AA69B8 /* UBConstants.swift in Sources */,
+				F274EC24270CADA600AA69B8 /* UIView.swift in Sources */,
+				F274EC25270CADA600AA69B8 /* ComponentViewModelFactory.swift in Sources */,
+				F274EC26270CADA600AA69B8 /* ComponentViewModel.swift in Sources */,
+				F274EC27270CADA600AA69B8 /* ParagraphComponent.swift in Sources */,
+				F274EC28270CADA600AA69B8 /* FieldModel.swift in Sources */,
+				F274EC29270CADA600AA69B8 /* UBIntroOutroView.swift in Sources */,
+				F274EC2A270CADA600AA69B8 /* PathManager.swift in Sources */,
+				F274EC2B270CADA600AA69B8 /* CampaignModel.swift in Sources */,
+				F274EC2C270CADA600AA69B8 /* MaskModel.swift in Sources */,
+				F274EC2D270CADA600AA69B8 /* MoodFieldModel.swift in Sources */,
+				F274EC2E270CADA600AA69B8 /* UBImageLibraryButton.swift in Sources */,
+				F274EC2F270CADA600AA69B8 /* UBAlertPresenter.swift in Sources */,
+				F274EC30270CADA600AA69B8 /* PickerParentComponent.swift in Sources */,
+				F274EC31270CADA600AA69B8 /* LeafActiveStatus.swift in Sources */,
+				F274EC32270CADA600AA69B8 /* FeaturebillaService.swift in Sources */,
+				F274EC33270CADA600AA69B8 /* Transitions.swift in Sources */,
+				F274EC34270CADA600AA69B8 /* LeafPassiveStatus.swift in Sources */,
+				F274EC35270CADA600AA69B8 /* TextAreaFieldModel.swift in Sources */,
+				F274EC36270CADA600AA69B8 /* PickerFieldModel.swift in Sources */,
+				F274EC37270CADA600AA69B8 /* UBBannerPresenter.swift in Sources */,
+				F274EC38270CADA600AA69B8 /* CampaingAnimator.swift in Sources */,
+				F274EC39270CADA600AA69B8 /* JSONFormParser.swift in Sources */,
+				F274EC3A270CADA600AA69B8 /* NPSComponentViewModel.swift in Sources */,
+				F274EC3B270CADA600AA69B8 /* UBCustomTouchableView.swift in Sources */,
+				F274EC3C270CADA600AA69B8 /* UBTelemetricSDK.swift in Sources */,
+				F274EC3D270CADA600AA69B8 /* UBNavigationController.swift in Sources */,
+				F274EC3E270CADA600AA69B8 /* UBRule.swift in Sources */,
+				F274EC3F270CADA600AA69B8 /* UBSAPluginViewController.swift in Sources */,
+				F274EC40270CADA600AA69B8 /* ActiveStatus.swift in Sources */,
+				F274EC41270CADA600AA69B8 /* StringFieldModel.swift in Sources */,
+				F274EC42270CADA600AA69B8 /* CheckboxFieldModel.swift in Sources */,
+				F274EC43270CADA600AA69B8 /* UBEditImageMainViewController.swift in Sources */,
+				F274EC44270CADA600AA69B8 /* Protocols.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3519,6 +3997,128 @@
 			};
 			name = Production;
 		};
+		F274EC50270CADA600AA69B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27F14E423C781B8000E903D /* UBStaging.xcconfig */;
+			buildSettings = {
+				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 50;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"XCODE$(XCODE_VERSION_MAJOR)=1",
+				);
+				INFOPLIST_FILE = "UsabillaCS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 6.8.6;
+				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Debug;
+		};
+		F274EC51270CADA600AA69B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27F14E123C781A5000E903D /* UBProduction.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 50;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "XCODE$(XCODE_VERSION_MAJOR)=1";
+				INFOPLIST_FILE = "UsabillaCS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
+				MARKETING_VERSION = 6.8.6;
+				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 x86_64 armv7 armv7s";
+			};
+			name = Release;
+		};
+		F274EC52270CADA600AA69B8 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27F14E123C781A5000E903D /* UBProduction.xcconfig */;
+			buildSettings = {
+				ARCHS = (
+					arm64,
+					armv7,
+					armv7s,
+					i386,
+					x86_64,
+				);
+				BITCODE_GENERATION_MODE = bitcode;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 50;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "XCODE$(XCODE_VERSION_MAJOR)=1";
+				INFOPLIST_FILE = "UsabillaCS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator";
+				MARKETING_VERSION = 6.8.6;
+				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				"SDKROOT[arch=i386]" = "$(CORRESPONDING_SIMULATOR_SDK_NAME)";
+				"SDKROOT[arch=x86_64]" = "$(CORRESPONDING_SIMULATOR_SDK_NAME)";
+				SKIP_INSTALL = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
+			};
+			name = Production;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3568,6 +4168,16 @@
 				F269237923EB17B900E6A455 /* Debug */,
 				F269237A23EB17B900E6A455 /* Release */,
 				F269237B23EB17B900E6A455 /* Production */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F274EC4F270CADA600AA69B8 /* Build configuration list for PBXNativeTarget "UsabillaCS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F274EC50270CADA600AA69B8 /* Debug */,
+				F274EC51270CADA600AA69B8 /* Release */,
+				F274EC52270CADA600AA69B8 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

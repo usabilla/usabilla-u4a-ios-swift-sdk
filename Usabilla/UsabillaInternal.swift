@@ -84,6 +84,7 @@ class UsabillaInternal {
     private static var formService: FormService?
     private static var formStore: FormStore?
     private static weak var formNavigationController: UINavigationController?
+    private static var  window: UIWindow?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
 
@@ -289,7 +290,97 @@ class UsabillaInternal {
                 }
         }
     }
+    
+    class func showFeedbackForm(_ formID: String) {
+        let logid = telemetric.logStart(method: UBTelemetricLoadForm(), logLevel: .methods )
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.formId, value: formID, logLevel: .methods)
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.theme, value: false, logLevel: .methods)
+        telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.screenshot, value: false, logLevel: .methods)
+        if CampaignWindow.shared.showing {
+            DispatchQueue.main.async {
+                delegate?.formDidFailLoading(error: UBError(description: errorCamapingShowing))
+                telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeClient, logLevel: .methods)
+                self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: errorCamapingShowing, logLevel: .methods)
+                self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                self.telemetric.submitLogData()
+            }
+            return
+        }
 
+        guard let formStore = formStore else {
+            print(errorSDKNotInitialized)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeClient, logLevel: .methods)
+            telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: errorSDKNotInitialized, logLevel: .methods)
+            telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+            telemetric.submitLogData()
+            return
+        }
+        formStore.loadForm(id: formID, screenshot: nil, theme: theme, maskModel: UsabillaInternal.maskModel).then { form in
+            guard let navigationController = viewForForm(form: form) else {
+                DispatchQueue.main.async {
+                    delegate?.formDidFailLoading(error: UBError(description: errorSDKNotInitialized))
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: errorSDKNotInitialized, logLevel: .methods)
+                    self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                    self.telemetric.submitLogData()
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                formNavigationController = navigationController
+                showFormViewController()
+                //delegate?.formDidLoad(form: navigationController)
+                self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: 0, logLevel: .methods)
+                self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                self.telemetric.submitLogData()
+            }
+
+            }.catch { _ in
+                DispatchQueue.main.async {
+                    delegate?.formDidFailLoading(error: UBError(description: "Unable to load the form"))
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: TelemetryConstants.errorCodeServer, logLevel: .methods)
+                    self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errM, value: "Unable to load the form", logLevel: .methods)
+                    self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
+                    self.telemetric.submitLogData()
+
+                }
+        }
+    }
+    
+    private static func showFormViewController() {
+        guard let navController = formNavigationController else {
+            return
+        }
+        var popupWindow: UIWindow?
+        if #available(iOS 13.0, *) {
+            let windowScene = UIApplication.shared
+                .connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first
+            if let windowScene = windowScene as? UIWindowScene {
+                popupWindow = PassthroughWindow(windowScene: windowScene)
+            }
+        } else {
+            popupWindow = PassthroughWindow(frame: UIScreen.main.bounds)
+        }
+        let viewcontroller = UIViewController()
+        viewcontroller.view = UBCustomTouchableView()
+        viewcontroller.view.backgroundColor = .clear
+        viewcontroller.modalPresentationStyle = .overFullScreen
+        viewcontroller.view.alpha = 1
+        viewcontroller.view.frame = UIScreen.main.bounds
+        viewcontroller.view.translatesAutoresizingMaskIntoConstraints = true
+
+        popupWindow?.frame = UIScreen.main.bounds
+        popupWindow?.backgroundColor = .clear
+        popupWindow?.windowLevel = UIWindowLevelStatusBar + 1
+        popupWindow?.rootViewController = viewcontroller
+        popupWindow?.makeKeyAndVisible()
+        
+        popupWindow?.rootViewController?.present(navController, animated: true, completion: nil)
+        window = popupWindow
+    }
+    
     private static func viewForForm(form: FormModel) -> UINavigationController? {
         guard let submissionManager = submissionManager else {
             print(errorSDKNotInitialized)
