@@ -9,6 +9,7 @@
 import UIKit
 @objc(Usabilla)
 open class UsabillaCS: NSObject {
+    @objc
     public static var customVariables: [String: String] {
         get {
             return UsabillaInternal.customVariables
@@ -34,7 +35,7 @@ open class UsabillaCS: NSObject {
             UsabillaInternal.supportedOrientations = newValue
         }
     }
-
+    @objc
     public static var localizedStringFile: String {
         get {
             return UsabillaInternal.localizedStringFile
@@ -96,6 +97,7 @@ open class UsabillaCS: NSObject {
     /**
      A Boolean value that determines whether the SDK should send telemetry data.
      */
+    @objc
     public static var submitTelemetryData: Bool {
         get {
             return UsabillaInternal.submitTelemetryData
@@ -142,6 +144,7 @@ open class UsabillaCS: NSObject {
      If it's needed to dismiss a campaign this method will dismiss the current presented campaign.
      - Returns: true if there is a campaign and it's closed, false if there is no presented campaign
      */
+    @objc
     open class func dismiss() -> Bool {
         return UsabillaInternal.dismiss()
     }
@@ -226,6 +229,7 @@ public protocol UsabillaDelegate: class {
      
      - Parameter error: An error describing the issue encoutered
      */
+    @objc
     func formDidFailLoading(error: Any)
 
     /**
