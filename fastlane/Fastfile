@@ -262,4 +262,20 @@ platform :ios do
 		)
 		copyToSwiftPackage(version: version)
 	end
+	
+	desc "Export Unity-Xamarin xcframework"
+	lane :buildUnityXamarinXCFramework do
+		version = masterXcodeVersion
+		sh("rm -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks")
+		xcversion(version: version)
+		create_xcframework(
+			workspace: 'Usabilla.xcworkspace',
+			scheme: 'UsabillaCS',
+    		include_bitcode: true,
+            include_debug_symbols: true,
+    		destinations: ['iOS'],
+    		xcframework_output_directory: "XcodeBuilds/Xcode-#{version}/CSXCFrameworks"
+		)
+		copyToCSSwiftPackage(version: version)
+	end
 end

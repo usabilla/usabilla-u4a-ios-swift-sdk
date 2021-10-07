@@ -230,6 +230,19 @@ private_lane :copyToSwiftPackage do |options|
 	end
 end
 
+desc "Copy artefacts to the Swift Package directory"
+private_lane :copyToCSSwiftPackage do |options|
+	version = options[:version]
+	sh("find \"#{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks/UsabillaCS.xcframework/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;")
+	sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks && zip -r ./UsabillaCSXCFramework.zip ./UsabillaCS.xcframework")
+	CHECKSUM = sh("shasum -a 256  #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks/UsabillaCSXCFramework.zip | sed 's/ .*//'")
+	sh("echo '#{CHECKSUM}' > #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks/CHECKSUM.txt")
+	sh("cd #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks/ && find . -not -name UsabillaCSXCFramework.zip -not -name CHECKSUM.txt -delete")
+	if version == masterXcodeVersion
+		sh("mkdir -p #{projectDirectory}XcodeBuilds/master && cp -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks/UsabillaCSXCFramework.zip #{projectDirectory}XcodeBuilds/master/UsabillaCSXCFramework.zip")
+	end
+end
+
 desc "Copy artefacts to the github public repository and create draft release"
 private_lane :createAReleaseDraft do |options|
 	unless options[:xcode]
