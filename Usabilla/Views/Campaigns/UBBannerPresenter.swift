@@ -14,12 +14,16 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var topConstraint: NSLayoutConstraint!
     var bottomConstraint: NSLayoutConstraint!
 
+    var centerXConstraint: NSLayoutConstraint!
+    var centerYConstraint: NSLayoutConstraint!
+
+    
     private var kWidthTablet = UBDimensions.BannerPresenter.widthTablet
     private var kWidthiPhone = UBDimensions.BannerPresenter.widthiPhone
     private var kRightOffsetTablet = UBDimensions.BannerPresenter.rightOffsetTablet
     private var kShadowOffset = UBDimensions.BannerPresenter.shadowOffset
     private weak var inView: UIView?
-    private weak var introView: UBIntroOutroView?
+    private weak var introView: UBIntroOutroViewProtocol?
 
     private var leftConstraint: NSLayoutConstraint?
     private var rightConstraint: NSLayoutConstraint?
@@ -27,45 +31,57 @@ class UBBannerPresenter: UBIntroOutroPresenter {
 
     var offset: CGFloat = 0.0
 
-    func present(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?) {
+    func present(view: UBIntroOutroViewProtocol?, inView: UIView?, animations: (() -> Void)?) {
         guard let view = view, let inView = inView else {return}
         let style = view.viewModel.displayMode
         self.inView = inView
         self.introView = view
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor)
-        bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor)
+        topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor).activate()
+        bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor).activate()
 
-        if DeviceInfo.isIPad() {
+        //centerXConstraint = view.centerXAnchor.constraint(equalTo: inView.centerXAnchor).activate()
+        //centerYConstraint = view.centerYAnchor.constraint(equalTo: inView.centerYAnchor).activate()
+        
+        rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: 0).activate()
+        leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: 0).activate()
+        /*if DeviceInfo.isIPad() {
             view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
             view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
         } else {
             setConstraints()
         }
+         */
         inView.layoutIfNeeded()
 
-        topConstraint.constant = -offset
-        bottomConstraint.constant = offset
+        //topConstraint.constant = -offset
+        //bottomConstraint.constant = offset
 
+        //centerXConstraint.constant = -600
+        //centerYConstraint.constant = offset
+        
+        
         // activate bottom or top constraint based on banner position
-        topConstraint.isActive = style != .bannerBottom
-        bottomConstraint.isActive = style == .bannerBottom
+        //topConstraint.isActive = style != .bannerBottom
+        //bottomConstraint.isActive = style == .bannerBottom
         inView.layoutIfNeeded()
 
         CampaignWindow.shared.setWindowLevel(UIWindowLevelStatusBar - 1)
         // Design requested slower animation on ipad
         let animationTime = (DeviceInfo.isIPad() ? UBDimensions.BannerPresenter.animateDurationTablet : UBDimensions.BannerPresenter.animateDurationDefualt)
         UIView.animate(withDuration: animationTime, delay: UBDimensions.BannerPresenter.animateDelay, usingSpringWithDamping: UBDimensions.BannerPresenter.springDamping, initialSpringVelocity: UBDimensions.BannerPresenter.springVelocity, options: .curveEaseOut, animations: { [weak self] in
-            self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
-            self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
+            //self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
+            //self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
+            //self?.centerXConstraint.constant = 0
+            
             inView.layoutIfNeeded()
         })
-        setFixedConstraints()
+       // setFixedConstraints()
 
     }
 
-    func dismiss(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?) {
+    func dismiss(view: UBIntroOutroViewProtocol?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?) {
         let bannerViewHeigth = (view?.frame.size.height ?? 0.0)
         UIView.animate(withDuration: UBDimensions.BannerPresenter.animateDurationDismiss, animations: { [weak self] in
             animations?()

@@ -1,0 +1,127 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4.2 effective-4.1.50 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-module-flags: -target armv7-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -O -module-name Usabilla
+import AVFoundation
+import Foundation
+import Photos
+import Swift
+import SystemConfiguration
+import UIKit
+@_exported import Usabilla
+import os
+extension Usabilla {
+}
+public struct UsabillaTheme : Swift.Equatable {
+  public var colors: UsabillaTheme.Colors
+  public var fonts: UsabillaTheme.Fonts
+  public var images: UsabillaTheme.Images
+  public var statusBarStyle: UIKit.UIStatusBarStyle?
+  public static func == (lhs: UsabillaTheme, rhs: UsabillaTheme) -> Swift.Bool
+  public struct Colors : Swift.Equatable {
+    public var header: UIKit.UIColor?
+    public static func == (lhs: UsabillaTheme.Colors, rhs: UsabillaTheme.Colors) -> Swift.Bool
+  }
+  public struct Fonts : Swift.Equatable {
+    public var regular: UIKit.UIFont?
+    public var bold: UIKit.UIFont?
+    public var titleSize: CoreGraphics.CGFloat
+    public var textSize: CoreGraphics.CGFloat
+    public var miniSize: CoreGraphics.CGFloat
+    public static func == (lhs: UsabillaTheme.Fonts, rhs: UsabillaTheme.Fonts) -> Swift.Bool
+  }
+  public struct Images : Swift.Equatable {
+    public var enabledEmoticons: [UIKit.UIImage]
+    public var disabledEmoticons: [UIKit.UIImage]?
+    public var star: UIKit.UIImage
+    public var starOutline: UIKit.UIImage
+    public static func == (lhs: UsabillaTheme.Images, rhs: UsabillaTheme.Images) -> Swift.Bool
+  }
+  public init()
+}
+@_inheritsConvenienceInitializers @objc(Usabilla) open class Usabilla : ObjectiveC.NSObject {
+  @objc public static var customVariables: [Swift.String : Swift.String] {
+    @objc get
+    @objc set
+  }
+  @objc public static var defaultDataMasks: [Swift.String] {
+    @objc get
+  }
+  @objc public static var orientation: UIKit.UIInterfaceOrientationMask {
+    @objc get
+    @objc set
+  }
+  @objc public static var localizedStringFile: Swift.String {
+    @objc get
+    @objc set
+  }
+  public static var theme: UsabillaTheme {
+    get
+    set
+  }
+  @objc public static var delegate: UsabillaDelegate? {
+    @objc get
+    @objc set
+  }
+  @objc public static var dismissAutomatically: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public static var canDisplayCampaigns: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public static var debugEnabled: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public static var submitTelemetryData: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public static var setFooterLogoClickable: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc open class func sendEvent(event: Swift.String)
+  @objc open class func initialize(appID: Swift.String?, completion: (() -> Swift.Void)? = nil)
+  @objc open class func dismiss() -> Swift.Bool
+  @objc open class func removeCachedForms()
+  @objc open class func resetCampaignData(completion: (() -> Swift.Void)?)
+  @objc open class func preloadFeedbackForms(withFormIDs formIDs: [Swift.String])
+  open class func loadFeedbackForm(_ formID: Swift.String, screenshot: UIKit.UIImage? = nil, theme: UsabillaTheme = theme)
+  @objc open class func showFeedbackForm(_ formID: Swift.String)
+  open class func takeScreenshot(_ view: UIKit.UIView) -> UIKit.UIImage?
+  @objc open class func setDataMasking(masks: [Swift.String] = defaultDataMasks, maskCharacter: Swift.String = "X")
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(FeedbackResult) public class FeedbackResult : ObjectiveC.NSObject {
+  final public let rating: Swift.Int?
+  final public let abandonedPageIndex: Swift.Int?
+  @objc public var sent: Swift.Bool {
+    @objc get
+  }
+  public init(rating: Swift.Int?, abandonedPageIndex: Swift.Int?)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(UBError) public class UBError : ObjectiveC.NSObject {
+  @objc public var errorDescription: Foundation.NSString?
+  public init(description: Swift.String?)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol UsabillaDelegate {
+  @objc func formDidLoad(form: UIKit.UINavigationController)
+  @objc func formDidFailLoading(error: Any)
+  @objc func formDidClose(formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  @objc func formWillClose(form: UIKit.UINavigationController, formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  @objc func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Swift.Bool)
+  @objc func feedbackResultSubmitted(userResponse: Foundation.Data)
+}
+extension UsabillaDelegate {
+  public func formDidClose(formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  public func formWillClose(form: UIKit.UINavigationController, formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  public func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Swift.Bool)
+  public func feedbackResultSubmitted(userResponse: Foundation.Data)
+}

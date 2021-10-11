@@ -157,8 +157,7 @@
                                                            },
                                                            {
                                                            "type": "activeStatus",
-                                                           "name": "membership",
-                                                           "value": "premium"
+                                                           "data": [{ "name": "cv1", "value": "2"}, { "name": "cv2", "value": "2"}]
                                                            },
                                                            {
                                                            "type": "passiveStatus",

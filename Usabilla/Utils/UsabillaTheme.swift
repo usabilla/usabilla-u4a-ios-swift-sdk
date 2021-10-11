@@ -194,3 +194,11 @@ public struct UsabillaTheme: Equatable {
         self.colors.updateDarkModeColors(lightColors: lightModeColors, darkColors: darkModeColors)
     }
 }
+
+
+// MARK: - Customise features
+
+public struct ThemeBanner {
+    var image: UIImage?
+    var clickThrough: Bool = false
+}

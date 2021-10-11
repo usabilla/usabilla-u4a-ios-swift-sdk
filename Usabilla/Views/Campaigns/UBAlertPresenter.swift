@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class UBAlertPresenter: UBIntroOutroPresenter {
-
-    func present(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?) {
+    func present(view: UBIntroOutroViewProtocol?, inView: UIView?, animations: (() -> Void)?) {
         guard let view = view, let inView = inView else {return}
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = UBAlpha.zeroAlpha.rawValue
@@ -36,7 +35,7 @@ class UBAlertPresenter: UBIntroOutroPresenter {
         })
     }
 
-    func dismiss(view: UBIntroOutroView?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?) {
+    func dismiss(view: UBIntroOutroViewProtocol?, inView: UIView?, animations: (() -> Void)?, completion: (() -> Void)?) {
         UIView.animate(withDuration: UBDimensions.AlertPresenter.animateDuration, animations: {
             guard let view = view, let inView = inView else {return}
             view.alpha = UBAlpha.zeroAlpha.rawValue

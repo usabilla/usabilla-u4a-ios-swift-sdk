@@ -10,11 +10,16 @@ import Foundation
 import UIKit
 
 protocol UBIntroOutroViewDelegate: class {
-    func introViewDidCancel(introView: UBIntroOutroView)
-    func introViewDidContinue(introView: UBIntroOutroView)
+    func introViewDidCancel(introView: UBIntroOutroViewProtocol)
+    func introViewDidContinue(introView: UBIntroOutroViewProtocol)
 }
 
-class UBIntroOutroView: UIView {
+
+protocol UBIntroOutroViewProtocol: UIView {
+    var viewModel: IntroPageViewModel {get}
+}
+
+class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
 
     var viewModel: IntroPageViewModel
     weak var delegate: UBIntroOutroViewDelegate?

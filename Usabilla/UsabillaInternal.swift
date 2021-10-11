@@ -425,4 +425,21 @@ class UsabillaInternal {
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSetDataMasking.maskCharacter, value: char, logLevel: .methods)
         telemetric.logEnd(for: logid, keyPath: \UBTelemetricSetDataMasking.dur)
     }
+    
+    class func
+    showView() -> UIViewController {        
+        let image = UIImage.getImageFromSDKBundle(name: "takeSurvey")
+        var const = BannerConfiguration()
+        const.backgroundImage = image
+//        let view = CustomBannerView(viewModel: nil, configuration: const)
+  //      view.translatesAutoresizingMaskIntoConstraints = false
+        let viecCntr = UIViewController()
+        //viecCntr.view.frame
+        viecCntr.view.backgroundColor = .green
+        viecCntr.modalPresentationStyle = .fullScreen
+    //    viecCntr.view.addSubview(view)
+        
+        return viecCntr
+    }
+
 }

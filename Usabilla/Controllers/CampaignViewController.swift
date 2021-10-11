@@ -25,7 +25,7 @@ class CampaignViewController: UIViewController {
     fileprivate weak var delegate: CampaignViewControllerDelegate?
 
     weak var backgroundLayer: UIView?
-    weak var introView: UBIntroOutroView?
+    weak var introView: UBIntroOutroViewProtocol?//UBIntroOutroView?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
     var animationSpeed = 0.3
@@ -51,7 +51,21 @@ class CampaignViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         if let introPageViewModel = viewModel.introPageViewModel {
-            let introView = UBIntroOutroView(viewModel: introPageViewModel)
+            
+            let image = UIImage.getImageFromSDKBundle(name: "bgN")
+            var const = BannerConfiguration()
+            
+            const.backgroundImage = image
+            const.buttonStyle = .gfpButtonVertical
+            const.bannerType = .gfpBackgroundImageAndLogo
+           
+            const.cancelButtonTitleColor = UIColor(rgba: "#97D3BC")//#82C9B0")
+            const.continueButtonTitleColor = .white
+            const.titleAlignment = .center
+            const.componentTextAlignment = .center
+            const.logoImage = UIImage.getImageFromSDKBundle(name: "takeSurvey")
+            let introView = GFPCustomBannerView(viewModel: introPageViewModel, configuration: const)
+            //let introView = UBIntroOutroView(viewModel: introPageViewModel)
             self.introView = introView
             introView.delegate = self
 
@@ -279,12 +293,12 @@ class CampaignViewController: UIViewController {
 
 extension CampaignViewController: UBIntroOutroViewDelegate {
 
-    func introViewDidCancel(introView: UBIntroOutroView) {
+    func introViewDidCancel(introView: UBIntroOutroViewProtocol) {
         viewModel.introPresenter?.dismiss(view: introView, inView: view, animations: nil, completion: { [weak self] in
             self?.closeCampaign(atPageIndex: 0) })
     }
 
-    func introViewDidContinue(introView: UBIntroOutroView) {
+    func introViewDidContinue(introView: UBIntroOutroViewProtocol) {
         viewModel.introViewDidContinue()
         if viewModel.currentPageType == .toast {
             let completion: (() -> Void) = {
