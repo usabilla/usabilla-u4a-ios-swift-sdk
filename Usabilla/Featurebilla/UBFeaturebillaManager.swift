@@ -17,7 +17,7 @@ private var featureSettings = [Setting]()
 // loglevels
 struct UBTelemetricLogLevel: OptionSet {
     let rawValue: Int
-
+    static let none = UBTelemetricLogLevel(rawValue: 0 << 0)
     static let methods = UBTelemetricLogLevel(rawValue: 1 << 0)
     static let properties = UBTelemetricLogLevel(rawValue: 1 << 1)
     static let networking = UBTelemetricLogLevel(rawValue: 1 << 2)
@@ -52,6 +52,8 @@ class UBFeaturebillaManager {
                     print("error \(error)")
                     reject(error)
                 }
+            } else {
+                fulfill(featureSettings)
             }
         }
     }
@@ -67,11 +69,23 @@ class UBFeaturebillaManager {
     }
 
     func shouldLog(_ type: FeatureTypes, logLevel: UBTelemetricLogLevel) -> Bool {
-        var current: UBTelemetricLogLevel = [.methods, .properties, .all]
-        if let level = logLevels[type] as? Int {
-            current = UBTelemetricLogLevel(rawValue: level)
+        if logLevels.isEmpty {  // data not loaded yet, fallback to default
+            let  current: UBTelemetricLogLevel = [.methods, .properties, .all]
+            return current.contains(logLevel)
         }
-        return current.contains(logLevel)
+        else {
+            if logLevel == .all {
+                return true
+            }
+            if let feature = logLevels[type] as? String {
+                let current = UBTelemetricLogLevel(rawValue: Int(feature) ?? 0)
+                                let result = current.contains(logLevel)
+                if !result {
+                }
+                return result
+            }
+            return false
+        }
     }
 
     private func isPartOfPercentage(variableName: String, percentageValue: Double) -> Bool {

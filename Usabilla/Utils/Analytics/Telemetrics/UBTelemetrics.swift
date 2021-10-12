@@ -15,12 +15,20 @@ class UBTelemetrics {
     private var log: [String: UBTelemetricResponse] = [:]
     private let maxnumberOfEntries = 10  // the max number of entries, 0 equals no limit
     private var telemtricService = TelemtryService()
-
+    
+    private lazy var featureBillaDefaultUserContext:[String:String] = {
+        if let SDKVersion = Bundle(identifier: "com.usabilla.Usabilla")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            return ["platform": "ios", "sdk": SDKVersion]
+        } else {
+            return ["platform": "ios", "sdk": "6.8.5"]
+        }
+        
+    }()
     private var featureBillaService: UBFeaturebillaManager
     var submitTelemetryData = true
     init(manager: UBFeaturebillaManager) {
         self.featureBillaService = manager
-        manager.getSettingVariable(variableName: .telemetryLevel, defaultValue: 0.5, userContexts: ["platform": "ios", "sdk": "6.4.3"], completion: {_ in
+        manager.getSettingVariable(variableName: .telemetryLevel, defaultValue: 0.0, userContexts: featureBillaDefaultUserContext, completion: {_ in
         })
     }
     /// Starts the logging (time) for an event. The returned id, must be use in  calls to alterData or logEnd. If nil is returned,
@@ -182,7 +190,7 @@ class UBTelemetrics {
     }
 
     /// Upload data to our server
-    func submitLogData () {
+    func submitLogData () {        ///
         if !submitTelemetryData {return}
         var appId = UsabillaInternal.appID ?? ""
         if  appId == "" {

@@ -26,7 +26,10 @@ class FeaturebillaService: FeaturebillaServiceProtocol {
     }
 
     func getSettings() -> Promise<SettingModel> {
-        let request = requestBuilder.requestGetFeatureSettings()
+        var request = requestBuilder.requestGetFeatureSettings()
+        // for this request we dont want the local cahce.
+        // always get the remote file
+        request?.cachePolicy = .reloadIgnoringLocalCacheData
         return Promise { fulfill, reject in
             guard let request = request else {
                 PLog("❌ not a valid url parameter")
