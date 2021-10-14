@@ -57,14 +57,16 @@ class SliderComponent: UBComponent<SliderComponentViewModel> {
         leftLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriority.defaultLow).isActive = true
         leftLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
-        leftLabel.numberOfLines = 1
+        leftLabel.numberOfLines = 0
+        leftLabel.lineBreakMode = .byWordWrapping
 
         rightLabel.topAnchor.constraint(equalTo: slider.bottomAnchor, constant: 6).isActive = true
         rightLabel.rightAnchor.constraint(equalTo: slider.rightAnchor, constant: 0).isActive = true
         rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5).prioritize(UILayoutPriority.defaultLow).isActive = true
         rightLabel.widthAnchor.constraint(equalTo: slider.widthAnchor, multiplier: 0.5).isActive = true
-        rightLabel.numberOfLines = 1
+        rightLabel.numberOfLines = 0
         rightLabel.textAlignment = .right
+        rightLabel.lineBreakMode = .byWordWrapping
 
         // configuration
         if let scale = viewModel.scale {
