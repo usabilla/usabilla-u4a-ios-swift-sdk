@@ -110,10 +110,6 @@ class PickerComponent: PickerParentComponent {
     }
 
     @objc func pickerButtonClicked() {
-        if DeviceInfo.isIPad() {
-            SwiftEventBus.postToMainThread("iPadPickerButtonTapped", sender: self)
-            return
-        }
         let isPickerExpanded = viewModel.expanded
         viewModel.expanded = !isPickerExpanded
         updatePickerStatus(isExpanded: viewModel.expanded)
