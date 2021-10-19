@@ -28,6 +28,8 @@ class PickerComponent: PickerParentComponent {
         return imageView
     }()
     let buttonHeight: CGFloat = 42
+    let buttonHeightExpanded: CGFloat = 150
+    let buttonHeightExpandedIpad: CGFloat = 220
 
     override func build() {
         accessibilityIdentifier = "pickerComponent"
@@ -117,7 +119,11 @@ class PickerComponent: PickerParentComponent {
     }
 
     func updatePickerStatus(isExpanded: Bool) {
-        borderViewHeight.constant = isExpanded ? 150 : buttonHeight
+        if DeviceInfo.isIPad() {
+            borderViewHeight.constant = isExpanded ? buttonHeightExpandedIpad : buttonHeight
+        } else {
+            borderViewHeight.constant = isExpanded ? buttonHeightExpanded : buttonHeight
+        }
         picker.isHidden = !isExpanded
         updateAccessibility(isExpanded: isExpanded)
     }
