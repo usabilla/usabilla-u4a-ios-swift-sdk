@@ -1,3 +1,13 @@
+## 6.8.7
+### Fix
+- Multiline support for rating labels
+- Navigation bar appearance for xcode-ios15
+- Alignment for picker elements on ipad.
+
+### Update
+- Build with Xcode 12.5.1 ( for supporting CI/CD process which doesn't migrate to xcode 13)
+- Improvements on telemetry data
+- SPM support for xcode 11-13.
 ## 6.8.6
 ### Update
 - build with Xcode 12.5.1 ( for supporting CI/CD process which doesn't migrate to xcode 13)
