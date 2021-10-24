@@ -176,11 +176,26 @@ open class UsabillaCS: NSObject {
         return UsabillaInternal.takeScreenshot(view)
     }
 
+    @objc
     open class func setDataMasking(masks: [String] = defaultDataMasks,
-                                   maskCharacter: Character = "X") {
+                                   maskCharacter: String = "X") {
+        
+        guard let aChar: Character = maskCharacter.first else {return}
         UsabillaInternal.setDataMasking(
             masks: masks,
-            maskCharacter: maskCharacter)
+            maskCharacter: aChar)
+    }
+    @objc
+    open class func setThemWithJson(_ jsonString: String) {
+        UIFont.loadAllFonts();
+        if let dataFromJsonString = jsonString.data(using: .utf8) {
+            if let themeData = try? JSONDecoder().decode(Theme.self, from: dataFromJsonString) {
+                UsabillaInternal.theme =  themeData.getTheme()
+                return
+            }
+        }
+        print("DONE")
+        
     }
 }
 @objc(FeedbackResult)
@@ -283,3 +298,74 @@ public extension UsabillaDelegate {
     func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) { }
     func feedbackResultSubmitted(userResponse: Data) {}
 }
+private struct Theme: Codable {
+    var headerColor: String
+    var fonts: Fonts
+    var images: Images
+    
+    func getTheme() -> UsabillaTheme {
+        var newTheme = UsabillaTheme()
+        
+        if !fonts.regular.isEmpty && fonts.regularSize > 0  {
+            let afont =  UIFont(name: fonts.regular, size: CGFloat(fonts.regularSize) ?? 0 )
+            newTheme.fonts.regular = afont
+        }
+        if !fonts.bold.isEmpty && fonts.boldSize > 0  {
+            let afont =  UIFont(name: fonts.bold, size: CGFloat(fonts.boldSize) ?? 0)
+            newTheme.fonts.bold = afont
+        }
+
+        if let data = imagesToArray(images.enabledEmoticons) {
+            newTheme.images.enabledEmoticons = data
+        }
+
+        if let data = imagesToArray(images.disabledEmoticons) {
+            newTheme.images.disabledEmoticons = data
+        }
+
+        if let starImage = UIImage.getImageFromUnit(name: images.star) {
+            newTheme.images.star = starImage
+        }
+
+        if let starImageOutLine = UIImage.getImageFromUnit(name: images.starOutline) {
+            newTheme.images.starOutline = starImageOutLine
+        }
+
+        if !headerColor.isEmpty {
+            newTheme.colors.header = UIColor(rgba: headerColor)
+        }
+        return newTheme
+    }
+    
+    private func imagesToArray(_ imageData: [String]) -> [UIImage]? {
+        var imageArray: [UIImage] = []
+        imageData.forEach {
+            if let newImage = UIImage.getImageFromUnit(name: $0) {
+                imageArray.append(newImage)
+            }
+        }
+        if imageArray.count > 0 {
+            return imageArray
+        }
+        return nil
+    }
+}
+
+private struct Fonts: Codable {
+    var regular: String
+    var regularSize: Int
+    var bold: String
+    var boldSize: Int
+    var titleSize: Int
+    var textSize: Int
+    var miniSize: Int
+}
+
+private struct Images: Codable {
+    var enabledEmoticons: [String]
+    var disabledEmoticons: [String]
+    var star: String
+    var starOutline: String
+}
+
+

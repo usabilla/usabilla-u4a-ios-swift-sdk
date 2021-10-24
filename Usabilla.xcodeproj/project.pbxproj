@@ -401,6 +401,8 @@
 		4509CAF8237949F4003EC904 /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
 		4509CAFF237967E7003EC904 /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
 		4509CB00237967E7003EC904 /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
+		452084C52724A03600F7EDC5 /* UIFont+CSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452084C42724A03600F7EDC5 /* UIFont+CSExtension.swift */; };
+		452084C82724ABBB00F7EDC5 /* UIImage+CSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452084C72724ABBB00F7EDC5 /* UIImage+CSExtension.swift */; };
 		453DF816270F2C1A004D8BEB /* UsabillaCS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
@@ -1200,6 +1202,8 @@
 		43F9B9AD1E38E18600C78051 /* UIImageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageTest.swift; sourceTree = "<group>"; };
 		4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBTelemetricSDK.swift; sourceTree = "<group>"; };
 		4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBTelemetricResponse.swift; sourceTree = "<group>"; };
+		452084C42724A03600F7EDC5 /* UIFont+CSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CSExtension.swift"; sourceTree = "<group>"; };
+		452084C72724ABBB00F7EDC5 /* UIImage+CSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CSExtension.swift"; sourceTree = "<group>"; };
 		453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "UsabillaCS-info.plist"; sourceTree = SOURCE_ROOT; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45639DA423015BD600E7135C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1974,6 +1978,7 @@
 			children = (
 				43E883E81E37B5B800A97F1D /* String.swift */,
 				43E883EA1E37B5C000A97F1D /* UIImage.swift */,
+				452084C72724ABBB00F7EDC5 /* UIImage+CSExtension.swift */,
 				43E883EC1E37B5C900A97F1D /* UIColor.swift */,
 				43E883EE1E37B61000A97F1D /* UIDevice.swift */,
 				430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */,
@@ -1983,6 +1988,7 @@
 				43552B231F8CE82500BE657A /* UIBarButtonItem.swift */,
 				C59F73BD1F97748200447B2C /* UIImageView.swift */,
 				C5D1CE731F9E1963007B098E /* UIFont.swift */,
+				452084C42724A03600F7EDC5 /* UIFont+CSExtension.swift */,
 				C50F2C3B2084ED7D00D77F37 /* UILabel.swift */,
 				45CB6F0022DFBE63007FEE38 /* UIViewController.swift */,
 				F2A08B9723D06FCF00A5F6F0 /* Locale.swift */,
@@ -3224,6 +3230,7 @@
 				F274EBA7270CADA600AA69B8 /* RootCellView.swift in Sources */,
 				F274EBA8270CADA600AA69B8 /* UBFeedbackRequestDAO.swift in Sources */,
 				F274EBA9270CADA600AA69B8 /* SequenceRule.swift in Sources */,
+				452084C52724A03600F7EDC5 /* UIFont+CSExtension.swift in Sources */,
 				F274EBAA270CADA600AA69B8 /* UIFont.swift in Sources */,
 				F274EBAB270CADA600AA69B8 /* EmailFieldModel.swift in Sources */,
 				F274EBAC270CADA600AA69B8 /* LocalisationHandler.swift in Sources */,
@@ -3249,6 +3256,7 @@
 				F274EBBF270CADA600AA69B8 /* FieldFactory.swift in Sources */,
 				F274EBC0270CADA600AA69B8 /* UBToastPageViewModel.swift in Sources */,
 				F274EBC1270CADA600AA69B8 /* Promise.swift in Sources */,
+				452084C82724ABBB00F7EDC5 /* UIImage+CSExtension.swift in Sources */,
 				F274EBC2270CADA600AA69B8 /* PercentageDecorator.swift in Sources */,
 				F274EBC3270CADA600AA69B8 /* SubmissionManager.swift in Sources */,
 				F274EBC4270CADA600AA69B8 /* UsabillaInternalDebug.swift in Sources */,
