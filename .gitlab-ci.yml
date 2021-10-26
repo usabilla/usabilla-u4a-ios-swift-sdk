@@ -284,15 +284,7 @@ create-release-build-cs:
   stage: release-build-cs
   script:
     - echo "Upload artifacts and Build Unity"
-    - >
-      curl -X POST
-      -F token=$TOKEN_TRIGGER_CS
-      -F ref=main
-      -F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID"
-      -F "variables[SDK_BRANCH]=$CI_COMMIT_REF_NAME"
-      -F "variables[SDK_FILENAME]=XcodeBuilds/master/UsabillaCSXCFramework.zip"
-      -F "variables[SDK_JOB_ID]=${CI_JOB_ID}"
-      https://gitlab.usabilla.net/api/v4/projects/$PROJ_ID_CS/trigger/pipeline
+    - bundle exec fastlane buildUnityXamarinXCFramework 
   cache:
     key: sdk-cache
     paths:

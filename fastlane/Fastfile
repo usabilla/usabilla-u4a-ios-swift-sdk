@@ -8,6 +8,7 @@ default_platform :ios
 platform :ios do
 
 	before_all do
+		ENV["SDK_VERSION"] = get_version_number(xcodeproj: "Usabilla.xcodeproj", target: "Usabilla")
 		ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 	end
 
@@ -277,5 +278,13 @@ platform :ios do
     		xcframework_output_directory: "XcodeBuilds/Xcode-#{version}/CSXCFrameworks"
 		)
 		copyToCSSwiftPackage(version: version)
+		sh('curl -X POST -F token=$TOKEN_TRIGGER_CS \
+			-F ref=feature/GFPSDK-860/add-gitlab-configuration \
+			-F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID" \
+			-F "variables[SDK_BRANCH]=$CI_COMMIT_REF_NAME" \
+			-F "variables[SDK_FILENAME]=XcodeBuilds/master/UsabillaCSXCFramework.zip" \
+			-F "variables[SDK_JOB_ID]=${CI_JOB_ID}" \
+			-F "variables[SDK_VERSION]=${SDK_VERSION}" \
+			https://gitlab.usabilla.net/api/v4/projects/$PROJ_ID_CS/trigger/pipeline')
 	end
 end
