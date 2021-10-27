@@ -279,7 +279,7 @@ platform :ios do
 		)
 		copyToCSSwiftPackage(version: version)
 		sh('curl -X POST -F token=$TOKEN_TRIGGER_CS \
-			-F ref=feature/GFPSDK-860/add-gitlab-configuration \
+			-F ref=master \
 			-F "variables[SDK_PIPELINE_ID]=$CI_PIPELINE_IID" \
 			-F "variables[SDK_BRANCH]=$CI_COMMIT_REF_NAME" \
 			-F "variables[SDK_FILENAME]=XcodeBuilds/master/UsabillaCSXCFramework.zip" \
