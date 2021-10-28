@@ -1,50 +1,20 @@
 require "./buildconfig"
 
-desc "Build framework For a given XCode version"
-private_lane :buildForXcodeVersion do |options|
-	#configuration
-	buildConfig = getBuildConfigs()
-	version = options[:version]
-
-	if version == nil	
-		UI.message("'version' not specified in 'buildForXcodeVersion")
-	elsif version.include?("12") || version.include?("13")
-		archVariable = "EXCLUDED_ARCHS=arm64"
-	else
-		archVariable = ""
-	end
-	if options[:project_directory] == nil	
-		UI.message("'project_directory' not specified in 'buildForXcodeVersion")
-	end   
-
-	project_directory = options[:project_directory]
-
-	paths = Paths.new(version, project_directory, buildConfig['configuration'])
-	xcversion(version: version)
-
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{buildConfig['configuration']} -sdk iphoneos OTHER_CFLAGS=-fembed-bitcode BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO SWIFT_SERIALIZE_DEBUGGING_OPTIONS=NO")
-	sh("xcodebuild -derivedDataPath #{paths.projectDirectory}/build -project #{paths.projectDirectory}/Usabilla.xcodeproj -scheme #{paths.scheme_name} -configuration #{buildConfig['configuration']}  -sdk iphonesimulator OTHER_CFLAGS=-fembed-bitcode-marker BITCODE_GENERATION_MODE=bitcode GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES CLANG_ENABLE_CODE_COVERAGE=NO SWIFT_SERIALIZE_DEBUGGING_OPTIONS=NO #{archVariable}")
-
-	#remove Module name error in swiftinterface files
-	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{buildConfig['configuration']}-iphoneos/#{paths.framework_name}/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
-	sh("find \"#{paths.projectDirectory}/build/Build/Products/#{buildConfig['configuration']}-iphonesimulator/#{paths.framework_name}/Modules/Usabilla.swiftmodule/\" -name \"*.swiftinterface\" -exec sed -i -e 's/Usabilla\\.//g' {} \\;") 
-end
-
 private_lane :buildAndRunUITest do |options|
 
 	#configuration
 	buildConfig = getBuildConfigs()
 
-	if options[:version] == nil	
+	if options[:version] == nil
 		UI.message("'version' not specified in 'buildAndRunUITest")
 	end
-	if options[:devices] == nil	
+	if options[:devices] == nil
 		UI.message("'devices' not specified in 'buildAndRunUITest")
 	end
 
-	if options[:project_directory] == nil	
+	if options[:project_directory] == nil
 		UI.message("'project_directory' not specified in 'buildAndRunUITest")
-	end   
+	end
 
 	version =  options[:version]
 	project_directory = options[:project_directory]
@@ -64,12 +34,12 @@ end
 private_lane :removeAllBuilds do |options|
 	#configuration
 	buildConfig = getBuildConfigs()
-	if options[:version] == nil	
+	if options[:version] == nil
 		UI.message("'version' not specified in 'buildForXcodeVersion")
 	end
-	if options[:project_directory] == nil	
+	if options[:project_directory] == nil
 		UI.message("'project_directory' not specified in 'buildForXcodeVersion")
-	end   
+	end
 	version = options[:version]
 	project_directory = options[:project_directory]
 	paths = Paths.new(version, project_directory, buildConfig['configuration'])
@@ -79,7 +49,7 @@ private_lane :removeAllBuilds do |options|
 
 end
 
-desc "Vallidate build with UsabillaSystemTest app" 
+desc "Vallidate build with UsabillaSystemTest app"
 private_lane :systemTestsAfterBuild do |options|
 	#configuration
 	buildConfig = getBuildConfigs()
@@ -88,7 +58,7 @@ private_lane :systemTestsAfterBuild do |options|
 	project_directory = options[:project_directory]
 	paths = Paths.new(version, project_directory, buildConfig['configuration'])
 
-	if version == nil	
+	if version == nil
 		UI.message("'version' not specified in 'systemTestsAfterBuild")
     elsif version.include?("12") || version.include?("13")
 		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
@@ -105,13 +75,13 @@ private_lane :systemTestsAfterBuild do |options|
 	# scan(
 	# 	project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
 	# 	scheme: buildConfig['scheme_name_test'],
-	# 	clean: true,        
+	# 	clean: true,
 	# 	devices: unitTestDevices,
 	# 	slack_only_on_failure: true
 	# )
 end
 
-#used in lane  "validateAll"	
+#used in lane  "validateAll"
 desc "Validate integrating the framework (with specified version) into a sample project"
 private_lane :validateSDK do |options|
 	unless options[:version]
@@ -122,7 +92,7 @@ private_lane :validateSDK do |options|
 	configuration = options[:configuration]
 	UI.message("Validating for #{configuration} configuration")
 
-	if version == nil	
+	if version == nil
 		UI.message("'version' not specified in 'validateSDK")
     elsif version.include?("12") || version.include?("13")
 		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
@@ -147,74 +117,22 @@ private_lane :validateSDK do |options|
 	resetSimulator
 end
 
-desc "Vallidate build for non LLVM and GCC code" 
+desc "Vallidate build for non LLVM and GCC code"
 private_lane :validateBuildLLVMGCC do |options|
 	#configuration
 	buildConfig = getBuildConfigs()
 
-	if options[:version] == nil	
+	if options[:version] == nil
 		UI.message("'version' not specified in 'validateBuildLLVMGCC")
-	end   
-	if options[:project_directory] == nil	
+	end
+	if options[:project_directory] == nil
 		UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
-	end  
+	end
 	version = options[:version]
 	project_directory = options[:project_directory]
 	paths = Paths.new(version, project_directory, buildConfig['configuration'])
 
 	sh("sh validateLLVM_NO_GCC.sh #{paths.framework_path}/")
-end
-
-desc "Copy artefacts to the Pods directory"
-private_lane :copyToPodsFromBuild do |options|
-	#configuration
-	buildConfig = getBuildConfigs()
-
-	if options[:version] == nil	
-		UI.message("'version' not specified in 'copyToPodsFromBuild")
-	end   
-	if options[:project_directory] == nil	
-		UI.message("'project_directory' not specified in 'copyToPodsFromBuild")
-	end   
-	version = options[:version]
-	project_directory = options[:project_directory]
-	paths = Paths.new(version, project_directory, buildConfig['configuration'])
-
-	sh("rm -rf #{projectDirectory}#{paths.xcode_directory}/#{paths.pods_directory}")
-	sh("mkdir -p #{paths.framework_path}")
-
-	sh("lipo -create -output \"#{paths.framework_outputFile}\" \"#{paths.iphoneos_outputFile}\" \"#{paths.simulator_outputFile}\"")
-	sh("dsymutil -o=\"#{paths.framework_path}.dSYM\" \"#{paths.framework_outputFile}\"")
-	sh("cp #{paths.iphoneos_path}/Assets.car #{paths.framework_path}/." )
-	sh("cp #{paths.iphoneos_path}/Info.plist #{paths.framework_path}/." )
-	sh("cp #{paths.iphoneos_path}/usa_localizable.strings #{paths.framework_path}/." )
-	sh("cp -rf #{paths.iphoneos_path}/Headers #{paths.framework_path}/." )
-	sh("cp -rf #{paths.iphoneos_path}/Modules #{paths.framework_path}/." )
-	sh("cp -rf #{paths.simulator_path}/Modules/* #{paths.framework_path}/Modules/." )
-	sh("cd #{projectDirectory}#{paths.xcode_directory}/#{paths.pods_directory}/ && zip -r ./#{paths.podsFileName} .")
-end
-
-desc "Copy artefacts to the Carthage directory"
-private_lane :copyToCarthageFromBuild do |options|
-	#configuration
-	buildConfig = getBuildConfigs()
-	if options[:version] == nil	
-		UI.message("'version' not specified in 'copyToCarthageFromBuild")
-	end   
-	if options[:project_directory] == nil	
-		UI.message("'project_directory' not specified in 'copyToCarthageFromBuild")
-	end   
-
-	version = options[:version]
-	project_directory = options[:project_directory]
-	paths = Paths.new(version, project_directory, buildConfig['configuration'])
-	sh("mkdir -p #{paths.projectDirectory}#{paths.xcode_directory}/Carthage/Carthage/Build/iOS")
-
-	sh("cp -rf #{paths.framework_path} #{paths.carthage_outputPath}/." )
-	sh("cp -rf #{paths.carthage_dSYMPath}/*.dSYM #{paths.carthage_outputPath}/." )
-	sh("cp #{paths.carthage_symbolsPath}/*.bcsymbolmap #{paths.carthage_outputPath}/." )
-	sh("cd #{paths.carthage_path}/ && zip -r #{paths.carthage_path}/#{paths.carthageFileName} Carthage/")
-	sh("rm -rf #{paths.carthage_path}/Carthage")
 end
 
 desc "Copy artefacts to the Swift Package directory"
@@ -253,12 +171,11 @@ private_lane :createAReleaseDraft do |options|
 	end
 	xcode = options[:xcode]
 	version = options[:version]
-	branch = options[:branch] 
+	branch = options[:branch]
     tag = "#{version}-Xcode-#{xcode}"
 	UI.message("Creating for #{tag}")
-	carthage = "XcodeBuilds/Xcode-#{xcode}/Carthage/UsabillaCarthage.zip"
 	xcframework = "XcodeBuilds/Xcode-#{xcode}/xcframeworks/UsabillaXCFramework.zip"
-	assets = ["#{carthage}","#{xcframework}"]
+	assets = ["#{xcframework}"]
 	if branch == "master"
         tag = "#{version}"
 	end
@@ -271,14 +188,14 @@ private_lane :createAReleaseDraft do |options|
 	repo_path = "github.com/#{repo_name}"
 	git_url = "https://#{repo_path}"
 	git_push_url = "https://#{user_name}:#{git_token}@#{repo_path}.git"
-	source_url = "https://#{repo_path}/releases/download/#{name}/UsabillaCarthage.zip"
-	
+	source_url = "https://#{repo_path}/releases/download/#{name}/UsabillaXCFramework.zip"
+
 	sh("mkdir -p #{projectDirectory}publicrepo && cd #{projectDirectory}publicrepo && git clone #{git_url} && cd #{repo_dir} &&
 	if [[ #{branch} == 'master' ]]; then checksum=`cat #{projectDirectory}XcodeBuilds/Xcode-#{xcode}/xcframeworks/CHECKSUM.txt` &&
-		sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
+		sed -i '' -e '/version =/ s/= .*/= \"#{version}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \
 	else git checkout --track origin/#{branch}  &&
 		checksum=`cat #{projectDirectory}XcodeBuilds/Xcode-#{xcode}/xcframeworks/CHECKSUM.txt` &&
-		sed -i '' -e '/version =/ s/= .*/= \"#{tag}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \ 
+		sed -i '' -e '/version =/ s/= .*/= \"#{tag}\"/; /checksum =/ s/= .*/= \"'$checksum'\"/' ./Package.swift; \
 	fi &&
 	cat #{projectDirectory}changelog ./CHANGELOG.MD > temp && mv temp ./CHANGELOG.MD && cat #{projectDirectory}PublicReadme.md  > ./Readme.MD &&
 	sed -i '' -e '/version =/ s/= .*/= \"#{tag}\"/' ./Usabilla.podspec && jq '{ \"#{version}\" : \"#{source_url}\" } + .' Usabilla.json >tmp.json &&

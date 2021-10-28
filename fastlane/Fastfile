@@ -12,7 +12,7 @@ platform :ios do
 		ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 	end
 
-	#used in STAGE  "Check Xcode and Post to Slack"    
+	#used in STAGE  "Check Xcode and Post to Slack"
 	desc "Check Xcode and Post to Slack"
 	lane :checkXcode do
 		list = checkLatestXcode()
@@ -23,7 +23,7 @@ platform :ios do
 		)
 	end
 
-	#used in STAGE  "Run Lint"    
+	#used in STAGE  "Run Lint"
 	desc "Checks liniting"
 	lane :lint do
 		swiftlint(
@@ -32,7 +32,7 @@ platform :ios do
 		)
 	end
 
-	#used in STAGE  "Run UT"    
+	#used in STAGE  "Run UT"
 	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
 	lane :buildAll do
 		versions = xcodeVersions
@@ -58,39 +58,8 @@ platform :ios do
 			buildXCFrameworkForXcodeVersion(
 				xcode: version
 			)
-
-			buildForXcodeVersion(
-				version: version,
-				project_directory: projectDirectory
-			)
-			# Copy generated artefacts for carthage and pods
-			copyToPodsFromBuild(
-				version: version,
-				project_directory: projectDirectory
-			)
-			copyToCarthageFromBuild(
-				version: version,
-				project_directory: projectDirectory
-			)
 		end
 	end
-
-	#used in STAGE  "Create Artefacts"	
-	desc "Create Artefacts (Pods and Carthage)"
-	lane :createArtefacts do 
-		versions = checkXcodeVersions
-		versions.each do |version|
-			copyToPodsFromBuild(
-				version: version,
-				project_directory: projectDirectory
-			)
-			copyToCarthageFromBuild(
-				version: version,
-				project_directory: projectDirectory
-			)
-		end
-	end
-
 
 
 	#used in STAGE  "Run Unit Tests"
@@ -113,7 +82,7 @@ platform :ios do
 	#used in STAGE  "UI Tests"
 	desc "UI test"
 	lane :uiTest do
-		buildAndRunUITest( 
+		buildAndRunUITest(
 			version: masterXcodeVersion,
 			project_directory: projectDirectory,
 			devices: uiTestDevices
@@ -125,14 +94,14 @@ platform :ios do
 	lane :checkXcodeVersions do
 		versions = xcodeVersions
 		versions.each do |version|
-			xcversion(version: version)         
+			xcversion(version: version)
 		end
 		versions
 	end
 
 	#used in STAGE  "System tests"
 	desc "Run System tests"
-	lane :systemTests do 
+	lane :systemTests do
 		versions = checkXcodeVersions
 		versions.each do |version|
 			systemTestsAfterBuild(
@@ -185,8 +154,8 @@ platform :ios do
 	end
 
 	#used to create all releases on the swift-sdk git
-	# takes the version from  info.plist 
-	# uploads correct assets (carthage, pods and xcframework zip file) 
+	# takes the version from  info.plist
+	# uploads correct assets (carthage, pods and xcframework zip file)
 	desc "creating release drafts"
 	lane :createDraftRelease do
 		versions = xcodeVersions
@@ -201,29 +170,7 @@ platform :ios do
 		end
 	end
 
-	#used to generate artifacts for UsabillaXamarin
-	desc "creating artifacts for UsabillaXamarin"
-	lane :buildXamarinAndGenerateArtefacts do
-		version = masterXcodeVersion
-		removeAllBuilds(
-			version: version,
-			project_directory: projectDirectory
-		)
-		buildForXamarin(
-			version: version,
-			project_directory: projectDirectory
-		)
-		validateXamarinBuildLLVMGCC(
-			version: version,
-			project_directory: projectDirectory
-		)
-		copyToPodsFromXamarinBuild(
-			version: version,
-			project_directory: projectDirectory
-		)
-	end
-
-	#used in STAGE  "Validation"	
+	#used in STAGE  "Validation"
 	desc "Validate integrating the framework (for all xcode version specified in fastlane/versions-validate.json) into a sample project"
 	lane :validateAll do
 		versions = xcodeVersions
@@ -242,7 +189,7 @@ platform :ios do
 		payload = options[:payload]
 		default_payloads = [:git_branch, :git_author]
 		slack(
-			message: message, 
+			message: message,
 			default_payloads: default_payloads,
 			success: success,
 		    payload: payload)
@@ -263,7 +210,7 @@ platform :ios do
 		)
 		copyToSwiftPackage(version: version)
 	end
-	
+
 	desc "Export Unity-Xamarin xcframework"
 	lane :buildUnityXamarinXCFramework do
 		version = masterXcodeVersion
