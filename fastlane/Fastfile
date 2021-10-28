@@ -104,10 +104,7 @@ platform :ios do
 	lane :validateFrameWork do
 		versions = checkXcodeVersions
 		versions.each do |version|
-			validateBuildLLVMGCC(
-				version: version,
-				project_directory: projectDirectory
-			)
+			validateBuildLLVMGCC(version: version)
 		end
 	end
 

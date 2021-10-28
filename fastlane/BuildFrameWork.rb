@@ -128,9 +128,6 @@ private_lane :validateBuildLLVMGCC do |options|
 	if options[:version] == nil
 		UI.message("'version' not specified in 'validateBuildLLVMGCC")
 	end
-	if options[:project_directory] == nil
-		UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
-	end
 	version = options[:version]
 	framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/xcframeworks"
 	sh("unzip -d #{framework_path}/ #{framework_path}/UsabillaXCFramework.zip && sh validateLLVM_NO_GCC.sh #{framework_path}/Usabilla.xcframework && rm -rf #{framework_path}/Usabilla.xcframework")
