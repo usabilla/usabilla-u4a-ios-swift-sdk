@@ -32,18 +32,6 @@ platform :ios do
 		)
 	end
 
-	#used in STAGE  "Run UT"
-	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
-	lane :buildAll do
-		versions = xcodeVersions
-		versions.each do |version|
-			buildForXcodeVersion(
-				version: version,
-				project_directory: projectDirectory
-			)
-		end
-	end
-
 	#used in STAGE  "Generate Artefacts"
 	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
 	lane :buildAllAndGenerateArtefacts do

@@ -130,10 +130,8 @@ private_lane :validateBuildLLVMGCC do |options|
 		UI.message("'project_directory' not specified in 'validateBuildLLVMGCC")
 	end
 	version = options[:version]
-	project_directory = options[:project_directory]
-	paths = Paths.new(version, project_directory, buildConfig['configuration'])
-
-	sh("sh validateLLVM_NO_GCC.sh #{paths.framework_path}/")
+	framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/xcframeworks"
+	sh("unzip -d #{framework_path}/ #{framework_path}/UsabillaXCFramework.zip && sh validateLLVM_NO_GCC.sh #{framework_path}/Usabilla.xcframework && rm -rf #{framework_path}/Usabilla.xcframework")
 end
 
 desc "Copy artefacts to the Swift Package directory"
