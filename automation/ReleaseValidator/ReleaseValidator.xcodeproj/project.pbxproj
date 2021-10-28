@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,10 +13,10 @@
 		43BFC59A1FC71D2F0077192D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43BFC5991FC71D2F0077192D /* Assets.xcassets */; };
 		43BFC59D1FC71D2F0077192D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43BFC59B1FC71D2F0077192D /* LaunchScreen.storyboard */; };
 		43BFC5A81FC71D300077192D /* ReleaseValidatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BFC5A71FC71D300077192D /* ReleaseValidatorUITests.swift */; };
+		F286FA91272AF4C400BE092D /* Usabilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F286FA90272AF4C400BE092D /* Usabilla.xcframework */; };
+		F286FA92272AF4C400BE092D /* Usabilla.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F286FA90272AF4C400BE092D /* Usabilla.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F28B451F247D4A0E0070F95F /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F28B451E247D4A0E0070F95F /* Staging.xcconfig */; };
 		F28B4521247D4A220070F95F /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F28B4520247D4A220070F95F /* Production.xcconfig */; };
-		F2C10893248643A30064C6A0 /* Usabilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C10892248643A30064C6A0 /* Usabilla.framework */; };
-		F2C10894248643A30064C6A0 /* Usabilla.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2C10892248643A30064C6A0 /* Usabilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F2C10895248643A30064C6A0 /* Embed Frameworks */ = {
+		F286FA93272AF4C400BE092D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F2C10894248643A30064C6A0 /* Usabilla.framework in Embed Frameworks */,
+				F286FA92272AF4C400BE092D /* Usabilla.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,10 +54,9 @@
 		43BFC5A31FC71D300077192D /* ReleaseValidatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReleaseValidatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BFC5A71FC71D300077192D /* ReleaseValidatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseValidatorUITests.swift; sourceTree = "<group>"; };
 		43BFC5A91FC71D300077192D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F286FA90272AF4C400BE092D /* Usabilla.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Usabilla.xcframework; path = ReleaseValidator/Usabilla.xcframework; sourceTree = "<group>"; };
 		F28B451E247D4A0E0070F95F /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		F28B4520247D4A220070F95F /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
-		F28B4528247D57210070F95F /* Usabilla.Framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Usabilla.Framework; sourceTree = "<group>"; };
-		F2C10892248643A30064C6A0 /* Usabilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Usabilla.framework; path = ReleaseValidator/Usabilla.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2C10893248643A30064C6A0 /* Usabilla.framework in Frameworks */,
+				F286FA91272AF4C400BE092D /* Usabilla.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +101,6 @@
 		43BFC5911FC71D2F0077192D /* ReleaseValidator */ = {
 			isa = PBXGroup;
 			children = (
-				F28B4528247D57210070F95F /* Usabilla.Framework */,
 				43BFC5921FC71D2F0077192D /* AppDelegate.swift */,
 				43BFC5941FC71D2F0077192D /* ViewController.swift */,
 				43BFC5961FC71D2F0077192D /* Main.storyboard */,
@@ -134,7 +132,7 @@
 		F2C10891248643A30064C6A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F2C10892248643A30064C6A0 /* Usabilla.framework */,
+				F286FA90272AF4C400BE092D /* Usabilla.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,7 +147,7 @@
 				43BFC58B1FC71D2F0077192D /* Sources */,
 				43BFC58C1FC71D2F0077192D /* Frameworks */,
 				43BFC58D1FC71D2F0077192D /* Resources */,
-				F2C10895248643A30064C6A0 /* Embed Frameworks */,
+				F286FA93272AF4C400BE092D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -382,7 +380,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -402,7 +401,10 @@
 				);
 				INFOPLIST_FILE = ReleaseValidator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.ReleaseValidator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -425,7 +427,10 @@
 				);
 				INFOPLIST_FILE = ReleaseValidator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.ReleaseValidator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -442,7 +447,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReleaseValidatorUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.ReleaseValidatorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -461,7 +470,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReleaseValidatorUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.ReleaseValidatorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

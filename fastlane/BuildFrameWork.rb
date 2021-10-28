@@ -92,27 +92,28 @@ private_lane :validateSDK do |options|
 	configuration = options[:configuration]
 	UI.message("Validating for #{configuration} configuration")
 
-	if version == nil
-		UI.message("'version' not specified in 'validateSDK")
-    elsif version.include?("12") || version.include?("13")
-		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
-	else
-		archVariable = ""
-	end
+	# if version == nil
+	# 	UI.message("'version' not specified in 'validateSDK")
+    # elsif version.include?("12") || version.include?("13")
+	# 	archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
+	# else
+	# 	archVariable = ""
+	# end
 
 	resetSimulator
 	xcversion(version: version)
-	framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/Pods/Usabilla.Framework"
+	framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/xcframeworks"
 	cleanReleaseProject
-	sh("cp -r #{framework_path} #{projectDirectory}automation/ReleaseValidator/ReleaseValidator")
-	# scan(
-	# 	configuration: configuration,
-	# 	project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
-	# 	clean: true,
-	# 	devices: unitTestDevices,
-	# 	slack_only_on_failure: true
-	# )
-	sh("xcodebuild clean -project #{projectDirectory}automation/ReleaseValidator/ReleaseValidator.xcodeproj -scheme ReleaseValidator -configuration #{configuration} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
+	sh("unzip -d #{framework_path}/ #{framework_path}/UsabillaXCFramework.zip && cp -r #{framework_path}/Usabilla.xcframework #{projectDirectory}automation/ReleaseValidator/ReleaseValidator && rm -rf #{framework_path}/Usabilla.xcframework")
+
+	scan(
+		configuration: configuration,
+		project: 'automation/ReleaseValidator/ReleaseValidator.xcodeproj',
+		clean: true,
+		devices: unitTestDevices,
+		slack_only_on_failure: true
+	)
+	#sh("xcodebuild clean -project #{projectDirectory}automation/ReleaseValidator/ReleaseValidator.xcodeproj -scheme ReleaseValidator -configuration #{configuration} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
 	cleanReleaseProject
 	resetSimulator
 end

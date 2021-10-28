@@ -1,0 +1,15 @@
+//
+//  UBStaging.xcconfig
+//  Usabilla
+//
+//  Created by Hitesh Jain on 09/01/2020.
+//  Copyright © 2020 Usabilla. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+UB_USABILLA_API_HOST = https:/$()/api-staging.usabilla.com
+UB_USABILLA_CDN_HOST = https:/$()/sdk.out-staging.usbla.net
+UB_USABILLA_SUBMIT_ENDPOINT = https:/$()/w-staging.usabilla.com/incoming
+UB_USABILLA_TELEMETRY_ENDPOINT = https:/$()/w-staging.usabilla.com
