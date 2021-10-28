@@ -186,6 +186,8 @@ platform :ios do
 	desc "Export xcframework"
 	lane :buildXCFrameworkForXcodeVersion do |options|
 		version = options[:xcode]
+		buildConfig = getBuildConfigs()
+		configuration = buildConfig['configuration']
 		sh("rm -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/xcframeworks")
 		xcversion(version: version)
 		create_xcframework(
@@ -194,6 +196,7 @@ platform :ios do
     		include_bitcode: true,
             include_debug_symbols: true,
     		destinations: ['iOS'],
+			configuration: "#{configuration}",
     		xcframework_output_directory: "XcodeBuilds/Xcode-#{version}/xcframeworks"
 		)
 		copyToSwiftPackage(version: version)
@@ -202,6 +205,8 @@ platform :ios do
 	desc "Export Unity-Xamarin xcframework"
 	lane :buildUnityXamarinXCFramework do
 		version = masterXcodeVersion
+		buildConfig = getBuildConfigs()
+		configuration = buildConfig['configuration']
 		sh("rm -rf #{projectDirectory}XcodeBuilds/Xcode-#{version}/CSXCFrameworks")
 		xcversion(version: version)
 		create_xcframework(
@@ -210,6 +215,7 @@ platform :ios do
     		include_bitcode: true,
             include_debug_symbols: true,
     		destinations: ['iOS'],
+			configuration: "#{configuration}",
     		xcframework_output_directory: "XcodeBuilds/Xcode-#{version}/CSXCFrameworks"
 		)
 		copyToCSSwiftPackage(version: version)
