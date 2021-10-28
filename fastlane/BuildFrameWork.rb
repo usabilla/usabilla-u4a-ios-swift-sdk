@@ -57,28 +57,30 @@ private_lane :systemTestsAfterBuild do |options|
 	validateBuildLLVMGCC(version: version)
 	project_directory = options[:project_directory]
 	paths = Paths.new(version, project_directory, buildConfig['configuration'])
-
-	if version == nil
-		UI.message("'version' not specified in 'systemTestsAfterBuild")
-    elsif version.include?("12") || version.include?("13")
-		archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
-	else
-		archVariable = ""
-	end
+	# if version == nil
+	# 	UI.message("'version' not specified in 'systemTestsAfterBuild")
+    # elsif version.include?("12") || version.include?("13")
+	# 	archVariable = "VALIDATE_WORKSPACE=YES EXCLUDED_ARCHS=arm64"
+	# else
+	# 	archVariable = ""
+	# end
 
 	#Copy the newly created artefacts to the UsabillaSystemTest direcotry
-	sh("rm -rf #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/#{paths.framework_name}")
-	sh("cp -rf #{paths.projectDirectory}#{paths.xcode_directory}/Pods/#{paths.framework_name} #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/.")
+	framework_path = "#{projectDirectory}/XcodeBuilds/Xcode-#{version}/xcframeworks"
+	sh("rm -rf #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/Usabilla.xcframework \ 
+		unzip -d #{framework_path}/ #{framework_path}/UsabillaXCFramework.zip \ 
+		cp -rf #{framework_path}/Usabilla.xcframework #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest/. \ 
+		rm -rf #{framework_path}/Usabilla.xcframework")
 	xcversion(version: version)
-	sh("xcodebuild clean -project #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj -scheme #{buildConfig['scheme_name_test']} -configuration #{buildConfig['configuration']} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
+	#sh("xcodebuild clean -project #{paths.projectDirectory}/automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj -scheme #{buildConfig['scheme_name_test']} -configuration #{buildConfig['configuration']} -sdk iphonesimulator -destination '#{uiTestDevices.first}' #{archVariable} test")
 
-	# scan(
-	# 	project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
-	# 	scheme: buildConfig['scheme_name_test'],
-	# 	clean: true,
-	# 	devices: unitTestDevices,
-	# 	slack_only_on_failure: true
-	# )
+	scan(
+		project: './automation/UsabillaSystemTest/UsabillaSystemTest.xcodeproj',
+		scheme: buildConfig['scheme_name_test'],
+		clean: true,
+		devices: unitTestDevices,
+		slack_only_on_failure: true
+	)
 end
 
 #used in lane  "validateAll"

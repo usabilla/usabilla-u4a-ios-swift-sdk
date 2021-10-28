@@ -1,0 +1,135 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 effective-4.1.50 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target i386-apple-ios9.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -Onone -module-name Usabilla
+import AVFoundation
+import Foundation
+import Photos
+import Swift
+import SystemConfiguration
+import UIKit
+@_exported import Usabilla
+import os
+extension Usabilla {
+  open class func formViewController(forFormData data: Foundation.Data, screenshot: UIKit.UIImage? = nil) -> UIKit.UINavigationController?
+  open class func displayCampaignForm(withID formID: Swift.String, completion: ((UBCampaignFormDisplayError?) -> Swift.Void)? = nil)
+  open class func displayCampaignForm(withData data: Foundation.Data)
+}
+public enum UBCampaignFormDisplayError : Swift.Error {
+  case sdkNotInitialized
+  case formFetchFailed
+  case campaignAlreadyBeingPresented
+  public var localizedDescription: Swift.String {
+    get
+  }
+  public static func == (a: UBCampaignFormDisplayError, b: UBCampaignFormDisplayError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct UsabillaTheme : Swift.Equatable {
+  public var colors: UsabillaTheme.Colors
+  public var fonts: UsabillaTheme.Fonts
+  public var images: UsabillaTheme.Images
+  public var statusBarStyle: UIKit.UIStatusBarStyle?
+  public static func == (lhs: UsabillaTheme, rhs: UsabillaTheme) -> Swift.Bool
+  public struct Colors : Swift.Equatable {
+    public var header: UIKit.UIColor?
+    public static func == (lhs: UsabillaTheme.Colors, rhs: UsabillaTheme.Colors) -> Swift.Bool
+  }
+  public struct Fonts : Swift.Equatable {
+    public var regular: UIKit.UIFont?
+    public var bold: UIKit.UIFont?
+    public var titleSize: CoreGraphics.CGFloat
+    public var textSize: CoreGraphics.CGFloat
+    public var miniSize: CoreGraphics.CGFloat
+    public static func == (lhs: UsabillaTheme.Fonts, rhs: UsabillaTheme.Fonts) -> Swift.Bool
+  }
+  public struct Images : Swift.Equatable {
+    public var enabledEmoticons: [UIKit.UIImage]
+    public var disabledEmoticons: [UIKit.UIImage]?
+    public var star: UIKit.UIImage
+    public var starOutline: UIKit.UIImage
+    public static func == (lhs: UsabillaTheme.Images, rhs: UsabillaTheme.Images) -> Swift.Bool
+  }
+  public init()
+}
+@_hasMissingDesignatedInitializers open class Usabilla {
+  public static var customVariables: [Swift.String : Swift.String] {
+    get
+    set(newValue)
+  }
+  public static var defaultDataMasks: [Swift.String] {
+    get
+  }
+  public static var orientation: UIKit.UIInterfaceOrientationMask {
+    get
+    set(newValue)
+  }
+  public static var localizedStringFile: Swift.String {
+    get
+    set(newValue)
+  }
+  public static var theme: UsabillaTheme {
+    get
+    set(newValue)
+  }
+  public static var delegate: UsabillaDelegate? {
+    get
+    set(newValue)
+  }
+  public static var dismissAutomatically: Swift.Bool {
+    get
+    set(newValue)
+  }
+  public static var canDisplayCampaigns: Swift.Bool {
+    get
+    set(newValue)
+  }
+  public static var debugEnabled: Swift.Bool {
+    get
+    set(newValue)
+  }
+  public static var submitTelemetryData: Swift.Bool {
+    get
+    set(newValue)
+  }
+  @objc public static var setFooterLogoClickable: Swift.Bool {
+    @objc get
+    @objc set(newValue)
+  }
+  open class func sendEvent(event: Swift.String)
+  open class func initialize(appID: Swift.String?, completion: (() -> Swift.Void)? = nil)
+  open class func dismiss() -> Swift.Bool
+  open class func removeCachedForms()
+  open class func resetCampaignData(completion: (() -> Swift.Void)?)
+  open class func preloadFeedbackForms(withFormIDs formIDs: [Swift.String])
+  open class func loadFeedbackForm(_ formID: Swift.String, screenshot: UIKit.UIImage? = nil, theme: UsabillaTheme = theme)
+  open class func takeScreenshot(_ view: UIKit.UIView) -> UIKit.UIImage?
+  open class func setDataMasking(masks: [Swift.String] = defaultDataMasks, maskCharacter: Swift.Character = "X")
+  @objc deinit
+}
+public struct FeedbackResult {
+  public let rating: Swift.Int?
+  public let abandonedPageIndex: Swift.Int?
+  public var sent: Swift.Bool {
+    get
+  }
+}
+public struct UBError : Swift.Error {
+  public let description: Swift.String
+}
+public protocol UsabillaDelegate : AnyObject {
+  func formDidLoad(form: UIKit.UINavigationController)
+  func formDidFailLoading(error: UBError)
+  func formDidClose(formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  func formWillClose(form: UIKit.UINavigationController, formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Swift.Bool)
+  func feedbackResultSubmitted(userResponse: Foundation.Data)
+}
+extension UsabillaDelegate {
+  public func formDidClose(formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  public func formWillClose(form: UIKit.UINavigationController, formID: Swift.String, withFeedbackResults results: [FeedbackResult], isRedirectToAppStoreEnabled: Swift.Bool)
+  public func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Swift.Bool)
+  public func feedbackResultSubmitted(userResponse: Foundation.Data)
+}
