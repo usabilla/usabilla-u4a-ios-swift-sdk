@@ -1,3 +1,7 @@
+## 6.9.0
+
+### Update
+- Xcframework support for Carthage distribution
 ## 6.8.7
 ### Fix
 - Multiline support for rating labels
