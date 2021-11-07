@@ -83,7 +83,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.8.7'
+pod 'Usabilla', '~> 6.9.0'
 
 End
 ```
@@ -94,7 +94,7 @@ For other Xcode version, use:
 ```ruby
 pod 'Usabilla', :podspec => 'https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.podspec'
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13`, `Xcode-12.4`, `Xcode-11.7`, `Xcode-11.3.1`.
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13.1`, `Xcode-11.7`, `Xcode-11.3.1`.
 
 Then, run the following command:
 
@@ -108,6 +108,7 @@ The Usabilla SDK is also available through [Carthage](https://github.com/Carthag
 
 Follow [these instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
 to add carthage to your project.
+If you're migrating to xcframeworks please follow [these instructions] (https://github.com/Carthage/Carthage#migrating-a-project-from-framework-bundles-to-xcframeworks) and `Migration steps` mentioned there.
 
 And add this line to your `Cartfile`:
 
@@ -121,11 +122,13 @@ For other Xcode version, use:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13`, `Xcode-12.4`, `Xcode-11.7`, `Xcode-11.3.1`.
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-13.1`, `Xcode-11.7`, `Xcode-11.3.1`.
+
+**Note : Carthage - `0.38.0` encourage using XCFrameworks and Usabilla SDK for carthage supports XCFrameworks from `6.9.0` onwards**
 
 ### Manual
 
-You can download the latest version of the repository from [releases](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/) and extract **Pods.framework.zip** or **Usabilla.xcframework.zip**. Then add **Usabilla.framework** or **Usabilla.xcframework** to your app’s embedded frameworks.
+You can download the latest version of the repository from [releases](https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/) and extract  **UsabillaXCFramework.zip**. Then add **Usabilla.xcframework** to your app’s embedded frameworks.
 
 In doing so, you might encounter a problem while submitting your app to the App Store. This is due to a [bug in the App Store](http://www.openradar.me/radar?id=6409498411401216) itself.     
 
