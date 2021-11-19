@@ -306,12 +306,12 @@ private struct Theme: Codable {
     func getTheme() -> UsabillaTheme {
         var newTheme = UsabillaTheme()
         
-        if !fonts.regular.isEmpty && fonts.regularSize > 0  {
-            let afont =  UIFont(name: fonts.regular, size: CGFloat(fonts.regularSize) ?? 0 )
+        if !fonts.regular.isEmpty && fonts.textSize > 0  {
+            let afont =  UIFont(name: fonts.regular, size: CGFloat(fonts.textSize) ?? 0 )
             newTheme.fonts.regular = afont
         }
-        if !fonts.bold.isEmpty && fonts.boldSize > 0  {
-            let afont =  UIFont(name: fonts.bold, size: CGFloat(fonts.boldSize) ?? 0)
+        if !fonts.bold.isEmpty && fonts.titleSize > 0  {
+            let afont =  UIFont(name: fonts.bold, size: CGFloat(fonts.titleSize) ?? 0)
             newTheme.fonts.bold = afont
         }
 
@@ -337,6 +337,10 @@ private struct Theme: Codable {
         return newTheme
     }
     
+    func getBannerConfiguration() {
+        
+    }
+    
     private func imagesToArray(_ imageData: [String]) -> [UIImage]? {
         var imageArray: [UIImage] = []
         imageData.forEach {
@@ -353,9 +357,7 @@ private struct Theme: Codable {
 
 private struct Fonts: Codable {
     var regular: String
-    var regularSize: Int
     var bold: String
-    var boldSize: Int
     var titleSize: Int
     var textSize: Int
     var miniSize: Int
@@ -368,4 +370,13 @@ private struct Images: Codable {
     var starOutline: String
 }
 
+private struct Banner: Codable {
+    var backgroundImage: String
+    var logoImage: String
+    var cancelButtonImage: String
+    var cancelButtonTextColor: String
+    var continueButtonImage: String
+    var continueButtonTextColor: String
+
+}
 
