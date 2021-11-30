@@ -87,7 +87,7 @@ class UsabillaInternal {
     private static var  window: UIWindow?
     private static var submissionManager: SubmissionManager?
     private static let errorSDKNotInitialized = "UBError: Usabilla.initialize(appID:String) has not been called. The SDK is not operational."
-
+    static var bannerConfiguration: BannerConfiguration?
     private static let errorCamapingShowing = "UBError: A Campaing is showing. Form can't be displayed."
     private static let errorFormShowing = "UBError: A Form is showing. Campaing can't be displayed."
     private static let featurebillaService = FeaturebillaService()
@@ -96,6 +96,22 @@ class UsabillaInternal {
 
     private static let telemetric = UBTelemetrics(manager: featurebillaManager)
     class func sendEvent(event: String) {
+        
+//        let image = UIImage.getImageFromSDKBundle(name: "bgN")
+//        var const = BannerConfiguration()
+//
+//        const.backgroundImage = image
+//        const.buttonStyle = .gfpButtonVertical
+//        const.bannerType = .gfpBackgroundImageAndLogo
+//
+//        const.cancelButtonTitleColor = UIColor(rgba: "#97D3BC")//#82C9B0")
+//        const.continueButtonTitleColor = .white// aBanner.continueButtonTitleColor
+//        const.titleAlignment = .center
+//        const.componentTextAlignment = .center
+//        const.logoImage = UIImage.getImageFromSDKBundle(name: "takeSurvey")
+//
+//       // bannerConfiguration = const
+        
         campaignManager?.telemetric = telemetric
         let logid = telemetric.logStart(method: UBTelemetricSendEvent(), logLevel: .methods )
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.event, value: event, logLevel: .methods)
@@ -108,6 +124,7 @@ class UsabillaInternal {
             telemetric.submitLogData()
             return
         }
+        campaignManager?.bannerConfig = bannerConfiguration
         campaignManager?.sendEvent(event: event, customVariables: customVariables, logId: logid)
     }
 

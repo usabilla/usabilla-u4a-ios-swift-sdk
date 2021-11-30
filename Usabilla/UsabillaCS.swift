@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import Usabilla
 @objc(Usabilla)
 open class UsabillaCS: NSObject {
     @objc
@@ -188,14 +189,17 @@ open class UsabillaCS: NSObject {
     @objc
     open class func setThemWithJson(_ jsonString: String) {
         UIFont.loadAllFonts();
+        DLogInfo("JSON: \(jsonString)")
         if let dataFromJsonString = jsonString.data(using: .utf8) {
-            if let themeData = try? JSONDecoder().decode(Theme.self, from: dataFromJsonString) {
+            do {
+                let themeData = try JSONDecoder().decode(Theme.self, from: dataFromJsonString)
                 UsabillaInternal.theme =  themeData.getTheme()
+                UsabillaInternal.bannerConfiguration = themeData.getBannerConfiguration()
                 return
+            } catch {
+                DLogInfo(error.localizedDescription)
             }
         }
-        print("DONE")
-        
     }
 }
 @objc(FeedbackResult)
@@ -302,6 +306,7 @@ private struct Theme: Codable {
     var headerColor: String
     var fonts: Fonts
     var images: Images
+    var banner: Banner?
     
     func getTheme() -> UsabillaTheme {
         var newTheme = UsabillaTheme()
@@ -337,8 +342,63 @@ private struct Theme: Codable {
         return newTheme
     }
     
-    func getBannerConfiguration() {
+    func getBannerConfiguration() -> BannerConfiguration? {
         
+        guard let banner = banner else {return nil}
+        var bannerConfig = BannerConfiguration()
+        bannerConfig.buttonStyle = .gfpButtonVertical
+        bannerConfig.bannerType = .gfpBackgroundImageAndLogo
+        bannerConfig.titleAlignment = .center
+        bannerConfig.componentTextAlignment = .center
+
+        if banner.logo.assetName.isEmpty &&
+            banner.contourBgAssetName.isEmpty &&
+            banner.navigation.cancelButtonBgAssetName.isEmpty &&
+            banner.navigation.cancelButtonTextColor.isEmpty &&
+            banner.navigation.continueButtonBgAssetName.isEmpty &&
+            banner.navigation.continueButtonTextColor.isEmpty {return nil}
+        
+        // logo image
+        if !banner.logo.assetName.isEmpty {
+            if let unityImage = UIImage.getImageFromUnit(name: banner.logo.assetName) {
+                bannerConfig.logoImage = unityImage
+            } else if let aImage = UIImage(named: banner.logo.assetName) {
+                bannerConfig.logoImage = aImage
+            }
+        }
+        // background image
+        if !banner.contourBgAssetName.isEmpty {
+            if let unityImage = UIImage.getImageFromUnit(name: banner.contourBgAssetName) {
+                bannerConfig.backgroundImage = unityImage
+            } else if let aImage = UIImage(named: banner.contourBgAssetName) {
+                bannerConfig.backgroundImage = aImage
+            }
+        }
+
+        // continue buttom image
+        if !banner.navigation.continueButtonBgAssetName.isEmpty {
+            if let unityImage = UIImage.getImageFromUnit(name: banner.navigation.continueButtonBgAssetName) {
+                bannerConfig.continueButtonImage = unityImage
+            } else if let aImage = UIImage(named: banner.navigation.continueButtonBgAssetName) {
+                bannerConfig.continueButtonImage  = aImage
+            }
+        }
+        if !banner.navigation.continueButtonTextColor.isEmpty {
+            bannerConfig.continueButtonTitleColor = UIColor(rgba: banner.navigation.continueButtonTextColor)
+        }
+        
+        // continue buttom image
+        if !banner.navigation.cancelButtonBgAssetName.isEmpty {
+            if let unityImage = UIImage.getImageFromUnit(name: banner.navigation.cancelButtonBgAssetName) {
+                bannerConfig.cancelButtonImage = unityImage
+            } else if let aImage = UIImage(named: banner.navigation.cancelButtonBgAssetName) {
+                bannerConfig.cancelButtonImage  = aImage
+            }
+        }
+        if !banner.navigation.cancelButtonTextColor.isEmpty {
+            bannerConfig.cancelButtonTitleColor = UIColor(rgba: banner.navigation.cancelButtonTextColor)
+        }
+        return bannerConfig
     }
     
     private func imagesToArray(_ imageData: [String]) -> [UIImage]? {
@@ -371,12 +431,23 @@ private struct Images: Codable {
 }
 
 private struct Banner: Codable {
-    var backgroundImage: String
-    var logoImage: String
-    var cancelButtonImage: String
-    var cancelButtonTextColor: String
-    var continueButtonImage: String
-    var continueButtonTextColor: String
+    var enableClickThrough: Bool
+    var contourBgAssetName: String
 
+    var logo: BannerLogo
+    var navigation: BannerNavigation
+}
+
+
+public struct BannerLogo: Codable {
+    var assetName: String
+}
+
+
+public struct BannerNavigation: Codable {
+    var continueButtonBgAssetName: String
+    var continueButtonTextColor: String
+    var cancelButtonBgAssetName: String
+    var cancelButtonTextColor: String
 }
 

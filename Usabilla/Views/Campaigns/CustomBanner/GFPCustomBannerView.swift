@@ -73,6 +73,7 @@ public enum ButtonType {
 
 class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
     var viewModel: IntroPageViewModel
+    var nativeBanner = false
     private var bannerView: UIView = UIView()
     private var cardView: GFPCardView = GFPCardView()
     private lazy var insideStackView: UIStackView = UIStackView()
@@ -226,7 +227,6 @@ extension GFPCustomBannerView {
         if let color = bannerConfig.cancelButtonTitleColor  {
             cancelButton.setTitleColor(color, for: UIControl.State.normal)
         }
-        let aImage = UIImage.getImageFromSDKBundle(name: "bgN")
         let aButtonView = GFPCustomButton(image: nil, button: cancelButton)
 
         if viewModel.hasContinueButton || UIAccessibilityIsVoiceOverRunning() {
@@ -234,7 +234,7 @@ extension GFPCustomBannerView {
             if let color = bannerConfig.continueButtonTitleColor  {
                 aContinueButton.setTitleColor(color, for: UIControl.State.normal)
             }
-            let aButtonView = GFPCustomButton(image: aImage, button: aContinueButton)
+            let aButtonView = GFPCustomButton(image: bannerConfig.continueButtonImage, button: aContinueButton)
             buttonStackView.addArrangedSubview(aButtonView)
 
             //buttonStackView.addArrangedSubview(aContinueButton)
@@ -284,7 +284,7 @@ extension GFPCustomBannerView {
     private func configureComponentsView() {
          insideStackView.axis = .vertical
          insideStackView.isLayoutMarginsRelativeArrangement = true
-         insideStackView.spacing = 0.0
+         insideStackView.spacing = 10.0
          insideStackView.alignment = .leading
          insideStackView.distribution = .fill//fillProportionally
         

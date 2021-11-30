@@ -404,6 +404,7 @@
 		453DF816270F2C1A004D8BEB /* UsabillaCS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */; };
 		453DF846271DFEA9004D8BEB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453DF845271DFEA9004D8BEB /* Nimble.framework */; platformFilter = ios; };
 		453DF848271DFEB5004D8BEB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453DF847271DFEB5004D8BEB /* Quick.framework */; platformFilter = ios; };
+		4544486D274C09E700B4FAC6 /* UsabillaCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
@@ -464,6 +465,9 @@
 		45CDE6CC2374588D0015CD98 /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
 		45D994F32747EE8F00676771 /* GFPCustomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D994F22747EE8F00676771 /* GFPCustomBannerView.swift */; };
 		45D994F42747EE8F00676771 /* GFPCustomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D994F22747EE8F00676771 /* GFPCustomBannerView.swift */; };
+		45D994F5274802C400676771 /* GFPCustomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D994F22747EE8F00676771 /* GFPCustomBannerView.swift */; };
+		45D994F6274802C800676771 /* GFPCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E35273EB6130031E2E3 /* GFPCardView.swift */; };
+		45D994F7274802CB00676771 /* GFPCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E3D273EEDBD0031E2E3 /* GFPCustomButton.swift */; };
 		45DE3EE825E3E5E0005858FE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		45DE3EED25E3E5E0005858FE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		45DE3EEE25E3E5E1005858FE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
@@ -2569,6 +2573,7 @@
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
 				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
+				4544486D274C09E700B4FAC6 /* UsabillaCS.swift in Sources */,
 				432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */,
 				45B51EE022E7A00500122F44 /* DrawingPlugin.swift in Sources */,
 				458FC5E222EE42AD00E198A7 /* UBSAContainerView.swift in Sources */,
@@ -3258,6 +3263,7 @@
 				F274EBA3270CADA600AA69B8 /* FormStore.swift in Sources */,
 				F274EBA4270CADA600AA69B8 /* UBTouchView.swift in Sources */,
 				F274EBA5270CADA600AA69B8 /* HTTPClientProtocol.swift in Sources */,
+				45D994F7274802CB00676771 /* GFPCustomButton.swift in Sources */,
 				F274EBA6270CADA600AA69B8 /* UBCameraViewController.swift in Sources */,
 				F274EBA7270CADA600AA69B8 /* RootCellView.swift in Sources */,
 				F274EBA8270CADA600AA69B8 /* UBFeedbackRequestDAO.swift in Sources */,
@@ -3298,6 +3304,7 @@
 				F274EBC8270CADA600AA69B8 /* TextAreaComponentViewModel.swift in Sources */,
 				F274EBC9270CADA600AA69B8 /* EmailComponent.swift in Sources */,
 				F274EBCA270CADA600AA69B8 /* HeaderComponentViewModel.swift in Sources */,
+				45D994F6274802C800676771 /* GFPCardView.swift in Sources */,
 				F274EBCB270CADA600AA69B8 /* SwiftyJSON.swift in Sources */,
 				F274EBCC270CADA600AA69B8 /* DrawingPlugin.swift in Sources */,
 				F274EBCD270CADA600AA69B8 /* UBSAContainerView.swift in Sources */,
@@ -3345,6 +3352,7 @@
 				F274EBF8270CADA600AA69B8 /* CellViewModel.swift in Sources */,
 				F274EBF9270CADA600AA69B8 /* ClientModel.swift in Sources */,
 				F274EBFA270CADA600AA69B8 /* UIColor.swift in Sources */,
+				45D994F5274802C400676771 /* GFPCustomBannerView.swift in Sources */,
 				F274EBFB270CADA600AA69B8 /* UIDevice.swift in Sources */,
 				F274EBFC270CADA600AA69B8 /* PageViewController.swift in Sources */,
 				F274EBFD270CADA600AA69B8 /* PageModel.swift in Sources */,

@@ -44,8 +44,14 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         //centerXConstraint = view.centerXAnchor.constraint(equalTo: inView.centerXAnchor).activate()
         //centerYConstraint = view.centerYAnchor.constraint(equalTo: inView.centerYAnchor).activate()
         
-        rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: 0).activate()
-        leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: 0).activate()
+        if view.nativeBanner {
+        rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: -UBDimensions.BannerPresenter.rightConstraint).activate()
+        leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: UBDimensions.BannerPresenter.leftConstraint).activate()
+        } else {
+            rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: 0).activate()
+            leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: 0).activate()
+
+        }
         /*if DeviceInfo.isIPad() {
             view.widthAnchor.constraint(equalToConstant: kWidthTablet).activate()
             view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: kRightOffsetTablet).activate()
@@ -55,26 +61,25 @@ class UBBannerPresenter: UBIntroOutroPresenter {
          */
         inView.layoutIfNeeded()
 
-        //topConstraint.constant = -offset
-        //bottomConstraint.constant = offset
-
-        //centerXConstraint.constant = -600
-        //centerYConstraint.constant = offset
-        
-        
-        // activate bottom or top constraint based on banner position
-        //topConstraint.isActive = style != .bannerBottom
-        //bottomConstraint.isActive = style == .bannerBottom
+        if view.nativeBanner {
+            topConstraint.constant = -offset
+            bottomConstraint.constant = offset
+            topConstraint.isActive = style != .bannerBottom
+            bottomConstraint.isActive = style == .bannerBottom
+        }
         inView.layoutIfNeeded()
 
         CampaignWindow.shared.setWindowLevel(UIWindowLevelStatusBar - 1)
         // Design requested slower animation on ipad
         let animationTime = (DeviceInfo.isIPad() ? UBDimensions.BannerPresenter.animateDurationTablet : UBDimensions.BannerPresenter.animateDurationDefualt)
         UIView.animate(withDuration: animationTime, delay: UBDimensions.BannerPresenter.animateDelay, usingSpringWithDamping: UBDimensions.BannerPresenter.springDamping, initialSpringVelocity: UBDimensions.BannerPresenter.springVelocity, options: .curveEaseOut, animations: { [weak self] in
-            //self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
-            //self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
-            //self?.centerXConstraint.constant = 0
-            
+            if view.nativeBanner {
+                self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
+                self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
+            } else {
+                //self?.centerXConstraint.constant = 0
+            }
+                       
             inView.layoutIfNeeded()
         })
        // setFixedConstraints()
@@ -132,13 +137,18 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             return
         }
         rightConstraint?.isActive = false
-        rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -UBDimensions.BannerPresenter.rightConstraint)
-        rightConstraint?.isActive = true
-
         widthConstraint?.isActive  = false
-
         leftConstraint?.isActive = false
-        leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: UBDimensions.BannerPresenter.leftConstraint)
+
+        if aView.nativeBanner {
+            leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: UBDimensions.BannerPresenter.leftConstraint)
+            rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -UBDimensions.BannerPresenter.rightConstraint)
+        } else {
+            leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: 0)
+            rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: 0)
+        }
+        
+        rightConstraint?.isActive = true
         leftConstraint?.isActive = true
         superview.updateConstraints()
     }
@@ -149,16 +159,22 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         }
         rightConstraint?.isActive = false
         leftConstraint?.isActive = false
-        var offset: CGFloat = 16
-        if orientation == .landscapeLeft {
-            offset = DeviceInfo.offsetRightNotch
+        widthConstraint?.isActive  = false
+        if aView.nativeBanner {
+            var offset: CGFloat = 16
+            if orientation == .landscapeLeft {
+                offset = DeviceInfo.offsetRightNotch
+            }
+            let theConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -offset)
+            rightConstraint? = theConstraint
+            widthConstraint = aView.widthAnchor.constraint(equalToConstant: kWidthiPhone)
+        } else {
+            leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: 0)
+            rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: 0)
+            leftConstraint?.isActive = true
         }
-        let theConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: -offset)
-        rightConstraint? = theConstraint
-        rightConstraint?.isActive = true
-
-        widthConstraint = aView.widthAnchor.constraint(equalToConstant: kWidthiPhone)
         widthConstraint?.isActive  = true
+        rightConstraint?.isActive = true
 
         superview.updateConstraints()
     }

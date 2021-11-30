@@ -25,7 +25,7 @@ class CampaignWindow {
     private var campaingController: CampaignViewController?
     private init() { }
 
-    @discardableResult func showCampaign(_ campaignViewModel: CampaignViewModel) -> Bool {
+    @discardableResult func showCampaign(_ campaignViewModel: CampaignViewModel, bannerConfig: BannerConfiguration? = nil) -> Bool {
         if showing {
             return false
         }
@@ -60,6 +60,7 @@ class CampaignWindow {
         popupWindow?.makeKeyAndVisible()
         showing = true
         let campaignVC = CampaignViewController(viewModel: campaignViewModel, delegate: self)
+        campaignVC.bannerConfiguration = bannerConfig
         campaignVC.view.translatesAutoresizingMaskIntoConstraints = true
         campaignVC.view.backgroundColor = .clear
         campaignVC.modalPresentationStyle = .overFullScreen

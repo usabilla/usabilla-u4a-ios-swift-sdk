@@ -23,7 +23,7 @@ class CampaignViewController: UIViewController {
     internal let offset: CGFloat = 10
 
     fileprivate weak var delegate: CampaignViewControllerDelegate?
-
+    var bannerConfiguration: BannerConfiguration?
     weak var backgroundLayer: UIView?
     weak var introView: UBIntroOutroViewProtocol?//UBIntroOutroView?
     var formNavigationController: UINavigationController?
@@ -51,25 +51,20 @@ class CampaignViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         if let introPageViewModel = viewModel.introPageViewModel {
-            
-            let image = UIImage.getImageFromSDKBundle(name: "bgN")
-            var const = BannerConfiguration()
-            
-            const.backgroundImage = image
-            const.buttonStyle = .gfpButtonVertical
-            const.bannerType = .gfpBackgroundImageAndLogo
-           
-            const.cancelButtonTitleColor = UIColor(rgba: "#97D3BC")//#82C9B0")
-            const.continueButtonTitleColor = .white
-            const.titleAlignment = .center
-            const.componentTextAlignment = .center
-            const.logoImage = UIImage.getImageFromSDKBundle(name: "takeSurvey")
-            let introView = GFPCustomBannerView(viewModel: introPageViewModel, configuration: const)
-            //let introView = UBIntroOutroView(viewModel: introPageViewModel)
-            self.introView = introView
-            introView.delegate = self
+            if let aBanner = bannerConfiguration {
+                let introView = GFPCustomBannerView(viewModel: introPageViewModel, configuration: aBanner)
+                self.introView = introView
+                introView.delegate = self
+                view.addSubview(introView)
+            } else {
+                let introView = UBIntroOutroView(viewModel: introPageViewModel)
+                self.introView = introView
+                introView.delegate = self
 
-            view.addSubview(introView)
+                view.addSubview(introView)
+            }
+            
+            
         }
         var animations: (() -> Void)?
 

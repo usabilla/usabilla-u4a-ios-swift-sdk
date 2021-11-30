@@ -17,6 +17,7 @@ class CampaignManager {
     private let submissionManager: CampaignSubmissionManager
     weak var telemetric: UBTelemetrics?
     var maskModel: MaskModel?
+    var bannerConfig: BannerConfiguration?
     init(campaignStore: UBCampaignStoreProtocol, campaignService: CampaignServiceProtocol, appID: String, completion: (() -> Void)? = nil) {
         self.campaignStore = campaignStore
         self.campaignService = campaignService
@@ -203,13 +204,13 @@ class CampaignManager {
             }
             //swiftlint:disable:next force_unwrapping
             let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
-            return CampaignWindow.shared.showCampaign(campaignViewModel)
+            return CampaignWindow.shared.showCampaign(campaignViewModel, bannerConfig: bannerConfig)
         }
 
     #else
         @discardableResult func displayCampaignForm(_ form: FormModel, manager: CampaignSubmissionRequestManager, campaignID: String = "id") -> Bool {
             let campaignViewModel = CampaignViewModel(form: form, manager: manager)
-            return CampaignWindow.shared.showCampaign(campaignViewModel)
+            return CampaignWindow.shared.showCampaign(campaignViewModel, bannerConfig: bannerConfig)
         }
     #endif
 }

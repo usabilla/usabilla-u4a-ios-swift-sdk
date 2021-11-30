@@ -17,6 +17,7 @@ protocol UBIntroOutroViewDelegate: class {
 
 protocol UBIntroOutroViewProtocol: UIView {
     var viewModel: IntroPageViewModel {get}
+    var nativeBanner: Bool {get set}
 }
 
 class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
@@ -31,7 +32,7 @@ class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
             return UBBannerDisplay.self
         }
     }
-
+    var nativeBanner = true
     // UI elements
     var continueButton: UIButton?
     var cancelButton: UIButton!
