@@ -284,3 +284,24 @@ enum UBToastDuration: Int {
     case normal = 2
     case long = 4
 }
+
+struct UBStyle {
+    struct LightTheme {
+        static let text = UIColor.init(rgba: "#555B6E")
+        static let textOnAccent = UIColor.init(rgba: "#FFFFFF")
+        static let accent = UIColor.init(rgba: "#258060")
+        static let title = UIColor.init(rgba: "#0F1013")
+        static let error = UIColor.init(rgba: "#C43E3E")
+        static let background = UIColor.init(rgba: "#F3F3F5")
+        static let cardColor = UIColor.init(rgba: "#FFFFFF")
+    }
+    struct DarkTheme {
+        static let text = UIColor.init(rgba: "#F3F3F5")
+        static let textOnAccent = UIColor.init(rgba: "#0F1013")
+        static let accent = UIColor.init(rgba: "#C7E0D6")
+        static let title = UIColor.init(rgba: "#FFFFFF")
+        static let error = UIColor.init(rgba: "#EB7D7D")
+        static let background = UIColor.init(rgba: "#303A42")
+        static let cardColor = UIColor.init(rgba: "#555B6E")
+    }
+}

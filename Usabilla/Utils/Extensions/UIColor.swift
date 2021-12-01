@@ -152,4 +152,16 @@ extension UIColor {
         return String(format: "#%02X%02X%02X", Int(red * 255), Int(green * 255), Int(blue * 255))
     }
 
+    /// Easily define two colors for both light and dark mode.
+    /// - Parameters:
+    ///   - lightMode: The color to use in light mode.
+    ///   - darkMode: The color to use in dark mode.
+    /// - Returns: A dynamic color that uses both given colors respectively for the given user interface style.
+    static func | (lightMode: UIColor, darkMode: UIColor) -> UIColor {
+        guard #available(iOS 13.0, *) else { return lightMode }
+        return UIColor { (traitCollection) -> UIColor in
+            return traitCollection.userInterfaceStyle == .light ? lightMode : darkMode
+        }
+    }
+
 }

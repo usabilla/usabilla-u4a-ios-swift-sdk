@@ -52,13 +52,13 @@ public struct UsabillaTheme: Equatable {
         }
 
         init() {
-            text = UIColor(red: 89 / 255, green: 99 / 255, blue: 107 / 255, alpha: 1)
-            textOnAccent = UIColor.white
-            accent = UIColor(red: 0 / 255, green: 165 / 255, blue: 201 / 255, alpha: 1)
-            title = UIColor(red: 65 / 255, green: 71 / 255, blue: 76 / 255, alpha: 1)
-            error = UIColor(red: 244 / 255, green: 96 / 255, blue: 110 / 255, alpha: 1)
-            background = UIColor.white
-            cardColor = UIColor.white
+            text = UBStyle.LightTheme.text
+            textOnAccent = UBStyle.LightTheme.textOnAccent
+            accent = UBStyle.LightTheme.accent
+            title = UBStyle.LightTheme.title
+            error = UBStyle.LightTheme.error
+            background = UBStyle.LightTheme.background
+            cardColor = UBStyle.LightTheme.cardColor
             header = nil
         }
 
@@ -88,7 +88,7 @@ public struct UsabillaTheme: Equatable {
             lhs.textSize == rhs.textSize &&
             lhs.miniSize == rhs.miniSize
         }
-        //Computed font to use in SDK
+        // Computed font to use in SDK
         var font: UIFont {
             if let font = regular {
                 return font.withSize(textSize)
@@ -125,10 +125,10 @@ public struct UsabillaTheme: Equatable {
         init() {
             enabledEmoticons = UsabillaTheme.createEmoticons()
             disabledEmoticons = nil
-            //swiftlint:disable force_unwrapping
+            // swiftlint:disable force_unwrapping
             star = UIImage.getImageFromSDKBundle(name: "star")!
             starOutline = UIImage.getImageFromSDKBundle(name: "star_outline")!
-            //swiftlint:enable force_unwrapping
+            // swiftlint:enable force_unwrapping
         }
 
         public static func == (lhs: Images, rhs: Images) -> Bool {
@@ -149,7 +149,7 @@ public struct UsabillaTheme: Equatable {
     fileprivate static func createEmoticons() -> [UIImage] {
         let imagesName = ["hate", "sad", "normal", "happy", "love"]
         return imagesName.map { name in
-            //swiftlint:disable:next force_unwrapping
+            // swiftlint:disable:next force_unwrapping
             UIImage.getImageFromSDKBundle(name: name)!
         }
     }
