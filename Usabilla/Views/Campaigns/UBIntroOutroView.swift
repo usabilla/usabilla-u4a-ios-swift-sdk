@@ -112,8 +112,11 @@ class UBIntroOutroView: UIView {
         } else {
             heightScrollView = UIScreen.main.bounds.height * 0.5 - UBDimensions.IntroOutroView.buttonStackViewHeight
         }
-        
-        let heightScrollViewConstant = min(scrollContentView.frame.height, heightScrollView)
+        var heightScrollViewConstant = min(scrollContentView.frame.height, heightScrollView)
+
+        if !(heightScrollViewConstant > 0  && viewModel.componentViewModel != nil) {
+            heightScrollViewConstant = titleLabel.frame.height + UBDimensions.IntroOutroView.heightValue
+        }
         // swiftlint:disable:next force_unwrapping
         heightScrollViewConstraint!.constant = heightScrollViewConstant
     }
