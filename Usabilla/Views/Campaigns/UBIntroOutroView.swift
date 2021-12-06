@@ -114,7 +114,7 @@ class UBIntroOutroView: UIView {
         }
         var heightScrollViewConstant = min(scrollContentView.frame.height, heightScrollView)
 
-        if !(heightScrollViewConstant > 0  && viewModel.componentViewModel != nil) {
+        if heightScrollViewConstant <= 0  && viewModel.componentViewModel == nil && titleLabel.frame.height > 0 {
             heightScrollViewConstant = titleLabel.frame.height + UBDimensions.IntroOutroView.heightValue
         }
         // swiftlint:disable:next force_unwrapping
