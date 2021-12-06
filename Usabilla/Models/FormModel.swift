@@ -127,7 +127,20 @@ class FormModel: NSObject, NSCoding {
 
     func updateTheme() {
         let jsonHolder = JSONFormParser.getStructureHolder(inJSON: formJsonString)
-        self.theme.updateColors(json: jsonHolder["colors"])
+        let colors = jsonHolder["colors"]
+        let darkMode = jsonHolder["data"]["darkMode"] != nil
+        if darkMode {
+            // swiftlint:disable force_cast
+            let darkModeEnabled = jsonHolder["data"]["darkMode"].rawValue as! Bool
+            if darkModeEnabled {
+                let darkColors = jsonHolder["darkColors"]
+                self.theme.updateDarkColors(lightModeColors: colors, darkModeColors: darkColors)
+            } else {
+                self.theme.updateColors(json: colors)
+            }
+        } else {
+            self.theme.updateColors(json: colors)
+        }
     }
 
     // MARK: NScoding protocols
