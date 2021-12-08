@@ -173,6 +173,8 @@ class UBTelemetricResponseLogs: Codable {
                 return "Internal"
             case _ where (data.first(where: {$0.contains("UsabillaXamarin")}) != nil) :
                 return "Xamarin"
+            case _ where (data.first(where: {$0.contains("UnityFramework")}) != nil) :
+                return "Unity"
             default:
                 return "Usabilla"
             }
