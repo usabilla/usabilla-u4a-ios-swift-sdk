@@ -12,7 +12,7 @@ import UIKit
 struct BannerConfiguration {
     var bannerType: BannerType = .gfpDefault
     var buttonStyle: ButtonType = .gfpButtonHorizontal
-    
+
     var topMargin: Float = 20
     var leftMargin: Float = 20
     var rightMargin: Float = -20
@@ -21,14 +21,14 @@ struct BannerConfiguration {
     var maxHeight: Float = 400
     var backgroundImage: UIImage?
     var clickThrough = false
-    
+
     var logoTopMargin: Float = 0
     var logoLeftMargin: Float = 0
     var logoRightMargin: Float = 0
     var logoBottomMargin: Float = 0
     var logoHeight: Float = 150
     var logoWidth: Float = 115
-    var logoImage: UIImage? 
+    var logoImage: UIImage?
     
     var titleLeftMargin: Float = 16
     var titleRightMargin: Float = -16
@@ -37,13 +37,12 @@ struct BannerConfiguration {
     var titleWidth: Float = 0
     var titleAlignment: NSTextAlignment = .left
 
-
     var componentLeftMargin: Float = 16
     var componentRightMargin: Float = -16
     var componentHeight: Float = 0
     var componentWidth: Float = 0
     var componentTextAlignment: NSTextAlignment = .left
-    
+
     var buttonsTopMargin: Float = 16
     var buttonLeftMargin: Float = 40
     var buttonRightMargin: Float = -40
@@ -56,20 +55,17 @@ struct BannerConfiguration {
     var continueButtonTitleColor: UIColor?
 }
 
-
-public enum BannerType {
+enum BannerType {
     case gfpDefault
     case gfpBackgroundImage
     case gfpBackgroundImageAndLogo
 }
 
-public enum ButtonType {
+enum ButtonType {
     case gfpDefault
     case gfpButtonHorizontal
     case gfpButtonVertical
 }
-
-
 
 class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
     var viewModel: IntroPageViewModel
@@ -88,27 +84,24 @@ class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
     private var continueButton: UIButton?
     private var cancelButton: UIButton!
 
-    
     private var compenentView = UIView()
-    
+
     private var imageView: UIImageView?
     private var titleLabel: UILabel!
     private var componentView: UIControl?
-    
+
     private var titleTopConstraint: NSLayoutConstraint!
-    
+
     weak var delegate: UBIntroOutroViewDelegate?
     private var bannerConfig: BannerConfiguration
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    required init(viewModel: IntroPageViewModel,
-                  configuration : BannerConfiguration = BannerConfiguration()) {
+    required init(viewModel: IntroPageViewModel, configuration: BannerConfiguration = BannerConfiguration()) {
         self.viewModel = viewModel
         self.bannerConfig = configuration
         super.init(frame: CGRect.zero)
-
 
         SwiftEventBus.onMainThread(self, name: "pageUpdatedValues") { _ in
            // self.updateContinueButton()
@@ -119,7 +112,7 @@ class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
     deinit {
         SwiftEventBus.unregister(self)
     }
-    //MARK: - setup views
+    // MARK: - setup views
     fileprivate func configureViews() {
         addBannerView()
         setupCardView()
@@ -138,7 +131,6 @@ class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
         bannerView.trailingAnchor.constraint(equalTo: trailingAnchor).activate()
         bannerView.topAnchor.constraint(equalTo: topAnchor).activate()
         bannerView.bottomAnchor.constraint(equalTo: bottomAnchor).activate()
-        
     }
 
     fileprivate func addBackgroundImage() {
@@ -184,8 +176,8 @@ class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
             imageview.heightAnchor.constraint(equalToConstant: CGFloat(bannerConfig.logoHeight)).activate()
         }
     }
-    
-    //MARK: - utilities
+
+    // MARK: - utilities
     override func layoutSubviews() {
         cardView.layoutSubviews()
         componentView?.layoutSubviews()
@@ -209,7 +201,7 @@ class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
         delegate?.introViewDidContinue(introView: self)
     }
 
-    //override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    // override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
             let view = super.hitTest(point, with: event)
             return view == self ? nil : view
@@ -217,27 +209,27 @@ class GFPCustomBannerView: UBCustomTouchableView, UBIntroOutroViewProtocol {
 
  }
 
-//MARK: - buttons
+// MARK: - buttons
 extension GFPCustomBannerView {
-    
+
     private func setupButtons() {
         configureButtonViews()
         cancelButton = UIButton(type: .system)
         cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
-        if let color = bannerConfig.cancelButtonTitleColor  {
+        if let color = bannerConfig.cancelButtonTitleColor {
             cancelButton.setTitleColor(color, for: UIControl.State.normal)
         }
         let aButtonView = GFPCustomButton(image: nil, button: cancelButton)
 
         if viewModel.hasContinueButton || UIAccessibilityIsVoiceOverRunning() {
             let aContinueButton = UIButton(type: .system)
-            if let color = bannerConfig.continueButtonTitleColor  {
+            if let color = bannerConfig.continueButtonTitleColor {
                 aContinueButton.setTitleColor(color, for: UIControl.State.normal)
             }
             let aButtonView = GFPCustomButton(image: bannerConfig.continueButtonImage, button: aContinueButton)
             buttonStackView.addArrangedSubview(aButtonView)
 
-            //buttonStackView.addArrangedSubview(aContinueButton)
+            // buttonStackView.addArrangedSubview(aContinueButton)
             // In case voice over is activated we want to add a continue button even if it does not exist
             var continueText = viewModel.continueLabelText
             if UIAccessibilityIsVoiceOverRunning() && (continueText?.isEmpty ?? true) {
@@ -248,7 +240,6 @@ extension GFPCustomBannerView {
             continueButton = aContinueButton
         }
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)
-        
         buttonStackView.addArrangedSubview(aButtonView)
 
         updateContinueButton()
@@ -272,10 +263,7 @@ extension GFPCustomBannerView {
             buttonStackView.axis = .vertical
             buttonStackView.distribution = .fillProportionally
         }
-        
     }
-    
-
 }
 
 // MARK: - Component view
@@ -286,11 +274,10 @@ extension GFPCustomBannerView {
          insideStackView.isLayoutMarginsRelativeArrangement = true
          insideStackView.spacing = 10.0
          insideStackView.alignment = .leading
-         insideStackView.distribution = .fill//fillProportionally
-        
+         insideStackView.distribution = .fill// fillProportionally
         addTitle()
         addComponent()
-        
+
         insideStackView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubviewToStack(insideStackView)
         insideStackView.leftAnchor.constraint(equalTo: cardView.cardStackView.leftAnchor, constant: 0).isActive = true
@@ -312,20 +299,19 @@ extension GFPCustomBannerView {
     private func addComponent() {
         guard let componentViewModel = viewModel.componentViewModel else { return }
         let aComponentView = ComponentFactory.component(viewModel: componentViewModel)
-        
+
         if let aField = aComponentView as? ParagraphComponent {
             aField.textView.textAlignment = NSTextAlignment.center
         }
         if let aField = aComponentView as? TextAreaComponent {
             aField.textView.textAlignment = NSTextAlignment.center
         }
-        
-        
+
         if !viewModel.hasContinueButton && !UIAccessibilityIsVoiceOverRunning() {
             aComponentView.addTarget(self, action: #selector(UBIntroOutroView.componentValueChanged), for: [.valueChanged])
         }
         insideStackView.addArrangedSubview(aComponentView)
-            
+
         aComponentView.translatesAutoresizingMaskIntoConstraints = false
         aComponentView.leftAnchor.constraint(equalTo: insideStackView.leftAnchor, constant: CGFloat(bannerConfig.componentLeftMargin)).isActive = true
         aComponentView.rightAnchor.constraint(equalTo: insideStackView.rightAnchor, constant: CGFloat(bannerConfig.componentRightMargin)).isActive = true

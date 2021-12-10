@@ -172,10 +172,6 @@ open class Usabilla {
             masks: masks,
             maskCharacter: maskCharacter)
     }
-    
-    open class func showView() -> UIViewController {
-        return UsabillaInternal.showView()
-    }
 }
 
 public struct FeedbackResult {

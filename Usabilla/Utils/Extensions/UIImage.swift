@@ -193,6 +193,8 @@ extension UIImage {
             cornerRadius: cornerRadius
             ).addClip()
         self.draw(in: rect)
-        return UIGraphicsGetImageFromCurrentImageContext()!
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return self }
+        UIGraphicsEndImageContext()
+        return image
     }
 }

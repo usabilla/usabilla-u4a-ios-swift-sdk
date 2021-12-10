@@ -29,8 +29,8 @@ extension UIFont {
     fileprivate class func registerFontWithFilenameString(_ fontPath: String) {
         guard let bundlename = Bundle.main.bundleIdentifier, let frameworkBundle = Bundle(identifier: bundlename) else { return }
                 if let fontData = NSData(contentsOfFile: fontPath) {
-            let dataProvider = CGDataProvider(data: fontData)
-            guard let fontRef = CGFont(dataProvider!) else { return}
+            guard let dataProvider = CGDataProvider(data: fontData) else { return}
+            guard let fontRef = CGFont(dataProvider) else { return}
             var errorRef: Unmanaged<CFError>? = nil
             if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
                 print("error \(errorRef)")

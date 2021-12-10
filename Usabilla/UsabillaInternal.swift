@@ -96,22 +96,6 @@ class UsabillaInternal {
 
     private static let telemetric = UBTelemetrics(manager: featurebillaManager)
     class func sendEvent(event: String) {
-        
-//        let image = UIImage.getImageFromSDKBundle(name: "bgN")
-//        var const = BannerConfiguration()
-//
-//        const.backgroundImage = image
-//        const.buttonStyle = .gfpButtonVertical
-//        const.bannerType = .gfpBackgroundImageAndLogo
-//
-//        const.cancelButtonTitleColor = UIColor(rgba: "#97D3BC")//#82C9B0")
-//        const.continueButtonTitleColor = .white// aBanner.continueButtonTitleColor
-//        const.titleAlignment = .center
-//        const.componentTextAlignment = .center
-//        const.logoImage = UIImage.getImageFromSDKBundle(name: "takeSurvey")
-//
-//       // bannerConfiguration = const
-        
         campaignManager?.telemetric = telemetric
         let logid = telemetric.logStart(method: UBTelemetricSendEvent(), logLevel: .methods )
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSendEvent.event, value: event, logLevel: .methods)
@@ -442,21 +426,4 @@ class UsabillaInternal {
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSetDataMasking.maskCharacter, value: char, logLevel: .methods)
         telemetric.logEnd(for: logid, keyPath: \UBTelemetricSetDataMasking.dur)
     }
-    
-    class func
-    showView() -> UIViewController {        
-        let image = UIImage.getImageFromSDKBundle(name: "takeSurvey")
-        var const = BannerConfiguration()
-        const.backgroundImage = image
-//        let view = CustomBannerView(viewModel: nil, configuration: const)
-  //      view.translatesAutoresizingMaskIntoConstraints = false
-        let viecCntr = UIViewController()
-        //viecCntr.view.frame
-        viecCntr.view.backgroundColor = .green
-        viecCntr.modalPresentationStyle = .fullScreen
-    //    viecCntr.view.addSubview(view)
-        
-        return viecCntr
-    }
-
 }

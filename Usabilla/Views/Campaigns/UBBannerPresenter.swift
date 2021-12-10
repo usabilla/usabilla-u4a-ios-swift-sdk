@@ -41,9 +41,6 @@ class UBBannerPresenter: UBIntroOutroPresenter {
         topConstraint = view.topAnchor.constraint(equalTo: inView.topAnchor).activate()
         bottomConstraint = view.bottomAnchor.constraint(equalTo: inView.bottomAnchor).activate()
 
-        //centerXConstraint = view.centerXAnchor.constraint(equalTo: inView.centerXAnchor).activate()
-        //centerYConstraint = view.centerYAnchor.constraint(equalTo: inView.centerYAnchor).activate()
-        
         if view.nativeBanner {
         rightConstraint = view.rightAnchor.constraint(equalTo: inView.rightAnchor, constant: -UBDimensions.BannerPresenter.rightConstraint).activate()
         leftConstraint = view.leftAnchor.constraint(equalTo: inView.leftAnchor, constant: UBDimensions.BannerPresenter.leftConstraint).activate()
@@ -76,10 +73,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             if view.nativeBanner {
                 self?.topConstraint.constant = (style == .bannerTop ? DeviceInfo.topMargin : (self?.topConstraint.constant ?? 0.0))
                 self?.bottomConstraint.constant = (style == .bannerTop ? (self?.bottomConstraint.constant ?? 0.0) : -DeviceInfo.bottomMargin)
-            } else {
-                //self?.centerXConstraint.constant = 0
             }
-                       
             inView.layoutIfNeeded()
         })
        // setFixedConstraints()
