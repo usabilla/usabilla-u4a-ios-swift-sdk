@@ -1,4 +1,7 @@
-## 6.9.0
+## 6.10.0
+### Fix
+- Campaigns with Title & Text (optional \ empty) component
 
 ### Update
-- Xcframework support for Carthage distribution
+- Dark Mode support for both Campaigns & Passive Feedback
+- Multi custom variable support
