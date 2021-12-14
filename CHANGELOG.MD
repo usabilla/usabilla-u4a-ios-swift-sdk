@@ -1,3 +1,10 @@
+## 6.10.0
+### Fix
+- Campaigns with Title & Text (optional \ empty) component
+
+### Update
+- Dark Mode support for both Campaigns & Passive Feedback
+- Multi custom variable support
 ## 6.9.0
 
 ### Update
