@@ -1,4 +1,4 @@
-version = "6.9.0"
+version = "6.10.0"
 
 Pod::Spec.new do |s|
 
