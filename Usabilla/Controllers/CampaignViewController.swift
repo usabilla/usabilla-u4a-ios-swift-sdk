@@ -25,7 +25,7 @@ class CampaignViewController: UIViewController {
     fileprivate weak var delegate: CampaignViewControllerDelegate?
     var bannerConfiguration: BannerConfiguration?
     weak var backgroundLayer: UIView?
-    weak var introView: UBIntroOutroViewProtocol?//UBIntroOutroView?
+    weak var introView: UBIntroOutroViewProtocol?
     var formNavigationController: UINavigationController?
     var toast: UBToast?
     var animationSpeed = 0.3
