@@ -409,8 +409,6 @@
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
 		45553AE122E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
-		45607E322739C4DE0031E2E3 /* LayoutObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E312739C4DE0031E2E3 /* LayoutObject.swift */; };
-		45607E332739C4DE0031E2E3 /* LayoutObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E312739C4DE0031E2E3 /* LayoutObject.swift */; };
 		45607E36273EB6130031E2E3 /* GFPCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E35273EB6130031E2E3 /* GFPCardView.swift */; };
 		45607E37273EB6130031E2E3 /* GFPCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E35273EB6130031E2E3 /* GFPCardView.swift */; };
 		45607E3E273EEDBD0031E2E3 /* GFPCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E3D273EEDBD0031E2E3 /* GFPCustomButton.swift */; };
@@ -1218,7 +1216,6 @@
 		453DF845271DFEA9004D8BEB /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Carthage/Build/Nimble.xcframework/ios-arm64_i386_x86_64-simulator/Nimble.framework"; sourceTree = "<group>"; };
 		453DF847271DFEB5004D8BEB /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "Carthage/Build/Quick.xcframework/ios-arm64_i386_x86_64-simulator/Quick.framework"; sourceTree = "<group>"; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
-		45607E312739C4DE0031E2E3 /* LayoutObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutObject.swift; sourceTree = "<group>"; };
 		45607E35273EB6130031E2E3 /* GFPCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPCardView.swift; sourceTree = "<group>"; };
 		45607E3D273EEDBD0031E2E3 /* GFPCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPCustomButton.swift; sourceTree = "<group>"; };
 		45639DA423015BD600E7135C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1892,7 +1889,6 @@
 				436C2B851E851EF300741E10 /* UBAlertPresenter.swift */,
 				C555E9A51EE9A41500F84B51 /* UBToast.swift */,
 				45607E34273EB5F40031E2E3 /* CustomBanner */,
-				45607E312739C4DE0031E2E3 /* LayoutObject.swift */,
 			);
 			path = Campaigns;
 			sourceTree = "<group>";
@@ -2688,7 +2684,6 @@
 				436C2B821E85187000741E10 /* UBCustomTouchableView.swift in Sources */,
 				104FFEA121AD5318004034A5 /* UBNavigationController.swift in Sources */,
 				04F54E511CD76717002F501E /* UBRule.swift in Sources */,
-				45607E322739C4DE0031E2E3 /* LayoutObject.swift in Sources */,
 				45B51EE322E7A01500122F44 /* UBSAPluginViewController.swift in Sources */,
 				C51896CB1F2641BA0083FF86 /* ActiveStatus.swift in Sources */,
 				4334E85D1E29009B00AC895C /* StringFieldModel.swift in Sources */,
@@ -3000,7 +2995,6 @@
 				C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */,
 				43B04FB71F1F7EEF0032F057 /* TextAreaFieldModel.swift in Sources */,
 				F2C6DCEC238541DA0076319E /* UBFeaturebillaManager.swift in Sources */,
-				45607E332739C4DE0031E2E3 /* LayoutObject.swift in Sources */,
 				43B04FB81F1F7EEF0032F057 /* PickerFieldModel.swift in Sources */,
 				10627BDB21B0387B00E49DD2 /* CampaingAnimator.swift in Sources */,
 				43B04FB91F1F7EEF0032F057 /* UBBannerPresenter.swift in Sources */,
@@ -3594,7 +3588,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.9.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3842,7 +3840,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.9.0;
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3936,7 +3938,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.9.0;
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3973,7 +3979,11 @@
 				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.9.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -4103,7 +4113,11 @@
 				INFOPLIST_FILE = "UsabillaCS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.9.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
