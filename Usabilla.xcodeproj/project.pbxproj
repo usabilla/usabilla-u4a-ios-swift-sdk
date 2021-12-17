@@ -404,7 +404,6 @@
 		453DF816270F2C1A004D8BEB /* UsabillaCS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */; };
 		453DF846271DFEA9004D8BEB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453DF845271DFEA9004D8BEB /* Nimble.framework */; platformFilter = ios; };
 		453DF848271DFEB5004D8BEB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453DF847271DFEB5004D8BEB /* Quick.framework */; platformFilter = ios; };
-		4544486D274C09E700B4FAC6 /* UsabillaCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		45553AE022E788AD00B80F9A /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
@@ -2569,7 +2568,6 @@
 				0483E9DE1CDCDF86004EC234 /* RadioFieldModel.swift in Sources */,
 				43CCD45E1E78366A00B3E4FE /* TextAreaComponentViewModel.swift in Sources */,
 				43CCD46C1E79979600B3E4FE /* EmailComponent.swift in Sources */,
-				4544486D274C09E700B4FAC6 /* UsabillaCS.swift in Sources */,
 				432A8A0D1E89189D00928F54 /* HeaderComponentViewModel.swift in Sources */,
 				45B51EE022E7A00500122F44 /* DrawingPlugin.swift in Sources */,
 				458FC5E222EE42AD00E198A7 /* UBSAContainerView.swift in Sources */,
