@@ -191,26 +191,43 @@ class CampaignViewController: UIViewController {
 
         base.view.frame = rect
         base.view.alpha = 0
-        modalTopConstraint = base.view.topAnchor.constraint(equalTo: introview.topAnchor).activate()
-        modalLeftConstraint = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
-        modalRightConstraint = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
-        modalBottomConstraint = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
+        
+        var newTop = base.view.topAnchor.constraint(equalTo: introview.topAnchor).activate()
+        var newLeft = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
+        var newRight = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
+        var newBottom = base.view.bottomAnchor.constraint(equalTo: introview.bottomAnchor).activate()
 
         view.layoutIfNeeded()
 
-        let scaleTransform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-
-        base.view.transform = scaleTransform
-        base.view.center = CGPoint( x: rect.midX, y: rect.midY)
-        base.view.alpha = 1
-
+        NSLayoutConstraint.deactivate([
+            newTop,
+            newLeft,
+            newRight,
+            newBottom
+        ])
+        
+        newTop = base.view.topAnchor.constraint(equalTo: view.topAnchor)
+        newLeft = base.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+        newRight = base.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+        newBottom = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor);
+  
+        modalTopConstraint = newTop
+        modalLeftConstraint = newLeft
+        modalRightConstraint = newRight
+        modalBottomConstraint = newBottom
+        
         UIView.animate(withDuration: 0.4, delay: 0.0,
                        usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6,
                        animations: { [weak self] in
-                        base.view.transform = CGAffineTransform.identity
-                        base.view.center = DeviceInfo.getViewCenter()
-                        base.view .frame = DeviceInfo.getBounds()
-                        self?.introView?.alpha = 0
+            NSLayoutConstraint.activate([
+                newTop,
+                newLeft,
+                newRight,
+                newBottom
+            ])
+            self?.view.layoutIfNeeded()
+            self?.introView?.alpha = 0
+            base.view.alpha = 1
         })
     }
 
