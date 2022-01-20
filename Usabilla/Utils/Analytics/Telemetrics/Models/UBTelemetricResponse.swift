@@ -163,6 +163,8 @@ class UBTelemetricResponseLogs: Codable {
         let data = Thread.callStackSymbols
         var className: String {
             switch data {
+            case _ where (data.first(where: {$0.contains("GetfeedbackCapacitor")}) != nil) :
+                return "Capacitor"
             case _ where (data.first(where: {$0.contains("SwiftFlutterUsabillaPlugin")}) != nil) :
                 return "Flutter"
             case _ where (data.first(where: {$0.contains("UsabillaBridge")}) != nil) :
