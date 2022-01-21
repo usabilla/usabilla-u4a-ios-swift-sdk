@@ -3586,7 +3586,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.10.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3834,7 +3838,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.10.0;
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3896,7 +3904,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.10.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3929,7 +3941,11 @@
 				INFOPLIST_FILE = Usabilla/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.10.0;
 				OTHER_SWIFT_FLAGS = "-DINTERNAL_USE -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -3966,7 +3982,11 @@
 				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.10.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
@@ -4096,7 +4116,11 @@
 				INFOPLIST_FILE = "UsabillaCS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.10.0;
 				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
