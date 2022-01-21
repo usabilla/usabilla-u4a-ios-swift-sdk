@@ -90,6 +90,8 @@ class UsabillaInternal {
     static var bannerConfiguration: BannerConfiguration?
     private static let errorCamapingShowing = "UBError: A Campaing is showing. Form can't be displayed."
     private static let errorFormShowing = "UBError: A Form is showing. Campaing can't be displayed."
+    private static let initMessage = "GetFeedback | Usabilla : SDK finished initializing"
+    private static let sdkVersionMessage = "GetFeedback | Usabilla : Local SDK version -> "
     private static let featurebillaService = FeaturebillaService()
     private static let featurebillaStore: FeaturebillaStoreProtocol = FeaturebillaStore(service: featurebillaService)
     private static var featurebillaManager = UBFeaturebillaManager(featurebillaStore: featurebillaStore, featurebillaService: featurebillaService)
@@ -134,8 +136,8 @@ class UsabillaInternal {
         PLog(customVariables)
     }
 
-    class func initialize(appID: String?, completion: (() -> Void)? = nil
-                          ) {
+    class func initialize(appID: String?, completion: (() -> Void)? = nil) {
+        Swift.debugPrint(sdkVersionMessage+UBInfo.sdkVersion)
         let logid = telemetric.logStart(method: UBTelemetricInitMethod(), logLevel: .methods )
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
@@ -169,7 +171,7 @@ class UsabillaInternal {
 
         // preload the poweredby icon, to increase responsivenes....
         _ = Icons.imageOfPoweredBy(color: theme.colors.hint)
-        Swift.debugPrint("Usabilla: SDK finished initializing")
+        Swift.debugPrint(initMessage)
     }
 
     class func removeCachedForms() {
@@ -291,7 +293,7 @@ class UsabillaInternal {
                 }
         }
     }
-    
+
     class func showFeedbackForm(_ formID: String) {
         let logid = telemetric.logStart(method: UBTelemetricLoadForm(), logLevel: .methods )
         telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.formId, value: formID, logLevel: .methods)
@@ -330,7 +332,7 @@ class UsabillaInternal {
             DispatchQueue.main.async {
                 formNavigationController = navigationController
                 showFormViewController()
-                //delegate?.formDidLoad(form: navigationController)
+                // delegate?.formDidLoad(form: navigationController)
                 self.telemetric.alterData(for: logid, keyPath: \UBTelemetricLoadForm.errC, value: 0, logLevel: .methods)
                 self.telemetric.logEnd(for: logid, keyPath: \UBTelemetricLoadForm.dur)
                 self.telemetric.submitLogData()
@@ -347,7 +349,7 @@ class UsabillaInternal {
                 }
         }
     }
-    
+
     private static func showFormViewController() {
         guard let navController = formNavigationController else {
             return
@@ -377,11 +379,11 @@ class UsabillaInternal {
         popupWindow?.windowLevel = UIWindowLevelStatusBar + 1
         popupWindow?.rootViewController = viewcontroller
         popupWindow?.makeKeyAndVisible()
-        
+
         popupWindow?.rootViewController?.present(navController, animated: true, completion: nil)
         window = popupWindow
     }
-    
+
     private static func viewForForm(form: FormModel) -> UINavigationController? {
         guard let submissionManager = submissionManager else {
             print(errorSDKNotInitialized)
@@ -405,7 +407,7 @@ class UsabillaInternal {
     }
 
     class func takeScreenshot(_ view: UIView) -> UIImage? {
-        //Create the UIImage
+        // Create the UIImage
         UIGraphicsBeginImageContext(view.frame.size)
         // swiftlint:disable:next force_unwrapping
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
