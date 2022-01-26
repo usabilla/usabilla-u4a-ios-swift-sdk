@@ -23,11 +23,11 @@ open class UsabillaCS: NSObject {
             UsabillaInternal.customVariables = newValue
         }
     }
-
+    @objc
     public static var defaultDataMasks: [String] {
         return UsabillaInternal.defaultDataMasks
     }
-
+    @objc
     public static var orientation: UIInterfaceOrientationMask {
         get {
             return UsabillaInternal.supportedOrientations
@@ -72,7 +72,7 @@ open class UsabillaCS: NSObject {
             UsabillaInternal.dismissAutomatically = newValue
         }
     }
-
+    @objc
     public static var canDisplayCampaigns: Bool {
         get {
             return UsabillaInternal.canDisplayCampaigns
@@ -123,7 +123,12 @@ open class UsabillaCS: NSObject {
     open class func sendEvent(event: String) {
         UsabillaInternal.sendEvent(event: event)
     }
-
+//    Used in Xamarin as the above gets translated into
+//    sendEventWithEven in the objective-c generated file
+    @objc
+    public class func sendEvent(_ eventName: String) {
+        UsabillaInternal.sendEvent(event: eventName)
+    }
     /**
      Initialize the **Usabilla SDK**
      
@@ -149,20 +154,26 @@ open class UsabillaCS: NSObject {
     open class func dismiss() -> Bool {
         return UsabillaInternal.dismiss()
     }
-
+    @objc
     open class func removeCachedForms() {
         UsabillaInternal.removeCachedForms()
     }
     @objc
-    open class func resetCampaignData(completion: (() -> Void)?) {
-        UsabillaInternal.resetCampaignData(completion: completion)
+    public class func resetCampaignData() {
+        UsabillaInternal.resetCampaignData(completion: nil)
     }
 
     /**
      Preloads a list of forms to make them available to the user even without network connectivity.
      */
+    @objc
     open class func preloadFeedbackForms(withFormIDs formIDs: [String]) {
         UsabillaInternal.preloadFeedbackForms(withFormIDs: formIDs)
+    }
+
+    @objc
+    public class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil) {
+            UsabillaInternal.loadFeedbackForm(formID, screenshot: screenshot, theme: theme)
     }
 
     open class func loadFeedbackForm(_ formID: String, screenshot: UIImage? = nil, theme: UsabillaTheme = theme) {
@@ -172,7 +183,7 @@ open class UsabillaCS: NSObject {
     open class func showFeedbackForm(_ formID: String) {
         UsabillaInternal.showFeedbackForm(formID)
     }
-
+    @objc
     open class func takeScreenshot(_ view: UIView) -> UIImage? {
         return UsabillaInternal.takeScreenshot(view)
     }
@@ -204,9 +215,8 @@ open class UsabillaCS: NSObject {
 }
 @objc(FeedbackResult)
 public class FeedbackResult: NSObject {
-    public let rating: Int?
-
-    public let abandonedPageIndex: Int?
+    @objc public var rating: NSString?
+    @objc public var abandonedPageIndex: NSString?
     @objc
     public var sent: Bool {
         return abandonedPageIndex == nil
@@ -214,13 +224,11 @@ public class FeedbackResult: NSObject {
 
     public init(rating: Int?, abandonedPageIndex: Int?) {
         if let aRating = rating {
-            self.rating = aRating
-        } else {
-            self.rating = 0
-        }
+            self.rating = "\(aRating)" as NSString
+        } 
         if let aAbandonedPageIndex = abandonedPageIndex {
-            self.abandonedPageIndex = aAbandonedPageIndex
-        } else  { self.abandonedPageIndex = 0 }
+            self.abandonedPageIndex = "\(aAbandonedPageIndex)" as NSString
+        }
     }
 }
 
@@ -233,7 +241,7 @@ public class UBError: NSObject {
         }
     }
 }
-@objc
+@objc(UsabillaDelegate)
 public protocol UsabillaDelegate: class {
     /**
      This method is called once a passive feedback form is correctly loaded
@@ -293,6 +301,7 @@ public protocol UsabillaDelegate: class {
      - Parameter userResponse: Dictionary<String, Any> containing the answers submitted by the user
      
      */
+    @objc
     func feedbackResultSubmitted(userResponse: Data)
 }
 

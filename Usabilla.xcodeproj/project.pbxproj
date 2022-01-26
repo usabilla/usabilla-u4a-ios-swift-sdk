@@ -528,7 +528,6 @@
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 		F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 		F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
-		F213103B23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */; };
 		F213103D23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
 		F213103E23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
 		F213104023EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
@@ -730,7 +729,6 @@
 		F269237423EB17B900E6A455 /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
 		F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
 		F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
-		F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269237E23EB190000E6A455 /* UsabillaXamarin.swift */; };
 		F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
 		F26E6C5A2379918B00BAE436 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
 		F274EB80270CADA600AA69B8 /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
@@ -1285,7 +1283,6 @@
 		C5F813CE1F22366400F994F9 /* TargetingFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingFactoryTests.swift; sourceTree = "<group>"; };
 		C5F813D21F25E42C00F994F9 /* Mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mock.json; sourceTree = "<group>"; };
 		EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UsabillaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarinDebug.swift; sourceTree = "<group>"; };
 		F213103C23EC022C0017B633 /* UsabillaDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaDebug.swift; sourceTree = "<group>"; };
 		F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaInternalDebug.swift; sourceTree = "<group>"; };
 		F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaServiceTest.swift; sourceTree = "<group>"; };
@@ -1293,12 +1290,10 @@
 		F2324B41279AD31F00D7A823 /* UBInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBInfo.swift; sourceTree = "<group>"; };
 		F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturebillaStoreTests.swift; sourceTree = "<group>"; };
 		F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F269237E23EB190000E6A455 /* UsabillaXamarin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaXamarin.swift; sourceTree = "<group>"; };
 		F26E6C592379918B00BAE436 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		F274EC53270CADA600AA69B8 /* UsabillaCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F274EC55270CAF6100AA69B8 /* UsabillaCSDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCSDebug.swift; sourceTree = "<group>"; };
 		F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCS.swift; sourceTree = "<group>"; };
-		F274EC5A270CB52B00AA69B8 /* UsabillaXamarin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "UsabillaXamarin-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
 		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
 		F292450423759DF400401ADF /* FeaturebillaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaService.swift; sourceTree = "<group>"; };
@@ -1628,15 +1623,12 @@
 				453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */,
 				45639DA423015BD600E7135C /* Assets.xcassets */,
 				43B04FCF1F1F7EEF0032F057 /* UsabillaInternal-Info.plist */,
-				F274EC5A270CB52B00AA69B8 /* UsabillaXamarin-Info.plist */,
 				0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */,
-				F269237E23EB190000E6A455 /* UsabillaXamarin.swift */,
 				F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */,
 				F2D12C5C23954CD100096A04 /* UBSettingContext.swift */,
 				04F54E5A1CD76A21002F501E /* usa_localizable.strings */,
 				041275D71F792BF700A12E09 /* Usabilla.swift */,
 				F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */,
-				F213103923EC02120017B633 /* UsabillaXamarinDebug.swift */,
 				F274EC55270CAF6100AA69B8 /* UsabillaCSDebug.swift */,
 				F213103C23EC022C0017B633 /* UsabillaDebug.swift */,
 			);
@@ -3120,7 +3112,6 @@
 				F269231123EB17B900E6A455 /* BaseEditableStringComponentViewModel.swift in Sources */,
 				F269231223EB17B900E6A455 /* UILabel.swift in Sources */,
 				F269231323EB17B900E6A455 /* RequestBuilder.swift in Sources */,
-				F269238023EB190000E6A455 /* UsabillaXamarin.swift in Sources */,
 				F269231423EB17B900E6A455 /* ShowHideRule.swift in Sources */,
 				4573959123FED6E90086D8ED /* UBTelemetricResponse.swift in Sources */,
 				F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */,
@@ -3132,7 +3123,6 @@
 				F269231A23EB17B900E6A455 /* UIViewController.swift in Sources */,
 				F269231B23EB17B900E6A455 /* UIBarButtonItem.swift in Sources */,
 				F269231C23EB17B900E6A455 /* CampaignSubmissionManager.swift in Sources */,
-				F213103B23EC02120017B633 /* UsabillaXamarinDebug.swift in Sources */,
 				F269231D23EB17B900E6A455 /* GridViewSectionCell.swift in Sources */,
 				F269231E23EB17B900E6A455 /* UBImagePickerController.swift in Sources */,
 				F269231F23EB17B900E6A455 /* RepetitionDecorator.swift in Sources */,
