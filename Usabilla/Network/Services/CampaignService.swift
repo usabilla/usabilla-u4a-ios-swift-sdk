@@ -42,7 +42,7 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaignForm(withID id: String, maskModel: MaskModel?) -> Promise<FormModel> {
         let request = requestBuilder.requestGetCampaignForm(withID: id)
         return Promise { fulfill, reject in
-            guard var request = request else {
+            guard let request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
@@ -96,7 +96,7 @@ class CampaignService: CampaignServiceProtocol {
     func getCampaignsJSON(withAppID appID: String) -> Promise<Cachable<[JSON]>> {
         let request = requestBuilder.requestGetCampaigns(withAppID: appID)
         return Promise { fulfill, reject in
-            guard var request = request else {
+            guard let request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
@@ -120,7 +120,7 @@ class CampaignService: CampaignServiceProtocol {
     func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
         let request = requestBuilder.requestGetAllTargetingOptions(targetingIds: ids)
         return Promise { fulfill, reject in
-            guard var request = request else {
+            guard let request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
@@ -181,7 +181,7 @@ class CampaignService: CampaignServiceProtocol {
     func incrementCampaignViews(forCampaignID campaignID: String, viewCount: Int) -> Promise<Bool> {
         let request = requestBuilder.requestPatchCampaignViews(forCampaignID: campaignID, viewCount: viewCount)
         return Promise { fulfill, reject in
-            guard var request = request else {
+            guard let request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return

@@ -22,7 +22,7 @@ class FooterTableViewCell: UITableViewCell {
                 footerView.translatesAutoresizingMaskIntoConstraints = false
                 footerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
                 footerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-                footerView.heightAnchor.constraint(equalToConstant: footerHeight)
+                footerView.heightAnchor.constraint(equalToConstant: footerHeight).isActive = true
                 footerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: bottomSpacer).isActive = true
             }
         }

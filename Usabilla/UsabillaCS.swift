@@ -321,11 +321,11 @@ private struct Theme: Codable {
         var newTheme = UsabillaTheme()
         
         if !fonts.regular.isEmpty && fonts.textSize > 0  {
-            let afont =  UIFont(name: fonts.regular, size: CGFloat(fonts.textSize) ?? 0 )
+            let afont = UIFont(name: fonts.regular, size: CGFloat(fonts.textSize) )
             newTheme.fonts.regular = afont
         }
         if !fonts.bold.isEmpty && fonts.titleSize > 0  {
-            let afont =  UIFont(name: fonts.bold, size: CGFloat(fonts.titleSize) ?? 0)
+            let afont =  UIFont(name: fonts.bold, size: CGFloat(fonts.titleSize) )
             newTheme.fonts.bold = afont
         }
 

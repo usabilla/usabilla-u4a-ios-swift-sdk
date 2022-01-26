@@ -31,7 +31,7 @@ class FormService: FormServiceProtocol {
     func getForm(withID id: String, screenShot: UIImage?, maskModel: MaskModel?, client: ClientModel) -> Promise<FormModel> {
         let request = requestBuilder.requestGetPassiveForm(withID: id)
         return Promise { fulfill, reject in
-            guard var request = request else {
+            guard let request = request else {
                 PLog("❌ not a valid url parameter")
                 reject(NSError(domain: "not a valid url parameter", code: 999, userInfo: nil))
                 return
@@ -135,7 +135,7 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            var headersData: [String: String] = [:]
+            let headersData: [String: String] = [:]
             httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(true)
@@ -166,7 +166,7 @@ class FormService: FormServiceProtocol {
         payload["data"] = contentDictionary
 
         return Promise { fulfill, reject in
-            var headersData: [String: String] = [:]
+            let headersData: [String: String] = [:]
             httpClient.request(self.requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: true) { response in
                 if response.success {
                     fulfill(true)
@@ -189,7 +189,7 @@ class FormService: FormServiceProtocol {
     /// - Returns: Promise containig the responde data from the widget server
     func submitFeedbackSmallData(payload: [String: Any]) -> Promise<HTTPClientResponse> {
         return Promise { fulfill, reject in
-            var headersData: [String: String] = [:]
+            let headersData: [String: String] = [:]
             httpClient.request(requestBuilder.submitUrl, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: headersData, responseQueue: nil, allowNilData: false) { response in
                 if response.success {
                     fulfill(response)
