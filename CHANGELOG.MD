@@ -1,3 +1,8 @@
+## 6.11.0
+### Fix
+- UI (Constraints inssue) for Campaign banner
+### Update
+- Added Local SDK version in console
 ## 6.10.0
 ### Fix
 - Campaigns with Title & Text (optional \ empty) component
