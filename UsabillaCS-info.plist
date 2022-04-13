@@ -32,5 +32,9 @@
 	<string>$(UB_USABILLA_SUBMIT_ENDPOINT)</string>
 	<key>USABILLA_TELEMETRY_ENDPOINT</key>
 	<string>$(UB_USABILLA_TELEMETRY_ENDPOINT)</string>
+	<key>USABILLA_VERSION</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>USABILLA_BUILD</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 </dict>
 </plist>

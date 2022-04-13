@@ -22,24 +22,9 @@ class UBTelemetricSDK: UBTelemetricProtocol {
         system = "ios"
 
         osV = uiDevice.systemVersion
-        if let SDKVersion = Bundle(identifier: "com.usabilla.Usabilla")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            sdkV = SDKVersion
-        } else {
-            sdkV = "-"
-        }
-
-        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            appV = version
-        } else {
-            appV = "unknown"
-        }
-
-        if let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String {
-            appN = appName
-        } else {
-            appN = "unknown"
-        }
-
+        sdkV = Bundle.sdkVersion
+        appV = Bundle.appVersion
+        appN = Bundle.appName
         device = uiDevice.modelName
         var pagesize: vm_size_t = 0
 

@@ -29,19 +29,17 @@ class RequestBuilder {
     static let submitUrl: String = bundle.infoDictionary!["USABILLA_SUBMIT_ENDPOINT"] as! String
     static let cdnUrl: String = bundle.infoDictionary!["USABILLA_CDN_HOST"] as! String
     static let telemetryUrl: String = bundle.infoDictionary!["USABILLA_TELEMETRY_ENDPOINT"] as! String
-    // swiftlint:enable force_cast
 
-    static let sdkBundle = Bundle(identifier: "com.usabilla.Usabilla")!
     static let headers: [String: String] = [
-        "app-version": Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "",
-        "app-name": Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String ?? "",
-        "sdk-version": sdkBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
+        "app-version": Bundle.appVersion,
+        "app-name": Bundle.appName,
+        "sdk-version": Bundle.sdkVersion,
         "os": "iOS",
-        "sdk-build": sdkBundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "",
+        "sdk-build": Bundle.sdkBuild,
         "app-id": UsabillaInternal.appID ?? "",
         "device-model": UIDevice.current.modelName,
         "os-version": UIDevice.current.systemVersion,
-        "app-bundle": Bundle.main.bundleIdentifier ?? ""
+        "app-bundle": Bundle.appIdentifier
     ]
 
     /**
@@ -117,7 +115,7 @@ class RequestBuilder {
         do {
             request = try JSONEncoding.default.encode(request, with: payload)
         } catch {
-            //Do intelligent stuff with error
+            // TODO: intelligent stuff with error
         }
 
         return request as URLRequest
@@ -135,7 +133,7 @@ class RequestBuilder {
         do {
             request = try JSONEncoding.default.encode(request, with: payload)
         } catch {
-            //Do intelligent stuff with error
+            //TODO: intelligent stuff with error
         }
 
         return request as URLRequest
@@ -158,7 +156,7 @@ class RequestBuilder {
         }
         return requestForGet(withURL: url)
     }
-    
+
     class func requestGetCampaignStatus(withID id: String) -> URLRequest? {
         guard let url = buildURL(withBaseUrl: cdnUrl, withEndpoint: .campaignStatus, withURLParam: id) else {
             return nil

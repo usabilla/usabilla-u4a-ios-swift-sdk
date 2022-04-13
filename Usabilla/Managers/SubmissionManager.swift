@@ -63,14 +63,10 @@ class SubmissionManager {
     private func createSubmission(formModel: FormModel) -> UBFeedbackRequest {
         let uiDevice = UIDevice.current
         var contentDictionary: [String: Any] = [:]
-        contentDictionary["app_id"] = formModel.identifier //String
-        contentDictionary["version"] = formModel.version //String
+        contentDictionary["app_id"] = formModel.identifier // String
+        contentDictionary["version"] = formModel.version // String
 
-        if let SDKVersion = Bundle(identifier: "com.usabilla.Usabilla")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
-            contentDictionary["SDK_version"] = SDKVersion
-        } else {
-            PLog("❌ impossible to get SDK version")
-        }
+        contentDictionary["SDK_version"] = Bundle.sdkVersion
 
         contentDictionary["data"] = formModel.toDictionary()
 
@@ -94,17 +90,8 @@ class SubmissionManager {
         let screenBounds = UIScreen.main.bounds
         contentDictionary["screensize"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
 
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] {
-            contentDictionary["app_version"] = appVersion
-        } else {
-            PLog("❌ impossible to get host app version")
-        }
-
-        if let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] {
-            contentDictionary["app_name"] = appName
-        } else {
-            PLog("❌ impossible to get host app name")
-        }
+        contentDictionary["app_version"] = Bundle.appVersion
+        contentDictionary["app_name"] = Bundle.appName
 
         var screenshotString: String?
         if let screenshotModel = formModel.pages.first?.fields.last as? ScreenshotModel {
@@ -117,9 +104,7 @@ class SubmissionManager {
         if formModel.client == nil {
             formModel.client = ClientModel()
         }
-        if let data = Bundle.main.object(forInfoDictionaryKey: "DTXcode") as? String {
-            formModel.client?.addBehaviour("XCode", data)
-        }
+        formModel.client?.addBehaviour("XCode", Bundle.xcodeVersion)
         contentDictionary["client"] = formModel.client?.toJson()
         contentDictionary["custom_variables"] = userContext
 

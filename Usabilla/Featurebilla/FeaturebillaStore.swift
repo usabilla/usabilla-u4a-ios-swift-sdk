@@ -38,8 +38,7 @@ class FeaturebillaStore: FeaturebillaStoreProtocol {
     }
 
     func fetchDefaultFeatureSettings() throws -> SettingModel {
-        let bundle = Bundle(identifier: "com.usabilla.Usabilla")
-        guard let mockFilePath = bundle?.path(forResource: "config", ofType: "json") else {
+        guard let mockFilePath = Bundle.sdkBundle?.path(forResource: "config", ofType: "json") else {
             throw ConfigurationError.missingMockFeatureSettingsFile }
         guard let mockFeatureSettingsData =  try String(contentsOfFile: mockFilePath).data(using: .utf8) else {
             throw ConfigurationError.corruptedMockFeatureSettingsData }

@@ -137,7 +137,7 @@ class UsabillaInternal {
     }
 
     class func initialize(appID: String?, completion: (() -> Void)? = nil) {
-        Swift.debugPrint(sdkVersionMessage+UBInfo.sdkVersion)
+        Swift.debugPrint(sdkVersionMessage+Bundle.sdkVersion)
         let logid = telemetric.logStart(method: UBTelemetricInitMethod(), logLevel: .methods )
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {

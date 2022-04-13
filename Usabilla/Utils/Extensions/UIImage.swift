@@ -11,8 +11,7 @@ import UIKit
 extension UIImage {
 
     static func getImageFromSDKBundle(name: String) -> UIImage? {
-        let bundle = Bundle(identifier: "com.usabilla.Usabilla")
-        return UIImage(named: name, in: bundle, compatibleWith: nil)
+        return UIImage(named: name, in: Bundle.sdkBundle, compatibleWith: nil)
     }
 
     func alpha(value: CGFloat) -> UIImage {

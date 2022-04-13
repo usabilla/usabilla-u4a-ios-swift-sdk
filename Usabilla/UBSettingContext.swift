@@ -17,10 +17,6 @@ struct UBSettingContext: UBSettingProtocol {
     init(appId: String = "") {
         self.platform = "ios"
         self.appId = appId
-        if let SDKVersion = Bundle(identifier: "com.usabilla.Usabilla")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            sdkversion = SDKVersion
-            } else {
-                sdkversion = "0.0.0"
-            }
-        }
+        sdkversion = Bundle.sdkVersion
+       }
 }

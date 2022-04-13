@@ -89,8 +89,7 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         payload["app_id"] = appID
         payload["form_version"] = formVersion
         payload["complete"] = false
-        // swiftlint:disable:next force_unwrapping
-        metadata["app_version"] = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        metadata["app_version"] = Bundle.appVersion
         metadata["battery"] = abs(uiDevice.batteryLevel)
         metadata["network_connection"] = reachability.currentReachabilityStatus.description
         metadata["device"] = uiDevice.modelName
@@ -98,12 +97,10 @@ class CampaignSubmissionRequestManager: CampaignSubmissionRequestManagerProtocol
         metadata["orientation"] = UIDeviceOrientationIsLandscape(uiDevice.orientation) ? "Landscape" : "Portrait"
         metadata["os_version"] = uiDevice.systemVersion
         metadata["screen"] = "\(Int(screenBounds.width)) x \(Int(screenBounds.height))"
-        // swiftlint:disable:next force_unwrapping
-        metadata["sdk_version"] = Bundle(identifier: "com.usabilla.Usabilla")!.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        metadata["sdk_version"] = Bundle.sdkVersion
         metadata["system"] = "ios"
         metadata["timestamp"] = Date().toRFC3339Format()
-        // swiftlint:disable:next force_unwrapping
-        metadata["app_name"] = Bundle.main.infoDictionary![kCFBundleNameKey as String]
+        metadata["app_name"] = Bundle.appName
 
         if userContext != nil {
             payload["context"] = userContext

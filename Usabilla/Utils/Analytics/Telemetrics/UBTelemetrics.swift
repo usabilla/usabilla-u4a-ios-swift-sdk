@@ -15,14 +15,9 @@ class UBTelemetrics {
     private var log: [String: UBTelemetricResponse] = [:]
     private let maxnumberOfEntries = 10  // the max number of entries, 0 equals no limit
     private var telemtricService = TelemtryService()
-    
-    private lazy var featureBillaDefaultUserContext:[String:String] = {
-        if let SDKVersion = Bundle(identifier: "com.usabilla.Usabilla")?.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            return ["platform": "ios", "sdk": SDKVersion]
-        } else {
-            return ["platform": "ios", "sdk": "6.8.5"]
-        }
-        
+
+    private lazy var featureBillaDefaultUserContext: [String: String] = {
+        return ["platform": "ios", "sdk": Bundle.sdkVersion]
     }()
     private var featureBillaService: UBFeaturebillaManager
     var submitTelemetryData = true
