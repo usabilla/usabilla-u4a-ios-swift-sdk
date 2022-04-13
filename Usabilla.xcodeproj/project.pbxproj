@@ -938,6 +938,10 @@
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
 		F27F14E623C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
+		F28A18842806FA1600DC2DA5 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28A18832806FA1500DC2DA5 /* UBInfo.swift */; };
+		F28A18852806FA9F00DC2DA5 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28A18832806FA1500DC2DA5 /* UBInfo.swift */; };
+		F28A18862806FAA000DC2DA5 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28A18832806FA1500DC2DA5 /* UBInfo.swift */; };
+		F28A18872806FAA100DC2DA5 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28A18832806FA1500DC2DA5 /* UBInfo.swift */; };
 		F292450523759DF400401ADF /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
 		F292450623759DFD00401ADF /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
 		F29245082375A0F500401ADF /* FeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29245072375A0F500401ADF /* FeatureModel.swift */; };
@@ -1296,6 +1300,7 @@
 		F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCS.swift; sourceTree = "<group>"; };
 		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
 		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
+		F28A18832806FA1500DC2DA5 /* UBInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBInfo.swift; sourceTree = "<group>"; };
 		F292450423759DF400401ADF /* FeaturebillaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaService.swift; sourceTree = "<group>"; };
 		F29245072375A0F500401ADF /* FeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureModel.swift; sourceTree = "<group>"; };
 		F292450A2379821900401ADF /* FeaturebillaStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaStore.swift; sourceTree = "<group>"; };
@@ -1678,6 +1683,7 @@
 				43E883E71E37B5AE00A97F1D /* Extensions */,
 				045E46441D1A8073007A1E48 /* CheckBox */,
 				04F54E181CD76708002F501E /* DeviceInfo.swift */,
+				F28A18832806FA1500DC2DA5 /* UBInfo.swift */,
 				45C620D922DCB61800CB95A9 /* Transitions.swift */,
 				04F54E1A1CD76708002F501E /* JSONFormParser.swift */,
 				04F54E1C1CD76708002F501E /* StyleKit.swift */,
@@ -2538,6 +2544,7 @@
 				04E228E41D2A97E2009BEA65 /* LocalisationHandler.swift in Sources */,
 				4509CAF7237949F4003EC904 /* UBTelemetricSDK.swift in Sources */,
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
+				F28A18842806FA1600DC2DA5 /* UBInfo.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
 				04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
@@ -2863,6 +2870,7 @@
 				43B04F5C1F1F7EEF0032F057 /* EmailComponentViewModel.swift in Sources */,
 				43B04F5D1F1F7EEF0032F057 /* SwiftCheckBox.swift in Sources */,
 				43B04F5E1F1F7EEF0032F057 /* CampaignViewModel.swift in Sources */,
+				F28A18852806FA9F00DC2DA5 /* UBInfo.swift in Sources */,
 				43B04F5F1F1F7EEF0032F057 /* RadioComponentViewModel.swift in Sources */,
 				F2324B43279AD31F00D7A823 /* Bundle.swift in Sources */,
 				C536547E1F39E10000C51AD5 /* PassiveStatus.swift in Sources */,
@@ -3162,6 +3170,7 @@
 				F269233F23EB17B900E6A455 /* FormModel.swift in Sources */,
 				F269234023EB17B900E6A455 /* Event.swift in Sources */,
 				F2324B44279AD31F00D7A823 /* Bundle.swift in Sources */,
+				F28A18862806FAA000DC2DA5 /* UBInfo.swift in Sources */,
 				F269234123EB17B900E6A455 /* RatingControl.swift in Sources */,
 				F269234223EB17B900E6A455 /* RadioComponent.swift in Sources */,
 				F269234323EB17B900E6A455 /* BaseComponent.swift in Sources */,
@@ -3270,6 +3279,7 @@
 				F274EBB0270CADA600AA69B8 /* MoodComponent.swift in Sources */,
 				F274EBB1270CADA600AA69B8 /* UBFormViewModel.swift in Sources */,
 				F274EBB2270CADA600AA69B8 /* BaseTextFieldComponent.swift in Sources */,
+				F28A18872806FAA100DC2DA5 /* UBInfo.swift in Sources */,
 				F274EBB3270CADA600AA69B8 /* NPSControl.swift in Sources */,
 				F274EBB4270CADA600AA69B8 /* EmailComponentViewModel.swift in Sources */,
 				F274EBB5270CADA600AA69B8 /* SwiftCheckBox.swift in Sources */,
