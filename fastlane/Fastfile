@@ -8,7 +8,7 @@ default_platform :ios
 platform :ios do
 
 	before_all do
-		ENV["SDK_VERSION"] = get_version_number(xcodeproj: "Usabilla.xcodeproj", target: "Usabilla")
+		#ENV["SDK_VERSION"] = get_info_plist_value(path: "./Usabilla/Info.plist", key: "USABILLA_VERSION")
 		ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 	end
 
