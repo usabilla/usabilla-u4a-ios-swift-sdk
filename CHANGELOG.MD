@@ -1,3 +1,6 @@
+## 6.11.1
+### Fix
+- SDK version discrepancies
 ## 6.11.0
 ### Fix
 - UI (Constraints inssue) for Campaign banner
