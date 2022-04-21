@@ -43,7 +43,7 @@ class JSONFormParser {
 
         // specific intro page parsing
         if let introPage = currentPage as? IntroPageModel {
-            //look for continue field
+            // look for continue field
             introPage.hasContinueButton = checkForContinueButton(pageJson: pageJson)
             if let displayMode = IntroPageDisplayMode(rawValue: pageJson["display"].stringValue) {
                 introPage.displayMode = displayMode
@@ -103,7 +103,7 @@ class JSONFormParser {
         for (_, subJson): (String, JSON) in json["value"] {
             values.append(subJson.stringValue)
         }
-        //Set the default behaviour
+        // Set the default behaviour
         let setShowIfRuleIsSatisfied: Bool = json["action"].stringValue == "show"
 
         return ShowHideRule(dependsOnID: setDependsOnID, targetValues: values, pageModel: pageModel, show: setShowIfRuleIsSatisfied)

@@ -115,6 +115,37 @@ class CampaignManager {
         }
     }
 
+    func displayCampaignFromDispatcher(_ campaign: CampaignModel, withUserContext userContext: [String: Any], logId: String? = nil) -> Promise<SurveyDispatcherResult> {
+        return Promise { fulfill, _ in
+            guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
+                fulfill(.displayNotAllowed)
+                return
+            }
+            campaignStore.getCampaignForm(withFormID: campaign.formID, theme: UsabillaInternal.theme, position: campaign.position, maskModel: maskModel).then { form in
+
+            guard self.testIntegrityOfCampaginForm(form) else {
+                fulfill(.errorInFormat)
+                return
+            }
+            let submissionManager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaign.identifier, formVersion: form.version, userContext: userContext, campaignSubmissionManager: self.submissionManager)
+            if self.displayCampaignForm(form, manager: submissionManager) {
+                self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: true, logLevel: .methods)
+                campaign.numberOfTimesTriggered += 1
+                UBCampaignDAO.shared.create(campaign)
+                self.incrementViews(forCampaign: campaign)
+                self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
+                self.telemetric?.submitLogData()
+                fulfill(.didDisplay)
+                return
+            }
+                fulfill(.undefinded)
+        }.catch { error in
+                    PLog(error)
+            fulfill(.undefinded)
+                }
+        }
+    }
+
     private func incrementViews(forCampaign campaign: CampaignModel) {
         self.campaignService.incrementCampaignViews(forCampaignID: campaign.identifier, viewCount: 1).then { _ in
             PLog("View count increment for campaign id \(campaign.identifier)")
@@ -137,12 +168,25 @@ class CampaignManager {
             self.telemetric?.alterData(for: logid, keyPath: \UBTelemetricReset.errC, value: 0, logLevel: .methods)
             self.telemetric?.logEnd(for: logid, keyPath: \UBTelemetricReset.dur)
         })
+        self.resetDefaultEvents()
         fetchCampaignForEventEngine(completion: completion)
     }
 
-    private func fetchCampaignForEventEngine(completion: (() -> Void)? = nil) {
+    func resetDefaultEvents() {
+        DefaultEventDAO.shared.deleteAll()
+        DefaultEventModuleDAO.shared.deleteAll()
+    }
+
+    func fetchCampaignForEventEngine(completion: (() -> Void)? = nil) {
         campaignStore.getCampaigns(withAppID: appID).then { campaigns in
             self.eventEngine.campaigns = campaigns.filter { $0.status == .active }
+            if var appData = DefaultEventAppStateDAO.shared.read(id: "AppStateID") {
+                appData.lastFetchDate = Date()
+                DefaultEventAppStateDAO.shared.create(appData)
+            } else {
+                let appData = AppEventData()
+                DefaultEventAppStateDAO.shared.create(appData)
+            }
             completion?()
         }
     }
@@ -202,7 +246,7 @@ class CampaignManager {
             if manager == nil {
                 manager = CampaignSubmissionRequestManager(appID: self.appID, campaignID: campaignID, formVersion: form.version, userContext: ["debug": "debug"], campaignSubmissionManager: self.submissionManager)
             }
-            //swiftlint:disable:next force_unwrapping
+            // swiftlint:disable:next force_unwrapping
             let campaignViewModel = CampaignViewModel(form: form, manager: manager!)
             return CampaignWindow.shared.showCampaign(campaignViewModel, bannerConfig: bannerConfig)
         }

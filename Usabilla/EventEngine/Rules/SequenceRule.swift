@@ -23,7 +23,7 @@ class SequenceRule: ConcreteRule {
     }
 
     override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
-        //TO DO reset if strict
+        // TO DO reset if strict
         let indexOfFirstNotTriggered = childRules.index(where: { $0.alreadyTriggered == false })
 
         if let index = indexOfFirstNotTriggered {

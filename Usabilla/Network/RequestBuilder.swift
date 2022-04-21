@@ -133,7 +133,7 @@ class RequestBuilder {
         do {
             request = try JSONEncoding.default.encode(request, with: payload)
         } catch {
-            //TODO: intelligent stuff with error
+            // TODO: intelligent stuff with error
         }
 
         return request as URLRequest

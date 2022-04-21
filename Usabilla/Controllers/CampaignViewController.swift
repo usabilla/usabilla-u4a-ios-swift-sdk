@@ -63,8 +63,7 @@ class CampaignViewController: UIViewController {
 
                 view.addSubview(introView)
             }
-            
-            
+
         }
         var animations: (() -> Void)?
 
@@ -191,7 +190,7 @@ class CampaignViewController: UIViewController {
 
         base.view.frame = rect
         base.view.alpha = 0
-        
+
         var newTop = base.view.topAnchor.constraint(equalTo: introview.topAnchor).activate()
         var newLeft = base.view.leftAnchor.constraint(equalTo: introview.leftAnchor).activate()
         var newRight = base.view.rightAnchor.constraint(equalTo: introview.rightAnchor).activate()
@@ -205,17 +204,17 @@ class CampaignViewController: UIViewController {
             newRight,
             newBottom
         ])
-        
+
         newTop = base.view.topAnchor.constraint(equalTo: view.topAnchor)
         newLeft = base.view.leftAnchor.constraint(equalTo: view.leftAnchor)
         newRight = base.view.rightAnchor.constraint(equalTo: view.rightAnchor)
-        newBottom = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor);
-  
+        newBottom = base.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
         modalTopConstraint = newTop
         modalLeftConstraint = newLeft
         modalRightConstraint = newRight
         modalBottomConstraint = newBottom
-        
+
         UIView.animate(withDuration: 0.4, delay: 0.0,
                        usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6,
                        animations: { [weak self] in

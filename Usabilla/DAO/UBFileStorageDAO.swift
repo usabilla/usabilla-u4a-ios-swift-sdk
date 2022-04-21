@@ -20,6 +20,9 @@ enum FileDirectory: String, DirectoryProtocol {
     case passiveFeedbackRequest = "FeedbackRequests"
     case feedbackIds = "UBFeedbackIDDictionaryDAO"
     case telemetric = "UBTelemetricResponse"
+    case defaultEvents = "DefaultEvents"
+    case defaultEventsModules = "DefaultEventsModules"
+    case defaultEventsAppState = "DefaultEventsAppState"
 
     var description: String {
         switch self {
@@ -35,7 +38,12 @@ enum FileDirectory: String, DirectoryProtocol {
             return "submission feedback ids"
         case .telemetric:
                 return "telemetric response"
-
+        case .defaultEvents:
+            return "defaultEvent"
+        case .defaultEventsModules:
+            return "defaultEventModules"
+        case .defaultEventsAppState:
+            return "defaultEventsAppState"
         }
     }
 

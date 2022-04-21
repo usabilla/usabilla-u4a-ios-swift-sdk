@@ -14,7 +14,6 @@ protocol UBIntroOutroViewDelegate: class {
     func introViewDidContinue(introView: UBIntroOutroViewProtocol)
 }
 
-
 protocol UBIntroOutroViewProtocol: UIView {
     var viewModel: IntroPageViewModel {get}
     var nativeBanner: Bool {get set}

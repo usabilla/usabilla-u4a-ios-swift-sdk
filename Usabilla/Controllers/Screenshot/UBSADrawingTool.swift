@@ -142,13 +142,13 @@ class PenToolView: UIView {
 
     @objc func markerClicked() {
         selectedTool = PenType.marker
-        self.togglePenType (penType: PenType.marker)
+        self.togglePenType(penType: PenType.marker)
         delegate?.selectedPenTool(penType: PenType.marker)
     }
 
     @objc func pencilClicked() {
         selectedTool = PenType.pencil
-        self.togglePenType (penType: PenType.pencil)
+        self.togglePenType(penType: PenType.pencil)
         delegate?.selectedPenTool(penType: PenType.pencil)
     }
 
@@ -175,7 +175,7 @@ class PenToolView: UIView {
 
     func togglePenColor(penColor: UIColor) {
         selectedColor = penColor
-        self.togglePenType (penType: selectedTool)
+        self.togglePenType(penType: selectedTool)
     }
 
     required init(frame: CGRect, penColor: UIColor = .black, penType: PenType = .marker) {

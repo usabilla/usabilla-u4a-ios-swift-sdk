@@ -1,0 +1,14 @@
+{
+    "default_events": {
+    "modules": [
+      {
+        "type": "system",
+        "value": "launch"
+      },
+      {
+        "type": "occurrences",
+        "value": 3
+      }
+    ]
+  }
+}

@@ -46,7 +46,7 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
         return self.DAO.readAll().first
     }
 
-    //swiftlint:disable force_unwrapping
+    // swiftlint:disable force_unwrapping
     private func updateUrl(request: URLRequest, oldID: String, newID: String) -> URLRequest {
         var mutableRequest = request
         let url = mutableRequest.url!.absoluteString
@@ -54,7 +54,7 @@ class CampaignSubmissionManager: CampaignSubmissionManagerProtocol {
         mutableRequest.url = URL(string: newUrl)!
         return mutableRequest
     }
-    //swiftlint:enable force_unwrapping
+    // swiftlint:enable force_unwrapping
 
     private func sendToService(partialFeedbackRequest: UBCampaignFeedbackRequest) {
         submissionSerialQueue.async {

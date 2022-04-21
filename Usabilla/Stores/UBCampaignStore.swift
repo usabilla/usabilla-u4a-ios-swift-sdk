@@ -24,12 +24,16 @@ class UBCampaignStore: UBCampaignStoreProtocol {
 
     private func deleteLocalCampaigns(notInCampaigns campaigns: [CampaignModel]) {
         let localCampaignsList = UBCampaignDAO.shared.readAll()
+        let defaultEvents: [DefaultEvent] = DefaultEventDAO.shared.readAll()
         for localCampaign in localCampaignsList {
             let shouldDeleteCampaign = !campaigns.contains {
                 $0.identifier == localCampaign.identifier
             }
             if shouldDeleteCampaign {
                 UBCampaignDAO.shared.delete(localCampaign)
+                if let defaultEvent = defaultEvents.first(where: { $0.targetingId ==  localCampaign.targetingID}) {
+                    DefaultEventDAO.shared.delete(defaultEvent)
+                }
             }
         }
     }
@@ -49,7 +53,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
     private func shouldUpdateTargeting(serverTargeting: TargetingOptionsModel, localTargeting: TargetingOptionsModel) -> Bool {
         if let lastModifiedServer = serverTargeting.lastModifiedDate {
             let lastModifiedLocal = localTargeting.lastModifiedDate
-            //swiftlint:disable:next force_unwrapping
+            // swiftlint:disable:next force_unwrapping
             if lastModifiedLocal == nil || lastModifiedServer > lastModifiedLocal! {
                 return true
             }
@@ -76,7 +80,6 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 let updatedCampaigns = validServerCampaigns.map {
                     self.updateCampaignData(serverCampaign: $0, localCampaigns: localCampaigns)
                 }
-
                 updatedCampaigns.forEach { UBCampaignDAO.shared.create($0) }
                 fulfill(updatedCampaigns)
 
@@ -147,10 +150,18 @@ class UBCampaignStore: UBCampaignStoreProtocol {
 
     private class func buildCampaigns(fromJsonArray: [JSON], withTargetings targetings: [TargetingOptionsModel]) -> [CampaignModel] {
         var campaigns: [CampaignModel] = []
+        let defaultEvents: [DefaultEvent] = DefaultEventDAO.shared.readAll()
         for json in fromJsonArray {
-            guard let targeting = targetings.first(where: { $0.targetingID == json["targeting_options_id"].string }),
-                let campaign = CampaignModel(json: json, targeting: targeting) else { continue }
-            campaigns.append(campaign)
+            if let targeting = targetings.first(where: { $0.targetingID == json["targeting_options_id"].string }) {
+                if var defaultEvent = defaultEvents.first(where: { $0.targetingId ==  targeting.targetingID}) {
+                    defaultEvent.surveyId = json["id"].string ?? ""
+                    defaultEvent.surveyType = .GFPCampaign
+                    defaultEvent.status = (json["status"].string == "active") ? true : false
+                    DefaultEventDAO.shared.create(defaultEvent)
+                }
+                guard let campaign = CampaignModel(json: json, targeting: targeting) else { continue }
+                campaigns.append(campaign)
+            }
         }
         return campaigns
     }

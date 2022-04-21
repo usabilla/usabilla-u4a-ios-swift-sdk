@@ -60,7 +60,7 @@ extension UIImage {
         guard let cgimage = self.cgImage else { return self }
         let contextImage: UIImage = UIImage(cgImage: cgimage)
         let contextSize: CGSize = contextImage.size
-        //Set to square
+        // Set to square
         var posX: CGFloat = 0.0
         var posY: CGFloat = 0.0
         let cropAspect: CGFloat = toSize.width / toSize.height
@@ -68,20 +68,20 @@ extension UIImage {
         var cropWidth: CGFloat = toSize.width
         var cropHeight: CGFloat = toSize.height
 
-        if toSize.width > toSize.height { //Landscape
+        if toSize.width > toSize.height { // Landscape
             cropWidth = contextSize.width
             cropHeight = contextSize.width / cropAspect
             posY = (contextSize.height - cropHeight) / 2
-        } else if toSize.width < toSize.height { //Portrait
+        } else if toSize.width < toSize.height { // Portrait
             cropHeight = contextSize.height
             cropWidth = contextSize.height * cropAspect
             posX = (contextSize.width - cropWidth) / 2
-        } else { //Square
-            if contextSize.width >= contextSize.height { //Square on landscape (or square)
+        } else { // Square
+            if contextSize.width >= contextSize.height { // Square on landscape (or square)
                 cropHeight = contextSize.height
                 cropWidth = contextSize.height * cropAspect
                 posX = (contextSize.width - cropWidth) / 2
-            } else { //Square on portrait
+            } else { // Square on portrait
                 cropWidth = contextSize.width
                 cropHeight = contextSize.width / cropAspect
                 posY = (contextSize.height - cropHeight) / 2
@@ -183,9 +183,9 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return newImage
     }
-    
+
     func roundedImage(cornerRadius: CGFloat) -> UIImage {
-        let rect = CGRect(origin:CGPoint(x: 0, y: 0), size: self.size)
+        let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: self.size)
         UIGraphicsBeginImageContextWithOptions(self.size, false, 1)
         UIBezierPath(
             roundedRect: rect,

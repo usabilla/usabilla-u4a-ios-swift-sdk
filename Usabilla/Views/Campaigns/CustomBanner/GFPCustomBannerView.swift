@@ -29,7 +29,7 @@ struct BannerConfiguration {
     var logoHeight: Float = 150
     var logoWidth: Float = 115
     var logoImage: UIImage?
-    
+
     var titleLeftMargin: Float = 16
     var titleRightMargin: Float = -16
 

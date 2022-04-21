@@ -62,7 +62,7 @@ class NPSToolTipIcon: UIView {
 
     class func drawCanvas1(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 35, height: 46), color: UIColor) {
         //// General Declarations
-        //swiftlint:disable:next force_unwrapping
+        // swiftlint:disable:next force_unwrapping
         let context = UIGraphicsGetCurrentContext()!
 
         //// Resize to Target Frame

@@ -49,7 +49,7 @@ class RootCellView: UITableViewCell {
     var errorLabelTopConstraint: NSLayoutConstraint!
     var componentViewTopConstraint: NSLayoutConstraint!
 
-    //Layout config
+    // Layout config
     let sideMargin: CGFloat = DeviceInfo.getLeftCardBorder()
     let verticalMargin: CGFloat = DeviceInfo.getRightCardBorder()
     let errorLabelTopMargin: CGFloat = 5

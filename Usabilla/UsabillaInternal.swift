@@ -22,6 +22,7 @@ class UsabillaInternal {
                     DLogError("Custom variable name / key should not be empty string")
                 }
             }
+            appEventNotifier?.setCustomVariables(customVariables)
             submissionManager?.userContext = customVariables
         }
     }
@@ -97,6 +98,9 @@ class UsabillaInternal {
     private static var featurebillaManager = UBFeaturebillaManager(featurebillaStore: featurebillaStore, featurebillaService: featurebillaService)
 
     private static let telemetric = UBTelemetrics(manager: featurebillaManager)
+
+    private static var appEventNotifier: AppEventNotifier?
+
     class func sendEvent(event: String) {
         campaignManager?.telemetric = telemetric
         let logid = telemetric.logStart(method: UBTelemetricSendEvent(), logLevel: .methods )
@@ -133,12 +137,14 @@ class UsabillaInternal {
 
     class func setCustomVariable(value: String, forKey key: String) {
         customVariables[key] = value
+        appEventNotifier?.setCustomVariables(customVariables)
         PLog(customVariables)
     }
 
     class func initialize(appID: String?, completion: (() -> Void)? = nil) {
         Swift.debugPrint(sdkVersionMessage+Bundle.sdkVersion)
         let logid = telemetric.logStart(method: UBTelemetricInitMethod(), logLevel: .methods )
+
         if let appID = appID {
             guard NSUUID(uuidString: appID) != nil else {
                 Swift.debugPrint("Usabilla: The appId \(appID) has wrong format (expected UUID)")
@@ -150,8 +156,12 @@ class UsabillaInternal {
                 return
             }
             UsabillaInternal.appID = appID
+            appEventNotifier = AppEventNotifier(customVariables: customVariables)
             campaignService.telemetric =  telemetric
             campaignManager = CampaignManager(campaignStore: campaignStore, campaignService: campaignService, appID: appID, completion: { [logid] in
+                if let manager = campaignManager {
+                    appEventNotifier?.setCampaignManager(manager)
+                }
                 let numberOfCampaings = campaignManager?.eventEngine.campaigns.count ?? 0
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.appId, value: appID, logLevel: .methods)
                 telemetric.alterData(for: logid, keyPath: \UBTelemetricInitMethod.errC, value: 0, logLevel: .methods)
@@ -161,7 +171,6 @@ class UsabillaInternal {
                 completion?()
             })
         }
-
         formService = FormService()
         formService?.telemetric = telemetric
         // swiftlint:disable force_unwrapping
@@ -428,4 +437,5 @@ class UsabillaInternal {
         telemetric.alterData(for: logid, keyPath: \UBTelemetricSetDataMasking.maskCharacter, value: char, logLevel: .methods)
         telemetric.logEnd(for: logid, keyPath: \UBTelemetricSetDataMasking.dur)
     }
+
 }

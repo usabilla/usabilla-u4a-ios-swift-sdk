@@ -27,8 +27,19 @@ class TargetingOptionsModel: NSObject, NSCoding {
     }
 
     convenience init?(json: JSON) {
-        guard let targetingID = json["id"].string,
-            let rule = TargetingFactory.createRule(json["options"]["rule"]) else {
+        guard let targetingID = json["id"].string, let dateString = json["last_modified_at"].string  else {
+            return nil
+        }
+        let modifyDate = dateString.dateFromRFC3339 ?? Date()
+        let tempDefaultEvents = json["default_events"]
+        if tempDefaultEvents != nil {
+            let modules: [JSON] = tempDefaultEvents["modules"].arrayValue
+            var defaultEvents = DefaultEvent(json: modules, targetingId: targetingID)
+            defaultEvents.targetingId = targetingID
+            defaultEvents.creationdate = modifyDate
+            DefaultEventDAO.shared.create(defaultEvents)
+        }
+        guard let rule = TargetingFactory.createRule(json["options"]["rule"]) else {
                 return nil
         }
         let lastModifiedDate = json["last_modified_at"].string?.dateFromRFC3339

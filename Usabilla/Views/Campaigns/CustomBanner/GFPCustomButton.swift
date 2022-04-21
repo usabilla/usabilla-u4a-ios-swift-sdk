@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class GFPCustomButton: UIView {
-   
-    var cornerRadius:CGFloat = 20
+
+    var cornerRadius: CGFloat = 20
     private var button: UIButton?
     private var imageView = UIImageView()
     private var image: UIImage = UIImage()
@@ -24,17 +24,17 @@ class GFPCustomButton: UIView {
         self.button = button
         configureView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - configuration
+    // MARK: - configuration
     private func configureView() {
         addImageView()
         addButton()
     }
-    
+
     private func addImageView() {
         let aImage = self.image
         imageView.image = aImage
@@ -60,7 +60,7 @@ class GFPCustomButton: UIView {
         }
     }
     override func layoutSubviews() {
-        //print("her")
+        // print("her")
         imageView.layoutSubviews()
         button?.layoutSubviews()
     }

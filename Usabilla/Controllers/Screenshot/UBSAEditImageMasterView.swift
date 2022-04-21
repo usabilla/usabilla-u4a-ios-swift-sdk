@@ -231,7 +231,7 @@ extension UBSAEditImageMasterView {
         titleLabel.isHidden = false
     }
     fileprivate func setCanvasView(_ view: UIView) {
-        //self.view.addSubview(view)
+        // self.view.addSubview(view)
     }
 
     fileprivate func setTopMenu(type: UBSATopMenuType) {

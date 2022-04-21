@@ -72,8 +72,7 @@ class UBFeaturebillaManager {
         if logLevels.isEmpty {  // data not loaded yet, fallback to default
             let  current: UBTelemetricLogLevel = [.methods, .properties, .all]
             return current.contains(logLevel)
-        }
-        else {
+        } else {
             if logLevel == .all {
                 return true
             }

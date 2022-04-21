@@ -22,7 +22,7 @@ class UBEndPageViewModel {
     var headerText: String?
     var headerFont: UIFont?
     var headerColor: UIColor?
-    
+
     var headerAttributedText: NSAttributedString?
     var thankyouAttributedText: NSAttributedString?
 

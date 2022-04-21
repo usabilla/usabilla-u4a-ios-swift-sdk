@@ -11,7 +11,7 @@ import UIKit
 
 protocol SwiftCheckBoxDelegate: class {
     func didTapCheckBox(_ checkBox: SwiftCheckBox)
-    //func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
+    // func animationDidStopForCheckBox(checkBox: SwiftCheckBox)
 }
 
 class SwiftCheckBox: UIView {

@@ -131,7 +131,9 @@ class CampaignService: CampaignServiceProtocol {
                     reject(response.error!)
                     return
                 }
-                guard let jsonData = response.data, let json = JSON(jsonData).array else {
+                // FIXME: remove local file loading.
+               guard let jsonData = response.data, let json = JSON(jsonData).array else {
+ //               guard let jsonData = UBInfo.readJSONFromFile(fileName: "defaultEvent"), let json = jsonData.array else {
                     reject(NSError(domain: "could not parse targeting", code: 0, userInfo: nil))
                     return
                 }

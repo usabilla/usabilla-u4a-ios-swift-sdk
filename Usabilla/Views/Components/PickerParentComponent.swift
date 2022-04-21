@@ -33,7 +33,7 @@ class PickerParentComponent: UBComponent<PickerComponentViewModel>, UIPickerView
         }
 
         pickerLabel?.text = viewModel.options[row].title
-        //swiftlint:disable:next force_unwrapping
+        // swiftlint:disable:next force_unwrapping
         return pickerLabel!
     }
 

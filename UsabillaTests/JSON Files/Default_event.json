@@ -1,0 +1,28 @@
+{
+    "default_events": {
+    "modules": [
+      {
+        "type": "system",
+        "value": "launch"
+      },
+      {
+        "type": "occurrences",
+        "value": 3
+      },
+      {
+        "type": "targeting",
+        "value": 15
+      },
+      {
+        "type": "customVariable",
+        "key": "level",
+        "value": "25"
+      },
+      {
+        "type": "customVariable",
+        "key": "lives_lost",
+        "value": "2"
+      }
+    ]
+  }
+}

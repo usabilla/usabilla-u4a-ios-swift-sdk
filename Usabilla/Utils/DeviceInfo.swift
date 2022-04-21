@@ -63,8 +63,8 @@ class DeviceInfo {
         if UsabillaInternal.supportedOrientations == .landscape ||
             UsabillaInternal.supportedOrientations == .landscapeLeft ||
             UsabillaInternal.supportedOrientations == .landscapeRight {
-            let midx = max (UIScreen.main.bounds.midY, UIScreen.main.bounds.midX)
-            let midy = min (UIScreen.main.bounds.midY, UIScreen.main.bounds.midX)
+            let midx = max(UIScreen.main.bounds.midY, UIScreen.main.bounds.midX)
+            let midy = min(UIScreen.main.bounds.midY, UIScreen.main.bounds.midX)
             return CGPoint(x: midx, y: midy)
         }
         return CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
@@ -113,7 +113,7 @@ class DeviceInfo {
     class func preferedFormSize(_ screenSize: CGSize = UIScreen.main.bounds.size) -> CGSize {
         let formWidth: CGFloat = DeviceInfo.getMaxFormWidth() // default width
         let formHeight: CGFloat = DeviceInfo.getMaxFormHeight() // default maks height
-        //let screen = UIScreen.main.bounds
+        // let screen = UIScreen.main.bounds
         let margin: CGFloat = 50 // default minimum margin
         let height = screenSize.height - 2 * margin
         return CGSize(width: formWidth, height: (height > formHeight ? formHeight : height))

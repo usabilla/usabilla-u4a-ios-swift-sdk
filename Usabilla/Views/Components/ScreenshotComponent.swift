@@ -43,7 +43,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
     }()
 
     override func build() {
-        //View init
+        // View init
         screenShotView = UIImageView()
         screenShotView.translatesAutoresizingMaskIntoConstraints = false
         screenShotView.isUserInteractionEnabled = true
@@ -57,7 +57,7 @@ class ScreenshotComponent: UBComponent<ScreenshotComponentViewModel> {
         iconContainerView.layer.cornerRadius = 5
         iconContainerView.layer.masksToBounds = true
 
-        //Buttons
+        // Buttons
         deleteIcon = UIButton(type: UIButtonType.custom)
         deleteIcon.translatesAutoresizingMaskIntoConstraints = false
         deleteIcon.addTarget(self, action: #selector(ScreenshotComponent.deleteScreenshot), for: .touchUpInside)

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "10ee2121-d08a-4a50-8138-9b81d37a9abc",
+    "name": "OOTB appOutdated Campaign",
+    "form_id": "2293ce91-b110-47d3-9e8b-d03907b9bcb0",
+    "targeting_options_id": "e71e1d47-4dc4-4696-9ef8-4e5c9fe4b16b",
+    "app_ids": [
+      "af656608-43b9-4455-80d6-1fbcf5ad157e"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-02-14T11:17:48+00:00",
+    "last_modified_at": "2022-03-17T18:24:28+00:00"
+  },
+  {
+    "id": "ac9cc527-ea30-4603-8639-6efb79f576ce",
+    "name": "OOTB appCrash test",
+    "form_id": "7aa5daf6-9863-4859-a5b3-9756c7f79576",
+    "targeting_options_id": "41ec628d-f9b9-49f4-a836-9b832cb5d933",
+    "app_ids": [
+      "af656608-43b9-4455-80d6-1fbcf5ad157e"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-02-14T12:59:57+00:00",
+    "last_modified_at": "2022-03-17T18:29:26+00:00"
+  },
+  {
+    "id": "3bb1942b-e1b4-4b32-8737-04fba6dd2e43",
+    "name": "OOTB Specific Date",
+    "form_id": "2dbd1786-6a21-4dd5-9859-a1a02a4b53be",
+    "targeting_options_id": "92b2c0fe-5de2-4f88-830e-38245b24263b",
+    "app_ids": [
+      "af656608-43b9-4455-80d6-1fbcf5ad157e"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-03-17T18:22:53+00:00",
+    "last_modified_at": "2022-03-17T18:26:47+00:00"
+  },
+  {
+    "id": "50a58b66-c179-4359-bd14-93738c712c95",
+    "name": "OOTB appUpToDate test",
+    "form_id": "2e4c3c96-e90a-45f5-81f8-2a2bb5723f96",
+    "targeting_options_id": "bc28c037-fde6-4402-862f-6840b55e6cbf",
+    "app_ids": [
+      "af656608-43b9-4455-80d6-1fbcf5ad157e"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-03-17T18:26:30+00:00",
+    "last_modified_at": "2022-03-17T18:26:39+00:00"
+  },
+  {
+    "id": "42c8458c-85ec-4136-8d57-ac381b74ed8f",
+    "name": "OOTB appCloseEarly Campaign",
+    "form_id": "5a5ca49c-b787-4b63-800e-8264eb667276",
+    "targeting_options_id": "e3e4a224-e83e-4c4b-8d1c-5400c13129e5",
+    "app_ids": [
+      "af656608-43b9-4455-80d6-1fbcf5ad157e"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-03-17T18:27:43+00:00",
+    "last_modified_at": "2022-03-17T18:28:56+00:00"
+  },
+  {
+    "id": "433b801e-f0e3-42a1-9b44-9721ead74f0a",
+    "name": "OOTB appLaunch Campaign",
+    "form_id": "e4d7f6b0-4595-443b-b9ae-5bfba725f384",
+    "targeting_options_id": "2dc143a7-3e1f-40a2-933b-1c6242481f1c",
+    "app_ids": [
+      "af656608-43b9-4455-80d6-1fbcf5ad157e"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-03-17T18:28:48+00:00",
+    "last_modified_at": "2022-03-17T18:28:55+00:00"
+  }
+]

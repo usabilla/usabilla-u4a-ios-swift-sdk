@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Usabilla
+// import Usabilla
 @objc(Usabilla)
 open class UsabillaCS: NSObject {
     @objc
@@ -191,7 +191,7 @@ open class UsabillaCS: NSObject {
     @objc
     open class func setDataMasking(masks: [String] = defaultDataMasks,
                                    maskCharacter: String = "X") {
-        
+
         guard let aChar: Character = maskCharacter.first else {return}
         UsabillaInternal.setDataMasking(
             masks: masks,
@@ -199,7 +199,7 @@ open class UsabillaCS: NSObject {
     }
     @objc
     open class func setThemWithJson(_ jsonString: String) {
-        UIFont.loadAllFonts();
+        UIFont.loadAllFonts()
         DLogInfo("JSON: \(jsonString)")
         if let dataFromJsonString = jsonString.data(using: .utf8) {
             do {
@@ -225,7 +225,7 @@ public class FeedbackResult: NSObject {
     public init(rating: Int?, abandonedPageIndex: Int?) {
         if let aRating = rating {
             self.rating = "\(aRating)" as NSString
-        } 
+        }
         if let aAbandonedPageIndex = abandonedPageIndex {
             self.abandonedPageIndex = "\(aAbandonedPageIndex)" as NSString
         }
@@ -316,15 +316,15 @@ private struct Theme: Codable {
     var fonts: Fonts
     var images: Images
     var banner: Banner?
-    
+
     func getTheme() -> UsabillaTheme {
         var newTheme = UsabillaTheme()
-        
-        if !fonts.regular.isEmpty && fonts.textSize > 0  {
+
+        if !fonts.regular.isEmpty && fonts.textSize > 0 {
             let afont = UIFont(name: fonts.regular, size: CGFloat(fonts.textSize) )
             newTheme.fonts.regular = afont
         }
-        if !fonts.bold.isEmpty && fonts.titleSize > 0  {
+        if !fonts.bold.isEmpty && fonts.titleSize > 0 {
             let afont =  UIFont(name: fonts.bold, size: CGFloat(fonts.titleSize) )
             newTheme.fonts.bold = afont
         }
@@ -350,9 +350,9 @@ private struct Theme: Codable {
         }
         return newTheme
     }
-    
+
     func getBannerConfiguration() -> BannerConfiguration? {
-        
+
         guard let banner = banner else {return nil}
         var bannerConfig = BannerConfiguration()
         bannerConfig.buttonStyle = .gfpButtonVertical
@@ -366,7 +366,7 @@ private struct Theme: Codable {
             banner.navigation.cancelButtonTextColor.isEmpty &&
             banner.navigation.continueButtonBgAssetName.isEmpty &&
             banner.navigation.continueButtonTextColor.isEmpty {return nil}
-        
+
         // logo image
         if !banner.logo.assetName.isEmpty {
             if let unityImage = UIImage.getImageFromUnit(name: banner.logo.assetName) {
@@ -395,7 +395,7 @@ private struct Theme: Codable {
         if !banner.navigation.continueButtonTextColor.isEmpty {
             bannerConfig.continueButtonTitleColor = UIColor(rgba: banner.navigation.continueButtonTextColor)
         }
-        
+
         // continue buttom image
         if !banner.navigation.cancelButtonBgAssetName.isEmpty {
             if let unityImage = UIImage.getImageFromUnit(name: banner.navigation.cancelButtonBgAssetName) {
@@ -409,7 +409,7 @@ private struct Theme: Codable {
         }
         return bannerConfig
     }
-    
+
     private func imagesToArray(_ imageData: [String]) -> [UIImage]? {
         var imageArray: [UIImage] = []
         imageData.forEach {
@@ -447,11 +447,9 @@ private struct Banner: Codable {
     var navigation: BannerNavigation
 }
 
-
 public struct BannerLogo: Codable {
     var assetName: String
 }
-
 
 public struct BannerNavigation: Codable {
     var continueButtonBgAssetName: String
@@ -459,4 +457,3 @@ public struct BannerNavigation: Codable {
     var cancelButtonBgAssetName: String
     var cancelButtonTextColor: String
 }
-

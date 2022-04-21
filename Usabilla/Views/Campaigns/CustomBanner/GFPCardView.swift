@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 
 class GFPCardView: UIView {
-    
+
     lazy var cardStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
-        //stack.backgroundColor = .systemTeal
-        //stack.layoutMargins = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
+        // stack.backgroundColor = .systemTeal
+        // stack.layoutMargins = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
         stack.isLayoutMarginsRelativeArrangement = true
-        //stack.spacing = UIStackView.spacingUseSystem
+        // stack.spacing = UIStackView.spacingUseSystem
         stack.spacing = 20.0
         stack.distribution = .equalSpacing
         stack.distribution = .fill
@@ -29,11 +29,11 @@ class GFPCardView: UIView {
         super.init(frame: CGRect.zero)
         configureViews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //MARK: - setup
+    // MARK: - setup
     private func configureViews() {
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -48,5 +48,5 @@ class GFPCardView: UIView {
     func addSubviewToStack(_ view: UIView) {
         cardStackView.addArrangedSubview(view)
     }
-    
+
 }

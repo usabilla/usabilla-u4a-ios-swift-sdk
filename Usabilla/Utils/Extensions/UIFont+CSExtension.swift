@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIFont {
-    
+
     /**
      This method is used in the setTheme function in UsabillaCSInternal
      
@@ -25,13 +25,13 @@ extension UIFont {
         paths.forEach {
             registerFontWithFilenameString($0)}
     }
-        
+
     fileprivate class func registerFontWithFilenameString(_ fontPath: String) {
         if let fontData = NSData(contentsOfFile: fontPath) {
             guard let dataProvider = CGDataProvider(data: fontData) else { return}
             guard let fontRef = CGFont(dataProvider) else { return}
-            var errorRef: Unmanaged<CFError>? = nil
-            if (CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false) {
+            var errorRef: Unmanaged<CFError>?
+            if CTFontManagerRegisterGraphicsFont(fontRef, &errorRef) == false {
                 print("Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
             }
         }

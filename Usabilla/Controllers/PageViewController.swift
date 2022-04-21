@@ -119,7 +119,7 @@ class PageViewController: UIViewController {
             let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
             var headerFrame = headerView.frame
 
-            //Comparison necessary to avoid infinite loop
+            // Comparison necessary to avoid infinite loop
             if height != headerFrame.size.height {
                 headerFrame.size.height = height
                 headerView.frame = headerFrame
@@ -139,7 +139,7 @@ class PageViewController: UIViewController {
     func handleHeaderViewVisibility() {
         if tableView.tableHeaderView == nil {
             tableView.tableHeaderView = headerView
-            //headerView.heightAnchor.constraint(equalToConstant: 60).activate()
+            // headerView.heightAnchor.constraint(equalToConstant: 60).activate()
             constraintHeaderLeft = headerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
             constraintHeaderRight = headerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
             requiredLabel.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: DeviceInfo.getLeftCardBorder()).activate()
@@ -155,7 +155,7 @@ class PageViewController: UIViewController {
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         // This moodel is null, must figure out why this happens!!!
-        guard //viewModel.shouldAddMarginWhenKeyboardIsShown,
+        guard // viewModel.shouldAddMarginWhenKeyboardIsShown,
             let userInfo = notification.userInfo,
             var keyboardFrame: CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
                 return
@@ -280,7 +280,7 @@ class PageViewController: UIViewController {
         tableView.reloadRows(at: [indexPath], with: .none)
     }
 
-    //Image handling stuff
+    // Image handling stuff
     fileprivate func presentFullDrawSolution(with client: ClientModel) {
         let controller = UBEditImageMainViewController(theme: viewModel.theme, client: client, image: viewModel.getScreenShootImage())
         let navController = UBNavigationController(rootViewController: controller)
@@ -289,7 +289,7 @@ class PageViewController: UIViewController {
         present(navController, animated: false, completion: nil )
     }
 
-    //Image handling stuff
+    // Image handling stuff
     fileprivate func presentLibraryOnlySolution(with client: ClientModel) {
         let controller = UBImagePickerController(theme: viewModel.theme, fallBackMode: true)
         controller.client = client

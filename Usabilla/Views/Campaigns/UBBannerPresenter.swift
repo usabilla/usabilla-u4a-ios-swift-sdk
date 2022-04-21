@@ -17,7 +17,6 @@ class UBBannerPresenter: UBIntroOutroPresenter {
     var centerXConstraint: NSLayoutConstraint!
     var centerYConstraint: NSLayoutConstraint!
 
-    
     private var kWidthTablet = UBDimensions.BannerPresenter.widthTablet
     private var kWidthiPhone = UBDimensions.BannerPresenter.widthiPhone
     private var kRightOffsetTablet = UBDimensions.BannerPresenter.rightOffsetTablet
@@ -141,7 +140,7 @@ class UBBannerPresenter: UBIntroOutroPresenter {
             leftConstraint = aView.leftAnchor.constraint(equalTo: superview.leftAnchor, constant: 0)
             rightConstraint = aView.rightAnchor.constraint(equalTo: superview.rightAnchor, constant: 0)
         }
-        
+
         rightConstraint?.isActive = true
         leftConstraint?.isActive = true
         superview.updateConstraints()

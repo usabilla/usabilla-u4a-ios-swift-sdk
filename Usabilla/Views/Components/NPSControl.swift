@@ -8,7 +8,7 @@
 
 import UIKit
 
-//swiftlint:disable:next type_body_length
+// swiftlint:disable:next type_body_length
 class NPSControl: UIControl {
 
     class NPSLabel: UILabel {
@@ -43,7 +43,7 @@ class NPSControl: UIControl {
     private let borderedView = UIView()
     private let contentStackView = UIStackView()
     private var labels: [NPSLabel] {
-        //swiftlint:disable:next force_cast
+        // swiftlint:disable:next force_cast
         return contentStackView.arrangedSubviews as! [NPSLabel]
     }
     private let progressView = UIView()
@@ -66,7 +66,7 @@ class NPSControl: UIControl {
     private let numberOfValues = 11
 
     private let npsHeight: CGFloat = 32
-    private let sideContentStackViewPadding: CGFloat = 3//14
+    private let sideContentStackViewPadding: CGFloat = 3// 14
     private let minimumChoiceWidth: CGFloat = 20
     private let maximiumChoiceWidth: CGFloat = 50
     private let progressViewMargins: CGFloat = 0.55 * UIScreen.main.scale
@@ -261,8 +261,8 @@ class NPSControl: UIControl {
         guard index >= 0 && index < labels.count else {
             return }
         let choiceLabel = labels[index]
-        //let labelWidth: CGFloat = contentStackView.frame.width / CGFloat(numberOfValues)
-        //Hide the progressbar under the circle-indication label
+        // let labelWidth: CGFloat = contentStackView.frame.width / CGFloat(numberOfValues)
+        // Hide the progressbar under the circle-indication label
         let progressViewTrailingOffset: CGFloat = -12
         progressViewTrailingAnchor?.isActive = false
         progressViewTrailingAnchor = progressView.trailingAnchor.constraint(equalTo: choiceLabel.trailingAnchor, constant: progressViewTrailingOffset).activate()

@@ -235,7 +235,7 @@ public protocol UsabillaDelegate: class {
      
      */
     func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool)
-    
+
     /**
      
      This method is called once a campaign or feedback Form is being submittted
