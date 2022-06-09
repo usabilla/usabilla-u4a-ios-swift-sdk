@@ -462,6 +462,8 @@
 		4573959623FED6FD0086D8ED /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
 		4573959723FED6FF0086D8ED /* UBFeaturebillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6DCEA238541DA0076319E /* UBFeaturebillaManager.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
+		4587572C285236B6009A7DA0 /* DateEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587572A285236B6009A7DA0 /* DateEventModuleTest.swift */; };
+		4587572D285236B6009A7DA0 /* TimeEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587572B285236B6009A7DA0 /* TimeEventModuleTest.swift */; };
 		4589E599234C73400092C8F0 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
 		4589E59A234C739C0092C8F0 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
 		458FC5D822EE428200E198A7 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
@@ -617,8 +619,6 @@
 		F21C843C27EC92FC0050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F21C843D27EC92FF0050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F21C843E27EC93000050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
-		F22D985D27DA471B00567733 /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D985C27DA471B00567733 /* DefaultEvent.swift */; };
-		F22D985E27DA485400567733 /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D985C27DA471B00567733 /* DefaultEvent.swift */; };
 		F2324B42279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2324B43279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2324B44279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
@@ -1045,8 +1045,6 @@
 		F2A08B9923D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
 		F2B47B49282A9806009825F8 /* AppEventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250130F27E350A500A6175F /* AppEventNotifier.swift */; };
 		F2B47B4A282A9807009825F8 /* AppEventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250130F27E350A500A6175F /* AppEventNotifier.swift */; };
-		F2B47B4C282C0123009825F8 /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D985C27DA471B00567733 /* DefaultEvent.swift */; };
-		F2B47B4D282C0123009825F8 /* DefaultEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D985C27DA471B00567733 /* DefaultEvent.swift */; };
 		F2B47B4F282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
 		F2B47B50282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
 		F2B47B51282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
@@ -1352,6 +1350,8 @@
 		45607E3D273EEDBD0031E2E3 /* GFPCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPCustomButton.swift; sourceTree = "<group>"; };
 		45639DA423015BD600E7135C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBEditImageControllerTest.swift; sourceTree = "<group>"; };
+		4587572A285236B6009A7DA0 /* DateEventModuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateEventModuleTest.swift; sourceTree = "<group>"; };
+		4587572B285236B6009A7DA0 /* TimeEventModuleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEventModuleTest.swift; sourceTree = "<group>"; };
 		4589E598234C73400092C8F0 /* UBTouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBTouchView.swift; sourceTree = "<group>"; };
 		458FC5D422EE428200E198A7 /* ColorPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
 		458FC5D522EE428200E198A7 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
@@ -1434,7 +1434,6 @@
 		F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaInternalDebug.swift; sourceTree = "<group>"; };
 		F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaServiceTest.swift; sourceTree = "<group>"; };
 		F21326E3238C22A600553358 /* Featurebilla.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Featurebilla.json; sourceTree = "<group>"; };
-		F22D985C27DA471B00567733 /* DefaultEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEvent.swift; sourceTree = "<group>"; };
 		F2324B41279AD31F00D7A823 /* UBInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBInfo.swift; sourceTree = "<group>"; };
 		F250130F27E350A500A6175F /* AppEventNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventNotifier.swift; sourceTree = "<group>"; };
 		F250131327E3B08700A6175F /* defaultEvent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultEvent.json; sourceTree = "<group>"; };
@@ -2273,6 +2272,8 @@
 		45D29449282512E300AA311E /* ModulesTest */ = {
 			isa = PBXGroup;
 			children = (
+				4587572A285236B6009A7DA0 /* DateEventModuleTest.swift */,
+				4587572B285236B6009A7DA0 /* TimeEventModuleTest.swift */,
 				45D2944A2825131600AA311E /* OccurrencesEventModuleTest.swift */,
 				45EE120E2844EB93002D927B /* AppVersionEventModuleTest.swift */,
 				45D2945B282A46B300AA311E /* EnablingEventModuleTest.swift */,
@@ -2330,7 +2331,6 @@
 				452A6FA7281FBD370003B79B /* Modules */,
 				F2BAC0E028115B3D00ECD15E /* DefaultEventModel.swift */,
 				45D294512829733200AA311E /* EvaluationObject.swift */,
-				F22D985C27DA471B00567733 /* DefaultEvent.swift */,
 				F250130F27E350A500A6175F /* AppEventNotifier.swift */,
 				45D2944C2828FA5200AA311E /* DefaultEventEngine.swift */,
 				45D29467282E62B200AA311E /* SurveyDispatcher.swift */,
@@ -2786,7 +2786,6 @@
 				430669AF1E76B6E20078E3B3 /* NSLayoutConstraint.swift in Sources */,
 				0483E9BD1CDCDF2D004EC234 /* CheckBoxWithText.swift in Sources */,
 				04F94A011EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift in Sources */,
-				F22D985D27DA471B00567733 /* DefaultEvent.swift in Sources */,
 				43CCD4371E77E58900B3E4FE /* MoodComponent.swift in Sources */,
 				431CC0171E92565100205D9D /* UBFormViewModel.swift in Sources */,
 				43CCD4401E78223000B3E4FE /* BaseTextFieldComponent.swift in Sources */,
@@ -2964,6 +2963,7 @@
 				43B0A20C1E2CBC3C00879E5F /* EmailFieldModelTest.swift in Sources */,
 				431578E61F7A6ADF00DFFBC6 /* NPSControlTests.swift in Sources */,
 				C59C82101E8574E100840D4E /* CopyModelTests.swift in Sources */,
+				4587572D285236B6009A7DA0 /* TimeEventModuleTest.swift in Sources */,
 				4317189E1F2A15EC00BF612E /* UBCampaignStoreTests.swift in Sources */,
 				45FF281F283683B400A96DCB /* FirstLaunchModuleTest.swift in Sources */,
 				45D29466282DAACF00AA311E /* CustomerVariableModuleTest.swift in Sources */,
@@ -3018,6 +3018,7 @@
 				41C536C51E2BA4E70079D3EE /* RatingFieldModelTest.swift in Sources */,
 				43B708361E7FD4EC00F05A40 /* BaseOptionsComponentViewModelTests.swift in Sources */,
 				431718A21F2A15F500BF612E /* RequestBuilderTest.swift in Sources */,
+				4587572C285236B6009A7DA0 /* DateEventModuleTest.swift in Sources */,
 				040CDA611F2741750005F986 /* PickerFieldModelTests.swift in Sources */,
 				43B708401E7FE49300F05A40 /* ComponentViewModelFactoryTests.swift in Sources */,
 				F2E542E622CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift in Sources */,
@@ -3082,7 +3083,6 @@
 				41AC38451F68848500F0DFC6 /* NPSComponent.swift in Sources */,
 				43B04F361F1F7EEF0032F057 /* AnimationManager.swift in Sources */,
 				C5D7DB8C21060A8A00EFCF73 /* UBSlider.swift in Sources */,
-				F22D985E27DA485400567733 /* DefaultEvent.swift in Sources */,
 				F2924509237894E400401ADF /* FeatureModel.swift in Sources */,
 				43B04F371F1F7EEF0032F057 /* CopyModel.swift in Sources */,
 				43B04F381F1F7EEF0032F057 /* JumpRule.swift in Sources */,
@@ -3319,7 +3319,6 @@
 				F26922B423EB17B900E6A455 /* NPSComponent.swift in Sources */,
 				F26922B523EB17B900E6A455 /* AnimationManager.swift in Sources */,
 				F26922B623EB17B900E6A455 /* UBSlider.swift in Sources */,
-				F2B47B4D282C0123009825F8 /* DefaultEvent.swift in Sources */,
 				F26922B723EB17B900E6A455 /* CopyModel.swift in Sources */,
 				F26922B823EB17B900E6A455 /* JumpRule.swift in Sources */,
 				F26922B923EB17B900E6A455 /* HTTPClient.swift in Sources */,
@@ -3556,7 +3555,6 @@
 				F274EB8E270CADA600AA69B8 /* CampaignService.swift in Sources */,
 				F274EB8F270CADA600AA69B8 /* GridViewCell.swift in Sources */,
 				452A6FBB281FBEDC0003B79B /* TimeEventModule.swift in Sources */,
-				F2B47B4C282C0123009825F8 /* DefaultEvent.swift in Sources */,
 				F274EB90270CADA600AA69B8 /* UBEndPageViewModel.swift in Sources */,
 				F274EB91270CADA600AA69B8 /* MoodComponentViewModel.swift in Sources */,
 				F274EB92270CADA600AA69B8 /* PickerComponentViewModel.swift in Sources */,

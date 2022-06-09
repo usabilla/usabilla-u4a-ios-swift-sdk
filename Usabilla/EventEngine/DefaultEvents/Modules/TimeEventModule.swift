@@ -12,20 +12,12 @@ struct TimeEventModule: Codable, DefaultEventProtcol {
     var timeEventName: String = DefaultEventModule.time.rawValue
     private var invalidObject = false
 
-    let time: Date
+    let time: String
     let comparison: ComparisonType
     var rule: RuleValue = .and
 
     init( time: String, comparison: ComparisonType?) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        if let aTime = dateFormatter.date(from: time) {
-            self.time = aTime
-            self.invalidObject = false
-        } else {
-            self.time = Date()
-            self.invalidObject = true
-        }
+        self.time = time
         self.comparison = comparison ?? .gt
         timeEventName = DefaultEventModule.time.rawValue
     }
@@ -36,18 +28,25 @@ struct TimeEventModule: Codable, DefaultEventProtcol {
         let now = currentTime.dateFromRFC3339 else {
             return false
         }
-        let result = Calendar.current.compare(time, to: now, toGranularity: .minute)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let secondvalue = dateFormatter.string(from: now)
+
+        guard  let firstDate = dateFormatter.date(from: time),
+               let secondDate = dateFormatter.date(from: secondvalue) else {return false}
+
+        let result = Calendar.current.compare(secondDate, to: firstDate, toGranularity: .minute)
             switch comparison {
             case .lt:
-                if result == .orderedDescending {return true}
+                if result == .orderedAscending {return true}
             case .lte:
-                if result == .orderedDescending || result == .orderedSame {return true}
+                if result == .orderedAscending  || result == .orderedSame {return true}
             case .equal:
                 if result == .orderedSame {return true}
             case .gt:
-                if result == .orderedAscending {return true}
+                if result == .orderedDescending {return true}
             case .gte:
-                if result == .orderedAscending || result == .orderedSame {return true}
+                if result == .orderedDescending || result == .orderedSame {return true}
             case .neq:
                 if result != .orderedSame {return true}
             }

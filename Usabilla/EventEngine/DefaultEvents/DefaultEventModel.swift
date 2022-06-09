@@ -117,7 +117,7 @@ struct DefaultEvent: Codable {
                 tempModules.append(module)
 
             default :
-                print("none found for type: '\($0["type"].stringValue)'")
+                Swift.debugPrint("none found for type: '\($0["type"].stringValue)'")
             }
             rownr += 1
         })

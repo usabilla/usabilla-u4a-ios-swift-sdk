@@ -305,3 +305,13 @@ struct UBStyle {
         static let cardColor = UIColor.init(rgba: "#555B6E")
     }
 }
+
+struct DefaultEventConstants {
+    static let noResultFound = "No default survey found"
+    static let noSurveyToShow = "No survey found to show"
+    static let displayNotAllowed = "Survey not allowed to display"
+    static let failedToDisplay = "Failed to display survery"
+    static let errorInFormat = "Survey has error in format"
+    static let undefinded = "Survey not presented due to an undefinded error"
+    static let inactiveCampaign = "Inactive campaign found"
+}

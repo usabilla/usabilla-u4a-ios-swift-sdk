@@ -16,6 +16,7 @@ import Foundation
 protocol SurveyDispatcherDelegate: class {
     func didPresentSurvey(survey: SurveyDispatcherObject)
     func failedToPresentSurvey(survey: SurveyDispatcherObject, reason: DefaultEventError)
+    func didSurveyAlreadyPresented(survey: SurveyDispatcherObject)
 }
 
 enum SurveyDispatcherResult: Int {
@@ -56,8 +57,13 @@ class SurveyDispatcher {
     ///   - parameters:
     ///      - surveyId: the id of the survey to present
     ///      - surveyType: the type to present
-    func addSurveyToCue(surveyObject: SurveyDispatcherObject) {
+    func addSurveyToQueue(surveyObject: SurveyDispatcherObject) {
         surveysToShow.append(surveyObject)
+    }
+    func removeSurveyFromQueue(surveyObject: SurveyDispatcherObject) {
+        surveysToShow.removeAll(where: { (survey) -> Bool in
+            return survey.surveyId == surveyObject.surveyId
+        })
     }
 
     func showSurvey() {
@@ -84,9 +90,10 @@ extension SurveyDispatcher {
             self.campaignManager?.displayCampaignFromDispatcher(campaign, withUserContext: surveyObject.customVariables).then { result in
                     switch result {
                     case .displayNotAllowed:
-                        print("displayNotAllowed for the survey")
+                        PLog(DefaultEventConstants.displayNotAllowed)
+                        self.delegate?.didSurveyAlreadyPresented(survey: surveyObject)
                     case .failedToDisplay:
-                        print("failedToDisplay survery")
+                        PLog(DefaultEventConstants.failedToDisplay)
                     case .didDisplay:
                         self.surveysToShow = []
                         self.delegate?.didPresentSurvey(survey: surveyObject)
@@ -94,21 +101,21 @@ extension SurveyDispatcher {
 //                            self.surveysToShow.remove(at: idx)
 //                        }
                     case .errorInFormat:
-                        print("Survey had errorInFormat")
+                        PLog(DefaultEventConstants.errorInFormat)
                     case .undefinded:
-                        print("Survey not presented du to an undefinded error")
+                        PLog(DefaultEventConstants.undefinded)
                     case .inactiveCampaign:
-                        print("")
+                        PLog(DefaultEventConstants.inactiveCampaign)
                     }
                 }
             } else {
                 let error = DefaultEventError(message: "inactiveCampaign")
-              //  delegate?.failedToPresentSurvey(surveyId: surveyId, surveyType: surveyType, reason: error)
+                self.delegate?.failedToPresentSurvey(survey: surveyObject, reason: error)
             }
         }
     }
     func presentGFPForm() {
-
+        // TODO: PRESENT GFP FORM
     }
 
     func fetchCampaignsAndEvents(completion: (() -> Void)? = nil) {

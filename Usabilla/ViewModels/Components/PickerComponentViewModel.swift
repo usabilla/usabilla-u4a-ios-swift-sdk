@@ -43,7 +43,6 @@ class PickerComponentViewModel: BaseComponentViewModel<String, PickerFieldModel>
 
     var indexOfSelectedOption: Int? {
 
-
         // If it exists, select the value the user selected before
         if let tmpValue = value {
             return options.index(where: { $0.value == tmpValue })

@@ -203,7 +203,7 @@ extension AppEventNotifier: PresentSurveyProtocol {
                                             surveyId: survey.surveyId,
                                             surveyType: survey.surveyType,
                                             customVariables: customVariables)
-        surveyDispatcher?.addSurveyToCue(surveyObject: object)
+        surveyDispatcher?.addSurveyToQueue(surveyObject: object)
     }
 
     func evaluationCompleded() {
@@ -227,8 +227,8 @@ extension AppEventNotifier: PresentSurveyProtocol {
     }
 
     func noResultFound() {
-        Swift.debugPrint("didn't find any")
-
+        // TODO: No Result Found
+        DLogInfo(DefaultEventConstants.noResultFound)
     }
 }
 
@@ -241,11 +241,16 @@ extension AppEventNotifier: SurveyDispatcherDelegate {
         }
     }
 
+    func didSurveyAlreadyPresented(survey: SurveyDispatcherObject) {
+        _ = eventEngine.updateSurveyShown(survey.surveyId)
+    }
+
     func failedToPresentSurvey(survey: SurveyDispatcherObject, reason: DefaultEventError) {
-        Swift.debugPrint("Coudn't present")
+        DLogInfo(DefaultEventConstants.noSurveyToShow)
         if reason.message == "inactiveCampaign" {
             eventEngine.updateDefaultEventStatus(survey.surveyId)
-            triggerEventEngine()
+            surveyDispatcher?.removeSurveyFromQueue(surveyObject: survey)
+            surveyDispatcher?.showSurvey()
         }
     }
 }

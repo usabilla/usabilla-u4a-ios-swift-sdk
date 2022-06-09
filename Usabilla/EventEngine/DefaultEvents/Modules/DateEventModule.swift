@@ -19,6 +19,7 @@ struct DateEventModule: Codable, DefaultEventProtcol {
     init( date: String, comparison: ComparisonType?) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         if let aDate = dateFormatter.date(from: date) {
             self.date = aDate
             self.invalidObject = false
@@ -39,15 +40,15 @@ struct DateEventModule: Codable, DefaultEventProtcol {
         let result = Calendar.current.compare(date, to: now, toGranularity: .day)
             switch comparison {
             case .lt:
-                if result == .orderedDescending {return true}
+                if result == .orderedAscending {return true}
             case .lte:
-                if result == .orderedDescending || result == .orderedSame {return true}
+                if result == .orderedAscending || result == .orderedSame {return true}
             case .equal:
                 if result == .orderedSame {return true}
             case .gt:
-                if result == .orderedAscending {return true}
+                if result == .orderedDescending {return true}
             case .gte:
-                if result == .orderedAscending || result == .orderedSame {return true}
+                if result == .orderedDescending || result == .orderedSame {return true}
             case .neq:
                 if result != .orderedSame {return true}
             }

@@ -73,12 +73,12 @@ public struct UsabillaTheme: Equatable {
         }
 
         mutating func updateDarkModeColors(lightColors: JSON, darkColors: JSON) {
-//            title = (UIColor(rgbao: lightColors["group1"]["hash"].string) ?? title) | (UIColor(rgbao: darkColors["group1"]["hash"].string) ?? UBStyle.DarkTheme.title)
-//            accent = (UIColor(rgbao: lightColors["group2"]["hash"].string) ?? accent) | (UIColor(rgbao: darkColors["group2"]["hash"].string) ?? UBStyle.DarkTheme.accent)
-//            text = (UIColor(rgbao: lightColors["group3"]["hash"].string) ?? text) | (UIColor(rgbao: darkColors["group3"]["hash"].string) ?? UBStyle.DarkTheme.text)
-//            error = (UIColor(rgbao: lightColors["group4"]["hash"].string) ?? error) | (UIColor(rgbao: darkColors["group4"]["hash"].string) ?? UBStyle.DarkTheme.error)
-//            background = (UIColor(rgbao: lightColors["group5"]["hash"].string) ?? background) | (UIColor(rgbao: darkColors["group5"]["hash"].string) ?? UBStyle.DarkTheme.background)
-//            textOnAccent = (UIColor(rgbao: lightColors["group6"]["hash"].string) ?? textOnAccent) | (UIColor(rgbao: darkColors["group6"]["hash"].string) ?? UBStyle.DarkTheme.textOnAccent)
+            title = (UIColor(rgbao: lightColors["group1"]["hash"].string) ?? title) | (UIColor(rgbao: darkColors["group1"]["hash"].string) ?? UBStyle.DarkTheme.title)
+            accent = (UIColor(rgbao: lightColors["group2"]["hash"].string) ?? accent) | (UIColor(rgbao: darkColors["group2"]["hash"].string) ?? UBStyle.DarkTheme.accent)
+            text = (UIColor(rgbao: lightColors["group3"]["hash"].string) ?? text) | (UIColor(rgbao: darkColors["group3"]["hash"].string) ?? UBStyle.DarkTheme.text)
+            error = (UIColor(rgbao: lightColors["group4"]["hash"].string) ?? error) | (UIColor(rgbao: darkColors["group4"]["hash"].string) ?? UBStyle.DarkTheme.error)
+            background = (UIColor(rgbao: lightColors["group5"]["hash"].string) ?? background) | (UIColor(rgbao: darkColors["group5"]["hash"].string) ?? UBStyle.DarkTheme.background)
+            textOnAccent = (UIColor(rgbao: lightColors["group6"]["hash"].string) ?? textOnAccent) | (UIColor(rgbao: darkColors["group6"]["hash"].string) ?? UBStyle.DarkTheme.textOnAccent)
             cardColor = (UIColor(rgbao: lightColors["group7"]["hash"].string) ?? background) | (UIColor(rgbao: darkColors["group7"]["hash"].string) ?? background)
         }
     }
