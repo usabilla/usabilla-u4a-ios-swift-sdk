@@ -1,6 +1,7 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
+Read the [Default Events](#defaultevents) section for a explanation of the new fetures introduces in SDK 6.12.0
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
@@ -48,6 +49,7 @@ Usabilla for Apps allows you to collect feedback from your users with great ease
   - [ThreadSafe](#ThreadSafe)
   - [Telemetry data collection](#Telemetry-data-collection)
   - [Getting User feedback in app](#Getting-user-feedback-in-app)
+  - [Default Events](#defaultevents)
 
 * * *
 
@@ -83,7 +85,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.11.1'
+pod 'Usabilla', '~> 6.12.0'
 
 End
 ```
@@ -863,3 +865,27 @@ The data can be obtained like this
     }
 	
 ```
+
+## Default Events
+
+From SDK **`v6.12.0`** onwards we are introducing a new feature **Default Events**.
+
+**Note : Now with Default Events you can show campaigns in your application(Host application embedded with GetFeedback Digital/ Usabilla SDK) without adding any extra lines of code. You just have to create Standard Campaigns(Campaigns with Default/System Events) with your `User-Account` at `GetFeedback`.**
+
+Currently we are supporting these lifecycle / system events : 
+ - `LAUNCH` : Define as when the app is entering foreground
+ - `EXIT` : Define as when the app is entering to the background
+ - `CRASH` : Define as when the app is crashed ( terminated due to an unexpected behaviour)
+
+**Note : SDK will not listen to any Default / System events, until it has been initialised and it is recommended to initialise only once. In order to make this work properly, SDK has to be initialize using `Usabilla.initialize` at the earliest possibility, preferably in the AppDelegate method:**
+
+`func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil)`
+
+Once the `SDK` has been initialised and is transition from the background, at this point SDK updates itself and fetches new / updated data from the server. `SDK`  will update itself periodically which is in every 12 hour once the application is entered to the foreground.
+While if the application is in the background, `SDK` doesn't perform any activty, nor listening to any events.
+
+For Default events,`SDK` only listen to system events and based on these events SDK will show a campaign. If more than one campaigns is triggered, only the oldest will be displayed, and the other(s) will be disregarded, and left to have a chance being triggered at a later time.
+
+For the campaigns eligible with the **EXIT or CRASH** events will be added to a queue and it will be given a chance to show on the next launch, together with any other default-events triggered.
+
+[Click here](https://support.usabilla.com/hc/en-us/articles/4747575452562) to read more about events.

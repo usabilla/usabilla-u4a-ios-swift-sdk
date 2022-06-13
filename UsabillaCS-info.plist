@@ -26,6 +26,8 @@
 	<string></string>
 	<key>USABILLA_API_HOST</key>
 	<string>$(UB_USABILLA_API_HOST)</string>
+	<key>USABILLA_BUILD</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>USABILLA_CDN_HOST</key>
 	<string>$(UB_USABILLA_CDN_HOST)</string>
 	<key>USABILLA_SUBMIT_ENDPOINT</key>
@@ -34,7 +36,5 @@
 	<string>$(UB_USABILLA_TELEMETRY_ENDPOINT)</string>
 	<key>USABILLA_VERSION</key>
 	<string>$(MARKETING_VERSION)</string>
-	<key>USABILLA_BUILD</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
 </dict>
 </plist>
