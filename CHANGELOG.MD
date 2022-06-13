@@ -1,3 +1,6 @@
+## 6.12.0
+### Update
+- New Default Events Implementation
 ## 6.11.1
 ### Fix
 - SDK version discrepancies
