@@ -202,18 +202,24 @@ class CampaignManager {
         let campaignThatResponds = localCampaigns.filter {
             $0.respondToEvents(event: event)
         }
-        campaignThatResponds.forEach {
-            campaignStore.getCampaignStatus(withID: $0.identifier).then { campaign in
-                let campaignEvent = self.eventEngine.campaigns.filter { $0.identifier == campaign.identifier}
-                if campaignEvent.count != 0 && campaign.status != .active {
-                    self.eventEngine.campaigns.removeAll { (item) -> Bool in
-                        item.identifier == campaign.identifier
+        if !campaignThatResponds.isEmpty {
+            for (idx, campaigns) in campaignThatResponds.enumerated() {
+                campaignStore.getCampaignStatus(withID: campaigns.identifier).then { campaign in
+                    let campaignEvent = self.eventEngine.campaigns.filter { $0.identifier == campaign.identifier}
+                    if campaignEvent.count != 0 && campaign.status != .active {
+                        self.eventEngine.campaigns.removeAll { (item) -> Bool in
+                            item.identifier == campaign.identifier
+                        }
+                    } else if campaignEvent.count == 0 && campaign.status == .active {
+                        self.eventEngine.campaigns.append(campaign)
                     }
-                } else if campaignEvent.count == 0 && campaign.status == .active {
-                    self.eventEngine.campaigns.append(campaign)
                 }
-                completion?()
+                if idx == campaignThatResponds.endIndex-1 {
+                    completion?()
+                }
             }
+        } else {
+            completion?()
         }
     }
 
