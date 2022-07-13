@@ -49,6 +49,21 @@ platform :ios do
 		end
 	end
 
+	#used in STAGE  "Generate Master Artefacts"
+	desc "Builds the framework for all xcode version specified in fastlane/versions.json"
+	lane :buildAndGenerateMasterArtefacts do
+		version = masterXcodeVersion
+			#first remove previous builds
+			removeAllBuilds(
+				version: version,
+				project_directory: projectDirectory
+			)
+			# Build for xcode version
+			buildXCFrameworkForXcodeVersion(
+				xcode: version
+			)
+	end
+
 
 	#used in STAGE  "Run Unit Tests"
 	desc "Run unit tests for all xcode versions"
