@@ -54,17 +54,17 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
 * * *
 
 ## Requirements
-- iOS 9.0+
-- Xcode 11+   
+- iOS 10.0+
+- Xcode 12+   
 - Swift 4.0+
 
-**Note :  v`6.8.5` can be used for `Xcode 10.3.`**
+**Note :  v`6.8.5` can be used for `Xcode 10.3`& v`6.12.0` for `Xcode 11.`**
 
 ## Installation
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
-The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 11+
+The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 12+
 Previous versions are available at our git-repository. For Carthage please check the Carthage section
  
 ### SPM
@@ -85,7 +85,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.12.0'
+pod 'Usabilla', '~> 6.12.1'
 
 End
 ```
@@ -96,7 +96,7 @@ For other Xcode version, use:
 ```ruby
 pod 'Usabilla', :podspec => 'https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.podspec'
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-12.5.1`, `Xcode-11.7`, `Xcode-11.3.1`.
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-12.5.1`.
 
 Then, run the following command:
 
@@ -124,7 +124,7 @@ For other Xcode version, use:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-12.5.1`, `Xcode-11.7`, `Xcode-11.3.1`.
+replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-12.5.1`.
 
 **Note : Carthage - `0.38.0` encourage using XCFrameworks and Usabilla SDK for carthage supports XCFrameworks from `6.9.0` onwards**
 
@@ -857,13 +857,13 @@ If the question is not answered ```null``` will be the value
 The data can be obtained like this
 ```swift
 
-	func feedbackResultSubmitted(userResponse: Data) {
+    func feedbackResultSubmitted(userResponse: Data) {
         if let jsonString = String(data: userResponse, encoding: String.Encoding.ascii) {
             //// use the data
         }
     
     }
-	
+    
 ```
 
 ## Default Events

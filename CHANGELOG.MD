@@ -1,3 +1,8 @@
+## 6.12.1
+### Fix
+- Occurrences issue for multiple campaigns with same event name
+### Update
+- Remove support for xcode 11
 ## 6.12.0
 ### Update
 - New Default Events Implementation
