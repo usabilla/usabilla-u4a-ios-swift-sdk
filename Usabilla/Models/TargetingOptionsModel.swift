@@ -34,10 +34,12 @@ class TargetingOptionsModel: NSObject, NSCoding {
         let tempDefaultEvents = json["default_events"]
         if tempDefaultEvents != nil {
             let modules: [JSON] = tempDefaultEvents["modules"].arrayValue
-            var defaultEvents = DefaultEvent(json: modules, targetingId: targetingID)
-            defaultEvents.targetingId = targetingID
-            defaultEvents.creationdate = modifyDate
-            DefaultEventDAO.shared.create(defaultEvents)
+            if modules.count > 0 {
+                var defaultEvents = DefaultEvent(json: modules, targetingId: targetingID)
+                defaultEvents.targetingId = targetingID
+                defaultEvents.creationdate = modifyDate
+                DefaultEventDAO.shared.create(defaultEvents)
+            }
         }
         guard let rule = TargetingFactory.createRule(json["options"]["rule"]) else {
                 return nil
