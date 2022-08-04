@@ -68,8 +68,15 @@ class SubmissionManager {
 
         contentDictionary["SDK_version"] = Bundle.sdkVersion
 
-        contentDictionary["data"] = formModel.toDictionary()
-
+        var data = formModel.toDictionary()
+        var mood = data["mood"]
+        if mood != nil {
+            let maxMood: Int = 5
+            // swiftlint:disable:next force_cast
+            mood = (mood as! Int > maxMood) ? maxMood : mood
+            data["mood"] = mood
+        }
+        contentDictionary["data"] = data
         contentDictionary["timestamp"] = String(format: "%.0f", arguments: [Date().timeIntervalSince1970])
 
         contentDictionary["device"] = uiDevice.modelName
