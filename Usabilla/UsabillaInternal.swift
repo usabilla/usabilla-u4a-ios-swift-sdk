@@ -402,11 +402,9 @@ class UsabillaInternal {
         let navigationController = UBNavigationController(rootViewController: formController)
         navigationController.modalPresentationStyle = .fullScreen
         if DeviceInfo.isIPad() {
-            #if XCODE1100 || XCODE1200 || XCODE1300
             if #available(iOS 13.0, *) {
                 navigationController.isModalInPresentation = true
             }
-            #endif
             navigationController.modalPresentationStyle = .formSheet
             navigationController.preferredContentSize = DeviceInfo.preferedFormSize()
             navigationController.presentationController?.delegate = formController

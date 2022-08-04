@@ -30,7 +30,6 @@ class CampaignWindow {
             return false
         }
         var popupWindow: UIWindow?
-        #if XCODE1100 || XCODE1200 || XCODE1300
         if #available(iOS 13.0, *) {
             let windowScene = UIApplication.shared
                 .connectedScenes
@@ -42,9 +41,6 @@ class CampaignWindow {
         } else {
             popupWindow = PassthroughWindow(frame: UIScreen.main.bounds)
         }
-        #else
-            popupWindow = PassthroughWindow(frame: UIScreen.main.bounds)
-        #endif
         let viewcontroller = UIViewController()
         viewcontroller.view = UBCustomTouchableView()
         viewcontroller.view.backgroundColor = .clear
@@ -88,11 +84,9 @@ extension CampaignWindow: CampaignViewControllerDelegate {
         window?.rootViewController?.dismiss(animated: true, completion: {})
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
         window?.isHidden = true
-        #if XCODE1100 || XCODE1200 || XCODE1300
         if #available(iOS 13, *) {
             window?.windowScene = nil
         }
-        #endif
         showing = false
     }
 }
