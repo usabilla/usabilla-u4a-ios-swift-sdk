@@ -84,6 +84,7 @@ class SubmissionManager {
         }
         contentDictionary["data"] = data
 
+        formModel.client?.addBehaviour("Origin", UBInfo.getCallingClass())
         formModel.client?.addBehaviour("XCode", Bundle.xcodeVersion)
         contentDictionary["client"] = formModel.client?.toJson()
 
