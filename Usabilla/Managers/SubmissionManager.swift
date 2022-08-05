@@ -69,14 +69,24 @@ class SubmissionManager {
         contentDictionary["SDK_version"] = Bundle.sdkVersion
 
         var data = formModel.toDictionary()
-        var mood = data["mood"]
-        if mood != nil {
-            let maxMood: Int = 5
-            // swiftlint:disable:next force_cast
-            mood = (mood as! Int > maxMood) ? maxMood : mood
-            data["mood"] = mood
+
+        if formModel.client == nil {
+            formModel.client = ClientModel()
+        }
+
+        let mood = data["mood"]
+        let maxMood: Int = 5
+        // swiftlint:disable:next force_cast
+        if mood != nil && mood as! Int > maxMood {
+            data["mood"] = maxMood
+            // Add Mood to client behaviour
+            formModel.client?.addBehaviour("mood", mood)
         }
         contentDictionary["data"] = data
+
+        formModel.client?.addBehaviour("XCode", Bundle.xcodeVersion)
+        contentDictionary["client"] = formModel.client?.toJson()
+
         contentDictionary["timestamp"] = String(format: "%.0f", arguments: [Date().timeIntervalSince1970])
 
         contentDictionary["device"] = uiDevice.modelName
@@ -107,12 +117,6 @@ class SubmissionManager {
             }
         }
 
-        // Add Xcode build version
-        if formModel.client == nil {
-            formModel.client = ClientModel()
-        }
-        formModel.client?.addBehaviour("XCode", Bundle.xcodeVersion)
-        contentDictionary["client"] = formModel.client?.toJson()
         contentDictionary["custom_variables"] = userContext
 
         var payload: [String: Any] = [:]
