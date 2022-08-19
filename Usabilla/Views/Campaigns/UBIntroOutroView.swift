@@ -169,7 +169,7 @@ class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
 
     private func setupTitle() {
         titleLabel = UILabel()
-        titleLabel.text = viewModel.title
+        titleLabel.attributedText = viewModel.title?.attributedStringWithWritingDirections()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = UBDimensions.IntroOutroView.textTitleLines
         scrollContentView.addSubview(titleLabel)
@@ -191,8 +191,7 @@ class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
         buttonsStackView.distribution = .fillProportionally
 
         cancelButton = UIButton(type: .system)
-        cancelButton.setTitle(viewModel.cancelLabelText, for: .normal)
-
+        cancelButton.setAttributedTitle(viewModel.cancelLabelText?.attributedStringWithWritingDirections(), for: .normal)
         buttonsStackView.addArrangedSubview(cancelButton)
 
         if viewModel.hasContinueButton || UIAccessibilityIsVoiceOverRunning() {
@@ -204,7 +203,13 @@ class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
             if UIAccessibilityIsVoiceOverRunning() && (continueText?.isEmpty ?? true) {
                 continueText = LocalisationHandler.getLocalisedStringForKey("usa_accessibility_button_label_continue")
             }
-            continueButton?.setTitle(continueText, for: .normal)
+            // if there is a title set it as attributed string, else set an empty
+            if let continueText = continueText {
+                continueButton?.setAttributedTitle(continueText.attributedStringWithWritingDirections(), for: .normal)
+            } else {
+                continueButton?.setAttributedTitle(NSAttributedString(), for: .normal)
+            }
+
             continueButton?.addTarget(self, action: #selector(UBIntroOutroView.continueAction), for: .touchUpInside)
         }
         cancelButton.addTarget(self, action: #selector(UBIntroOutroView.dismissAction), for: .touchUpInside)

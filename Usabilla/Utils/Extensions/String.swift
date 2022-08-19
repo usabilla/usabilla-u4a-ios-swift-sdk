@@ -11,6 +11,26 @@ import UIKit
 
 extension String {
 
+    func attributedStringWithWritingDirections() -> NSAttributedString {
+        if self.count == 0 {
+            return NSAttributedString(string: self)
+        }
+        let locale = NSLocale.autoupdatingCurrent
+        var direction: NSLocale.LanguageDirection = .leftToRight
+        if let lang = locale.languageCode {
+            direction = NSLocale.characterDirection(forLanguage: lang)
+        }
+        if direction == .leftToRight {
+            let number: [NSNumber] = [0]
+            return  NSAttributedString(string: self,
+                                       attributes: [.writingDirection: number])
+        } else {
+            let number: [NSNumber] = [1]
+            return  NSAttributedString(string: self,
+                                       attributes: [.writingDirection: number])
+        }
+    }
+
     func components(withLength length: Int) -> [String] {
         return stride(from: 0, to: self.count, by: length).map {
             let start = self.index(self.startIndex, offsetBy: $0)
