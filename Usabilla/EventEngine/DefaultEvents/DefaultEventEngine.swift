@@ -23,6 +23,7 @@ struct DefaultEventEngine {
         var foundSurveys: Bool = false
         let events = getDefaultEvents()
         for aDefaultEvent in events {
+            if aDefaultEvent.modules.count < 2 { continue }
             if !aDefaultEvent.status {continue}
             var evalutationObejct: EvaluationObject = EvaluationObject()
             evalutationObejct.add(key: .surveyId, value: aDefaultEvent.surveyId)
