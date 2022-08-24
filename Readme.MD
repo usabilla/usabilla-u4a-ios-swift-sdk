@@ -85,7 +85,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.12.1'
+pod 'Usabilla', '~> 6.12.2'
 
 End
 ```
@@ -857,13 +857,13 @@ If the question is not answered ```null``` will be the value
 The data can be obtained like this
 ```swift
 
-    func feedbackResultSubmitted(userResponse: Data) {
+	func feedbackResultSubmitted(userResponse: Data) {
         if let jsonString = String(data: userResponse, encoding: String.Encoding.ascii) {
             //// use the data
         }
     
     }
-    
+	
 ```
 
 ## Default Events
