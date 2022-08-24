@@ -1,3 +1,8 @@
+## 6.12.2
+### Fix
+- Text alignment with Chinese letters
+- Max moods rating ( Getting mood rating as 6)
+- Avoid storing empty Standard Event Modules (Triggering a campaign on launch)
 ## 6.12.1
 ### Fix
 - Occurrences issue for multiple campaigns with same event name
