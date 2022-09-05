@@ -81,7 +81,9 @@ class CampaignWindow {
 extension CampaignWindow: CampaignViewControllerDelegate {
     func campaignDidEnd() {
         currentCampaignViewModel = nil
-        window?.rootViewController?.dismiss(animated: true, completion: {})
+        if #available(iOS 16, *) { } else {
+            window?.rootViewController?.dismiss(animated: true, completion: {})
+        }
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
         window?.isHidden = true
         if #available(iOS 13, *) {
