@@ -1,6 +1,9 @@
-## 6.12.2
+## 6.12.3
 ### Fix
 - App Freezing on ios 16 after campaign finished/cancelled
+### Update
+- Remove support for xcode 12
+- Added support for xcode 14
 ## 6.12.2
 ### Fix
 - Text alignment with Chinese letters
