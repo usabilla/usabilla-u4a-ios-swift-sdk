@@ -1,7 +1,7 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-Read the [Default Events](#defaultevents) section for a explanation of the new fetures introduces in SDK 6.12.0
+Read the [Standard Events](#standardevents) section for a explanation of the new fetures introduces in SDK 6.12.0
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
