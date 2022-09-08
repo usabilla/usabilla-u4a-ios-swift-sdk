@@ -49,22 +49,22 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
   - [ThreadSafe](#ThreadSafe)
   - [Telemetry data collection](#Telemetry-data-collection)
   - [Getting User feedback in app](#Getting-user-feedback-in-app)
-  - [Default Events](#defaultevents)
+  - [Standard Events](#standardevents)
 
 * * *
 
 ## Requirements
-- iOS 10.0+
-- Xcode 12+   
+- iOS 11+
+- Xcode 13+
 - Swift 4.0+
 
-**Note :  v`6.8.5` can be used for `Xcode 10.3`& v`6.12.0` for `Xcode 11.`**
+**Note :  v`6.12.2` can be used for `Xcode 12` & for `Xcode 14+` use v`6.12.3` onwards.**
 
 ## Installation
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
 
-The SDK framework is build with Module Format Stability (as of 6.4.3). It should compile and run with any version of Xcode 12+
+The latest versions of SDK are build with Module Format Stability.
 Previous versions are available at our git-repository. For Carthage please check the Carthage section
  
 ### SPM
@@ -85,7 +85,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.12.2'
+pod 'Usabilla', '~> 6.12.3'
 
 End
 ```
@@ -96,7 +96,7 @@ For other Xcode version, use:
 ```ruby
 pod 'Usabilla', :podspec => 'https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.podspec'
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-12.5.1`.
+replace Xcode-x.y.z with the required version eg. Xcode-12.5.1. Available versions `Xcode-14.0`.
 
 Then, run the following command:
 
@@ -124,7 +124,7 @@ For other Xcode version, use:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-10.3. Available versions `Xcode-12.5.1`.
+replace Xcode-x.y.z with the required version eg. Xcode-12.5.1. Available versions `Xcode-14.0`.
 
 **Note : Carthage - `0.38.0` encourage using XCFrameworks and Usabilla SDK for carthage supports XCFrameworks from `6.9.0` onwards**
 
@@ -866,11 +866,11 @@ The data can be obtained like this
 	
 ```
 
-## Default Events
+## Standard Events
 
-From SDK **`v6.12.0`** onwards we are introducing a new feature **Default Events**.
+From SDK **`v6.12.2`** onwards we are introducing a new feature **Standard Events**.
 
-**Note : Now with Default Events you can show campaigns in your application(Host application embedded with GetFeedback Digital/ Usabilla SDK) without adding any extra lines of code. You just have to create Standard Campaigns(Campaigns with Default/System Events) with your `User-Account` at `GetFeedback`.**
+**Note : Now with Standard Events you can show campaigns in your application(Host application embedded with GetFeedback Digital/ Usabilla SDK) without adding any extra lines of code. You just have to create Standard Campaigns(Campaigns with Default/System Events) with your `User-Account` at `GetFeedback`.**
 
 Currently we are supporting these lifecycle / system events : 
  - `LAUNCH` : Define as when the app is entering foreground
