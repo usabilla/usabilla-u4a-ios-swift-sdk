@@ -118,6 +118,28 @@ class CampaignService: CampaignServiceProtocol {
     }
 
     func getTargetings(withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
+        if ids.count <= chunkSize {
+            return getBatchOfTargetingOptions(withIDs: ids)
+        } else {
+            return Promise { fulfill, _ in
+                let batchIds = ids.chunked(into: chunkSize)
+                var targetIds: [TargetingOptionsModel] = []
+                var count = batchIds.count
+                for batches in batchIds {
+                    getBatchOfTargetingOptions(withIDs: batches).then { value in
+                        targetIds.append(contentsOf: value)
+                        targetIds = targetIds.compactMap {$0}
+                        count -= 1
+                        if count == 0 {
+                            fulfill(targetIds)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private func getBatchOfTargetingOptions (withIDs ids: [String]) -> Promise<[TargetingOptionsModel]> {
         let request = requestBuilder.requestGetAllTargetingOptions(targetingIds: ids)
         return Promise { fulfill, reject in
             guard let request = request else {

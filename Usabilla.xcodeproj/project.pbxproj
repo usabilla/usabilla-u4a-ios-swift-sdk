@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1071,6 +1071,10 @@
 		F2D55E9022CA0AAC000EEAB5 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
 		F2E542E622CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */; };
 		F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
+		F2FAE99C296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
+		F2FAE99D296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
+		F2FAE99E296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
+		F2FAE99F296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1464,6 +1468,7 @@
 		F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UBCameraViewController.swift; sourceTree = "<group>"; };
 		F2E542E522CDEDCC00B0BE5C /* UBCameraViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBCameraViewControllerTest.swift; sourceTree = "<group>"; };
 		F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
+		F2FAE99B296EB98500B06AB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2156,6 +2161,7 @@
 			children = (
 				F2BAC0DB28115A1300ECD15E /* Bundle.swift */,
 				43E883E81E37B5B800A97F1D /* String.swift */,
+				F2FAE99B296EB98500B06AB6 /* Array.swift */,
 				43E883EA1E37B5C000A97F1D /* UIImage.swift */,
 				452084C72724ABBB00F7EDC5 /* UIImage+CSExtension.swift */,
 				43E883EC1E37B5C900A97F1D /* UIColor.swift */,
@@ -2793,6 +2799,7 @@
 				41AC383F1F6880D400F0DFC6 /* NPSControl.swift in Sources */,
 				43CCD46B1E79970600B3E4FE /* EmailComponentViewModel.swift in Sources */,
 				04E228B21D2A58F9009BEA65 /* SwiftCheckBox.swift in Sources */,
+				F2FAE99C296EB98500B06AB6 /* Array.swift in Sources */,
 				43AE0AEA1E82B9A500B1441C /* CampaignViewModel.swift in Sources */,
 				43CCD4691E7950C900B3E4FE /* RadioComponentViewModel.swift in Sources */,
 				458FC5DE22EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
@@ -3200,6 +3207,7 @@
 				43B04F7D1F1F7EEF0032F057 /* HeaderComponent.swift in Sources */,
 				43B04F7E1F1F7EEF0032F057 /* BaseEditableStringComponentViewModel.swift in Sources */,
 				43B04F7F1F1F7EEF0032F057 /* RequestBuilder.swift in Sources */,
+				F2FAE99D296EB98500B06AB6 /* Array.swift in Sources */,
 				43B04F801F1F7EEF0032F057 /* ShowHideRule.swift in Sources */,
 				43B04F811F1F7EEF0032F057 /* String.swift in Sources */,
 				43B04F821F1F7EEF0032F057 /* Logging.swift in Sources */,
@@ -3428,6 +3436,7 @@
 				F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */,
 				F269231523EB17B900E6A455 /* String.swift in Sources */,
 				F269231623EB17B900E6A455 /* Logging.swift in Sources */,
+				F2FAE99E296EB98500B06AB6 /* Array.swift in Sources */,
 				F269231723EB17B900E6A455 /* AndRule.swift in Sources */,
 				F269231823EB17B900E6A455 /* IntFieldModel.swift in Sources */,
 				F269231923EB17B900E6A455 /* TextFieldModel.swift in Sources */,
@@ -3605,6 +3614,7 @@
 				F274EBB7270CADA600AA69B8 /* RadioComponentViewModel.swift in Sources */,
 				F2324B45279AD31F00D7A823 /* UBInfo.swift in Sources */,
 				F274EBB8270CADA600AA69B8 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
+				F2FAE99F296EB98500B06AB6 /* Array.swift in Sources */,
 				F274EBB9270CADA600AA69B8 /* PassiveStatus.swift in Sources */,
 				F274EBBA270CADA600AA69B8 /* PageViewModel.swift in Sources */,
 				F274EBBB270CADA600AA69B8 /* UBCampaignFeedbackRequest.swift in Sources */,

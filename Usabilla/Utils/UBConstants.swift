@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+internal let chunkSize:Int = 40
+
 enum FormType: String {
     case active
     case passive
