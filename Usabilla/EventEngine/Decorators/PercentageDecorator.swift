@@ -12,10 +12,12 @@ class PercentageDecorator: Decorator {
 
     var percentage: Int
     var diceAlreadyRolled: Bool
+    var previousPercentage: Int
 
     init(percentage: Int, rule: Rule) {
         self.percentage = percentage
         self.diceAlreadyRolled = false
+        self.previousPercentage = 1000  // just setting it til more than 100 == not set
         super.init(rule: rule)
     }
 
@@ -25,6 +27,7 @@ class PercentageDecorator: Decorator {
         }
         self.percentage = percentage
         self.diceAlreadyRolled = false
+        self.previousPercentage = 1000   // just setting it til more than 100 == not set
         super.init(json: json)
     }
 
@@ -36,7 +39,13 @@ class PercentageDecorator: Decorator {
 
     func checkIfTriggers(triggered: Bool, diceRoll: Int) -> Bool {
         if triggered && !diceAlreadyRolled {
-            let diceRolledInFavor = percentage >= diceRoll
+            var diceRolledInFavor = false
+            if previousPercentage == 1000 {
+                diceRolledInFavor = percentage >= diceRoll
+                previousPercentage = diceRoll
+            } else {
+                diceRolledInFavor = percentage >= previousPercentage
+            }
             diceAlreadyRolled = true
             return diceRolledInFavor
         }
@@ -47,6 +56,11 @@ class PercentageDecorator: Decorator {
     required init?(coder aDecoder: NSCoder) {
         let percentage = aDecoder.decodeInteger(forKey: "percentage")
         let diceAlreadyRolled = aDecoder.decodeBool(forKey: "diceAlreadyRolled")
+        if aDecoder.containsValue(forKey: "previousPercentage") {
+            previousPercentage = aDecoder.decodeInteger(forKey: "previousPercentage")
+        } else {
+            previousPercentage = 1000
+        }
         self.percentage = percentage
         self.diceAlreadyRolled = diceAlreadyRolled
         super.init(coder: aDecoder)
@@ -56,5 +70,13 @@ class PercentageDecorator: Decorator {
         super.encode(with: aCoder)
         aCoder.encode(self.percentage, forKey: "percentage")
         aCoder.encode(self.diceAlreadyRolled, forKey: "diceAlreadyRolled")
+        if previousPercentage != 1000 {
+            aCoder.encode(self.previousPercentage, forKey: "previousPercentage")
+        }
+    }
+
+    override func reset() {
+        diceAlreadyRolled = false
+        super.reset()
     }
 }

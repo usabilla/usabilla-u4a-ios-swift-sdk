@@ -30,6 +30,7 @@ enum EvaluationTypes: String, Codable {
     case language
     case surveyId
     case currentTime
+    case resetDuration // use for reactivation
 }
 
 struct EvaluationObject: Codable {

@@ -54,4 +54,15 @@ extension Date {
         let dateString: String = dateFormatter.string(from: self)
         return dateString
     }
+
+    // Returns Difference in seconds from the dates passed.
+    func getDateDiff(start: Date) -> Int {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([Calendar.Component.second], from: start, to: self)
+
+        if let seconds = dateComponents.second {
+            return Int(seconds)
+        }
+        return 0
+    }
 }

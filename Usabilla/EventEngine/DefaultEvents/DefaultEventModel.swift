@@ -23,7 +23,7 @@ struct DefaultEvent: Codable {
     var targetingId: String = ""
     var creationdate: Date = Date()
     var status: Bool = true
-
+    var resetDuration: Int64 = 0 // use for reactivation
     init(json: [JSON], targetingId: String) {
         self.targetingId = targetingId
         var tempModules: [DefaultEventProtcol] = []
@@ -134,6 +134,7 @@ struct DefaultEvent: Codable {
             case surveyType
             case creationDate
             case status
+            case resetDuration
         }
 
     init(from decoder: Decoder) throws {
@@ -202,6 +203,11 @@ struct DefaultEvent: Codable {
         } else {
             status = true
         }
+        if let aValue = try container.decodeIfPresent(Int64.self, forKey: .resetDuration) {
+            resetDuration = aValue
+        } else {
+            resetDuration = 0
+        }
 
     }
     // swiftlint:disable cyclomatic_complexity
@@ -212,6 +218,7 @@ struct DefaultEvent: Codable {
         try container.encode(surveyType, forKey: .surveyType)
         try container.encode(creationdate, forKey: .creationDate)
         try container.encode(status, forKey: .status)
+        try container.encode(resetDuration, forKey: .resetDuration)
 
         var nestedContainer = container.nestedUnkeyedContainer(forKey: .modules)
 
@@ -361,4 +368,8 @@ enum TimeUnit: String, Codable {
 protocol DefaultEventProtcol: Codable {
     func evaluate (_ object: EvaluationObject) -> Bool
     init(from decoder: Decoder) throws
+}
+
+protocol DefaultEventResetProtocol: Codable {
+    func reset (_ object: EvaluationObject) -> Bool
 }

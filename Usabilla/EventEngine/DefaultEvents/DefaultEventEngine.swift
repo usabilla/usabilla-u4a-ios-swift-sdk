@@ -22,11 +22,42 @@ struct DefaultEventEngine {
     func triggered(_ triggeredType: SystemEventType, evalObject: EvaluationObject? = nil) {
         var foundSurveys: Bool = false
         let events = getDefaultEvents()
+        // Check Reactivation here
+        for resetEvent in events {
+            if resetEvent.modules.count < 2 { continue }
+            if !resetEvent.status {continue}
+            var rResult = false
+            if resetEvent.resetDuration > 0 {
+                var evalutationObejct: EvaluationObject = EvaluationObject()
+                evalutationObejct.add(key: .surveyId, value: resetEvent.surveyId)
+                evalutationObejct.add(key: .resetDuration, value: String(resetEvent.resetDuration))
+                for rModule in resetEvent.modules {
+                    if let data = evalObject?.getKeyValues() {
+                        evalutationObejct.addKeyValues(keyValues: data)
+                    }
+                    evalutationObejct.add(key: .eventType, value: triggeredType.rawValue)
+                    if rModule is EnablingEventModule {
+                        if let amodule = rModule as? DefaultEventResetProtocol {
+                            // This will reset Current count for standard events and set it to 1.
+                            rResult = amodule.reset(evalutationObejct)
+                        }
+                    }
+                    if rModule is OccurrencesEventModule {
+                        if let aModule = rModule as? DefaultEventResetProtocol {
+                            // This will remove the usage data for standard event if reactivation condition satisfy
+                            rResult = aModule.reset(evalutationObejct)
+                        }
+                    }
+                    if !rResult {break}
+                }
+            }
+        }
         for aDefaultEvent in events {
             if aDefaultEvent.modules.count < 2 { continue }
             if !aDefaultEvent.status {continue}
             var evalutationObejct: EvaluationObject = EvaluationObject()
             evalutationObejct.add(key: .surveyId, value: aDefaultEvent.surveyId)
+            evalutationObejct.add(key: .resetDuration, value: String(aDefaultEvent.resetDuration))
             if let data = evalObject?.getKeyValues() {
                 evalutationObejct.addKeyValues(keyValues: data)
             }

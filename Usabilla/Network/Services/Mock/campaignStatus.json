@@ -1,0 +1,18 @@
+{
+    "id": "ac8c3980-894e-4188-bb59-27babfc06eda",
+    "name": "Test Empty Modules 1",
+    "form_id": "b17d5c03-84f3-4dc4-b9d3-2f75b3a6e012",
+    "targeting_options_id": "0a6a03ca-b97a-4ada-a8bb-8cc64196fa3e",
+    "app_ids": [
+      "04451d90-d8e7-4ce7-8a19-5031b6bc9035"
+    ],
+    "status": "active",
+    "position": "bottom",
+    "store_location": false,
+    "created_at": "2022-08-11T13:22:30+00:00",
+    "last_modified_at": "2022-08-30T13:44:42+00:00",
+    "reactivation" : {
+      "interval" : 1
+      "unit" : "days"
+    }
+  }

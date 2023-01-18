@@ -156,6 +156,7 @@ class UBCampaignStore: UBCampaignStoreProtocol {
                 if var defaultEvent = defaultEvents.first(where: { $0.targetingId ==  targeting.targetingID}) {
                     defaultEvent.surveyId = json["id"].string ?? ""
                     defaultEvent.surveyType = .GFPCampaign
+                    defaultEvent.resetDuration = JSONCampaignParser.calculateReactivationDuration(reactivation: json["reactivation"])
                     defaultEvent.status = (json["status"].string == "active") ? true : false
                     DefaultEventDAO.shared.create(defaultEvent)
                 }

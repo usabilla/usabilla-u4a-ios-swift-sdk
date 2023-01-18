@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct EnablingEventModule: Codable, DefaultEventProtcol {
+struct EnablingEventModule: Codable, DefaultEventProtcol, DefaultEventResetProtocol {
     var enableEventName: String = DefaultEventModule.enable.rawValue
     let moduleId: String
     var showDate: Date?
@@ -55,6 +55,30 @@ struct EnablingEventModule: Codable, DefaultEventProtcol {
         dateFormatter.timeStyle = .short
 
         data.setKeyValue(key: .lastUsageDate, value: dateFormatter.string(from: date))
+        DefaultEventModuleDAO.shared.storeModuleData(data: data)
+        return true
+    }
+
+    // Remove the usage data for standard event if reactivation condition satisfy
+    func reset(_ object: EvaluationObject) -> Bool {
+        var reactivate: Bool = false
+        guard let surveyId: String = object.get(key: .surveyId) else { return false }
+        guard let lastShownDate = getLasteUsageDate(surveyId: surveyId) else { return false }
+        guard let resetDuration: String = object.get(key: .resetDuration) else { return false }
+        guard let currentReset = Int(resetDuration) else { return false }
+        let lastShownTime = Date().getDateDiff(start: lastShownDate)
+        if currentReset > 0 && lastShownTime >= currentReset {
+            _ = removeUsageDate(surveyId: surveyId)
+            reactivate = true
+        }
+        return reactivate
+    }
+
+    func removeUsageDate(surveyId: String) -> Bool {
+        var data = DefaultEventModuleState(moduleType: DefaultEventModule.occurrences,
+                                               surveyId: surveyId,
+                                               moduleId: moduleId)
+        data.setKeyValue(key: .lastUsageDate, value: "")
         DefaultEventModuleDAO.shared.storeModuleData(data: data)
         return true
     }

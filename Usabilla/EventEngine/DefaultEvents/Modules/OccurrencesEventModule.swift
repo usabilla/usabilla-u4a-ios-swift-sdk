@@ -8,7 +8,17 @@
 
 import Foundation
 
-struct OccurrencesEventModule: Codable, DefaultEventProtcol {
+struct OccurrencesEventModule: Codable, DefaultEventProtcol, DefaultEventResetProtocol {
+
+    // Reset Current count for standard events and set it to 1.
+    func reset(_ object: EvaluationObject) -> Bool {
+        guard let surveyId: String = object.get(key: .surveyId) else {
+            return false
+        }
+        updateCurrentcount(surveyId: surveyId, moduleId: moduleId, currentCounter: 1)
+        return true
+    }
+
     var occurrencesEventName: String = DefaultEventModule.occurrences.rawValue
     let moduleId: String
     let counter: Int

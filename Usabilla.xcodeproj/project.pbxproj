@@ -619,6 +619,10 @@
 		F21C843C27EC92FC0050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F21C843D27EC92FF0050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F21C843E27EC93000050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
+		F21DBD2B293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
+		F21DBD2C293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
+		F21DBD2D293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
+		F21DBD2E293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
 		F2324B42279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2324B43279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2324B44279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
@@ -1031,6 +1035,7 @@
 		F276A3C9281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
 		F276A3CA281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
 		F276A3CB281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
+		F279C70628C2205E001DCD2B /* campaignStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = F279C70528C2205E001DCD2B /* campaignStatus.json */; };
 		F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E323C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
 		F27F14E523C781B8000E903D /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
@@ -1438,6 +1443,7 @@
 		F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaInternalDebug.swift; sourceTree = "<group>"; };
 		F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaServiceTest.swift; sourceTree = "<group>"; };
 		F21326E3238C22A600553358 /* Featurebilla.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Featurebilla.json; sourceTree = "<group>"; };
+		F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCampaignParser.swift; sourceTree = "<group>"; };
 		F2324B41279AD31F00D7A823 /* UBInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBInfo.swift; sourceTree = "<group>"; };
 		F250130F27E350A500A6175F /* AppEventNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventNotifier.swift; sourceTree = "<group>"; };
 		F250131327E3B08700A6175F /* defaultEvent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultEvent.json; sourceTree = "<group>"; };
@@ -1450,6 +1456,7 @@
 		F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCS.swift; sourceTree = "<group>"; };
 		F276A3C2281A96BB00108EF1 /* FileStorageDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageDAO.swift; sourceTree = "<group>"; };
 		F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEventStore.swift; sourceTree = "<group>"; };
+		F279C70528C2205E001DCD2B /* campaignStatus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = campaignStatus.json; sourceTree = "<group>"; };
 		F27F14E123C781A5000E903D /* UBProduction.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBProduction.xcconfig; sourceTree = "<group>"; };
 		F27F14E423C781B8000E903D /* UBStaging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UBStaging.xcconfig; sourceTree = "<group>"; };
 		F292450423759DF400401ADF /* FeaturebillaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturebillaService.swift; sourceTree = "<group>"; };
@@ -1849,6 +1856,7 @@
 				04F54E181CD76708002F501E /* DeviceInfo.swift */,
 				45C620D922DCB61800CB95A9 /* Transitions.swift */,
 				04F54E1A1CD76708002F501E /* JSONFormParser.swift */,
+				F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */,
 				04F54E1C1CD76708002F501E /* StyleKit.swift */,
 				04F54E1D1CD76708002F501E /* SwiftEventBus.swift */,
 				04F54E1E1CD76708002F501E /* UsabillaTheme.swift */,
@@ -2348,6 +2356,7 @@
 		F250131227E3B06800A6175F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				F279C70528C2205E001DCD2B /* campaignStatus.json */,
 				F250131627E3B63B00A6175F /* campaign.json */,
 				F250131327E3B08700A6175F /* defaultEvent.json */,
 			);
@@ -2579,6 +2588,7 @@
 				F26E6C5A2379918B00BAE436 /* config.json in Resources */,
 				F250131727E3B63B00A6175F /* campaign.json in Resources */,
 				04F54E5F1CD76A21002F501E /* usa_localizable.strings in Resources */,
+				F279C70628C2205E001DCD2B /* campaignStatus.json in Resources */,
 				F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2743,6 +2753,7 @@
 				04DC25AB1E8BB33E002962A3 /* LeafEvent.swift in Sources */,
 				459678DB22E878520043DE70 /* UBSADrawingTool.swift in Sources */,
 				431F6B061E9F865800D5BF17 /* UBFileHelper.swift in Sources */,
+				F21DBD2B293A452E001F647E /* JSONCampaignParser.swift in Sources */,
 				45D29457282A3C3A00AA311E /* EnablingEventModule.swift in Sources */,
 				04F54E241CD76708002F501E /* StyleKit.swift in Sources */,
 				452A6FCD281FC1080003B79B /* CustomerVariableModule.swift in Sources */,
@@ -3297,6 +3308,7 @@
 				C530A9631F7CFB3E007A701B /* UITableView.swift in Sources */,
 				45D2946E282E675900AA311E /* DefaultEventError.swift in Sources */,
 				45C620DB22DCB61800CB95A9 /* Transitions.swift in Sources */,
+				F21DBD2C293A452E001F647E /* JSONCampaignParser.swift in Sources */,
 				C508684C1F320D9F006CDA53 /* LeafActiveStatus.swift in Sources */,
 				C58D15A81F34A361007205B3 /* LeafPassiveStatus.swift in Sources */,
 				43B04FB71F1F7EEF0032F057 /* TextAreaFieldModel.swift in Sources */,
@@ -3454,6 +3466,7 @@
 				F269232523EB17B900E6A455 /* CellViewModel.swift in Sources */,
 				F269232623EB17B900E6A455 /* ClientModel.swift in Sources */,
 				F269232723EB17B900E6A455 /* UIColor.swift in Sources */,
+				F21DBD2D293A452E001F647E /* JSONCampaignParser.swift in Sources */,
 				45D294472824FF2F00AA311E /* DefaultEventModuleDAO.swift in Sources */,
 				F269232823EB17B900E6A455 /* UIDevice.swift in Sources */,
 				F2B47B51282C0468009825F8 /* AppCrash.swift in Sources */,
@@ -3558,6 +3571,7 @@
 				452A6FBF281FBEF40003B79B /* AppVersionEventModule.swift in Sources */,
 				F274EB8B270CADA600AA69B8 /* StyleKit.swift in Sources */,
 				F274EB8C270CADA600AA69B8 /* CampaignViewController.swift in Sources */,
+				F21DBD2E293A452E001F647E /* JSONCampaignParser.swift in Sources */,
 				F2BAC0DF28115A9000ECD15E /* Bundle.swift in Sources */,
 				452A6FB3281FBEA50003B79B /* OccurrencesEventModule.swift in Sources */,
 				F274EB8D270CADA600AA69B8 /* FormViewController.swift in Sources */,

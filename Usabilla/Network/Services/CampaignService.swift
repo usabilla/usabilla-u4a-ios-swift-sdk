@@ -104,6 +104,9 @@ class CampaignService: CampaignServiceProtocol {
             self.httpClient.request(request: request, responseQueue: nil, allowNilData: false, completion: { response in
                 guard let json = response.data,
                     let campaignsArray = JSON(json).array else {
+                // FIXME: remove local file loading.
+//                guard let json = UBInfo.readJSONFromFile(fileName: "campaign"),
+//                    let campaignsArray = json.array else {
                         guard let error = response.error else {
                             PLog("❌ error missing from response")
                             reject(NSError(domain: "error missing from response", code: 0, userInfo: nil))

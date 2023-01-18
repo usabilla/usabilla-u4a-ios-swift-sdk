@@ -59,7 +59,6 @@ class CampaignManager {
                     self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                     self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
                     self.telemetric?.submitLogData()
-                    self.telemetric?.submitLogData()
                 }
                 return
             }
@@ -68,7 +67,7 @@ class CampaignManager {
     }
 
     func displayCampaign(_ campaign: CampaignModel, withUserContext userContext: [String: Any], logId: String? = nil) {
-        guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
+        guard UsabillaInternal.canDisplayCampaigns else {
             if telemetric != nil {
                 telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: false, logLevel: .methods)
                 telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
@@ -91,6 +90,7 @@ class CampaignManager {
             if self.displayCampaignForm(form, manager: submissionManager) {
                 self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: true, logLevel: .methods)
                 campaign.numberOfTimesTriggered += 1
+                campaign.lastShown = Date() // Add Date to campaign
                 UBCampaignDAO.shared.create(campaign)
                 self.incrementViews(forCampaign: campaign)
                 self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)
@@ -117,7 +117,7 @@ class CampaignManager {
 
     func displayCampaignFromDispatcher(_ campaign: CampaignModel, withUserContext userContext: [String: Any], logId: String? = nil) -> Promise<SurveyDispatcherResult> {
         return Promise { fulfill, _ in
-            guard campaign.canBeDisplayed && UsabillaInternal.canDisplayCampaigns else {
+            guard UsabillaInternal.canDisplayCampaigns else {
                 fulfill(.displayNotAllowed)
                 return
             }
@@ -131,6 +131,7 @@ class CampaignManager {
             if self.displayCampaignForm(form, manager: submissionManager) {
                 self.telemetric?.alterData(for: logId, keyPath: \UBTelemetricSendEvent.displayed, value: true, logLevel: .methods)
                 campaign.numberOfTimesTriggered += 1
+                campaign.lastShown = Date()  // Add Date to campaign
                 UBCampaignDAO.shared.create(campaign)
                 self.incrementViews(forCampaign: campaign)
                 self.telemetric?.logEnd(for: logId, keyPath: \UBTelemetricSendEvent.dur)

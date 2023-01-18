@@ -1,6 +1,6 @@
 [
   {
-    "id": "2dc143a7-3e1f-40a2-933b-1c6242481f1c",
+    "id": "0a6a03ca-b97a-4ada-a8bb-8cc64196fa3e",
     "options": {
       "rule": {
         "type": "percentage",
@@ -12,135 +12,58 @@
             "children": [
               {
                 "type": "event",
-                "name": "appLaunch"
+                "name": "see"
               }
             ]
           }
         ]
       }
     },
-    "last_modified_at": "2022-03-28T07:23:47+00:00"
-  },
-  {
-    "id": "41ec628d-f9b9-49f4-a836-9b832cb5d933",
-    "options": {
-      "rule": {
-        "type": "percentage",
-        "percentage": 100,
-        "children": [
-          {
-            "type": "repetition",
-            "repetition": 1,
-            "children": [
-              {
-                "type": "event",
-                "name": "appCrashed"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "last_modified_at": "2022-03-28T07:26:23+00:00"
-  },
-  {
-    "id": "92b2c0fe-5de2-4f88-830e-38245b24263b",
-    "options": {
-      "rule": {
-        "type": "percentage",
-        "percentage": 100,
-        "children": [
-          {
-            "type": "repetition",
-            "repetition": 1,
-            "children": [
-              {
-                "type": "event",
-                "name": "specificDate"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "last_modified_at": "2022-03-28T07:25:51+00:00"
-  },
-  {
-    "id": "bc28c037-fde6-4402-862f-6840b55e6cbf",
-    "options": {
-      "rule": {
-        "type": "percentage",
-        "percentage": 100,
-        "children": [
-          {
-            "type": "repetition",
-            "repetition": 1,
-            "children": [
-              {
-                "type": "event",
-                "name": "appUpToDate"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "last_modified_at": "2022-03-28T07:24:56+00:00"
-  },
-  {
-    "id": "e3e4a224-e83e-4c4b-8d1c-5400c13129e5",
-    "options": {
-      "rule": {
-        "type": "percentage",
-        "percentage": 100,
-        "children": [
-          {
-            "type": "repetition",
-            "repetition": 1,
-            "children": [
-              {
-                "type": "event",
-                "name": "appCloseEarly"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "last_modified_at": "2022-03-28T07:23:16+00:00",
+    "last_modified_at": "2022-08-30T13:44:42+00:00",
     "default_events": {
-        "modules": [
+      "modules": []
+    },
+  },
+  {
+    "id": "4f669be1-0161-4669-ab48-08bf9e48a328",
+    "options": {
+      "rule": {
+        "type": "percentage",
+        "percentage": 100,
+        "children": [
           {
-            "type": "system",
-            "value": "launch"
-          },
-          {
-            "type": "occurrences",
-            "value": 3
-          },
-          {
-            "type": "userLanguage",
-            "value": "en-US"
-          },
-          {
-            "type": "targeting",
-            "value": 15
-          },
-          {
-            "type": "customVariable",
-            "key": "level",
-            "value": "25"
-          },
-          {
-            "type": "customVariable",
-            "key": "lives_lost",
-            "value": "2"
+            "type": "repetition",
+            "repetition": 1,
+            "children": [
+              {
+                "type": "event",
+                "name": ""
+              }
+            ]
           }
         ]
       }
+    },
+    "last_modified_at": "2022-08-30T14:43:12+00:00",
+    "default_events": {
+      "modules": [
+        {
+          "type": "system",
+          "value": "launch"
+        },
+        {
+          "type": "occurrences",
+          "value": 1
+        },
+        {
+          "type": "targeting",
+          "value": 100
+        }
+      ]
+    }
   },
   {
-    "id": "e71e1d47-4dc4-4696-9ef8-4e5c9fe4b16b",
+    "id": "9a73008a-d29d-43e3-8fcc-b6c26dd2e55d",
     "options": {
       "rule": {
         "type": "percentage",
@@ -155,12 +78,12 @@
                 "children": [
                   {
                     "type": "event",
-                    "name": "appOutdated"
+                    "name": "ab"
                   },
                   {
-                    "type": "activeStatus",
-                    "name": "user",
-                    "value": "hitesh"
+                    "type": "passiveStatus",
+                    "name": "language",
+                    "value": "ar"
                   }
                 ]
               }
@@ -169,36 +92,9 @@
         ]
       }
     },
-    "last_modified_at": "2022-03-28T07:27:12+00:00",
+    "last_modified_at": "2022-08-22T14:02:40+00:00",
     "default_events": {
-      "modules": [
-        {
-          "type": "system",
-          "value": "crash"
-        },
-        {
-          "type": "occurrences",
-          "value": 3
-        },
-        {
-          "type": "userLanguage",
-          "value": "en-US"
-        },
-        {
-          "type": "targeting",
-          "value": 15
-        },
-        {
-          "type": "customVariable",
-          "key": "level",
-          "value": "25"
-        },
-        {
-          "type": "customVariable",
-          "key": "lives_lost",
-          "value": "2"
-        }
-      ]
+      "modules": []
     }
   }
 ]
