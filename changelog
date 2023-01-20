@@ -1,3 +1,5 @@
-## 6.12.2
+## 6.12.4-pre
 ### Fix
-- App Freezing on ios 16 after campaign finished/cancelled
+- HTTP 414 issue (Targeting url length issue)
+### Update
+- Added Campaign Reactivation ( Now campaign can show more than once)
