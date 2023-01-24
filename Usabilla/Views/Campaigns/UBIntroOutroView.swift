@@ -102,6 +102,9 @@ class UBIntroOutroView: UIView, UBIntroOutroViewProtocol {
 
     private func updateContinueButton() {
         continueButton?.isEnabled = viewModel.canContinue
+        // due to a bug i iOS, a attributedString title doesn't get updated if the button is disabled.
+        // so we ned to reset the titlecolor, when the button is changed
+        continueButton?.setTitleColor(viewModel.buttonColor, for: .normal)
     }
 
     override func layoutSubviews() {
