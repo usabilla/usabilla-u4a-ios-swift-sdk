@@ -41,7 +41,7 @@ class PercentageDecorator: Decorator {
         if triggered && !diceAlreadyRolled {
             var diceRolledInFavor = false
             if previousPercentage == 1000 {
-                var diceRoll = 100 // this is set to make sure older versions will display the survey after reactivation
+                let diceRoll = 100 // this is set to make sure older versions will display the survey after reactivation
                 diceRolledInFavor = percentage >= diceRoll
                 previousPercentage = diceRoll
             } else {
