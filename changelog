@@ -1,5 +1,6 @@
-## 6.12.4-pre
+## 6.13.0
 ### Fix
 - HTTP 414 issue (Targeting url length issue)
+- Update continue button state on mood selection
 ### Update
 - Added Campaign Reactivation ( Now campaign can show more than once)

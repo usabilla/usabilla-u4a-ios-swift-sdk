@@ -86,7 +86,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.12.4-pre'
+pod 'Usabilla', '~> 6.13.0'
 
 End
 ```
@@ -245,7 +245,7 @@ func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToApp
 Unlike the Passive feedback method, the campaigns method only returns one [FeedbackResult](#feedbackresult) and is called only once.
 
 ### Reactivate a campaign
-**Note: From 6.12.4-pre we are introducing campaign reactivation with these feature during campaign creation or after creation, a campaign can be modified with reactivation duration which is in days - so if a campaign sets with reactivation in 7 days i.e. A campaign can be shown again after 7 days if all the prior conditions for campaign met again ( like language, percentage, repeatition/ trigger).**
+**Note: From 6.13.0 we are introducing campaign reactivation with these feature during campaign creation or after creation, a campaign can be added / modified with reactivation duration which is in days - for example if a campaign sets with reactivation in 7 days i.e. A campaign can be shown again after 7 days if all the prior conditions for campaign met again ( like language, percentage, repeatition/ trigger).**
 
 ### Resetting all campaigns
 
