@@ -1,3 +1,9 @@
+## 6.13.0
+### Fix
+- HTTP 414 issue (Targeting url length issue)
+- Update continue button state on mood selection
+### Update
+- Added Campaign Reactivation ( Now campaign can show more than once)
 ## 6.12.3
 ### Fix
 - App Freezing on ios 16 after campaign finished/cancelled

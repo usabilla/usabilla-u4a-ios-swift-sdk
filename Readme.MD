@@ -1,7 +1,7 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-Read the [Standard Events](#standardevents) section for a explanation of the new fetures introduces in SDK 6.12.2
+Read the [Default Events](#defaultevents) section for a explanation of the new fetures introduces in SDK 6.12.0
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
@@ -19,6 +19,7 @@ Read the [Standard Events](#standardevents) section for a explanation of the new
     - [Targeting options](#targeting-options)
     - [Campaign toggling](#campaign-toggling)
     - [Campaign submission callback](#campaign-submission-callback)
+    - [Reactivate a campaign](#reactivate-a-campaign)
     - [Resetting all campaigns](#resetting-all-campaigns)
     - [Managing an existing campaign](#managing-an-existing-campaign)
     - [Campaign results](#campaign-results)
@@ -85,7 +86,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.12.3'
+pod 'Usabilla', '~> 6.13.0'
 
 End
 ```
@@ -242,6 +243,9 @@ It is possible to get information about the feedback the user has left and you w
 func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToAppStoreEnabled: Bool) {}
 ```
 Unlike the Passive feedback method, the campaigns method only returns one [FeedbackResult](#feedbackresult) and is called only once.
+
+### Reactivate a campaign
+**Note: From 6.13.0 we are introducing campaign reactivation with these feature during campaign creation or after creation, a campaign can be added / modified with reactivation duration which is in days - for example if a campaign sets with reactivation in 7 days i.e. A campaign can be shown again after 7 days if all the prior conditions for campaign met again ( like language, percentage, repeatition/ trigger).**
 
 ### Resetting all campaigns
 
