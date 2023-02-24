@@ -1,6 +1,6 @@
 {
-	"masterXcodeVersion" 	: "13.2.1",
-	"xcodeVersions" 	: ["13.2.1","14.0"],
+	"masterXcodeVersion" 	: "14.1",
+	"xcodeVersions" 	: ["14.1","13.2.1"],
 	"uiTestDevices"		: ["platform=iOS Simulator,name=iPhone X,OS=12.1"],
 	"unitTestDevices"	: ["iPhone X (12.1)"]
 }
