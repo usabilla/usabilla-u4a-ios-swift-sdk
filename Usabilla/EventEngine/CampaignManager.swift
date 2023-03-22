@@ -34,7 +34,7 @@ class CampaignManager {
     }
     // customVariables sent from the interface are the activeStatuses used inside our SDK.
     func sendEvent(event: String, customVariables: [String: String], logId: String? = nil) {
-        fetchCampaignStatusForEventEngine(eventName: event) {
+        fetchActiveCampaignForEventEngine() {
             let (respondingCampaigns, triggeredCampaigns) = self.eventEngine.sendEvent(event, activeStatuses: self.filterActiveStatuses(fromCustomVariables: customVariables))
 
             // Persist all updated campaigns
@@ -193,33 +193,13 @@ class CampaignManager {
     }
 
     /*
-     *  Any given send event must check the status
-     *  check if campaign exist in event engine & status is not active
-     *  check if campaign doesn't exist in event engine & status is active
+     *  Any given send event must update the event engine
+     *  and only keep the active ones
      */
-    private func fetchCampaignStatusForEventEngine(eventName: String, completion: (() -> Void)? = nil) {
-        let localCampaigns = UBCampaignDAO.shared.readAll()
-        let event = Event(name: eventName)
-        let campaignThatResponds = localCampaigns.filter {
-            $0.respondToEvents(event: event)
-        }
-        if !campaignThatResponds.isEmpty {
-            for (idx, campaigns) in campaignThatResponds.enumerated() {
-                campaignStore.getCampaignStatus(withID: campaigns.identifier).then { campaign in
-                    let campaignEvent = self.eventEngine.campaigns.filter { $0.identifier == campaign.identifier}
-                    if campaignEvent.count != 0 && campaign.status != .active {
-                        self.eventEngine.campaigns.removeAll { (item) -> Bool in
-                            item.identifier == campaign.identifier
-                        }
-                    } else if campaignEvent.count == 0 && campaign.status == .active {
-                        self.eventEngine.campaigns.append(campaign)
-                    }
-                }
-                if idx == campaignThatResponds.endIndex-1 {
-                    completion?()
-                }
-            }
-        } else {
+    private func fetchActiveCampaignForEventEngine(completion: (() -> Void)? = nil) {
+        campaignStore.getCampaigns(withAppID: appID).then { campaigns in
+            let activeCampaigns = campaigns.filter { $0.status == .active }
+            self.eventEngine.campaigns = activeCampaigns
             completion?()
         }
     }
