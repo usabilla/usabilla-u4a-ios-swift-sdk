@@ -8,10 +8,8 @@ private_lane :buildForXamarin do |options|
 
     if version == nil
         UI.message("'version' not specified in 'buildForXcodeVersion")
-    elsif version.include?("12") || version.include?("13")
-        archVariable = "EXCLUDED_ARCHS=arm64"
     else
-        archVariable = ""
+        archVariable = "EXCLUDED_ARCHS=arm64"
     end
     if options[:project_directory] == nil
         UI.message("'project_directory' not specified in 'buildForXcodeVersion")

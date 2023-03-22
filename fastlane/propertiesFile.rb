@@ -111,7 +111,7 @@ class Paths
     end
 #--------------------------------------------------------------------- Xamarin properties starts here ---------------------------------------------------------------#
 	def scheme_xamarin_name 
-		"UsabillaXamarin"
+		"UsabillaCS"
 	end
 	def pods_xamarin_directory
 		"XamarinPods"

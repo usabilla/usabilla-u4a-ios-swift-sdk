@@ -453,14 +453,6 @@
 		45639DA523015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
 		45639DA623015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
 		45639DA723015BD600E7135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
-		4573959023FED6E60086D8ED /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
-		4573959123FED6E90086D8ED /* UBTelemetricResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAFE237967E7003EC904 /* UBTelemetricResponse.swift */; };
-		4573959223FED6EC0086D8ED /* UBTelemetricSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4509CAF6237949F4003EC904 /* UBTelemetricSDK.swift */; };
-		4573959323FED6F40086D8ED /* FeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29245072375A0F500401ADF /* FeatureModel.swift */; };
-		4573959423FED6F70086D8ED /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
-		4573959523FED6FA0086D8ED /* FeaturebillaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450A2379821900401ADF /* FeaturebillaStore.swift */; };
-		4573959623FED6FD0086D8ED /* FeaturebillaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450423759DF400401ADF /* FeaturebillaService.swift */; };
-		4573959723FED6FF0086D8ED /* UBFeaturebillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6DCEA238541DA0076319E /* UBFeaturebillaManager.swift */; };
 		45777E5822CDEC7900DF0E8D /* UBEditImageControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45777E5722CDEC7900DF0E8D /* UBEditImageControllerTest.swift */; };
 		4587572C285236B6009A7DA0 /* DateEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587572A285236B6009A7DA0 /* DateEventModuleTest.swift */; };
 		4587572D285236B6009A7DA0 /* TimeEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587572B285236B6009A7DA0 /* TimeEventModuleTest.swift */; };
@@ -503,20 +495,16 @@
 		45CDE6CC2374588D0015CD98 /* UBTelemetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CDE6CA2374588D0015CD98 /* UBTelemetrics.swift */; };
 		45D294452824FF2F00AA311E /* DefaultEventModuleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294442824FF2F00AA311E /* DefaultEventModuleDAO.swift */; };
 		45D294462824FF2F00AA311E /* DefaultEventModuleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294442824FF2F00AA311E /* DefaultEventModuleDAO.swift */; };
-		45D294472824FF2F00AA311E /* DefaultEventModuleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294442824FF2F00AA311E /* DefaultEventModuleDAO.swift */; };
 		45D294482824FF2F00AA311E /* DefaultEventModuleDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294442824FF2F00AA311E /* DefaultEventModuleDAO.swift */; };
 		45D2944B2825131600AA311E /* OccurrencesEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2944A2825131600AA311E /* OccurrencesEventModuleTest.swift */; };
 		45D2944D2828FA5200AA311E /* DefaultEventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2944C2828FA5200AA311E /* DefaultEventEngine.swift */; };
 		45D2944E2828FA5200AA311E /* DefaultEventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2944C2828FA5200AA311E /* DefaultEventEngine.swift */; };
-		45D2944F2828FA5200AA311E /* DefaultEventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2944C2828FA5200AA311E /* DefaultEventEngine.swift */; };
 		45D294502828FA5200AA311E /* DefaultEventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2944C2828FA5200AA311E /* DefaultEventEngine.swift */; };
 		45D294522829733200AA311E /* EvaluationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294512829733200AA311E /* EvaluationObject.swift */; };
 		45D294532829733200AA311E /* EvaluationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294512829733200AA311E /* EvaluationObject.swift */; };
-		45D294542829733200AA311E /* EvaluationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294512829733200AA311E /* EvaluationObject.swift */; };
 		45D294552829733200AA311E /* EvaluationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294512829733200AA311E /* EvaluationObject.swift */; };
 		45D29457282A3C3A00AA311E /* EnablingEventModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29456282A3C3A00AA311E /* EnablingEventModule.swift */; };
 		45D29458282A3C3A00AA311E /* EnablingEventModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29456282A3C3A00AA311E /* EnablingEventModule.swift */; };
-		45D29459282A3C3A00AA311E /* EnablingEventModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29456282A3C3A00AA311E /* EnablingEventModule.swift */; };
 		45D2945A282A3C3A00AA311E /* EnablingEventModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29456282A3C3A00AA311E /* EnablingEventModule.swift */; };
 		45D2945C282A46B300AA311E /* EnablingEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2945B282A46B300AA311E /* EnablingEventModuleTest.swift */; };
 		45D2945E282C479B00AA311E /* DefaultEventEngineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2945D282C479B00AA311E /* DefaultEventEngineTest.swift */; };
@@ -524,16 +512,13 @@
 		45D29466282DAACF00AA311E /* CustomerVariableModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29465282DAACF00AA311E /* CustomerVariableModuleTest.swift */; };
 		45D29468282E62B200AA311E /* SurveyDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29467282E62B200AA311E /* SurveyDispatcher.swift */; };
 		45D29469282E62B200AA311E /* SurveyDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29467282E62B200AA311E /* SurveyDispatcher.swift */; };
-		45D2946A282E62B200AA311E /* SurveyDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29467282E62B200AA311E /* SurveyDispatcher.swift */; };
 		45D2946B282E62B200AA311E /* SurveyDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D29467282E62B200AA311E /* SurveyDispatcher.swift */; };
 		45D2946D282E675900AA311E /* DefaultEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2946C282E675900AA311E /* DefaultEventError.swift */; };
 		45D2946E282E675900AA311E /* DefaultEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2946C282E675900AA311E /* DefaultEventError.swift */; };
-		45D2946F282E675900AA311E /* DefaultEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2946C282E675900AA311E /* DefaultEventError.swift */; };
 		45D29470282E675900AA311E /* DefaultEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2946C282E675900AA311E /* DefaultEventError.swift */; };
 		45D294812833926200AA311E /* TargetingModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294802833926200AA311E /* TargetingModuleTest.swift */; };
 		45D294832834326200AA311E /* DefaultEventAppStateDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294822834326200AA311E /* DefaultEventAppStateDAO.swift */; };
 		45D294842834326200AA311E /* DefaultEventAppStateDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294822834326200AA311E /* DefaultEventAppStateDAO.swift */; };
-		45D294852834326200AA311E /* DefaultEventAppStateDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294822834326200AA311E /* DefaultEventAppStateDAO.swift */; };
 		45D294862834326200AA311E /* DefaultEventAppStateDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D294822834326200AA311E /* DefaultEventAppStateDAO.swift */; };
 		45D994F32747EE8F00676771 /* GFPCustomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D994F22747EE8F00676771 /* GFPCustomBannerView.swift */; };
 		45D994F42747EE8F00676771 /* GFPCustomBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D994F22747EE8F00676771 /* GFPCustomBannerView.swift */; };
@@ -542,7 +527,6 @@
 		45D994F7274802CB00676771 /* GFPCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45607E3D273EEDBD0031E2E3 /* GFPCustomButton.swift */; };
 		45DE3EE825E3E5E0005858FE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		45DE3EED25E3E5E0005858FE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
-		45DE3EEE25E3E5E1005858FE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E20FFC1CF84E4E00488BE3 /* SwiftyJSON.swift */; };
 		45EE120F2844EB93002D927B /* AppVersionEventModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EE120E2844EB93002D927B /* AppVersionEventModuleTest.swift */; };
 		45F0D41E22DDE9BD0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
 		45F0D41F22DDEE7A0052751C /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
@@ -550,7 +534,6 @@
 		45F0D42322DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		45F8A5F22608F9AF00A1ADA3 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
 		45F8A5F72608F9B700A1ADA3 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
-		45F8A5F82608F9B800A1ADA3 /* TelemtryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5F12608F9AF00A1ADA3 /* TelemtryService.swift */; };
 		45F8A6112609CED700A1ADA3 /* TelemetryServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8A5FD2609CDEE00A1ADA3 /* TelemetryServiceTest.swift */; };
 		45FF281F283683B400A96DCB /* FirstLaunchModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FF281E283683B400A96DCB /* FirstLaunchModuleTest.swift */; };
 		C500470E1F827AB500EBF1C5 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500470C1F827AAD00EBF1C5 /* DateTests.swift */; };
@@ -605,7 +588,6 @@
 		C5F813D41F25E43700F994F9 /* Mock.json in Resources */ = {isa = PBXBuildFile; fileRef = C5F813D21F25E42C00F994F9 /* Mock.json */; };
 		F200575E2816D4C200167C8C /* DefaultEventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F200575D2816D4C200167C8C /* DefaultEventDAO.swift */; };
 		F200575F2816D4C800167C8C /* DefaultEventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F200575D2816D4C200167C8C /* DefaultEventDAO.swift */; };
-		F20057602816D4C900167C8C /* DefaultEventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F200575D2816D4C200167C8C /* DefaultEventDAO.swift */; };
 		F20057612816D4CA00167C8C /* DefaultEventDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F200575D2816D4C200167C8C /* DefaultEventDAO.swift */; };
 		F20ADBD422D4824B00DCC75D /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 		F20ADBD522D4852400DCC75D /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
@@ -613,19 +595,15 @@
 		F213103E23EC022C0017B633 /* UsabillaDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103C23EC022C0017B633 /* UsabillaDebug.swift */; };
 		F213104023EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
 		F213104123EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
-		F213104223EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F213103F23EC024E0017B633 /* UsabillaInternalDebug.swift */; };
 		F21326E2238C1EDC00553358 /* FeaturebillaServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21326E0238C1ED300553358 /* FeaturebillaServiceTest.swift */; };
 		F21326E5238C22AE00553358 /* Featurebilla.json in Resources */ = {isa = PBXBuildFile; fileRef = F21326E3238C22A600553358 /* Featurebilla.json */; };
 		F21C843C27EC92FC0050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F21C843D27EC92FF0050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
-		F21C843E27EC93000050CDA4 /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F21DBD2B293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
 		F21DBD2C293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
-		F21DBD2D293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
 		F21DBD2E293A452E001F647E /* JSONCampaignParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DBD2A293A452E001F647E /* JSONCampaignParser.swift */; };
 		F2324B42279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2324B43279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
-		F2324B44279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2324B45279AD31F00D7A823 /* UBInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2324B41279AD31F00D7A823 /* UBInfo.swift */; };
 		F2495B1927E4B29A00B81839 /* campaign.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131627E3B63B00A6175F /* campaign.json */; };
 		F250131027E350A500A6175F /* AppEventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250130F27E350A500A6175F /* AppEventNotifier.swift */; };
@@ -633,196 +611,6 @@
 		F250131427E3B08800A6175F /* defaultEvent.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131327E3B08700A6175F /* defaultEvent.json */; };
 		F250131727E3B63B00A6175F /* campaign.json in Resources */ = {isa = PBXBuildFile; fileRef = F250131627E3B63B00A6175F /* campaign.json */; };
 		F2503FD5238EDA5A0027875A /* FeaturebillaStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */; };
-		F26922B323EB17B900E6A455 /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
-		F26922B423EB17B900E6A455 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
-		F26922B523EB17B900E6A455 /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B21E1D09880064D758 /* AnimationManager.swift */; };
-		F26922B623EB17B900E6A455 /* UBSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D7DB8A21060A8A00EFCF73 /* UBSlider.swift */; };
-		F26922B723EB17B900E6A455 /* CopyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044204DF1DCC94C1004FA09F /* CopyModel.swift */; };
-		F26922B823EB17B900E6A455 /* JumpRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4D1CD76717002F501E /* JumpRule.swift */; };
-		F26922B923EB17B900E6A455 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27831E2E8719002864C6 /* HTTPClient.swift */; };
-		F26922BA23EB17B900E6A455 /* NPSFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38471F68867600F0DFC6 /* NPSFieldModel.swift */; };
-		F26922BB23EB17B900E6A455 /* LeafEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A61E8BB33E002962A3 /* LeafEvent.swift */; };
-		F26922BC23EB17B900E6A455 /* UBSADrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D822E878520043DE70 /* UBSADrawingTool.swift */; };
-		F26922BD23EB17B900E6A455 /* UBFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B051E9F865800D5BF17 /* UBFileHelper.swift */; };
-		F26922BE23EB17B900E6A455 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1C1CD76708002F501E /* StyleKit.swift */; };
-		F26922BF23EB17B900E6A455 /* CampaignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55471E8178D500E91E58 /* CampaignViewController.swift */; };
-		F26922C023EB17B900E6A455 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E531CD76789002F501E /* FormViewController.swift */; };
-		F26922C123EB17B900E6A455 /* CampaignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040C97DC1EA6527200A59C95 /* CampaignService.swift */; };
-		F26922C223EB17B900E6A455 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620DC22DDAE7A00CB95A9 /* GridViewCell.swift */; };
-		F26922C323EB17B900E6A455 /* UBEndPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264111E92865000A0533C /* UBEndPageViewModel.swift */; };
-		F26922C423EB17B900E6A455 /* MoodComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4531E78366A00B3E4FE /* MoodComponentViewModel.swift */; };
-		F26922C523EB17B900E6A455 /* PickerComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44E1E78366A00B3E4FE /* PickerComponentViewModel.swift */; };
-		F26922C623EB17B900E6A455 /* UBFormDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535E43C1E97CB2B007319E4 /* UBFormDAO.swift */; };
-		F26922C723EB17B900E6A455 /* PickerIPadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73EC1F98CBCF00447B2C /* PickerIPadComponent.swift */; };
-		F26922C823EB17B900E6A455 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E551CD76789002F501E /* ThankYouViewController.swift */; };
-		F26922C923EB17B900E6A455 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C2C80B1F39EB9E0082A1B9 /* Date.swift */; };
-		F26922CA23EB17B900E6A455 /* CampaignWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7A1E85187000741E10 /* CampaignWindow.swift */; };
-		F26922CB23EB17B900E6A455 /* UBBannerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B771E85187000741E10 /* UBBannerDisplay.swift */; };
-		F26922CC23EB17B900E6A455 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F149DE1CE0B8D000D56B29 /* Reachability.swift */; };
-		F26922CD23EB17B900E6A455 /* SliderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4721E799DD300B3E4FE /* SliderComponentViewModel.swift */; };
-		F26922CE23EB17B900E6A455 /* UBIntroOutroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B791E85187000741E10 /* UBIntroOutroPresenter.swift */; };
-		F26922CF23EB17B900E6A455 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DC40851F7BDCAE00FA89B8 /* UITableView.swift */; };
-		F26922D023EB17B900E6A455 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D422EE428200E198A7 /* ColorPickerCell.swift */; };
-		F26922D123EB17B900E6A455 /* OptionsFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8601E29011E00AC895C /* OptionsFieldModel.swift */; };
-		F26922D223EB17B900E6A455 /* NPSToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4C7621F69DD490043A844 /* NPSToolTip.swift */; };
-		F26922D323EB17B900E6A455 /* CheckBoxComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4661E79508200B3E4FE /* CheckBoxComponentViewModel.swift */; };
-		F26922D423EB17B900E6A455 /* IntroPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA01E82BFE800601F3D /* IntroPageViewModel.swift */; };
-		F26922D523EB17B900E6A455 /* SliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699C1E76B4B30078E3B3 /* SliderComponent.swift */; };
-		F26922D623EB17B900E6A455 /* FormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C564D1901E799A190004705A /* FormStore.swift */; };
-		F26922D723EB17B900E6A455 /* UBTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589E598234C73400092C8F0 /* UBTouchView.swift */; };
-		F26922D823EB17B900E6A455 /* HTTPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C3F9B1EAA14A000B0B190 /* HTTPClientProtocol.swift */; };
-		F26922D923EB17B900E6A455 /* UBCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D55E8F22CA0AAC000EEAB5 /* UBCameraViewController.swift */; };
-		F26922DA23EB17B900E6A455 /* RootCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CC1CDCDF86004EC234 /* RootCellView.swift */; };
-		F26922DB23EB17B900E6A455 /* UBFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F6B031E9F67DA00D5BF17 /* UBFeedbackRequestDAO.swift */; };
-		F26922DC23EB17B900E6A455 /* SequenceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A91E8BB33E002962A3 /* SequenceRule.swift */; };
-		F26922DD23EB17B900E6A455 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D1CE731F9E1963007B098E /* UIFont.swift */; };
-		F26922DE23EB17B900E6A455 /* EmailFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA0A1CDCE07B004EC234 /* EmailFieldModel.swift */; };
-		F26922DF23EB17B900E6A455 /* LocalisationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228E31D2A97E2009BEA65 /* LocalisationHandler.swift */; };
-		F26922E023EB17B900E6A455 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669AE1E76B6E20078E3B3 /* NSLayoutConstraint.swift */; };
-		F26922E123EB17B900E6A455 /* CheckBoxWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BC1CDCDF2D004EC234 /* CheckBoxWithText.swift */; };
-		F26922E223EB17B900E6A455 /* CampaignSubmissionRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F94A001EE69D4C00180B0F /* CampaignSubmissionRequestManager.swift */; };
-		F26922E323EB17B900E6A455 /* MoodComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669991E76B4B30078E3B3 /* MoodComponent.swift */; };
-		F26922E423EB17B900E6A455 /* UBFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CC0161E92565100205D9D /* UBFormViewModel.swift */; };
-		F26922E523EB17B900E6A455 /* BaseTextFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699E1E76B4B30078E3B3 /* BaseTextFieldComponent.swift */; };
-		F26922E623EB17B900E6A455 /* NPSControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC383E1F6880D400F0DFC6 /* NPSControl.swift */; };
-		F26922E723EB17B900E6A455 /* EmailComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4511E78366A00B3E4FE /* EmailComponentViewModel.swift */; };
-		F26922E823EB17B900E6A455 /* SwiftCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E228B11D2A58F9009BEA65 /* SwiftCheckBox.swift */; };
-		F26922E923EB17B900E6A455 /* CampaignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE0AE91E82B9A500B1441C /* CampaignViewModel.swift */; };
-		F26922EA23EB17B900E6A455 /* RadioComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4681E7950C900B3E4FE /* RadioComponentViewModel.swift */; };
-		F26922EB23EB17B900E6A455 /* ColorPickerViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D722EE428200E198A7 /* ColorPickerViewDelegateFlowLayout.swift */; };
-		F26922ED23EB17B900E6A455 /* PassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53654791F39DD1A00C51AD5 /* PassiveStatus.swift */; };
-		F26922EE23EB17B900E6A455 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B21E76D8E30078E3B3 /* PageViewModel.swift */; };
-		F26922EF23EB17B900E6A455 /* UBCampaignFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ECD3191EF9206C0024D24A /* UBCampaignFeedbackRequest.swift */; };
-		F26922F023EB17B900E6A455 /* UBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555E9A51EE9A41500F84B51 /* UBToast.swift */; };
-		F26922F123EB17B900E6A455 /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E181CD76708002F501E /* DeviceInfo.swift */; };
-		F26922F223EB17B900E6A455 /* BaseParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1082683721998FDF00A3820B /* BaseParagraphComponent.swift */; };
-		F26922F323EB17B900E6A455 /* FieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C31CDCDF86004EC234 /* FieldFactory.swift */; };
-		F26922F423EB17B900E6A455 /* UBToastPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BFD4261EFBDF0200AD47AE /* UBToastPageViewModel.swift */; };
-		F26922F523EB17B900E6A455 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A27851E2F5FFD002864C6 /* Promise.swift */; };
-		F26922F623EB17B900E6A455 /* PercentageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B01E8BB347002962A3 /* PercentageDecorator.swift */; };
-		F26922F723EB17B900E6A455 /* SubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434085C01E36430D00B4A4B9 /* SubmissionManager.swift */; };
-		F26922F823EB17B900E6A455 /* ScreenshotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA021CDCE003004EC234 /* ScreenshotModel.swift */; };
-		F26922F923EB17B900E6A455 /* RadioFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CB1CDCDF86004EC234 /* RadioFieldModel.swift */; };
-		F26922FA23EB17B900E6A455 /* TextAreaComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4541E78366A00B3E4FE /* TextAreaComponentViewModel.swift */; };
-		F26922FB23EB17B900E6A455 /* EmailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669971E76B4B30078E3B3 /* EmailComponent.swift */; };
-		F26922FC23EB17B900E6A455 /* HeaderComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0C1E89189D00928F54 /* HeaderComponentViewModel.swift */; };
-		F26922FD23EB17B900E6A455 /* DrawingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EDF22E7A00500122F44 /* DrawingPlugin.swift */; };
-		F26922FE23EB17B900E6A455 /* UBSAContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E022EE42AC00E198A7 /* UBSAContainerView.swift */; };
-		F26922FF23EB17B900E6A455 /* UBCampaignStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EE6F1EA0E6AF00241D44 /* UBCampaignStore.swift */; };
-		F269230023EB17B900E6A455 /* ParagraphFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9CA1CDCDF86004EC234 /* ParagraphFieldModel.swift */; };
-		F269230123EB17B900E6A455 /* UBAlertDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B831E8518E600741E10 /* UBAlertDisplay.swift */; };
-		F269230223EB17B900E6A455 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A81E8BB33E002962A3 /* Rules.swift */; };
-		F269230323EB17B900E6A455 /* ColorPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D622EE428200E198A7 /* ColorPickerViewDelegate.swift */; };
-		F269230423EB17B900E6A455 /* HeaderFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C61CDCDF86004EC234 /* HeaderFieldModel.swift */; };
-		F269230523EB17B900E6A455 /* ScreenshotComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4771E7A7DF900B3E4FE /* ScreenshotComponent.swift */; };
-		F269230623EB17B900E6A455 /* UBFeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E31E37575B00A97F1D /* UBFeedbackRequest.swift */; };
-		F269230723EB17B900E6A455 /* PoweredByLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C534D319207F5FCB009D06CF /* PoweredByLogoView.swift */; };
-		F269230823EB17B900E6A455 /* UBEndPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436264131E92867A00A0533C /* UBEndPageModel.swift */; };
-		F269230923EB17B900E6A455 /* EventEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEE91E9521440078F6FC /* EventEngine.swift */; };
-		F269230A23EB17B900E6A455 /* UBSAEditImageMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BB655422E7338500CB0ABC /* UBSAEditImageMasterView.swift */; };
-		F269230B23EB17B900E6A455 /* RatingFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BA1CDCDED1004EC234 /* RatingFieldModel.swift */; };
-		F269230C23EB17B900E6A455 /* ScreenshotComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD47B1E7A889600B3E4FE /* ScreenshotComponentViewModel.swift */; };
-		F269230D23EB17B900E6A455 /* UBCampaignDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F51E97BEFC00092977 /* UBCampaignDAO.swift */; };
-		F269230E23EB17B900E6A455 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
-		F269230F23EB17B900E6A455 /* BaseStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44D1E78366A00B3E4FE /* BaseStringComponentViewModel.swift */; };
-		F269231023EB17B900E6A455 /* HeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A8A0A1E89184E00928F54 /* HeaderComponent.swift */; };
-		F269231123EB17B900E6A455 /* BaseEditableStringComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46D1E79990C00B3E4FE /* BaseEditableStringComponentViewModel.swift */; };
-		F269231223EB17B900E6A455 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50F2C3B2084ED7D00D77F37 /* UILabel.swift */; };
-		F269231323EB17B900E6A455 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B12F081E9FC8B400E65BE5 /* RequestBuilder.swift */; };
-		F269231423EB17B900E6A455 /* ShowHideRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4F1CD76717002F501E /* ShowHideRule.swift */; };
-		F269231523EB17B900E6A455 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883E81E37B5B800A97F1D /* String.swift */; };
-		F269231623EB17B900E6A455 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433794361E8A6C0100965EC8 /* Logging.swift */; };
-		F269231723EB17B900E6A455 /* AndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A51E8BB33E002962A3 /* AndRule.swift */; };
-		F269231823EB17B900E6A455 /* IntFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85E1E2900B300AC895C /* IntFieldModel.swift */; };
-		F269231923EB17B900E6A455 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9D01CDCDF86004EC234 /* TextFieldModel.swift */; };
-		F269231A23EB17B900E6A455 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB6F0022DFBE63007FEE38 /* UIViewController.swift */; };
-		F269231B23EB17B900E6A455 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43552B231F8CE82500BE657A /* UIBarButtonItem.swift */; };
-		F269231C23EB17B900E6A455 /* CampaignSubmissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A368451EF41CB100B88279 /* CampaignSubmissionManager.swift */; };
-		F269231D23EB17B900E6A455 /* GridViewSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D41D22DDE9BD0052751C /* GridViewSectionCell.swift */; };
-		F269231E23EB17B900E6A455 /* UBImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D622DCAE7F00CB95A9 /* UBImagePickerController.swift */; };
-		F269231F23EB17B900E6A455 /* RepetitionDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25B11E8BB347002962A3 /* RepetitionDecorator.swift */; };
-		F269232123EB17B900E6A455 /* OrRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A71E8BB33E002962A3 /* OrRule.swift */; };
-		F269232223EB17B900E6A455 /* CheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669941E76B4B30078E3B3 /* CheckBoxComponent.swift */; };
-		F269232323EB17B900E6A455 /* BaseFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85A1E29008200AC895C /* BaseFieldModel.swift */; };
-		F269232423EB17B900E6A455 /* BaseIntComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4521E78366A00B3E4FE /* BaseIntComponentViewModel.swift */; };
-		F269232523EB17B900E6A455 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669B41E76D8EE0078E3B3 /* CellViewModel.swift */; };
-		F269232623EB17B900E6A455 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
-		F269232723EB17B900E6A455 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EC1E37B5C900A97F1D /* UIColor.swift */; };
-		F269232823EB17B900E6A455 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EE1E37B61000A97F1D /* UIDevice.swift */; };
-		F269232923EB17B900E6A455 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E541CD76789002F501E /* PageViewController.swift */; };
-		F269232A23EB17B900E6A455 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C91CDCDF86004EC234 /* PageModel.swift */; };
-		F269232B23EB17B900E6A455 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E883EA1E37B5C000A97F1D /* UIImage.swift */; };
-		F269232C23EB17B900E6A455 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59F73BD1F97748200447B2C /* UIImageView.swift */; };
-		F269232D23EB17B900E6A455 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52550531ED43EF6005658F5 /* FormService.swift */; };
-		F269232E23EB17B900E6A455 /* UBFileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F31E97BEC500092977 /* UBFileStorageDAO.swift */; };
-		F269232F23EB17B900E6A455 /* Decorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25AF1E8BB347002962A3 /* Decorator.swift */; };
-		F269233023EB17B900E6A455 /* UsabillaTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1E1CD76708002F501E /* UsabillaTheme.swift */; };
-		F269233123EB17B900E6A455 /* UBFeedbackIDDictionaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047EE5A61F71566E00642ABB /* UBFeedbackIDDictionaryDAO.swift */; };
-		F269233223EB17B900E6A455 /* UBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4390C0F11E97BE9B00092977 /* UBDAO.swift */; };
-		F269233323EB17B900E6A455 /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669961E76B4B30078E3B3 /* ComponentFactory.swift */; };
-		F269233423EB17B900E6A455 /* UBSADragableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5E122EE42AC00E198A7 /* UBSADragableImageView.swift */; };
-		F269233523EB17B900E6A455 /* TextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699D1E76B4B30078E3B3 /* TextAreaComponent.swift */; };
-		F269233723EB17B900E6A455 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FC5D522EE428200E198A7 /* ColorPickerView.swift */; };
-		F269233823EB17B900E6A455 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0D42122DF120E0052751C /* LeftAlignedCollectionViewFlowLayout.swift */; };
-		F269233923EB17B900E6A455 /* PassiveFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43127EBF1E71B57500E3011A /* PassiveFormController.swift */; };
-		F269233A23EB17B900E6A455 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D0B541E264940003BA70A /* FooterTableViewCell.swift */; };
-		F269233B23EB17B900E6A455 /* ParagraphComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD46F1E799AE500B3E4FE /* ParagraphComponentViewModel.swift */; };
-		F269233C23EB17B900E6A455 /* BaseCheckBoxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669901E76B4B30078E3B3 /* BaseCheckBoxComponent.swift */; };
-		F269233D23EB17B900E6A455 /* SwiftEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1D1CD76708002F501E /* SwiftEventBus.swift */; };
-		F269233E23EB17B900E6A455 /* UBCampaignFeedbackRequestDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040325051EF1695000A2AE48 /* UBCampaignFeedbackRequestDAO.swift */; };
-		F269233F23EB17B900E6A455 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C51CDCDF86004EC234 /* FormModel.swift */; };
-		F269234023EB17B900E6A455 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DC25A31E8BB32F002962A3 /* Event.swift */; };
-		F269234123EB17B900E6A455 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331DA401E27B362009C97B6 /* RatingControl.swift */; };
-		F269234223EB17B900E6A455 /* RadioComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699B1E76B4B30078E3B3 /* RadioComponent.swift */; };
-		F269234323EB17B900E6A455 /* BaseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669911E76B4B30078E3B3 /* BaseComponent.swift */; };
-		F269234423EB17B900E6A455 /* IntroPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342CBA21E82C02000601F3D /* IntroPageModel.swift */; };
-		F269234523EB17B900E6A455 /* BaseImageComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4791E7A855000B3E4FE /* BaseImageComponentViewModel.swift */; };
-		F269234623EB17B900E6A455 /* UBAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F8DDD1FB5CB5700AA51DC /* UBAccessibility.swift */; };
-		F269234723EB17B900E6A455 /* BaseTextAreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669931E76B4B30078E3B3 /* BaseTextAreaComponent.swift */; };
-		F269234823EB17B900E6A455 /* TextFieldComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4551E78366A00B3E4FE /* TextFieldComponentViewModel.swift */; };
-		F269234923EB17B900E6A455 /* PickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430669951E76B4B30078E3B3 /* PickerComponent.swift */; };
-		F269234A23EB17B900E6A455 /* UBSADrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459678D722E878510043DE70 /* UBSADrawingView.swift */; };
-		F269234B23EB17B900E6A455 /* TargetingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5780D1E1F22073B0016C519 /* TargetingFactory.swift */; };
-		F269234C23EB17B900E6A455 /* CampaignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6BEEB1E9521B80078F6FC /* CampaignManager.swift */; };
-		F269234D23EB17B900E6A455 /* TargetingOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AEE281F96485C00679C5D /* TargetingOptionsModel.swift */; };
-		F269234E23EB17B900E6A455 /* UBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CA69A2221EEAA400D8D327 /* UBConstants.swift */; };
-		F269234F23EB17B900E6A455 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD6D01EC9A98E007BE846 /* UIView.swift */; };
-		F269235023EB17B900E6A455 /* ComponentViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD4501E78366A00B3E4FE /* ComponentViewModelFactory.swift */; };
-		F269235123EB17B900E6A455 /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44F1E78366A00B3E4FE /* ComponentViewModel.swift */; };
-		F269235223EB17B900E6A455 /* ParagraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4306699A1E76B4B30078E3B3 /* ParagraphComponent.swift */; };
-		F269235323EB17B900E6A455 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E8621E2901A700AC895C /* FieldModel.swift */; };
-		F269235523EB17B900E6A455 /* UBIntroOutroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7B1E85187000741E10 /* UBIntroOutroView.swift */; };
-		F269235623EB17B900E6A455 /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AC10B01E1D095C0064D758 /* PathManager.swift */; };
-		F269235723EB17B900E6A455 /* CampaignModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F55491E8178EF00E91E58 /* CampaignModel.swift */; };
-		F269235823EB17B900E6A455 /* MaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B7E7C225783BE00088CB8 /* MaskModel.swift */; };
-		F269235923EB17B900E6A455 /* MoodFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C71CDCDF86004EC234 /* MoodFieldModel.swift */; };
-		F269235A23EB17B900E6A455 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
-		F269235B23EB17B900E6A455 /* UBAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B851E851EF300741E10 /* UBAlertPresenter.swift */; };
-		F269235C23EB17B900E6A455 /* PickerParentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B4B80A1F98F61800AA0780 /* PickerParentComponent.swift */; };
-		F269235D23EB17B900E6A455 /* LeafActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508684A1F320D9A006CDA53 /* LeafActiveStatus.swift */; };
-		F269235E23EB17B900E6A455 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C620D922DCB61800CB95A9 /* Transitions.swift */; };
-		F269235F23EB17B900E6A455 /* LeafPassiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54593AF1F34A29F000C5090 /* LeafPassiveStatus.swift */; };
-		F269236023EB17B900E6A455 /* TextAreaFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA081CDCE05A004EC234 /* TextAreaFieldModel.swift */; };
-		F269236123EB17B900E6A455 /* PickerFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9C01CDCDF86004EC234 /* PickerFieldModel.swift */; };
-		F269236223EB17B900E6A455 /* UBBannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B781E85187000741E10 /* UBBannerPresenter.swift */; };
-		F269236323EB17B900E6A455 /* CampaingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10627BD921B0385B00E49DD2 /* CampaingAnimator.swift */; };
-		F269236423EB17B900E6A455 /* JSONFormParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E1A1CD76708002F501E /* JSONFormParser.swift */; };
-		F269236523EB17B900E6A455 /* NPSComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38421F6883EF00F0DFC6 /* NPSComponentViewModel.swift */; };
-		F269236623EB17B900E6A455 /* UBCustomTouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C2B7C1E85187000741E10 /* UBCustomTouchableView.swift */; };
-		F269236723EB17B900E6A455 /* UBNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104FFEA021AD5318004034A5 /* UBNavigationController.swift */; };
-		F269236823EB17B900E6A455 /* UBRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54E4E1CD76717002F501E /* UBRule.swift */; };
-		F269236923EB17B900E6A455 /* UBSAPluginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B51EE222E7A01500122F44 /* UBSAPluginViewController.swift */; };
-		F269236A23EB17B900E6A455 /* ActiveStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51896CA1F2641BA0083FF86 /* ActiveStatus.swift */; };
-		F269236B23EB17B900E6A455 /* StringFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334E85C1E29009B00AC895C /* StringFieldModel.swift */; };
-		F269236C23EB17B900E6A455 /* CheckboxFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E9BF1CDCDF86004EC234 /* CheckboxFieldModel.swift */; };
-		F269236D23EB17B900E6A455 /* UBEditImageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8263022CC9FF400367901 /* UBEditImageMainViewController.swift */; };
-		F269236E23EB17B900E6A455 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F54DF31CD766EC002F501E /* Protocols.swift */; };
-		F269237123EB17B900E6A455 /* Usabilla.h in Headers */ = {isa = PBXBuildFile; fileRef = 04F54DCB1CD75A3F002F501E /* Usabilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F269237323EB17B900E6A455 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45639DA423015BD600E7135C /* Assets.xcassets */; };
-		F269237423EB17B900E6A455 /* UBStaging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E423C781B8000E903D /* UBStaging.xcconfig */; };
-		F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04F54E5A1CD76A21002F501E /* usa_localizable.strings */; };
-		F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
-		F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483EA041CDCE01A004EC234 /* UsabillaInternal.swift */; };
 		F26E6C5A2379918B00BAE436 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = F26E6C592379918B00BAE436 /* config.json */; };
 		F274EB80270CADA600AA69B8 /* BaseOptionsComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCD44C1E78366A00B3E4FE /* BaseOptionsComponentViewModel.swift */; };
 		F274EB81270CADA600AA69B8 /* NPSComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC38401F68814700F0DFC6 /* NPSComponent.swift */; };
@@ -1029,11 +817,9 @@
 		F274EC58270CAFB700AA69B8 /* UsabillaCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F274EC57270CAFB700AA69B8 /* UsabillaCS.swift */; };
 		F276A3C3281A96BB00108EF1 /* FileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C2281A96BB00108EF1 /* FileStorageDAO.swift */; };
 		F276A3C4281A9DD200108EF1 /* FileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C2281A96BB00108EF1 /* FileStorageDAO.swift */; };
-		F276A3C5281A9DD300108EF1 /* FileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C2281A96BB00108EF1 /* FileStorageDAO.swift */; };
 		F276A3C6281A9DD400108EF1 /* FileStorageDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C2281A96BB00108EF1 /* FileStorageDAO.swift */; };
 		F276A3C8281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
 		F276A3C9281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
-		F276A3CA281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
 		F276A3CB281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F276A3C7281ABEAB00108EF1 /* DefaultEventStore.swift */; };
 		F279C70628C2205E001DCD2B /* campaignStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = F279C70528C2205E001DCD2B /* campaignStatus.json */; };
 		F27F14E223C781A5000E903D /* UBProduction.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F27F14E123C781A5000E903D /* UBProduction.xcconfig */; };
@@ -1048,26 +834,21 @@
 		F292450C2379821900401ADF /* FeaturebillaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292450A2379821900401ADF /* FeaturebillaStore.swift */; };
 		F2A08B9823D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
 		F2A08B9923D06FCF00A5F6F0 /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A08B9723D06FCF00A5F6F0 /* Locale.swift */; };
-		F2B47B49282A9806009825F8 /* AppEventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250130F27E350A500A6175F /* AppEventNotifier.swift */; };
 		F2B47B4A282A9807009825F8 /* AppEventNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250130F27E350A500A6175F /* AppEventNotifier.swift */; };
 		F2B47B4F282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
 		F2B47B50282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
-		F2B47B51282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
 		F2B47B52282C0468009825F8 /* AppCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B4E282C0468009825F8 /* AppCrash.swift */; };
 		F2B47B54282C0C00009825F8 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B53282C0C00009825F8 /* AppMetaData.swift */; };
 		F2B47B55282C0C00009825F8 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B53282C0C00009825F8 /* AppMetaData.swift */; };
-		F2B47B56282C0C00009825F8 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B53282C0C00009825F8 /* AppMetaData.swift */; };
 		F2B47B57282C0C00009825F8 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B47B53282C0C00009825F8 /* AppMetaData.swift */; };
 		F2B7CFBD22FAED410088A9EF /* ColorPickerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBC22FAED410088A9EF /* ColorPickerViewTests.swift */; };
 		F2B7CFBF22FB01880088A9EF /* UBSADrawingViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFBE22FB01880088A9EF /* UBSADrawingViewTests.swift */; };
 		F2B7CFC222FB0D460088A9EF /* PenToolViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B7CFC122FB0D460088A9EF /* PenToolViewTests.swift */; };
 		F2BAC0DC28115A1300ECD15E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0DB28115A1300ECD15E /* Bundle.swift */; };
 		F2BAC0DD28115A8E00ECD15E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0DB28115A1300ECD15E /* Bundle.swift */; };
-		F2BAC0DE28115A8F00ECD15E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0DB28115A1300ECD15E /* Bundle.swift */; };
 		F2BAC0DF28115A9000ECD15E /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0DB28115A1300ECD15E /* Bundle.swift */; };
 		F2BAC0E128115B3D00ECD15E /* DefaultEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0E028115B3D00ECD15E /* DefaultEventModel.swift */; };
 		F2BAC0E228115B3D00ECD15E /* DefaultEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0E028115B3D00ECD15E /* DefaultEventModel.swift */; };
-		F2BAC0E328115B3D00ECD15E /* DefaultEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0E028115B3D00ECD15E /* DefaultEventModel.swift */; };
 		F2BAC0E428115B3D00ECD15E /* DefaultEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAC0E028115B3D00ECD15E /* DefaultEventModel.swift */; };
 		F2C6DCEB238541DA0076319E /* UBFeaturebillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6DCEA238541DA0076319E /* UBFeaturebillaManager.swift */; };
 		F2C6DCEC238541DA0076319E /* UBFeaturebillaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6DCEA238541DA0076319E /* UBFeaturebillaManager.swift */; };
@@ -1078,7 +859,6 @@
 		F2E9FB4A22D33ACB002F3AA3 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E9FB4922D33ACB002F3AA3 /* ClientModel.swift */; };
 		F2FAE99C296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
 		F2FAE99D296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
-		F2FAE99E296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
 		F2FAE99F296EB98500B06AB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FAE99B296EB98500B06AB6 /* Array.swift */; };
 /* End PBXBuildFile section */
 
@@ -1449,7 +1229,6 @@
 		F250131327E3B08700A6175F /* defaultEvent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultEvent.json; sourceTree = "<group>"; };
 		F250131627E3B63B00A6175F /* campaign.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = campaign.json; sourceTree = "<group>"; };
 		F2503FD4238EDA5A0027875A /* FeaturebillaStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturebillaStoreTests.swift; sourceTree = "<group>"; };
-		F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F26E6C592379918B00BAE436 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		F274EC53270CADA600AA69B8 /* UsabillaCS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsabillaCS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F274EC55270CAF6100AA69B8 /* UsabillaCSDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsabillaCSDebug.swift; sourceTree = "<group>"; };
@@ -1497,13 +1276,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		43B04FC01F1F7EEF0032F057 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F269236F23EB17B900E6A455 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1772,7 +1544,6 @@
 				04F54DC81CD75A3F002F501E /* Usabilla.framework */,
 				04F54DD21CD75A3F002F501E /* UsabillaTests.xctest */,
 				43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */,
-				F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */,
 				F274EC53270CADA600AA69B8 /* UsabillaCS.framework */,
 			);
 			name = Products;
@@ -2415,14 +2186,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F269237023EB17B900E6A455 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F269237123EB17B900E6A455 /* Usabilla.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F274EC46270CADA600AA69B8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2491,25 +2254,6 @@
 			productReference = 43B04FCE1F1F7EEF0032F057 /* UsabillaInternal.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F26922B123EB17B900E6A455 /* UsabillaXamarin */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F269237823EB17B900E6A455 /* Build configuration list for PBXNativeTarget "UsabillaXamarin" */;
-			buildPhases = (
-				F26922B223EB17B900E6A455 /* Sources */,
-				F269236F23EB17B900E6A455 /* Frameworks */,
-				F269237023EB17B900E6A455 /* Headers */,
-				F269237223EB17B900E6A455 /* Resources */,
-				F269237723EB17B900E6A455 /* Linter */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = UsabillaXamarin;
-			productName = Usabilla;
-			productReference = F269237C23EB17B900E6A455 /* UsabillaXamarin.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		F274EB7E270CADA600AA69B8 /* UsabillaCS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F274EC4F270CADA600AA69B8 /* Build configuration list for PBXNativeTarget "UsabillaCS" */;
@@ -2570,7 +2314,6 @@
 				04F54DC71CD75A3F002F501E /* Usabilla */,
 				43B04F331F1F7EEF0032F057 /* UsabillaInternal */,
 				04F54DD11CD75A3F002F501E /* UsabillaTests */,
-				F26922B123EB17B900E6A455 /* UsabillaXamarin */,
 				F274EB7E270CADA600AA69B8 /* UsabillaCS */,
 			);
 		};
@@ -2628,19 +2371,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F269237223EB17B900E6A455 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F21C843E27EC93000050CDA4 /* defaultEvent.json in Resources */,
-				F269237323EB17B900E6A455 /* Assets.xcassets in Resources */,
-				F269237423EB17B900E6A455 /* UBStaging.xcconfig in Resources */,
-				4573959423FED6F70086D8ED /* config.json in Resources */,
-				F269237523EB17B900E6A455 /* usa_localizable.strings in Resources */,
-				F269237623EB17B900E6A455 /* UBProduction.xcconfig in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F274EC48270CADA600AA69B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2689,20 +2419,6 @@
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		43B04FCA1F1F7EEF0032F057 /* Linter */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Linter;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		F269237723EB17B900E6A455 /* Linter */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3328,226 +3044,6 @@
 				F250131127E351FD00A6175F /* AppEventNotifier.swift in Sources */,
 				45B8263222CC9FF400367901 /* UBEditImageMainViewController.swift in Sources */,
 				43B04FBF1F1F7EEF0032F057 /* Protocols.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F26922B223EB17B900E6A455 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F26922B323EB17B900E6A455 /* BaseOptionsComponentViewModel.swift in Sources */,
-				F26922B423EB17B900E6A455 /* NPSComponent.swift in Sources */,
-				F26922B523EB17B900E6A455 /* AnimationManager.swift in Sources */,
-				F26922B623EB17B900E6A455 /* UBSlider.swift in Sources */,
-				F26922B723EB17B900E6A455 /* CopyModel.swift in Sources */,
-				F26922B823EB17B900E6A455 /* JumpRule.swift in Sources */,
-				F26922B923EB17B900E6A455 /* HTTPClient.swift in Sources */,
-				F26922BA23EB17B900E6A455 /* NPSFieldModel.swift in Sources */,
-				F26922BB23EB17B900E6A455 /* LeafEvent.swift in Sources */,
-				F26922BC23EB17B900E6A455 /* UBSADrawingTool.swift in Sources */,
-				F26922BD23EB17B900E6A455 /* UBFileHelper.swift in Sources */,
-				F26922BE23EB17B900E6A455 /* StyleKit.swift in Sources */,
-				F26922BF23EB17B900E6A455 /* CampaignViewController.swift in Sources */,
-				F26922C023EB17B900E6A455 /* FormViewController.swift in Sources */,
-				F26922C123EB17B900E6A455 /* CampaignService.swift in Sources */,
-				F26922C223EB17B900E6A455 /* GridViewCell.swift in Sources */,
-				F26922C323EB17B900E6A455 /* UBEndPageViewModel.swift in Sources */,
-				F26922C423EB17B900E6A455 /* MoodComponentViewModel.swift in Sources */,
-				F26922C523EB17B900E6A455 /* PickerComponentViewModel.swift in Sources */,
-				F26922C623EB17B900E6A455 /* UBFormDAO.swift in Sources */,
-				F26922C723EB17B900E6A455 /* PickerIPadComponent.swift in Sources */,
-				F26922C823EB17B900E6A455 /* ThankYouViewController.swift in Sources */,
-				F26922C923EB17B900E6A455 /* Date.swift in Sources */,
-				F26922CA23EB17B900E6A455 /* CampaignWindow.swift in Sources */,
-				45D294852834326200AA311E /* DefaultEventAppStateDAO.swift in Sources */,
-				F26922CB23EB17B900E6A455 /* UBBannerDisplay.swift in Sources */,
-				F26922CC23EB17B900E6A455 /* Reachability.swift in Sources */,
-				F26922CD23EB17B900E6A455 /* SliderComponentViewModel.swift in Sources */,
-				F26922CE23EB17B900E6A455 /* UBIntroOutroPresenter.swift in Sources */,
-				F26922CF23EB17B900E6A455 /* UITableView.swift in Sources */,
-				F2B47B49282A9806009825F8 /* AppEventNotifier.swift in Sources */,
-				F26922D023EB17B900E6A455 /* ColorPickerCell.swift in Sources */,
-				F26922D123EB17B900E6A455 /* OptionsFieldModel.swift in Sources */,
-				F26922D223EB17B900E6A455 /* NPSToolTip.swift in Sources */,
-				45D29459282A3C3A00AA311E /* EnablingEventModule.swift in Sources */,
-				F26922D323EB17B900E6A455 /* CheckBoxComponentViewModel.swift in Sources */,
-				F26922D423EB17B900E6A455 /* IntroPageViewModel.swift in Sources */,
-				F26922D523EB17B900E6A455 /* SliderComponent.swift in Sources */,
-				F26922D623EB17B900E6A455 /* FormStore.swift in Sources */,
-				F26922D723EB17B900E6A455 /* UBTouchView.swift in Sources */,
-				F26922D823EB17B900E6A455 /* HTTPClientProtocol.swift in Sources */,
-				F26922D923EB17B900E6A455 /* UBCameraViewController.swift in Sources */,
-				F26922DA23EB17B900E6A455 /* RootCellView.swift in Sources */,
-				F26922DB23EB17B900E6A455 /* UBFeedbackRequestDAO.swift in Sources */,
-				F26922DC23EB17B900E6A455 /* SequenceRule.swift in Sources */,
-				F26922DD23EB17B900E6A455 /* UIFont.swift in Sources */,
-				F26922DE23EB17B900E6A455 /* EmailFieldModel.swift in Sources */,
-				F26922DF23EB17B900E6A455 /* LocalisationHandler.swift in Sources */,
-				F26922E023EB17B900E6A455 /* NSLayoutConstraint.swift in Sources */,
-				F26922E123EB17B900E6A455 /* CheckBoxWithText.swift in Sources */,
-				F26922E223EB17B900E6A455 /* CampaignSubmissionRequestManager.swift in Sources */,
-				F26922E323EB17B900E6A455 /* MoodComponent.swift in Sources */,
-				F26922E423EB17B900E6A455 /* UBFormViewModel.swift in Sources */,
-				F26922E523EB17B900E6A455 /* BaseTextFieldComponent.swift in Sources */,
-				F26922E623EB17B900E6A455 /* NPSControl.swift in Sources */,
-				F2BAC0E328115B3D00ECD15E /* DefaultEventModel.swift in Sources */,
-				F26922E723EB17B900E6A455 /* EmailComponentViewModel.swift in Sources */,
-				F26922E823EB17B900E6A455 /* SwiftCheckBox.swift in Sources */,
-				F26922E923EB17B900E6A455 /* CampaignViewModel.swift in Sources */,
-				45D2946F282E675900AA311E /* DefaultEventError.swift in Sources */,
-				F26922EA23EB17B900E6A455 /* RadioComponentViewModel.swift in Sources */,
-				F26922EB23EB17B900E6A455 /* ColorPickerViewDelegateFlowLayout.swift in Sources */,
-				F26922ED23EB17B900E6A455 /* PassiveStatus.swift in Sources */,
-				F26922EE23EB17B900E6A455 /* PageViewModel.swift in Sources */,
-				F26922EF23EB17B900E6A455 /* UBCampaignFeedbackRequest.swift in Sources */,
-				F26922F023EB17B900E6A455 /* UBToast.swift in Sources */,
-				F26922F123EB17B900E6A455 /* DeviceInfo.swift in Sources */,
-				F26922F223EB17B900E6A455 /* BaseParagraphComponent.swift in Sources */,
-				F26922F323EB17B900E6A455 /* FieldFactory.swift in Sources */,
-				45D2944F2828FA5200AA311E /* DefaultEventEngine.swift in Sources */,
-				F26922F423EB17B900E6A455 /* UBToastPageViewModel.swift in Sources */,
-				F26922F523EB17B900E6A455 /* Promise.swift in Sources */,
-				F26922F623EB17B900E6A455 /* PercentageDecorator.swift in Sources */,
-				F26922F723EB17B900E6A455 /* SubmissionManager.swift in Sources */,
-				F213104223EC024E0017B633 /* UsabillaInternalDebug.swift in Sources */,
-				F26922F823EB17B900E6A455 /* ScreenshotModel.swift in Sources */,
-				F26922F923EB17B900E6A455 /* RadioFieldModel.swift in Sources */,
-				4573959723FED6FF0086D8ED /* UBFeaturebillaManager.swift in Sources */,
-				F26922FA23EB17B900E6A455 /* TextAreaComponentViewModel.swift in Sources */,
-				F2B47B56282C0C00009825F8 /* AppMetaData.swift in Sources */,
-				F26922FB23EB17B900E6A455 /* EmailComponent.swift in Sources */,
-				45D2946A282E62B200AA311E /* SurveyDispatcher.swift in Sources */,
-				F26922FC23EB17B900E6A455 /* HeaderComponentViewModel.swift in Sources */,
-				45DE3EEE25E3E5E1005858FE /* SwiftyJSON.swift in Sources */,
-				F26922FD23EB17B900E6A455 /* DrawingPlugin.swift in Sources */,
-				F26922FE23EB17B900E6A455 /* UBSAContainerView.swift in Sources */,
-				45D294542829733200AA311E /* EvaluationObject.swift in Sources */,
-				F26922FF23EB17B900E6A455 /* UBCampaignStore.swift in Sources */,
-				F269230023EB17B900E6A455 /* ParagraphFieldModel.swift in Sources */,
-				F269230123EB17B900E6A455 /* UBAlertDisplay.swift in Sources */,
-				F269230223EB17B900E6A455 /* Rules.swift in Sources */,
-				F269230323EB17B900E6A455 /* ColorPickerViewDelegate.swift in Sources */,
-				F269230423EB17B900E6A455 /* HeaderFieldModel.swift in Sources */,
-				F269230523EB17B900E6A455 /* ScreenshotComponent.swift in Sources */,
-				F269230623EB17B900E6A455 /* UBFeedbackRequest.swift in Sources */,
-				F269230723EB17B900E6A455 /* PoweredByLogoView.swift in Sources */,
-				F269230823EB17B900E6A455 /* UBEndPageModel.swift in Sources */,
-				F269230923EB17B900E6A455 /* EventEngine.swift in Sources */,
-				F269230A23EB17B900E6A455 /* UBSAEditImageMasterView.swift in Sources */,
-				F269230B23EB17B900E6A455 /* RatingFieldModel.swift in Sources */,
-				F269230C23EB17B900E6A455 /* ScreenshotComponentViewModel.swift in Sources */,
-				F269230D23EB17B900E6A455 /* UBCampaignDAO.swift in Sources */,
-				F269230E23EB17B900E6A455 /* Locale.swift in Sources */,
-				F269230F23EB17B900E6A455 /* BaseStringComponentViewModel.swift in Sources */,
-				F269231023EB17B900E6A455 /* HeaderComponent.swift in Sources */,
-				F269231123EB17B900E6A455 /* BaseEditableStringComponentViewModel.swift in Sources */,
-				F269231223EB17B900E6A455 /* UILabel.swift in Sources */,
-				F269231323EB17B900E6A455 /* RequestBuilder.swift in Sources */,
-				F269231423EB17B900E6A455 /* ShowHideRule.swift in Sources */,
-				4573959123FED6E90086D8ED /* UBTelemetricResponse.swift in Sources */,
-				F269238323EB1F6400E6A455 /* UsabillaInternal.swift in Sources */,
-				F269231523EB17B900E6A455 /* String.swift in Sources */,
-				F269231623EB17B900E6A455 /* Logging.swift in Sources */,
-				F2FAE99E296EB98500B06AB6 /* Array.swift in Sources */,
-				F269231723EB17B900E6A455 /* AndRule.swift in Sources */,
-				F269231823EB17B900E6A455 /* IntFieldModel.swift in Sources */,
-				F269231923EB17B900E6A455 /* TextFieldModel.swift in Sources */,
-				F269231A23EB17B900E6A455 /* UIViewController.swift in Sources */,
-				F269231B23EB17B900E6A455 /* UIBarButtonItem.swift in Sources */,
-				F269231C23EB17B900E6A455 /* CampaignSubmissionManager.swift in Sources */,
-				F269231D23EB17B900E6A455 /* GridViewSectionCell.swift in Sources */,
-				F269231E23EB17B900E6A455 /* UBImagePickerController.swift in Sources */,
-				F269231F23EB17B900E6A455 /* RepetitionDecorator.swift in Sources */,
-				F269232123EB17B900E6A455 /* OrRule.swift in Sources */,
-				F269232223EB17B900E6A455 /* CheckBoxComponent.swift in Sources */,
-				F269232323EB17B900E6A455 /* BaseFieldModel.swift in Sources */,
-				4573959023FED6E60086D8ED /* UBTelemetrics.swift in Sources */,
-				F269232423EB17B900E6A455 /* BaseIntComponentViewModel.swift in Sources */,
-				F269232523EB17B900E6A455 /* CellViewModel.swift in Sources */,
-				F269232623EB17B900E6A455 /* ClientModel.swift in Sources */,
-				F269232723EB17B900E6A455 /* UIColor.swift in Sources */,
-				F21DBD2D293A452E001F647E /* JSONCampaignParser.swift in Sources */,
-				45D294472824FF2F00AA311E /* DefaultEventModuleDAO.swift in Sources */,
-				F269232823EB17B900E6A455 /* UIDevice.swift in Sources */,
-				F2B47B51282C0468009825F8 /* AppCrash.swift in Sources */,
-				F269232923EB17B900E6A455 /* PageViewController.swift in Sources */,
-				F269232A23EB17B900E6A455 /* PageModel.swift in Sources */,
-				F269232B23EB17B900E6A455 /* UIImage.swift in Sources */,
-				4573959323FED6F40086D8ED /* FeatureModel.swift in Sources */,
-				F269232C23EB17B900E6A455 /* UIImageView.swift in Sources */,
-				F269232D23EB17B900E6A455 /* FormService.swift in Sources */,
-				F269232E23EB17B900E6A455 /* UBFileStorageDAO.swift in Sources */,
-				F269232F23EB17B900E6A455 /* Decorator.swift in Sources */,
-				F269233023EB17B900E6A455 /* UsabillaTheme.swift in Sources */,
-				F269233123EB17B900E6A455 /* UBFeedbackIDDictionaryDAO.swift in Sources */,
-				F269233223EB17B900E6A455 /* UBDAO.swift in Sources */,
-				45F8A5F82608F9B800A1ADA3 /* TelemtryService.swift in Sources */,
-				F269233323EB17B900E6A455 /* ComponentFactory.swift in Sources */,
-				F269233423EB17B900E6A455 /* UBSADragableImageView.swift in Sources */,
-				F269233523EB17B900E6A455 /* TextAreaComponent.swift in Sources */,
-				4573959523FED6FA0086D8ED /* FeaturebillaStore.swift in Sources */,
-				F269233723EB17B900E6A455 /* ColorPickerView.swift in Sources */,
-				F269233823EB17B900E6A455 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
-				F269233923EB17B900E6A455 /* PassiveFormController.swift in Sources */,
-				F269233A23EB17B900E6A455 /* FooterTableViewCell.swift in Sources */,
-				F269233B23EB17B900E6A455 /* ParagraphComponentViewModel.swift in Sources */,
-				F269233C23EB17B900E6A455 /* BaseCheckBoxComponent.swift in Sources */,
-				F269233D23EB17B900E6A455 /* SwiftEventBus.swift in Sources */,
-				F269233E23EB17B900E6A455 /* UBCampaignFeedbackRequestDAO.swift in Sources */,
-				F269233F23EB17B900E6A455 /* FormModel.swift in Sources */,
-				F269234023EB17B900E6A455 /* Event.swift in Sources */,
-				F2324B44279AD31F00D7A823 /* UBInfo.swift in Sources */,
-				F269234123EB17B900E6A455 /* RatingControl.swift in Sources */,
-				F269234223EB17B900E6A455 /* RadioComponent.swift in Sources */,
-				F269234323EB17B900E6A455 /* BaseComponent.swift in Sources */,
-				F269234423EB17B900E6A455 /* IntroPageModel.swift in Sources */,
-				F269234523EB17B900E6A455 /* BaseImageComponentViewModel.swift in Sources */,
-				F269234623EB17B900E6A455 /* UBAccessibility.swift in Sources */,
-				F269234723EB17B900E6A455 /* BaseTextAreaComponent.swift in Sources */,
-				F269234823EB17B900E6A455 /* TextFieldComponentViewModel.swift in Sources */,
-				F269234923EB17B900E6A455 /* PickerComponent.swift in Sources */,
-				F269234A23EB17B900E6A455 /* UBSADrawingView.swift in Sources */,
-				F276A3C5281A9DD300108EF1 /* FileStorageDAO.swift in Sources */,
-				F269234B23EB17B900E6A455 /* TargetingFactory.swift in Sources */,
-				F2BAC0DE28115A8F00ECD15E /* Bundle.swift in Sources */,
-				F269234C23EB17B900E6A455 /* CampaignManager.swift in Sources */,
-				F269234D23EB17B900E6A455 /* TargetingOptionsModel.swift in Sources */,
-				F269234E23EB17B900E6A455 /* UBConstants.swift in Sources */,
-				F269234F23EB17B900E6A455 /* UIView.swift in Sources */,
-				F269235023EB17B900E6A455 /* ComponentViewModelFactory.swift in Sources */,
-				F269235123EB17B900E6A455 /* ComponentViewModel.swift in Sources */,
-				F269235223EB17B900E6A455 /* ParagraphComponent.swift in Sources */,
-				F269235323EB17B900E6A455 /* FieldModel.swift in Sources */,
-				F269235523EB17B900E6A455 /* UBIntroOutroView.swift in Sources */,
-				F269235623EB17B900E6A455 /* PathManager.swift in Sources */,
-				F269235723EB17B900E6A455 /* CampaignModel.swift in Sources */,
-				F269235823EB17B900E6A455 /* MaskModel.swift in Sources */,
-				F269235923EB17B900E6A455 /* MoodFieldModel.swift in Sources */,
-				F269235A23EB17B900E6A455 /* UBImageLibraryButton.swift in Sources */,
-				F269235B23EB17B900E6A455 /* UBAlertPresenter.swift in Sources */,
-				F269235C23EB17B900E6A455 /* PickerParentComponent.swift in Sources */,
-				F269235D23EB17B900E6A455 /* LeafActiveStatus.swift in Sources */,
-				4573959623FED6FD0086D8ED /* FeaturebillaService.swift in Sources */,
-				F269235E23EB17B900E6A455 /* Transitions.swift in Sources */,
-				F269235F23EB17B900E6A455 /* LeafPassiveStatus.swift in Sources */,
-				F269236023EB17B900E6A455 /* TextAreaFieldModel.swift in Sources */,
-				F269236123EB17B900E6A455 /* PickerFieldModel.swift in Sources */,
-				F269236223EB17B900E6A455 /* UBBannerPresenter.swift in Sources */,
-				F269236323EB17B900E6A455 /* CampaingAnimator.swift in Sources */,
-				F269236423EB17B900E6A455 /* JSONFormParser.swift in Sources */,
-				F269236523EB17B900E6A455 /* NPSComponentViewModel.swift in Sources */,
-				F20057602816D4C900167C8C /* DefaultEventDAO.swift in Sources */,
-				F269236623EB17B900E6A455 /* UBCustomTouchableView.swift in Sources */,
-				4573959223FED6EC0086D8ED /* UBTelemetricSDK.swift in Sources */,
-				F269236723EB17B900E6A455 /* UBNavigationController.swift in Sources */,
-				F269236823EB17B900E6A455 /* UBRule.swift in Sources */,
-				F269236923EB17B900E6A455 /* UBSAPluginViewController.swift in Sources */,
-				F269236A23EB17B900E6A455 /* ActiveStatus.swift in Sources */,
-				F269236B23EB17B900E6A455 /* StringFieldModel.swift in Sources */,
-				F269236C23EB17B900E6A455 /* CheckboxFieldModel.swift in Sources */,
-				F269236D23EB17B900E6A455 /* UBEditImageMainViewController.swift in Sources */,
-				F276A3CA281ABEAB00108EF1 /* DefaultEventStore.swift in Sources */,
-				F269236E23EB17B900E6A455 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4635,16 +4131,6 @@
 				43B04FCC1F1F7EEF0032F057 /* Debug */,
 				43B04FCD1F1F7EEF0032F057 /* Release */,
 				439AAD1E1FAB702E00DF6D9E /* Production */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F269237823EB17B900E6A455 /* Build configuration list for PBXNativeTarget "UsabillaXamarin" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F269237923EB17B900E6A455 /* Debug */,
-				F269237A23EB17B900E6A455 /* Release */,
-				F269237B23EB17B900E6A455 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

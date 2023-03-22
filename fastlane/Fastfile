@@ -240,4 +240,26 @@ platform :ios do
 			-F "variables[SDK_VERSION]=${SDK_VERSION}" \
 			https://gitlab.usabilla.net/api/v4/projects/$PROJ_ID_CS/trigger/pipeline')
 	end
+	
+	#used to generate artifacts for UsabillaXamarin
+	desc "creating artifacts for UsabillaXamarin"
+	lane :buildXamarinAndGenerateArtefacts do
+		version = masterXcodeVersion
+		removeAllBuilds(
+			version: version,
+			project_directory: projectDirectory
+		)
+		buildForXamarin(
+			version: version,
+			project_directory: projectDirectory
+		)
+		validateXamarinBuildLLVMGCC(
+			version: version,
+			project_directory: projectDirectory
+		)
+		copyToPodsFromXamarinBuild(
+			version: version,
+			project_directory: projectDirectory
+		)
+	end
 end
