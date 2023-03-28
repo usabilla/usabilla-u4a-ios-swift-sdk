@@ -1,5 +1,5 @@
 {
-	"masterXcodeVersion" 	: "14.2"
+	"masterXcodeVersion" 	: "14.2",
 	"xcodeVersions" 	: ["14.2"],
     "uiTestDevices"        : ["platform=iOS Simulator,name=iPhone 11,OS=13.7"],
     "unitTestDevices"    : ["iPhone 11 (13.7)"]
