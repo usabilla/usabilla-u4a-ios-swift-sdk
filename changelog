@@ -1,6 +1,6 @@
-## 6.13.0
+## 6.13.1
 ### Fix
-- HTTP 414 issue (Targeting url length issue)
-- Update continue button state on mood selection
+- Individual campaign status fetching
+- Xcode buld support 14.1
 ### Update
-- Added Campaign Reactivation ( Now campaign can show more than once)
+- OS target to 11
