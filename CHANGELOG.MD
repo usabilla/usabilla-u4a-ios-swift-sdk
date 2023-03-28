@@ -1,3 +1,9 @@
+## 6.13.1
+### Fix
+- Individual campaign status fetching
+- Xcode buld support 14.1
+### Update
+- OS target to 11
 ## 6.13.0
 ### Fix
 - HTTP 414 issue (Targeting url length issue)
