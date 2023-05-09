@@ -38,7 +38,7 @@ enum AppCrashModelType: Int {
      var name: String
      var reason: String
      var appinfo: String
-     var callStack: String
+    var callStack: String
 
      init(type: AppCrashModelType,
           name: String,
@@ -151,9 +151,13 @@ enum AppCrashModelType: Int {
          guard AppCrash.isOpen == true else {
              return
          }
-         var stack = Thread.callStackSymbols
+         // the Thread.callStackSymbols is not available in a release build, there this will cause a crash
+         // and breaking the stacktrace that is printet, pointing to USabilla as the cause instead of the original crash
+         // the stacktrace is not used 
+         
+         var stack = Thread.callStackReturnAddresses
          stack.removeFirst(2)
-         let callStack = stack.joined(separator: "\r")
+         let callStack = stack.map { $0.stringValue }.joined(separator: "\r")
          let reason = "Signal \(AppCrash.name(of: signal))(\(signal)) was raised.\n"
          let appinfo = String(describing: AppMetaData().metadata)
 
