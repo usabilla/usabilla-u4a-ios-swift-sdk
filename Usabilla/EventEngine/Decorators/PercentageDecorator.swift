@@ -33,7 +33,7 @@ class PercentageDecorator: Decorator {
 
     override func customTriggersWith(event: Event, activeStatuses: [String: String]) -> Bool {
         let triggered = rule.triggersWith(event: event, activeStatuses: activeStatuses)
-        let diceRoll = Int(arc4random_uniform(100) + 1)
+        let diceRoll =  Int.random(in: 0...100)+1 // Int(arc4random_uniform(100) + 1)
         return checkIfTriggers(triggered: triggered, diceRoll: diceRoll)
     }
 
@@ -41,11 +41,12 @@ class PercentageDecorator: Decorator {
         if triggered && !diceAlreadyRolled {
             var diceRolledInFavor = false
             if previousPercentage == 1000 {
-                let diceRoll = 100 // this is set to make sure older versions will display the survey after reactivation
                 diceRolledInFavor = percentage >= diceRoll
                 previousPercentage = diceRoll
+                DLogInfo("Campaing was deemed showable with \(diceRoll)% as internal value")
             } else {
                 diceRolledInFavor = percentage >= previousPercentage
+                DLogInfo("Campaing was deemed showable with \(previousPercentage)% as internal value")
             }
             diceAlreadyRolled = true
             return diceRolledInFavor

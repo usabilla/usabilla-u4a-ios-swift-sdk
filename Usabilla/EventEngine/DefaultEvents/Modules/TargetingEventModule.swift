@@ -79,6 +79,7 @@ extension TargetingEventModule {
         }
         let diceRoll = Double.random(in: 1...100) + 1
         updateCurrentcount(surveyId: surveyId, moduleId: moduleId, currentCounter: diceRoll)
+        DLogInfo("DefaultEvent calculated \(diceRoll)% as internal value")
         return diceRoll
     }
 
