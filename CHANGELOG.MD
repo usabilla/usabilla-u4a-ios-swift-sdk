@@ -2,6 +2,10 @@
 ### Fix
 - Targeting percentage for survey reactivation
 - Interuption of the stacktrace during a Crash 
+## 6.13.2
+### Fix
+- Targeting percentage for survey reactivation
+- Interuption of the stacktrace during a Crash 
 ## 6.13.1
 ### Fix
 - Individual campaign status fetching
