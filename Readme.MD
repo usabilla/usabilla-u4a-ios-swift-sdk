@@ -51,6 +51,7 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
   - [Telemetry data collection](#Telemetry-data-collection)
   - [Getting User feedback in app](#Getting-user-feedback-in-app)
   - [Standard Events](#standardevents)
+  - [Support](#support)
 
 * * *
 
@@ -893,3 +894,7 @@ For Default events,`SDK` only listen to system events and based on these events 
 For the campaigns eligible with the **EXIT or CRASH** events will be added to a queue and it will be given a chance to show on the next launch, together with any other default-events triggered.
 
 [Click here](https://support.usabilla.com/hc/en-us/articles/4747575452562) to read more about events.
+
+##<a id="support"></a> Support
+
+If you need help, want to report an issue, or have a question please reach out to the support team via our [Help Center](https://help.surveymonkey.com/en/contact/#getfeedback) or email [support@usabilla.com](mailto:support@usabilla.com)
