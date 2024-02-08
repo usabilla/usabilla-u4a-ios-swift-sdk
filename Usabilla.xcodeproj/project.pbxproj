@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -439,8 +439,6 @@
 		452A6FD7281FCFD30003B79B /* UserLanguageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A6FD4281FCFD30003B79B /* UserLanguageModule.swift */; };
 		452A6FD9282154740003B79B /* DefaultEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A6FD8282154740003B79B /* DefaultEventTest.swift */; };
 		452A6FDE282155250003B79B /* Default_event.json in Resources */ = {isa = PBXBuildFile; fileRef = 452A6FDA282155220003B79B /* Default_event.json */; };
-		452A6FE128215C680003B79B /* Nimble.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452A6FDF28215C680003B79B /* Nimble.xcframework */; };
-		452A6FE228215C680003B79B /* Quick.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452A6FE028215C680003B79B /* Quick.xcframework */; };
 		453DF816270F2C1A004D8BEB /* UsabillaCS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */; };
 		4552C1B222C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
 		4552C1B322C3748900814093 /* UBImageLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4552C1B122C3748900814093 /* UBImageLibraryButton.swift */; };
@@ -1131,8 +1129,6 @@
 		452A6FD4281FCFD30003B79B /* UserLanguageModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLanguageModule.swift; sourceTree = "<group>"; };
 		452A6FD8282154740003B79B /* DefaultEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEventTest.swift; sourceTree = "<group>"; };
 		452A6FDA282155220003B79B /* Default_event.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Default_event.json; sourceTree = "<group>"; };
-		452A6FDF28215C680003B79B /* Nimble.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Nimble.xcframework; path = Carthage/Build/Nimble.xcframework; sourceTree = "<group>"; };
-		452A6FE028215C680003B79B /* Quick.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Quick.xcframework; path = Carthage/Build/Quick.xcframework; sourceTree = "<group>"; };
 		453DF815270F2C1A004D8BEB /* UsabillaCS-info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "UsabillaCS-info.plist"; sourceTree = SOURCE_ROOT; };
 		4552C1B122C3748900814093 /* UBImageLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UBImageLibraryButton.swift; sourceTree = "<group>"; };
 		45607E35273EB6130031E2E3 /* GFPCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPCardView.swift; sourceTree = "<group>"; };
@@ -1269,8 +1265,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				452A6FE228215C680003B79B /* Quick.xcframework in Frameworks */,
-				452A6FE128215C680003B79B /* Nimble.xcframework in Frameworks */,
 				04F54DD31CD75A3F002F501E /* Usabilla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2101,8 +2095,6 @@
 		F08DB90AC856170888540D82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				452A6FDF28215C680003B79B /* Nimble.xcframework */,
-				452A6FE028215C680003B79B /* Quick.xcframework */,
 				EBADE8AAE74D5AEAF300AEE6 /* Pods_UsabillaTests.framework */,
 			);
 			name = Frameworks;
@@ -2307,6 +2299,10 @@
 				en,
 			);
 			mainGroup = 04F54DBE1CD75A3F002F501E;
+			packageReferences = (
+				F23725A12B70BB1500984D6D /* XCRemoteSwiftPackageReference "Quick" */,
+				F23725A22B70BBCE00984D6D /* XCRemoteSwiftPackageReference "Nimble" */,
+			);
 			productRefGroup = 04F54DC91CD75A3F002F501E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3824,140 +3820,6 @@
 			};
 			name = Release;
 		};
-		F269237923EB17B900E6A455 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F27F14E423C781B8000E903D /* UBStaging.xcconfig */;
-			buildSettings = {
-				BITCODE_GENERATION_MODE = bitcode;
-				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 64;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"XCODE$(XCODE_VERSION_MAJOR)=1",
-				);
-				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 6.13.2;
-				OTHER_SWIFT_FLAGS = "-D DEBUG -DXCODE$(XCODE_VERSION_MAJOR)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
-			};
-			name = Debug;
-		};
-		F269237A23EB17B900E6A455 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F27F14E123C781A5000E903D /* UBProduction.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				BITCODE_GENERATION_MODE = bitcode;
-				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 64;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = "XCODE$(XCODE_VERSION_MAJOR)=1";
-				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos/**";
-				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator/**";
-				MARKETING_VERSION = 6.13.2;
-				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				VALID_ARCHS = "arm64 x86_64 armv7 armv7s";
-			};
-			name = Release;
-		};
-		F269237B23EB17B900E6A455 /* Production */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F27F14E123C781A5000E903D /* UBProduction.xcconfig */;
-			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7,
-					armv7s,
-					i386,
-					x86_64,
-				);
-				BITCODE_GENERATION_MODE = bitcode;
-				CLANG_ENABLE_CODE_COVERAGE = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 64;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = "XCODE$(XCODE_VERSION_MAJOR)=1";
-				INFOPLIST_FILE = "UsabillaXamarin-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphoneos";
-				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(TOOLCHAIN_DIR)/usr/lib/swift/iphonesimulator";
-				MARKETING_VERSION = 6.13.2;
-				OTHER_SWIFT_FLAGS = "-DXCODE$(XCODE_VERSION_MAJOR)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usabilla.Usabilla;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				"SDKROOT[arch=i386]" = "$(CORRESPONDING_SIMULATOR_SDK_NAME)";
-				"SDKROOT[arch=x86_64]" = "$(CORRESPONDING_SIMULATOR_SDK_NAME)";
-				SKIP_INSTALL = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
-				SWIFT_INSTALL_OBJC_HEADER = "$(inherited)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
-			};
-			name = Production;
-		};
 		F274EC50270CADA600AA69B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F27F14E423C781B8000E903D /* UBStaging.xcconfig */;
@@ -4146,6 +4008,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F23725A12B70BB1500984D6D /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F23725A22B70BBCE00984D6D /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 04F54DBF1CD75A3F002F501E /* Project object */;
 }

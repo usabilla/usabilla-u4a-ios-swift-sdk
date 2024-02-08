@@ -1,3 +1,0 @@
-#!/bin/sh
-bin/carthage.sh bootstrap --platform iOS --no-use-binaries
-cp Cartfile.resolved Carthage

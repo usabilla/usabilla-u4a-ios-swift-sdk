@@ -26,12 +26,10 @@ install:
   stage: install
   script:
     - bundle install
-    - bin/bootstrap-if-needed
   dependencies: []
   cache:
     key: sdk-cache
     paths:
-    - Carthage/
     - vendor/
   tags:
     - sdk

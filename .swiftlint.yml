@@ -2,6 +2,7 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
   - vendor/
+  - derivedData/SourcePackages/checkouts/
   - UsabillaTests
   - Usabilla/Utils/SwiftyJSON.swift 
   - Usabilla/Utils/StyleKit.swift 
