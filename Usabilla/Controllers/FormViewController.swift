@@ -109,16 +109,13 @@ class FormViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         updateLeftButton()
         updateRightButton()
-        var containerTopAnchor: NSLayoutYAxisAnchor = view.topAnchor
-
         if !viewModel.shouldHideProgressBar {
             view.addSubview(progressBar)
             progressBar.translatesAutoresizingMaskIntoConstraints = false
             progressBar.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
             progressBar.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
             progressBar.heightAnchor.constraint(equalToConstant: 2.0).activate()
-            progressBar.topAnchor.constraint(equalTo: view.topAnchor).activate()
-            containerTopAnchor = progressBar.bottomAnchor
+            progressBar.topAnchor.constraint(equalTo: view.topAnchor).activate()            
         }
 
         view.addSubview(containerView)
@@ -126,7 +123,7 @@ class FormViewController: UIViewController {
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).activate()
         containerView.rightAnchor.constraint(equalTo: view.rightAnchor).activate()
         containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).activate()
-        containerView.topAnchor.constraint(equalTo: containerTopAnchor).activate()
+        containerView.topAnchor.constraint(equalTo: (!viewModel.shouldHideProgressBar ? progressBar.bottomAnchor : view.topAnchor) ).activate()
 
         // Add PageController
         pageViewController = PageViewController(viewModel: viewModel.currentPageViewModel)
