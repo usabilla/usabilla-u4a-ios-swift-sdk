@@ -30,6 +30,7 @@ class FormStore {
                 if let cachedForm = UBFormDAO.shared.read(id: id) {
                     cachedForm.theme = theme
                     cachedForm.updateTheme()
+                    cachedForm.addScrenshot(image: screenshot)
                     PLog("FormModel is loaded successfully")
                     fulfill(cachedForm)
                 } else {
