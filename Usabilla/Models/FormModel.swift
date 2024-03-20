@@ -143,23 +143,7 @@ class FormModel: NSObject, NSCoding {
         }
     }
 
-    func addScrenshot(image: UIImage?) {
-        guard let screenShotImage = image else {
-            return
-        }
-        var imageAdded = false
-        pages.forEach {
-            $0.fields.forEach {
-                if let model = $0 as? ScreenshotModel {
-                    model.image = screenShotImage
-                    imageAdded = true
-                }
-            }
-        }
-        if !imageAdded {
-            Swift.debugPrint("Usabilla: failed adding a provided screenshot image to the store form, as no screenshot module was found on the form")
-        }
-    }
+   
     // MARK: NScoding protocols
 
     required convenience init?(coder aDecoder: NSCoder) {
