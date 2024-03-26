@@ -1,3 +1,12 @@
+## 6.13.3
+### Fix
+- Crash due to wrong constraints
+- Attach missing screenshot to form loaded from cache/offline
+- Mock file corrected
+- Keyboard Hidden
+
+### Update
+- Added Xcode 15 support
 ## 6.13.2
 ### Fix
 - Targeting percentage for survey reactivation
