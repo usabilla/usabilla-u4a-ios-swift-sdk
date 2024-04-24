@@ -1,3 +1,7 @@
+## 6.13.4
+
+### Update
+- Added PrivacyInfo.xcprivacy (As required by https://developer.apple.com/support/third-party-SDK-requirements/ )
 ## 6.13.3
 ### Fix
 - Crash due to wrong constraints

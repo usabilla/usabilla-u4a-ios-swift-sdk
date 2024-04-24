@@ -59,7 +59,7 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
 - Xcode 15+
 - Swift 4.0+
 
-**Note :  v`6.13.2` can be used for `Xcode 14` & for `Xcode 15+` use v`6.13.3` onwards.**
+**Note : For `Xcode 15+` use v`6.13.3` onwards.**
 
 ## Installation
 
@@ -86,7 +86,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.13.3'
+pod 'Usabilla', '~> 6.13.4'
 
 End
 ```
