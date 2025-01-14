@@ -61,6 +61,7 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
 
 **Note : For `Xcode 15+` use v`6.13.3` onwards.**
 
+
 ## Installation
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
@@ -86,11 +87,11 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.13.4'
+pod 'Usabilla', '~> 6.13.5'
 
 End
 ```
-The current pod is build for Xcode 13.2.1 and now uses xcframework.
+The current pod is build for Xcode 15 and now uses xcframework.
 
 For other Xcode version, use:
  
@@ -118,7 +119,7 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 13.2.1 .
+The current Carthage release is build for Xcode 15 .
 
 For other Xcode version, use:
  

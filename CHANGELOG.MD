@@ -1,3 +1,7 @@
+## 6.13.5
+### Fix
+- Issue where app could crash when adding new image to passive survey
+
 ## 6.13.4
 
 ### Update
