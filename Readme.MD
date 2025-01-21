@@ -87,11 +87,11 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.13.5'
+pod 'Usabilla', '~> 6.13.6'
 
 End
 ```
-The current pod is build for Xcode 15 and now uses xcframework.
+The current pod is build for Xcode 16 and now uses xcframework.
 
 For other Xcode version, use:
  

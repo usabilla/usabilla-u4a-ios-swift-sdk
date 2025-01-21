@@ -1,3 +1,7 @@
+## 6.13.6
+### Fix
+- Missing reference for privacy manifest in xcframeworks
+
 ## 6.13.5
 ### Fix
 - Issue where app could crash when adding new image to passive survey
