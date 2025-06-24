@@ -1,3 +1,7 @@
+## 6.13.7
+### Fix
+- Reset Campaign on production
+
 ## 6.13.6
 ### Fix
 - Missing reference for privacy manifest in xcframeworks

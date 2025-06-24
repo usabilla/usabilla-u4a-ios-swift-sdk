@@ -87,7 +87,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.13.6'
+pod 'Usabilla', '~> 6.13.7'
 
 End
 ```
