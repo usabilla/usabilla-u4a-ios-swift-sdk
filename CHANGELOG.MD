@@ -1,3 +1,7 @@
+## 6.14.0
+### Update
+- Add Prepopulate Email component
+
 ## 6.13.7
 ### Fix
 - Reset Campaign on production

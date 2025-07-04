@@ -51,6 +51,7 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
   - [Telemetry data collection](#Telemetry-data-collection)
   - [Getting User feedback in app](#Getting-user-feedback-in-app)
   - [Standard Events](#standardevents)
+  - [prePopulateEmailComponent](#prepopulateemailcomponent)
 
 * * *
 
@@ -87,7 +88,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.13.7'
+pod 'Usabilla', '~> 6.14.0'
 
 End
 ```
@@ -894,3 +895,23 @@ For Default events,`SDK` only listen to system events and based on these events 
 For the campaigns eligible with the **EXIT or CRASH** events will be added to a queue and it will be given a chance to show on the next launch, together with any other default-events triggered.
 
 [Click here](https://support.usabilla.com/hc/en-us/articles/4747575452562) to read more about events.
+
+##prePopulateEmailComponent
+
+Pre-populates the email component in Usabilla forms or Campaigns with a specified email address and controls whether the user can edit it.
+
+`swift 
+	Usabilla.prePopulateEmailComponent(email: "user@example.com", editable: true)	
+`
+
+Parameters
+- email: String - The email address to pre-populate in the email field
+- editable: Bool - Whether the user can edit the pre-populated email address
+
+Important Notes
+⚠️ Email Validation: If the provided email is in an incorrect email format, the editable parameter will always be set to true, regardless of the value passed.
+⚠️ Temporary Storage: The email string will be automatically removed once a campaign or form closes. This method should only be used at the first showing of a survey to ensure the email is properly captured.
+Best Practices
+Call this method before presenting a form or campaign to ensure the email is available when the user sees the survey
+Validate email format on your end before calling this method if you need strict control over editability
+Consider the user experience - if you're unsure about the email validity, allow editing to prevent user frustration
