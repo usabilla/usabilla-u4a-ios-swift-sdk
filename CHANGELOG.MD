@@ -1,3 +1,7 @@
+## 6.15.0
+### added
+- Improve accessibility
+
 ## 6.14.0
 ### Update
 - Add Prepopulate Email component

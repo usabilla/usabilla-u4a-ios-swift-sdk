@@ -52,7 +52,7 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
   - [Getting User feedback in app](#Getting-user-feedback-in-app)
   - [Standard Events](#standardevents)
   - [prePopulateEmailComponent](#prepopulateemailcomponent)
-
+  - [accessibility](#accessibility)
 * * *
 
 ## Requirements
@@ -88,7 +88,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.14.0'
+pod 'Usabilla', '~> 6.15.0'
 
 End
 ```
@@ -120,7 +120,7 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 15 .
+The current Carthage release is build for Xcode 16 .
 
 For other Xcode version, use:
  
@@ -646,7 +646,7 @@ If you want to provide your own translation, you need to provide the specific ke
 The default file with the keys and the default text is the following:
 
 ```
-///Default usabilla english localization
+///Default GetFeedback english localization
 "usa_form_continue_button" = "Next";
 "usa_form_close_button" = "Close";
 "usa_form_required_field_error" = "Please check this field";
@@ -658,9 +658,11 @@ The default file with the keys and the default text is the following:
 "usa_choose_from_options" = "Choose from %d options";
 "usa_delete_screenshot" = "delete screenshot";
 "usa_edit_screenshot" = "change screenshot";
-"usa_powered_by_usabilla" = "powered by usabilla";
-"usa_tap_to_visit_usabilla" = "tap to visit usabilla.com";
+"usa_powered_by_usabilla" = "GetFeedback, Logo";
+"usa_tap_to_visit_usabilla" = "tap to visit GetFeedback.com";
 "usa_accessibility_button_label_continue" = "Continue";
+"usa_check_box_name" = "checkbox";
+"usa_radiobutton_name" = "radiobutton";
 
 // Emoticons
 "usa_mood_hate" = "Hate";
@@ -915,3 +917,14 @@ Best Practices
 Call this method before presenting a form or campaign to ensure the email is available when the user sees the survey
 Validate email format on your end before calling this method if you need strict control over editability
 Consider the user experience - if you're unsure about the email validity, allow editing to prevent user frustration
+
+##accessibility
+
+There are a few configurable strings for accessibility in the 'localizedStrings file'
+
+We have added to new strings, that will give Information to the user on what kind of multiple choice the user is faceing.
+
+"usa_check_box_name" = "checkbox";
+"usa_radiobutton_name" = "radiobutton";
+
+No action is needed from the developers side, unless you want a different call-out.
