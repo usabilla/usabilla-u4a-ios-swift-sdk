@@ -56,11 +56,11 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
 * * *
 
 ## Requirements
-- iOS 12+
-- Xcode 15+
+- iOS 15+
+- Xcode 26+
 - Swift 4.0+
 
-**Note : For `Xcode 15+` use v`6.13.3` onwards.**
+**Note : For `Xcode 26+` use v`6.16.0` onwards. And also soon all other old version's will be deprecated due to API calls upgradation.**
 
 
 ## Installation
@@ -88,7 +88,7 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.15.0'
+pod 'Usabilla', '~> 6.16.0'
 
 End
 ```

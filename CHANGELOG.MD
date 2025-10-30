@@ -1,4 +1,6 @@
-## 6.15.0
+## 6.16.0
+### Update
+- Migration of API calls (Targeting options are merged with campaigns )## 6.15.0
 ### added
 - Improve accessibility
 
