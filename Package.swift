@@ -9,7 +9,7 @@ let url = "https://github.com/usabilla/usabilla-u4a-ios-swift-sdk/releases/downl
 
 let package = Package(
     name: "Usabilla",
-    platforms: [.iOS(.v9)],
+    platforms: [.iOS(.v12)],
     products: [
         .library(
             name: "Usabilla",
