@@ -1,7 +1,14 @@
 # Usabilla for Apps - iOS SDK
 Usabilla for Apps allows you to collect feedback from your users with great ease and flexibility.
 
-Read the [Default Events](#defaultevents) section for a explanation of the new fetures introduces in SDK 6.12.0
+> ## ⚠️ DEPRECATION WARNING
+> 
+> **Versions < 6.17.0 will no longer be supported in upcoming releases.**
+> 
+> Please upgrade to version **6.17.0+** immediately to ensure continued functionality and support.
+> 
+> ---
+
 * * *
 
 - [Usabilla for Apps - iOS SDK](#usabilla-for-apps---ios-sdk)
@@ -50,25 +57,18 @@ Read the [Default Events](#defaultevents) section for a explanation of the new f
   - [ThreadSafe](#ThreadSafe)
   - [Telemetry data collection](#Telemetry-data-collection)
   - [Getting User feedback in app](#Getting-user-feedback-in-app)
-  - [Standard Events](#standardevents)
+  - [Standard Events](#standard-events)
   - [prePopulateEmailComponent](#prepopulateemailcomponent)
   - [accessibility](#accessibility)
 * * *
-
 ## Requirements
-- iOS 15+
+- iOS 12.0+
 - Xcode 26+
 - Swift 4.0+
-
-**Note : For `Xcode 26+` use v`6.16.0` onwards. And also soon all other old version's will be deprecated due to API calls upgradation.**
-
 
 ## Installation
 
 You can install the Usabilla SDK using Cocoapods, Carthage or manually.
-
-The latest versions of SDK are build with Module Format Stability.
-Previous versions are available at our git-repository. For Carthage please check the Carthage section
  
 ### SPM
 Instructions for [Swift Package Manager](https://swift.org/package-manager/) support can be found at [SwiftPackageManager.md](SwiftPackageManager.MD).
@@ -88,18 +88,18 @@ use_frameworks!
 
 target 'YourProjectTarget' do
 
-pod 'Usabilla', '~> 6.16.0'
+pod 'Usabilla', '~> 6.17.0'
 
 End
 ```
-The current pod is build for Xcode 16 and now uses xcframework.
+The current pod is build for Xcode 26 and uses xcframework.
 
 For other Xcode version, use:
  
 ```ruby
 pod 'Usabilla', :podspec => 'https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.podspec'
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-12.5.1. Available versions `Xcode-14.0`.
+replace Xcode-x.y.z with the required version eg. Xcode-16.4. Available versions `Xcode-16.4`.
 
 Then, run the following command:
 
@@ -120,16 +120,16 @@ And add this line to your `Cartfile`:
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/master/Usabilla.json"
 ```
-The current Carthage release is build for Xcode 16 .
+The current Carthage release is build for Xcode 26 .
 
 For other Xcode version, use:
  
 ```yaml
 binary "https://raw.githubusercontent.com/usabilla/usabilla-u4a-ios-swift-sdk/Xcode-x.y.z/Usabilla.json"
 ```
-replace Xcode-x.y.z with the required version eg. Xcode-12.5.1. Available versions `Xcode-14.0`.
+replace Xcode-x.y.z with the required version eg. Xcode-16.4. Available versions `Xcode-16.4`.
 
-**Note : Carthage - `0.38.0` encourage using XCFrameworks and Usabilla SDK for carthage supports XCFrameworks from `6.9.0` onwards**
+**Note : Carthage - `0.38.0` encourage using XCFrameworks and Usabilla SDK for carthage uses XCFrameworks**
 
 ### Manual
 
@@ -247,7 +247,8 @@ func campaignDidClose(withFeedbackResult result: FeedbackResult, isRedirectToApp
 Unlike the Passive feedback method, the campaigns method only returns one [FeedbackResult](#feedbackresult) and is called only once.
 
 ### Reactivate a campaign
-**Note: From 6.13.0 we are introducing campaign reactivation with these feature during campaign creation or after creation, a campaign can be added / modified with reactivation duration which is in days - for example if a campaign sets with reactivation in 7 days i.e. A campaign can be shown again after 7 days if all the prior conditions for campaign met again ( like language, percentage, repeatition/ trigger).**
+
+Campaign reactivation allows you to configure when a campaign can be shown again to users. During campaign creation or after creation, a campaign can be added/modified with a reactivation duration (in days). For example, if a campaign is set with reactivation in 7 days, the campaign can be shown again after 7 days if all prior conditions are met (language, percentage, repetition/trigger).
 
 ### Resetting all campaigns
 
@@ -851,16 +852,16 @@ If the property is set to false, submitting telemetry data is turned off.
 
 ## Getting user feedback in app
 
-When a camping or form is closed, the data is submitted to the server. If there is a need to have the responses available in the App,
-the hosting app can implement a optional delegate method
+When a campaign or form is closed, the data is submitted to the server. If there is a need to have the responses available in the App,
+the hosting app can implement an optional delegate method
 
 ```swift
  func feedbackResultSubmitted(userResponse: Data)
 ```
-This delegate method provides you with an ```Data``` object that holds the questions / answers
-The data is ```Dictionary<String:Any>```
+This delegate method provides you with a `Data` object that holds the questions / answers
+The data is `Dictionary<String:Any>`
 The dictionary holds all question in a random order where the key is the name of the question and the value is the answer to the question. 
-If the question is not answered ```null``` will be the value
+If the question is not answered `null` will be the value
 
 The data can be obtained like this
 ```swift
@@ -876,11 +877,11 @@ The data can be obtained like this
 
 ## Standard Events
 
-From SDK **`v6.12.2`** onwards we are introducing a new feature **Standard Events**.
+**Standard Events** allow you to show campaigns in your application without adding extra lines of code. You simply create Standard Campaigns (campaigns with Default/System Events) in your GetFeedback account.
 
-**Note : Now with Standard Events you can show campaigns in your application(Host application embedded with GetFeedback Digital/ Usabilla SDK) without adding any extra lines of code. You just have to create Standard Campaigns(Campaigns with Default/System Events) with your `User-Account` at `GetFeedback`.**
+**Note: Now with Standard Events you can show campaigns in your application (Host application embedded with GetFeedback Digital/Usabilla SDK) without adding any extra lines of code. You just have to create Standard Campaigns (Campaigns with Default/System Events) with your User Account at GetFeedback.**
 
-Currently we are supporting these lifecycle / system events : 
+Currently we are supporting these lifecycle / system events: 
  - `LAUNCH` : Define as when the app is entering foreground
  - `EXIT` : Define as when the app is entering to the background
  - `CRASH` : Define as when the app is crashed ( terminated due to an unexpected behaviour)
@@ -889,42 +890,49 @@ Currently we are supporting these lifecycle / system events :
 
 `func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil)`
 
-Once the `SDK` has been initialised and is transition from the background, at this point SDK updates itself and fetches new / updated data from the server. `SDK`  will update itself periodically which is in every 12 hour once the application is entered to the foreground.
-While if the application is in the background, `SDK` doesn't perform any activty, nor listening to any events.
+Once the `SDK` has been initialised and transitions from the background, at this point SDK updates itself and fetches new / updated data from the server. `SDK` will update itself periodically, every 12 hours once the application is entered to the foreground.
+While if the application is in the background, `SDK` doesn't perform any activity, nor listening to any events.
 
-For Default events,`SDK` only listen to system events and based on these events SDK will show a campaign. If more than one campaigns is triggered, only the oldest will be displayed, and the other(s) will be disregarded, and left to have a chance being triggered at a later time.
+For Default events, `SDK` only listens to system events and based on these events SDK will show a campaign. If more than one campaign is triggered, only the oldest will be displayed, and the other(s) will be disregarded, and left to have a chance being triggered at a later time.
 
 For the campaigns eligible with the **EXIT or CRASH** events will be added to a queue and it will be given a chance to show on the next launch, together with any other default-events triggered.
 
 [Click here](https://support.usabilla.com/hc/en-us/articles/4747575452562) to read more about events.
 
-##prePopulateEmailComponent
+## prePopulateEmailComponent
 
 Pre-populates the email component in Usabilla forms or Campaigns with a specified email address and controls whether the user can edit it.
 
-`swift 
-	Usabilla.prePopulateEmailComponent(email: "user@example.com", editable: true)	
-`
+```swift
+Usabilla.prePopulateEmailComponent(email: "user@example.com", editable: true)
+```
 
-Parameters
-- email: String - The email address to pre-populate in the email field
-- editable: Bool - Whether the user can edit the pre-populated email address
+### Parameters
 
-Important Notes
-⚠️ Email Validation: If the provided email is in an incorrect email format, the editable parameter will always be set to true, regardless of the value passed.
-⚠️ Temporary Storage: The email string will be automatically removed once a campaign or form closes. This method should only be used at the first showing of a survey to ensure the email is properly captured.
-Best Practices
-Call this method before presenting a form or campaign to ensure the email is available when the user sees the survey
-Validate email format on your end before calling this method if you need strict control over editability
-Consider the user experience - if you're unsure about the email validity, allow editing to prevent user frustration
+- `email: String` - The email address to pre-populate in the email field
+- `editable: Bool` - Whether the user can edit the pre-populated email address
 
-##accessibility
+### Important Notes
 
-There are a few configurable strings for accessibility in the 'localizedStrings file'
+> ⚠️ **Email Validation:** If the provided email is in an incorrect email format, the editable parameter will always be set to true, regardless of the value passed.
 
-We have added to new strings, that will give Information to the user on what kind of multiple choice the user is faceing.
+> ⚠️ **Temporary Storage:** The email string will be automatically removed once a campaign or form closes. This method should only be used at the first showing of a survey to ensure the email is properly captured.
 
+### Best Practices
+
+- Call this method before presenting a form or campaign to ensure the email is available when the user sees the survey
+- Validate email format on your end before calling this method if you need strict control over editability
+- Consider the user experience - if you're unsure about the email validity, allow editing to prevent user frustration
+
+## Accessibility
+
+There are a few configurable strings for accessibility in the 'localizedStrings file'.
+
+We have added two new strings that will give information to the user on what kind of multiple choice the user is facing.
+
+```
 "usa_check_box_name" = "checkbox";
 "usa_radiobutton_name" = "radiobutton";
+```
 
-No action is needed from the developers side, unless you want a different call-out.
+No action is needed from the developer's side, unless you want a different call-out.
