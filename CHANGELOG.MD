@@ -1,4 +1,9 @@
-## 6.16.0
+## 6.17.0
+### Fix
+- Crash for loadfeedbackform called with UIImage()
+### Update
+- Downgarded minimum OS to 12
+- Support build for xcode 26.2 & 16.4 (Deprecating in April 26 and major release)## 6.16.0
 ### Update
 - Migration of API calls (Targeting options are merged with campaigns )## 6.15.0
 ### added
