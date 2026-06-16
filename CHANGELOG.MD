@@ -1,3 +1,6 @@
+## 6.17.1
+### Fix
+- correcting Accessibility behavior
 ## 6.17.0
 ### Fix
 - Crash for loadfeedbackform called with UIImage()
